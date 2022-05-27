@@ -2,4 +2,4 @@
 import './styles/index.scss';
 
 // Components
-export * from './Link';
+export * from './components/Link';

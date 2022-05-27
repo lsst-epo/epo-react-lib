@@ -2,7 +2,7 @@ const path = require('path');
 const postcss = require('postcss');
 
 module.exports = {
-  stories: ['../stories/**/*.stories.@(ts|tsx|js|jsx)'],
+  stories: ['../src/stories/**/*.stories.@(ts|tsx|js|jsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -36,6 +36,12 @@ module.exports = {
       use: ['style-loader', 'css-loader?url=false', 'sass-loader'],
       include: path.resolve(__dirname, '../'),
     });
+
+    config.resolve.alias['@components'] = path.resolve(
+      __dirname,
+      '../src/components'
+    );
+    config.resolve.alias['@styles'] = path.resolve(__dirname, '../src/styles');
 
     // Return the altered config
     return config;
