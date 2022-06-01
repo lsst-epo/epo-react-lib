@@ -1,2 +1,2 @@
-import './styles/index.scss';
-export * from './Link';
+import '@styles/index.scss';
+export * from '@components/Atoms/Button';

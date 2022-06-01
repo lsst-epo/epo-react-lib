@@ -1,5 +1,5 @@
 // Global styles
-import './styles/index.scss';
+import '@styles/index.scss';
 
 // Components
-export * from './components/Link';
+export * from '@components/Atoms/Button';
