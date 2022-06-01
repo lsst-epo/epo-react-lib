@@ -6,6 +6,7 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@storybook/addon-a11y',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -41,7 +42,10 @@ module.exports = {
       __dirname,
       '../src/components'
     );
-    config.resolve.alias['@styles'] = path.resolve(__dirname, '../src/styles');
+    config.resolve.alias['@styles'] = path.resolve(
+      __dirname,
+      '../src/assets/styles'
+    );
 
     // Return the altered config
     return config;

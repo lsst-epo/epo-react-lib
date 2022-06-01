@@ -1,0 +1,57 @@
+@use "sass:math";
+@use "../functions";
+
+// Application-Wide Mixins
+// -----------------------------------
+
+// Fluid Elements
+// --------------------------------------------------------
+// Set min and max sizes and breakpoints and let SCSS fluidly scale different properties in-between
+
+// Originally adapted from https://www.sassmeister.com/gist/7f22e44ace49b5124eec
+// revised to use CSS custom properties and the clamp() function where supported
+// Usage: @include fluid-type(font-size, 22px, 16px, break(130), break(50));
+@mixin fluid-scale(
+  $properties,
+  $max-value,
+  $min-value,
+  $max-vw: functions.break(desktop),
+  $min-vw: functions.break(tablet)
+) {
+  @each $property in $properties {
+    @if $min-value > $max-value {
+      --#{$property}: clamp(
+        #{$max-value},
+        #{functions.fluid-scale-calc($max-value, $min-value, $max-vw, $min-vw)},
+        #{$min-value}
+      );
+    } @else {
+      --#{$property}: clamp(
+        #{$min-value},
+        #{functions.fluid-scale-calc($max-value, $min-value, $max-vw, $min-vw)},
+        #{$max-value}
+      );
+    }
+    /* stylelint-disable-next-line custom-property-pattern */
+    #{$property}: var(#{'--' + $property});
+  }
+}
+
+// Media queries
+// --------------------------------------------------------
+// Respond to viewport size
+// $size -> viewport size
+// $operator -> 'min' or 'max'
+// $aspect -> 'width' or 'height'
+@mixin respond($size, $operator: max, $aspect: width) {
+  @media all and (#{$operator}-#{$aspect}: $size) {
+    @content;
+  }
+}
+
+@mixin reduced-motion() {
+  /* stylelint-disable scss/media-feature-value-dollar-variable */
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
