@@ -1,0 +1,61 @@
+@use "../abstracts/variables";
+@use "../abstracts/functions";
+@use "../abstracts/mixins/base";
+@use "../abstracts/mixins/typography";
+
+// Typography
+// --------------------------------------------------------
+html {
+  @include typography.type-scale(
+    variables.$font-size-base-desktop,
+    variables.$font-size-base-mobile
+  );
+}
+
+body {
+  font-family: variables.$font-stack-base;
+  font-size: 1em;
+  line-height: variables.$line-height-base;
+}
+
+// Block-level elements
+// --------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  @include typography.heading-primary;
+}
+
+h2 {
+  @include typography.heading-secondary;
+}
+
+h3 {
+  @include typography.heading-tertiary;
+}
+
+h4 {
+  @include typography.heading-quaternary;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  @include typography.list-unstyled;
+}
+
+ol {
+  @include typography.list-unstyled;
+}
+
+// Inline elements
+// --------------------------
