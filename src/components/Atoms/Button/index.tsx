@@ -6,7 +6,8 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
   isInactive?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  styleAs: 'primary' | 'secondary';
+  primary?: boolean;
+  secondary?: boolean;
 }
 
 // Please do not use types off of a default export module or else Storybook Docs will suffer.
@@ -15,7 +16,10 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
  * A styled wrapper for the \<button> element
  */
 const Button = forwardRef<HTMLButtonElement, Props>(
-  ({ children, className, isInactive, styleAs, onClick, ...props }, ref) => {
+  (
+    { children, className, isInactive, primary, secondary, onClick, ...props },
+    ref
+  ) => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       if (!isInactive && onClick) {
         onClick(event);
@@ -26,10 +30,16 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       return;
     };
 
+    const classes = {
+      'epo-btn': true,
+      'btn-primary': primary,
+      'btn-secondary': secondary,
+    };
+
     return (
       <button
         {...props}
-        className={classNames('epo-btn', `btn-${styleAs}`)}
+        className={classNames(classes, className)}
         type="button"
         aria-disabled={isInactive || undefined}
         ref={ref}
@@ -43,8 +53,6 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 
 Button.displayName = 'Button';
 
-Button.defaultProps = {
-  styleAs: 'primary',
-};
+Button.defaultProps = {};
 
 export { Button };

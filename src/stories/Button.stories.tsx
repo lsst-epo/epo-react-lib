@@ -11,13 +11,15 @@ export const Primary = Template.bind({});
 Primary.args = {
   children: 'EPO Repository',
   isInactive: false,
-  styleAs: 'primary',
+  primary: true,
 };
 
 export const Secondary = Template.bind({});
+
 Secondary.args = {
-  ...Primary.args,
-  styleAs: 'secondary',
+  children: 'EPO Repository',
+  isInactive: false,
+  secondary: true,
 };
 
 const meta: Meta = {

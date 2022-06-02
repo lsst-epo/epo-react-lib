@@ -46,6 +46,10 @@ module.exports = {
       __dirname,
       '../src/assets/styles'
     );
+    config.resolve.alias['@stories'] = path.resolve(
+      __dirname,
+      '../src/stories'
+    );
 
     // Return the altered config
     return config;
