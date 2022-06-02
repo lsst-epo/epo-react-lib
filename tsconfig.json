@@ -34,7 +34,8 @@
     "noEmit": true,
     "paths": {
       "@components/*": ["src/components/*"],
-      "@styles/*": ["src/assets/styles/*"]
+      "@styles/*": ["src/assets/styles/*"],
+      "@stories/*": ["src/stories/*"]
     }
   }
 }
