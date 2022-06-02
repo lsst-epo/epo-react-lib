@@ -5,6 +5,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
     isInactive?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
     styleAs?: 'primary' | 'secondary';
+
 }
 /**
  * A styled wrapper for the \<button> element
