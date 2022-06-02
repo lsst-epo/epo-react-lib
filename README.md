@@ -32,7 +32,7 @@ Run inside another terminal:
 yarn storybook
 ```
 
-This loads the stories from `./stories`.
+This loads the stories from `./src/stories`.
 
 > NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
 
@@ -69,29 +69,33 @@ Calculates the real cost of your library using [size-limit](https://github.com/a
 This is the folder structure we set up for you:
 
 ```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
+/dist # TSDX output
+/docs # GitHub workflows
 /src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-/stories
-  Thing.stories.tsx # EDIT THIS
+  /assets # SASS and fonts
+  /components # React library components
+  /stories # Storybook.js stories
+  /test # Jest unit tests
+    jest-setup.ts # jest-dom bootstrapping
+  index.tsx # export React components and SASS
 /.storybook
   main.js
   preview.js
 .gitignore
+jest.config.js # module name mapping and Jest setup
 package.json
-README.md         # EDIT THIS
+README.md         
 tsconfig.json
+tsdx.config.js # additional TSDX setup
 ```
 
 #### React Testing Library
 
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
+EPO React Lib uses [React Testing Library](https://github.com/testing-library/react-testing-library) for testing React components in Jest
+
+#### jest-dom
+
+`epo-react-lib` uses [jest-dom](https://github.com/testing-library/jest-dom) to extend Jest's DOM matchers
 
 ### Rollup
 
@@ -102,6 +106,8 @@ TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rol
 `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
 
 ## Continuous Integration
+
+`epo-react-lib` uses Github Actions to build and deploy an [instance of Storybook.js](https://lsst-epo.github.io/epo-react-lib) to GitHub pages. 
 
 ### GitHub Actions
 
