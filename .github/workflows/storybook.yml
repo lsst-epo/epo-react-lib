@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   push:
-    paths: ['src/stories/**', 'src/components/**'] # Trigger the action only when files change in the folders defined here
+    paths: ["packages/epo-react-lib/src/lib/components/**"] # Trigger the action only when files change in the folders defined here
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -12,8 +12,8 @@ jobs:
           persist-credentials: false
       - name: Install and Build 🔧
         run: | # Install npm packages and build the Storybook files
-          npm install
-          npm run build-storybook
+          cd packages/epo-react-lib npm install
+          npm run build:storybook
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
