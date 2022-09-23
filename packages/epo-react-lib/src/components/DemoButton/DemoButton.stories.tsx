@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
-import DemoButton from "./";
+import DemoButton from ".";
 
 const meta: ComponentMeta<typeof DemoButton> = {
   title: "Design System/MyButton",

@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), dts({ insertTypesEntry: true })],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/lib/index.ts"),
+      entry: resolve(__dirname, "src/index.ts"),
       name: "EPOLib",
       formats: ["es", "umd"],
       fileName: (format) => `epo-lib.${format}.js`,
@@ -26,7 +26,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@/components": resolve(__dirname, "./src/lib/components"),
+      "@/components": resolve(__dirname, "./src/components"),
+      "@/styles": resolve(__dirname, "./src/styles"),
     },
   },
 });
