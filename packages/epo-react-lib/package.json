@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "storybook": "start-storybook -p 6006",
-    "prebuild:storybook": "yarn run test:generate-output",
-    "build:storybook": "build-storybook",
+    "build:storybook": "yarn run test:generate-output && build-storybook",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
