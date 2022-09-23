@@ -1,4 +1,7 @@
-module.exports = {
+const path = require("path");
+const { mergeConfig } = require("vite");
+
+const config = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
@@ -14,9 +17,16 @@ module.exports = {
     storyStoreV7: true,
   },
   async viteFinal(config) {
-    const alias = { path: "path-browserify" };
-    config.resolve.alias = alias;
-    console.log(config);
-    return config;
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          "@/components": path.resolve(__dirname, "../src/components"),
+          "@/styles": path.resolve(__dirname, "../src/styles"),
+          path: "path-browserify",
+        },
+      },
+    });
   },
 };
+
+module.exports = config;
