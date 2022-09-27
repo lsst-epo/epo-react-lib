@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "types": ["node", "jest"],
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
@@ -17,10 +18,12 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*"],
       "@/styles/*": ["src/styles/*"]
     }
   },
   "include": ["src", "./jest-setup.ts"],
+  // "exclude": ["**/*.test.*", "**/__mocks__/*", "**/__tests__/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
