@@ -2,6 +2,7 @@
 import { createGlobalStyle } from "styled-components";
 import { fluidScaleBase, stripUnit, respondBase } from "@castiron/style-mixins";
 import { aButton, aButtonTheme } from "@/styles/mixins/appearance";
+import { baseFont } from "@/styles/mixins/font";
 
 export const tokens: { [key: string]: string } = {
   white: "#ffffff",
@@ -250,6 +251,20 @@ const createCSSGlobalStyles = () => {
 };
 
 const GlobalStyles = createGlobalStyle`
+${baseFont}
+  html {
+    font-size: ${fluidScale(
+      FONT_SIZE_BASE_DESKTOP,
+      FONT_SIZE_BASE_MOBILE,
+      BREAK_TABLET,
+      BREAK_MOBILE
+    )}
+  }
+  body {
+    font-family: var(--FONT_STACK_BASE);
+    font-size: 1em;
+    line-height: var(--LINE_HEIGHT_BASE);
+  }
   :root {
       ${createCSSGlobalStyles()}
   }
