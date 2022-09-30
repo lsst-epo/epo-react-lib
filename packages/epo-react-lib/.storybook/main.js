@@ -21,8 +21,11 @@ const config = {
       resolve: {
         alias: {
           "@/assets": path.resolve(__dirname, "../src/assets"),
-          "@/components": path.resolve(__dirname, "../src/components"),
+          "@/atomic": path.resolve(__dirname, "../src/atomic"),
+          "@/helpers": path.resolve(__dirname, "../src/helpers"),
           "@/styles": path.resolve(__dirname, "../src/styles"),
+          "@/svg": path.resolve(__dirname, "../src/svg"),
+          "@/types": path.resolve(__dirname, "../src/types"),
           path: "path-browserify",
         },
       },
