@@ -10,7 +10,7 @@ interface IconComposerProps extends SVGProps {
 export default class IconComposer extends PureComponent<IconComposerProps> {
   get iconComponent() {
     const key = capitalize(this.props.icon) as IconKey;
-    const component = Icons[key];
+    const { [key]: component } = Icons;
 
     return component;
   }
