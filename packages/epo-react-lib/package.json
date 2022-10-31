@@ -1,6 +1,7 @@
 {
   "name": "@rubin-epo/epo-react-lib",
   "author": "Rubin EPO",
+  "homepage": "https://lsst-epo.github.io/epo-react-lib",
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
@@ -10,7 +11,7 @@
     "preview": "vite preview",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\"",
     "storybook": "yarn run test:generate-output && start-storybook -p 6006",
-    "build-storybook": "yarn run test:generate-output && build-storybook -o docs-build",
+    "deploy-storybook": "build-storybook && storybook-to-ghpages -- --existing-output-dir=storybook-static",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
@@ -33,6 +34,7 @@
     "@storybook/builder-vite": "^0.2.2",
     "@storybook/cli": "^6.5.12",
     "@storybook/react": "^6.5.12",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
