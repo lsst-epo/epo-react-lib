@@ -19,7 +19,6 @@ const srcs = [
   {
     srcWoff: SourceSansProItalicWoff,
     srcWoff2: SourceSansProItalicWoff2,
-    fontWeight: "normal",
     fontStyle: "italic",
   },
   {
@@ -54,10 +53,10 @@ const embedFont = (
   fontStyle: string = "normal"
 ) => `@font-face {
   font-family: '${fontFamily}';
-  src: url(${srcWoff2}) format('woff2'),
-        url(${srcWoff}) format('woff);
-  font-weight: ${fontWeight},
-  font-style: ${fontStyle}
+  src: url('${srcWoff2}') format('woff2'),
+        url('${srcWoff}') format('woff');
+  font-weight: ${fontWeight};
+  font-style: ${fontStyle};
 }`;
 
 export const baseFont = srcs.reduce<string>((result, src) => {
