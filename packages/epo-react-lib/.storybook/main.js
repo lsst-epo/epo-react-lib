@@ -18,6 +18,7 @@ const config = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
+      base: "/epo-react-lib/",
       resolve: {
         alias: {
           "@/assets": path.resolve(__dirname, "../src/assets"),
