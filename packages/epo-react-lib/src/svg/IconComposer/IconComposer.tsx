@@ -5,6 +5,7 @@ import { SVGProps } from "@/types/svg";
 
 interface IconComposerProps extends SVGProps {
   icon: IconKey | string;
+  size?: number;
 }
 
 export default class IconComposer extends PureComponent<IconComposerProps> {
@@ -16,13 +17,13 @@ export default class IconComposer extends PureComponent<IconComposerProps> {
   }
 
   render() {
-    const { className, size, fill, stroke } = this.props;
+    const { className, size, fill, stroke, svgProps } = this.props;
     const IconComponent = this.iconComponent;
 
     if (!IconComponent) return false;
 
     return createElement(IconComponent, {
-      svgProps: this.props.svgProps,
+      svgProps,
       className,
       size,
       fill,
