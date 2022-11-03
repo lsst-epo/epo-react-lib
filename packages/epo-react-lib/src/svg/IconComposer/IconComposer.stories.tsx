@@ -9,7 +9,7 @@ const meta: ComponentMeta<typeof IconComposer> = {
     icon: { control: { type: "select", options: Object.keys(Icons) } },
     fill: { control: "color" },
     stroke: { control: "color" },
-    size: { control: "text" },
+    size: { control: "number" },
   },
 };
 export default meta;

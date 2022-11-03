@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-import { SVGProps } from "@/types/svg";
 import Account from "./Account";
 import Calendar from "./Calendar";
 import Cancel from "./Cancel";
