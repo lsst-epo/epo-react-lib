@@ -5,3 +5,4 @@ export { default as Figure } from "@/atomic/Figure";
 export { default as Image } from "@/atomic/Image";
 export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
 export { default as IconComposer } from "@/svg/IconComposer";
+export { default as Button } from "@/atomic/Button";
