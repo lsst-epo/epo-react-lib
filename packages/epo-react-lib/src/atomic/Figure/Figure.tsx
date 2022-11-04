@@ -1,13 +1,13 @@
 import { FunctionComponent, ReactNode } from "react";
 import * as Styled from "./styles";
 
-interface FigureComponentProps {
+interface FigureProps {
   children: ReactNode;
   caption?: string;
   withBackground?: boolean;
 }
 
-const Figure: FunctionComponent<FigureComponentProps> = ({
+const Figure: FunctionComponent<FigureProps> = ({
   children,
   caption,
   withBackground,

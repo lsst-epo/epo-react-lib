@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { createGlobalStyle } from "styled-components";
 import { fluidScaleBase, stripUnit, respondBase } from "@castiron/style-mixins";
-import { aButton, aButtonTheme } from "@/styles/mixins/appearance";
 import { baseFont } from "@/styles/mixins/font";
+import base from "@/styles/base";
 
 export const tokens: { [key: string]: string } = {
   white: "#ffffff",
@@ -268,25 +268,7 @@ ${baseFont}
   :root {
       ${createCSSGlobalStyles()}
   }
-  .c-buttonish {
-    ${aButton}
-    ${aButtonTheme()}
-    padding: 15px 2.125em;
-    font-size: 16px;
-
-    &--block {
-      display: block;
-      text-align: center;
-    }
-
-    &--educator {
-      ${aButtonTheme("educator")}
-    }
-
-    &--inert:hover {
-      outline: none;
-    }
-  }
+  ${base}
 `;
 
 export default GlobalStyles;
