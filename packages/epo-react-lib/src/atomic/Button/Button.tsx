@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { forwardRef, ReactNode, HTMLProps } from "react";
 import { IconKey } from "@/svg/icons";
 import IconComposer from "@/svg/IconComposer";
@@ -6,7 +5,7 @@ import * as Styled from "./styles";
 
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 
-interface ButtonComponentProps extends HTMLProps<HTMLButtonElement> {
+interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
   icon?: IconKey;
@@ -19,7 +18,7 @@ interface ButtonComponentProps extends HTMLProps<HTMLButtonElement> {
   isInactive?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonComponentProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
