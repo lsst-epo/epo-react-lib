@@ -19,9 +19,6 @@ export const ResponsiveImageContainer = styled.div<ResponsiveImageContainerProps
       `${aspectRatio[0]} / ${aspectRatio[1]}`};
   }
 
-  @supports not (aspect-ratio: auto) {
-  }
-
   img {
     position: absolute;
     top: 50%;

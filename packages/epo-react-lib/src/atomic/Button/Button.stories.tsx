@@ -39,8 +39,20 @@ const meta: ComponentMeta<typeof Button> = {
       description:
         "This is a disabled style without disabling the button. Good for a11y - button is visible even if form isn't complete.",
       table: {
+        category: "Function",
         type: {
           summary: "boolean",
+        },
+      },
+    },
+    onClick: {
+      action: "Clicked",
+      description:
+        "Callback to bind to the click event. Since this button is a native `button` element, all other native browser events are available as well.",
+      table: {
+        category: "Function",
+        type: {
+          summary: "(event: MouseEvent) => void",
         },
       },
     },
@@ -92,4 +104,7 @@ export const Tertiary: ComponentStoryObj<typeof Button> = {
 };
 export const Educator: ComponentStoryObj<typeof Button> = {
   args: { styleAs: "educator" },
+};
+export const WithIcon: ComponentStoryObj<typeof Button> = {
+  args: { icon: "Account", children: "With Icon" },
 };
