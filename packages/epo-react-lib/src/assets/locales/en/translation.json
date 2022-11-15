@@ -1,0 +1,42 @@
+{
+  "translation": {
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "current-slide": "Slide {{current}}",
+      "showing-current-slide": "Showing slide {{current}} of {{length}}",
+      "showing-range": "Showing {{from}} to {{to}} of {{length}}",
+      "previous_name": "Previous ({{name}})",
+      "next_name": "Next ({{name}})",
+      "back_to_name": "Back to {{name}}"
+    },
+    "form": {
+      "email": "Email",
+      "email_required": "Email (required)",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "topic": "Topic",
+      "inquiry": "Inquiry",
+      "password": "Password",
+      "password_required": "Password (required)",
+      "current_password": "Current password",
+      "new_password": "New password",
+      "confirm_password": "Confirm new password",
+      "show_password": "Show password",
+      "hide_password": "Hide password",
+      "create_password": "Create a password (required)",
+      "create_password_instructions": "Passwords should be at least 8 characters long and should contain a mixture of letters, numbers, and other characters.",
+      "school": "School",
+      "preferred_language": "Preferred language",
+      "email_subscription": "Email subscription",
+      "send": "Send",
+      "sending": "Sending…",
+      "submitting": "Submitting...",
+      "reset": "Reset form",
+      "cancel": "Cancel",
+      "error": "Error:",
+      "confirm": "Got it!"
+    }
+  }
+}

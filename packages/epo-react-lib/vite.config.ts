@@ -28,7 +28,10 @@ export default defineConfig({
     alias: {
       "@/assets": resolve(__dirname, "./src/assets"),
       "@/atomic": resolve(__dirname, "./src/atomic"),
+      "@/form": resolve(__dirname, "./src/form"),
       "@/helpers": resolve(__dirname, "./src/helpers"),
+      "@/hooks": resolve(__dirname, "./src/hooks"),
+      "@/layout": resolve(__dirname, "./src/layout"),
       "@/styles": resolve(__dirname, "./src/styles"),
       "@/svg": resolve(__dirname, "./src/svg"),
       "@/types": resolve(__dirname, "./src/types"),
