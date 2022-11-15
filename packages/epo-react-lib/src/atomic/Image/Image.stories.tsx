@@ -18,7 +18,7 @@ const meta: ComponentMeta<typeof Image> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof Image> = {
+export const Primary: ComponentStoryObj<typeof Image> = {
   args: {
     image: {
       altText: "A placeholder image",

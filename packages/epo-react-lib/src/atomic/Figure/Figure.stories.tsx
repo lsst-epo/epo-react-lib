@@ -19,7 +19,7 @@ const meta: ComponentMeta<typeof Figure> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof Figure> = {};
+export const Primary: ComponentStoryObj<typeof Figure> = {};
 
 export const WithBackground: ComponentStoryObj<typeof Figure> = {
   args: {

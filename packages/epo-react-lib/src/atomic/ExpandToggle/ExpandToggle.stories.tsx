@@ -52,4 +52,4 @@ const meta: ComponentMeta<typeof ExpandToggle> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof ExpandToggle> = {};
+export const Primary: ComponentStoryObj<typeof ExpandToggle> = {};

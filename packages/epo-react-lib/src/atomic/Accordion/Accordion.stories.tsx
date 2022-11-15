@@ -25,7 +25,7 @@ const meta: ComponentMeta<typeof Accordion> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof Accordion> = {
+export const Primary: ComponentStoryObj<typeof Accordion> = {
   args: {
     summary: "Accordion Summary",
     children: "Expandable content",

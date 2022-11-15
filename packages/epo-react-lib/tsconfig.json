@@ -20,7 +20,10 @@
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/atomic/*": ["src/atomic/*"],
+      "@/form/*": ["src/form/*"],
       "@/helpers/*": ["src/helpers/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/layout/*": ["src/layout/*"],
       "@/styles/*": ["src/styles/*"],
       "@/svg/*": ["src/svg/*"],
       "@/types/*": ["src/types/*"]
