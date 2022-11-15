@@ -8,6 +8,7 @@ const config = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-jest",
+    "storybook-react-i18next",
   ],
   framework: "@storybook/react",
   core: {
@@ -16,6 +17,7 @@ const config = {
   features: {
     storyStoreV7: true,
   },
+  staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
   async viteFinal(config) {
     return mergeConfig(config, {
       base: "/epo-react-lib/",
@@ -23,7 +25,10 @@ const config = {
         alias: {
           "@/assets": path.resolve(__dirname, "../src/assets"),
           "@/atomic": path.resolve(__dirname, "../src/atomic"),
+          "@/form": path.resolve(__dirname, "../src/form"),
           "@/helpers": path.resolve(__dirname, "../src/helpers"),
+          "@/hooks": path.resolve(__dirname, "../src/hooks"),
+          "@/layout": path.resolve(__dirname, "../src/layout"),
           "@/styles": path.resolve(__dirname, "../src/styles"),
           "@/svg": path.resolve(__dirname, "../src/svg"),
           "@/types": path.resolve(__dirname, "../src/types"),

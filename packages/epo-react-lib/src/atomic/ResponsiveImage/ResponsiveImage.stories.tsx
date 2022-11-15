@@ -22,7 +22,7 @@ const meta: ComponentMeta<typeof ResponsiveImage> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof ResponsiveImage> = {
+export const Primary: ComponentStoryObj<typeof ResponsiveImage> = {
   args: {
     image: {
       altText: "A placeholder image",

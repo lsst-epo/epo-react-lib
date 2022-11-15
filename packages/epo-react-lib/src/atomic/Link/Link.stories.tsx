@@ -7,7 +7,7 @@ const meta: ComponentMeta<typeof Link> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof Link> = {
+export const Primary: ComponentStoryObj<typeof Link> = {
   args: {
     href: "https://rubinobs.org/",
     children: "Rubin Observatory",

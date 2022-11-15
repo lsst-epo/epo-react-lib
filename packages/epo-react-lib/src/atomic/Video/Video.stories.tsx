@@ -18,6 +18,6 @@ const meta: ComponentMeta<typeof Video> = {
 };
 export default meta;
 
-export const Default: ComponentStoryObj<typeof Video> = {
+export const Primary: ComponentStoryObj<typeof Video> = {
   args: { url: "https://www.youtube.com/watch?v=wd2hL3yI_-E" },
 };
