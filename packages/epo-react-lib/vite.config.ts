@@ -14,12 +14,22 @@ export default defineConfig({
       fileName: (format) => `epo-lib.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react-dom", "styled-components"],
+      external: [
+        "react",
+        "react-dom",
+        "styled-components",
+        "flickity",
+        "react-player/youtube",
+        "react-uid",
+        "i18next",
+        "react-i18next",
+      ],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           "styled-components": "styled",
+          "react-player/youtube": "ReactPlayer",
         },
       },
     },
