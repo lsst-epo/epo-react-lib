@@ -35,7 +35,12 @@ const renderNodes = (reactNodes) => {
 };
 
 const useMock = [(k) => k, {}];
-useMock.t = (k) => k;
+useMock.t = (k, l = {}) =>
+  `${k} ${Object.keys(l).reduce((prev, curr) => {
+    prev += `${curr}: ${l[curr]} `;
+
+    return prev;
+  }, "")}`;
 useMock.i18n = {};
 
 module.exports = {

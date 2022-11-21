@@ -9,20 +9,20 @@ const props = {
   children: <Input id={inputId} />,
   description: "Field description",
   required: true,
-  error: "Text field error",
 };
 
 describe("FormField", () => {
   it("should label input element", () => {
     render(<FormField {...props} />);
 
-    const input = screen.getByLabelText(props.label);
+    const input = screen.getByLabelText(props.label, { exact: false });
     expect(input).toBeDefined();
   });
   it("should attach error message", () => {
-    render(<FormField {...props} />);
+    const errorMessage = "Text field error";
+    render(<FormField {...props} error={errorMessage} />);
 
     const error = screen.getByRole("alert");
-    expect(error).toHaveTextContent(props.error);
+    expect(error).toHaveTextContent(errorMessage);
   });
 });
