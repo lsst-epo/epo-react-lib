@@ -7,7 +7,7 @@ function Status() {
   const { active, length } = useCarouselContext();
 
   return (
-    <Styled.Status aria-live="polite">
+    <Styled.Status aria-live="polite" role="region">
       {t("pagination.showing-current-slide", { current: active + 1, length })}
     </Styled.Status>
   );

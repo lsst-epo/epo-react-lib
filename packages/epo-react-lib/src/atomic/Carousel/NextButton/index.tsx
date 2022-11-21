@@ -8,7 +8,7 @@ function NextButton() {
   const { nextButtonProps } = useCarouselContext();
 
   return (
-    <Styled.Button {...nextButtonProps}>
+    <Styled.Button {...(nextButtonProps as any)} data-testid="carousel-next">
       <Styled.SrText>{t("pagination.next")}</Styled.SrText>
       <IconComposer icon="caret" />
     </Styled.Button>

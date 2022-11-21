@@ -8,7 +8,7 @@ function PrevButton() {
   const { prevButtonProps } = useCarouselContext();
 
   return (
-    <Styled.Button {...prevButtonProps}>
+    <Styled.Button {...(prevButtonProps as any)}>
       <Styled.SrText>{t("pagination.previous")}</Styled.SrText>
       <IconComposer icon="caret" />
     </Styled.Button>

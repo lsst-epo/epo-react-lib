@@ -9,19 +9,21 @@ function Pager() {
 
   return (
     <Styled.List>
-      {stepArray.map((step) => (
-        <li key={step}>
-          <Styled.Button
-            {...pageDotProps}
-            aria-current={active === step ? "step" : null}
-            onClick={() => setActive(step)}
-          >
-            <Styled.SrText>
-              {t("pagination.current-slide", { current: step + 1 })}
-            </Styled.SrText>
-          </Styled.Button>
-        </li>
-      ))}
+      {stepArray.map((step) => {
+        return (
+          <li key={step}>
+            <Styled.Button
+              {...(pageDotProps as any)}
+              aria-current={active === step ? "step" : null}
+              onClick={() => setActive(step)}
+            >
+              <Styled.SrText>
+                {t("pagination.current-slide", { current: step + 1 })}
+              </Styled.SrText>
+            </Styled.Button>
+          </li>
+        );
+      })}
     </Styled.List>
   );
 }

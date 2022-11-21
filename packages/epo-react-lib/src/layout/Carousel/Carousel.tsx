@@ -27,15 +27,11 @@ const CarouselLayout: FunctionComponent<CarouselLayoutProps> = ({
         <Carousel.Status />
         <Carousel.PrevButton />
         <Carousel.Carousel>
-          {Children.map<ReactNode, any>(children, (child, index) => {
-            if (isValidElement(child)) {
-              return (
-                <Carousel.Slide key={index}>
-                  {cloneElement(child)}
-                </Carousel.Slide>
-              );
-            }
-          })}
+          {Children.map<ReactNode, any>(children, (child, index) =>
+            isValidElement(child) ? (
+              <Carousel.Slide key={index}>{cloneElement(child)}</Carousel.Slide>
+            ) : null
+          )}
         </Carousel.Carousel>
         <Carousel.NextButton />
         <Carousel.Pager />
