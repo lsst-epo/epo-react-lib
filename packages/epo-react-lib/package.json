@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-react-lib",
-  "version": "1.0.3-rc.2",
+  "version": "1.0.5",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -17,14 +17,14 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "publish": "clean-publish",
+    "publish:clean": "clean-publish",
     "storybook": "yarn run test:generate-output && start-storybook -p 6006",
     "deploy-storybook": "STORYBOOK_PROD=true && storybook-to-ghpages",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
   "files": [
-    "../../README.md",
+    "README.md",
     "dist"
   ],
   "main": "./dist/epo-lib.umd.js",
