@@ -1,21 +1,13 @@
 import Icons from "@/svg/icons";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { children } from "../../../.storybook/utilities/index";
 
 import Button from ".";
 
 const meta: ComponentMeta<typeof Button> = {
   component: Button,
   argTypes: {
-    children: {
-      control: "text",
-      defaultValue: "Rubin Observatory",
-      description: "React child",
-      table: {
-        type: {
-          summary: "ReactNode",
-        },
-      },
-    },
+    children,
     styleAs: {
       control: {
         type: "select",

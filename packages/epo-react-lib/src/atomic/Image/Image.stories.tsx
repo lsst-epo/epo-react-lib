@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { className } from "../../../.storybook/utilities/index";
 
 import Image from ".";
 
@@ -8,9 +9,7 @@ const meta: ComponentMeta<typeof Image> = {
     image: {
       control: "object",
     },
-    className: {
-      control: "text",
-    },
+    className,
     title: {
       control: "text",
     },

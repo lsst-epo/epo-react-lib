@@ -1,6 +1,6 @@
 import { PureComponent, createElement } from "react";
 import Icons, { IconKey } from "@/svg/icons";
-import { capitalize } from "@/helpers/index";
+import { capitalize } from "@/lib/utils";
 import { SVGProps } from "@/types/svg";
 
 interface IconComposerProps extends SVGProps {

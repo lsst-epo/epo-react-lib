@@ -29,11 +29,18 @@ const config = {
           "@/helpers": path.resolve(__dirname, "../src/helpers"),
           "@/hooks": path.resolve(__dirname, "../src/hooks"),
           "@/layout": path.resolve(__dirname, "../src/layout"),
+          "@/lib": path.resolve(__dirname, "../src/lib"),
           "@/styles": path.resolve(__dirname, "../src/styles"),
           "@/svg": path.resolve(__dirname, "../src/svg"),
           "@/types": path.resolve(__dirname, "../src/types"),
           path: "path-browserify",
         },
+      },
+      define: {
+        "process.env.STORYBOOK_ENV": JSON.stringify(process.env.STORYBOOK_ENV),
+        "process.env.STORYBOOK_PUBLIC_BASE_URL": JSON.stringify(
+          process.env.STORYBOOK_PUBLIC_BASE_URL
+        ),
       },
     });
   },

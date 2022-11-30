@@ -5,7 +5,7 @@ import * as Styled from "./styles";
 
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 
-interface ButtonProps extends HTMLProps<HTMLButtonElement> {
+export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   children: ReactNode;
   className?: string;
   icon?: IconKey;
