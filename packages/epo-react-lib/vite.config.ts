@@ -42,6 +42,7 @@ export default defineConfig({
       "@/helpers": resolve(__dirname, "./src/helpers"),
       "@/hooks": resolve(__dirname, "./src/hooks"),
       "@/layout": resolve(__dirname, "./src/layout"),
+      "@/lib": resolve(__dirname, "./src/lib"),
       "@/styles": resolve(__dirname, "./src/styles"),
       "@/svg": resolve(__dirname, "./src/svg"),
       "@/types": resolve(__dirname, "./src/types"),

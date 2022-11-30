@@ -12,6 +12,7 @@ const config: JestConfigWithTsJest = {
     "^@/helpers(.*)$": "<rootDir>/src/helpers$1",
     "^@/hooks(.*)$": "<rootDir>/src/hooks$1",
     "^@/layout(.*)$": "<rootDir>/src/layout$1",
+    "^@/lib(.*)$": "<rootDir>/src/lib$1",
     "^@/styles(.*)$": "<rootDir>/src/styles$1",
     "^@/svg(.*)$": "<rootDir>/src/svg$1",
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":

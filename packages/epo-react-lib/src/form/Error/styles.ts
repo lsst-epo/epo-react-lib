@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { fluidScale } from "@/styles/globalStyles";
-import { aHidden } from "@/styles/mixins/appearance";
+import { ScreenreaderText } from "@/styles/utils";
 
 export const Error = styled.p`
   color: #cf4040;
@@ -8,6 +8,4 @@ export const Error = styled.p`
   line-height: 1.5;
 `;
 
-export const ErrorLabel = styled.span`
-  ${aHidden}
-`;
+export const ErrorLabel = ScreenreaderText;

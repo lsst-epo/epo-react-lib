@@ -1,10 +1,9 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, HTMLProps, ReactNode } from "react";
 import * as Styled from "./styles";
 
-interface ExternalLinkProps {
+interface ExternalLinkProps extends HTMLProps<HTMLAnchorElement> {
   href: string;
   children: ReactNode;
-  [key: string]: any;
 }
 
 const ExternalLink: FunctionComponent<ExternalLinkProps> = ({
@@ -16,7 +15,7 @@ const ExternalLink: FunctionComponent<ExternalLinkProps> = ({
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    {...restProps}
+    {...(restProps as any)}
   >
     {children}
   </Styled.Link>

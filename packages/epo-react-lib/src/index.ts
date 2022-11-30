@@ -18,3 +18,6 @@ export { default as FormField } from "@/form/FormField";
 export { default as Input, Password } from "@/form/Input";
 export { default as Select } from "@/form/Select";
 export { default as Switch } from "@/form/Switch";
+export { default as Buttonish } from "@/atomic/Buttonish";
+export { default as MixedLink } from "@/atomic/MixedLink";
+export * from "@/atomic/Share";
