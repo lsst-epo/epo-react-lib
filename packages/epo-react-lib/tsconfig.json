@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "module": "es2022",
+    "moduleResolution": "Node",
     "types": ["node", "jest"],
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -10,8 +12,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -24,9 +24,11 @@
       "@/helpers/*": ["src/helpers/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/layout/*": ["src/layout/*"],
+      "@/lib/*": ["src/lib/*"],
       "@/styles/*": ["src/styles/*"],
       "@/svg/*": ["src/svg/*"],
-      "@/types/*": ["src/types/*"]
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"]
     }
   },
   "include": ["src", "./jest-setup.ts"],

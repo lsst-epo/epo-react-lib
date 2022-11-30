@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { respond, BREAK_DESKTOP_SMALL } from "@/styles/globalStyles";
-import { aHidden, protoButton } from "@/styles/mixins/appearance";
+import { protoButton } from "@/styles/mixins/appearance";
+import { ScreenreaderText } from "@/styles/utils";
 
 export const List = styled.ul`
   display: none;
@@ -47,6 +48,4 @@ export const Button = styled.button`
   }
 `;
 
-export const SrText = styled.span`
-  ${aHidden}
-`;
+export const SrText = ScreenreaderText;

@@ -37,6 +37,15 @@
       "cancel": "Cancel",
       "error": "Error:",
       "confirm": "Got it!"
+    },
+    "share": {
+      "label_current": "Share current page",
+      "label_item": "Share {{title}}",
+      "copy_url": "Copy URL",
+      "email": "Email",
+      "email_subject": " Hey! Check out this info from Rubin Observatory's website: {{title}}",
+      "facebook_quote": "Hey! Check out this info from Rubin Observatory's website: {{title}}",
+      "twitter_title": "Hey! Check out this info from Rubin Observatory's website: {{title}}"
     }
   }
 }
