@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { children } from "../../../.storybook/utilities/index";
 
 import Accordion from ".";
 
@@ -13,14 +14,7 @@ const meta: ComponentMeta<typeof Accordion> = {
         },
       },
     },
-    children: {
-      description: "Content to be shown or hidden by accordion.",
-      table: {
-        type: {
-          summary: "ReactNode",
-        },
-      },
-    },
+    children,
   },
 };
 export default meta;

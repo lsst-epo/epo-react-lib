@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { children } from "../../../.storybook/utilities/index";
 
 import Figure from ".";
 
@@ -10,10 +11,7 @@ const meta: ComponentMeta<typeof Figure> = {
       defaultValue:
         "Cosmic ipsum Lagrange points hydrogen double star lunar orbital eccentricity solar wind synodic Earthshine gamma ray astronomical unit variable star half moon cosmology spectroscope red shift",
     },
-    children: {
-      control: "text",
-      defaultValue: "Rubin Observatory",
-    },
+    children,
     withBackground: { control: "boolean", defaultValue: false },
   },
 };

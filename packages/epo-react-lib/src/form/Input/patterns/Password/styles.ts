@@ -1,4 +1,5 @@
-import { aHidden, protoButton } from "@/styles/mixins/appearance";
+import { protoButton } from "@/styles/mixins/appearance";
+import { ScreenreaderText } from "@/styles/utils";
 import styled from "styled-components";
 import { Input as BaseInput } from "../../styles";
 
@@ -23,9 +24,7 @@ export const Toggle = styled.button`
   }
 `;
 
-export const SrText = styled.span`
-  ${aHidden}
-`;
+export const SrText = ScreenreaderText;
 
 export const Input = styled(BaseInput)`
   padding-right: ${40 + 18 * 3}px;

@@ -1,4 +1,4 @@
-import { aHidden } from "@/styles/mixins/appearance";
+import { ScreenreaderText } from "@/styles/utils";
 import styled from "styled-components";
 import DefaultButton from "../Button";
 
@@ -10,6 +10,4 @@ export const Button = styled(DefaultButton)`
   }
 `;
 
-export const SrText = styled.span`
-  ${aHidden}
-`;
+export const SrText = ScreenreaderText;

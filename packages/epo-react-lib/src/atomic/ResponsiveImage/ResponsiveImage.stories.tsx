@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { className } from "../../../.storybook/utilities/index";
 
 import ResponsiveImage from ".";
 
@@ -8,9 +9,7 @@ const meta: ComponentMeta<typeof ResponsiveImage> = {
     image: {
       control: "object",
     },
-    className: {
-      control: "text",
-    },
+    className,
     ratio: {
       control: "text",
       defaultValue: "8:5",
