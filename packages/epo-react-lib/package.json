@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-react-lib",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -8,7 +8,6 @@
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
-  "type": "module",
   "supportedLocales": [
     "en",
     "es"
