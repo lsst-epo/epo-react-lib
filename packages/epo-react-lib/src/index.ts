@@ -3,6 +3,7 @@ export { default as localeStrings } from "@/assets/locales";
 
 export { default as Accordion } from "@/atomic/Accordion";
 export { default as ExternalLink } from "@/atomic/ExternalLink";
+export { default as Link } from "@/atomic/Link";
 export { default as Figure } from "@/atomic/Figure";
 export { default as Image } from "@/atomic/Image";
 export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
