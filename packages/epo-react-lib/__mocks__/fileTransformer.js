@@ -1,4 +1,4 @@
-import * as path from "path";
+const path = require("path");
 
 const process = (sourceText, sourcePath, options) => {
   return {
@@ -6,4 +6,4 @@ const process = (sourceText, sourcePath, options) => {
   };
 };
 
-export default { process };
+module.exports = { process };
