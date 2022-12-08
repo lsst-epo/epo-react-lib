@@ -16,7 +16,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "publish:clean": "clean-publish",
+    "publish:clean": "yarn build && clean-publish",
     "storybook": "yarn run test:generate-output && start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
     "test": "jest",
