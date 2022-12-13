@@ -20,6 +20,7 @@
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/atomic/*": ["src/atomic/*"],
+      "@/contexts/*": ["src/contexts/*"],
       "@/form/*": ["src/form/*"],
       "@/helpers/*": ["src/helpers/*"],
       "@/hooks/*": ["src/hooks/*"],

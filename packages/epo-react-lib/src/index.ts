@@ -22,3 +22,5 @@ export { default as Buttonish } from "@/atomic/Buttonish";
 export { default as MixedLink } from "@/atomic/MixedLink";
 export * from "@/atomic/Share";
 export { default as Columns } from "@/layout/Columns";
+export { default as Container } from "@/layout/Container";
+export { default as Grid } from "@/layout/Grid";

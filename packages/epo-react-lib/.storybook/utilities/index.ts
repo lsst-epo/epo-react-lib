@@ -8,6 +8,10 @@ export const children = {
     },
   },
 };
+export const objChildren = {
+  ...children,
+  control: "object",
+};
 export const className = {
   control: "text",
   description: "CSS class to attach",
