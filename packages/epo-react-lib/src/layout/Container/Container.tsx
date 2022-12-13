@@ -1,25 +1,24 @@
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useNestedContext } from "@/contexts/Nested";
-import * as Styled from "./styles";
 import { FunctionComponent, ReactNode } from "react";
+import * as Styled from "./styles";
+import { SpacingSize } from "@/styles/mixins/layout";
+import { colorTokens } from "@/styles/globalStyles";
+import { useNestedContext } from "@/contexts/Nested";
 
-
-
+interface SectionAttributes {
+  role?: string;
+  "aria-hidden"?: boolean;
+  "aria-labelledby"?: string;
+  id: string;
+}
 interface ContainerProps {
-  bgColor?: string
-  children: ReactNode
-  className: string,
-  width?: Styled.ContainerWidth,
+  bgColor?: keyof typeof colorTokens;
+  children: ReactNode;
+  className?: string;
+  width?: Styled.ContainerWidth;
   /** Applies padding utility class of the same name.
    * Default is "large", "none" removes the class entirely */
-  paddingSize?: "large" | "medium" | "small" | "none",
-  elAttributes: PropTypes.shape({
-    role: PropTypes.string,
-    "aria-hidden": PropTypes.bool,
-    "aria-labelledby": PropTypes.string,
-    id: PropTypes.string,
-  }),
+  paddingSize?: SpacingSize | "none";
+  elAttributes?: SectionAttributes;
 }
 
 const Container: FunctionComponent<ContainerProps> = ({
@@ -33,17 +32,13 @@ const Container: FunctionComponent<ContainerProps> = ({
   const nested = useNestedContext();
   return (
     <Styled.Section
-      className={classNames(className, {
-        [`l-pad-top-${paddingSize}`]: !nested && paddingSize !== "none",
-        [`l-pad-bottom-${paddingSize}`]: !nested && paddingSize !== "none",
-      })}
+      data-testid="container"
+      $paddingSize={!nested && paddingSize !== "none" ? paddingSize : undefined}
       $bgColor={bgColor}
-      {...elAttributes}
+      {...(elAttributes as any)}
     >
       <Styled.Inner
-        className={classNames({
-          [`${className}__inner`]: !!className,
-        })}
+        $className={!!className ? `${className}__inner` : undefined}
         $width={width}
         $nested={nested}
       >

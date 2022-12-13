@@ -38,6 +38,7 @@ export default defineConfig({
     alias: {
       "@/assets": resolve(__dirname, "./src/assets"),
       "@/atomic": resolve(__dirname, "./src/atomic"),
+      "@/contexts": resolve(__dirname, "./src/contexts"),
       "@/form": resolve(__dirname, "./src/form"),
       "@/helpers": resolve(__dirname, "./src/helpers"),
       "@/hooks": resolve(__dirname, "./src/hooks"),

@@ -4,7 +4,7 @@ import { fluidScaleBase, stripUnit, respondBase } from "@castiron/style-mixins";
 import { baseFont } from "@/styles/mixins/font";
 import base from "@/styles/base";
 
-export const tokens: { [key: string]: string } = {
+export const colorTokens: { [key: string]: string } = {
   white: "#ffffff",
   offWhite: "#e9e9e9",
   neutral02: "#fafafa",
@@ -41,6 +41,10 @@ export const tokens: { [key: string]: string } = {
   red: "#cf4040",
   red20: "#f2c3c0",
   red40: "#FF8489",
+};
+
+export const tokens: { [key: string]: string } = {
+  ...colorTokens,
   BREAK_HEADER_LAYOUT: "1500px",
   BREAK_DESKTOP: "1280px",
   BREAK_DESKTOP_SMALL: "1130px",
