@@ -1,12 +1,12 @@
 import * as Styled from "./styles";
 import Link from "next/link";
 import ResponsiveImage from "@/atomic/ResponsiveImage";
-import { ImageProps } from "@/atomic/Image";
 import IconComposer from "@/svg/IconComposer";
 import { FunctionComponent } from "react";
+import { Image } from "@/types/image";
 
 interface TileProps {
-  image: ImageProps["image"];
+  image: Image;
   isVideo: boolean;
   link: string;
   title: string;

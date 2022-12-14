@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import Carousel from ".";
-import MockChildren from "../../../.storybook/utilities/MockChildren";
+import MockChildren from "@/storybook/utilities/mocks";
 import { protoContainer } from "@/styles/globalStyles";
 
 const CarouselDecorator = styled.div`

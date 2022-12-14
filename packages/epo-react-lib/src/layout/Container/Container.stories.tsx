@@ -1,9 +1,9 @@
 import { colorTokens } from "@/styles/globalStyles";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { objChildren, className } from "../../../.storybook/utilities";
+import { objChildren, className } from "@/storybook/utilities/argTypes";
+import MockChildren from "@/storybook/utilities/mocks";
 
 import Container from ".";
-import MockChildren from "../../../.storybook/utilities/MockChildren";
 
 const meta: ComponentMeta<typeof Container> = {
   component: Container,

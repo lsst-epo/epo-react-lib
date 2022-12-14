@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { children, className } from "../../../.storybook/utilities/index";
+import { children, className } from "@/storybook/utilities/argTypes";
 
 import MixedLink from ".";
 
