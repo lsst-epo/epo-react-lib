@@ -8,7 +8,7 @@ const withTheme: DecoratorFn = (StoryFn) => {
   return (
     <>
       <GlobalStyle />
-      <StoryFn />
+      {StoryFn()}
     </>
   );
 };
