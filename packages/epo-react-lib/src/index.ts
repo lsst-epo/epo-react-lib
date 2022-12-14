@@ -24,3 +24,5 @@ export * from "@/atomic/Share";
 export { default as Columns } from "@/layout/Columns";
 export { default as Container } from "@/layout/Container";
 export { default as Grid } from "@/layout/Grid";
+export { default as MasonryGrid } from "@/layout/MasonryGrid";
+export { default as BasicModal } from "@/layout/BasicModal";
