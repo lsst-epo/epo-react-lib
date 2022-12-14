@@ -31,6 +31,7 @@ const config = {
           "@/hooks": path.resolve(__dirname, "../src/hooks"),
           "@/layout": path.resolve(__dirname, "../src/layout"),
           "@/lib": path.resolve(__dirname, "../src/lib"),
+          "@/storybook": path.resolve(__dirname, "."),
           "@/styles": path.resolve(__dirname, "../src/styles"),
           "@/svg": path.resolve(__dirname, "../src/svg"),
           "@/types": path.resolve(__dirname, "../src/types"),

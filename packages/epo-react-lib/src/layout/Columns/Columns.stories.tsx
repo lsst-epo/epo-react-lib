@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { children } from "../../../.storybook/utilities";
-import MockChildren from "../../../.storybook/utilities/MockChildren";
+import { children } from "@/storybook/utilities/argTypes";
+import MockChildren from "@/storybook/utilities/mocks";
 
 import Columns from ".";
 
