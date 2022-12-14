@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { children } from "../../../.storybook/utilities/index";
+import { children } from "@/storybook/utilities/argTypes";
 
 import Link from ".";
 

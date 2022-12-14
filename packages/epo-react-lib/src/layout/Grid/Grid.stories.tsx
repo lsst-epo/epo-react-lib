@@ -1,16 +1,15 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { objChildren } from "../../../.storybook/utilities";
+import { objChildren } from "@/storybook/utilities/argTypes";
+import { getGradientImage } from "@/storybook/utilities/helpers";
 
 import Grid from ".";
 import Image from "@/atomic/Image";
 
 const image = {
   altText: "A placeholder image",
-  url: "https://via.placeholder.com/150",
-  url2x: "https://via.placeholder.com/300",
-  url3x: "https://via.placeholder.com/450",
-  width: 150,
-  height: 150,
+  url: getGradientImage(200, 200),
+  width: 200,
+  height: 200,
 };
 
 const Children = [
