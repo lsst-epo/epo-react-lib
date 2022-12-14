@@ -1,17 +1,9 @@
+import { Image as ImageShape } from "@/types/image";
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
 
 export interface ImageProps {
-  image: {
-    altText?: string;
-    width?: number;
-    height?: number;
-    url: string;
-    url2x?: string;
-    url3x?: string;
-    thumb?: string;
-    thumb2x?: string;
-  };
+  image: ImageShape;
   className?: string;
   title?: string;
   [key: string]: any;

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import MockChildren from "../../../.storybook/utilities/MockChildren";
+import MockChildren from "@/storybook/utilities/mocks";
 import Container from ".";
 
 describe("Container", () => {

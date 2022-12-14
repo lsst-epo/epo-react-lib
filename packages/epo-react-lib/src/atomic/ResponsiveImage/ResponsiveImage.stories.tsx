@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { className } from "../../../.storybook/utilities/index";
+import { className } from "@/storybook/utilities/argTypes";
 
 import ResponsiveImage from ".";
 

@@ -1,6 +1,6 @@
 import Icons from "@/svg/icons";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { children } from "../../../.storybook/utilities/index";
+import { children } from "@/storybook/utilities/argTypes";
 
 import Button from ".";
 
