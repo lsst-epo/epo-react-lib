@@ -21,6 +21,7 @@ export { default as Video } from "@/atomic/Video";
 
 // Content Blocks
 export { default as SimpleTable } from "@/content-blocks/SimpleTable";
+export { default as ComplexTable } from "@/content-blocks/ComplexTable";
 
 // Form
 export { default as Error } from "@/form/Error";
