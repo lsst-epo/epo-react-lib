@@ -25,6 +25,7 @@ const config = {
         alias: {
           "@/assets": path.resolve(__dirname, "../src/assets"),
           "@/atomic": path.resolve(__dirname, "../src/atomic"),
+          "@/content-blocks": path.resolve(__dirname, "../src/content-blocks"),
           "@/contexts": path.resolve(__dirname, "../src/contexts"),
           "@/form": path.resolve(__dirname, "../src/form"),
           "@/helpers": path.resolve(__dirname, "../src/helpers"),
