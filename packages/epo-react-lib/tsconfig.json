@@ -20,6 +20,7 @@
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/atomic/*": ["src/atomic/*"],
+      "@/content-blocks/*": ["src/content-blocks/*"],
       "@/contexts/*": ["src/contexts/*"],
       "@/form/*": ["src/form/*"],
       "@/helpers/*": ["src/helpers/*"],
@@ -34,6 +35,5 @@
     }
   },
   "include": ["src", "./jest-setup.ts"],
-  // "exclude": ["**/*.test.*", "**/__mocks__/*", "**/__tests__/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
