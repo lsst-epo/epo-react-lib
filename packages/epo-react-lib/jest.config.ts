@@ -8,6 +8,7 @@ const config: JestConfigWithTsJest = {
   moduleNameMapper: {
     "^@/assets(.*)$": "<rootDir>/src/assets$1",
     "^@/atomic(.*)$": "<rootDir>/src/atomic$1",
+    "^@/content-blocks(.*)$": "<rootDir>/src/content-blocks$1",
     "^@/contexts(.*)$": "<rootDir>/src/contexts$1",
     "^@/form(.*)$": "<rootDir>/src/form$1",
     "^@/helpers(.*)$": "<rootDir>/src/helpers$1",
