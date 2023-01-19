@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import * as Styled from "./styles";
 
-interface WrapperProps {
+export interface WrapperProps {
   children: ReactNode;
   className?: string;
 }
