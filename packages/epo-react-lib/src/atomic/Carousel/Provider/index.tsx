@@ -3,7 +3,7 @@ import { CarouselConfig, CarouselOptions } from "@/types/carousel";
 import useCarousel from "@/hooks/useCarousel";
 import CarouselContext from "../context";
 
-interface CarouselProviderProps {
+export interface CarouselProviderProps {
   options: CarouselOptions;
   children: ReactNode;
 }
