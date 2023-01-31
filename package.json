@@ -8,8 +8,7 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "sites/*"
+      "packages/*"
     ]
   }
 }
