@@ -69,6 +69,9 @@ export const tokens: { [key: string]: string } = {
   PADDING_LARGE: "100px",
   PADDING_MEDIUM: "40px",
   PADDING_SMALL: "20px",
+  DURATION: "0.2s",
+  DURATION_SLOW: "0.4s",
+  DURATION_SUPER_SLOW: "1s",
 };
 
 export const zStack = {
@@ -127,6 +130,9 @@ export const LINE_HEIGHT_BASE = tokens.LINE_HEIGHT_BASE;
 export const PADDING_LARGE = tokens.PADDING_LARGE;
 export const PADDING_MEDIUM = tokens.PADDING_MEDIUM;
 export const PADDING_SMALL = tokens.PADDING_SMALL;
+export const DURATION = tokens.DURATION;
+export const DURATION_SLOW = tokens.DURATION_SLOW;
+export const DURATION_SUPER_SLOW = tokens.DURATION_SUPER_SLOW;
 
 export function fluidScale(
   max: string,
