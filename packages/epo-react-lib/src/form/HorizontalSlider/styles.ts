@@ -68,7 +68,7 @@ export const ThumbContainer = styled.div`
   }
 `;
 
-export const Thumb = styled.div`
+export const Thumb = styled.div<{ color?: string }>`
   box-sizing: border-box;
   position: relative;
   width: ${thumbHeight}px;
@@ -76,7 +76,7 @@ export const Thumb = styled.div`
   color: var(--white, #fff);
   text-align: center;
   cursor: grab;
-  background-color: var(--turquoise55);
+  background-color: ${({ color = "var(--turquoise55, #009fa1)" }) => color};
   border: ${thumbBorder}px solid var(--neutral10);
   border-radius: 50%;
 
@@ -92,10 +92,10 @@ export const Thumb = styled.div`
   }
 `;
 
-export const Track = styled.div<{ color: string }>`
+export const Track = styled.div<{ color?: string }>`
   box-sizing: border-box;
   border-radius: ${trackHeight / 2}px;
-  background-color: ${({ color }) => color};
+  background-color: ${({ color = "var(--neutral10, #f5f5f5)" }) => color};
   height: ${trackHeight}px;
 `;
 
