@@ -27,7 +27,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   minLabel,
   maxLabel,
   labelledbyId,
-  color = "transparent",
+  color,
   darkMode = false,
 }) => {
   const [showThumbLabels, setShowThumbLabels] = useState(false);
@@ -54,7 +54,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
     return (
       <Styled.ThumbContainer {...{ ...props }}>
-        <Styled.Thumb />
+        <Styled.Thumb {...{ color }} />
         <Styled.ThumbLabel {...{ showThumbLabels, darkMode }}>
           {valueNow}
         </Styled.ThumbLabel>
