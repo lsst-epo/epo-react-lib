@@ -75,6 +75,7 @@ export const tokens: { [key: string]: string } = {
 };
 
 export const zStack = {
+  loader: 45,
   dialog: 35,
   header: 25,
 };
