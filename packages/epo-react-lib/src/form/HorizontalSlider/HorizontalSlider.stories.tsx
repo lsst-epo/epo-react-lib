@@ -88,11 +88,10 @@ const meta: ComponentMeta<typeof HorizontalSlider> = {
     color: {
       control: "color",
       description:
-        "Color that either fills the slider starting from the left for single values, or fills the slider between the two thumbs for ranged values.",
+        "Color that either fills the slider starting from the left for single values, or fills the slider between the two thumbs for ranged values. Also fills the background-color of the slider thumb.\n\nCan also be a CSS variable.",
       table: {
         category: "Styling",
         type: { summary: "string" },
-        defaultValue: { summary: "transparent" },
       },
     },
     darkMode: {
@@ -143,7 +142,6 @@ export const Primary: ComponentStoryObj<typeof HorizontalSlider> =
 Primary.args = {
   value: 50,
   label: "primaryExample",
-  color: "var(--orange55)",
 };
 
 export const DoubleHandle: ComponentStoryObj<typeof HorizontalSlider> =
