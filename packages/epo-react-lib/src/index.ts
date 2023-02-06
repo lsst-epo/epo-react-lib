@@ -9,6 +9,7 @@ export { default as localeStrings } from "@/assets/locales";
 export { default as Accordion } from "@/atomic/Accordion";
 export { default as Button } from "@/atomic/Button";
 export { default as Buttonish } from "@/atomic/Buttonish";
+export { default as CircularLoader } from "@/atomic/CircularLoader";
 export { default as ColorSwatch } from "@/atomic/ColorSwatch";
 export { default as ExpandToggle } from "@/atomic/ExpandToggle";
 export { default as ExternalLink } from "@/atomic/ExternalLink";
