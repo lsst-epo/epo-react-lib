@@ -1,4 +1,3 @@
-import Icons from "@/svg/icons";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import Switch from ".";

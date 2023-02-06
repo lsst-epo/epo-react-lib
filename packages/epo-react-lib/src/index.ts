@@ -28,6 +28,7 @@ export { default as ComplexTable } from "@/content-blocks/ComplexTable";
 export { default as Error } from "@/form/Error";
 export { default as FormButtons } from "@/form/FormButtons";
 export { default as FormField } from "@/form/FormField";
+export { default as HorizontalSlider } from "@/form/HorizontalSlider";
 export { default as Input, Password } from "@/form/Input";
 export { default as Select } from "@/form/Select";
 export { default as Switch } from "@/form/Switch";
