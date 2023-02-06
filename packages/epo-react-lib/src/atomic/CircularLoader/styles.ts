@@ -1,21 +1,48 @@
-import styled, { css } from "styled-components";
-import { zStack } from "@/styles/globalStyles";
+import styled, { css, keyframes } from "styled-components";
+import { DURATION_SLOW, zStack } from "@/styles/globalStyles";
+
+export type LoaderSpeed = "slow" | "normal" | "fast";
 
 interface LoaderProps {
-  fullScreen: boolean;
+  withOverlay?: boolean;
   isVisible: boolean;
+  speed: LoaderSpeed;
 }
 
-export const LoaderContainer = styled.div.attrs(({ isVisible }) => ({
-  style: { opacity: isVisible ? 1 : 0 },
-}))<LoaderProps>`
+export const speeds: { [key: string]: string } = {
+  slow: "50s",
+  normal: "20s",
+  fast: "2s",
+};
+
+const spinAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoaderContainer = styled.div.attrs<LoaderProps>(
+  ({ isVisible }) => ({
+    style: { opacity: isVisible ? 1 : 0 },
+  })
+)<LoaderProps>`
   color: var(--turquoise50, #00bebf);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity ${DURATION_SLOW} ease-in-out;
 
-  ${({ fullScreen }) =>
-    fullScreen
+  svg {
+    animation-name: ${spinAnimation};
+    animation-duration: ${({ speed }) => speeds[speed]};
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  ${({ withOverlay = false }) =>
+    withOverlay
       ? css`
           z-index: ${zStack.loader};
 
