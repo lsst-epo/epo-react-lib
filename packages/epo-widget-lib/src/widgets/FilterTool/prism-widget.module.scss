@@ -1,0 +1,75 @@
+.prism-outline {
+  fill: none;
+  stroke: #ffffff;
+  stroke-miterlimit: 10;
+  stroke-width: 12;
+}
+
+.filter {
+  fill: none;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 27.27;
+}
+
+@mixin prismClasses {
+  $noArrow: "#no-arrow";
+
+  @each $color, $hex in $prismHexColors {
+    .ray-#{$color} {
+      fill: $hex;
+
+      &.no-arrow {
+        fill: url(#{$noArrow}-#{$color});
+      }
+    }
+
+    .arrow-#{$color} {
+      fill: $hex;
+    }
+
+    .ray-#{$color}.no-arrow + .arrow-#{$color} {
+      opacity: 0;
+    }
+  }
+}
+
+@include prismClasses;
+
+.select-container {
+  display: block;
+  width: 150px;
+  padding-bottom: $minPadding;
+  margin: 0 auto;
+  background-color: #000000;
+
+  .select-label {
+    color: $white;
+  }
+
+  :global {
+    .md-menu--select-field {
+      .md-floating-label {
+        font-size: 16px;
+        color: $white;
+      }
+
+      .md-select-field {
+        .md-select-field--text-field {
+          width: 150px;
+          padding: 20px 15px;
+          background-color: white;
+          border-radius: 5px;
+
+          &.md-text-field--margin {
+            margin-top: 0;
+          }
+        }
+
+        hr {
+          display: none;
+        }
+      }
+    }
+  }
+}
