@@ -1,1 +1,20 @@
-{}
+{
+  "translation": {
+    "filterTool": {
+      "title": "Filter Tool",
+      "filter": "Filter",
+      "whiteLight": "White Light",
+      "prism": "Prism",
+      "selectLabel": "Select a filter:",
+      "colors": {
+        "violet": "Violet",
+        "blue": "Blue",
+        "green": "Green",
+        "yellow": "Yellow",
+        "orange": "Orange",
+        "red": "Red",
+        "none": "None"
+      }
+    }
+  }
+}

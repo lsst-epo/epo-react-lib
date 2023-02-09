@@ -1,6 +1,6 @@
-# epo-react-lib
+# epo-widget-lib
 
-React UI components for Rubin Observatory Education & Public Outreach projects
+React widgets for Rubin Observatory Education & Public Outreach projects
 
 ## Use
 
@@ -8,7 +8,7 @@ React UI components for Rubin Observatory Education & Public Outreach projects
 
 Install from npm.
 
-`yarn add @rubin-epo/epo-react-lib`
+`yarn add @rubin-epo/epo-widget-lib`
 
 ### Dependencies
 
@@ -16,36 +16,34 @@ EPO React Library has 5 peer dependencies required to pull it in to your applica
 
 `yarn add react react-dom styled-components i18next react-i18next`
 
-There is an additional optional peer dependency on `next` for components that use the Next.js router.
-
 ### Styles
 
 After installing the package library, the global styles will need to be added to the top level of your application.
 
 ```
-import { GlobalStyles } from "@rubin-epo/epo-react-lib";
+import { GlobalStyles } from "@rubin-epo/epo-widget-lib";
 
 const App = () => {
   return <main><GlobalStyles></main>
 }
 ```
 
-If you use other Rubin React libraries, this step only needs to be done once from this library. Additional imports of the global styles are not necessary.
+If you have already imported the global styles from `epo-react-lib` this step is unnecessary.
 
 ### Translations
 
-Import `localeStrings` from `@rubin-epo/epo-react-lib`, it contains individual locales that can be added to your project's i18next setup.
+Import `localeStrings` from `@rubin-epo/epo-widget-lib`, it contains individual locales that can be added to your project's i18next setup.
 
 ## Build
 
 ### Vite
 
-This project uses Vite in library mode to package the contents of `/packages/epo-react-lib/src` into modules located in `/packages/epo-react-lib/dist/epo-lib.[es|umd].js` and TypeScript typings in `/packages/epo-react-lib/dist/index.d.ts`
+This project uses Vite in library mode to package the contents of `/packages/epo-widget-lib/src` into modules located in `/packages/epo-widget-lib/dist/epo-widget-lib.[es|umd].js` and TypeScript typings in `/packages/epo-widget-lib/dist/index.d.ts`
 
 To build from source:
 
 ```
-cd packages/epo-react-lib
+cd packages/epo-widget-lib
 yarn
 yarn build # production build
 # yarn dev # development server
@@ -66,7 +64,7 @@ yarn storybook
 
 ## Test
 
-Each component EPO React Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
+Each component in EPO Widget Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
 
 ```
 yarn test

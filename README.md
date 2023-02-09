@@ -1,70 +1,17 @@
-# epo-react-lib
+# EPO React Libraries
 
-React UI components for Rubin Observatory Education & Public Outreach projects
+React libraries developed for Rubin Education & Public Outreach.
 
-## Use
+## Packages
 
-### Install
+### epo-react-lib
 
-Write about NPM package when applicable
+A lowest level building blocks library containing core styling and low level components that can be used across many projects. Other libraries in this repository may use `epo-react-lib` to build more complex components.
 
-### Dependencies
+### epo-widget-lib
 
-EPO React Library has 3 peer dependencies required to pull it in to your application.
+Scientific discovery widgets developed for education investigations.
 
-`yarn add react react-dom styled-components`
+## Workspaces
 
-### Styles
-
-Write about `styled-components` global import here.
-
-## Build
-
-### Vite
-
-This project uses Vite in library mode to package the contents of `/packages/epo-react-lib/src` into modules located in `/packages/epo-react-lib/dist/epo-lib.[es|umd].js` and TypeScript typings in `/packages/epo-react-lib/dist/index.d.ts`
-
-To build from source:
-
-```
-cd packages/epo-react-lib
-yarn
-yarn build # production build
-# yarn dev # development server
-```
-
-### Storybook
-
-Storybook is used to create an interactive display of the components in the EPO React Library.
-
-Stories from component folders following the `\*\*.stories.[t|j]sx will be included in the Storybook bundle.
-
-To run Storybook:
-
-```
-yarn build
-yarn storybook
-```
-
-## Test
-
-Each component EPO React Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
-
-```
-yarn test
-# yarn test:generate-output # will save to .jest-test-results.json for Storybook
-```
-
-To add a unit test to it's Storybook page add the filename of the unit test to the `parameters` property of the story
-
-```
-export const Primary: ComponentStoryObj<typeof DemoButton> = {
-  args: {
-    disabled: false,
-    children: "Hello",
-  },
-  parameters: {
-    jest: "DemoButton.test.tsx",
-  },
-};
-```
+Each package is its own workspace. [Yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) give each package it's own workspace area while sharing common dependencies through a top-level `node_modules` folder. An advantage of this setup is that if one package is installed by another, it will symlink the package instead of installing from the online source.

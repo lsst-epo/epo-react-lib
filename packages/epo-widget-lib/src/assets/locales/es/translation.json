@@ -1,1 +1,20 @@
-{}
+{
+  "translation": {
+    "filterTool": {
+      "title": "Herramienta de filtro",
+      "filter": "El filtro",
+      "whiteLight": "Luz blanca",
+      "prism": "Prisma",
+      "selectLabel": "Seleccione un filtro:",
+      "colors": {
+        "violet": "Violeta",
+        "blue": "Azul",
+        "green": "Verde",
+        "yellow": "Amarillo",
+        "orange": "Naranja",
+        "red": "Rojo",
+        "none": "Ninguno"
+      }
+    }
+  }
+}
