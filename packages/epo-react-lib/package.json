@@ -29,7 +29,6 @@
   "main": "./dist/epo-lib.umd.js",
   "module": "./dist/epo-lib.es.js",
   "types": "./dist/index.d.ts",
-  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/epo-lib.es.js",
