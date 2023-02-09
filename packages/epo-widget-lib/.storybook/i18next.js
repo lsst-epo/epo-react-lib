@@ -12,7 +12,6 @@ i18n
     debug: true,
     lng: "en",
     fallbackLng: "en",
-    defaultNS: "translation",
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     supportedLngs,

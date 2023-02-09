@@ -25,6 +25,7 @@ export default defineConfig({
         "react-i18next",
       ],
       output: {
+        interop: "auto",
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
