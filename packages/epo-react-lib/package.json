@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-react-lib",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -29,6 +29,7 @@
   "main": "./dist/epo-lib.umd.js",
   "module": "./dist/epo-lib.es.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/epo-lib.es.js",

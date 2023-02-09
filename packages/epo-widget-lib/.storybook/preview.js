@@ -1,3 +1,4 @@
+import { globalDecorators } from "./decorators";
 import i18n from "./i18next.js";
 
 export const parameters = {
@@ -8,3 +9,6 @@ export const parameters = {
     es: "Español",
   },
 };
+
+export const decorators = globalDecorators;
+////
