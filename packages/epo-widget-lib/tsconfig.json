@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@/assets/*": ["src/assets/*"],
+      "@/storybook/*": [".storybook/*"],
       "@/widgets/*": ["src/widgets/*"]
     }
   },
