@@ -18,6 +18,7 @@ export default defineConfig({
     alias: {
       "@/assets": resolve(__dirname, "./src/assets"),
       "@/widgets": resolve(__dirname, "./src/widgets"),
+      "@/storybook": resolve(__dirname, "./.storybook"),
     },
   },
 });

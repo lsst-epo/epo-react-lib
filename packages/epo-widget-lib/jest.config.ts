@@ -7,6 +7,7 @@ const config: JestConfigWithTsJest = {
   verbose: true,
   moduleNameMapper: {
     "^@/assets(.*)$": "<rootDir>/src/assets$1",
+    "^@/storybook(.*)$": "<rootDir>/.storybook$1",
     "^@/widgets(.*)$": "<rootDir>/src/widgets$1",
   },
   modulePathIgnorePatterns: ["node_modules", ".jest-test-results.json"],
