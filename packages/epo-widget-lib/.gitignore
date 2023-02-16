@@ -15,7 +15,6 @@ storybook-static
 
 # testing
 .jest-test-results.json
-__snapshots__/*
 
 # Editor directories and files
 .vscode/*
