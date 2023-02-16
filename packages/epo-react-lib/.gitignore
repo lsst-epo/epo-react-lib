@@ -14,7 +14,7 @@ dist-ssr
 storybook-static
 
 # testing
-.jest-test-results.json
+# .jest-test-results.json
 
 # Editor directories and files
 .vscode/*
