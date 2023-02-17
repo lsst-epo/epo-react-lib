@@ -14,9 +14,10 @@ export const colorTokens: { [key: string]: string } = {
   neutral20: "#dce0e3",
   neutral30: "#d3d4d5",
   neutral40: "#9E9EA3",
-  neutral60: "#666666",
+  neutral60: "#6A6E6E",
   neutral80: "#404040",
   neutral90: "#2b2e34",
+  neutral95: "#1F2121",
   black: "#000000",
   turquoise05: "#EDFFFE",
   turqouise07: "#EDFFFE",
@@ -92,6 +93,7 @@ export const neutral40 = tokens.neutral40;
 export const neutral60 = tokens.neutral60;
 export const neutral80 = tokens.neutral80;
 export const neutral90 = tokens.neutral90;
+export const neutral95 = tokens.neutral95;
 export const black = tokens.black;
 export const orange20 = tokens.orange20;
 export const orange55 = tokens.orange55;
