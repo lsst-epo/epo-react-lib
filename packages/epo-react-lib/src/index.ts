@@ -32,6 +32,7 @@ export { default as FormField } from "@/form/FormField";
 export { default as HorizontalSlider } from "@/form/HorizontalSlider";
 export { default as Input, Password } from "@/form/Input";
 export { default as Select } from "@/form/Select";
+export { default as SelectListbox } from "@/form/SelectListbox";
 export { default as Switch } from "@/form/Switch";
 
 // Layout

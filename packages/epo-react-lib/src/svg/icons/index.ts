@@ -3,6 +3,7 @@ import Calendar from "./Calendar";
 import Cancel from "./Cancel";
 import Caret from "./Caret";
 import CaretThin from "./CaretThin";
+import Checkmark from "./Checkmark";
 import CircularLoader from "./CircularLoader";
 import Close from "./Close";
 import Cloud from "./Cloud";
@@ -47,6 +48,7 @@ const Icons = {
   Cancel,
   Caret,
   CaretThin,
+  Checkmark,
   CircularLoader,
   Close,
   Cloud,

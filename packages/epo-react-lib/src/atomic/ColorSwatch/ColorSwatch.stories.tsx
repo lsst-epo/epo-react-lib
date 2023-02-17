@@ -33,13 +33,14 @@ const meta: ComponentMeta<typeof ColorSwatch> = {
         type: { summary: "string" },
       },
     },
-    large: {
-      control: "boolean",
-      description: "Makes the swatch 1.5x larger.",
+    size: {
+      control: "select",
+      options: ["small", "regular", "large"],
+      description: "Sets the size of the swatch",
       table: {
         category: "Styling",
-        type: { summary: "boolean" },
-        defaultValue: { summary: false },
+        type: { summary: "small | regular | large" },
+        defaultValue: { summary: "regular" },
       },
     },
   },
