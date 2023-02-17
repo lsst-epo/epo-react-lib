@@ -6,17 +6,17 @@ interface ColorSwatchProps {
   classes?: string;
   content?: string;
   color: string;
-  large?: boolean;
+  size?: "small" | "normal" | "large";
 }
 
 const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({
   classes,
   content,
   color,
-  large = false,
+  size = "normal",
 }) => (
   <span className={classes}>
-    <Styled.ColorSwatch {...{ large, color }} data-testid="color-swatch" />
+    <Styled.ColorSwatch {...{ size, color }} data-testid="color-swatch" />
     <ScreenreaderText>{content || color}</ScreenreaderText>
   </span>
 );

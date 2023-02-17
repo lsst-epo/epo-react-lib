@@ -1,5 +1,8 @@
 {
   "translation": {
+    "select_listbox": {
+      "placeholder": "Select"
+    },
     "pagination": {
       "label": "Pagination",
       "previous": "Previous",
