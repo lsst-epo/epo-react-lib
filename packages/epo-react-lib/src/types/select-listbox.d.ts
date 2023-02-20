@@ -6,4 +6,4 @@ export interface Option {
   icon?: ReactElement;
 }
 
-export type onChangeCallback = (value: string | null) => void;
+export type onChangeCallback = (value: string | string[] | null) => void;

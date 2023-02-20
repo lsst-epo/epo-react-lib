@@ -4,7 +4,7 @@ interface registerOpenDropdownHandlersArgs {
   options: Option[];
   activeIndex: number;
   setActiveIndex: (i: number) => void;
-  select: onChangeCallback;
+  select: (value: string | null) => void;
 }
 
 const registerOpenDropdownHandlers: (
