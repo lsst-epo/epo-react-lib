@@ -7,13 +7,14 @@ import * as Styled from "./styles";
 import { useAccessibleDropdown, useOnOutsideClick } from "./hooks";
 
 interface SelectListboxProps {
-  value: string;
+  value: string | string[];
   options: Option[];
   onChangeCallback: onChangeCallback;
   isDisabled?: boolean;
   placeholder?: string;
   labelledById?: string;
   namespace?: string;
+  isMultiselect?: boolean;
 }
 
 const SelectListbox: FunctionComponent<SelectListboxProps> = ({
@@ -24,6 +25,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   labelledById,
   placeholder: unsafePlaceholder,
   namespace,
+  isMultiselect = false,
 }) => {
   const uid = namespace || useUID();
   const {
@@ -35,8 +37,12 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
     setIsFocus,
     listRef,
     buttonRef,
-  } = useAccessibleDropdown({ options, value, uid, onChangeCallback });
-  const chosen = options.find((o) => o.value === value);
+  } = useAccessibleDropdown({
+    options,
+    value,
+    onChangeCallback,
+    isMultiselect,
+  });
   const { t } = useTranslation();
 
   const clickOutsideCallback = () => {
@@ -44,11 +50,21 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
     setIsFocus(false);
   };
 
+  const isChosen = (optionValue: string) => value.includes(optionValue);
+
+  const getOptionFromValue = (value: string) =>
+    options.find((o) => o.value === value);
+
   const { wrapperRef } = useOnOutsideClick(() => clickOutsideCallback());
 
   const placeholder = unsafePlaceholder
     ? unsafePlaceholder
     : t("select_listbox.placeholder");
+
+  const selectionLabel =
+    value && Array.isArray(value)
+      ? value.map((v) => getOptionFromValue(v)?.label).join(", ")
+      : getOptionFromValue(value)?.label;
 
   return (
     <Styled.SelectContainer ref={wrapperRef}>
@@ -65,7 +81,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
         aria-activedescendant={`${uid}_element_${value}`}
         disabled={isDisabled}
       >
-        {chosen ? chosen.label : placeholder}
+        {selectionLabel || placeholder}
         <IconComposer icon="caretThin" size={12} />
       </Styled.SelectButton>
       <Styled.SelectDropdown
@@ -73,7 +89,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
         ref={listRef}
         id={`${uid}_dropdown`}
         tabIndex={-1}
-        aria-multiselectable={false}
+        aria-multiselectable={isMultiselect}
       >
         {options.map(({ label, value: optionValue, icon }, index) => (
           <Styled.DropdownOption
@@ -86,16 +102,16 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
             <label>
               <>
                 <input
-                  type="radio"
+                  type={isMultiselect ? "checkbox" : "radio"}
                   value={optionValue}
-                  checked={chosen && chosen.value === optionValue}
+                  checked={isChosen(optionValue)}
                   onChange={() => select(optionValue)}
                 />
-                {chosen && chosen.value === optionValue ? (
+                {isChosen(optionValue) ? (
                   <IconComposer icon="checkmark" size={11} />
-                ) : icon ? (
+                ) : (
                   icon
-                ) : null}
+                )}
                 <Styled.DropdownText>{label}</Styled.DropdownText>
               </>
             </label>

@@ -5,9 +5,9 @@ import { registerOpenDropdownHandlers } from "../handlers";
 
 interface useAccessibleDropdownArgs {
   options: Option[];
-  value: string;
+  value: string | string[];
   onChangeCallback: onChangeCallback;
-  uid: string;
+  isMultiselect: boolean;
 }
 
 interface useAccessibleDropdownResult {
@@ -27,7 +27,7 @@ const useAccessibleDropdown: (
   options,
   value,
   onChangeCallback,
-  uid,
+  isMultiselect,
 }) => {
   const [isDropdownOpen, setIsDropdownOpenInternal] = useState(false);
   const listRef = useRef<HTMLUListElement>(null);
@@ -35,16 +35,25 @@ const useAccessibleDropdown: (
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFocus, setIsFocus] = useState(false);
 
-  const select = (value: string | null) => {
-    if (value) {
-      onChangeCallback && onChangeCallback(value);
+  const select = (selectedValue: string | null) => {
+    if (selectedValue && onChangeCallback) {
+      if (isMultiselect) {
+        const arrayValue = Array.isArray(value) ? value : [value];
+
+        const newValue = arrayValue.includes(selectedValue)
+          ? arrayValue.filter((v) => v !== selectedValue)
+          : [...arrayValue, selectedValue];
+        onChangeCallback(newValue);
+      } else {
+        onChangeCallback(selectedValue);
+      }
     }
     setIsDropdownOpen(false);
   };
 
   const setIsDropdownOpen = (v: boolean) => {
     if (v) {
-      const selected = options.findIndex((o) => o.value === value);
+      const selected = options.findIndex((o) => value.includes(o.value));
       setActiveIndex(selected < 0 ? 0 : selected);
       if (listRef.current && isSafari()) {
         requestAnimationFrame(() => {
