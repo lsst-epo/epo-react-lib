@@ -11,5 +11,14 @@
     "packages": [
       "packages/*"
     ]
+  },
+  "scripts": {
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages --packages=packages --out=.out --dry-run",
+    "test": "jest",
+    "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
+  },
+  "devDependencies": {
+    "@storybook/storybook-deployer": "^2.8.16"
   }
 }

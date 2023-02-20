@@ -18,11 +18,21 @@ const config = {
     storyStoreV7: true,
   },
   staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
-  refs: {
-    "epo-react-lib": {
-      title: "EPO UI Library",
-      url: "http://localhost:6006",
-    },
+  refs: (config, { configType }) => {
+    if (configType === "DEVELOPMENT") {
+      return {
+        "epo-react-lib": {
+          title: "EPO UI Library",
+          url: "http://localhost:6006",
+        },
+      };
+    }
+    return {
+      "epo-react-lib": {
+        title: "EPO UI Library",
+        url: "https://lsst-epo.github.io/epo-react-lib/@rubin-epo/epo-react-lib",
+      },
+    };
   },
   async viteFinal(config) {
     return mergeConfig(config, {

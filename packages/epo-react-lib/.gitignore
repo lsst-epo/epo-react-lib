@@ -13,6 +13,8 @@ dist-ssr
 *.local
 storybook-static
 
+.out/*
+
 # testing
 .jest-test-results.json
 
