@@ -17,7 +17,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6007",
-    "build-storybook": "build-storybook",
+    "build-storybook": "yarn install && build && build-storybook",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
