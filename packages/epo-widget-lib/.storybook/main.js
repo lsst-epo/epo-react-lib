@@ -16,13 +16,24 @@ const config = {
   },
   features: {
     storyStoreV7: true,
+    buildStoriesJson: true,
   },
   staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
-  refs: {
-    "epo-react-lib": {
-      title: "EPO UI Library",
-      url: "http://localhost:6006",
-    },
+  refs: (config, { configType }) => {
+    if (configType === "DEVELOPMENT") {
+      return {
+        "epo-react-lib": {
+          title: "EPO UI Library",
+          url: "http://localhost:6006",
+        },
+      };
+    }
+    return {
+      "epo-react-lib": {
+        title: "EPO UI Library",
+        url: "https://epo-react-lib.netlify.app",
+      },
+    };
   },
   async viteFinal(config) {
     return mergeConfig(config, {

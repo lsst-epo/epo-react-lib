@@ -16,6 +16,7 @@ const config = {
   },
   features: {
     storyStoreV7: true,
+    buildStoriesJson: true,
   },
   staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
   async viteFinal(config) {
