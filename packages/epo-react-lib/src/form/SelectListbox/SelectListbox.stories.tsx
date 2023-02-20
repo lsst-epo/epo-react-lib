@@ -48,7 +48,21 @@ const options = [
 
 const meta: ComponentMeta<typeof SelectListbox> = {
   component: SelectListbox,
-  argTypes: { isDisabled: { control: "boolean" } },
+  argTypes: {
+    isDisabled: { control: "boolean" },
+    onChangeCallback: {
+      type: { name: "function", required: true },
+      action: "Value changed",
+      description:
+        "Callback to bind to the `onAfterChange` event. Will pass the new value along with the slider's `label`.",
+      table: {
+        category: "Function",
+        type: {
+          summary: "(value: number | readonly number[], label: string) => void",
+        },
+      },
+    },
+  },
 };
 
 export default meta;
@@ -63,7 +77,10 @@ const Template: ComponentStory<typeof SelectListbox> = ({
     <SelectListbox
       {...args}
       value={value}
-      onChangeCallback={(value) => setValue(value)}
+      onChangeCallback={(value) => {
+        console.log(value);
+        return setValue(value);
+      }}
     />
   );
 };
@@ -72,4 +89,4 @@ export const Primary: ComponentStoryObj<typeof SelectListbox> = Template.bind(
   {}
 );
 
-Primary.args = { options, value: "red" };
+Primary.args = { options, value: "red", isMultiselect: true };
