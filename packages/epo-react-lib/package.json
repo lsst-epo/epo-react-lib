@@ -19,7 +19,7 @@
     "publish:clean": "yarn build && clean-publish",
     "storybook": "yarn run test:generate-output && start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "yarn run test:generate-output && build-storybook",
+    "build-storybook": "build-storybook",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
