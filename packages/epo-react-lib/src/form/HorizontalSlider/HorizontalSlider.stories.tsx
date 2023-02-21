@@ -131,7 +131,10 @@ const Template: ComponentStory<typeof HorizontalSlider> = ({
     <HorizontalSlider
       {...args}
       value={value}
-      onChangeCallback={(value) => setValue(value)}
+      onChangeCallback={(value) => {
+        args.onChangeCallback(value, args.label);
+        return setValue(value);
+      }}
     />
   );
 };
