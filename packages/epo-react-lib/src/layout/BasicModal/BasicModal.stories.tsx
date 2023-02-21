@@ -76,6 +76,7 @@ const Template: ComponentStory<typeof BasicModal> = ({
   description,
   darkMode,
   children,
+  ...args
 }) => {
   const [isOpen, setIsOpen] = useState(open || false);
 
@@ -84,7 +85,10 @@ const Template: ComponentStory<typeof BasicModal> = ({
       <Button onClick={() => setIsOpen(true)}>Click to open modal</Button>
       <BasicModal
         open={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={(event) => {
+          args.onClose(event);
+          return setIsOpen(false);
+        }}
         {...{ title, description, darkMode }}
       >
         {children}

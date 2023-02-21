@@ -5,7 +5,7 @@ import { registerOpenDropdownHandlers } from "../handlers";
 
 interface useAccessibleDropdownArgs {
   options: Option[];
-  value: string | string[];
+  value: string | string[] | null;
   onChangeCallback: onChangeCallback;
   isMultiselect: boolean;
 }
@@ -36,9 +36,9 @@ const useAccessibleDropdown: (
   const [isFocus, setIsFocus] = useState(false);
 
   const select = (selectedValue: string | null) => {
-    if (selectedValue && onChangeCallback) {
-      if (isMultiselect) {
-        const arrayValue = Array.isArray(value) ? value : [value];
+    if (onChangeCallback) {
+      if (isMultiselect && selectedValue) {
+        const arrayValue = value ? [value].flat() : [];
 
         const newValue = arrayValue.includes(selectedValue)
           ? arrayValue.filter((v) => v !== selectedValue)
@@ -53,7 +53,9 @@ const useAccessibleDropdown: (
 
   const setIsDropdownOpen = (v: boolean) => {
     if (v) {
-      const selected = options.findIndex((o) => value.includes(o.value));
+      const selected = options.findIndex(
+        (o) => value && value.includes(o.value)
+      );
       setActiveIndex(selected < 0 ? 0 : selected);
       if (listRef.current && isSafari()) {
         requestAnimationFrame(() => {

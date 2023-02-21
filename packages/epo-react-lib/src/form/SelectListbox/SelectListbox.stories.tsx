@@ -8,7 +8,7 @@ import ColorSwatch from "@/atomic/ColorSwatch";
 import SelectListbox from ".";
 import { useState } from "react";
 
-const options = [
+export const options = [
   {
     value: "red",
     label: "Red",
@@ -49,16 +49,143 @@ const options = [
 const meta: ComponentMeta<typeof SelectListbox> = {
   component: SelectListbox,
   argTypes: {
-    isDisabled: { control: "boolean" },
-    onChangeCallback: {
-      type: { name: "function", required: true },
-      action: "Value changed",
+    options: {
+      control: "object",
+      type: {
+        name: "other",
+        value: "Option[]",
+        required: true,
+      },
+      description: "Array of `Option` objects to populate the selection.",
+      table: {
+        category: "Model",
+        type: {
+          summary: "Option[]",
+        },
+      },
+    },
+    value: {
+      control: "object",
+      type: {
+        name: "other",
+        value: "string | string[] | null",
+        required: true,
+      },
+      description: "Initial value of the select dropdown",
+      table: {
+        category: "Model",
+        type: {
+          summary: "string | string[] | null",
+        },
+        defaultValue: {
+          summary: "null",
+        },
+      },
+    },
+    placeholder: {
+      control: "text",
+      type: {
+        name: "string",
+      },
       description:
-        "Callback to bind to the `onAfterChange` event. Will pass the new value along with the slider's `label`.",
+        "Text to be displayed in the selection box when no values are selected.",
+      table: {
+        category: "Display",
+        type: {
+          summary: "string",
+        },
+        defaultValue: {
+          summary: "'Select'",
+        },
+      },
+    },
+    labelledById: {
+      control: "text",
+      type: {
+        name: "string",
+      },
+      description: "ID of the HTML element that labels this select dropdown",
+      table: {
+        category: "Labels",
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    namespace: {
+      control: "text",
+      type: {
+        name: "string",
+      },
+      description:
+        "Unique identifier to be attached to element via ID and ARIA attributes. Will use `useUid()` if not specified.",
+      table: {
+        category: "Labels",
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    isDisabled: {
+      control: "boolean",
+      description:
+        "Disables the control and prevents all clicks or keyboard interaction.",
       table: {
         category: "Function",
         type: {
-          summary: "(value: number | readonly number[], label: string) => void",
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
+    isMultiselect: {
+      control: "boolean",
+      description: "Enables multi-selection.",
+      table: {
+        category: "Function",
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
+    onChangeCallback: {
+      type: { name: "function", required: true },
+      action: "onChange",
+      description:
+        "Callback that occurs when the value of the selection has changed. Will return a `string` for single select, `string[]` for multiple selection.",
+      table: {
+        category: "Function",
+        type: {
+          summary: "(value: string | string[] | null) => void",
+        },
+      },
+    },
+    maxWidth: {
+      control: "text",
+      description: "Maximum width of the selection dropdown",
+      table: {
+        category: "Styling",
+        type: {
+          summary: "string",
+        },
+        defaultValue: {
+          summary: "200px",
+        },
+      },
+    },
+    width: {
+      control: "text",
+      description:
+        "Static width to apply to the selection dropdown, otherwise width will fit contents and cap at `maxWidth`",
+      table: {
+        category: "Styling",
+        type: {
+          summary: "string",
         },
       },
     },
@@ -78,7 +205,7 @@ const Template: ComponentStory<typeof SelectListbox> = ({
       {...args}
       value={value}
       onChangeCallback={(value) => {
-        console.log(value);
+        args.onChangeCallback(value);
         return setValue(value);
       }}
     />
@@ -89,4 +216,9 @@ export const Primary: ComponentStoryObj<typeof SelectListbox> = Template.bind(
   {}
 );
 
-Primary.args = { options, value: "red", isMultiselect: true };
+Primary.args = { options, value: "red" };
+
+export const MultiSelect: ComponentStoryObj<typeof SelectListbox> =
+  Template.bind({});
+
+MultiSelect.args = { options, value: ["red", "green"], isMultiselect: true };
