@@ -20,7 +20,7 @@ const config = {
   staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
   async viteFinal(config) {
     return mergeConfig(config, {
-      base: "/epo-react-lib/",
+      base: "/epo-react-lib/@rubin-epo/epo-react-lib/",
       resolve: {
         alias: {
           "@/assets": path.resolve(__dirname, "../src/assets"),
