@@ -1,6 +1,6 @@
-import { FormEvent, FunctionComponent, useState, useEffect } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { Select } from "@rubin-epo/epo-react-lib";
+import { FunctionComponent, useState, useEffect } from "react";
+import { useTranslation, Trans } from "react-i18next";
+import { SelectListbox, ColorSwatch } from "@rubin-epo/epo-react-lib";
 import * as Styled from "./styles";
 
 interface FilterToolProps {
@@ -23,6 +23,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
   selectionCallback,
   isReadOnly = false,
 }) => {
+  const { t } = useTranslation();
   const [selectedColor, setSelectedColor] = useState(preSelectedColor);
   const prismColors: { [key in FilterColor]: string } = {
     violet: "#861cff",
@@ -34,11 +35,10 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
     none: "transparent",
   };
   const prismOptions = Object.keys(prismColors).map((color) => {
-    const { t } = useTranslation();
-
     return {
       value: color,
       label: t(`filterTool.colors.${color}`),
+      icon: <ColorSwatch color={color} size="small" />,
     };
   });
 
@@ -48,15 +48,10 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
     }
   }, [selectedColor]);
 
-  const handleSelect = (event: FormEvent<HTMLSelectElement>) => {
-    const { target } = event;
-    const { value } = target as HTMLSelectElement;
-
-    return setSelectedColor(value as FilterColor);
-  };
-
   const isArrowHidden = (color: FilterColor) =>
     selectedColor !== color && selectedColor !== "none";
+
+  const selectLabel = t("filterTool.selectLabel");
 
   return (
     <>
@@ -246,15 +241,17 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
           />
         </Styled.PrismSVG>
         <Styled.SelectContainer>
-          <Styled.SelectLabel htmlFor="color-select">
-            <Trans i18nKey="filterTool.selectLabel" />
-          </Styled.SelectLabel>
-          <Select
-            id="color-select"
+          <SelectListbox
             options={prismOptions}
-            disabled={isReadOnly}
+            isDisabled={isReadOnly}
             value={selectedColor}
-            onChange={(event) => handleSelect(event)}
+            onChangeCallback={(value) =>
+              setSelectedColor((value as FilterColor) || "none")
+            }
+            labelledById="color-select"
+            placeholder={selectLabel}
+            maxWidth="100%"
+            width="200px"
           />
         </Styled.SelectContainer>
       </Styled.Wrapper>

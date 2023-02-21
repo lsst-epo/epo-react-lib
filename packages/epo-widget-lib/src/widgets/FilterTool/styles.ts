@@ -5,11 +5,14 @@ export const Wrapper = styled.div`
 `;
 
 export const SelectContainer = styled.div`
-  display: block;
-  width: 20ch;
-  padding-bottom: var(--PADDING_SMALL, 20px);
-  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 var(--PADDING_SMALL, 20px) var(--PADDING_SMALL, 20px);
   background-color: var(--black, #000);
+  width: 100%;
 `;
 
 export const SelectLabel = styled.label`
