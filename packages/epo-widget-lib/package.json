@@ -1,5 +1,6 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
+  "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
