@@ -36,7 +36,7 @@ const config = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
-      base: "/epo-widget-lib/",
+      base: "/epo-react-lib/@rubin-epo/epo-widget-lib/",
       resolve: {
         alias: {
           path: "path-browserify",

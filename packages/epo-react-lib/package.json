@@ -1,5 +1,6 @@
 {
   "name": "@rubin-epo/epo-react-lib",
+  "description": "Rubin Observatory Education & Public Outreach team React UI library.",
   "version": "1.0.16",
   "author": "Rubin EPO",
   "license": "MIT",
