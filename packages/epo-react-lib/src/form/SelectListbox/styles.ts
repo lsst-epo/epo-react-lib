@@ -1,16 +1,33 @@
 import { zStack } from "@/styles/globalStyles";
 import { protoButton } from "@/styles/mixins/appearance";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div.attrs<{
+  minWidth?: number;
+  width?: string;
+}>(({ minWidth = 0, width }) =>
+  width
+    ? null
+    : {
+        style: {
+          minWidth,
+        },
+      }
+)<{ maxWidth: string; width?: string }>`
   --select-background-color: var(--turquoise10, #d9f7f6);
   --select-border-color: var(--turquoise85, #12726c);
   --select-color: var(--turquoise95, #1f2121);
   --select-height: 32px;
   --select-padding: 5px;
 
+  display: inline-block;
   font-size: 14px;
   position: relative;
+  ${({ maxWidth, width }) =>
+    css`
+      max-width: ${maxWidth};
+      ${width ? `width: ${width};` : ""}
+    `};
 `;
 
 export const SelectDropdown = styled.ul`
@@ -25,6 +42,7 @@ export const SelectDropdown = styled.ul`
   position: absolute;
   z-index: ${zStack.dialog};
   top: calc(var(--select-height) + var(--select-padding));
+  min-width: 100%;
 `;
 
 export const DropdownText = styled.span`
@@ -50,7 +68,8 @@ export const DropdownOption = styled.li`
     padding: 0 10px 0 5px;
   }
 
-  input[type="radio"] {
+  input[type="radio"],
+  input[type="checkbox"] {
     width: 0;
     height: 0;
     overflow: hidden;
@@ -72,11 +91,13 @@ export const SelectButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 
   svg {
     color: var(--select-border-color);
     transform: rotate(-90deg);
     padding-top: 10px;
+    flex-shrink: 0;
   }
 
   &:hover {
@@ -84,9 +105,9 @@ export const SelectButton = styled.button`
   }
 
   &:not([aria-expanded="true"]) + ${SelectDropdown} {
-    width: 0;
     height: 0;
     border: 0;
+    padding: 0;
     overflow: hidden;
   }
 
@@ -98,4 +119,10 @@ export const SelectButton = styled.button`
     pointer-events: none;
     user-select: none;
   }
+`;
+
+export const ButtonText = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

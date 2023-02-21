@@ -16,7 +16,7 @@ const meta: ComponentMeta<typeof Button> = {
       defaultValue: "primary",
       description: "Visual style",
       table: {
-        category: "Style",
+        category: "Styling",
         defaultValue: {
           summary: "primary",
         },
@@ -53,7 +53,7 @@ const meta: ComponentMeta<typeof Button> = {
       defaultValue: false,
       description: "Determines if button is a full width block or not.",
       table: {
-        category: "Style",
+        category: "Styling",
         type: {
           summary: "boolean",
         },
