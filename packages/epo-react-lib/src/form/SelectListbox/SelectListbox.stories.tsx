@@ -3,7 +3,7 @@ import {
   ComponentStory,
   ComponentStoryObj,
 } from "@storybook/react";
-import { options } from "./SelectListbox.test";
+import { options } from "./__mocks__";
 import SelectListbox from ".";
 import { useState } from "react";
 
