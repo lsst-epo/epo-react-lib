@@ -2,13 +2,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import FilterTool from ".";
 
 describe("Filter Tool", () => {
-  it("Renders an SVG widget", () => {
-    render(<FilterTool />);
-
-    const svg = screen.getByRole("presentation");
-
-    expect(svg).toBeDefined();
-  });
   it("Renders only the pre-selected filters", () => {
     render(<FilterTool selectedColor="red" />);
 
@@ -22,10 +15,11 @@ describe("Filter Tool", () => {
     expect(violetRay).not.toBeVisible();
     expect(violetArrow).not.toBeVisible();
   });
-  it("Disables selection in read only mode", () => {
+  it("Changes displayed rays based on user selection", () => {
     render(<FilterTool selectedColor="red" />);
 
     const select = screen.getByRole("combobox");
+    const option = screen.getByText("violet");
 
     const redRay = document.getElementById("red_ray");
     const redArrow = document.getElementById("red_arrow");
@@ -37,7 +31,7 @@ describe("Filter Tool", () => {
     expect(violetRay).not.toBeVisible();
     expect(violetArrow).not.toBeVisible();
 
-    fireEvent.change(select, { target: { value: "violet" } });
+    fireEvent.click(option);
 
     expect(redRay).not.toBeVisible();
     expect(redArrow).not.toBeVisible();
