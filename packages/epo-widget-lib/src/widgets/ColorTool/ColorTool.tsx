@@ -65,16 +65,12 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   hideImage = false,
   hideSubtitle = false,
 }) => {
-  const { ref, width = 1, height = 1 } = useResizeObserver<HTMLDivElement>();
+  const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
   const [selectedData, setSelectedData] = useState<AstroObject>(
     prepareData(preSelectedData)
   );
-  const [isResetActive, setResetActive] = useState(
-    isResetButtonActive(selectedData)
-  );
 
   useEffect(() => {
-    setResetActive(isResetButtonActive(selectedData));
     selectionCallback && selectionCallback(selectedData);
   }, [selectedData]);
 
@@ -190,7 +186,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
       {!hideImage && <ImageComposite {...{ filters }} />}
       {selectedObjectName && !hideControls && (
         <Styled.ResetButton
-          disabled={isDisabled || !isResetActive}
+          disabled={isDisabled || !isResetButtonActive(selectedData)}
           onClick={handleReset}
           icon="Reset"
         >
