@@ -123,7 +123,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
               <dd>{selectedCategoryName}</dd>
               {!hideSubtitle && (
                 <>
-                  <dt>{t("colorTool.labels.selected_object")}</dt>
+                  <dt>{t("colorTool.labels.object_selected")}</dt>
                   <dd>{selectedObjectName}</dd>
                 </>
               )}
