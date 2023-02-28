@@ -124,7 +124,9 @@ describe("SelectListbox", () => {
     });
   });
   it("should select multiple options if enabled", () => {
-    render(<SelectListbox {...{ ...props, isMultiselect: true }} />);
+    render(
+      <SelectListbox {...{ ...props, value: ["red"], isMultiselect: true }} />
+    );
     const selectBox = screen.getByRole("combobox");
     const options = screen.getAllByRole("option");
     fireEvent.click(options[0]);

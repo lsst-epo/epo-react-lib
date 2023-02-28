@@ -1,0 +1,81 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { singleData, colorOptions } from "../__mocks__";
+import FilterControls from ".";
+import { getBrightnessValue } from "../utilities";
+
+const { value, min, max } = singleData[0].objects[0].filters[0];
+const props = {
+  filter: {
+    ...singleData[0].objects[0].filters[0],
+    color: "#EC1C24",
+    brightness: getBrightnessValue(min, max, value),
+  },
+  colorOptions,
+  isDisabled: false,
+  onChangeFilterCallback: jest.fn(),
+  buttonLabelledById: "buttonLabel",
+  selectLabelledById: "selectLabel",
+  sliderLabelledById: "sliderLabel",
+};
+
+const { ResizeObserver } = window;
+
+beforeEach(() => {
+  //@ts-ignore
+  delete window.ResizeObserver;
+  window.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  }));
+  global.CSS = {
+    supports: (k, v?) => false,
+    escape: (k: string) => k,
+  };
+});
+
+afterEach(() => {
+  window.ResizeObserver = ResizeObserver;
+  jest.restoreAllMocks();
+});
+
+describe("FilterControls", () => {
+  it(`should create accessible controls`, () => {
+    render(
+      <>
+        <div id="buttonLabel">Button</div>
+        <div id="selectLabel">Select</div>
+        <div id="sliderLabel">Slider</div>
+        <FilterControls {...props} />
+      </>
+    );
+
+    const button = screen.getByLabelText("Button");
+    const select = screen.getByLabelText("Select");
+    const slider = screen.getByLabelText("Slider");
+
+    expect(button).toBeInTheDocument();
+    expect(select).toBeInTheDocument();
+    expect(slider).toBeInTheDocument();
+  });
+  it(`should disable controls`, () => {
+    render(<FilterControls {...{ ...props, isDisabled: true }} />);
+
+    const button = screen.getByRole("button");
+    const select = screen.getByRole("combobox");
+    const slider = screen.getByRole("slider");
+
+    expect(button).toBeDisabled();
+    expect(select).toBeDisabled();
+    expect(slider.parentElement).toHaveClass("disabled");
+  });
+  it(`should call callback on modification`, () => {
+    render(<FilterControls {...props} />);
+
+    const button = screen.getByRole("button");
+
+    fireEvent.click(button);
+
+    expect(props.onChangeFilterCallback).toBeCalledTimes(1);
+  });
+});

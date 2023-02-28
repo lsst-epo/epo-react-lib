@@ -164,8 +164,8 @@ const Template: ComponentStory<typeof SelectListbox> = ({
   return (
     <SelectListbox
       {...args}
-      value={value}
-      onChangeCallback={(value) => {
+      value={value as any}
+      onChangeCallback={(value: any) => {
         args.onChangeCallback(value);
         return setValue(value);
       }}
