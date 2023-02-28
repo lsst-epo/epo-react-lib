@@ -34,13 +34,17 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
     const ctx = canvasRef.current?.getContext("2d");
 
     if (ctx) {
+      const safeColor =
+        CSS.supports && CSS.supports("background-color", color)
+          ? color
+          : "transparent";
       const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       ctx.globalCompositeOperation = "multiply";
 
       background.onload = () => {
         ctx?.drawImage(background, 0, 0, canvasWidth, canvasHeight);
-        updateColor(ctx, color, canvasWidth, canvasHeight);
+        updateColor(ctx, safeColor, canvasWidth, canvasHeight);
       };
 
       background.src = image;

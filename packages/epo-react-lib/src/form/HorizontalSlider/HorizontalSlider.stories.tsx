@@ -3,14 +3,15 @@ import {
   ComponentStory,
   ComponentStoryObj,
 } from "@storybook/react";
+import { className } from "@/storybook/utilities/argTypes";
 import { useState } from "react";
 
 import HorizontalSlider from ".";
-import { Container } from "../../index";
 
 const meta: ComponentMeta<typeof HorizontalSlider> = {
   component: HorizontalSlider,
   argTypes: {
+    className: { ...className, table: { category: "Styling" } },
     min: {
       control: "number",
       description: "The maximum value of the slider.",
@@ -116,6 +117,17 @@ const meta: ComponentMeta<typeof HorizontalSlider> = {
         },
       },
     },
+    isDisabled: {
+      description: "Disables the slider so the thumb cannot be moved.",
+      control: "boolean",
+      table: {
+        category: "Function",
+        type: {
+          summary: "boolean",
+          defaultValue: { summary: false },
+        },
+      },
+    },
   },
 };
 
@@ -130,8 +142,8 @@ const Template: ComponentStory<typeof HorizontalSlider> = ({
   return (
     <HorizontalSlider
       {...args}
-      value={value}
-      onChangeCallback={(value) => {
+      value={value as any}
+      onChangeCallback={(value: any) => {
         args.onChangeCallback(value, args.label);
         return setValue(value);
       }}
@@ -151,7 +163,6 @@ export const DoubleHandle: ComponentStoryObj<typeof HorizontalSlider> =
   Template.bind({});
 
 DoubleHandle.args = {
-  ...Primary.args,
   value: [20, 80],
   label: "doubleHandleExample",
   minLabel: "Min",

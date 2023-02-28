@@ -15,6 +15,21 @@
         "red": "Red",
         "none": "None"
       }
+    },
+    "colorTool": {
+      "labels": {
+        "object_type": "Object type:",
+        "object": "Object:",
+        "object_selected": "Selected object:",
+        "filter": "Filter",
+        "color": "Color",
+        "color_intensity": "Color Intensity"
+      },
+      "actions": {
+        "select_an_object": "Select an object",
+        "select_filter": "Select a filter",
+        "reset": "Reset"
+      }
     }
   }
 }

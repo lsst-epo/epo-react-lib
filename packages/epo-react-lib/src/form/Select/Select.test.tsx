@@ -22,6 +22,23 @@ describe("Select", () => {
 
     expect(selectOptions.length).toBe(options.length);
   });
+  it("Adds option groups if set", () => {
+    render(
+      <Select
+        {...{
+          options: options.map((o, i) => ({
+            ...o,
+            optionGroup: i < 4 ? "Inner planets" : "Outer planets",
+          })),
+          emptyOption,
+        }}
+      />
+    );
+
+    const selectOptions = screen.getAllByRole("group");
+
+    expect(selectOptions.length).toBe(2);
+  });
   it("Adds empty option if inherited", () => {
     render(<Select {...{ options, emptyOption }} />);
 

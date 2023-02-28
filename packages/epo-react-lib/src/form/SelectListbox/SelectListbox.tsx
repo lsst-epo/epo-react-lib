@@ -1,23 +1,36 @@
 import { FunctionComponent, useLayoutEffect, useState } from "react";
 import { useUID } from "react-uid";
 import { useTranslation } from "react-i18next";
-import { onChangeCallback, Option } from "@/types/select-listbox";
+import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
 import { useAccessibleDropdown, useOnOutsideClick } from "./hooks";
 
-interface SelectListboxProps {
-  value: string | string[] | null;
-  options: Option[];
-  onChangeCallback: onChangeCallback;
-  isDisabled?: boolean;
-  placeholder?: string;
-  labelledById?: string;
-  namespace?: string;
-  isMultiselect?: boolean;
-  maxWidth?: string;
-  width?: string;
-}
+type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
+  ? {
+      value: string[] | null;
+      isMultiselect?: true;
+      onChangeCallback: (value: string[] | null) => void;
+      options: ListboxOption[];
+      isDisabled?: boolean;
+      placeholder?: string;
+      labelledById?: string;
+      namespace?: string;
+      maxWidth?: string;
+      width?: string;
+    }
+  : {
+      value: string | null;
+      isMultiselect?: false;
+      onChangeCallback: (value: string | null) => void;
+      options: ListboxOption[];
+      isDisabled?: boolean;
+      placeholder?: string;
+      labelledById?: string;
+      namespace?: string;
+      maxWidth?: string;
+      width?: string;
+    };
 
 const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   value = null,
@@ -46,7 +59,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
     value,
     onChangeCallback,
     isMultiselect,
-  });
+  } as any);
   const [selectWidth, setSelectWidth] = useState(0);
   const { t } = useTranslation();
 

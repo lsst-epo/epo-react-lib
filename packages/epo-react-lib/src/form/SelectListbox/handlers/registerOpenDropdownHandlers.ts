@@ -1,7 +1,7 @@
-import { onChangeCallback, Option } from "@/types/select-listbox";
+import { ListboxOption } from "@/types/select-listbox";
 
 interface registerOpenDropdownHandlersArgs {
-  options: Option[];
+  options: ListboxOption[];
   activeIndex: number;
   setActiveIndex: (i: number) => void;
   select: (value: string | null) => void;

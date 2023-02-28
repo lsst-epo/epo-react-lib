@@ -63,6 +63,9 @@ export const tokens: { [key: string]: string } = {
   CONTAINER_WIDE: "1435px",
   CONTAINER_REGULAR: "1160px",
   CONTAINER_NARROW: "900px",
+  FONT_WEIGHT_NORMAL: "400",
+  FONT_WEIGHT_MEDIUM: "500",
+  FONT_WEIGHT_BOLD: "600",
   FONT_SIZE_BASE_DESKTOP: "22px",
   FONT_SIZE_BASE_MOBILE: "16px",
   FONT_STACK_BASE: `"Source Sans Pro", system-ui`,
@@ -126,6 +129,9 @@ export const CONTAINER_FULL = tokens.CONTAINER_FULL;
 export const CONTAINER_WIDE = tokens.CONTAINER_WIDE;
 export const CONTAINER_REGULAR = tokens.CONTAINER_REGULAR;
 export const CONTAINER_NARROW = tokens.CONTAINER_NARROW;
+export const FONT_WEIGHT_NORMAL = tokens.FONT_WEIGHT_NORMAL;
+export const FONT_WEIGHT_MEDIUM = tokens.FONT_WEIGHT_MEDIUM;
+export const FONT_WEIGHT_BOLD = tokens.FONT_WEIGHT_BOLD;
 export const FONT_SIZE_BASE_DESKTOP = tokens.FONT_SIZE_BASE_DESKTOP;
 export const FONT_SIZE_BASE_MOBILE = tokens.FONT_SIZE_BASE_MOBILE;
 export const FONT_STACK_BASE = tokens.FONT_STACK_BASE;

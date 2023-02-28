@@ -49,6 +49,15 @@ export const Primary: ComponentStoryObj<typeof Select> = {
   args: { options },
 };
 
+export const WithOptionGroups: ComponentStoryObj<typeof Select> = {
+  args: {
+    options: options.map((o, i) => ({
+      ...o,
+      optionGroup: i < 4 ? "Inner planets" : "Outer planets",
+    })),
+  },
+};
+
 export const WithEmptyOption: ComponentStoryObj<typeof Select> = {
   args: { options, emptyOption },
 };
