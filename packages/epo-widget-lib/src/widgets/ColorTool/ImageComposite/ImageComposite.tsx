@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import { ImageFilter } from "../ColorTool";
+import { isFilterActive } from "../utilities";
 import * as Styled from "../styles";
 
 interface ImageCompositeProps {
@@ -9,9 +10,6 @@ interface ImageCompositeProps {
 const ImageComposite: FunctionComponent<ImageCompositeProps> = ({
   filters,
 }) => {
-  const isFilterActive = (filters: ImageFilter[]) =>
-    filters.some((f) => f.active);
-
   return (
     <Styled.ImageContainer>
       <Styled.BackgroundImage
