@@ -8,10 +8,13 @@ export const getBrightnessValue = (min: number, max: number, value: number) => {
   return s * (value / 100) + min;
 };
 
+export const isFilterActive = (filters: ImageFilter[]) =>
+  filters.some((f) => f.active);
+
 export const isResetButtonActive = (data: AstroObject) => {
   if (isEmpty(data)) return false;
 
-  return data.filters.some((dataFilter) => dataFilter.active);
+  return isFilterActive(data.filters);
 };
 
 export const updateFilters = (datum: AstroObject) =>
