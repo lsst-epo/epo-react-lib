@@ -43,3 +43,28 @@ export const normalizePathData = (
 
   return { pathname, pathParams };
 };
+
+/** split RGBA string into array of values */
+export const parseRgba = (rgba: string) =>
+  rgba.replace(/[^\d,]/g, "").split(",");
+
+export const parseHsla = (hsla: string) =>
+  hsla.replace(/[^\d,.%]/g, "").split(",");
+
+export const isRgba = (color: string) =>
+  new RegExp(
+    /rgba\(\s*(-?\d+|-?\d*\.\d+(?=%))(%?)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*\.\d+(?=%))(\2)\s*,\s*(-?\d+|-?\d*.\d+)\s*\)/
+  ).test(color);
+
+export const isHsla = (color: string) =>
+  new RegExp(
+    /hsla\(\s*(-?\d+|-?\d*.\d+)\s*,\s*(-?\d+|-?\d*.\d+)%\s*,\s*(-?\d+|-?\d*.\d+)%\s*,\s*(-?\d+|-?\d*.\d+)\s*\)/
+  ).test(color);
+
+export const isColorTransparent = (color: string) => {
+  if (color === "transparent") return true;
+  if (isRgba(color)) return parseRgba(color)[3] === "0";
+  if (isHsla(color)) return parseHsla(color)[3] === "0";
+
+  return false;
+};

@@ -1,21 +1,34 @@
+import { isColorTransparent } from "@/lib/utils";
 import { useState, FunctionComponent } from "react";
 import * as Styled from "./styles";
 
 type SliderValue = number | readonly number[];
 
-interface HorizontalSliderProps {
+type BaseProps = {
   min?: number;
   max?: number;
   step?: number;
-  value: number | number[];
   label: string;
   minLabel?: string;
   maxLabel?: string;
   labelledbyId?: string;
-  onChangeCallback: (value: number | number[], label: string) => void;
   color?: string;
   darkMode?: boolean;
+  isDisabled?: boolean;
+  className?: string;
+};
+
+interface SingleSliderProps extends BaseProps {
+  value: number;
+  onChangeCallback: (value: number, label: string) => void;
 }
+
+interface RangedSliderProps extends BaseProps {
+  value: number[];
+  onChangeCallback: (value: number[], label: string) => void;
+}
+
+type HorizontalSliderProps = SingleSliderProps | RangedSliderProps;
 
 const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   min = 0,
@@ -29,21 +42,35 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   labelledbyId,
   color,
   darkMode = false,
+  isDisabled = false,
+  className,
 }) => {
   const [showThumbLabels, setShowThumbLabels] = useState(false);
   const hasDoubleHandles = Array.isArray(value) && value.length > 1;
 
   const handleChange = (value: SliderValue) => {
     setShowThumbLabels(false);
-    if (onChangeCallback) onChangeCallback(value as number | number[], label);
+    if (onChangeCallback) onChangeCallback(value as number & number[], label);
+  };
+
+  const getValidColor = (color?: string) => {
+    const validColor =
+      color && CSS.supports("color", color) && !isColorTransparent(color)
+        ? color
+        : undefined;
+
+    return isDisabled ? "var(--neutral60, #6a6e6e)" : validColor;
   };
 
   const Track = (props: any, state: { index: number; value: SliderValue }) => {
     const { index } = state;
     const hasColor =
       (hasDoubleHandles && index === 1) || (!hasDoubleHandles && index === 0);
+    const trackColor = getValidColor(color);
 
-    return <Styled.Track color={hasColor ? color : "transparent"} {...props} />;
+    return (
+      <Styled.Track color={hasColor ? trackColor : "transparent"} {...props} />
+    );
   };
 
   const Thumb = (
@@ -51,10 +78,11 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     state: { index: number; value: SliderValue; valueNow: number }
   ) => {
     const { valueNow } = state;
+    const thumbColor = getValidColor(color);
 
     return (
       <Styled.ThumbContainer {...{ ...props }}>
-        <Styled.Thumb {...{ color }} />
+        <Styled.Thumb {...{ color: thumbColor, isDisabled }} />
         <Styled.ThumbLabel {...{ showThumbLabels, darkMode }}>
           {valueNow}
         </Styled.ThumbLabel>
@@ -66,7 +94,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   const maxLabelId = `${label}-max-label`;
 
   return (
-    <Styled.HorizontalSliderContainer>
+    <Styled.HorizontalSliderContainer {...{ className }}>
       {minLabel || maxLabel ? (
         <Styled.TrackLabels>
           <Styled.Label id={minLabelId} {...{ darkMode }}>
@@ -88,6 +116,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         ariaLabelledby={
           hasDoubleHandles ? [minLabelId, maxLabelId] : labelledbyId
         }
+        disabled={isDisabled}
       />
     </Styled.HorizontalSliderContainer>
   );

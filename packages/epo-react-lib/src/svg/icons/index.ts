@@ -24,6 +24,7 @@ import Pdf from "./Pdf";
 import Phone from "./Phone";
 import Pin from "./Pin";
 import Play from "./Play";
+import Reset from "./Reset";
 import Search from "./Search";
 import SelectCaret from "./SelectCaret";
 import ShareCopyUrl from "./ShareCopyUrl";
@@ -68,6 +69,7 @@ const Icons = {
   Phone,
   Pin,
   Play,
+  Reset,
   Search,
   SelectCaret,
   ShareCopyUrl,

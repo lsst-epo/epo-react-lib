@@ -1,14 +1,22 @@
 import { RefObject, useEffect, useRef, useState } from "react";
-import { onChangeCallback, Option } from "@/types/select-listbox";
+import { ListboxOption } from "@/types/select-listbox";
 import { isSafari } from "../utilities";
 import { registerOpenDropdownHandlers } from "../handlers";
 
-interface useAccessibleDropdownArgs {
-  options: Option[];
-  value: string | string[] | null;
-  onChangeCallback: onChangeCallback;
-  isMultiselect: boolean;
-}
+type useAccessibleDropdownArgs<TMultiselect = boolean> =
+  TMultiselect extends true
+    ? {
+        value: string[] | null;
+        isMultiselect: true;
+        onChangeCallback: (value: string[] | null) => void;
+        options: ListboxOption[];
+      }
+    : {
+        value: string | null;
+        isMultiselect: false;
+        onChangeCallback: (value: string | null) => void;
+        options: ListboxOption[];
+      };
 
 interface useAccessibleDropdownResult {
   isDropdownOpen: boolean;
@@ -37,14 +45,15 @@ const useAccessibleDropdown: (
 
   const select = (selectedValue: string | null) => {
     if (onChangeCallback) {
-      if (isMultiselect && selectedValue) {
+      if (isMultiselect === true && selectedValue) {
         const arrayValue = value ? [value].flat() : [];
 
-        const newValue = arrayValue.includes(selectedValue)
+        const newValue = arrayValue.includes(selectedValue.toString())
           ? arrayValue.filter((v) => v !== selectedValue)
           : [...arrayValue, selectedValue];
         onChangeCallback(newValue);
-      } else {
+        // this must be else if so that TypeScript infers the type of onChangeCallback correctly
+      } else if (isMultiselect === false) {
         onChangeCallback(selectedValue);
       }
     }

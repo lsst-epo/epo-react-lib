@@ -1,9 +1,7 @@
 import { ReactElement } from "react";
 
-export interface Option {
+export interface ListboxOption {
   value: string;
   label: string;
   icon?: ReactElement;
 }
-
-export type onChangeCallback = (value: string | string[] | null) => void;
