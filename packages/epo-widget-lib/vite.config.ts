@@ -13,6 +13,30 @@ export default defineConfig({
       formats: ["es", "umd"],
       fileName: (format) => `epo-widget-lib.${format}.js`,
     },
+    rollupOptions: {
+      external: [
+        "react",
+        "react-dom",
+        "styled-components",
+        "flickity",
+        "react-player/youtube",
+        "react-uid",
+        "i18next",
+        "react-i18next",
+        "use-resize-observer",
+        "@rubin-epo/epo-react-lib",
+      ],
+      output: {
+        interop: "auto",
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          "styled-components": "styled",
+          "react-player/youtube": "ReactPlayer",
+          "use-resize-observer": "useResizeObserver",
+        },
+      },
+    },
   },
   resolve: {
     alias: {
