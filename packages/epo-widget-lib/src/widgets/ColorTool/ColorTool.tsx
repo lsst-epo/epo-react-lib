@@ -116,26 +116,25 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     >
       {title && <Styled.Title>{title}</Styled.Title>}
       {selectedObjectName && (hideControls || hasMultipleDatasets) && (
-        <>
+        <Styled.Subtitle>
           {hasMultipleDatasets && (
-            <Styled.Subtitle>
+            <>
               <dt>{t("colorTool.labels.object_type")}</dt>
               <dd>{selectedCategoryName}</dd>
-              {!hideSubtitle && (
-                <>
-                  <dt>{t("colorTool.labels.object_selected")}</dt>
-                  <dd>{selectedObjectName}</dd>
-                </>
-              )}
-            </Styled.Subtitle>
+            </>
           )}
-          {!hasMultipleDatasets && !hideSubtitle && (
-            <Styled.Subtitle>
-              <dt>{t("colorTool.labels.object")}</dt>
+          {!hideSubtitle && (
+            <>
+              <dt>
+                {t("colorTool.labels.object", {
+                  context: hasMultipleDatasets ? "selected" : false,
+                })}
+              </dt>
               <dd>{selectedObjectName}</dd>
-            </Styled.Subtitle>
+            </>
           )}
-        </>
+          {}
+        </Styled.Subtitle>
       )}
       {!hideControls && (
         <Styled.ControlsContainer>

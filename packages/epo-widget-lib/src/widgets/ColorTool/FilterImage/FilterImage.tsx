@@ -1,6 +1,6 @@
 import { FunctionComponent, useRef, useEffect } from "react";
 
-interface FilterImageProps {
+export interface FilterImageProps {
   className?: string;
   height?: number;
   width?: number;
