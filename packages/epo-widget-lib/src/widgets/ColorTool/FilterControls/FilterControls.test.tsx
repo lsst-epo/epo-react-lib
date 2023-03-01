@@ -18,27 +18,6 @@ const props = {
   sliderLabelledById: "sliderLabel",
 };
 
-const { ResizeObserver } = window;
-
-beforeEach(() => {
-  //@ts-ignore
-  delete window.ResizeObserver;
-  window.ResizeObserver = jest.fn().mockImplementation(() => ({
-    observe: jest.fn(),
-    unobserve: jest.fn(),
-    disconnect: jest.fn(),
-  }));
-  global.CSS = {
-    supports: (k, v?) => false,
-    escape: (k: string) => k,
-  };
-});
-
-afterEach(() => {
-  window.ResizeObserver = ResizeObserver;
-  jest.restoreAllMocks();
-});
-
 describe("FilterControls", () => {
   it(`should create accessible controls`, () => {
     render(

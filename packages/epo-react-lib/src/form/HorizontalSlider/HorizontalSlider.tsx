@@ -28,7 +28,7 @@ interface RangedSliderProps extends BaseProps {
   onChangeCallback: (value: number[], label: string) => void;
 }
 
-type HorizontalSliderProps = SingleSliderProps | RangedSliderProps;
+export type HorizontalSliderProps = SingleSliderProps | RangedSliderProps;
 
 const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   min = 0,
