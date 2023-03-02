@@ -6,7 +6,7 @@ export const ElapsedTimeContainer = styled.div`
   color: var(--neutral95, "#1F2121");
   display: grid;
   grid-template-areas: "header" "time";
-  font-size: 0.75rem;
+  font-size: 0.75em;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
   min-width: 70px;
   max-width: fit-content;
