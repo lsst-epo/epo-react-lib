@@ -1,7 +1,7 @@
 {
   "translation": {
-    "time_step": {
-      "title": "Time Step",
+    "elapsed_time": {
+      "title": "Elapsed Time",
       "step": {
         "day_one": "Day",
         "day_other": "Days",

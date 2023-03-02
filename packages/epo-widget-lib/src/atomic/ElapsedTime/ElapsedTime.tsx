@@ -8,7 +8,7 @@ type TimeStepProps = {
   [key in TimeInterval]?: number;
 };
 
-const TimeStep: FunctionComponent<TimeStepProps> = ({
+const ElapsedTime: FunctionComponent<TimeStepProps> = ({
   year,
   day,
   hour,
@@ -30,14 +30,14 @@ const TimeStep: FunctionComponent<TimeStepProps> = ({
   }, "PT");
 
   return (
-    <Styled.TimeStepContainer>
-      <Styled.Header id="timeStepHeader">
-        <Trans>time_step.title</Trans>
+    <Styled.ElapsedTimeContainer>
+      <Styled.Header id="elapsedTimeHeader">
+        <Trans>elapsed_time.title</Trans>
       </Styled.Header>
-      <Styled.Time dateTime={dateTime} aria-labelledby="timeStepHeader">
+      <Styled.Time dateTime={dateTime} aria-labelledby="elapsedTimeHeader">
         {validSteps.map((s) => {
           const { interval, time = 0 } = s;
-          const labelKey = `time_step.step.${interval}`;
+          const labelKey = `elapsed_time.step.${interval}`;
           return (
             <Styled.Interval key={interval}>
               <Styled.Number>{time}</Styled.Number>
@@ -48,10 +48,10 @@ const TimeStep: FunctionComponent<TimeStepProps> = ({
           );
         })}
       </Styled.Time>
-    </Styled.TimeStepContainer>
+    </Styled.ElapsedTimeContainer>
   );
 };
 
-TimeStep.displayName = "Atomic.TimeStep";
+ElapsedTime.displayName = "Atomic.ElapsedTime";
 
-export default TimeStep;
+export default ElapsedTime;
