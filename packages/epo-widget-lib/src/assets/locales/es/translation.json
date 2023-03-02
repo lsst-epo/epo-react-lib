@@ -1,5 +1,16 @@
 {
   "translation": {
+    "elapsed_time": {
+      "title": "Tiempo transcurrido",
+      "interval": {
+        "hour": "Hora",
+        "hour_plural": "Horas",
+        "day": "Día",
+        "day_plural": "Días",
+        "year": "Año",
+        "year_plural": "Años"
+      }
+    },
     "filterTool": {
       "title": "Herramienta de filtro",
       "filter": "El filtro",

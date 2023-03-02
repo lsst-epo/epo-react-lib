@@ -1,5 +1,20 @@
 {
   "translation": {
+    "time_step": {
+      "title": "Time Step",
+      "step": {
+        "day_one": "Day",
+        "day_other": "Days",
+        "hour_one": "Hour",
+        "hour_other": "Hours",
+        "minute_one": "Minute",
+        "minute_other": "Minutes",
+        "second_one": "Second",
+        "second_other": "Seconds",
+        "year_one": "Year",
+        "year_other": "Years"
+      }
+    },
     "filterTool": {
       "title": "Filter Tool",
       "filter": "Filter",
