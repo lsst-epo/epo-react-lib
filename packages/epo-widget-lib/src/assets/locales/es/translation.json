@@ -1,14 +1,18 @@
 {
   "translation": {
-    "elapsed_time": {
-      "title": "Tiempo transcurrido",
-      "interval": {
-        "hour": "Hora",
-        "hour_plural": "Horas",
-        "day": "Día",
-        "day_plural": "Días",
-        "year": "Año",
-        "year_plural": "Años"
+    "time_step": {
+      "title": "Paso de tiempo",
+      "step": {
+        "day_one": "Día",
+        "day_other": "Días",
+        "hour_one": "Hora",
+        "hour_other": "Horas",
+        "minute_one": "Minuto",
+        "minute_other": "Minutos",
+        "second_one": "Segundo",
+        "second_other": "Segundos",
+        "year_one": "Año",
+        "year_other": "Años"
       }
     },
     "filterTool": {
