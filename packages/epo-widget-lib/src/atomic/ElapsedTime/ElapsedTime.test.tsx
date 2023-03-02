@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import TimeStep from ".";
+import ElapsedTime from ".";
 
 const props = {
   year: 5,
@@ -10,20 +10,20 @@ const props = {
   second: 1,
 };
 
-describe("TimeStep", () => {
+describe("ElapsedTime", () => {
   it(`should render an accessible title`, () => {
-    render(<TimeStep {...props} />);
+    render(<ElapsedTime {...props} />);
 
     const title = screen.getByRole("heading");
-    const time = screen.getByLabelText("time_step.title");
+    const time = screen.getByLabelText("elapsed_time.title");
 
     expect(title).toBeInTheDocument();
     expect(time).toBeInTheDocument();
   });
   it(`should attach an elapsed datetime string`, () => {
-    render(<TimeStep {...props} />);
+    render(<ElapsedTime {...props} />);
 
-    const time = screen.getByLabelText("time_step.title");
+    const time = screen.getByLabelText("elapsed_time.title");
 
     expect(time).toHaveAttribute(
       "datetime",
