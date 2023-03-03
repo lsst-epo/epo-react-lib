@@ -19,6 +19,7 @@ export { default as Link } from "@/atomic/Link";
 export { default as MixedLink } from "@/atomic/MixedLink";
 export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
 export * from "@/atomic/Share";
+export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
 
 // Content Blocks
