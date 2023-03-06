@@ -1,40 +1,43 @@
 import { FunctionComponent } from "react";
-import { AstroDataset, AstroObject } from "../GalaxySelector";
+import { AccessorKey, AstroObject, AstroType } from "../GalaxySelector";
 import Point from "../Point";
 
 interface PointsProps {
-  data: AstroObject[];
-  selectedData: AstroObject;
-  active: AstroDataset;
-  xValueAccessor: string;
-  yValueAccessor: string;
+  data?: AstroObject[];
+  selectedData?: AstroObject[];
+  activeId?: AstroType;
+  xValueAccessor: AccessorKey;
+  yValueAccessor: AccessorKey;
   xScale: (value: number) => number;
   yScale: (value: number) => number;
-  className: string;
-  color: string;
+  className?: string;
+  color?: string;
 }
 
 const Points: FunctionComponent<PointsProps> = ({
-  data,
-  selectedData,
-  active,
+  data = [],
+  selectedData = [],
+  activeId,
   className,
   xScale,
   yScale,
   xValueAccessor,
   yValueAccessor,
+  color: colorOverride,
 }) => {
   return (
-    <g className={className}>
+    <g className={className} role="list">
       {data.map((d) => {
-        const { id, color, radius = NaN, [xValueAccessor]: xVal } = d;
+        const {
+          id,
+          color,
+          radius = NaN,
+          [xValueAccessor]: xVal,
+          [yValueAccessor]: yVal,
+        } = d;
         const modR = 0.6 * radius;
-        const isSelected = !!find(selectedData, { id: d.id });
-        const isActive = active ? active.id === d.id : false;
-        const pointColor = isNumber(color) ? chartColors.chart6 : color;
-        const colorOverrideHex = colorOverride
-          ? chartColors[`chart${colorOverride}`]
-          : false;
+        const isSelected = selectedData.some((s) => s.id === id);
+        const isActive = activeId ? activeId === id : false;
 
         return (
           <Point
@@ -42,9 +45,8 @@ const Points: FunctionComponent<PointsProps> = ({
             {...{ id, isActive, isSelected, className }}
             radius={xScale(xVal - modR) - xScale(xVal + modR)}
             x={xScale(xVal)}
-            y={yScale(d[yValueAccessor])}
-            color={colorOverrideHex || pointColor}
-            tabIndex="0"
+            y={yScale(yVal)}
+            color={colorOverride || color}
           />
         );
       })}

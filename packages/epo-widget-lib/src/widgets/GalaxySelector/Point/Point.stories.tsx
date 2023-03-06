@@ -12,9 +12,16 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "supernova | galaxy | galaxyFilter",
         },
+        category: "Display",
       },
     },
-    className,
+    className: {
+      ...className,
+      table: {
+        ...className.table,
+        category: "Styling",
+      },
+    },
     isSelected: {
       control: "boolean",
       description: "Determines if the point has been selected and is visible",
@@ -22,6 +29,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "boolean",
         },
+        category: "Display",
       },
     },
     isActive: {
@@ -31,6 +39,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "boolean",
         },
+        category: "Display",
       },
     },
     x: {
@@ -40,6 +49,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "number",
         },
+        category: "Display",
       },
     },
     y: {
@@ -49,6 +59,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "number",
         },
+        category: "Display",
       },
     },
     radius: {
@@ -59,6 +70,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "number",
         },
+        category: "Display",
       },
     },
     color: {
@@ -68,6 +80,7 @@ const meta: ComponentMeta<typeof Point> = {
         type: {
           summary: "string",
         },
+        category: "Styling",
       },
     },
   },
@@ -78,9 +91,8 @@ const meta: ComponentMeta<typeof Point> = {
         viewBox="0 0 100 100"
         style={{
           display: "inline-block",
-          width: "auto",
-          height: "100%",
-          maxHeight: "200px",
+          width: "100%",
+          height: "auto",
         }}
       >
         <Story />
