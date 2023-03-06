@@ -61,6 +61,8 @@ const Point: FunctionComponent<PointProps> = ({
       r={isActive ? activeRadius : baseRadius}
       fill="transparent"
       stroke={getStroke(isActive, isSelected, color)}
+      tabIndex={0}
+      role="listitem"
       {...{ isSelected, className }}
     />
   );
