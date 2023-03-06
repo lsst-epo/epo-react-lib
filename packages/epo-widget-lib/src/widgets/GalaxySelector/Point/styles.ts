@@ -1,7 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
-
-const growRadius = (r: number) =>
-  keyframes`from {r: ${r}} to {r: ${Math.max(10, r * 1.2)}}`;
+import styled, { css } from "styled-components";
 
 export const Point = styled.circle<{
   isSelected: boolean;
@@ -11,7 +8,7 @@ export const Point = styled.circle<{
   ${({ isSelected }) =>
     isSelected &&
     css`
-      stroke-width: 4;
+      stroke-width: 3;
     `}
 
   &:focus {

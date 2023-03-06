@@ -12,6 +12,8 @@ export interface AstroDataset {
 
 export type AstroType = "supernova" | "galaxy" | "galaxyFilter";
 
+export type AccessorKey = "ra" | "dec";
+
 export interface AstroObject {
   object_id: string;
   id: AstroType;
