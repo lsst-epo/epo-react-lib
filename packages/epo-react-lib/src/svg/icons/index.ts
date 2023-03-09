@@ -11,6 +11,7 @@ import Doc from "./Doc";
 import Email from "./Email";
 import Eye from "./Eye";
 import Facebook from "./Facebook";
+import Forward from "./Forward";
 import Google from "./Google";
 import Hamburger from "./Hamburger";
 import Info from "./Info";
@@ -20,11 +21,13 @@ import LockClosed from "./LockClosed";
 import LockOpen from "./LockOpen";
 import LogOut from "./LogOut";
 import Mail from "./Mail";
+import Pause from "./Pause";
 import Pdf from "./Pdf";
 import Phone from "./Phone";
 import Pin from "./Pin";
 import Play from "./Play";
 import Reset from "./Reset";
+import Rewind from "./Rewind";
 import Search from "./Search";
 import SelectCaret from "./SelectCaret";
 import ShareCopyUrl from "./ShareCopyUrl";
@@ -57,6 +60,7 @@ const Icons = {
   Email,
   Eye,
   Facebook,
+  Forward,
   Google,
   Hamburger,
   Info,
@@ -66,10 +70,12 @@ const Icons = {
   LockOpen,
   LogOut,
   Mail,
+  Pause,
   Phone,
   Pin,
   Play,
   Reset,
+  Rewind,
   Search,
   SelectCaret,
   ShareCopyUrl,
