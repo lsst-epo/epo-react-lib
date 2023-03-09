@@ -19,6 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "@/assets/*": ["src/assets/*"],
+      "@/atomic/*": ["src/atomic/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/storybook/*": [".storybook/*"],
       "@/widgets/*": ["src/widgets/*"]
     }

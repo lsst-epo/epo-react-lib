@@ -41,6 +41,8 @@ const config = {
         alias: {
           path: "path-browserify",
           "@/assets": path.resolve(__dirname, "../src/assets"),
+          "@/atomic": path.resolve(__dirname, "../src/atomic"),
+          "@/hooks": path.resolve(__dirname, "../src/hooks"),
           "@/storybook": path.resolve(__dirname, "./"),
           "@/widgets": path.resolve(__dirname, "../src/widgets"),
         },

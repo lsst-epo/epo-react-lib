@@ -6,7 +6,7 @@ import * as Styled from "./styles";
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   icon?: IconKey;
   iconSize?: number;
@@ -40,16 +40,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       data-testid="button"
       {...{ ...(buttonProps as any), className, ref }}
     >
-      <>
-        {icon && (
-          <IconComposer
-            icon={icon}
-            size={iconSize}
-            aria-hidden={children && true}
-          />
-        )}
-        <Styled.ButtonText>{children}</Styled.ButtonText>
-      </>
+      {icon && (
+        <IconComposer
+          icon={icon}
+          size={iconSize}
+          aria-hidden={children && true}
+        />
+      )}
+      {children && <Styled.ButtonText>{children}</Styled.ButtonText>}
     </Styled.Button>
   )
 );
