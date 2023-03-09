@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
 import { SVGProps } from "@/types/svg";
 import defaultProps from "./defaultProps";
 
@@ -7,8 +8,9 @@ const Play: FunctionComponent<SVGProps> = ({
   size = 24,
   fill = "currentColor",
 }) => {
+  const { t } = useTranslation();
   const uniqueProps = {
-    viewBox: "0 0 24 24",
+    viewBox: "0 0 15 17",
     width: size,
     height: size,
     fill,
@@ -17,9 +19,9 @@ const Play: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
-      <title>Play icon</title>
-      <path d="M12,0.3C5.5,0.3,0.3,5.5,0.3,12S5.5,23.7,12,23.7S23.7,18.5,23.7,12S18.5,0.3,12,0.3z M8.4,18V6l10.3,6L8.4,18z  " />
+    <svg {...mergedSvgProps} aria-labelledby="playTitle">
+      <title id="playTitle">{t("svg.titles.play")}</title>
+      <path d="M8.5,0,17,15H0Z" transform="translate(15) rotate(90)" />
     </svg>
   );
 };

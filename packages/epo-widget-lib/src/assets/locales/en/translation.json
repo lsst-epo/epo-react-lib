@@ -1,5 +1,13 @@
 {
   "translation": {
+    "blinker": {
+      "controls": {
+        "rewind": "Rewind",
+        "forward": "Forward",
+        "play": "Play",
+        "pause": "Pause"
+      }
+    },
     "elapsed_time": {
       "title": "Elapsed Time",
       "step": {
