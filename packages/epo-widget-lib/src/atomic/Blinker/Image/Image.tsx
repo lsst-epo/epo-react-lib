@@ -8,7 +8,7 @@ interface ImageProps {
   loadCallback: () => void;
 }
 
-const Image: FunctionComponent<ImageProps> = ({
+const BlinkerImage: FunctionComponent<ImageProps> = ({
   image,
   active,
   loadCallback,
@@ -25,6 +25,6 @@ const Image: FunctionComponent<ImageProps> = ({
   );
 };
 
-Image.displayName = "Atomic.Blinker.Image";
+BlinkerImage.displayName = "Atomic.Blinker.Image";
 
-export default Image;
+export default BlinkerImage;
