@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from "react";
 import useInterval from "@/hooks/useInterval";
 import * as Styled from "./styles";
 import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
+import { getClampedArrayIndex } from "@/lib/utils";
 
 export interface BlinkerProps {
   images: Image[];
@@ -24,20 +25,9 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   const canBlink = images.length > 1;
 
   const getBlink = (direction = 0) => {
-    const nextIndex = activeIndex + direction;
     const lastIndex = images.length - 1;
 
-    let newIndex = nextIndex;
-
-    if (nextIndex > lastIndex) {
-      newIndex = 0;
-    }
-
-    if (nextIndex < 0) {
-      newIndex = lastIndex;
-    }
-
-    return newIndex;
+    return getClampedArrayIndex(activeIndex + direction, lastIndex);
   };
 
   const nextBlink = () => {
