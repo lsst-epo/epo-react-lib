@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import styled from "styled-components";
 import Blinker from ".";
-import { mockImages } from "./__mocks__";
+import { mockImages } from "./_mocks";
 
 const meta: ComponentMeta<typeof Blinker> = {
   argTypes: {
@@ -20,6 +20,7 @@ const meta: ComponentMeta<typeof Blinker> = {
         defaultValue: {
           summary: true,
         },
+        category: "Configuration",
       },
     },
     loop: {
@@ -33,13 +34,14 @@ const meta: ComponentMeta<typeof Blinker> = {
         defaultValue: {
           summary: true,
         },
+        category: "Configuration",
       },
     },
     interval: {
       type: { name: "number" },
       control: { type: "number", min: 0 },
       description:
-        "Duration that each image will be displayed in the blink. <strong>Be careful setting this value below ~50 or it may flash intensely.</strong>",
+        "Duration in milliseconds that each image will be displayed in the blink. <strong>Be careful setting this value below ~50 or it may flash intensely.</strong>",
       table: {
         type: {
           summary: "number",
@@ -47,6 +49,7 @@ const meta: ComponentMeta<typeof Blinker> = {
         defaultValue: {
           summary: 200,
         },
+        category: "Configuration",
       },
     },
     images: {
@@ -61,6 +64,7 @@ const meta: ComponentMeta<typeof Blinker> = {
         defaultValue: {
           summary: "[]",
         },
+        category: "Model",
       },
     },
     activeIndex: {
@@ -74,6 +78,7 @@ const meta: ComponentMeta<typeof Blinker> = {
         defaultValue: {
           summary: 0,
         },
+        category: "Model",
       },
     },
     blinkCallback: {
@@ -85,6 +90,7 @@ const meta: ComponentMeta<typeof Blinker> = {
         type: {
           summary: "(index: number) => void",
         },
+        category: "Function",
       },
     },
   },
@@ -117,4 +123,6 @@ const Template: ComponentStory<typeof Blinker> = (args) => {
 };
 
 export const Primary: ComponentStoryObj<typeof Blinker> = Template.bind({});
-Primary.args = { images: mockImages, activeIndex: 1 };
+Primary.args = { images: mockImages };
+export const SingleImage: ComponentStoryObj<typeof Blinker> = Template.bind({});
+SingleImage.args = { images: [mockImages[0]] };

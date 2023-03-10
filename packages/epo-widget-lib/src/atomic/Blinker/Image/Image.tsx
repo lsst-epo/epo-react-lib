@@ -1,9 +1,9 @@
+import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
 import { FunctionComponent } from "react";
-import { BlinkerImage } from "../Blinker";
 import * as Styled from "./styles";
 
 interface ImageProps {
-  image: BlinkerImage;
+  image: Image;
   active: boolean;
   loadCallback: () => void;
 }
