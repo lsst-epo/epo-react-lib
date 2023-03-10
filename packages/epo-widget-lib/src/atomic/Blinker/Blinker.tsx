@@ -21,6 +21,7 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   blinkCallback,
 }) => {
   const [playing, setPlaying] = useState(autoplay);
+  const canBlink = images.length > 1;
 
   const getBlink = (direction = 0) => {
     const nextIndex = activeIndex + direction;
@@ -40,13 +41,15 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   };
 
   const nextBlink = () => {
-    const nextIndex = getBlink(1);
+    if (canBlink) {
+      const nextIndex = getBlink(1);
 
-    if (loop === false && nextIndex === images.length - 1) {
-      stopBlink();
+      if (loop === false && nextIndex === images.length - 1) {
+        stopBlink();
+      }
+
+      blinkCallback && blinkCallback(nextIndex);
     }
-
-    blinkCallback && blinkCallback(nextIndex);
   };
 
   const stopBlink = () => {
@@ -65,12 +68,12 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
     blinkCallback && blinkCallback(getBlink(-1));
   };
 
-  useInterval(nextBlink, playing ? interval : null);
+  useInterval(nextBlink, canBlink && playing ? interval : null);
 
   return (
     <Styled.BlinkerContainer>
       <Styled.BlinkerImages {...{ images, activeIndex }} />
-      {images.length > 1 && (
+      {canBlink && (
         <Styled.BlinkerControls
           {...{ playing, handleStartStop, handleNext, handlePrevious }}
         />
