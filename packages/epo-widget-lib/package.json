@@ -63,7 +63,8 @@
     "react-i18next": "^12.0.0"
   },
   "dependencies": {
-    "@rubin-epo/epo-react-lib": "^1.0.17",
+    "@rubin-epo/epo-react-lib": "1.0.20",
+    "styled-components": "^5.3.9",
     "use-resize-observer": "^9.1.0"
   }
 }

@@ -4,9 +4,13 @@ import * as Styled from "./styles";
 
 type TimeInterval = "year" | "day" | "hour" | "minute" | "second";
 
-type TimeStepProps = {
+type TimeSteps = {
   [key in TimeInterval]?: number;
 };
+
+interface TimeStepProps extends TimeSteps {
+  className?: string;
+}
 
 const ElapsedTime: FunctionComponent<TimeStepProps> = ({
   year,
@@ -14,6 +18,7 @@ const ElapsedTime: FunctionComponent<TimeStepProps> = ({
   hour,
   minute,
   second,
+  className,
 }) => {
   const steps = { year, day, hour, minute, second };
   const validSteps = Object.keys(steps)
@@ -30,7 +35,7 @@ const ElapsedTime: FunctionComponent<TimeStepProps> = ({
   }, "PT");
 
   return (
-    <Styled.ElapsedTimeContainer>
+    <Styled.ElapsedTimeContainer className={className}>
       <Styled.Header id="elapsedTimeHeader">
         <Trans>elapsed_time.title</Trans>
       </Styled.Header>

@@ -1,28 +1,40 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { tokens } from "@rubin-epo/epo-react-lib";
 import useInterval from "@/hooks/useInterval";
+import useResizeObserver from "use-resize-observer";
 import * as Styled from "./styles";
 import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
 import { getClampedArrayIndex } from "@/lib/utils";
 
 export interface BlinkerProps {
   images: Image[];
-  activeIndex: number;
+  activeIndex?: number;
   autoplay?: boolean;
   loop?: boolean;
   interval?: number;
-  blinkCallback: (activeIndex: number) => void;
+  blinkCallback?: (activeIndex: number) => void;
+  className?: string;
 }
 
 const Blinker: FunctionComponent<BlinkerProps> = ({
   images = [],
-  activeIndex = 0,
+  activeIndex: presetIndex = 0,
   autoplay = true,
   loop = true,
   interval = 200,
   blinkCallback,
+  className,
 }) => {
+  const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
   const [playing, setPlaying] = useState(autoplay);
+  const [activeIndex, setActiveIndex] = useState(presetIndex);
+  const { BREAK_MOBILE } = tokens;
   const canBlink = images.length > 1;
+  const isCondensed = width < parseInt(BREAK_MOBILE);
+
+  useEffect(() => {
+    blinkCallback && blinkCallback(activeIndex);
+  }, [activeIndex]);
 
   const getBlink = (direction = 0) => {
     const lastIndex = images.length - 1;
@@ -38,7 +50,7 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
         stopBlink();
       }
 
-      blinkCallback && blinkCallback(nextIndex);
+      setActiveIndex(nextIndex);
     }
   };
 
@@ -55,17 +67,27 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   };
   const handlePrevious = () => {
     stopBlink();
-    blinkCallback && blinkCallback(getBlink(-1));
+    setActiveIndex(getBlink(-1));
   };
 
   useInterval(nextBlink, canBlink && playing ? interval : null);
 
   return (
-    <Styled.BlinkerContainer>
-      <Styled.BlinkerImages {...{ images, activeIndex }} />
+    <Styled.BlinkerContainer
+      className={className}
+      ref={ref}
+      isCondensed={isCondensed}
+    >
+      <Styled.BlinkerImages {...{ images, activeIndex, isCondensed }} />
       {canBlink && (
         <Styled.BlinkerControls
-          {...{ playing, handleStartStop, handleNext, handlePrevious }}
+          {...{
+            playing,
+            handleStartStop,
+            handleNext,
+            handlePrevious,
+            isCondensed,
+          }}
         />
       )}
     </Styled.BlinkerContainer>
