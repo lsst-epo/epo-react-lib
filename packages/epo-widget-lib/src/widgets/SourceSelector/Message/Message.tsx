@@ -31,6 +31,6 @@ const Message: FunctionComponent<MessageProps> = ({
   );
 };
 
-Message.displayName = "Widgets.GalaxySelector.Message";
+Message.displayName = "Widgets.SourceSelector.Message";
 
 export default Message;

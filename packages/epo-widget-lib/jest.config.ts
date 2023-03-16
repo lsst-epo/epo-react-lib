@@ -11,6 +11,8 @@ const config: JestConfigWithTsJest = {
     "^@/hooks(.*)$": "<rootDir>/src/hooks$1",
     "^@/lib(.*)$": "<rootDir>/src/lib$1",
     "^@/storybook(.*)$": "<rootDir>/.storybook$1",
+    "^@/styles(.*)$": "<rootDir>/src/styles$1",
+    "^@/types(.*)$": "<rootDir>/src/types$1",
     "^@/widgets(.*)$": "<rootDir>/src/widgets$1",
   },
   modulePathIgnorePatterns: ["node_modules", ".jest-test-results.json"],

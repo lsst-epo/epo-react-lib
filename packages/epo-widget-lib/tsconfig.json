@@ -23,6 +23,8 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/lib/*": ["src/lib/*"],
       "@/storybook/*": [".storybook/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/types/*": ["src/types/*"],
       "@/widgets/*": ["src/widgets/*"]
     }
   },

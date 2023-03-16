@@ -1,9 +1,10 @@
+import { SourceType } from "@/types/astro";
 import { FunctionComponent } from "react";
-import { AstroType } from "../GalaxySelector";
 import * as Styled from "./styles";
 
-interface PointProps {
-  id: AstroType;
+export interface PointProps {
+  type: SourceType;
+  id: string;
   isSelected: boolean;
   isActive: boolean;
   x: number;
@@ -14,6 +15,7 @@ interface PointProps {
 }
 
 const Point: FunctionComponent<PointProps> = ({
+  type,
   id,
   isActive,
   isSelected,
@@ -29,12 +31,12 @@ const Point: FunctionComponent<PointProps> = ({
     galaxyFilter: 25,
   };
 
-  const getRadius = (id: string, radius?: number) => {
+  const getRadius = (type: string, radius?: number) => {
     if (radius) {
       return Math.abs(radius);
     }
 
-    const { [id]: r = 8 } = defaultRadii;
+    const { [type]: r = 8 } = defaultRadii;
 
     return r;
   };
@@ -51,11 +53,13 @@ const Point: FunctionComponent<PointProps> = ({
     return "transparent";
   };
 
-  const baseRadius = getRadius(id, radius);
+  const baseRadius = getRadius(type, radius);
   const activeRadius = Math.max(10, baseRadius * 1.2);
 
   return (
     <Styled.Point
+      data-id={id}
+      data-type={type}
       cx={x}
       cy={y}
       r={isActive ? activeRadius : baseRadius}
@@ -68,6 +72,6 @@ const Point: FunctionComponent<PointProps> = ({
   );
 };
 
-Point.displayName = "Widgets.GalaxySelector.Point";
+Point.displayName = "Widgets.SourceSelector.Point";
 
 export default Point;

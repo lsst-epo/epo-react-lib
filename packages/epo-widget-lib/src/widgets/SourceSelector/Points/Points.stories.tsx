@@ -1,14 +1,14 @@
 import { className } from "@/storybook/utilities/argTypes";
+import { SourceDataset } from "@/types/astro";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import Points from ".";
-import { AstroDataset } from "../GalaxySelector";
 import { getLinearScale } from "../utilities";
 
 const width = 600;
 const height = 600;
 const domain = [0, 1200];
-const data: AstroDataset = {
+const data: SourceDataset = {
   name: "All Three Filters",
   id: "ZTF19abvhduf",
   color: "#fed828",
@@ -17,26 +17,26 @@ const data: AstroDataset = {
   velocity: 8573.901530035577,
   ra: 97.139708,
   redshift: 0.029,
-  objects: [
+  sources: [
     {
-      object_id: "01",
-      id: "galaxy",
-      ra: 120,
-      dec: 780,
+      id: "01",
+      type: "galaxy",
+      x: 120,
+      y: 780,
       color: "#fed828",
     },
     {
-      object_id: "02",
-      id: "galaxyFilter",
-      ra: 590,
-      dec: 630,
+      id: "02",
+      type: "galaxyFilter",
+      x: 590,
+      y: 630,
       color: "#fed828",
     },
     {
-      object_id: "03",
-      id: "supernova",
-      ra: 990,
-      dec: 440,
+      id: "03",
+      type: "supernova",
+      x: 990,
+      y: 440,
       color: "#fed828",
     },
   ],
@@ -51,12 +51,12 @@ const meta: ComponentMeta<typeof Points> = {
         category: "Styling",
       },
     },
-    data: {
+    sources: {
       control: "object",
-      description: "Array of objects to be rendered as points.",
+      description: "Array of sources to be rendered as points.",
       table: {
         type: {
-          summary: "AstroObject[]",
+          summary: "Source[]",
         },
         defaultValue: {
           summary: "[]",
@@ -64,11 +64,11 @@ const meta: ComponentMeta<typeof Points> = {
         category: "Model",
       },
     },
-    activeId: {
+    activeType: {
       control: "select",
       options: ["supernova", "galaxy", "galaxyFilter", "none"],
       description:
-        "ID of the currently active point that will be given active styling",
+        "Type of the currently active point that will be given active styling",
       table: {
         type: {
           summary: "supernova | galaxy | galaxyFilter",
@@ -76,13 +76,13 @@ const meta: ComponentMeta<typeof Points> = {
         category: "Model",
       },
     },
-    selectedData: {
+    selectedSource: {
       control: "object",
       description:
-        "ID of the currently selected point that will be visible to the user.",
+        "ID of the currently selected source that will be visible to the user.",
       table: {
         type: {
-          summary: "AstroObject[]",
+          summary: "Source[]",
         },
         category: "Model",
       },
@@ -93,11 +93,11 @@ const meta: ComponentMeta<typeof Points> = {
         required: true,
       },
       control: "select",
-      options: ["ra", "dec"],
+      options: ["x", "y"],
       description: "Key to access the x value of data points.",
       table: {
         type: {
-          summary: "ra | dec",
+          summary: "x | y",
         },
         category: "Placement",
       },
@@ -108,11 +108,11 @@ const meta: ComponentMeta<typeof Points> = {
         required: true,
       },
       control: "select",
-      options: ["ra", "dec"],
+      options: ["x", "y"],
       description: "Key to access the y value of data points.",
       table: {
         type: {
-          summary: "ra | dec",
+          summary: "x | y",
         },
         category: "Placement",
       },
@@ -180,11 +180,11 @@ const yScale = getLinearScale(domain, [height, 0]);
 
 export const Primary: ComponentStoryObj<typeof Points> = {
   args: {
-    data: data.objects,
-    selectedData: [data.objects[0]],
+    sources: data.sources,
+    selectedSource: [data.sources[0]],
     xScale,
     yScale,
-    xValueAccessor: "ra",
-    yValueAccessor: "dec",
+    xValueAccessor: "x",
+    yValueAccessor: "y",
   },
 };

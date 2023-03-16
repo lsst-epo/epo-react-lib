@@ -5,12 +5,30 @@ import Point from ".";
 
 const meta: ComponentMeta<typeof Point> = {
   argTypes: {
-    id: {
+    type: {
+      type: {
+        name: "string",
+        required: true,
+      },
       control: "text",
-      description: "Determines the radius of the point",
+      description: "Type of source, determines the radius of the point",
       table: {
         type: {
           summary: "supernova | galaxy | galaxyFilter",
+        },
+        category: "Display",
+      },
+    },
+    id: {
+      type: {
+        name: "string",
+        required: true,
+      },
+      control: "text",
+      description: "Unique identifier for each object",
+      table: {
+        type: {
+          summary: "string",
         },
         category: "Display",
       },
@@ -43,6 +61,10 @@ const meta: ComponentMeta<typeof Point> = {
       },
     },
     x: {
+      type: {
+        name: "number",
+        required: true,
+      },
       control: "number",
       description: "X axis placement of the point",
       table: {
@@ -53,6 +75,10 @@ const meta: ComponentMeta<typeof Point> = {
       },
     },
     y: {
+      type: {
+        name: "number",
+        required: true,
+      },
       control: "number",
       description: "Y axis placement of the point",
       table: {
