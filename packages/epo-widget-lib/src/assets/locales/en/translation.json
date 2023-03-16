@@ -53,6 +53,12 @@
         "select_filter": "Select a filter",
         "reset": "Reset"
       }
+    },
+    "source_selector": {
+      "messages": {
+        "success": "You found it!",
+        "failure": "Try again."
+      }
     }
   }
 }

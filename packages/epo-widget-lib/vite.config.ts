@@ -44,8 +44,10 @@ export default defineConfig({
       "@/atomic": resolve(__dirname, "./src/atomic"),
       "@/hooks": resolve(__dirname, "./src/hooks"),
       "@/lib": resolve(__dirname, "./src/lib"),
-      "@/widgets": resolve(__dirname, "./src/widgets"),
       "@/storybook": resolve(__dirname, "./.storybook"),
+      "@/styles": resolve(__dirname, "./src/styles"),
+      "@/types": resolve(__dirname, "./src/types"),
+      "@/widgets": resolve(__dirname, "./src/widgets"),
     },
   },
 });
