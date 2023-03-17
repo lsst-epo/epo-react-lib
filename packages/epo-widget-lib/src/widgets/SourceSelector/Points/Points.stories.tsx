@@ -22,21 +22,21 @@ const data: SourceDataset = {
       id: "01",
       type: "galaxy",
       x: 120,
-      y: 780,
+      y: 390,
       color: "#fed828",
     },
     {
       id: "02",
       type: "galaxyFilter",
-      x: 590,
-      y: 630,
+      x: 295,
+      y: 315,
       color: "#fed828",
     },
     {
       id: "03",
       type: "supernova",
-      x: 990,
-      y: 440,
+      x: 495,
+      y: 220,
       color: "#fed828",
     },
   ],
@@ -87,64 +87,6 @@ const meta: ComponentMeta<typeof Points> = {
         category: "Model",
       },
     },
-    xValueAccessor: {
-      type: {
-        name: "string",
-        required: true,
-      },
-      control: "select",
-      options: ["x", "y"],
-      description: "Key to access the x value of data points.",
-      table: {
-        type: {
-          summary: "x | y",
-        },
-        category: "Placement",
-      },
-    },
-    yValueAccessor: {
-      type: {
-        name: "string",
-        required: true,
-      },
-      control: "select",
-      options: ["x", "y"],
-      description: "Key to access the y value of data points.",
-      table: {
-        type: {
-          summary: "x | y",
-        },
-        category: "Placement",
-      },
-    },
-    xScale: {
-      type: {
-        name: "function",
-        required: true,
-      },
-      description:
-        "Scaling function to place points on the appropriate x value given the data range.",
-      table: {
-        type: {
-          summary: "(value: number) => number",
-        },
-        category: "Placement",
-      },
-    },
-    yScale: {
-      type: {
-        name: "function",
-        required: true,
-      },
-      description:
-        "Scaling function to place points on the appropriate y value given the data range.",
-      table: {
-        type: {
-          summary: "(value: number) => number",
-        },
-        category: "Placement",
-      },
-    },
     color: {
       control: "color",
       description:
@@ -184,7 +126,5 @@ export const Primary: ComponentStoryObj<typeof Points> = {
     selectedSource: [data.sources[0]],
     xScale,
     yScale,
-    xValueAccessor: "x",
-    yValueAccessor: "y",
   },
 };

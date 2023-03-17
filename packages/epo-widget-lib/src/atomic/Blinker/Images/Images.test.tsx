@@ -1,22 +1,39 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render, act, waitFor } from "@testing-library/react";
 import Images from "./Images";
 
 const props = {
   images: [
-    { url: "/path/to/image/1.jpeg" },
-    { url: "/path/to/image/2.jpeg" },
-    { url: "/path/to/image/3.jpeg" },
+    { url: "/path/to/image/1.jpeg", altText: "1" },
+    { url: "/path/to/image/2.jpeg", altText: "2" },
+    { url: "/path/to/image/3.jpeg", altText: "3" },
   ],
   activeIndex: 1,
+  readyCallback: jest.fn(),
 };
 
 describe("BlinkerImages", () => {
   test("Sets the current active index image visible", () => {
     // Arrange
     const { getAllByRole } = render(<Images {...props} />);
-    // Act
-    const images = getAllByRole("img");
+    const images = getAllByRole("img", { hidden: true });
+    const active = images[props.activeIndex];
+    const styles = getComputedStyle(active);
+
     // Assert
-    expect(images.length).toBe(1);
+    expect(styles.visibility).toBe("visible");
+  });
+  test("Makes a callback when images have finished loading", () => {
+    // Arrange
+    const { getAllByRole } = render(<Images {...props} />);
+    // Act
+    const images = getAllByRole("img", { hidden: true });
+
+    images.forEach((i) => {
+      fireEvent.load(i);
+    });
+    // Assert
+    waitFor(() => {
+      expect(props.readyCallback).toBeCalled();
+    });
   });
 });

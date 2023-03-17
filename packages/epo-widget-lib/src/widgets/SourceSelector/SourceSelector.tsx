@@ -28,23 +28,19 @@ interface Elapsed {
 interface SourceSelectorProps {
   width?: number;
   height?: number;
-  xDomain?: number[];
-  yDomain?: number[];
   sources: Source[];
   alerts?: Alert[];
-  selectedSource: Source[];
+  selectedSource?: Source[];
   images: Image[];
-  selectionCallback: (data: Source[]) => void;
-  blinkConfig: BlinkConfig;
+  selectionCallback?: (data: Source[]) => void;
+  blinkConfig?: BlinkConfig;
   color?: string;
 }
 
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   width = 600,
   height = 600,
-  xDomain = [0, 1200],
-  yDomain = [0, 1200],
-  selectedSource: preSelectedSource,
+  selectedSource: preSelectedSource = [],
   sources,
   alerts,
   images,
@@ -52,9 +48,9 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   blinkConfig,
   color,
 }) => {
-  const [selectedSource, setSelectedSource] = useState<Source[]>(
-    preSelectedSource || []
-  );
+  const [selectedSource, setSelectedSource] =
+    useState<Source[]>(preSelectedSource);
+  const [isLoaded, setLoaded] = useState(false);
   const [message, setMessage] = useState<ReactNode>();
   const [isMessageVisible, setMessageVisible] = useState(false);
   const [elapsed, setElapsed] = useState<Elapsed | null>(null);
@@ -80,7 +76,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         setSelectedSource((value) => value.concat(newSelect));
         setMessage(
           <>
-            {/* <IconComposer icon="checkmark" /> */}
+            <IconComposer icon="checkmark" />
             {t("source_selector.messages.success")}
           </>
         );
@@ -109,7 +105,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   };
 
   return (
-    <Styled.SourceSelectorContainer width={width}>
+    <Styled.SourceSelectorContainer {...{ width, height }}>
       <Message
         onMessageChangeCallback={handleMessageChange}
         isVisible={isMessageVisible}
@@ -120,18 +116,19 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
       <Styled.BackgroundBlinker
         images={images}
         blinkCallback={handleBlinkChange}
+        loadedCallback={() => setLoaded(true)}
         {...blinkConfig}
       />
       {elapsed && <Styled.ElapsedDisplay {...elapsed} />}
       <Styled.SVG
         preserveAspectRatio="xMidYMid meet"
         viewBox={`0 0 ${width} ${height}`}
-        onClick={handleClick}
+        onClick={(event) => isLoaded && handleClick(event)}
         id={svgId}
       >
         <Points
-          xScale={getLinearScale(xDomain, [0, width])}
-          yScale={getLinearScale(yDomain, [height, 0])}
+          xScale={getLinearScale([0, width], [0, width])}
+          yScale={getLinearScale([0, height], [height, 0])}
           {...{
             color,
             sources,
