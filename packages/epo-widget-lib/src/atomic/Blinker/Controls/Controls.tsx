@@ -9,6 +9,7 @@ interface ControlsProps {
   handleNext: MouseEventHandler<HTMLButtonElement>;
   handlePrevious: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  isDisabled?: boolean;
 }
 
 const Controls: FunctionComponent<ControlsProps> = ({
@@ -17,6 +18,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
   handleNext,
   handlePrevious,
   className,
+  isDisabled,
 }) => {
   const { t } = useTranslation();
 
@@ -30,6 +32,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
         icon="Rewind"
         label={t("blinker.controls.rewind")}
         handleClick={handlePrevious}
+        disabled={isDisabled}
       />
       <PlaybackControl
         data-testid="blinker-start-stop"
@@ -38,12 +41,14 @@ const Controls: FunctionComponent<ControlsProps> = ({
           playing ? t("blinker.controls.pause") : t("blinker.controls.play")
         }
         handleClick={handleStartStop}
+        disabled={isDisabled}
       />
       <PlaybackControl
         data-testid="blinker-forward"
         icon="Forward"
         label={t("blinker.controls.forward")}
         handleClick={handleNext}
+        disabled={isDisabled}
       />
     </Styled.ControlsContainer>
   );

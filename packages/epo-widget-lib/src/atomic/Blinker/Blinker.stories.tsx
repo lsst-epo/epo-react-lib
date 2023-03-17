@@ -81,8 +81,18 @@ const meta: ComponentMeta<typeof Blinker> = {
         category: "Model",
       },
     },
+    loadedCallback: {
+      description:
+        "Callback that will be fired when the blinker has finished loading and started blinking.",
+      action: "Loaded",
+      table: {
+        type: {
+          summary: "() => void",
+        },
+        category: "Function",
+      },
+    },
     blinkCallback: {
-      type: { name: "function", required: true },
       description:
         "Callback that will return the index of the next image in the `images` array to be displayed.",
       action: "Image changed",
@@ -117,6 +127,7 @@ const Template: ComponentStory<typeof Blinker> = (args) => {
         {...args}
         activeIndex={activeIndex}
         blinkCallback={blinkCallback}
+        loadedCallback={() => args.loadedCallback()}
       />
     </Container>
   );
