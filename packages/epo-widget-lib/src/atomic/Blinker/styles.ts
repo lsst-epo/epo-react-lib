@@ -7,6 +7,8 @@ export const BlinkerContainer = styled.div<{ isCondensed: boolean }>`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content;
   justify-items: center;
+  position: relative;
+  height: 100%;
 `;
 
 export const BlinkerControls = styled(Controls)<{ isCondensed: boolean }>`

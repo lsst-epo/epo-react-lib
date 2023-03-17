@@ -13,6 +13,7 @@ export interface BlinkerProps {
   loop?: boolean;
   interval?: number;
   blinkCallback?: (activeIndex: number) => void;
+  loadedCallback?: () => void;
   className?: string;
 }
 
@@ -23,11 +24,13 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   loop = true,
   interval = 200,
   blinkCallback,
+  loadedCallback,
   className,
 }) => {
   const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
   const [playing, setPlaying] = useState(autoplay);
   const [activeIndex, setActiveIndex] = useState(presetIndex);
+  const [loaded, setLoaded] = useState(false);
   const { BREAK_MOBILE } = tokens;
   const canBlink = images.length > 1;
   const isCondensed = width < parseInt(BREAK_MOBILE);
@@ -35,6 +38,12 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   useEffect(() => {
     blinkCallback && blinkCallback(activeIndex);
   }, [activeIndex]);
+
+  useEffect(() => {
+    if (loaded) {
+      loadedCallback && loadedCallback();
+    }
+  }, [loaded]);
 
   const getBlink = (direction = 0) => {
     const lastIndex = images.length - 1;
@@ -70,7 +79,7 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
     setActiveIndex(getBlink(-1));
   };
 
-  useInterval(nextBlink, canBlink && playing ? interval : null);
+  useInterval(nextBlink, canBlink && loaded && playing ? interval : null);
 
   return (
     <Styled.BlinkerContainer
@@ -78,9 +87,13 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
       ref={ref}
       isCondensed={isCondensed}
     >
-      <Styled.BlinkerImages {...{ images, activeIndex, isCondensed }} />
+      <Styled.BlinkerImages
+        loadedCallback={() => setLoaded(true)}
+        {...{ images, activeIndex, isCondensed }}
+      />
       {canBlink && (
         <Styled.BlinkerControls
+          isDisabled={!loaded}
           {...{
             playing,
             handleStartStop,

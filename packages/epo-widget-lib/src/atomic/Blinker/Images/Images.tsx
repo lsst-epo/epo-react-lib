@@ -5,6 +5,7 @@ import BlinkerImage from "../Image/Image";
 import { BlinkerProps } from "../Blinker";
 
 interface ImagesProps extends Pick<BlinkerProps, "images" | "activeIndex"> {
+  loadedCallback?: () => void;
   className?: string;
 }
 
@@ -12,6 +13,7 @@ const Images: FunctionComponent<ImagesProps> = ({
   images = [],
   activeIndex,
   className,
+  loadedCallback,
 }) => {
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +24,11 @@ const Images: FunctionComponent<ImagesProps> = ({
 
   useEffect(() => {
     setIsLoading(imagesLoaded !== images.length);
-  }, [imagesLoaded]);
+
+    if (!isLoading) {
+      loadedCallback && loadedCallback();
+    }
+  }, [imagesLoaded, isLoading]);
 
   return (
     <Styled.BlinkContainer data-testid="blinker-images" className={className}>
