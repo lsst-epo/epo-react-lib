@@ -48,7 +48,7 @@ interface ColorToolProps {
   objectOptions?: Option[];
   colorOptions?: ListboxOption[];
   isDisabled?: boolean;
-  hideControls?: boolean;
+  isDisplayOnly?: boolean;
   hideImage?: boolean;
   hideSubtitle?: boolean;
 }
@@ -61,7 +61,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   colorOptions = [],
   selectionCallback,
   isDisabled = false,
-  hideControls = false,
+  isDisplayOnly = false,
   hideImage = false,
   hideSubtitle = false,
 }) => {
@@ -112,10 +112,10 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     <Styled.WidgetContainer
       ref={ref}
       isCondensed={width < 1000}
-      hideControls={hideControls}
+      hideControls={isDisplayOnly}
     >
       {title && <Styled.Title>{title}</Styled.Title>}
-      {selectedObjectName && (hideControls || hasMultipleDatasets) && (
+      {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
         <Styled.Subtitle>
           {hasMultipleDatasets && (
             <>
@@ -136,7 +136,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
           {}
         </Styled.Subtitle>
       )}
-      {!hideControls && (
+      {!isDisplayOnly && (
         <Styled.ControlsContainer>
           {hasMultipleDatasets && (
             <Styled.SelectionContainer>
@@ -183,7 +183,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
         </Styled.ControlsContainer>
       )}
       {!hideImage && <ImageComposite {...{ filters }} />}
-      {selectedObjectName && !hideControls && (
+      {selectedObjectName && !isDisplayOnly && (
         <Styled.ResetButton
           disabled={isDisabled || !isResetButtonActive(selectedData)}
           onClick={handleReset}

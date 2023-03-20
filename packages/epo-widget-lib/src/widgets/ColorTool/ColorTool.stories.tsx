@@ -13,10 +13,10 @@ import { Option } from "@rubin-epo/epo-react-lib/dist/types/select";
 
 const meta: ComponentMeta<typeof ColorTool> = {
   argTypes: {
-    hideControls: {
+    isDisplayOnly: {
       control: "boolean",
       description:
-        "Hides the controls and puts the widget into a read-only mode.",
+        "Hides the controls and puts the widget into a display-only mode.",
       table: {
         type: {
           summary: "boolean",
@@ -193,6 +193,6 @@ export const DisplayOnly: ComponentStoryObj<typeof ColorTool> = {
     selectedData: readOnlyData[0].objects[0],
     title,
     colorOptions: multiSpectralOptions,
-    hideControls: true,
+    isDisplayOnly: true,
   },
 };

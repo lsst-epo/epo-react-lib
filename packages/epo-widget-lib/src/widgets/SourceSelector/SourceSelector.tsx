@@ -35,6 +35,7 @@ interface SourceSelectorProps {
   selectionCallback?: (data: Source[]) => void;
   blinkConfig?: BlinkConfig;
   color?: string;
+  isDisplayOnly?: boolean;
 }
 
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
@@ -47,6 +48,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   selectionCallback,
   blinkConfig,
   color,
+  isDisplayOnly = false,
 }) => {
   const [selectedSource, setSelectedSource] =
     useState<Source[]>(preSelectedSource);
@@ -65,26 +67,28 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     data.filter((d) => d.id === id && d.type === type);
 
   const handleClick = (event: MouseEvent<SVGElement>) => {
-    const { target } = event;
-    const { id, type } = (target as SVGElement).dataset;
+    if (isLoaded && !isDisplayOnly) {
+      const { target } = event;
+      const { id, type } = (target as SVGElement).dataset;
 
-    if (id && type) {
-      const isAlreadySelected = findData(selectedSource, id, type).length > 0;
+      if (id && type) {
+        const isAlreadySelected = findData(selectedSource, id, type).length > 0;
 
-      if (!isAlreadySelected) {
-        const newSelect = findData(sources, id, type);
-        setSelectedSource((value) => value.concat(newSelect));
-        setMessage(
-          <>
-            <IconComposer icon="checkmark" />
-            {t("source_selector.messages.success")}
-          </>
-        );
+        if (!isAlreadySelected) {
+          const newSelect = findData(sources, id, type);
+          setSelectedSource((value) => value.concat(newSelect));
+          setMessage(
+            <>
+              <IconComposer icon="checkmark" />
+              {t("source_selector.messages.success")}
+            </>
+          );
+          setMessageVisible(true);
+        }
+      } else {
+        setMessage(t("source_selector.messages.failure"));
         setMessageVisible(true);
       }
-    } else {
-      setMessage(t("source_selector.messages.failure"));
-      setMessageVisible(true);
     }
   };
 
@@ -106,13 +110,15 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
 
   return (
     <Styled.SourceSelectorContainer {...{ width, height }}>
-      <Message
-        onMessageChangeCallback={handleMessageChange}
-        isVisible={isMessageVisible}
-        forIds={[svgId]}
-      >
-        {message}
-      </Message>
+      {!isDisplayOnly && (
+        <Message
+          onMessageChangeCallback={handleMessageChange}
+          isVisible={isMessageVisible}
+          forIds={[svgId]}
+        >
+          {message}
+        </Message>
+      )}
       <Styled.BackgroundBlinker
         images={images}
         blinkCallback={handleBlinkChange}
@@ -123,8 +129,9 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
       <Styled.SVG
         preserveAspectRatio="xMidYMid meet"
         viewBox={`0 0 ${width} ${height}`}
-        onClick={(event) => isLoaded && handleClick(event)}
+        onClick={handleClick}
         id={svgId}
+        isDisplayOnly={isDisplayOnly}
       >
         <Points
           xScale={getLinearScale([0, width], [0, width])}
