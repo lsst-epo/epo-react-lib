@@ -94,9 +94,9 @@ describe("ColorTool", () => {
       expect(s).toBeDisabled();
     });
   });
-  it(`should hide controls when hideControls set`, async () => {
+  it(`should hide controls when isDisplayOnly set`, async () => {
     await act(async () => {
-      render(<ColorTool {...{ ...multiProps, hideControls: true }} />);
+      render(<ColorTool {...{ ...multiProps, isDisplayOnly: true }} />);
     });
 
     expect(screen.queryAllByRole("combobox").length).toBe(0);
