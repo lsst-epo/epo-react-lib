@@ -43,6 +43,7 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         type: {
           summary: "Source[]",
         },
+        category: "Model",
       },
     },
     alerts: {
@@ -57,6 +58,7 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         type: {
           summary: "Alert[]",
         },
+        category: "Configuration",
       },
     },
     selectedSource: {
@@ -69,6 +71,7 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         defaultValue: {
           summary: "[]",
         },
+        category: "Model",
       },
     },
     images: {
@@ -86,9 +89,9 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         defaultValue: {
           summary: "[]",
         },
+        category: "Configuration",
       },
     },
-    // color?: string
     selectionCallback: {
       description: "Callback for when users have found a new source.",
       action: "Source found",
@@ -96,6 +99,7 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         type: {
           summary: "(selected: Source[]) => void",
         },
+        category: "Function",
       },
     },
     blinkConfig: {
@@ -105,6 +109,7 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         type: {
           summary: "{autoplay?: boolean; loop?: boolean; duration?: number}",
         },
+        category: "Configuration",
       },
     },
     color: {
@@ -114,6 +119,17 @@ const meta: ComponentMeta<typeof SourceSelector> = {
         type: {
           summary: "string",
         },
+        category: "Styling",
+      },
+    },
+    isDisplayOnly: {
+      control: "boolean",
+      description:
+        "Puts the widget into a display only mode where users cannot click on new selections and the message is removed from the DOM. User's can still use alert playback controls.",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: false },
+        category: "Display",
       },
     },
   },
@@ -130,5 +146,15 @@ export const Alerts: ComponentStoryObj<typeof SourceSelector> = {
     sources: biggerData.sources,
     images: biggerData.alerts?.map((a) => a.image),
     alerts: biggerData.alerts,
+  },
+};
+
+export const DisplayOnly: ComponentStoryObj<typeof SourceSelector> = {
+  args: {
+    sources: biggerData.sources,
+    selectedSource: [biggerData.sources[0]],
+    images: biggerData.alerts?.map((a) => a.image),
+    alerts: biggerData.alerts,
+    isDisplayOnly: true,
   },
 };
