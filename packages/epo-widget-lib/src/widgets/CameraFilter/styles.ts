@@ -28,8 +28,8 @@ export const FilterRange = styled.td`
 export const Wavelength = styled.span`
   font-size: 80%;
 `;
-export const FilterName = styled.th<{ band: Band | "none" }>`
-  border: ${({ band }) => (band === "none" ? "none" : "3px solid #b2b2b2")};
+export const FilterName = styled.th<{ band?: Band }>`
+  border: ${({ band }) => (band ? "3px solid #b2b2b2" : "none")};
   font-size: 120%;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
 `;

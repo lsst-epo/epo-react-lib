@@ -17,6 +17,23 @@ export const getClampedArrayIndex = (
   }
 };
 
-/** tests if a number is between two other number */
+/** tests if a number is between two other numbers */
 export const between = (x: number, min: number, max: number) =>
   x >= min && x <= max;
+
+/** gets the intersection between two array ranges
+ *  ex. [1, 5] and [3, 10] have an intersection of
+ *  [3,5]
+ */
+export const intersection = (a: number[] = [], b: number[] = []) => {
+  // const [el11, el12] = arr1;
+  // const [el21, el22] = arr2;
+  // return [Math.max(el11, el21), Math.min(el12, el22)];
+  const min = a[0] < b[0] ? a : b;
+  const max = min === a ? b : a;
+
+  //min ends before max starts -> no intersection
+  if (min[1] < max[0]) return null; //the ranges don't intersect
+
+  return [max[0], min[1] < max[1] ? min[1] : max[1]];
+};

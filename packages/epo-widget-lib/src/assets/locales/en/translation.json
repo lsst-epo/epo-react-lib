@@ -59,6 +59,14 @@
         "success": "You found it!",
         "failure": "Try again."
       }
+    },
+    "camera_filter": {
+      "labels": {
+        "captured_range": "Electromagnetic spectrums captured with {{filter}} applied",
+        "ultraviolet": "Ultraviolet",
+        "visible": "Visible Light",
+        "infrared": "Infrared"
+      }
     }
   }
 }
