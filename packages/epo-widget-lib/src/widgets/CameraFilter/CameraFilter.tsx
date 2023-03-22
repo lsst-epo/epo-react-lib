@@ -1,14 +1,13 @@
 import { FormEvent, FunctionComponent, useState } from "react";
 import { Select } from "@rubin-epo/epo-react-lib";
 import { filters, spectrums, Filter, rangeConfig } from "./data";
-import { useTranslation } from "react-i18next";
 import * as Styled from "./styles";
-import { between, intersection } from "@/lib/utils";
+import { between } from "@/lib/utils";
+import SpectrumLabels from "./SpectrumLabels";
 
 const CameraFilter: FunctionComponent = () => {
   const [isCondensed, setIsCondensed] = useState(false);
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
-  const { t } = useTranslation();
 
   const {
     [isCondensed ? "condensed" : "default"]: { min, max, range: spectrumRange },
@@ -74,7 +73,7 @@ const CameraFilter: FunctionComponent = () => {
               <Styled.FilterRange key={range.join()} aria-hidden={!band}>
                 {band && (
                   <>
-                    {range.join("-")}
+                    {range.join(" - ")}
                     <br />
                     <Styled.Wavelength>nm</Styled.Wavelength>
                   </>
@@ -87,21 +86,21 @@ const CameraFilter: FunctionComponent = () => {
       <Styled.ElectromagneticSpectrum
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMinYMin meet"
-        viewBox={`${min} 0 ${spectrumRange} 100`}
+        viewBox={`${min} 0 ${spectrumRange} 200`}
       >
         <defs>
           {spectrums.map(({ name, stops }) => (
             <linearGradient key={name} id={`${name}-gradient`}>
-              {stops.map(({ offset, stopColor }) => (
+              {stops.map(({ offset, stopColor, id }) => (
                 <stop
                   key={`${offset}-${stopColor}`}
-                  {...{ offset, stopColor }}
+                  {...{ offset, stopColor, id }}
                 />
               ))}
             </linearGradient>
           ))}
           <mask id="spectrumMask">
-            <rect width="100%" height="100%" fill="white" x={min} />
+            <rect width="100%" height="50%" fill="white" x={min} />
             {activeBand && (
               <>
                 <rect
@@ -125,7 +124,7 @@ const CameraFilter: FunctionComponent = () => {
             <rect
               key={name}
               width={(upper || max) - (lower || min)}
-              height="100%"
+              height="50%"
               fill={`url(#${name}-gradient)`}
               x={lower || min}
               role="presentation"
@@ -148,42 +147,14 @@ const CameraFilter: FunctionComponent = () => {
                   x1={upper}
                   x2={upper}
                   y1={0}
-                  y2="100%"
+                  y2="50%"
                 />
               )
           )}
         </g>
-        <g
-          role="list"
-          aria-label={t("camera_filter.labels.captured_range", {
-            filter: activeBand,
-          })}
-          aria-live="polite"
-        >
-          {spectrums.map(({ name, upper, lower }) => {
-            const safeUpper = upper || max;
-            const safeLower = lower || min;
-            return (
-              <text
-                key={name}
-                x={(safeUpper - safeLower) / 2 + safeLower}
-                y="50%"
-                dominantBaseline="middle"
-                textAnchor="middle"
-                role="listitem"
-                aria-hidden={
-                  activeBand &&
-                  intersection(
-                    [safeLower, safeUpper],
-                    [activeMin, activeMax]
-                  ) === null
-                }
-              >
-                {t(`camera_filter.labels.${name}`)}
-              </text>
-            );
-          })}
-        </g>
+        <SpectrumLabels
+          {...{ spectrums, activeBand, min, max, activeMin, activeMax }}
+        />
       </Styled.ElectromagneticSpectrum>
       <Styled.SelectContainer>
         <Select
