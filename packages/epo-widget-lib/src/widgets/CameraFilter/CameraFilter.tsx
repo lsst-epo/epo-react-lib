@@ -1,5 +1,5 @@
-import { FormEvent, FunctionComponent, useState } from "react";
-import { Select } from "@rubin-epo/epo-react-lib";
+import { FunctionComponent, useState } from "react";
+import { SelectListbox } from "@rubin-epo/epo-react-lib";
 import { filters, spectrums, Filter, rangeConfig } from "./data";
 import * as Styled from "./styles";
 import { between } from "@/lib/utils";
@@ -7,7 +7,7 @@ import SpectrumLabels from "./SpectrumLabels";
 
 const CameraFilter: FunctionComponent = () => {
   const [isCondensed, setIsCondensed] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const {
     [isCondensed ? "condensed" : "default"]: { min, max, range: spectrumRange },
@@ -26,15 +26,11 @@ const CameraFilter: FunctionComponent = () => {
     filtersOnly.map(({ band }) => ({ value: band, label: `${band} filter` }))
   );
 
-  const handleFilterChange = (event: FormEvent<HTMLSelectElement>) => {
-    const { value } = event.target as HTMLSelectElement;
-    const selectedFilter = filters.find((f) => f.band === value);
-
-    setActiveFilter(selectedFilter || null);
-  };
-
   const { band: activeBand, range: [activeMin, activeMax] = [0, 0] } =
-    activeFilter || { band: undefined, range: undefined };
+    filters.find(({ band }) => band === activeFilter) || {
+      band: undefined,
+      range: undefined,
+    };
 
   return (
     <Styled.FilterContainer>
@@ -140,9 +136,9 @@ const CameraFilter: FunctionComponent = () => {
                   strokeWidth={2}
                   strokeDasharray="8 8"
                   stroke={
-                    activeBand || between(upper, activeMin, activeMax)
-                      ? "#fff"
-                      : "#000"
+                    activeBand && !between(upper, activeMin, activeMax)
+                      ? "#000"
+                      : "#fff"
                   }
                   x1={upper}
                   x2={upper}
@@ -157,11 +153,12 @@ const CameraFilter: FunctionComponent = () => {
         />
       </Styled.ElectromagneticSpectrum>
       <Styled.SelectContainer>
-        <Select
+        <SelectListbox
           options={options}
-          value={activeBand}
-          defaultValue={noneOption.value}
-          onChange={handleFilterChange}
+          value={activeFilter}
+          onChangeCallback={(value: string | null) => setActiveFilter(value)}
+          width="100%"
+          maxWidth="100%"
         />
       </Styled.SelectContainer>
     </Styled.FilterContainer>
