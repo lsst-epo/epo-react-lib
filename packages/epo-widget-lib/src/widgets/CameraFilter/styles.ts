@@ -41,8 +41,10 @@ export const ElectromagneticSpectrum = styled.svg`
 export const SelectContainer = styled.div`
   min-width: 20ch;
   width: 50%;
-  margin-block-start: 4em;
+  max-width: 30ch;
+  margin-block-start: 1em;
   justify-self: center;
+  text-align: left;
 `;
 
 export const SpectrumLabel = styled.text`
