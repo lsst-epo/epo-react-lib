@@ -1,23 +1,31 @@
 import { Band } from "@/types/astro";
 
-export type FilterRange<T, N extends number, R extends T[] = []> =
-  R["length"] extends N ? R : FilterRange<T, N, [T, ...R]>;
+export type Range<T, N extends number, R extends T[] = []> =
+  R["length"] extends N ? R : Range<T, N, [T, ...R]>;
 
 export interface Filter {
   band?: Band;
-  range: FilterRange<number, 2>;
+  range: Range<number, 2>;
 }
 
 interface GradientStop {
   stopColor: string;
   offset: number;
+  id?: string;
 }
 
-interface Spectrum {
+export interface VisibleColor {
+  name: string;
+  range: Range<number, 2>;
+  color: string;
+}
+
+export interface Spectrum {
   name: string;
   upper?: number;
   lower?: number;
   stops: GradientStop[];
+  colors?: VisibleColor[];
 }
 
 export const filters: Filter[] = [
@@ -82,9 +90,18 @@ const infrared: GradientStop[] = [
   { offset: 1, stopColor: "#d4d4d4" },
 ];
 
+export const colors: VisibleColor[] = [
+  { name: "violet", color: "#861CFF", range: [380, 450] },
+  { name: "blue", color: "#0000FF", range: [450, 495] },
+  { name: "green", color: "#00FF00", range: [495, 570] },
+  { name: "yellow", color: "#FFDD15", range: [570, 590] },
+  { name: "orange", color: "#F18922", range: [590, 620] },
+  { name: "red", color: "#EC0000", range: [620, 750] },
+];
+
 export const spectrums: Spectrum[] = [
   { name: "ultraviolet", upper: 400, stops: ultraviolet },
-  { name: "visible", upper: 750, lower: 400, stops: visible },
+  { name: "visible", upper: 750, lower: 400, stops: visible, colors },
   { name: "infrared", lower: 750, stops: infrared },
 ];
 

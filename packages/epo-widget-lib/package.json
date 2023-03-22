@@ -48,7 +48,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.1.4",
+    "react-i18next": "^12.2.0",
     "storybook-react-i18next": "^1.1.2",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.3",
@@ -60,10 +60,10 @@
     "next": "^13.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.0.0"
+    "react-i18next": "^12.2.0"
   },
   "dependencies": {
-    "@rubin-epo/epo-react-lib": "1.0.20",
+    "@rubin-epo/epo-react-lib": "^1.1.0",
     "styled-components": "^5.3.9",
     "use-resize-observer": "^9.1.0"
   }

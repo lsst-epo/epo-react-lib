@@ -62,7 +62,8 @@
     },
     "camera_filter": {
       "labels": {
-        "captured_range": "Electromagnetic spectrums captured with {{filter}} applied",
+        "captured_range": "Electromagnetic spectrums captured with {{filter}} filter applied",
+        "captured_range_no_filter": "Electromagnetic spectrums without filter applied",
         "ultraviolet": "Ultraviolet",
         "visible": "Visible Light",
         "infrared": "Infrared"
