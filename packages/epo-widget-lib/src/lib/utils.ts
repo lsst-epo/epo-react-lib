@@ -16,3 +16,7 @@ export const getClampedArrayIndex = (
       return index;
   }
 };
+
+/** tests if a number is between two other number */
+export const between = (x: number, min: number, max: number) =>
+  x >= min && x <= max;
