@@ -4,18 +4,25 @@ export type FilterRange<T, N extends number, R extends T[] = []> =
   R["length"] extends N ? R : FilterRange<T, N, [T, ...R]>;
 
 export interface Filter {
-  band: Band | "none";
+  band?: Band;
   range: FilterRange<number, 2>;
 }
 
-interface SpectrumStop {
+interface GradientStop {
   stopColor: string;
   offset: number;
 }
 
+interface Spectrum {
+  name: string;
+  upper?: number;
+  lower?: number;
+  stops: GradientStop[];
+}
+
 export const filters: Filter[] = [
   { band: "u", range: [338, 395] },
-  { band: "none", range: [396, 404] },
+  { range: [396, 404] },
   { band: "g", range: [405, 552] },
   { band: "r", range: [553, 690] },
   { band: "i", range: [690, 817] },
@@ -23,7 +30,7 @@ export const filters: Filter[] = [
   { band: "y", range: [920, 1010] },
 ];
 
-const ultraviolet: SpectrumStop[] = [
+const ultraviolet: GradientStop[] = [
   { offset: 0, stopColor: "#e0e0e0" },
   { offset: 0.262, stopColor: "#dedde0" },
   { offset: 0.41, stopColor: "#dbd5e1" },
@@ -35,7 +42,7 @@ const ultraviolet: SpectrumStop[] = [
   { offset: 0.976, stopColor: "#8c2afc" },
   { offset: 1, stopColor: "#861cff" },
 ];
-const visible: SpectrumStop[] = [
+const visible: GradientStop[] = [
   { offset: 0, stopColor: "#861cff" },
   { offset: 0.253, stopColor: "blue" },
   { offset: 0.266, stopColor: "#001ee0" },
@@ -61,7 +68,7 @@ const visible: SpectrumStop[] = [
   { offset: 0.723, stopColor: "#ed2d0b" },
   { offset: 0.755, stopColor: "#ec0000" },
 ];
-const infrared: SpectrumStop[] = [
+const infrared: GradientStop[] = [
   { offset: 0, stopColor: "#ec0000" },
   { offset: 0.387, stopColor: "#ea0e0e" },
   { offset: 0.526, stopColor: "#e53737" },
@@ -75,24 +82,25 @@ const infrared: SpectrumStop[] = [
   { offset: 1, stopColor: "#d4d4d4" },
 ];
 
-interface Spectrum {
-  name: string;
-  upper?: number;
-  lower?: number;
-  stops: SpectrumStop[];
-}
-
-// export const spectrums = { ultraviolet, visible, infrared };
 export const spectrums: Spectrum[] = [
   { name: "ultraviolet", upper: 400, stops: ultraviolet },
   { name: "visible", upper: 750, lower: 400, stops: visible },
   { name: "infrared", lower: 750, stops: infrared },
 ];
 
-export const lowerWavelength = 255;
-export const upperWavelength = 1084;
-export const spectrumRange = upperWavelength - lowerWavelength;
-export const spectrumBounds = {
-  ultraviolet: 400,
-  visible: 750,
+const defaultMin = 255;
+const condensedMin = 322;
+const defaultMax = 1084;
+
+export const rangeConfig = {
+  condensed: {
+    min: condensedMin,
+    max: defaultMax,
+    range: defaultMax - condensedMin,
+  },
+  default: {
+    min: defaultMin,
+    max: defaultMax,
+    range: defaultMax - defaultMin,
+  },
 };
