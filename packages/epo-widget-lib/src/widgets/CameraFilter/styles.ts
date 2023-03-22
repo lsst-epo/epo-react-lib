@@ -44,3 +44,17 @@ export const SelectContainer = styled.div`
   margin-block-start: 4em;
   justify-self: center;
 `;
+
+export const SpectrumLabel = styled.text`
+  font-size: 0.75em;
+`;
+
+export const ColorName = styled.tspan`
+  font-size: 0.75em;
+`;
+export const ColorSpectrum = styled.tspan`
+  font-size: 0.5em;
+`;
+export const ColorSpectrumUnit = styled.tspan`
+  font-size: 0.4em;
+`;
