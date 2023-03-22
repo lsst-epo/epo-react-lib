@@ -1,4 +1,4 @@
-import { getClampedArrayIndex } from "./utils";
+import { between, getClampedArrayIndex } from "./utils";
 
 const finalIndex = 4;
 describe("getClampedArrayIndex", () => {
@@ -16,5 +16,17 @@ describe("getClampedArrayIndex", () => {
     const output = getClampedArrayIndex(1, finalIndex);
 
     expect(output).toBe(1);
+  });
+});
+describe("between", () => {
+  it("should return true when a value is between two other values", () => {
+    const output = between(5, 1, 10);
+
+    expect(output).toBeTruthy();
+  });
+  it("should return false when a value is outside two other values", () => {
+    const output = between(-4, 1, 10);
+
+    expect(output).toBeFalsy();
   });
 });
