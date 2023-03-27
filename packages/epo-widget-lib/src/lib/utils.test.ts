@@ -1,4 +1,4 @@
-import { between, getClampedArrayIndex } from "./utils";
+import { between, intersection, getClampedArrayIndex } from "./utils";
 
 const finalIndex = 4;
 describe("getClampedArrayIndex", () => {
@@ -28,5 +28,18 @@ describe("between", () => {
     const output = between(-4, 1, 10);
 
     expect(output).toBeFalsy();
+  });
+});
+describe("intersection", () => {
+  it("should return the intersection of two overlapping arrays", () => {
+    const output = intersection([1, 5], [3, 10]);
+
+    expect(output && output[0]).toBe(3);
+    expect(output && output[1]).toBe(5);
+  });
+  it("should return null if there is no overlap", () => {
+    const output = intersection([1, 5], [9, 10]);
+
+    expect(output).toBeNull();
   });
 });
