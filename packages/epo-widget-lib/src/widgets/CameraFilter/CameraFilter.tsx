@@ -1,13 +1,18 @@
 import { FunctionComponent, useState } from "react";
-import { SelectListbox } from "@rubin-epo/epo-react-lib";
-import { filters, spectrums, Filter, rangeConfig } from "./data";
+import { SelectListbox, tokens } from "@rubin-epo/epo-react-lib";
+import { useTranslation } from "react-i18next";
+import useResizeObserver from "use-resize-observer";
+import { filters, Filter, rangeConfig } from "./data";
 import * as Styled from "./styles";
-import { between } from "@/lib/utils";
-import SpectrumLabels from "./SpectrumLabels";
+import CondensedFilterRanges from "./CondensedFilterRanges";
+import SpectrumDisplay from "./SpectrumDisplay";
 
 const CameraFilter: FunctionComponent = () => {
-  const [isCondensed, setIsCondensed] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const { t } = useTranslation();
+  const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
+  const [activeFilterBand, setActiveFilterBand] = useState<string | null>(null);
+  const { BREAK_TABLET } = tokens;
+  const isCondensed = width < parseInt(BREAK_TABLET);
 
   const {
     [isCondensed ? "condensed" : "default"]: { min, max, range: spectrumRange },
@@ -17,27 +22,35 @@ const CameraFilter: FunctionComponent = () => {
   const filterMax = filters[filters.length - 1].range[1];
   const filterRange = filterMax - filterMin;
 
-  const filtersOnly = filters.filter(
-    ({ band }) => band !== undefined
-  ) as Required<Filter>[];
+  const filtersOnly = filters.filter(({ band }) => band) as Required<Filter>[];
 
-  const noneOption = { value: "none", label: "None" };
+  const noneOption = {
+    value: "none",
+    label: t("camera_filter.labels.option", { context: "none" }),
+  };
   const options = [noneOption].concat(
-    filtersOnly.map(({ band }) => ({ value: band, label: `${band} filter` }))
+    filtersOnly.map(({ band }) => ({
+      value: band,
+      label: t("camera_filter.labels.option", { band }),
+    }))
   );
 
-  const { band: activeBand, range: [activeMin, activeMax] = [0, 0] } =
-    filters.find(({ band }) => band === activeFilter) || {
-      band: undefined,
-      range: undefined,
-    };
+  const activeFilter = filters.find(({ band }) => band === activeFilterBand);
 
   return (
-    <Styled.FilterContainer>
-      <h1>Rubin Observatory LSST Camera Filter Ranges</h1>
+    <Styled.FilterContainer ref={ref}>
+      <h1>{t("camera_filter.title")}</h1>
+      {isCondensed && (
+        <CondensedFilterRanges
+          filters={filtersOnly}
+          {...{ min, spectrumRange }}
+        />
+      )}
       <Styled.FilterTable
+        aria-hidden={isCondensed}
         range={(filterRange / spectrumRange) * 100}
         offset={((filterMin - min) / spectrumRange) * 100}
+        data-testid="expanded-filters"
       >
         <colgroup>
           {filters.map(({ range }) => (
@@ -53,112 +66,52 @@ const CameraFilter: FunctionComponent = () => {
           <tr>
             {filters.map(({ band }) => (
               <Styled.FilterName
-                key={`${band}-name`}
+                id={`${band}-name`}
+                key={band}
                 band={band}
                 scope="col"
                 aria-hidden={!band}
+                isCondensed={isCondensed}
               >
                 {band}
               </Styled.FilterName>
             ))}
           </tr>
         </Styled.FilterNames>
-        <Styled.FilterRanges>
-          <tr>
-            {filters.map(({ band, range }) => (
-              <Styled.FilterRange key={range.join()} aria-hidden={!band}>
-                {band && (
-                  <>
-                    {range.join(" - ")}
-                    <br />
-                    <Styled.Wavelength>nm</Styled.Wavelength>
-                  </>
-                )}
-              </Styled.FilterRange>
-            ))}
-          </tr>
-        </Styled.FilterRanges>
-      </Styled.FilterTable>
-      <Styled.ElectromagneticSpectrum
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMinYMin meet"
-        viewBox={`${min} 0 ${spectrumRange} 200`}
-      >
-        <defs>
-          {spectrums.map(({ name, stops }) => (
-            <linearGradient key={name} id={`${name}-gradient`}>
-              {stops.map(({ offset, stopColor, id }) => (
-                <stop
-                  key={`${offset}-${stopColor}`}
-                  {...{ offset, stopColor, id }}
-                />
+        {!isCondensed && (
+          <Styled.FilterRanges>
+            <tr>
+              {filters.map(({ band, range }) => (
+                <Styled.FilterRange key={range.join()} aria-hidden={!band}>
+                  {band && (
+                    <>
+                      {range.join("–")}
+                      <br />
+                      <Styled.Wavelength>nm</Styled.Wavelength>
+                    </>
+                  )}
+                </Styled.FilterRange>
               ))}
-            </linearGradient>
-          ))}
-          <mask id="spectrumMask">
-            <rect width="100%" height="50%" fill="white" x={min} />
-            {activeBand && (
-              <>
-                <rect
-                  x={min}
-                  width={activeMin - min}
-                  height="100%"
-                  fill="black"
-                />
-                <rect
-                  x={activeMax}
-                  width={max - activeMax}
-                  height="100%"
-                  fill="black"
-                />
-              </>
-            )}
-          </mask>
-        </defs>
-        <g mask="url(#spectrumMask)" role="presentation">
-          {spectrums.map(({ name, upper, lower }) => (
-            <rect
-              key={name}
-              width={(upper || max) - (lower || min)}
-              height="50%"
-              fill={`url(#${name}-gradient)`}
-              x={lower || min}
-              role="presentation"
-            />
-          ))}
-        </g>
-        <g>
-          {spectrums.map(
-            ({ name, upper }) =>
-              typeof upper !== "undefined" && (
-                <line
-                  key={name}
-                  strokeWidth={2}
-                  strokeDasharray="8 8"
-                  stroke={
-                    activeBand && !between(upper, activeMin, activeMax)
-                      ? "#000"
-                      : "#fff"
-                  }
-                  x1={upper}
-                  x2={upper}
-                  y1={0}
-                  y2="50%"
-                />
-              )
-          )}
-        </g>
-        <SpectrumLabels
-          {...{ spectrums, activeBand, min, max, activeMin, activeMax }}
-        />
-      </Styled.ElectromagneticSpectrum>
+            </tr>
+          </Styled.FilterRanges>
+        )}
+      </Styled.FilterTable>
+      <SpectrumDisplay
+        {...{ min, max, range: spectrumRange, isCondensed, activeFilter }}
+      />
       <Styled.SelectContainer>
+        <Styled.SelectLabel id="filterSelectLabel">
+          {t("camera_filter.labels.select")}
+        </Styled.SelectLabel>
         <SelectListbox
           options={options}
-          value={activeFilter}
-          onChangeCallback={(value: string | null) => setActiveFilter(value)}
+          value={activeFilterBand}
+          onChangeCallback={(value: string | null) =>
+            setActiveFilterBand(value)
+          }
           width="100%"
           maxWidth="100%"
+          labelledById="filterSelectLabel"
         />
       </Styled.SelectContainer>
     </Styled.FilterContainer>

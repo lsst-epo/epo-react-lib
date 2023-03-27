@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import { Band } from "@/types/astro";
-import * as Styled from "../styles";
+import * as Styled from "../../styles";
 import ColorLabels from "../ColorLabels";
-import { Spectrum } from "../data";
+import { Spectrum } from "../../data";
 import { intersection } from "@/lib/utils";
 
 interface SpectrumLabelsProps {
@@ -13,6 +13,7 @@ interface SpectrumLabelsProps {
   max: number;
   activeMin?: number;
   activeMax?: number;
+  isCondensed: boolean;
 }
 
 const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
@@ -22,16 +23,19 @@ const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
   max,
   activeMin = 0,
   activeMax = 0,
+  isCondensed,
 }) => {
   const { t } = useTranslation();
+  const spectrumLabel = t("camera_filter.labels.captured_range", {
+    context: activeBand ? "" : "no_filter",
+    filter: activeBand,
+  });
   return (
     <g
       role="list"
-      aria-label={t("camera_filter.labels.captured_range", {
-        context: activeBand ? "" : "no_filter",
-        filter: activeBand,
-      })}
+      aria-label={spectrumLabel}
       aria-live="polite"
+      data-testid="spectrum-labels"
     >
       {spectrums.map(({ name, upper, lower, colors }) => {
         const safeUpper = upper || max;
@@ -40,7 +44,7 @@ const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
           activeBand &&
           intersection([safeLower, safeUpper], [activeMin, activeMax]) === null;
         return (
-          <g role="listitem" aria-hidden={isHidden}>
+          <g role="listitem" aria-hidden={isHidden} key={name}>
             <Styled.SpectrumLabel
               key={name}
               x={(safeUpper - safeLower) / 2 + safeLower}
@@ -55,6 +59,7 @@ const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
                 colors={colors}
                 isBandSelected={!!activeBand}
                 activeRange={[activeMin, activeMax]}
+                isCondensed={isCondensed}
               />
             )}
           </g>
