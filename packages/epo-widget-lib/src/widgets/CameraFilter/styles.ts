@@ -6,6 +6,7 @@ export const FilterContainer = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   text-align: center;
+  position: relative;
 `;
 
 export const FilterTable = styled.table<{ range: number; offset: number }>`
@@ -23,19 +24,20 @@ export const FilterNames = styled.thead`
   display: table-row-group;
 `;
 export const FilterRange = styled.td`
+  line-height: 1.2;
   font-size: 80%;
 `;
 export const Wavelength = styled.span`
   font-size: 80%;
 `;
-export const FilterName = styled.th<{ band?: Band }>`
-  border: ${({ band }) => (band ? "3px solid #b2b2b2" : "none")};
+export const FilterName = styled.th<{ band?: Band; isCondensed: boolean }>`
   font-size: 120%;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
-`;
 
-export const ElectromagneticSpectrum = styled.svg`
-  width: 100%;
+  ${({ band, isCondensed }) => css`
+    border: ${band ? "solid #b2b2b2" : "none"};
+    border-width: ${isCondensed ? "1px" : "3px"};
+  `};
 `;
 
 export const SelectContainer = styled.div`
@@ -45,6 +47,10 @@ export const SelectContainer = styled.div`
   margin-block-start: 1em;
   justify-self: center;
   text-align: left;
+`;
+
+export const SelectLabel = styled.label`
+  font-size: 0.75em;
 `;
 
 export const SpectrumLabel = styled.text`
@@ -59,4 +65,24 @@ export const ColorSpectrum = styled.tspan`
 `;
 export const ColorSpectrumUnit = styled.tspan`
   font-size: 0.4em;
+`;
+
+export const CondensedRangeRow = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.2;
+  font-size: 80%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+`;
+
+export const CondensedRange = styled.li`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &:before {
+    content: "\200B";
+  }
 `;

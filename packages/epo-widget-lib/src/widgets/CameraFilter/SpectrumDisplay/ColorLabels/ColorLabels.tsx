@@ -1,25 +1,27 @@
 import { intersection } from "@/lib/utils";
 import { FunctionComponent } from "react";
-import { VisibleColor } from "../data";
-import * as Styled from "../styles";
+import { VisibleColor } from "../../data";
+import * as Styled from "../../styles";
 
 interface ColorLabelsProps {
   colors: VisibleColor[];
   activeRange: number[];
   isBandSelected: boolean;
+  isCondensed: boolean;
 }
 
 const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
   colors,
   activeRange,
   isBandSelected,
+  isCondensed,
 }) => {
-  const colorsMin = colors[0].range[0];
-  const colorsMax = 820;
+  const colorsMin = isCondensed ? 350 : colors[0].range[0];
+  const colorsMax = isCondensed ? 1000 : 820;
   const totalRange = colorsMax - colorsMin;
   const labelDistance = Math.floor(totalRange / (colors.length - 1));
   return (
-    <g role="list">
+    <g role="list" data-testid="color-labels">
       {colors.map(({ name, range, color }, i) => {
         const textPosition = colorsMin + labelDistance * i;
         const isHidden =
@@ -33,7 +35,7 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               x1={midpoint}
               x2={midpoint}
               y1="50%"
-              y2="55%"
+              y2={isCondensed ? "52.5%" : "55%"}
               role="presentation"
             />
             <line
@@ -41,14 +43,14 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               stroke="#b2b2b2"
               x1={midpoint}
               x2={textPosition}
-              y1="55%"
-              y2="70%"
+              y1={isCondensed ? "52.5%" : "55%"}
+              y2={isCondensed ? "72.5%" : "70%"}
               role="presentation"
             />
             <circle
               cx={textPosition}
-              cy="70%"
-              r="10"
+              cy={isCondensed ? "72.5%" : "70%"}
+              r={isCondensed ? 15 : 10}
               fill={color}
               role="presentation"
             ></circle>
@@ -56,7 +58,7 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               x={textPosition}
               dominantBaseline="middle"
               textAnchor="middle"
-              y="75%"
+              y={isCondensed ? "75%" : "75%"}
               role="listitem"
               aria-hidden={isHidden}
             >
@@ -72,7 +74,7 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
                 dy="1.25em"
                 textAnchor="middle"
               >
-                {range.join(" - ")}
+                {range.join("–")}
               </Styled.ColorSpectrum>
               <Styled.ColorSpectrumUnit
                 x={textPosition}

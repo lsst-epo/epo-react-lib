@@ -61,7 +61,11 @@
       }
     },
     "camera_filter": {
+      "title": "Rubin Observatory LSST Camera Filter Ranges",
       "labels": {
+        "select": "Select one of the Rubin filters",
+        "option": "{{band}} filter",
+        "option_none": "None",
         "captured_range": "Electromagnetic spectrums captured with {{filter}} filter applied",
         "captured_range_no_filter": "Electromagnetic spectrums without filter applied",
         "ultraviolet": "Ultraviolet",

@@ -8,6 +8,7 @@ const config = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-jest",
+    "@storybook/addon-a11y",
     "storybook-react-i18next",
   ],
   framework: "@storybook/react",
