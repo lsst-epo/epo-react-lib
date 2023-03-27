@@ -26,9 +26,6 @@ export const between = (x: number, min: number, max: number) =>
  *  [3,5]
  */
 export const intersection = (a: number[] = [], b: number[] = []) => {
-  // const [el11, el12] = arr1;
-  // const [el21, el22] = arr2;
-  // return [Math.max(el11, el21), Math.min(el12, el22)];
   const min = a[0] < b[0] ? a : b;
   const max = min === a ? b : a;
 
