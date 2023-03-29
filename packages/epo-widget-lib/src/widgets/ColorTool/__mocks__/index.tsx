@@ -788,6 +788,77 @@ export const multiData: AstroCategory[] = [
           },
         ],
       },
+      {
+        name: "Tadpole Galaxy",
+        filters: [
+          {
+            label: "u",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/kinedniemh6ef33a868loc4q61/oG1nzp-_nBMss0v3c4I6fKipdq4/original?content-type=image%2Fpng&name=out_u_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+          {
+            label: "g",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/q1n525b1hl2qf1ng9o3iqeob1i/LVIsrz5RNw1jv2mkUzgHgwpTEJA/original?content-type=image%2Fpng&name=out_g_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+          {
+            label: "r",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/fm2eutj5ld0fd9sjs90j4u040i/SeKIbjtSsUdcAkzYzPZzeME3Cps/original?content-type=image%2Fpng&name=out_r_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+          {
+            label: "i",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/38aujj3jkt22v52f7atq18ao26/g3ugqi5tcpN9_gdiOYzLGE9iZ0Q/original?content-type=image%2Fpng&name=out_i_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+          {
+            label: "z",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/ee7qqmcv3t19r9c1ht0vfu2951/R6vXYjUMyg3OzO8z-1GCsBkJbsc/original?content-type=image%2Fpng&name=out_z_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+          {
+            label: "y",
+            color: "",
+            active: false,
+            image:
+              "https://rubin.canto.com/direct/image/hs83gc8gjt3rl66sigve0otq1m/_NGAVnpEzf0uH8E-7_8ITCdODdE/original?content-type=image%2Fpng&name=out_y_cut.png",
+            isDisabled: false,
+            value: 1,
+            min: 0.5,
+            max: 1.5,
+          },
+        ],
+      },
     ],
   },
 ];
