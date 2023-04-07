@@ -9,6 +9,7 @@ import Close from "./Close";
 import Cloud from "./Cloud";
 import Doc from "./Doc";
 import Email from "./Email";
+import Expand from "./Expand";
 import Eye from "./Eye";
 import Facebook from "./Facebook";
 import Forward from "./Forward";
@@ -58,6 +59,7 @@ const Icons = {
   Cloud,
   Doc,
   Email,
+  Expand,
   Eye,
   Facebook,
   Forward,
