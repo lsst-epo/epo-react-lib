@@ -1,7 +1,10 @@
 // styled-components
 
-export { tokens } from "@/styles/globalStyles";
-export { default as GlobalStyles } from "@/styles/globalStyles";
+export {
+  tokens,
+  fluidScale,
+  default as GlobalStyles,
+} from "@/styles/globalStyles";
 
 // i18n
 export { default as localeStrings } from "@/assets/locales";
