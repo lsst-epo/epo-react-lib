@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { DURATION_SLOW, zStack } from "@/styles/globalStyles";
+import { DURATION_SLOW, zStack } from "@/styles/abstracts";
 
 export type LoaderSpeed = "slow" | "normal" | "fast";
 

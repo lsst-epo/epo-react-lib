@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
 import * as Styled from "./styles";
 import { SpacingSize } from "@/styles/mixins/layout";
-import { colorTokens } from "@/styles/globalStyles";
+import { palette } from "@/styles/abstracts";
 import { useNestedContext } from "@/contexts/Nested";
 
 interface SectionAttributes {
@@ -11,7 +11,7 @@ interface SectionAttributes {
   id: string;
 }
 interface ContainerProps {
-  bgColor?: keyof typeof colorTokens;
+  bgColor?: keyof typeof palette;
   children: ReactNode;
   className?: string;
   width?: Styled.ContainerWidth;

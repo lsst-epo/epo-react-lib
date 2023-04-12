@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { respond, BREAK_DESKTOP_SMALL } from "@/styles/globalStyles";
+import { BREAK_DESKTOP_SMALL } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
-import { ScreenreaderText } from "@/styles/utils";
+import { ScreenreaderText, respond } from "@/styles/utils";
 
 export const List = styled.ul`
   display: none;

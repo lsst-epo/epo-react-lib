@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import FormField from ".";
 import Input, { Password } from "@/form/Input";
-import { protoContainer } from "@/styles/globalStyles";
+import { protoContainer } from "@/styles/utils";
 
 const FormFieldDecorator = styled.div`
   ${protoContainer()}

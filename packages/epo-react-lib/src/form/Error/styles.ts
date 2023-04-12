@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fluidScale } from "@/styles/globalStyles";
+import { fluidScale } from "@/styles/utils";
 import { ScreenreaderText } from "@/styles/utils";
 
 export const Error = styled.p`

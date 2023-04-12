@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { colorTokens, ptToEm } from "@/styles/globalStyles";
+import { ptToEm, palette } from "@/styles/utils";
 
 export const cContentRte = css`
   > * + * {
@@ -11,7 +11,7 @@ export const cContentRte = css`
   }
 
   a:not([class^="c-"]) {
-    color: var(--link-color, ${colorTokens["turquoise80"]});
+    color: var(--link-color, ${palette("turquoise80")});
     text-decoration: underline;
   }
 

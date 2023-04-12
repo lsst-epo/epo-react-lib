@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import {
-  respond,
-  fluidScale,
   BREAK_HEADER_LAYOUT,
   BREAK_MOBILE,
   BREAK_TABLET,
-} from "@/styles/globalStyles";
+} from "@/styles/abstracts";
+import { respond, fluidScale } from "@/styles/utils";
 
 export const Switch = styled.button`
   --switch-width: ${fluidScale("90px", "64px", BREAK_TABLET, BREAK_MOBILE)};

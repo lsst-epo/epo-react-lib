@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fluidScale } from "@/styles/globalStyles";
+import { fluidScale } from "@/styles/utils";
 import Error from "@/form/Error";
 
 export const Label = styled.label`

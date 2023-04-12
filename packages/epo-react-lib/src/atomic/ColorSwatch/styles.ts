@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { stripUnit } from "@castiron/style-mixins";
-import { DURATION, PADDING_SMALL } from "@/styles/globalStyles";
+import { DURATION, PADDING_SMALL } from "@/styles/abstracts";
 
 const small = css`
   width: 11px;
