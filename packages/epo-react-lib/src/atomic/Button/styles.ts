@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { fluidScale } from "@/styles/globalStyles";
+import { fluidScale } from "@/styles/utils";
 import { aButton, aButtonTheme } from "@/styles/mixins/appearance";
 import { ButtonStyleAs } from "./Button";
 

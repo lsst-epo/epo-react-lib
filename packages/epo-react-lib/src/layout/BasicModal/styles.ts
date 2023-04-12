@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { fluidScale, zStack } from "@/styles/globalStyles";
+import { zStack } from "@/styles/abstracts";
+import { fluidScale } from "@/styles/utils";
 import { Dialog as BaseDialog } from "@headlessui/react";
 import BaseFormButtons from "@/form/FormButtons";
 import { ReactNode } from "react";

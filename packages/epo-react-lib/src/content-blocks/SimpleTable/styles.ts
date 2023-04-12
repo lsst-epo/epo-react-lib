@@ -1,4 +1,5 @@
-import { respond, tokens } from "@/styles/globalStyles";
+import { tokens } from "@/styles/abstracts";
+import { respond } from "@/styles/utils";
 import styled, { css } from "styled-components";
 import { cContentRte } from "@/content-blocks/styles";
 

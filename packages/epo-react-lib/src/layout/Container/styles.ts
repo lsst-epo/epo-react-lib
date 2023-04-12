@@ -3,8 +3,8 @@ import {
   containerNarrow,
   containerRegular,
   containerWide,
-  tokens,
-} from "@/styles/globalStyles";
+} from "@/styles/utils";
+import { tokens } from "@/styles/abstracts";
 import { padding, SpacingSize } from "@/styles/mixins/layout";
 
 interface SectionProps {

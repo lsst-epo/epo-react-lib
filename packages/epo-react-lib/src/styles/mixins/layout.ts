@@ -1,4 +1,4 @@
-import { tokens } from "@/styles/globalStyles";
+import { tokens } from "@/styles/abstracts";
 
 type BoxEdge = "top" | "right" | "bottom" | "left";
 export type SpacingSize = "large" | "medium" | "small";

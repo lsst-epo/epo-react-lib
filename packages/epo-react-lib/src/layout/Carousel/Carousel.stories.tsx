@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import Carousel from ".";
 import MockChildren from "@/storybook/utilities/mocks";
-import { protoContainer } from "@/styles/globalStyles";
+import { protoContainer } from "@/styles/utils";
 
 const CarouselDecorator = styled.div`
   ${protoContainer()}
