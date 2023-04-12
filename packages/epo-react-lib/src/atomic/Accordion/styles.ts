@@ -1,4 +1,4 @@
-import { fluidScale } from "@/styles/globalStyles";
+import { fluidScale } from "@/styles/utils";
 import styled from "styled-components";
 
 const toggleWidth = "1.333em";

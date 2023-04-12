@@ -1,4 +1,4 @@
-import { zStack } from "@/styles/globalStyles";
+import { zStack } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
 import styled, { css } from "styled-components";
 

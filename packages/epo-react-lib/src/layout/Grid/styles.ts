@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import {
-  BREAK_PHABLET_MIN,
-  BREAK_TABLET,
-  layoutGrid,
-} from "@/styles/globalStyles";
+import { layoutGrid } from "@/styles/utils";
+import { BREAK_PHABLET_MIN, BREAK_TABLET } from "@/styles/abstracts";
 
 export interface GridProps {
   columns: number;

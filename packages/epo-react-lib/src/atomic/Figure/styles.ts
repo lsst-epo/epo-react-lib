@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ptToEm } from "@/styles/globalStyles";
+import { ptToEm } from "@/styles/utils";
 
 interface FigureProps {
   $withBackground?: boolean;

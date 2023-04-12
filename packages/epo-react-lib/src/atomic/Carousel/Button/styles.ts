@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { respond, BREAK_DESKTOP_SMALL } from "@/styles/globalStyles";
+import { BREAK_DESKTOP_SMALL } from "@/styles/abstracts";
+import { respond } from "@/styles/utils";
 import { protoButton } from "@/styles/mixins/appearance";
 
 export const Button = styled.button`

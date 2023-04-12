@@ -1,4 +1,4 @@
-import { colorTokens } from "@/styles/globalStyles";
+import { palette } from "@/styles/abstracts";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import { objChildren, className } from "@/storybook/utilities/argTypes";
 import MockChildren from "@/storybook/utilities/mocks";
@@ -12,11 +12,11 @@ const meta: ComponentMeta<typeof Container> = {
     className,
     bgColor: {
       control: "select",
-      options: Object.keys(colorTokens),
+      options: Object.keys(palette),
       description:
         "Background color for the container, chosen from the available color tokens defined in `GlobalStyles`",
       table: {
-        type: { summary: Object.keys(colorTokens).join(" | ") },
+        type: { summary: Object.keys(palette).join(" | ") },
         defaultValue: { summary: "white" },
       },
     },

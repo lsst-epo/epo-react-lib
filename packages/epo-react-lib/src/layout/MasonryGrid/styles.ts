@@ -1,4 +1,4 @@
-import { containerRegular } from "@/styles/globalStyles";
+import { containerRegular } from "@/styles/utils";
 import styled from "styled-components";
 
 export const TileLink = styled.a`
