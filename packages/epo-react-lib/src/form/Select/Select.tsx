@@ -48,7 +48,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
                 </option>
               ))}
         </Styled.Select>
-        <Styled.Icon icon="selectCaret" />
+        <Styled.Icon icon="caretDown" />
       </Styled.Wrapper>
     );
   }

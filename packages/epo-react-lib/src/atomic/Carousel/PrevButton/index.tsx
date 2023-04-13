@@ -10,7 +10,7 @@ function PrevButton() {
   return (
     <Styled.Button {...(prevButtonProps as any)}>
       <Styled.SrText>{t("pagination.previous")}</Styled.SrText>
-      <IconComposer icon="caret" />
+      <IconComposer icon="chevron" />
     </Styled.Button>
   );
 }

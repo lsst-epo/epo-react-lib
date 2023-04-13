@@ -10,7 +10,7 @@ function NextButton() {
   return (
     <Styled.Button {...(nextButtonProps as any)} data-testid="carousel-next">
       <Styled.SrText>{t("pagination.next")}</Styled.SrText>
-      <IconComposer icon="caret" />
+      <IconComposer icon="chevron" />
     </Styled.Button>
   );
 }

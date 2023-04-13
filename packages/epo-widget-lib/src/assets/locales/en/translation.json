@@ -2,7 +2,7 @@
   "translation": {
     "blinker": {
       "controls": {
-        "rewind": "Rewind",
+        "backward": "Rewind",
         "forward": "Forward",
         "play": "Play",
         "pause": "Pause"
