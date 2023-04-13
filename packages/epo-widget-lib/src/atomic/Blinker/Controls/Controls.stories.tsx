@@ -35,7 +35,7 @@ const meta: ComponentMeta<typeof Controls> = {
         name: "function",
         required: true,
       },
-      description: "Callback when the rewind button is clicked",
+      description: "Callback when the backward button is clicked",
       action: "Previous image",
     },
     handleStartStop: {

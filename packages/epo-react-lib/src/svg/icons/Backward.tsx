@@ -3,7 +3,7 @@ import { SVGProps } from "@/types/svg";
 import { useTranslation } from "react-i18next";
 import defaultProps from "./defaultProps";
 
-const Rewind: FunctionComponent<SVGProps> = ({
+const Backward: FunctionComponent<SVGProps> = ({
   className,
   size = 24,
   fill = "currentColor",
@@ -19,14 +19,14 @@ const Rewind: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps} aria-labelledby="rewindTitle">
-      <title id="rewindTitle">{t("svg.titles.rewind")}</title>
+    <svg {...mergedSvgProps} aria-labelledby="backwardTitle">
+      <title id="backwardTitle">{t("svg.titles.backward")}</title>
       <path d="M4.5,0,9,8H0Z" transform="translate(7 9) rotate(-90)" />
       <path d="M4.5,0,9,8H0Z" transform="translate(0 9) rotate(-90)" />
     </svg>
   );
 };
 
-Rewind.displayName = "SVG.Rewind";
+Backward.displayName = "SVG.Backward";
 
-export default Rewind;
+export default Backward;

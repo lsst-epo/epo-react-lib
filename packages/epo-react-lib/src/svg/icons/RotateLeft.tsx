@@ -2,13 +2,13 @@ import { FunctionComponent } from "react";
 import { SVGProps } from "@/types/svg";
 import defaultProps from "./defaultProps";
 
-const Caret: FunctionComponent<SVGProps> = ({
+const RotateLeft: FunctionComponent<SVGProps> = ({
   className,
   size = 24,
   fill = "currentColor",
 }) => {
   const uniqueProps = {
-    viewBox: "0 0 24 24",
+    viewBox: "0 0 15 17.5",
     width: size,
     height: size,
     fill,
@@ -18,12 +18,15 @@ const Caret: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Caret icon</title>
-      <polygon points="15.212 22.283 5.204 12 15.212 1.717 18.796 5.203 12.181 12 18.796 18.797 15.212 22.283" />
+      <title>Rotate left icon</title>
+      <path
+        d="M10,4.5A7.5,7.5,0,0,0,2.5,12H0l3.333,3.333L6.667,12h-2.5a5.837,5.837,0,1,1,2.45,4.75l-1.183,1.2A7.5,7.5,0,1,0,10,4.5Z"
+        transform="translate(19.5) rotate(90)"
+      />
     </svg>
   );
 };
 
-Caret.displayName = "SVG.Caret";
+RotateLeft.displayName = "SVG.RotateLeft";
 
-export default Caret;
+export default RotateLeft;

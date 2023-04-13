@@ -4,7 +4,7 @@ import defaultProps from "./defaultProps";
 
 const Expand: FunctionComponent<SVGProps> = ({
   className,
-  size = 17,
+  size = 24,
   fill = "currentColor",
 }) => {
   const uniqueProps = {

@@ -31,9 +31,9 @@ describe("Button", () => {
   });
 
   it("Renders icon", () => {
-    render(<Button icon="Caret">{children}</Button>);
+    render(<Button icon="Chevron">{children}</Button>);
     const button = screen.getByTestId("button");
-    const icon = within(button).getByTitle("Caret icon");
+    const icon = within(button).getByTitle("Chevron icon");
     expect(icon).toBeInTheDocument();
   });
 });

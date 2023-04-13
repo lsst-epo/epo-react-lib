@@ -3,7 +3,7 @@ import { stripUnit } from "@castiron/style-mixins";
 import { SVGProps } from "@/types/svg";
 import defaultProps from "./defaultProps";
 
-const SelectCaret: FunctionComponent<SVGProps> = ({
+const CaretDown: FunctionComponent<SVGProps> = ({
   className,
   size = 18,
   fill = "currentColor",
@@ -19,12 +19,12 @@ const SelectCaret: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Select caret icon</title>
+      <title>Caret down icon</title>
       <path d="M0,0,9,9l9-9Z" />
     </svg>
   );
 };
 
-SelectCaret.displayName = "SVG.SelectCaret";
+CaretDown.displayName = "SVG.CaretDown";
 
-export default SelectCaret;
+export default CaretDown;

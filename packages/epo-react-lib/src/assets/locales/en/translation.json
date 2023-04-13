@@ -52,7 +52,7 @@
     },
     "svg": {
       "titles": {
-        "rewind": "Rewind icon",
+        "backward": "Backward icon",
         "play": "Play icon",
         "pause": "Pause icon",
         "forward": "Fast forward icon"

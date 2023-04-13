@@ -28,9 +28,9 @@ const Controls: FunctionComponent<ControlsProps> = ({
       className={className}
     >
       <PlaybackControl
-        data-testid="blinker-rewind"
-        icon="Rewind"
-        label={t("blinker.controls.rewind")}
+        data-testid="blinker-backward"
+        icon="Backward"
+        label={t("blinker.controls.backward")}
         handleClick={handlePrevious}
         disabled={isDisabled}
       />

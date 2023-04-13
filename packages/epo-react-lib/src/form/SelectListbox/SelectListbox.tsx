@@ -109,7 +109,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
         disabled={isDisabled}
       >
         <Styled.ButtonText>{selectionLabel || placeholder}</Styled.ButtonText>
-        <IconComposer icon="caretThin" size={12} />
+        <IconComposer icon="chevronThin" size={12} />
       </Styled.SelectButton>
       <Styled.SelectDropdown
         role="listbox"

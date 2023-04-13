@@ -31,7 +31,7 @@ describe("BlinkerControls", () => {
     // Arrange
     const { getByTestId } = render(<BlinkerControls {...props} />);
     // Act
-    fireEvent.click(getByTestId("blinker-rewind"));
+    fireEvent.click(getByTestId("blinker-backward"));
     // Assert
     expect(props.handlePrevious).toHaveBeenCalled();
   });
