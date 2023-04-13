@@ -187,7 +187,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
         <Styled.ResetButton
           disabled={isDisabled || !isResetButtonActive(selectedData)}
           onClick={handleReset}
-          icon="Reset"
+          icon="RotateLeftWithCenter"
         >
           {t("colorTool.actions.reset")}
         </Styled.ResetButton>
