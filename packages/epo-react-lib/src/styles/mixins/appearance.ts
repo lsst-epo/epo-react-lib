@@ -88,8 +88,8 @@ export const aButton = css`
 
   &:disabled,
   &[aria-disabled="true"] {
-    background-color: var(--neutral40);
-    border-color: var(--neutral40);
+    --button-background-color: var(--neutral40);
+    --button-border-color: var(--neutral40);
     pointer-events: none;
 
     &.focus-visible,
