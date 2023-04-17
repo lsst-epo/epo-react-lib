@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, useEffect } from "react";
 import * as Styled from "./styles";
 
-interface MessageProps {
+export interface MessageProps {
   children?: ReactNode;
   isVisible?: boolean;
   onMessageChangeCallback: () => void;
