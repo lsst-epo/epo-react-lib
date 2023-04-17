@@ -36,6 +36,10 @@
       "require": "./dist/epo-widget-lib.umd.js"
     }
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@storybook/addon-a11y": "^6.5.16",
