@@ -4,7 +4,8 @@ import * as Styled from "./styles";
 import BlinkerImage from "../Image/Image";
 import { BlinkerProps } from "../Blinker";
 
-interface ImagesProps extends Pick<BlinkerProps, "images" | "activeIndex"> {
+export interface ImagesProps
+  extends Pick<BlinkerProps, "images" | "activeIndex"> {
   loadedCallback?: () => void;
   className?: string;
 }

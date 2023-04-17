@@ -117,7 +117,7 @@ const Template: ComponentStory<typeof Blinker> = (args) => {
   const [activeIndex, setActiveIndex] = useState(args.activeIndex);
 
   const blinkCallback = (nextIndex: number) => {
-    args.blinkCallback(nextIndex);
+    args.blinkCallback && args.blinkCallback(nextIndex);
     return setActiveIndex(nextIndex);
   };
 
@@ -127,7 +127,7 @@ const Template: ComponentStory<typeof Blinker> = (args) => {
         {...args}
         activeIndex={activeIndex}
         blinkCallback={blinkCallback}
-        loadedCallback={() => args.loadedCallback()}
+        loadedCallback={() => args.loadedCallback && args.loadedCallback()}
       />
     </Container>
   );

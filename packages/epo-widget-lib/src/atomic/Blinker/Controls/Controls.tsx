@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import PlaybackControl from "@/atomic/PlaybackControl";
 import * as Styled from "./styles";
 
-interface ControlsProps {
+export interface ControlsProps {
   playing: boolean;
   handleStartStop: MouseEventHandler<HTMLButtonElement>;
   handleNext: MouseEventHandler<HTMLButtonElement>;
