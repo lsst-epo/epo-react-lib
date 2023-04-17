@@ -8,7 +8,7 @@ type TimeSteps = {
   [key in TimeInterval]?: number;
 };
 
-interface TimeStepProps extends TimeSteps {
+export interface TimeStepProps extends TimeSteps {
   className?: string;
 }
 
