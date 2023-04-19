@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import FilterTool from ".";
 
+const selectionCallback = jest.fn();
+
 describe("Filter Tool", () => {
   it("Renders only the pre-selected filters", () => {
     render(<FilterTool selectedColor="red" />);
@@ -16,7 +18,9 @@ describe("Filter Tool", () => {
     expect(violetArrow).not.toBeVisible();
   });
   it("Changes displayed rays based on user selection", () => {
-    render(<FilterTool selectedColor="red" />);
+    render(
+      <FilterTool selectedColor="red" selectionCallback={selectionCallback} />
+    );
 
     const select = screen.getByRole("combobox");
     const option = screen.getByText("violet");
@@ -33,9 +37,6 @@ describe("Filter Tool", () => {
 
     fireEvent.click(option);
 
-    expect(redRay).not.toBeVisible();
-    expect(redArrow).not.toBeVisible();
-    expect(violetRay).toBeVisible();
-    expect(violetArrow).toBeVisible();
+    expect(selectionCallback).toBeCalledWith("violet");
   });
 });
