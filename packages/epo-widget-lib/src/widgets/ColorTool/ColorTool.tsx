@@ -44,7 +44,6 @@ interface ColorToolProps {
   selectionCallback: (selectedData: AstroObject) => void;
   data: AstroCategory[];
   selectedData: AstroObject;
-  title?: string;
   objectOptions?: Option[];
   colorOptions?: ListboxOption[];
   isDisabled?: boolean;
@@ -54,7 +53,6 @@ interface ColorToolProps {
 }
 
 const ColorTool: FunctionComponent<ColorToolProps> = ({
-  title,
   data,
   objectOptions = [],
   selectedData: preSelectedData,
@@ -114,7 +112,6 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
       isCondensed={width < 1000}
       hideControls={isDisplayOnly}
     >
-      {title && <Styled.Title>{title}</Styled.Title>}
       {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
         <Styled.Subtitle>
           {hasMultipleDatasets && (

@@ -1,7 +1,6 @@
 import { AstroCategory } from "../ColorTool";
 import { ColorSwatch } from "@rubin-epo/epo-react-lib";
 
-export const title = "Color Filter Tool";
 export const colorOptions = [
   {
     value: "#EC1C24",
