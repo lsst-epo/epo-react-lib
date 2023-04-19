@@ -8,7 +8,6 @@ import {
 import {
   singleData,
   multiData,
-  title,
   colorOptions,
   multiSpectralOptions,
 } from "./__mocks__";
@@ -19,7 +18,6 @@ import { getCategoryName } from "./utilities";
 const props = {
   data: singleData,
   selectedData: singleData[0].objects[0],
-  title,
   colorOptions,
   selectionCallback: jest.fn(),
 };
@@ -45,15 +43,6 @@ const multiProps = {
 };
 
 describe("ColorTool", () => {
-  it(`should render a title`, async () => {
-    await act(async () => {
-      render(<ColorTool {...props} />);
-    });
-
-    const titleElement = screen.getByRole("heading");
-
-    expect(titleElement.textContent).toBe(title);
-  });
   it(`should render an object description and select dropdown if multiple datasets are available`, async () => {
     await act(async () => {
       render(<ColorTool {...multiProps} />);
