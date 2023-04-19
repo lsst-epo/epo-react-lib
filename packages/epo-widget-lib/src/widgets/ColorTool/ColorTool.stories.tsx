@@ -2,7 +2,6 @@ import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import {
   singleData,
   multiData,
-  title,
   colorOptions,
   multiSpectralOptions,
   readOnlyData,
@@ -65,16 +64,6 @@ const meta: ComponentMeta<typeof ColorTool> = {
         defaultValue: {
           summary: false,
         },
-      },
-    },
-    title: {
-      control: "text",
-      description: "Title displayed at the top of the widget.",
-      table: {
-        type: {
-          summary: "string",
-        },
-        category: "Display",
       },
     },
     data: {
@@ -159,7 +148,6 @@ export const Primary: ComponentStoryObj<typeof ColorTool> = {
   args: {
     data: singleData,
     selectedData: singleData[0].objects[0],
-    title,
     colorOptions,
   },
 };
@@ -181,7 +169,6 @@ export const MultipleImages: ComponentStoryObj<typeof ColorTool> = {
     data: multiData,
     objectOptions,
     selectedData: multiData[0].objects[0],
-    title,
     colorOptions: multiSpectralOptions,
   },
 };
@@ -191,7 +178,6 @@ export const DisplayOnly: ComponentStoryObj<typeof ColorTool> = {
     data: readOnlyData,
     objectOptions,
     selectedData: readOnlyData[0].objects[0],
-    title,
     colorOptions: multiSpectralOptions,
     isDisplayOnly: true,
   },
