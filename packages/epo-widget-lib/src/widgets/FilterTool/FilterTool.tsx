@@ -19,12 +19,11 @@ type FilterColor =
   | "none";
 
 const FilterTool: FunctionComponent<FilterToolProps> = ({
-  selectedColor: preSelectedColor = "none",
+  selectedColor = "none",
   selectionCallback,
   isReadOnly = false,
 }) => {
   const { t } = useTranslation();
-  const [selectedColor, setSelectedColor] = useState(preSelectedColor);
   const prismColors: { [key in FilterColor]: string } = {
     violet: "#861cff",
     blue: "#0019ff",
@@ -41,12 +40,6 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
       icon: <ColorSwatch color={color} size="small" />,
     };
   });
-
-  useEffect(() => {
-    if (selectionCallback) {
-      selectionCallback(selectedColor);
-    }
-  }, [selectedColor]);
 
   const isArrowHidden = (color: FilterColor) =>
     selectedColor !== color && selectedColor !== "none";
@@ -242,7 +235,8 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
           isDisabled={isReadOnly}
           value={selectedColor}
           onChangeCallback={(value: string | null) =>
-            setSelectedColor((value as FilterColor) || "none")
+            selectionCallback &&
+            selectionCallback((value as FilterColor) || "none")
           }
           labelledById="color-select"
           placeholder={selectLabel}
