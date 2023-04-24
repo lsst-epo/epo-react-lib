@@ -23,3 +23,6 @@ env files
 .vercel
 
 .out/*
+
+# storybook
+/storybook-static/*
