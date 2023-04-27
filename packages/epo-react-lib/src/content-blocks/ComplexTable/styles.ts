@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { fluidScale } from "@/styles/utils";
 import { aHidden } from "@/styles/mixins/appearance";
+import { cContentRte } from "@/styles/utils";
 
 export const TableWrapper = styled.div`
   max-width: 100vw;
@@ -14,6 +15,7 @@ interface TableProps {
 }
 
 export const Table = styled.table<TableProps>`
+  ${cContentRte}
   width: 100%;
   border-collapse: collapse;
 

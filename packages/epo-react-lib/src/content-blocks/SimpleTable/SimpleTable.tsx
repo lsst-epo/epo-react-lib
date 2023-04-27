@@ -20,12 +20,10 @@ const SimpleTable: FunctionComponent<SimpleTableProps> = ({ simpleTable }) => {
           <Fragment key={i}>
             <Styled.Title
               $color={row.rowColor}
-              className="c-content-rte"
               dangerouslySetInnerHTML={{ __html: row.rowTitle }}
             />
             <Styled.Description
               $color={row.rowColor}
-              className="c-content-rte"
               dangerouslySetInnerHTML={{ __html: row.rowContent }}
             />
           </Fragment>
