@@ -41,6 +41,7 @@ import Pdf from "./Pdf";
 import Phone from "./Phone";
 import Pin from "./Pin";
 import Play from "./Play";
+import Plus from "./Plus";
 import QuestionCircle from "./QuestionCircle";
 import RotateLeft from "./RotateLeft";
 import RotateLeftWithCenter from "./RotateLeftWithCenter";
@@ -105,6 +106,7 @@ const Icons = {
   Phone,
   Pin,
   Play,
+  Plus,
   QuestionCircle,
   RotateLeft,
   RotateLeftWithCenter,
