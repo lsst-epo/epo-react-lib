@@ -39,11 +39,11 @@ const MockTableContent: ComplexTableRow[] = [
       },
       {
         id: "QRm6AM",
-        cellContent: "Rubin Observatory",
+        cellContent: "<ul><li>I am an unordered list</li><li>I am an unordered list</li><li>I am an unordered list</li></ul>",
       },
       {
         id: "0S8OAG",
-        cellContent: "Rubin Observatory",
+        cellContent: "<ol><li>I am an ordered list</li><li>I am an ordered list</li><li>I am an ordered list</li></ol>",
       },
     ],
   },

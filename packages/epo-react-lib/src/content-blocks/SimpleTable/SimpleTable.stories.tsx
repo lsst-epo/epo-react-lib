@@ -34,6 +34,18 @@ const MockTableContent: SimpleTableRow[] = [
     rowContent:
       "<p>hypernova translunar sky lens Kirkwood gaps meteor gravitation singularity new moon density culmination event horizon north star opposition Earthshine axial tilt solar</p><a href='https://rubinobs.org/' target='_blank'>Rubin Observatory</a>",
   },
+  {
+    rowColor: "none",
+    rowTitle: "Default background",
+    rowContent:
+      "<ul><li>I am an unordered list</li><li>I am an unordered list</li><li>I am an unordered list</li></ul>",
+  },
+  {
+    rowColor: "none",
+    rowTitle: "Default background",
+    rowContent:
+      "<ol><li>I am an ordered list</li><li>I am an ordered list</li><li>I am an ordered list</li></ol>",
+  },
 ];
 
 const meta: ComponentMeta<typeof SimpleTable> = {
