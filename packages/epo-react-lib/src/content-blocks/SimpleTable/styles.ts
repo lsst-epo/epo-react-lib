@@ -1,7 +1,7 @@
 import { tokens } from "@/styles/abstracts";
 import { respond } from "@/styles/utils";
 import styled, { css } from "styled-components";
-import { cContentRte } from "@/content-blocks/styles";
+import { cContentRte } from "@/styles/utils";
 
 const colors = {
   none: tokens.neutral10,
@@ -50,6 +50,7 @@ export const Title = styled.dt<SimpleTableColorProps>`
   ${cContentRte}
   ${accessibleLink}
 
+  margin: 0;
   padding: 20px;
   padding-inline-end: 6px;
   padding-block-end: 22px;
@@ -66,6 +67,7 @@ export const Description = styled.dd<SimpleTableColorProps>`
   ${accessibleLink}
 
 
+  margin: 0;
   padding: 20px;
   padding-block-end: 22px;
 

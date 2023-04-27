@@ -1,11 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { fluidScaleBase, stripUnit, respondBase } from "@castiron/style-mixins";
 import { aHidden } from "@/styles/mixins/appearance";
 import { tokens, palette as colorTokens } from "@/styles/abstracts";
-
-export const ScreenreaderText = styled.span`
-  ${aHidden}
-`;
 
 export function fluidScale(
   max: string,
@@ -126,3 +122,55 @@ export const token = (which: string | string[]) => {
     return tokens;
   }
 };
+
+export const ScreenreaderText = styled.span`
+  ${aHidden}
+`;
+
+export const cContentRte = css`
+  > * + * {
+    margin-top: 1rem;
+  }
+
+  > *:first-child {
+    margin-block-start: 0;
+  }
+
+  a:not([class^="c-"]) {
+    color: var(--link-color, ${palette("turquoise80")});
+    text-decoration: underline;
+  }
+
+  ul {
+    padding-inline-start: 1em;
+    list-style-type: disc;
+  }
+
+  ol {
+    padding-inline-start: 1em;
+    list-style-type: decimal;
+  }
+
+  li {
+    padding-inline-start: 0.5em;
+  }
+
+  h1 {
+    margin-block-start: ${ptToEm("144pt")};
+  }
+
+  h2 {
+    margin-block-start: ${ptToEm("40pt")};
+  }
+
+  h3,
+  h4 {
+    margin-block-start: ${ptToEm("20pt")};
+  }
+
+  figcaption {
+    font-size: 18px;
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+  }
+`;

@@ -34,7 +34,6 @@ const ComplexTable: FunctionComponent<ComplexTableProps> = ({
       <Styled.Table
         as="table"
         $styleAs={styleAs}
-        className="c-content-rte"
         $verticalAlignment={verticalAlignment}
       >
         {plainText && (
