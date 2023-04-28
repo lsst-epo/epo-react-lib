@@ -2,14 +2,14 @@ import { FunctionComponent } from "react";
 import { SVGProps } from "@/types/svg";
 import defaultProps from "./defaultProps";
 
-const Plus: FunctionComponent<SVGProps> = ({
+const Minus: FunctionComponent<SVGProps> = ({
   className,
   size = 24,
   fill = "currentColor",
   stroke = "currentColor",
 }) => {
   const uniqueProps = {
-    viewBox: "0 0 14.142 14.142",
+    viewBox: "0 0 16.971 16.971",
     width: size,
     height: size,
     fill,
@@ -20,14 +20,15 @@ const Plus: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Plus icon</title>
-      <g transform="translate(7.071 0) rotate(45)">
-        <path d="M10,.933,9.067,0,5,4.067.933,0,0,.933,4.067,5,0,9.067.933,10,5,5.933,9.067,10,10,9.067,5.933,5Z" />
-      </g>
+      <title>Minus icon</title>
+      <path
+        d="M12,1.12,10.88,0,0,10.88,1.12,12Z"
+        transform="translate(8.485 0) rotate(45)"
+      />
     </svg>
   );
 };
 
-Plus.displayName = "SVG.Plus";
+Minus.displayName = "SVG.Minus";
 
-export default Plus;
+export default Minus;
