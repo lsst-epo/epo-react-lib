@@ -35,6 +35,7 @@ import LockClosed from "./LockClosed";
 import LockOpen from "./LockOpen";
 import LogOut from "./LogOut";
 import Mail from "./Mail";
+import Minus from "./Minus";
 import Page from "./Page";
 import Pause from "./Pause";
 import Pdf from "./Pdf";
@@ -101,6 +102,7 @@ const Icons = {
   LockOpen,
   LogOut,
   Mail,
+  Minus,
   Page,
   Pause,
   Phone,
