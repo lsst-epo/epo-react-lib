@@ -55,6 +55,20 @@ const meta: ComponentMeta<typeof ProgressBar> = {
         category: "Display",
       },
     },
+    isActive: {
+      control: "boolean",
+      description:
+        "Determines if the progress bar is currently active, will make the progress marker hoverable if active. If inactive, the progress marker will be filled.",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: true,
+        },
+        category: "Display",
+      },
+    },
     labelledById: {
       control: "text",
       description: "The ID of an element that labels the progress bar.",
