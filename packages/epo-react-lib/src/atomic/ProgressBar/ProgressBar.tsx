@@ -47,4 +47,6 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
   );
 };
 
+ProgressBar.displayName = "Atomic.ProgressBar";
+
 export default ProgressBar;

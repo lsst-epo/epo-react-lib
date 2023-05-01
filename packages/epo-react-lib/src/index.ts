@@ -19,6 +19,7 @@ export { default as Figure } from "@/atomic/Figure";
 export { default as Image } from "@/atomic/Image";
 export { default as Link } from "@/atomic/Link";
 export { default as MixedLink } from "@/atomic/MixedLink";
+export { default as ProgressBar, Marker } from "@/atomic/ProgressBar";
 export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
 export * from "@/atomic/Share";
 export { default as Toast } from "@/atomic/Toast";
