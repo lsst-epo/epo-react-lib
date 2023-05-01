@@ -4,11 +4,12 @@ import * as Styled from "./styles";
 interface ProgressBarProps {
   min?: number;
   max?: number;
-  value: number;
+  value?: number;
   displayValue?: string;
   labelledById?: string;
   describedById?: string;
   className?: string;
+  isActive?: boolean;
 }
 
 const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
@@ -20,9 +21,11 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
   describedById,
   children,
   className,
+  isActive = true,
 }) => {
-  const safeValue = Math.min(Math.max(value, min), max);
-  const isIndeterminate = isNaN(safeValue);
+  const isIndeterminate = value === undefined || isNaN(value);
+  const safeValue = Math.min(Math.max(value || 0, min), max);
+  const renderValue = ((safeValue - min) / (max - min)) * 100;
 
   return (
     <Styled.ProgressBarContainer className={className}>
@@ -31,22 +34,25 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={isIndeterminate ? undefined : safeValue}
+        aria-valuetext={displayValue}
         aria-labelledby={labelledById}
         aria-describedby={describedById}
-        aria-valuetext={displayValue}
-        $value={isIndeterminate ? undefined : safeValue}
+        $value={isIndeterminate ? undefined : renderValue}
       >
+        {children}
         {!isIndeterminate && (
-          <Styled.Marker $active $hoverable $value={safeValue}>
+          <Styled.Marker
+            $active
+            $hoverable={isActive}
+            $filled={!isActive}
+            $value={renderValue}
+          >
             {displayValue || `${safeValue}%`}
           </Styled.Marker>
         )}
-        {children}
       </Styled.ProgressBar>
     </Styled.ProgressBarContainer>
   );
 };
-
-ProgressBar.displayName = "Atomic.ProgressBar";
 
 export default ProgressBar;
