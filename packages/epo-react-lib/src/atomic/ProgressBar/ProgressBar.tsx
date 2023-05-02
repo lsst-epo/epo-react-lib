@@ -9,7 +9,12 @@ interface ProgressBarProps {
   labelledById?: string;
   describedById?: string;
   className?: string;
-  isActive?: boolean;
+  markerConfig?: {
+    $active?: boolean;
+    $background?: string;
+    $hoverable?: boolean;
+    $filled?: boolean;
+  };
 }
 
 const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
@@ -21,10 +26,18 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
   describedById,
   children,
   className,
-  isActive = true,
+  markerConfig,
 }) => {
+  const defaultMarker = {
+    $active: true,
+    $hoverable: true,
+  };
+
   const isIndeterminate = value === undefined || isNaN(value);
   const safeValue = Math.min(Math.max(value || 0, min), max);
+  /** allows min and max to be any value with the final rendered
+   *  value converted to a percentage to use in width or left offset.
+   */
   const renderValue = ((safeValue - min) / (max - min)) * 100;
 
   return (
@@ -42,9 +55,7 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
         {children}
         {!isIndeterminate && (
           <Styled.Marker
-            $active
-            $hoverable={isActive}
-            $filled={!isActive}
+            {...{ ...defaultMarker, ...markerConfig }}
             $value={renderValue}
           >
             {displayValue || `${safeValue}%`}
