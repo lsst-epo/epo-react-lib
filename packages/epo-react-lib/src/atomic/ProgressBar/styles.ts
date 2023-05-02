@@ -31,6 +31,10 @@ export const ProgressBar = styled.div.attrs<SimpleValue>(({ $value = 0 }) => ({
   background-color: var(--progress-bar-background);
   border-radius: calc(var(--progress-bar-height) / 2);
   transition: width var(--DURATION, 0.2s);
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
 `;
 
 export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
@@ -90,4 +94,8 @@ export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
         color: var(--black, #000);
       }
     `}
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
 `;
