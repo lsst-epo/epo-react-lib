@@ -5,7 +5,7 @@ import ColorSwatch from ".";
 const meta: ComponentMeta<typeof ColorSwatch> = {
   component: ColorSwatch,
   argTypes: {
-    classes: {
+    className: {
       control: "text",
       description:
         "Additional CSS classes to attach to the outer container of the ColorSwatch component.",
