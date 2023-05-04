@@ -1,13 +1,12 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 
-interface ToastProps {
-  children: ReactNode;
+export interface ToastProps {
   className?: string;
   /** list of ID's that contributed to this status message eg. if clicking on \<svg id="mySvg"/> created a message, pass ['mySvg'] */
   forIds?: string[];
 }
 
-const Toast: FunctionComponent<ToastProps> = ({
+const Toast: FunctionComponent<PropsWithChildren<ToastProps>> = ({
   children,
   className,
   forIds,
