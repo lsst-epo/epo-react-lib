@@ -10,6 +10,7 @@ interface TileProps {
   isVideo: boolean;
   link: string;
   title: string;
+  prefetch?: boolean;
 }
 
 const Tile: FunctionComponent<TileProps> = ({
@@ -17,9 +18,10 @@ const Tile: FunctionComponent<TileProps> = ({
   isVideo,
   link,
   title,
+  prefetch = false,
 }) => {
   return (
-    <Link legacyBehavior href={link} passHref>
+    <Link legacyBehavior href={link} passHref prefetch={prefetch}>
       <Styled.TileLink>
         <ResponsiveImage image={image} ratio="16:9" title={title} />
         {isVideo && (

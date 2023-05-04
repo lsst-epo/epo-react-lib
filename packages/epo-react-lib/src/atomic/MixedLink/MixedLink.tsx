@@ -1,4 +1,4 @@
-import { FunctionComponent, HTMLProps, ReactNode } from "react";
+import { FunctionComponent, HTMLProps, PropsWithChildren } from "react";
 import { UrlObject } from "url";
 import Link from "next/link";
 import ExternalLink from "@/atomic/ExternalLink";
@@ -23,7 +23,6 @@ interface MixedLinkElement {
 }
 
 interface MixedLinkProps extends HTMLProps<HTMLAnchorElement> {
-  children?: ReactNode;
   type?: string;
   url: string;
   customText?: string;
@@ -39,9 +38,10 @@ interface MixedLinkProps extends HTMLProps<HTMLAnchorElement> {
       | ReadonlyArray<number>
       | ReadonlyArray<boolean>;
   };
+  prefetch?: boolean;
 }
 
-const MixedLink: FunctionComponent<MixedLinkProps> = ({
+const MixedLink: FunctionComponent<PropsWithChildren<MixedLinkProps>> = ({
   children,
   className,
   customText,
@@ -49,6 +49,7 @@ const MixedLink: FunctionComponent<MixedLinkProps> = ({
   params,
   text,
   url,
+  prefetch = false,
   ...restProps
 }) => {
   if (!isInternalUrl(url)) {
@@ -68,7 +69,13 @@ const MixedLink: FunctionComponent<MixedLinkProps> = ({
     };
 
     return (
-      <Link href={href} passHref className={className} {...(restProps as any)}>
+      <Link
+        href={href}
+        passHref
+        className={className}
+        prefetch={prefetch}
+        {...(restProps as any)}
+      >
         {children ? children : customText ?? text}
       </Link>
     );
