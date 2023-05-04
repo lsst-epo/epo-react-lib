@@ -5,6 +5,7 @@ export const TileLink = styled.a`
   position: relative;
   transition: filter 0.2s;
   &:hover,
+  &.focus-visible,
   &:focus-visible {
     img {
       filter: invert(25%) sepia(80%) saturate(102%) hue-rotate(130deg)

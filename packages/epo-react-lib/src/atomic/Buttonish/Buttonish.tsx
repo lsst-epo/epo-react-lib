@@ -3,14 +3,16 @@ import Link from "next/link";
 import { isInternalUrl } from "@/helpers/index";
 import Button, { ButtonProps } from "@/atomic/Button";
 
-interface ButtonishProps extends Omit<ButtonProps, "children"> {
+interface ButtonishProps extends ButtonProps {
   text: string;
   url?: string;
+  prefetch?: boolean;
 }
 
 const Buttonish: FunctionComponent<ButtonishProps> = ({
   text,
   url,
+  prefetch = false,
   ...props
 }) => {
   if (!url) return null;
@@ -23,7 +25,7 @@ const Buttonish: FunctionComponent<ButtonishProps> = ({
     );
   } else {
     return (
-      <Link legacyBehavior href={url} passHref>
+      <Link legacyBehavior href={url} prefetch={prefetch} passHref>
         <Button as="a" {...(props as any)}>
           {text}
         </Button>
