@@ -25,6 +25,7 @@
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
   "files": [
+    "CHANGELOG.md",
     "README.md",
     "dist"
   ],

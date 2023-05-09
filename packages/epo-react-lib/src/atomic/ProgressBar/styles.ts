@@ -70,7 +70,7 @@ export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
   border: 1px solid var(--marker-border-color);
   border-radius: 50%;
   font-size: var(--marker-font-size);
-  line-height: 1;
+  line-height: 0;
   transform: translate(
     calc(var(--marker-size-radius) * -1),
     calc(var(--marker-size-radius) * -1)

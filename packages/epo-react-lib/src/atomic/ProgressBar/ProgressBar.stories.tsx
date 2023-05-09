@@ -44,13 +44,13 @@ const meta: ComponentMeta<typeof ProgressBar> = {
         category: "Model",
       },
     },
-    displayValue: {
-      control: "text",
+    markerFormatter: {
+      control: "none",
       description:
-        "An alternative display-only value that can be used to show a different value than the model, for example if this progress bar is part of a group of progress bars that show a cumulative progress.",
+        "Formatting method for the value that will be shown in the marker.",
       table: {
         type: {
-          summary: "string",
+          summary: "(value: number) => string",
         },
         category: "Display",
       },
@@ -93,5 +93,11 @@ const meta: ComponentMeta<typeof ProgressBar> = {
 export default meta;
 
 export const Primary: ComponentStoryObj<typeof ProgressBar> = {
-  args: { value: 40 },
+  args: {
+    value: 40,
+    markerFormatter: (value) =>
+      Intl.NumberFormat("en-US", {
+        style: "percent",
+      }).format(value / 100),
+  },
 };
