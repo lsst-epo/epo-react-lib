@@ -5,7 +5,7 @@ interface ProgressBarProps {
   min?: number;
   max?: number;
   value?: number;
-  displayValue?: string;
+  markerFormatter?: (value: number) => string;
   labelledById?: string;
   describedById?: string;
   className?: string;
@@ -21,7 +21,7 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
   min = 0,
   max = 100,
   value,
-  displayValue,
+  markerFormatter,
   labelledById,
   describedById,
   children,
@@ -47,7 +47,7 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={isIndeterminate ? undefined : safeValue}
-        aria-valuetext={displayValue}
+        aria-valuetext={markerFormatter && markerFormatter(safeValue)}
         aria-labelledby={labelledById}
         aria-describedby={describedById}
         $value={isIndeterminate ? undefined : renderValue}
@@ -58,7 +58,7 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
             {...{ ...defaultMarker, ...markerConfig }}
             $value={renderValue}
           >
-            {displayValue || `${safeValue}%`}
+            {markerFormatter ? markerFormatter(safeValue) : safeValue}
           </Styled.Marker>
         )}
       </Styled.ProgressBar>

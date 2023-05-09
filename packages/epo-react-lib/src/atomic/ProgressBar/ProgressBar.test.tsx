@@ -4,8 +4,14 @@ import ProgressBar from ".";
 const min = 0;
 const max = 100;
 const value = 50;
-const displayValue = "Page 1 / 4";
+const valueAsPercent = Intl.NumberFormat("en-US", {
+  style: "percent",
+}).format(value / 100);
+
+const formatter = jest.fn();
 const labelText = "My progress bar";
+
+formatter.mockReturnValue(valueAsPercent);
 
 describe("ProgessBar", () => {
   it("should bind min, max, and value to ARIA attributes", () => {
@@ -18,12 +24,14 @@ describe("ProgessBar", () => {
     expect(progressBar).toHaveAttribute("aria-valuenow", value.toString());
   });
   it("should display an alternate value if provided", () => {
-    render(<ProgressBar {...{ min, max, value, displayValue }} />);
+    render(
+      <ProgressBar {...{ min, max, value, markerFormatter: formatter }} />
+    );
 
     const progressBar = screen.getByRole("progressbar");
 
-    expect(progressBar.textContent).toBe(displayValue);
-    expect(progressBar).toHaveAttribute("aria-valuetext", displayValue);
+    expect(progressBar.textContent).toBe(valueAsPercent);
+    expect(progressBar).toHaveAttribute("aria-valuetext", valueAsPercent);
   });
   it("should keep the value within the min and max", () => {
     render(<ProgressBar {...{ min, max, value: 200 }} />);
