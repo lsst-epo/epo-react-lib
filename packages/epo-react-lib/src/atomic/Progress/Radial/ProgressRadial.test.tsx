@@ -1,5 +1,5 @@
-import { render, screen, within } from "@testing-library/react";
-import ProgressBar from ".";
+import { render, screen } from "@testing-library/react";
+import ProgressRadial from ".";
 
 const min = 0;
 const max = 100;
@@ -13,9 +13,9 @@ const labelText = "My progress bar";
 
 formatter.mockReturnValue(valueAsPercent);
 
-describe("ProgessBar", () => {
+describe("ProgressRadial", () => {
   it("should bind min, max, and value to ARIA attributes", () => {
-    render(<ProgressBar {...{ min, max, value }} />);
+    render(<ProgressRadial {...{ min, max, value }} />);
 
     const progressBar = screen.getByRole("progressbar");
 
@@ -25,7 +25,7 @@ describe("ProgessBar", () => {
   });
   it("should display an alternate value if provided", () => {
     render(
-      <ProgressBar {...{ min, max, value, markerFormatter: formatter }} />
+      <ProgressRadial {...{ min, max, value, markerFormatter: formatter }} />
     );
 
     const progressBar = screen.getByRole("progressbar");
@@ -34,7 +34,7 @@ describe("ProgessBar", () => {
     expect(progressBar).toHaveAttribute("aria-valuetext", valueAsPercent);
   });
   it("should keep the value within the min and max", () => {
-    render(<ProgressBar {...{ min, max, value: 200 }} />);
+    render(<ProgressRadial {...{ min, max, value: 200 }} />);
 
     const progressBar = screen.getByRole("progressbar");
 
@@ -44,7 +44,7 @@ describe("ProgessBar", () => {
     render(
       <>
         <span id="test-label">{labelText}</span>
-        <ProgressBar {...{ min, max, value, labelledById: "test-label" }} />
+        <ProgressRadial {...{ min, max, value, labelledById: "test-label" }} />
       </>
     );
 

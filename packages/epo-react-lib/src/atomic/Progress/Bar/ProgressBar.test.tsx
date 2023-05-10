@@ -1,15 +1,21 @@
-import { render, screen, within } from "@testing-library/react";
-import ProgressRadial from ".";
+import { render, screen } from "@testing-library/react";
+import ProgressBar from ".";
 
 const min = 0;
 const max = 100;
 const value = 50;
-const displayValue = "Page 1 / 4";
+const valueAsPercent = Intl.NumberFormat("en-US", {
+  style: "percent",
+}).format(value / 100);
+
+const formatter = jest.fn();
 const labelText = "My progress bar";
 
-describe("ProgessRadial", () => {
+formatter.mockReturnValue(valueAsPercent);
+
+describe("ProgessBar", () => {
   it("should bind min, max, and value to ARIA attributes", () => {
-    render(<ProgressRadial {...{ min, max, value }} />);
+    render(<ProgressBar {...{ min, max, value }} />);
 
     const progressBar = screen.getByRole("progressbar");
 
@@ -18,15 +24,17 @@ describe("ProgessRadial", () => {
     expect(progressBar).toHaveAttribute("aria-valuenow", value.toString());
   });
   it("should display an alternate value if provided", () => {
-    render(<ProgressRadial {...{ min, max, value, displayValue }} />);
+    render(
+      <ProgressBar {...{ min, max, value, markerFormatter: formatter }} />
+    );
 
     const progressBar = screen.getByRole("progressbar");
 
-    expect(progressBar.textContent).toBe(displayValue);
-    expect(progressBar).toHaveAttribute("aria-valuetext", displayValue);
+    expect(progressBar.textContent).toBe(valueAsPercent);
+    expect(progressBar).toHaveAttribute("aria-valuetext", valueAsPercent);
   });
   it("should keep the value within the min and max", () => {
-    render(<ProgressRadial {...{ min, max, value: 200 }} />);
+    render(<ProgressBar {...{ min, max, value: 200 }} />);
 
     const progressBar = screen.getByRole("progressbar");
 
@@ -36,7 +44,7 @@ describe("ProgessRadial", () => {
     render(
       <>
         <span id="test-label">{labelText}</span>
-        <ProgressRadial {...{ min, max, value, labelledById: "test-label" }} />
+        <ProgressBar {...{ min, max, value, labelledById: "test-label" }} />
       </>
     );
 
