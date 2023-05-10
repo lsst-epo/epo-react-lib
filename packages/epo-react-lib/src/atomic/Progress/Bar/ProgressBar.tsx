@@ -1,14 +1,9 @@
 import { FunctionComponent, PropsWithChildren } from "react";
+import { BaseProgressProps } from "@/types/progress";
 import * as Styled from "./styles";
+import Marker from "../Marker";
 
-interface ProgressBarProps {
-  min?: number;
-  max?: number;
-  value?: number;
-  markerFormatter?: (value: number) => string;
-  labelledById?: string;
-  describedById?: string;
-  className?: string;
+interface ProgressBarProps extends BaseProgressProps {
   markerConfig?: {
     $active?: boolean;
     $background?: string;
@@ -54,12 +49,12 @@ const ProgressBar: FunctionComponent<PropsWithChildren<ProgressBarProps>> = ({
       >
         {children}
         {!isIndeterminate && (
-          <Styled.Marker
+          <Marker
             {...{ ...defaultMarker, ...markerConfig }}
             $value={renderValue}
           >
             {markerFormatter ? markerFormatter(safeValue) : safeValue}
-          </Styled.Marker>
+          </Marker>
         )}
       </Styled.ProgressBar>
     </Styled.ProgressBarContainer>
