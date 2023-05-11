@@ -2,7 +2,9 @@ import { FunctionComponent } from "react";
 import { BaseProgressProps } from "@/types/progress";
 import * as Styled from "./styles";
 
-interface ProgressRadialProps extends BaseProgressProps {}
+interface ProgressRadialProps extends BaseProgressProps {
+  darkMode?: boolean;
+}
 
 const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
   min = 0,
@@ -11,6 +13,7 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
   labelledById,
   className,
   markerFormatter,
+  darkMode = false,
 }) => {
   const baseRadius = 50;
   const baseWidth = 14;
@@ -24,8 +27,6 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
    */
   const renderValue = ((safeValue - min) / (max - min)) * circumference;
 
-  console.log(renderValue);
-
   return (
     <Styled.Container
       role="progressbar"
@@ -33,7 +34,7 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
       viewBox="0 0 100 100"
       aria-valuemin={min}
       aria-valuemax={max}
-      aria-valuenow={safeValue}
+      aria-valuenow={isIndeterminate ? undefined : safeValue}
       aria-valuetext={markerFormatter && markerFormatter(safeValue)}
       aria-labelledby={labelledById}
     >
@@ -52,7 +53,7 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
         strokeDasharray={circumference}
         strokeDashoffset={circumference - renderValue}
       />
-      <Styled.MarkerText x="50%" y="50%">
+      <Styled.MarkerText x="50%" y="50%" $darkMode={darkMode}>
         {markerFormatter ? markerFormatter(safeValue) : safeValue}
       </Styled.MarkerText>
     </Styled.Container>

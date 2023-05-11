@@ -65,7 +65,7 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
     },
     labelledById: {
       control: "text",
-      description: "The ID of an element that labels the progress bar.",
+      description: "The ID of an element that labels the progress radial.",
       table: {
         type: {
           summary: "string",
@@ -75,12 +75,25 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
     },
     describedById: {
       control: "text",
-      description: "The ID of an element that describes the progress bar.",
+      description: "The ID of an element that describes the progress radial.",
       table: {
         type: {
           summary: "string",
         },
         category: "Accessibility",
+      },
+    },
+    darkMode: {
+      control: "boolean",
+      description: "Sets display of radial progress bar for dark mode themes",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+        category: "Styling",
       },
     },
   },
