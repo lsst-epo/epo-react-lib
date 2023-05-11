@@ -19,7 +19,9 @@ export const ProgressArc = styled.circle`
   shape-rendering: geometricPrecision;
 `;
 
-export const MarkerText = styled.text`
+export const MarkerText = styled.text<{ $darkMode: boolean }>`
+  fill: ${({ $darkMode }) => ($darkMode ? "var(--white,#fff)" : "inherit")};
   text-anchor: middle;
   dominant-baseline: central;
+  font-variant: tabular-nums;
 `;

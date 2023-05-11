@@ -6,3 +6,7 @@
 
 - remove `displayValue` prop from `ProgressBar` and replace with `markerFormatter` method.
 - add `CHANGELOG.MD`
+
+## 1.2.7
+
+- add `ProgressRadial` variant with same API as `ProgressBar`
