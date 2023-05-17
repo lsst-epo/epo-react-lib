@@ -12,6 +12,9 @@ interface StyledButtonProps {
 export const Button = styled.button<StyledButtonProps>`
   ${({ $styleAs = "primary" }) => aButtonTheme($styleAs)}
   ${aButton}
+
+  --button-text-align: center;
+
   align-items: center;
   gap: 10px;
   font-size: ${fluidScale("20px", "16px")};
@@ -34,5 +37,5 @@ export const Button = styled.button<StyledButtonProps>`
 
 export const ButtonText = styled.span`
   flex: 1 1 auto;
-  text-align: center;
+  text-align: var(--button-text-align);
 `;

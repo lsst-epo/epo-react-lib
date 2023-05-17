@@ -4,7 +4,8 @@ import defaultProps from "./defaultProps";
 
 const Close: FunctionComponent<SVGProps> = ({
   size = 17.414,
-  fill,
+  fill = "currentColor",
+  stroke = "currentColor",
   className,
 }) => {
   const uniqueProps = {
@@ -12,6 +13,7 @@ const Close: FunctionComponent<SVGProps> = ({
     width: size,
     height: size,
     fill,
+    stroke,
     className,
   };
 
@@ -20,9 +22,9 @@ const Close: FunctionComponent<SVGProps> = ({
   return (
     <svg {...mergedSvgProps}>
       <title>Close icon</title>
-      <g data-name="Group 556055" fill="none" stroke="#000" strokeWidth={2}>
-        <path data-name="Line 9407" d="m.707 16.707 16-16" />
-        <path data-name="Line 9408" d="m.707.707 16 16" />
+      <g strokeWidth={2}>
+        <path d="m.707 16.707 16-16" />
+        <path d="m.707.707 16 16" />
       </g>
     </svg>
   );
