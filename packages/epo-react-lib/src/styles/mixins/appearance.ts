@@ -81,6 +81,7 @@ export const aButton = css`
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 
   &:not(:disabled):not([aria-disabled="true"]):hover,
+  &:not(:disabled):not([aria-disabled="true"]):focus-visible,
   &:not(:disabled):not([aria-disabled="true"]).focus-visible {
     outline: 3px solid var(--button-border-color);
     outline-offset: 1px;
@@ -93,6 +94,7 @@ export const aButton = css`
     pointer-events: none;
 
     &.focus-visible,
+    &:focus-visible,
     &:hover {
       outline: 0;
     }
