@@ -6,10 +6,7 @@ import {
 import styled from "styled-components";
 import { FunctionComponent, useRef, useState } from "react";
 
-import SlideoutMenu from ".";
-import MenuGroup from "./MenuGroup";
-import MenuItem from "./MenuItem";
-import MenuItemRadio from "./MenuItemRadio";
+import { SlideoutMenu, MenuGroup, MenuItem, MenuItemRadio } from ".";
 import { protoButton } from "@/styles/mixins/appearance";
 import IconComposer from "@/svg/IconComposer/IconComposer";
 
