@@ -1,8 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SlideoutMenu from ".";
-import MenuGroup from "./MenuGroup";
-import MenuItem from "./MenuItem";
+import { SlideoutMenu, MenuGroup, MenuItem } from ".";
 import { IconKey } from "@/svg/icons";
 
 const props = {
