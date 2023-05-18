@@ -10,3 +10,8 @@
 ## 1.2.7
 
 - add `ProgressRadial` variant with same API as `ProgressBar`
+
+## 1.2.8
+
+- add `SlideoutMenu`, `MenuGroup`, `MenuItem`, and `MenuItemRadio`
+- add `--button-text-align` CSS variable to `Button`
