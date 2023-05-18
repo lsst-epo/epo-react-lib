@@ -13,6 +13,20 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
     ),
   ],
   argTypes: {
+    role: {
+      control: "select",
+      options: ["meter", "progressbar"],
+      description: "Can choose between `meter` and `progressbar` ARIA roles.",
+      table: {
+        type: {
+          summary: "meter | progressbar",
+        },
+        defaultValue: {
+          summary: "meter",
+        },
+        category: "Accessibility",
+      },
+    },
     value: {
       control: "number",
       description:

@@ -4,6 +4,7 @@ import * as Styled from "./styles";
 
 interface ProgressRadialProps extends BaseProgressProps {
   darkMode?: boolean;
+  role?: "progressbar" | "meter";
 }
 
 const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
@@ -14,6 +15,7 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
   className,
   markerFormatter,
   darkMode = false,
+  role = "meter",
 }) => {
   const baseRadius = 50;
   const baseWidth = 14;
@@ -29,7 +31,7 @@ const ProgressRadial: FunctionComponent<ProgressRadialProps> = ({
 
   return (
     <Styled.Container
-      role="progressbar"
+      role={role}
       className={className}
       viewBox="0 0 100 100"
       aria-valuemin={min}
