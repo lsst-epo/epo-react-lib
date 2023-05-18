@@ -15,3 +15,4 @@
 
 - add `SlideoutMenu`, `MenuGroup`, `MenuItem`, and `MenuItemRadio`
 - add `--button-text-align` CSS variable to `Button`
+- add event listener and focus trap hooks.
