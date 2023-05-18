@@ -22,7 +22,7 @@ const MenuItem: FunctionComponent<PropsWithChildren<MenuItemProps>> = ({
   const menuItemRef = useRef<HTMLButtonElement>();
 
   if (!menuContext) {
-    throw new Error("Submenu must be used within a Menu Context");
+    throw new Error("Menu item must be used within a Menu Context");
   }
 
   const { menuItems, currentIndex } = menuContext;

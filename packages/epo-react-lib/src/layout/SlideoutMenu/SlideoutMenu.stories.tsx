@@ -9,14 +9,85 @@ import { FunctionComponent, useRef, useState } from "react";
 import SlideoutMenu from ".";
 import MenuGroup from "./MenuGroup";
 import MenuItem from "./MenuItem";
+import MenuItemRadio from "./MenuItemRadio";
 import { protoButton } from "@/styles/mixins/appearance";
 import IconComposer from "@/svg/IconComposer/IconComposer";
 
 const meta: ComponentMeta<typeof SlideoutMenu> = {
   component: SlideoutMenu,
   argTypes: {
-    onCloseCallback: { action: "Closed menu" },
-    onOpenCallback: { action: "Opened menu" },
+    title: {
+      type: { name: "string", required: true },
+      description: "Title that will be placed into the heading of the menu.",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    callToAction: {
+      type: { name: "string", required: true },
+      description:
+        "Subtitle that will be placed beneath the heading of the menu",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    id: {
+      type: { name: "string", required: true },
+      description: "Unique identifier for this menu",
+      table: {
+        type: {
+          summary: "string",
+        },
+      },
+    },
+    isOpen: {
+      control: "boolean",
+      description: "Open state of the menu",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
+    isSubMenuOpen: {
+      control: "boolean",
+      description: "Open state of the a submenu within the menu",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
+    onCloseCallback: {
+      action: "Closed menu",
+      description:
+        "Callback that will occur when the close button is clicked or Escape pressed.",
+      table: {
+        type: {
+          summary: "() => void",
+        },
+      },
+    },
+    onOpenCallback: {
+      action: "Opened menu",
+      description:
+        "Callback that will occur as soon as `isOpen` is changed to `true`",
+      table: {
+        type: {
+          summary: "() => void",
+        },
+      },
+    },
   },
 };
 export default meta;
@@ -45,6 +116,58 @@ const IconButton = styled.button`
   }
 `;
 
+const LanguageSubmenu: FunctionComponent<{
+  onOpenCallback: () => void;
+  onCloseCallback: () => void;
+}> = ({ onOpenCallback, onCloseCallback }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [language, setLanguage] = useState<"en" | "es">("en");
+
+  const languages = [
+    { locale: "en", label: "English" },
+    { locale: "es", label: "Español" },
+  ];
+
+  const id = "language";
+  return (
+    <MenuItem
+      icon="Globe"
+      text="Language selection"
+      onClick={() => setIsOpen(true)}
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      aria-controls={id}
+    >
+      <SlideoutMenu
+        isOpen={isOpen}
+        id={id}
+        title="Language selection"
+        callToAction="Choose your language"
+        onOpenCallback={() => onOpenCallback && onOpenCallback()}
+        onCloseCallback={() => {
+          return onCloseCallback && onCloseCallback();
+        }}
+      >
+        {languages.map(({ locale, label }) => (
+          <MenuItemRadio
+            key={locale}
+            text={label}
+            isChecked={language === locale}
+            onCheckCallback={(close) => {
+              setLanguage(locale as "en" | "es");
+
+              if (close) {
+                setIsOpen(false);
+                return onCloseCallback && onCloseCallback();
+              }
+            }}
+          />
+        ))}
+      </SlideoutMenu>
+    </MenuItem>
+  );
+};
+
 const AcknowledgementsSubmenu: FunctionComponent<{
   onOpenCallback: () => void;
   onCloseCallback: () => void;
@@ -67,7 +190,6 @@ const AcknowledgementsSubmenu: FunctionComponent<{
         callToAction="Acknowledgments and Credits"
         onOpenCallback={() => onOpenCallback && onOpenCallback()}
         onCloseCallback={() => {
-          setIsOpen(false);
           return onCloseCallback && onCloseCallback();
         }}
       >
@@ -137,7 +259,10 @@ const Template: ComponentStory<typeof SlideoutMenu> = ({ ...args }) => {
         onCloseCallback={() => handleClose()}
       >
         <MenuGroup title="Settings">
-          <MenuItem icon="Globe" text="Language selection" />
+          <LanguageSubmenu
+            onOpenCallback={() => setIsSubMenuOpen(true)}
+            onCloseCallback={() => setIsSubMenuOpen(false)}
+          />
           <MenuItem icon="ArrowUpFromBracket" text="Share this investigation" />
           <MenuItem icon="QuestionCircle" text="Help" />
           <AcknowledgementsSubmenu
