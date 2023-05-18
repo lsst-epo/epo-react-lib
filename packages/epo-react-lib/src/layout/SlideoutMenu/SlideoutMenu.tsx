@@ -43,9 +43,10 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   const titleRef = useRef<HTMLHeadingElement>(null);
   const menuItems = useRef<Set<HTMLButtonElement>>(new Set()).current;
 
-  const [prevIndex, setPrevIndex] = useState<number>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHidden, setIsHidden] = useState(!isOpen);
+
+  const isActive = isOpen && !isSubMenuOpen;
 
   const value = useMemo(
     () => ({ menuItems, currentIndex }),
@@ -53,16 +54,8 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   );
 
   useEffect(() => {
-    if (currentIndex !== prevIndex && isOpen) {
-      setPrevIndex(currentIndex);
-      focusIndex(currentIndex);
-    }
-  }, [menuItems, currentIndex, prevIndex]);
-
-  useEffect(() => {
     if (isOpen) {
-      setPrevIndex(undefined);
-      focusIndex(currentIndex);
+      setTimeout(firstItem);
       setIsHidden(false);
       onOpenCallback && onOpenCallback();
     } else {
@@ -73,37 +66,46 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isSubMenuOpen) {
+    if (isActive) {
       focusIndex(currentIndex);
     }
   }, [isSubMenuOpen]);
 
   const handleClose = () => {
-    if (isOpen && !isSubMenuOpen) {
+    if (isActive) {
       return onCloseCallback && onCloseCallback();
     }
   };
 
-  const nextItem = () => setCurrentIndex((currentIndex + 1) % menuItems.size);
-  const prevItem = () =>
-    setCurrentIndex((currentIndex - 1 + menuItems.size) % menuItems.size);
-  const firstItem = () => setCurrentIndex(0);
-  const lastItem = () => setCurrentIndex(menuItems.size - 1);
+  const nextItem = () => {
+    const next = (currentIndex + 1) % menuItems.size;
+    focusIndex(next);
+  };
+  const prevItem = () => {
+    const prev = (currentIndex - 1 + menuItems.size) % menuItems.size;
+    focusIndex(prev);
+  };
+  const firstItem = () => {
+    focusIndex(0);
+  };
+  const lastItem = () => {
+    const last = menuItems.size - 1;
+    focusIndex(last);
+  };
 
   const focusIndex = (i: number) => {
+    setCurrentIndex(i);
     const items = Array.from(menuItems);
     const item = items[i];
     if (item) {
-      console.log("im focusin up heree!!!");
       item.focus();
     } else {
-      console.log("im focusin here");
       titleRef.current && titleRef.current.focus();
     }
   };
 
   function handleKeyDown(event: KeyboardEvent) {
-    if (isOpen && !isSubMenuOpen) {
+    if (isActive) {
       const { key } = event;
 
       const keyMap: { [key: string]: () => void } = {
@@ -149,7 +151,11 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
             {title}
           </StyledMenuTitle>
           <StyledMenuCallToAction>{callToAction}</StyledMenuCallToAction>
-          <StyledMenuCloseButton type="button" onClick={() => handleClose()}>
+          <StyledMenuCloseButton
+            type="button"
+            onClick={() => handleClose()}
+            tabIndex={-1}
+          >
             <IconComposer icon="close" size={25} />
           </StyledMenuCloseButton>
         </StyledMenuHeader>

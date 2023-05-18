@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 const MenuContext =
   createContext<{
-    menuItems: Set<HTMLButtonElement>;
+    menuItems: Set<HTMLButtonElement | HTMLDivElement>;
     currentIndex: number;
   } | null>(null);
 
