@@ -48,6 +48,12 @@ export { default as Columns } from "@/layout/Columns";
 export { default as Container } from "@/layout/Container";
 export { default as Grid } from "@/layout/Grid";
 export { default as MasonryGrid } from "@/layout/MasonryGrid";
+export {
+  SlideoutMenu,
+  MenuGroup,
+  MenuItem,
+  MenuItemRadio,
+} from "@/layout/SlideoutMenu";
 
 // SVG
 export { default as IconComposer } from "@/svg/IconComposer";
