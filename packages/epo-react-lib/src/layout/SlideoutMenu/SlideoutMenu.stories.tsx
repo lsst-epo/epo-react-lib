@@ -142,6 +142,7 @@ const LanguageSubmenu: FunctionComponent<{
         callToAction="Choose your language"
         onOpenCallback={() => onOpenCallback && onOpenCallback()}
         onCloseCallback={() => {
+          setIsOpen(false);
           return onCloseCallback && onCloseCallback();
         }}
       >
@@ -187,6 +188,7 @@ const AcknowledgementsSubmenu: FunctionComponent<{
         callToAction="Acknowledgments and Credits"
         onOpenCallback={() => onOpenCallback && onOpenCallback()}
         onCloseCallback={() => {
+          setIsOpen(false);
           return onCloseCallback && onCloseCallback();
         }}
       >
