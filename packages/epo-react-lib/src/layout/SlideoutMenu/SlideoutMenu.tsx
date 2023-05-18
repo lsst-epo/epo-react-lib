@@ -146,7 +146,7 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
           <StyledMenuTitle
             id={menuTitleId}
             ref={titleRef}
-            tabIndex={menuItems.size === 0 ? -1 : undefined}
+            tabIndex={menuItems.size === 0 ? 0 : undefined}
           >
             {title}
           </StyledMenuTitle>
