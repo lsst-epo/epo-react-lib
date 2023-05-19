@@ -18,6 +18,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "publish:clean": "yarn build && clean-publish",
+    "publish:local": "yarn build && clean-publish --without-publish",
     "storybook": "yarn run test:generate-output && start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
@@ -29,18 +30,18 @@
     "README.md",
     "dist"
   ],
-  "main": "./dist/epo-lib-main.umd.js",
-  "module": "./dist/epo-lib-main.es.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/epo-lib-main.es.js",
-      "require": "./dist/epo-lib-main.cjs.js"
+      "import": "./dist/main.es.js",
+      "require": "./dist/main.cjs.js",
+      "types": "./dist/main.d.ts"
     },
     "./styles": {
-      "import": "./dist/epo-lib-styles.es.js",
-      "require": "./dist/epo-lib-styles.cjs.js"
-    }
+      "import": "./dist/styles.es.js",
+      "require": "./dist/styles.cjs.js",
+      "types": "./dist/styles.d.ts"
+    },
+    "./fonts/*": "./dist/fonts/*"
   },
   "dependencies": {
     "flickity": "^3.0.0",
@@ -94,8 +95,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.6.4",
     "vite": "^4.3.3",
-    "vite-plugin-dts": "^2.3.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "vite-plugin-dts": "^2.3.0"
   },
   "peerDependencies": {
     "i18next": "^22.4.10",
