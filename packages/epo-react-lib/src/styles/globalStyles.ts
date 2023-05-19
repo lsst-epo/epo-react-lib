@@ -1,22 +1,22 @@
-/* eslint-disable */
 import { createGlobalStyle } from "styled-components";
 import { baseFont } from "@/styles/mixins/font";
 import { fluidScale } from "@/styles/utils";
 import base from "@/styles/base";
-import {
+import { tokens } from "@/styles/abstracts";
+
+const {
   BREAK_MOBILE,
   BREAK_TABLET,
   FONT_SIZE_BASE_DESKTOP,
   FONT_SIZE_BASE_MOBILE,
-  tokens,
-} from "@/styles/abstracts";
+} = tokens;
 
 const createCSSGlobalStyles = () => {
   return Object.keys(tokens).map((k) => `--${k}: ${tokens[k]};`);
 };
 
-const GlobalStyles = createGlobalStyle`
-${baseFont}
+const GlobalStyles = createGlobalStyle<{ includeFonts?: boolean }>`
+${({ includeFonts = true }) => (includeFonts ? baseFont : "")}
   html {
     font-size: ${fluidScale(
       FONT_SIZE_BASE_DESKTOP,

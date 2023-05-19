@@ -2,11 +2,10 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsconfigPaths(), dts({ insertTypesEntry: true }), react()],
+  plugins: [dts({ insertTypesEntry: true }), react()],
   root: "./",
   build: {
     lib: {
@@ -15,7 +14,7 @@ export default defineConfig({
         styles: resolve(__dirname, "src/styles/index.ts"),
       },
       formats: ["es", "cjs"],
-      fileName: (format, name) => `epo-lib-${name}.${format}.js`,
+      fileName: (format, name) => `${name}.${format}.js`,
     },
     rollupOptions: {
       external: [
@@ -29,6 +28,9 @@ export default defineConfig({
         "react-i18next",
       ],
       output: {
+        exports: "named",
+        preserveModules: true,
+        preserveModulesRoot: "src",
         interop: "auto",
         globals: {
           react: "React",
@@ -37,6 +39,23 @@ export default defineConfig({
           "react-player/youtube": "ReactPlayer",
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@/assets": resolve(__dirname, "./src/assets"),
+      "@/atomic": resolve(__dirname, "./src/atomic"),
+      "@/content-blocks": resolve(__dirname, "./src/content-blocks"),
+      "@/contexts": resolve(__dirname, "./src/contexts"),
+      "@/form": resolve(__dirname, "./src/form"),
+      "@/helpers": resolve(__dirname, "./src/helpers"),
+      "@/hooks": resolve(__dirname, "./src/hooks"),
+      "@/layout": resolve(__dirname, "./src/layout"),
+      "@/lib": resolve(__dirname, "./src/lib"),
+      "@/storybook": resolve(__dirname, "./.storybook"),
+      "@/styles": resolve(__dirname, "./src/styles"),
+      "@/svg": resolve(__dirname, "./src/svg"),
+      "@/types": resolve(__dirname, "./src/types"),
     },
   },
 });
