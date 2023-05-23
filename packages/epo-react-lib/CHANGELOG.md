@@ -24,6 +24,18 @@
 
   `default = true`
 
+- re-organized dependencies and library externals so other packages are not bundled
+
+- **BREAKING:** separated `localeStrings` to new `localeStrings` module, update
+
+  ```javascript
+  import { localeStrings } from "@rubin-epo/epo-react-lib";
+
+  // to
+
+  import localeStrings from "@rubin-epo/epo-react-lib/localeStrings";
+  ```
+
 - **BREAKING:** separated global CSS-in-JS to new `styles` module, update
 
   ```javascript

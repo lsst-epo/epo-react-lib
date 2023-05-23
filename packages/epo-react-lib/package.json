@@ -36,12 +36,17 @@
       "require": "./dist/main.cjs.js",
       "types": "./dist/main.d.ts"
     },
+    "./fonts/*": "./dist/fonts/*",
+    "./localeStrings": {
+      "import": "./dist/localeStrings.es.js",
+      "require": "./dist/localeStrings.cjs.js",
+      "types": "./dist/localeStrings.d.ts"
+    },
     "./styles": {
       "import": "./dist/styles.es.js",
       "require": "./dist/styles.cjs.js",
       "types": "./dist/styles.d.ts"
-    },
-    "./fonts/*": "./dist/fonts/*"
+    }
   },
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
