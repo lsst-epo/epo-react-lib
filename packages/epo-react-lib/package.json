@@ -44,8 +44,14 @@
     "./fonts/*": "./dist/fonts/*"
   },
   "dependencies": {
+    "@castiron/style-mixins": "^1.0.6",
+    "@headlessui/react": "^1.7.5",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
+    "i18next": "^22.4.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.0.0",
     "react-player": "^2.12.0",
     "react-share": "^4.4.1",
     "react-slider": "^2.0.4",
@@ -57,8 +63,6 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
-    "@castiron/style-mixins": "^1.0.6",
-    "@headlessui/react": "^1.7.5",
     "@storybook/addon-actions": "^6.5.12",
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-interactions": "^6.5.12",
@@ -81,7 +85,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "babel-loader": "^8.2.5",
     "clean-publish": "^4.0.1",
-    "i18next": "^22.0.4",
+    "i18next": "^22.4.10",
     "i18next-browser-languagedetector": "^7.0.1",
     "jest": "^29.0.3",
     "jest-canvas-mock": "^2.4.0",
@@ -98,11 +102,7 @@
     "vite-plugin-dts": "^2.3.0"
   },
   "peerDependencies": {
-    "i18next": "^22.4.10",
-    "next": "^13.0.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^12.0.0"
+    "next": "^13.0.5"
   },
   "peerDependenciesMeta": {
     "next": {
