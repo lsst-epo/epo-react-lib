@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from "react";
+import { FunctionComponent, Fragment } from "react";
 import Container from "@/layout/Container";
 import * as Styled from "./styles";
 
