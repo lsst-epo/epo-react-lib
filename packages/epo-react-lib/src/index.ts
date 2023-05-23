@@ -1,6 +1,3 @@
-// i18n
-export { default as localeStrings } from "@/assets/locales";
-
 // Atomic
 export { default as Accordion } from "@/atomic/Accordion";
 export { default as Button } from "@/atomic/Button";
