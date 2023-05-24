@@ -17,7 +17,7 @@ const config = {
   features: {
     storyStoreV7: true,
   },
-  staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
+  staticDirs: [{ from: "../public/localeStrings", to: "/locales" }],
   async viteFinal(config) {
     return mergeConfig(config, {
       base: "/epo-react-lib/@rubin-epo/epo-react-lib/",

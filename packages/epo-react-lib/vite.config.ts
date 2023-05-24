@@ -12,7 +12,6 @@ export default defineConfig({
       entry: {
         main: resolve(__dirname, "src/index.ts"),
         styles: resolve(__dirname, "src/styles/index.ts"),
-        localeStrings: resolve(__dirname, "src/assets/locales/index.ts"),
       },
       formats: ["es", "cjs"],
       fileName: (format, name) => `${name}.${format}.js`,
