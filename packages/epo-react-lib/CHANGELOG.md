@@ -26,7 +26,7 @@
 
 - re-organized dependencies and library externals so other packages are not bundled
 
-- **BREAKING:** separated `localeStrings` to new `localeStrings` module, update
+- **BREAKING:** separated `localeStrings` to static assets `localeStrings` folder, export only JSON under `epo-react-lib` namespace.
 
   ```javascript
   import { localeStrings } from "@rubin-epo/epo-react-lib";
