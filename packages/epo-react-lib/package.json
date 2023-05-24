@@ -37,7 +37,7 @@
       "types": "./dist/main.d.ts"
     },
     "./fonts/*": "./dist/fonts/*",
-    "./localeStrings/*": "./dist/localeStrings/*",
+    "./localeStrings": "./dist/localeStrings",
     "./styles": {
       "import": "./dist/styles.es.js",
       "require": "./dist/styles.cjs.js",
