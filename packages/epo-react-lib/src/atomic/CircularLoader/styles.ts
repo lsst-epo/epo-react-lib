@@ -4,9 +4,9 @@ import { DURATION_SLOW, zStack } from "@/styles/abstracts";
 export type LoaderSpeed = "slow" | "normal" | "fast";
 
 interface LoaderProps {
-  withOverlay?: boolean;
-  isVisible: boolean;
-  speed: LoaderSpeed;
+  $withOverlay?: boolean;
+  $isVisible: boolean;
+  $speed: LoaderSpeed;
 }
 
 export const speeds: { [key: string]: string } = {
@@ -25,8 +25,8 @@ const spinAnimation = keyframes`
 `;
 
 export const LoaderContainer = styled.div.attrs<LoaderProps>(
-  ({ isVisible }) => ({
-    style: { opacity: isVisible ? 1 : 0 },
+  ({ $isVisible }) => ({
+    style: { opacity: $isVisible ? 1 : 0 },
   })
 )<LoaderProps>`
   color: var(--turquoise50, #00bebf);
@@ -36,13 +36,13 @@ export const LoaderContainer = styled.div.attrs<LoaderProps>(
 
   svg {
     animation-name: ${spinAnimation};
-    animation-duration: ${({ speed }) => speeds[speed]};
+    animation-duration: ${({ $speed }) => speeds[$speed]};
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
 
-  ${({ withOverlay = false }) =>
-    withOverlay
+  ${({ $withOverlay = false }) =>
+    $withOverlay
       ? css`
           z-index: ${zStack.loader};
 

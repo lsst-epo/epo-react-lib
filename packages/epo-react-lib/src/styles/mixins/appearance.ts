@@ -1,6 +1,6 @@
-import { css, SimpleInterpolation } from "styled-components";
+import { css } from "styled-components";
 
-export const focusDefault = (style: SimpleInterpolation = "") => {
+export const focusDefault = (style: any = "") => {
   return `
     .js-focus-visible &:focus:not(.focus-visible) {
       outline-width: 0;
