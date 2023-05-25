@@ -19,7 +19,12 @@ const CircularLoader: FunctionComponent<CircularLoaderProps> = ({
   className,
 }) => (
   <Styled.LoaderContainer
-    {...{ withOverlay, isVisible, speed, className }}
+    {...{
+      $withOverlay: withOverlay,
+      $isVisible: isVisible,
+      $speed: speed,
+      className,
+    }}
     role="status"
     aria-live="assertive"
     aria-atomic="true"
