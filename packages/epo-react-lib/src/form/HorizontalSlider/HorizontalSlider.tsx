@@ -82,8 +82,10 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
     return (
       <Styled.ThumbContainer {...{ ...props }}>
-        <Styled.Thumb {...{ color: thumbColor, isDisabled }} />
-        <Styled.ThumbLabel {...{ showThumbLabels, darkMode }}>
+        <Styled.Thumb {...{ color: thumbColor, $isDisabled: isDisabled }} />
+        <Styled.ThumbLabel
+          {...{ $showThumbLabels: showThumbLabels, $darkMode: darkMode }}
+        >
           {valueNow}
         </Styled.ThumbLabel>
       </Styled.ThumbContainer>
@@ -97,10 +99,10 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     <Styled.HorizontalSliderContainer {...{ className }}>
       {minLabel || maxLabel ? (
         <Styled.TrackLabels>
-          <Styled.Label id={minLabelId} {...{ darkMode }}>
+          <Styled.Label id={minLabelId} {...{ $darkMode: darkMode }}>
             {minLabel}
           </Styled.Label>
-          <Styled.Label id={maxLabelId} {...{ darkMode }}>
+          <Styled.Label id={maxLabelId} {...{ $darkMode: darkMode }}>
             {maxLabel}
           </Styled.Label>
         </Styled.TrackLabels>
