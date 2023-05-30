@@ -37,7 +37,9 @@ const ComplexTable: FunctionComponent<ComplexTableProps> = ({
         $verticalAlignment={verticalAlignment}
       >
         {plainText && (
-          <Styled.Caption {...{ isChild }}>{plainText}</Styled.Caption>
+          <Styled.Caption {...{ $isChild: isChild }}>
+            {plainText}
+          </Styled.Caption>
         )}
         <tbody>
           {complexTable.map((row, i) => (

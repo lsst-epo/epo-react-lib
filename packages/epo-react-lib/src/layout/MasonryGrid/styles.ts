@@ -40,7 +40,7 @@ export const PlayButton = styled.span`
 `;
 
 interface BrickRowProps {
-  brickSizes: string;
+  $brickSizes: string;
 }
 
 export const BrickRow = styled.div<BrickRowProps>`
@@ -56,7 +56,7 @@ export const BrickRow = styled.div<BrickRowProps>`
       height: 100%;
     }
   }
-  ${({ brickSizes }) => brickSizes}
+  ${({ $brickSizes }) => $brickSizes}
 
   @media (max-width: 640px) {
     display: block;

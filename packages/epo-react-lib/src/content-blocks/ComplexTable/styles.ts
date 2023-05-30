@@ -34,13 +34,13 @@ export const Table = styled.table<TableProps>`
         `}
 `;
 
-export const Caption = styled.caption<{ isChild: boolean }>`
+export const Caption = styled.caption<{ $isChild: boolean }>`
   padding-block-end: 1em;
   font-size: 1.136em;
   font-weight: bold;
   text-align: start;
 
-  ${({ isChild }) => (isChild ? aHidden : null)}
+  ${({ $isChild }) => ($isChild ? aHidden : null)}
 `;
 
 export const TableRow = styled.tr`

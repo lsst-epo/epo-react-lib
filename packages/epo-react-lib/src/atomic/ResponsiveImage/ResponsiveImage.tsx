@@ -14,15 +14,10 @@ const ResponsiveImage: FunctionComponent<ResponsiveImageProps> = ({
   ...props
 }) => {
   const aspectRatio = ratio.split(":").map(Number);
-  // console.log(paddingArray);
-  // const padding =
-  //   paddingArray.length > 1
-  //     ? (paddingArray[1] / paddingArray[0]) * 100 + "%"
-  //     : "100%";
 
   return (
     <Styled.ResponsiveImageContainer
-      aspectRatio={aspectRatio}
+      $aspectRatio={aspectRatio}
       className={className}
     >
       <Image image={image} title={title} {...props} />
