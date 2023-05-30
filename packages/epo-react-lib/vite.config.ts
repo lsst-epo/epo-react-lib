@@ -21,6 +21,7 @@ export default defineConfig({
         "@castiron/style-mixins",
         "@headlessui/react",
         "flickity",
+        "focus-trap",
         "i18next",
         "next/link",
         "react",
