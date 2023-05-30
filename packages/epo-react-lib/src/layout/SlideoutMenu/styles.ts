@@ -7,7 +7,7 @@ import {
   MENU_SLIDE_DELAY,
 } from "./constants";
 
-export const StyledOverlay = styled.div`
+export const Overlay = styled.div`
   --menu-transition-time: ${MENU_TRANSITION_TIME}ms;
   --menu-slide-time: ${MENU_SLIDE_TIME}ms;
   --menu-slide-delay: ${MENU_SLIDE_DELAY}ms;
@@ -35,7 +35,7 @@ export const StyledOverlay = styled.div`
   }
 `;
 
-export const StyledMenuContainer = styled.div`
+export const MenuContainer = styled.div`
   --menu-padding: var(--PADDING_SMALL, 20px);
 
   background-color: var(--neutral95, #1f2121);
@@ -61,7 +61,7 @@ export const StyledMenuContainer = styled.div`
     --menu-padding: var(--PADDING_MEDIUM, 40px);
   }
 `;
-export const StyledMenuHeader = styled.div`
+export const MenuHeader = styled.div`
   margin: 0;
   padding: 0;
   border-bottom: 1px solid var(--white, #fff);
@@ -75,18 +75,18 @@ export const StyledMenuHeader = styled.div`
     "callToAction close";
   align-items: center;
 `;
-export const StyledMenuTitle = styled.h2`
+export const MenuTitle = styled.h2`
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
   font-size: 0.8rem;
   grid-area: title;
   margin: 0;
   padding: 0;
 `;
-export const StyledMenuCallToAction = styled.span`
+export const MenuCallToAction = styled.span`
   font-weight: var(--FONT_WEIGHT_BOLD, 600);
   grid-area: callToAction;
 `;
-export const StyledMenuCloseButton = styled.button`
+export const MenuCloseButton = styled.button`
   ${protoButton()}
   aspect-ratio: 1;
   color: var(--white, #fff);
