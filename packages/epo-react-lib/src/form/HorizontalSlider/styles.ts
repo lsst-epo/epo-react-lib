@@ -21,18 +21,18 @@ export const TrackLabels = styled.div`
   padding: 0 3px 6px;
 `;
 
-export const Label = styled.div<{ darkMode: boolean }>`
+export const Label = styled.div<{ $darkMode: boolean }>`
   box-sizing: border-box;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.6;
-  color: ${({ darkMode }) =>
-    darkMode ? css`var(--white, #fff)` : css`inherit`};
+  color: ${({ $darkMode }) =>
+    $darkMode ? css`var(--white, #fff)` : css`inherit`};
 `;
 
 export const ThumbLabel = styled.span<{
-  showThumbLabels: boolean;
-  darkMode: boolean;
+  $showThumbLabels: boolean;
+  $darkMode: boolean;
 }>`
   box-sizing: border-box;
   position: absolute;
@@ -43,12 +43,12 @@ export const ThumbLabel = styled.span<{
   text-align: center;
   line-height: 1.35;
   border-radius: 5px;
-  opacity: ${({ showThumbLabels }) => (showThumbLabels ? 1 : 0)};
+  opacity: ${({ $showThumbLabels }) => ($showThumbLabels ? 1 : 0)};
   transition: opacity 0.4s ease-in-out;
   user-select: none;
 
-  ${({ darkMode }) =>
-    darkMode
+  ${({ $darkMode }) =>
+    $darkMode
       ? css`
           border: 1px solid var(--white);
           background-color: var(--neutral80);
@@ -68,7 +68,7 @@ export const ThumbContainer = styled.div`
   }
 `;
 
-export const Thumb = styled.div<{ color?: string; isDisabled: boolean }>`
+export const Thumb = styled.div<{ color?: string; $isDisabled: boolean }>`
   box-sizing: border-box;
   position: relative;
   width: ${thumbHeight}px;
@@ -77,14 +77,14 @@ export const Thumb = styled.div<{ color?: string; isDisabled: boolean }>`
   text-align: center;
   border-radius: 50%;
 
-  ${({ color = "#313333", isDisabled }) => css`
-    cursor: ${isDisabled ? "not-allowed" : "grab"};
-    background-color: ${isDisabled ? "var(--neutral60, #6a6e6e)" : color};
+  ${({ color = "#313333", $isDisabled }) => css`
+    cursor: ${$isDisabled ? "not-allowed" : "grab"};
+    background-color: ${$isDisabled ? "var(--neutral60, #6a6e6e)" : color};
 
     &:focus,
     &:active,
     &.active {
-      cursor: ${isDisabled ? "not-allowed" : "grabbing"};
+      cursor: ${$isDisabled ? "not-allowed" : "grabbing"};
       outline: none;
 
       ${ThumbLabel} {

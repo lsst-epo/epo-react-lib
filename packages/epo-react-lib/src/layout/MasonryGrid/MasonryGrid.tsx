@@ -36,7 +36,7 @@ const MasonryGrid: FunctionComponent<MasonryGridProps> = ({
   const brickSizes = getBrickSizes();
 
   return (
-    <Styled.BrickRow brickSizes={brickSizes}>
+    <Styled.BrickRow $brickSizes={brickSizes}>
       {items.map(({ galleryItemCategory, id, image, title, uri }) => (
         <Tile
           key={id}

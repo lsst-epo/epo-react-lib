@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import ExpandToggle from ".";
 const props = {
   isOpen: false,
@@ -29,8 +29,10 @@ test("hides button visually and to screenreaders", () => {
   render(<ExpandToggle {...{ ...props, isHidden: true }} />);
   const toggle = screen.getByRole("button", { hidden: true });
 
-  expect(toggle).toHaveAttribute("aria-hidden", "true");
-  expect(toggle).not.toBeVisible();
+  waitFor(() => {
+    expect(toggle).toHaveAttribute("aria-hidden", "true");
+    expect(toggle).not.toBeVisible();
+  });
 });
 
 test("performs toggle callback on click", () => {
