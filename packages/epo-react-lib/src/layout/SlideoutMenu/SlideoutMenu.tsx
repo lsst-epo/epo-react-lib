@@ -8,14 +8,7 @@ import {
 } from "react";
 import { useOnClickOutside, useKeyDownEvent } from "@/hooks/listeners";
 import MenuContext from "@/contexts/Menu";
-import {
-  StyledOverlay,
-  StyledMenuContainer,
-  StyledMenuHeader,
-  StyledMenuTitle,
-  StyledMenuCallToAction,
-  StyledMenuCloseButton,
-} from "./styles";
+import * as Styled from "./styles";
 import { MENU_TRANSITION_TIME } from "./constants";
 import IconComposer from "@/svg/IconComposer/IconComposer";
 
@@ -131,37 +124,37 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   useOnClickOutside(menuRef, handleClose);
 
   return (
-    <StyledOverlay
+    <Styled.Overlay
       role="none"
       aria-hidden={!isOpen}
       style={{ "--visibility": !isHidden && "visible" }}
     >
-      <StyledMenuContainer
+      <Styled.MenuContainer
         ref={menuRef}
         role="menu"
         aria-labelledby={menuTitleId}
         id={menuId}
       >
-        <StyledMenuHeader>
-          <StyledMenuTitle
+        <Styled.MenuHeader>
+          <Styled.MenuTitle
             id={menuTitleId}
             ref={titleRef}
             tabIndex={menuItems.size === 0 ? 0 : undefined}
           >
             {title}
-          </StyledMenuTitle>
-          <StyledMenuCallToAction>{callToAction}</StyledMenuCallToAction>
-          <StyledMenuCloseButton
+          </Styled.MenuTitle>
+          <Styled.MenuCallToAction>{callToAction}</Styled.MenuCallToAction>
+          <Styled.MenuCloseButton
             type="button"
             onClick={() => handleClose()}
             tabIndex={-1}
           >
             <IconComposer icon="close" size={25} />
-          </StyledMenuCloseButton>
-        </StyledMenuHeader>
+          </Styled.MenuCloseButton>
+        </Styled.MenuHeader>
         <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
-      </StyledMenuContainer>
-    </StyledOverlay>
+      </Styled.MenuContainer>
+    </Styled.Overlay>
   );
 };
 
