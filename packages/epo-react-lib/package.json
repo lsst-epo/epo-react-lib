@@ -57,7 +57,7 @@
     "react-share": "^4.4.1",
     "react-slider": "^2.0.4",
     "react-uid": "^2.3.2",
-    "styled-components": "6.0.0-rc.2"
+    "styled-components": "^6.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
