@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { VideoProps } from "./Video";
 import Video from ".";
 const props = {
   url: "https://www.youtube.com/watch?v=wd2hL3yI_-E",
@@ -7,7 +6,7 @@ const props = {
 
 jest.mock("react-player/youtube", () => ({
   __esModule: true,
-  default: ({ url }: VideoProps) => (
+  default: ({ url }: { url: string }) => (
     <div data-testid="video-player">
       <iframe src={url} />
     </div>
