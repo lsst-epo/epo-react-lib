@@ -8,6 +8,7 @@ interface CircularLoaderProps {
   isVisible?: boolean;
   speed?: Styled.LoaderSpeed;
   description?: string;
+  className?: string;
 }
 
 const CircularLoader: FunctionComponent<CircularLoaderProps> = ({
@@ -15,9 +16,10 @@ const CircularLoader: FunctionComponent<CircularLoaderProps> = ({
   isVisible = false,
   speed = "normal",
   description,
+  className,
 }) => (
   <Styled.LoaderContainer
-    {...{ withOverlay, isVisible, speed }}
+    {...{ withOverlay, isVisible, speed, className }}
     role="status"
     aria-live="assertive"
     aria-atomic="true"
