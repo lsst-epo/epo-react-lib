@@ -1,15 +1,11 @@
 import { FunctionComponent } from "react";
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer, { YouTubePlayerProps } from "react-player/youtube";
 import * as Styled from "./styles";
 
-export interface VideoProps {
-  url: string;
-}
-
-const Video: FunctionComponent<VideoProps> = ({ url }) => {
+const Video: FunctionComponent<YouTubePlayerProps> = (props) => {
   return (
     <Styled.VideoWrapper>
-      <ReactPlayer url={url} data-testid="video-player" />
+      <ReactPlayer {...props} data-testid="video-player" />
     </Styled.VideoWrapper>
   );
 };
