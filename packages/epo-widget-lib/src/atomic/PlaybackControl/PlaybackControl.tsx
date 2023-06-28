@@ -1,6 +1,5 @@
 import { FunctionComponent, HTMLProps, MouseEventHandler } from "react";
-import { IconComposer } from "@rubin-epo/epo-react-lib";
-import { IconKey } from "@rubin-epo/epo-react-lib/dist/svg/icons";
+import { IconComposer, IconKey } from "@rubin-epo/epo-react-lib";
 import * as Styled from "./styles";
 
 interface PlaybackControlProps extends HTMLProps<HTMLButtonElement> {

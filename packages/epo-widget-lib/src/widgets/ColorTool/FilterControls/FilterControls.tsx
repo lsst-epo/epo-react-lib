@@ -1,5 +1,4 @@
-import { SelectListbox } from "@rubin-epo/epo-react-lib";
-import { ListboxOption } from "@rubin-epo/epo-react-lib/dist/types/select-listbox";
+import { SelectListbox, ListboxOption } from "@rubin-epo/epo-react-lib";
 import { FunctionComponent } from "react";
 import { ImageFilter } from "../ColorTool";
 import { getBrightnessValue } from "../utilities";
