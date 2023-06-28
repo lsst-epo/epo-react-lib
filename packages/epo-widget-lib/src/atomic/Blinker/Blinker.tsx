@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { tokens } from "@rubin-epo/epo-react-lib";
+import { tokens } from "@rubin-epo/epo-react-lib/styles";
 import useInterval from "@/hooks/useInterval";
 import useResizeObserver from "use-resize-observer";
 import * as Styled from "./styles";
