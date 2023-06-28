@@ -1,4 +1,4 @@
-import { Image as ImageShape } from "@/types/image";
+import { ImageShape } from "@/types/image";
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
 

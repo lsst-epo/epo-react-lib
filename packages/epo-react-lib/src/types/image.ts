@@ -1,4 +1,4 @@
-export interface Image {
+export interface ImageShape {
   altText?: string;
   width?: number;
   height?: number;
