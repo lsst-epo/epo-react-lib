@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Toast } from "@rubin-epo/epo-react-lib";
 
-export const Message = styled(Toast)<{ isOpen: boolean }>`
+export const Message = styled(Toast)<{ $isOpen: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@ export const Message = styled(Toast)<{ isOpen: boolean }>`
   justify-content: center;
   gap: 1ch;
   width: 100%;
-  height: ${({ isOpen }) => (isOpen ? 24 : 0)}px;
+  height: ${({ $isOpen }) => ($isOpen ? 24 : 0)}px;
   overflow: hidden;
   background-color: var(--black, #000);
   color: #30e0e3;

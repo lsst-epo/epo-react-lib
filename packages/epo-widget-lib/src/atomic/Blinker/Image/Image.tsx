@@ -20,7 +20,7 @@ const BlinkerImage: FunctionComponent<ImageProps> = ({
       alt={altText}
       src={url}
       onLoad={loadCallback}
-      active={active}
+      $active={active}
     />
   );
 };

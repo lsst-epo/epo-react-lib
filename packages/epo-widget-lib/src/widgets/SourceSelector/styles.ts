@@ -14,11 +14,11 @@ export const SourceSelectorContainer = styled(StyledSVG.Container)<{
   `}
 `;
 
-export const SVG = styled.svg<{ isDisplayOnly: boolean }>`
+export const SVG = styled.svg<{ $isDisplayOnly: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
-  cursor: ${({ isDisplayOnly }) => (isDisplayOnly ? "default" : "pointer")};
+  cursor: ${({ $isDisplayOnly }) => ($isDisplayOnly ? "default" : "pointer")};
 `;
 
 export const BackgroundBlinker = styled(Blinker)`
