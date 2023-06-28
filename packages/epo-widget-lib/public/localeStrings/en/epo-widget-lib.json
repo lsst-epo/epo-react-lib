@@ -1,77 +1,75 @@
 {
-  "translation": {
-    "blinker": {
-      "controls": {
-        "backward": "Rewind",
-        "forward": "Forward",
-        "play": "Play",
-        "pause": "Pause"
-      }
-    },
-    "elapsed_time": {
-      "title": "Elapsed Time",
-      "step": {
-        "day_one": "Day",
-        "day_other": "Days",
-        "hour_one": "Hour",
-        "hour_other": "Hours",
-        "minute_one": "Minute",
-        "minute_other": "Minutes",
-        "second_one": "Second",
-        "second_other": "Seconds",
-        "year_one": "Year",
-        "year_other": "Years"
-      }
-    },
-    "filterTool": {
-      "title": "Filter Tool",
+  "blinker": {
+    "controls": {
+      "backward": "Rewind",
+      "forward": "Forward",
+      "play": "Play",
+      "pause": "Pause"
+    }
+  },
+  "elapsed_time": {
+    "title": "Elapsed Time",
+    "step": {
+      "day_one": "Day",
+      "day_other": "Days",
+      "hour_one": "Hour",
+      "hour_other": "Hours",
+      "minute_one": "Minute",
+      "minute_other": "Minutes",
+      "second_one": "Second",
+      "second_other": "Seconds",
+      "year_one": "Year",
+      "year_other": "Years"
+    }
+  },
+  "filterTool": {
+    "title": "Filter Tool",
+    "filter": "Filter",
+    "whiteLight": "White Light",
+    "prism": "Prism",
+    "selectLabel": "Select a filter:",
+    "colors": {
+      "violet": "Violet",
+      "blue": "Blue",
+      "green": "Green",
+      "yellow": "Yellow",
+      "orange": "Orange",
+      "red": "Red",
+      "none": "None"
+    }
+  },
+  "colorTool": {
+    "labels": {
+      "object_type": "Object type:",
+      "object": "Object:",
+      "object_selected": "Selected object:",
       "filter": "Filter",
-      "whiteLight": "White Light",
-      "prism": "Prism",
-      "selectLabel": "Select a filter:",
-      "colors": {
-        "violet": "Violet",
-        "blue": "Blue",
-        "green": "Green",
-        "yellow": "Yellow",
-        "orange": "Orange",
-        "red": "Red",
-        "none": "None"
-      }
+      "color": "Color",
+      "color_intensity": "Color Intensity"
     },
-    "colorTool": {
-      "labels": {
-        "object_type": "Object type:",
-        "object": "Object:",
-        "object_selected": "Selected object:",
-        "filter": "Filter",
-        "color": "Color",
-        "color_intensity": "Color Intensity"
-      },
-      "actions": {
-        "select_an_object": "Select an object",
-        "select_filter": "Select a filter",
-        "reset": "Reset"
-      }
-    },
-    "source_selector": {
-      "messages": {
-        "success": "You found it!",
-        "failure": "Try again."
-      }
-    },
-    "camera_filter": {
-      "title": "Rubin Observatory LSST Camera Filter Ranges",
-      "labels": {
-        "select": "Select one of the Rubin filters",
-        "option": "{{band}} filter",
-        "option_none": "None",
-        "captured_range": "Electromagnetic spectrums captured with {{filter}} filter applied",
-        "captured_range_no_filter": "Electromagnetic spectrums without filter applied",
-        "ultraviolet": "Ultraviolet",
-        "visible": "Visible Light",
-        "infrared": "Infrared"
-      }
+    "actions": {
+      "select_an_object": "Select an object",
+      "select_filter": "Select a filter",
+      "reset": "Reset"
+    }
+  },
+  "source_selector": {
+    "messages": {
+      "success": "You found it!",
+      "failure": "Try again."
+    }
+  },
+  "camera_filter": {
+    "title": "Rubin Observatory LSST Camera Filter Ranges",
+    "labels": {
+      "select": "Select one of the Rubin filters",
+      "option": "{{band}} filter",
+      "option_none": "None",
+      "captured_range": "Electromagnetic spectrums captured with {{filter}} filter applied",
+      "captured_range_no_filter": "Electromagnetic spectrums without filter applied",
+      "ultraviolet": "Ultraviolet",
+      "visible": "Visible Light",
+      "infrared": "Infrared"
     }
   }
 }

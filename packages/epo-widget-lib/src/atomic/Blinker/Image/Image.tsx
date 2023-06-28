@@ -1,9 +1,9 @@
-import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
+import { ImageShape } from "@rubin-epo/epo-react-lib";
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
 
 interface ImageProps {
-  image: Image;
+  image: ImageShape;
   active: boolean;
   loadCallback: () => void;
 }

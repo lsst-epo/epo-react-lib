@@ -138,7 +138,7 @@ export const ResetButton = styled(Button)`
   }
 `;
 
-export const FilterToggleButton = styled(Button)<{ active: boolean }>`
+export const FilterToggleButton = styled(Button)<{ $active: boolean }>`
   border-radius: 50%;
   font-weight: var(--FONT_WEIGHT_MEDIUM, 500);
   font-size: 22px;
@@ -148,8 +148,8 @@ export const FilterToggleButton = styled(Button)<{ active: boolean }>`
   height: 38px;
   padding: 0;
 
-  ${({ active }) =>
-    active
+  ${({ $active }) =>
+    $active
       ? css`
           background-color: var(--turquoise85, #12726c);
           &:not(:disabled):not([aria-disabled="true"]):hover {
