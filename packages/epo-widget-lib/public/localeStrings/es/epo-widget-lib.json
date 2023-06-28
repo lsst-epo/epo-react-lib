@@ -1,35 +1,33 @@
 {
-  "translation": {
-    "elapsed_time": {
-      "title": "Tiempo transcurrido",
-      "step": {
-        "day_one": "Día",
-        "day_other": "Días",
-        "hour_one": "Hora",
-        "hour_other": "Horas",
-        "minute_one": "Minuto",
-        "minute_other": "Minutos",
-        "second_one": "Segundo",
-        "second_other": "Segundos",
-        "year_one": "Año",
-        "year_other": "Años"
-      }
-    },
-    "filterTool": {
-      "title": "Herramienta de filtro",
-      "filter": "El filtro",
-      "whiteLight": "Luz blanca",
-      "prism": "Prisma",
-      "selectLabel": "Seleccione un filtro:",
-      "colors": {
-        "violet": "Violeta",
-        "blue": "Azul",
-        "green": "Verde",
-        "yellow": "Amarillo",
-        "orange": "Naranja",
-        "red": "Rojo",
-        "none": "Ninguno"
-      }
+  "elapsed_time": {
+    "title": "Tiempo transcurrido",
+    "step": {
+      "day_one": "Día",
+      "day_other": "Días",
+      "hour_one": "Hora",
+      "hour_other": "Horas",
+      "minute_one": "Minuto",
+      "minute_other": "Minutos",
+      "second_one": "Segundo",
+      "second_other": "Segundos",
+      "year_one": "Año",
+      "year_other": "Años"
+    }
+  },
+  "filterTool": {
+    "title": "Herramienta de filtro",
+    "filter": "El filtro",
+    "whiteLight": "Luz blanca",
+    "prism": "Prisma",
+    "selectLabel": "Seleccione un filtro:",
+    "colors": {
+      "violet": "Violeta",
+      "blue": "Azul",
+      "green": "Verde",
+      "yellow": "Amarillo",
+      "orange": "Naranja",
+      "red": "Rojo",
+      "none": "Ninguno"
     }
   }
 }

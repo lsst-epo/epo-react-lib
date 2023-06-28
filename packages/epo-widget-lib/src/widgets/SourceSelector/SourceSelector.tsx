@@ -6,9 +6,8 @@ import {
   useState,
 } from "react";
 import { Alert, Source } from "@/types/astro";
-import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
 import { useTranslation } from "react-i18next";
-import { IconComposer } from "@rubin-epo/epo-react-lib";
+import { IconComposer, ImageShape } from "@rubin-epo/epo-react-lib";
 import * as Styled from "./styles";
 import Points from "./Points";
 import Message from "./Message";
@@ -31,7 +30,7 @@ interface SourceSelectorProps {
   sources: Source[];
   alerts?: Alert[];
   selectedSource?: Source[];
-  images: Image[];
+  images: ImageShape[];
   selectionCallback?: (data: Source[]) => void;
   blinkConfig?: BlinkConfig;
   color?: string;
