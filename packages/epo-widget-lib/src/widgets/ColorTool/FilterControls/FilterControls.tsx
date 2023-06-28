@@ -49,7 +49,7 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
       <Styled.FilterToggleButton
         disabled={isDisabled}
         onClick={handleImage}
-        active={active}
+        $active={active}
         aria-labelledby={buttonLabelledById}
       >
         {label}

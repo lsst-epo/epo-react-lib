@@ -19,7 +19,10 @@ const config = {
     storyStoreV7: true,
   },
   staticDirs: [
-    { from: "@rubin-epo/epo-react-lib/localeStrings", to: "/locales" },
+    {
+      from: "../node_modules/@rubin-epo/epo-react-lib/dist/fonts",
+      to: "/fonts",
+    },
     { from: "../public/localeStrings", to: "/locales" },
   ],
   refs: (config, { configType }) => {
