@@ -109,8 +109,8 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   return (
     <Styled.WidgetContainer
       ref={ref}
-      isCondensed={width < 1000}
-      hideControls={isDisplayOnly}
+      $isCondensed={width < 1000}
+      $hideControls={isDisplayOnly}
     >
       {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
         <Styled.Subtitle>
