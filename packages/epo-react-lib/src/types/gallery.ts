@@ -1,4 +1,4 @@
-import { Image } from "@/types/image";
+import { ImageShape } from "@/types/image";
 
 interface GalleryItemCategory {
   id: string;
@@ -9,7 +9,7 @@ interface GalleryItemCategory {
 interface GalleryEntry {
   galleryItemCategory: GalleryItemCategory[];
   id: string;
-  image: Image[];
+  image: ImageShape[];
   title: string;
   uri: string;
 }
