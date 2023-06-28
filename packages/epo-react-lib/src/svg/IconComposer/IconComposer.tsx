@@ -3,7 +3,7 @@ import Icons, { IconKey } from "@/svg/icons";
 import { capitalize } from "@/lib/utils";
 import { SVGProps } from "@/types/svg";
 
-interface IconComposerProps extends SVGProps {
+export interface IconComposerProps extends SVGProps {
   icon: IconKey | string;
   customIcons?: { [key: string]: ComponentType<SVGProps> };
   size?: number;
