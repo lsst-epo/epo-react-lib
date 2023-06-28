@@ -9,9 +9,7 @@ import {
   resetFilters,
 } from "./utilities";
 import * as Styled from "./styles";
-import { Option } from "@rubin-epo/epo-react-lib/dist/types/select";
-import { ListboxOption } from "@rubin-epo/epo-react-lib/dist/types/select-listbox";
-import { Select } from "@rubin-epo/epo-react-lib";
+import { Select, Option, ListboxOption } from "@rubin-epo/epo-react-lib";
 import FilterControls from "./FilterControls";
 import ImageComposite from "./ImageComposite";
 
