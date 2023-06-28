@@ -2930,10 +2930,10 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@rubin-epo/epo-react-lib@^1.3.0-beta.2":
-  version "1.3.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-1.3.0-beta.2.tgz#f2d16ea157752bc6f9104608059f8ce5171b9aa5"
-  integrity sha512-dZQTaeGiJ4QpDLmfJI2iNRcFeztMDfIt9eX0EOdMqKVf0Iu1Vlh26BVxY+gjsKndS3+/5FrxfT0ilJdWJvmvqQ==
+"@rubin-epo/epo-react-lib@^1.3.0-beta.4":
+  version "1.3.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-1.3.0-beta.4.tgz#f745812fd5c4f8945bb59f10faf50539ed65feb0"
+  integrity sha512-GxzWTwcl5oBwBdJjXWFj4xYu5OnVg40BTzQAPTXr2K+6sQJe/CzvzWHLSagzThv9oM9a3asp4GPwXc/me/0z4Q==
   dependencies:
     "@castiron/style-mixins" "^1.0.6"
     "@headlessui/react" "^1.7.5"
@@ -2947,7 +2947,7 @@
     react-share "^4.4.1"
     react-slider "^2.0.4"
     react-uid "^2.3.2"
-    styled-components "^6.0.0-rc.3"
+    styled-components "^6.0.1"
 
 "@rushstack/node-core-library@3.56.0", "@rushstack/node-core-library@^3.55.2":
   version "3.56.0"
