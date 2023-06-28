@@ -67,7 +67,7 @@ const Point: FunctionComponent<PointProps> = ({
       stroke={getStroke(isActive, isSelected, color)}
       tabIndex={0}
       role="listitem"
-      {...{ isSelected, className }}
+      {...{ $isSelected: isSelected, className }}
     />
   );
 };

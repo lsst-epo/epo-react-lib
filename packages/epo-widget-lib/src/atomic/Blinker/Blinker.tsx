@@ -82,14 +82,10 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
   useInterval(nextBlink, canBlink && loaded && playing ? interval : null);
 
   return (
-    <Styled.BlinkerContainer
-      className={className}
-      ref={ref}
-      isCondensed={isCondensed}
-    >
+    <Styled.BlinkerContainer className={className} ref={ref}>
       <Styled.BlinkerImages
         loadedCallback={() => setLoaded(true)}
-        {...{ images, activeIndex, isCondensed }}
+        {...{ images, activeIndex, $isCondensed: isCondensed }}
       />
       {canBlink && (
         <Styled.BlinkerControls
@@ -99,7 +95,7 @@ const Blinker: FunctionComponent<BlinkerProps> = ({
             handleStartStop,
             handleNext,
             handlePrevious,
-            isCondensed,
+            $isCondensed: isCondensed,
           }}
         />
       )}

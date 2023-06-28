@@ -25,7 +25,7 @@ const Message: FunctionComponent<MessageProps> = ({
   }, [children, isVisible]);
 
   return (
-    <Styled.Message {...{ forIds }} isOpen={isVisible}>
+    <Styled.Message {...{ forIds }} $isOpen={isVisible}>
       {children}
     </Styled.Message>
   );
