@@ -71,7 +71,7 @@ const CameraFilter: FunctionComponent = () => {
                 band={band}
                 scope="col"
                 aria-hidden={!band}
-                isCondensed={isCondensed}
+                $isCondensed={isCondensed}
               >
                 {band}
               </Styled.FilterName>

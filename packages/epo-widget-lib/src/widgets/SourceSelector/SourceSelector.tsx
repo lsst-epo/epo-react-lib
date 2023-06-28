@@ -131,7 +131,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         viewBox={`0 0 ${width} ${height}`}
         onClick={handleClick}
         id={svgId}
-        isDisplayOnly={isDisplayOnly}
+        $isDisplayOnly={isDisplayOnly}
       >
         <Points
           xScale={getLinearScale([0, width], [0, width])}

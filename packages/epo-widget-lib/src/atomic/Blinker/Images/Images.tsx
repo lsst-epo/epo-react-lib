@@ -34,7 +34,7 @@ const Images: FunctionComponent<ImagesProps> = ({
   return (
     <Styled.BlinkContainer data-testid="blinker-images" className={className}>
       {!imagesLoaded && <CircularLoader isVisible={isLoading} />}
-      <Styled.LoadingContainer isLoading={isLoading}>
+      <Styled.LoadingContainer $isLoading={isLoading}>
         {images.map((image, i) => {
           const { url } = image;
           const active = activeIndex === i;

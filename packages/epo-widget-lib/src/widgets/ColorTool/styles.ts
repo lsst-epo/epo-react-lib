@@ -3,14 +3,14 @@ import { Button, HorizontalSlider } from "@rubin-epo/epo-react-lib";
 import FilterImage from "./FilterImage";
 
 export const WidgetContainer = styled.section<{
-  isCondensed: boolean;
-  hideControls: boolean;
+  $isCondensed: boolean;
+  $hideControls: boolean;
 }>`
   display: grid;
   gap: var(--PADDING_SMALL, 20px);
 
-  ${({ isCondensed, hideControls }) =>
-    isCondensed
+  ${({ $isCondensed, $hideControls }) =>
+    $isCondensed
       ? css`
           grid-template-areas:
             "title"
@@ -24,7 +24,7 @@ export const WidgetContainer = styled.section<{
           grid-template-areas:
             "title title"
             "subtitle subtitle"
-            ${hideControls ? "'image image'" : "'controls image'"}
+            ${$hideControls ? "'image image'" : "'controls image'"}
             "reset reset"
             "caption caption";
         `}
@@ -83,13 +83,13 @@ export const ImageContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
 `;
 
-export const BackgroundImage = styled.img<{ filtersActive: boolean }>`
+export const BackgroundImage = styled.img<{ $filtersActive: boolean }>`
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: ${({ filtersActive }) => (filtersActive ? "block" : "none")};
+  display: ${({ $filtersActive }) => ($filtersActive ? "block" : "none")};
   width: 100%;
   height: 100%;
 `;

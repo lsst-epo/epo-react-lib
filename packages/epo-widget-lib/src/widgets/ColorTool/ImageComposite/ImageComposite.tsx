@@ -15,7 +15,7 @@ const ImageComposite: FunctionComponent<ImageCompositeProps> = ({
       <Styled.BackgroundImage
         alt=""
         src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
-        filtersActive={isFilterActive(filters)}
+        $filtersActive={isFilterActive(filters)}
       />
       {filters &&
         filters.map((filter) => {
