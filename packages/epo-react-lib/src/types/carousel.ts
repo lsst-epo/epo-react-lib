@@ -12,7 +12,7 @@ interface CarouselOptions {
 }
 
 interface CarouselProps {
-  ref: MutableRefObject;
+  ref: any;
   id: string;
   "aria-roledescription": string;
   "aria-label": string;
