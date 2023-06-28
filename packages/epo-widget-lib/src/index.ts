@@ -1,7 +1,3 @@
-export { GlobalStyles } from "@rubin-epo/epo-react-lib";
-
-export { default as localeStrings } from "@/assets/locales";
-
 // Widgets
 export { default as CameraFilter } from "@/widgets/CameraFilter";
 export { default as ColorTool } from "@/widgets/ColorTool";

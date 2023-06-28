@@ -18,7 +18,10 @@ const config = {
   features: {
     storyStoreV7: true,
   },
-  staticDirs: [{ from: "../src/assets/locales", to: "/assets/locales" }],
+  staticDirs: [
+    { from: "@rubin-epo/epo-react-lib/localeStrings", to: "/locales" },
+    { from: "../public/localeStrings", to: "/locales" },
+  ],
   refs: (config, { configType }) => {
     if (configType === "DEVELOPMENT") {
       return {

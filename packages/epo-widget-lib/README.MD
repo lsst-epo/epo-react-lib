@@ -18,17 +18,11 @@ EPO React Library has 5 peer dependencies required to pull it in to your applica
 
 ### Styles
 
-After installing the package library, the global styles will need to be added to the top level of your application.
+After installing the package library, the global styles from `epo-react-lib` will need to be added to your application
 
 ```
-import { GlobalStyles } from "@rubin-epo/epo-widget-lib";
+import { GlobalStyles } from "@rubin-epo/epo-react-lib/styles";
 
-const App = () => {
-  return <main><GlobalStyles></main>
-}
-```
-
-If you have already imported the global styles from `epo-react-lib` this step is unnecessary.
 
 ### Translations
 
@@ -43,10 +37,13 @@ This project uses Vite in library mode to package the contents of `/packages/epo
 To build from source:
 
 ```
+
 cd packages/epo-widget-lib
 yarn
 yarn build # production build
+
 # yarn dev # development server
+
 ```
 
 ### Storybook
@@ -58,8 +55,10 @@ Stories from component folders following the `\*\*.stories.[t|j]sx will be inclu
 To run Storybook:
 
 ```
+
 yarn build
 yarn storybook
+
 ```
 
 ## Test
@@ -67,20 +66,27 @@ yarn storybook
 Each component in EPO Widget Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
 
 ```
+
 yarn test
+
 # yarn test:generate-output # will save to .jest-test-results.json for Storybook
+
 ```
 
 To add a unit test to it's Storybook page add the filename of the unit test to the `parameters` property of the story
 
 ```
+
 export const Primary: ComponentStoryObj<typeof DemoButton> = {
-  args: {
-    disabled: false,
-    children: "Hello",
-  },
-  parameters: {
-    jest: "DemoButton.test.tsx",
-  },
+args: {
+disabled: false,
+children: "Hello",
+},
+parameters: {
+jest: "DemoButton.test.tsx",
+},
 };
+
+```
+
 ```
