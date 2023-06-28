@@ -11,7 +11,7 @@ import {
   colorOptions,
   multiSpectralOptions,
 } from "./__mocks__";
-import { Option } from "@rubin-epo/epo-react-lib/dist/types/select";
+import { Option } from "@rubin-epo/epo-react-lib";
 import ColorTool from ".";
 import { getCategoryName } from "./utilities";
 

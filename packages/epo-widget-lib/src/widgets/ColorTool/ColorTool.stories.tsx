@@ -8,7 +8,7 @@ import {
 } from "./__mocks__";
 
 import ColorTool from ".";
-import { Option } from "@rubin-epo/epo-react-lib/dist/types/select";
+import { Option } from "@rubin-epo/epo-react-lib";
 
 const meta: ComponentMeta<typeof ColorTool> = {
   argTypes: {
