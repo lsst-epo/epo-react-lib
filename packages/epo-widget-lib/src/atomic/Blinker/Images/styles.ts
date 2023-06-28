@@ -8,11 +8,11 @@ export const BlinkContainer = styled.div`
   position: relative;
 `;
 
-export const LoadingContainer = styled.div<{ isLoading: boolean }>`
+export const LoadingContainer = styled.div<{ $isLoading: boolean }>`
   transition: opacity ease var(--DURATION_SLOW, 0.4s);
 
-  ${({ isLoading }) =>
-    isLoading
+  ${({ $isLoading }) =>
+    $isLoading
       ? css`
           opacity: 0;
         `

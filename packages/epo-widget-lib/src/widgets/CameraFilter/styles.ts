@@ -30,13 +30,13 @@ export const FilterRange = styled.td`
 export const Wavelength = styled.span`
   font-size: 80%;
 `;
-export const FilterName = styled.th<{ band?: Band; isCondensed: boolean }>`
+export const FilterName = styled.th<{ band?: Band; $isCondensed: boolean }>`
   font-size: 120%;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
 
-  ${({ band, isCondensed }) => css`
+  ${({ band, $isCondensed }) => css`
     border: ${band ? "solid #b2b2b2" : "none"};
-    border-width: ${isCondensed ? "1px" : "3px"};
+    border-width: ${$isCondensed ? "1px" : "3px"};
   `};
 `;
 

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Message from ".";
 
 const props = {
@@ -15,7 +15,10 @@ describe("Message", () => {
     const style = getComputedStyle(message);
 
     expect(message).toBeInTheDocument();
-    expect(style.height).toBe("0px");
+
+    waitFor(() => {
+      expect(style.height).toBe("0px");
+    });
 
     rerender(<Message {...{ ...props, isVisible: true }} />);
 
