@@ -1,13 +1,13 @@
 import { FunctionComponent, useEffect, useState } from "react";
+import { ImageShape } from "@rubin-epo/epo-react-lib";
 import { tokens } from "@rubin-epo/epo-react-lib/styles";
 import useInterval from "@/hooks/useInterval";
 import useResizeObserver from "use-resize-observer";
 import * as Styled from "./styles";
-import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
 import { getClampedArrayIndex } from "@/lib/utils";
 
 export interface BlinkerProps {
-  images: Image[];
+  images: ImageShape[];
   activeIndex?: number;
   autoplay?: boolean;
   loop?: boolean;
