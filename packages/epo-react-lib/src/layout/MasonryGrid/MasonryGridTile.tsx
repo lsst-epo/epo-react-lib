@@ -3,10 +3,10 @@ import Link from "next/link";
 import ResponsiveImage from "@/atomic/ResponsiveImage";
 import IconComposer from "@/svg/IconComposer";
 import { FunctionComponent } from "react";
-import { Image } from "@/types/image";
+import { ImageShape } from "@/types/image";
 
 interface TileProps {
-  image: Image;
+  image: ImageShape;
   isVideo: boolean;
   link: string;
   title: string;

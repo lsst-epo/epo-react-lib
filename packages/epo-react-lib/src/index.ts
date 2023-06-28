@@ -57,4 +57,4 @@ export * from "@/types/svg";
 
 // SVG
 export { default as IconComposer } from "@/svg/IconComposer";
-export { default as icons } from "@/svg/icons";
+export { default as icons, type IconKey } from "@/svg/icons";
