@@ -1,4 +1,4 @@
-import Image from "@/types/image";
+import { Image } from "@/types/image";
 
 interface GalleryItemCategory {
   id: string;
