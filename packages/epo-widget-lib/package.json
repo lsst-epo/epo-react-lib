@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",
@@ -27,13 +27,13 @@
     "README.md",
     "dist"
   ],
-  "main": "./dist/epo-widget-lib.umd.js",
-  "module": "./dist/epo-widget-lib.es.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/epo-widget-lib.es.js",
-      "require": "./dist/epo-widget-lib.umd.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
     }
   },
   "publishConfig": {
