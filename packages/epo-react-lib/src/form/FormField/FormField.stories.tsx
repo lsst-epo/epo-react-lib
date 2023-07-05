@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import FormField from ".";
-import Input, { Password } from "@/form/Input";
+import Input from "@/form/Input";
+import Password from "@/form/Input/patterns/Password";
 import { protoContainer } from "@/styles/utils";
 
 const FormFieldDecorator = styled.div`

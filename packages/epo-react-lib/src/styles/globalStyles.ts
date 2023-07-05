@@ -1,3 +1,5 @@
+"use client";
+
 import { createGlobalStyle } from "styled-components";
 import { baseFont } from "@/styles/mixins/font";
 import { fluidScale } from "@/styles/utils";
