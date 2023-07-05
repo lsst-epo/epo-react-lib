@@ -1,3 +1,4 @@
+"use client";
 import { FunctionComponent, ReactNode } from "react";
 import * as Styled from "./styles";
 import { SpacingSize } from "@/styles/mixins/layout";

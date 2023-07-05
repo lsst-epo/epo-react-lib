@@ -17,55 +17,26 @@
 - add `--button-text-align` CSS variable to `Button`
 - add event listener and focus trap hooks.
 
-## 1.3.0
+## 2.0.0
 
-- fonts moved from inline to static assets folder
-- added `includeFonts` flag to `GlobalStyles` that can disable attempted inclusion of font families if using an alternative like `next/font`.
+### New
 
-  `default = true`
-
+- Individual modules for components have been added, alongside the barrel import. Import modules either by doing
+  ```javascript
+  import { Accordion } from "@rubin-epo/epo-react-lib";
+  // or
+  import Accordion from "@rubin-epo/epo-react-lib/Accordion";
+  ```
+- added `includeFonts` flag to `GlobalStyles` that can disable attempted inclusion of font families if using an alternative like `next/font`. `default = true`
 - re-organized dependencies and library externals so other packages are not bundled
 
-- **BREAKING:** separated `localeStrings` to static assets `localeStrings` folder, export only JSON under `epo-react-lib` namespace.
+### Breaking
+
+- fonts moved from inline to static assets folder
+- separated `localeStrings` to static assets `localeStrings` folder, export only JSON under `epo-react-lib` namespace.
 
   ```javascript
   import { localeStrings } from "@rubin-epo/epo-react-lib";
-
   // to
-
   import localeStrings from "@rubin-epo/epo-react-lib/localeStrings";
   ```
-
-- **BREAKING:** separated global CSS-in-JS to new `styles` module, update
-
-  ```javascript
-  import { GlobalStyles} from '@rubin-epo/epo-react-lib'
-
-  // to
-
-  import { GlobalStyles } from '@rubin-epo/epo-react-lib/styles
-  ```
-
-  Complete list of methods that have moved:
-
-  - cContentRte
-  - containerFull
-  - containerFullBleed
-  - containerMax
-  - containerNarrow
-  - containerNews
-  - containerRegular
-  - containerWide
-  - encodeColor
-  - fluidScale
-  - GlobalStyles
-  - layoutGrid
-  - needsDarkColor
-  - palette
-  - protoContainer
-  - ptToEm
-  - pxToEm
-  - respond
-  - ScreenreaderText
-  - token
-  - tokens

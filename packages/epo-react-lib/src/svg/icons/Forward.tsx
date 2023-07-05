@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import { SVGProps } from "@/types/svg";
-import { useTranslation } from "react-i18next";
 import defaultProps from "./defaultProps";
 
 const Forward: FunctionComponent<SVGProps> = ({
@@ -8,7 +7,6 @@ const Forward: FunctionComponent<SVGProps> = ({
   size = 24,
   fill = "currentColor",
 }) => {
-  const { t } = useTranslation();
   const uniqueProps = {
     viewBox: "0 0 15 9",
     width: size,
@@ -20,7 +18,7 @@ const Forward: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps} aria-labelledby="forwardTitle">
-      <title id="forwardTitle">{t("svg.titles.forward")}</title>
+      <title id="forwardTitle">Forward icon</title>
       <g transform="translate(-2737 -1072)">
         <path
           d="M4.5,0,9,8H0Z"
