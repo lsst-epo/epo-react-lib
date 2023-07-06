@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { DURATION_SLOW, zStack } from "@/styles/abstracts";
+import { zStack } from "@/styles/abstracts";
 
 export type LoaderSpeed = "slow" | "normal" | "fast";
 
@@ -32,7 +32,7 @@ export const LoaderContainer = styled.div.attrs<LoaderProps>(
   color: var(--turquoise50, #00bebf);
   pointer-events: none;
   opacity: 0;
-  transition: opacity ${DURATION_SLOW} ease-in-out;
+  transition: opacity var(--DURATION_SLOW, 0.4s) ease-in-out;
 
   svg {
     animation-name: ${spinAnimation};
