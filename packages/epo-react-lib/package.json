@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-react-lib",
   "description": "Rubin Observatory Education & Public Outreach team React UI library.",
-  "version": "1.2.13",
+  "version": "2.0.0-beta.4",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -44,6 +44,11 @@
       "import": "./dist/*.js",
       "require": "./dist/*.cjs",
       "types": "./dist/*.d.ts"
+    },
+    "./styles": {
+      "import": "./dist/styles.js",
+      "require": "./dist/styles.cjs",
+      "types": "./dist/styles.d.ts"
     },
     "./fonts/*": "./dist/fonts/*",
     "./localeStrings": "./dist/localeStrings"

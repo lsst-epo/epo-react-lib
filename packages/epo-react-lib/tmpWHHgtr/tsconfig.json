@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "es2022",
+    "moduleResolution": "Node",
+    "types": ["node", "jest"],
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/assets/*": ["src/assets/*"],
+      "@/atomic/*": ["src/atomic/*"],
+      "@/content-blocks/*": ["src/content-blocks/*"],
+      "@/contexts/*": ["src/contexts/*"],
+      "@/form/*": ["src/form/*"],
+      "@/helpers/*": ["src/helpers/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/layout/*": ["src/layout/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/storybook/*": [".storybook/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/svg/*": ["src/svg/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"]
+    }
+  },
+  "include": ["src", "./jest-setup.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

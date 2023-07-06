@@ -8,51 +8,103 @@ const defaultFormat = "es";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({ insertTypesEntry: true })],
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+      entryRoot: "./src",
+      exclude: ["./**/*.stories.tsx", "./**/*.test.tsx"],
+    }),
+  ],
   root: "./",
   build: {
     minify: false,
     lib: {
       entry: {
         main: resolve(__dirname, "src/index.ts"),
-        styles: resolve(__dirname, "src/styles"),
+        styles: resolve(__dirname, "src/styles/index.ts"),
         Accordion: resolve(__dirname, "src/atomic/Accordion/Accordion.tsx"),
-        Button: resolve(__dirname, "src/atomic/Button"),
-        Buttonish: resolve(__dirname, "src/atomic/Buttonish"),
-        CircularLoader: resolve(__dirname, "src/atomic/CircularLoader"),
-        ColorSwatch: resolve(__dirname, "src/atomic/ColorSwatch"),
-        ExpandToggle: resolve(__dirname, "src/atomic/ExpandToggle"),
-        ExternalLink: resolve(__dirname, "src/atomic/ExternalLink"),
-        Figure: resolve(__dirname, "src/atomic/Figure"),
-        Image: resolve(__dirname, "src/atomic/Image"),
-        Link: resolve(__dirname, "src/atomic/Link"),
-        MixedLink: resolve(__dirname, "src/atomic/MixedLink"),
-        ProgressBar: resolve(__dirname, "src/atomic/Progress/Bar"),
-        Marker: resolve(__dirname, "src/atomic/Progress/Marker"),
-        ProgressRadial: resolve(__dirname, "src/atomic/Progress/Radial"),
-        ResponsiveImage: resolve(__dirname, "src/atomic/ResponsiveImage"),
+        Button: resolve(__dirname, "src/atomic/Button/Button.tsx"),
+        Buttonish: resolve(__dirname, "src/atomic/Buttonish/Buttonish.tsx"),
+        CircularLoader: resolve(
+          __dirname,
+          "src/atomic/CircularLoader/CircularLoader.tsx"
+        ),
+        ColorSwatch: resolve(
+          __dirname,
+          "src/atomic/ColorSwatch/ColorSwatch.tsx"
+        ),
+        ExpandToggle: resolve(
+          __dirname,
+          "src/atomic/ExpandToggle/ExpandToggle.tsx"
+        ),
+        ExternalLink: resolve(
+          __dirname,
+          "src/atomic/ExternalLink/ExternalLink.tsx"
+        ),
+        Figure: resolve(__dirname, "src/atomic/Figure/Figure.tsx"),
+        Image: resolve(__dirname, "src/atomic/Image/Image.tsx"),
+        Link: resolve(__dirname, "src/atomic/Link/Link.tsx"),
+        MixedLink: resolve(__dirname, "src/atomic/MixedLink/MixedLink.tsx"),
+        ProgressBar: resolve(
+          __dirname,
+          "src/atomic/Progress/Bar/ProgressBar.tsx"
+        ),
+        Marker: resolve(
+          __dirname,
+          "src/atomic/Progress/Marker/ProgressMarker.tsx"
+        ),
+        ProgressRadial: resolve(
+          __dirname,
+          "src/atomic/Progress/Radial/ProgressRadial.tsx"
+        ),
+        ResponsiveImage: resolve(
+          __dirname,
+          "src/atomic/ResponsiveImage/ResponsiveImage.tsx"
+        ),
         Share: resolve(__dirname, "src/atomic/Share"),
-        Toast: resolve(__dirname, "src/atomic/Toast"),
-        Video: resolve(__dirname, "src/atomic/Video"),
-        SimpleTable: resolve(__dirname, "src/content-blocks/SimpleTable"),
-        ComplexTable: resolve(__dirname, "src/content-blocks/ComplexTable"),
-        Error: resolve(__dirname, "src/form/Error"),
-        FormButtons: resolve(__dirname, "src/form/FormButtons"),
-        FormField: resolve(__dirname, "src/form/FormField"),
-        HorizontalSlider: resolve(__dirname, "src/form/HorizontalSlider"),
-        Input: resolve(__dirname, "src/form/Input"),
-        Password: resolve(__dirname, "src/form/Input/patterns/Password"),
-        Select: resolve(__dirname, "src/form/Select"),
-        SelectListbox: resolve(__dirname, "src/form/SelectListbox"),
-        Switch: resolve(__dirname, "src/form/Switch"),
-        BasicModal: resolve(__dirname, "src/layout/BasicModal"),
-        CarouselLayout: resolve(__dirname, "src/layout/Carousel"),
-        Columns: resolve(__dirname, "src/layout/Columns"),
-        Container: resolve(__dirname, "src/layout/Container"),
-        Grid: resolve(__dirname, "src/layout/Grid"),
-        MasonryGrid: resolve(__dirname, "src/layout/MasonryGrid"),
+        Toast: resolve(__dirname, "src/atomic/Toast/Toast.tsx"),
+        Video: resolve(__dirname, "src/atomic/Video/Video.tsx"),
+        SimpleTable: resolve(
+          __dirname,
+          "src/content-blocks/SimpleTable/SimpleTable.tsx"
+        ),
+        ComplexTable: resolve(
+          __dirname,
+          "src/content-blocks/ComplexTable/ComplexTable.tsx"
+        ),
+        Error: resolve(__dirname, "src/form/Error/Error.tsx"),
+        FormButtons: resolve(__dirname, "src/form/FormButtons/FormButtons.tsx"),
+        FormField: resolve(__dirname, "src/form/FormField/FormField.tsx"),
+        HorizontalSlider: resolve(
+          __dirname,
+          "src/form/HorizontalSlider/HorizontalSlider.tsx"
+        ),
+        Input: resolve(__dirname, "src/form/Input/Input.tsx"),
+        Password: resolve(
+          __dirname,
+          "src/form/Input/patterns/Password/Password.tsx"
+        ),
+        Select: resolve(__dirname, "src/form/Select/Select.tsx"),
+        SelectListbox: resolve(
+          __dirname,
+          "src/form/SelectListbox/SelectListbox.tsx"
+        ),
+        Switch: resolve(__dirname, "src/form/Switch/Switch.tsx"),
+        BasicModal: resolve(__dirname, "src/layout/BasicModal/BasicModal.tsx"),
+        CarouselLayout: resolve(__dirname, "src/layout/Carousel/Carousel.tsx"),
+        Columns: resolve(__dirname, "src/layout/Columns/Columns.tsx"),
+        Container: resolve(__dirname, "src/layout/Container/Container.tsx"),
+        Grid: resolve(__dirname, "src/layout/Grid/Grid.tsx"),
+        MasonryGrid: resolve(
+          __dirname,
+          "src/layout/MasonryGrid/MasonryGrid.tsx"
+        ),
         SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
-        IconComposer: resolve(__dirname, "src/svg/IconComposer"),
+        IconComposer: resolve(
+          __dirname,
+          "src/svg/IconComposer/IconComposer.tsx"
+        ),
         icons: resolve(__dirname, "src/svg/icons"),
       },
       formats: [defaultFormat, "cjs"],
@@ -61,9 +113,34 @@ export default defineConfig({
     },
     rollupOptions: {
       plugins: [
-        banner2(({ fileName }) =>
-          fileName.includes("styles") ? `"use client"\n\n` : ""
-        ),
+        banner2((chunk) => {
+          const useClient = `"use client"\n\n`;
+          const hooks = ["useState", "useEffect", "useRef", "useContext"];
+          const { importedBindings } = chunk;
+
+          if (Object.keys(importedBindings).length > 0) {
+            if (
+              importedBindings["styled-components"] &&
+              importedBindings["styled-components"].length > 0
+            ) {
+              return useClient;
+            }
+
+            if (
+              importedBindings["react"] &&
+              importedBindings["react"].filter((value) => hooks.includes(value))
+            ) {
+              return useClient;
+            }
+
+            if (
+              importedBindings["react-i18next"] &&
+              importedBindings["react-i18next"].includes("useTranslation")
+            ) {
+              return useClient;
+            }
+          }
+        }),
       ],
       external: [
         "@castiron/style-mixins",
@@ -86,12 +163,6 @@ export default defineConfig({
         exports: "named",
         preserveModules: true,
         preserveModulesRoot: "src",
-        sourcemap: true,
-        // link *.js.map files to copied lib files. see viteStaticCopy
-        sourcemapPathTransform: (relativeSourcePath) => {
-          return `./${relativeSourcePath.split("/").pop()}`;
-        },
-        sourcemapExcludeSources: true,
         interop: "auto",
         globals: {
           react: "React",
