@@ -1,6 +1,5 @@
 import { FunctionComponent, useLayoutEffect, useState } from "react";
 import { useUID } from "react-uid";
-import { useTranslation } from "react-i18next";
 import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
@@ -42,7 +41,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   onChangeCallback,
   isDisabled,
   labelledById,
-  placeholder: unsafePlaceholder,
+  placeholder = "Select",
   namespace,
   isMultiselect = false,
   maxWidth = "200px",
@@ -66,7 +65,6 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
     isMultiselect,
   } as any);
   const [selectWidth, setSelectWidth] = useState(0);
-  const { t } = useTranslation();
 
   useLayoutEffect(() => {
     if (listRef.current) {
@@ -86,10 +84,6 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
 
   const getOptionFromValue = (value: string | null) =>
     options.find((o) => o.value === value);
-
-  const placeholder = unsafePlaceholder
-    ? unsafePlaceholder
-    : t("select_listbox.placeholder");
 
   const selectionLabel = Array.isArray(value)
     ? value.map((v) => getOptionFromValue(v)?.label).join(", ")
