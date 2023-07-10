@@ -18,6 +18,8 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
       namespace?: string;
       maxWidth?: string;
       width?: string;
+      className?: string;
+      id?: string;
     }
   : {
       value: string | null;
@@ -30,6 +32,8 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
       namespace?: string;
       maxWidth?: string;
       width?: string;
+      className?: string;
+      id?: string;
     };
 
 const SelectListbox: FunctionComponent<SelectListboxProps> = ({
@@ -43,6 +47,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   isMultiselect = false,
   maxWidth = "200px",
   width,
+  className,
 }) => {
   const uid = namespace || useUID();
   const {
@@ -92,8 +97,13 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
 
   return (
     <Styled.SelectContainer
+      style={{
+        "--min-width": `${selectWidth}px`,
+        "--max-width": maxWidth,
+        "--width": width,
+      }}
       ref={wrapperRef}
-      {...{ width, maxWidth, minWidth: selectWidth }}
+      className={className}
     >
       <Styled.SelectButton
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
