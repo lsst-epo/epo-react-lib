@@ -1,19 +1,8 @@
 import { zStack } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const SelectContainer = styled.div.attrs<{
-  minWidth?: number;
-  width?: string;
-}>(({ minWidth = 0, width }) =>
-  width
-    ? null
-    : {
-        style: {
-          minWidth,
-        },
-      }
-)<{ maxWidth: string; width?: string }>`
+export const SelectContainer = styled.div`
   --select-background-color: var(--turquoise10, #d9f7f6);
   --select-border-color: var(--turquoise85, #12726c);
   --select-color: var(--turquoise95, #1f2121);
@@ -23,11 +12,9 @@ export const SelectContainer = styled.div.attrs<{
   display: inline-block;
   font-size: 14px;
   position: relative;
-  ${({ maxWidth, width }) =>
-    css`
-      max-width: ${maxWidth};
-      ${width ? `width: ${width};` : ""}
-    `};
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  width: var(--width);
 `;
 
 export const SelectDropdown = styled.ul`
