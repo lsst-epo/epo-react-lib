@@ -1,12 +1,15 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { useTranslation, Trans } from "react-i18next";
-import { SelectListbox, ColorSwatch } from "@rubin-epo/epo-react-lib";
+import SelectListbox from "@rubin-epo/epo-react-lib/SelectListbox";
+import ColorSwatch from "@rubin-epo/epo-react-lib/ColorSwatch";
 import * as Styled from "./styles";
 
 interface FilterToolProps {
   selectionCallback?: (color: FilterColor) => void;
   selectedColor?: FilterColor;
   isReadOnly?: boolean;
+  id?: string;
+  labelledById?: string;
 }
 
 type FilterColor =
@@ -22,6 +25,8 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
   selectedColor = "none",
   selectionCallback,
   isReadOnly = false,
+  id,
+  labelledById,
 }) => {
   const { t } = useTranslation();
   const prismColors: { [key in FilterColor]: string } = {
@@ -51,7 +56,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
       <Styled.PrismSVG
         version="1.1"
         viewBox="0 0 1551.6 736.7"
-        aria-describedby="filterTitle"
+        aria-labelledby={labelledById}
       >
         <defs>
           <linearGradient id="no-arrow-red">
@@ -242,6 +247,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
           placeholder={selectLabel}
           maxWidth="100%"
           width="200px"
+          id={id}
         />
       </Styled.SelectContainer>
     </Styled.Wrapper>

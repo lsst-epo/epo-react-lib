@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { icons } from "@rubin-epo/epo-react-lib";
+import icons from "@rubin-epo/epo-react-lib/icons";
 
 import PlaybackControl from ".";
 

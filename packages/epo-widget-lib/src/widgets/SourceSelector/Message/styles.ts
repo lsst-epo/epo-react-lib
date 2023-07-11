@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Toast } from "@rubin-epo/epo-react-lib";
+import Toast from "@rubin-epo/epo-react-lib/Toast";
 
 export const Message = styled(Toast)<{ $isOpen: boolean }>`
   position: absolute;
