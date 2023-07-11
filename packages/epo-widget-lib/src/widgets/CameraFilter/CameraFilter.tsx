@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { SelectListbox } from "@rubin-epo/epo-react-lib";
+import SelectListbox from "@rubin-epo/epo-react-lib/SelectListbox";
 import { tokens } from "@rubin-epo/epo-react-lib/styles";
 import { useTranslation } from "react-i18next";
 import useResizeObserver from "use-resize-observer";
