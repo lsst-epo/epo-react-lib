@@ -7,7 +7,8 @@ import {
 } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
-import { IconComposer, ImageShape } from "@rubin-epo/epo-react-lib";
+import { ImageShape } from "@rubin-epo/epo-react-lib";
+import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import * as Styled from "./styles";
 import Points from "./Points";
 import Message from "./Message";

@@ -1,5 +1,5 @@
 import { AstroCategory } from "../ColorTool";
-import { ColorSwatch } from "@rubin-epo/epo-react-lib";
+import ColorSwatch from "@rubin-epo/epo-react-lib/ColorSwatch";
 
 export const colorOptions = [
   {

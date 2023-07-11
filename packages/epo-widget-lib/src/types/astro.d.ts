@@ -1,4 +1,4 @@
-import { Image } from "@rubin-epo/epo-react-lib/dist/types/image";
+import { ImageShape } from "@rubin-epo/epo-react-lib";
 
 export type Band = "u" | "g" | "r" | "i" | "z" | "y";
 export type SourceType = "supernova" | "galaxy" | "galaxyFilter";
@@ -17,7 +17,7 @@ export interface Alert {
   error: number;
   date: number;
   magnitude: number;
-  image: Image;
+  image: ImageShape;
 }
 
 export interface SourceDataset {

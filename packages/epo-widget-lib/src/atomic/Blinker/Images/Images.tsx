@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { CircularLoader } from "@rubin-epo/epo-react-lib";
+import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 import * as Styled from "./styles";
 import BlinkerImage from "../Image/Image";
 import { BlinkerProps } from "../Blinker";
