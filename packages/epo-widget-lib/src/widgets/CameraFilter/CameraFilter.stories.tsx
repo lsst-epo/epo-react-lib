@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
-import { Container } from "@rubin-epo/epo-react-lib";
+import Container from "@rubin-epo/epo-react-lib/Container";
 
 import CameraFilter from ".";
 

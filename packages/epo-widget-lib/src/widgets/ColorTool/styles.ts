@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { Button, HorizontalSlider } from "@rubin-epo/epo-react-lib";
+import Button from "@rubin-epo/epo-react-lib/Button";
+import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import FilterImage from "./FilterImage";
 
 export const WidgetContainer = styled.section<{
