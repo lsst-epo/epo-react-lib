@@ -3,24 +3,42 @@ import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 
+const defaultFormat = "es";
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [dts({ insertTypesEntry: true }), react()],
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+      entryRoot: "./src",
+      exclude: ["./**/*.stories.tsx", "./**/*.test.tsx"],
+    }),
+  ],
   root: "./",
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
-      name: "EPO Widget Lib",
-      formats: ["es", "cjs"],
-      fileName: (format, name) => `${name}.${format}.js`,
+      entry: {
+        CameraFilter: resolve(
+          __dirname,
+          "src/widgets/CameraFilter/CameraFilter.tsx"
+        ),
+        ColorTool: resolve(__dirname, "src/widgets/ColorTool/ColorTool.tsx"),
+        FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
+        SourceSelector: resolve(
+          __dirname,
+          "src/widgets/SourceSelector/SourceSelector.tsx"
+        ),
+      },
+      formats: [defaultFormat, "cjs"],
+      fileName: (format, name) =>
+        `${name}.${format === defaultFormat ? "js" : format}`,
     },
     rollupOptions: {
       external: [
         "@castiron/style-mixins",
         "@headlessui/react",
-        "@rubin-epo/epo-react-lib",
-        "@rubin-epo/epo-react-lib/styles",
-        "@rubin-epo/epo-react-lib/fonts",
+        /^@rubin-epo\/epo-react-lib*/,
         "flickity",
         "focus-trap",
         "i18next",
