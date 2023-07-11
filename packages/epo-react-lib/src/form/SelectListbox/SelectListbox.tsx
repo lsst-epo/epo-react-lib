@@ -47,6 +47,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   maxWidth = "200px",
   width,
   className,
+  id,
 }) => {
   const uid = namespace || useUID();
   const {
@@ -111,6 +112,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
         aria-expanded={isDropdownOpen}
         aria-activedescendant={`${uid}_element_${value}`}
         disabled={isDisabled}
+        id={id}
       >
         <Styled.ButtonText>{selectionLabel || placeholder}</Styled.ButtonText>
         <IconComposer icon="chevronThin" size={12} />
