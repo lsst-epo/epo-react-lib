@@ -28,6 +28,8 @@
     "whiteLight": "White Light",
     "prism": "Prism",
     "selectLabel": "Select a filter:",
+    "light_out": "Light out",
+    "light_filtered": "Light filtered",
     "colors": {
       "violet": "Violet",
       "blue": "Blue",
