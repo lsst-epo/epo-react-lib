@@ -30,21 +30,13 @@ export const WhiteLine = styled.line`
   stroke-width: 7;
 `;
 
-export const Ray = styled.path.attrs<{ $rayColor: string; $isHidden: boolean }>(
-  ({ $isHidden }) => ({
-    style: { opacity: $isHidden ? 0 : 1 },
-  })
-)<{ $rayColor: string; $isHidden: boolean }>`
-  fill: ${({ $rayColor }) => $rayColor};
+export const Ray = styled.path`
+  fill: var(--ray-fill);
 `;
 
-export const Arrow = styled.polygon.attrs<{
-  $arrowColor: string;
-  $isHidden: boolean;
-}>(({ $isHidden }) => ({
-  style: { opacity: $isHidden ? 0 : 1 },
-}))<{ $arrowColor: string; $isHidden: boolean }>`
-  fill: ${({ $arrowColor }) => $arrowColor};
+export const Arrow = styled.polygon`
+  opacity: var(--arrow-opacity, 1);
+  fill: var(--arrow-fill);
 `;
 
 export const PrismOutline = styled.polygon`

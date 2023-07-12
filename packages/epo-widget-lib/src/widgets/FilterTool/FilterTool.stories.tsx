@@ -1,11 +1,16 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from "@storybook/react";
 import { Container } from "@rubin-epo/epo-react-lib";
 
 import FilterTool from ".";
+import { useState } from "react";
 
 const meta: ComponentMeta<typeof FilterTool> = {
   argTypes: {
-    isReadOnly: {
+    isDisabled: {
       control: "boolean",
       description:
         "Disables filter `<select>` dropdown, mostly for answer reviews. Selected color must be prepopulated in this case.",
@@ -43,21 +48,32 @@ const meta: ComponentMeta<typeof FilterTool> = {
     },
   },
   component: FilterTool,
-  decorators: [
-    (Story) => (
-      <Container>
-        <Story />
-      </Container>
-    ),
-  ],
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof FilterTool> = {
-  args: {},
+const Template: ComponentStory<typeof FilterTool> = ({
+  selectedColor: argColor,
+  ...args
+}) => {
+  const [color, setColor] = useState(argColor);
+
+  return (
+    <FilterTool
+      {...args}
+      selectedColor={color}
+      selectionCallback={(value: any) => {
+        args.selectionCallback && args.selectionCallback(value);
+        return setColor(value);
+      }}
+    />
+  );
 };
-export const PreSelectedColor: ComponentStoryObj<typeof FilterTool> = {
-  args: {
-    selectedColor: "violet",
-  },
+
+export const Primary: ComponentStoryObj<typeof FilterTool> = Template.bind({});
+
+export const PreSelectedColor: ComponentStoryObj<typeof FilterTool> =
+  Template.bind({});
+
+PreSelectedColor.args = {
+  selectedColor: "violet",
 };
