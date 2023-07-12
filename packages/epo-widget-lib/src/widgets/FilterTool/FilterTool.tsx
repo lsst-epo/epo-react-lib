@@ -6,20 +6,13 @@ import * as Styled from "./styles";
 
 interface FilterToolProps {
   selectionCallback?: (color: FilterColor) => void;
-  selectedColor?: FilterColor;
+  selectedColor?: FilterColor | "none";
   isDisabled?: boolean;
   id?: string;
   labelledById?: string;
 }
 
-type FilterColor =
-  | "violet"
-  | "blue"
-  | "green"
-  | "yellow"
-  | "orange"
-  | "red"
-  | "none";
+type FilterColor = "violet" | "blue" | "green" | "yellow" | "orange" | "red";
 
 const FilterTool: FunctionComponent<FilterToolProps> = ({
   selectedColor = "none",
@@ -30,7 +23,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const prismColors: { [key in FilterColor]: string } = {
+  const prismColors: { [key in FilterColor | "none"]: string } = {
     violet: "#861cff",
     blue: "#0019ff",
     green: "#6bd853",
@@ -40,7 +33,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
     none: "transparent",
   };
 
-  const rays: { [key: string]: string } = {
+  const rays: { [key in FilterColor]: string } = {
     violet:
       "M546.1,312.5l212.8,1.9h0.4l0.5,0.2L1396,522.8c6.9,2.3,10.7,9.7,8.5,16.7s-9.7,10.7-16.7,8.5l0,0l-0.4-0.1L757.8,320.4l0.9,0.2L546.1,312.5z",
     blue: "M546.1,312.4l206.5-4.4h0.4l0.4,0.1l641.1,164c7,1.8,11.2,8.9,9.4,15.9c-1.8,7-8.9,11.2-15.9,9.4l-0.4-0.1L751.8,313.8l0.8,0.1L546.1,312.4z",
@@ -53,13 +46,43 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
     red: "M546.1,311L730,283.9h0.1h0.2l661.4-9.9c6.9-0.1,12.6,5.4,12.7,12.3s-5.4,12.6-12.3,12.7h-0.4l-661.4-9.8h0.4L546.1,311z",
   };
 
-  const arrows: { [key: string]: string } = {
-    violet: "1426.5,547.9 1353.2,550.6 1377.9,530.1 1372.3,498.5",
-    blue: "1431.5,496.4 1358.6,504.1 1381.8,482 1374.1,450.9",
-    green: "1437.9,443.4 1366.1,458.4 1387,434.1 1376.2,403.9",
-    yellow: "1438.9,389.7 1368,408.2 1387.6,382.8 1375.4,353.3",
-    orange: "1443.7,340.3 1373.9,362.8 1392.1,336.4 1378.2,307.5",
-    red: "1441.9,290 1372.4,313.2 1390.3,286.6 1376.1,257.9",
+  const arrows: { [key in FilterColor]: number[][] } = {
+    violet: [
+      [1426.5, 547.9],
+      [1353.2, 550.6],
+      [1377.9, 530.1],
+      [1372.3, 498.5],
+    ],
+    blue: [
+      [1431.5, 496.4],
+      [1358.6, 504.1],
+      [1381.8, 482],
+      [1374.1, 450.9],
+    ],
+    green: [
+      [1437.9, 443.4],
+      [1366.1, 458.4],
+      [1387, 434.1],
+      [1376.2, 403.9],
+    ],
+    yellow: [
+      [1438.9, 389.7],
+      [1368, 408.2],
+      [1387.6, 382.8],
+      [1375.4, 353.3],
+    ],
+    orange: [
+      [1443.7, 340.3],
+      [1373.9, 362.8],
+      [1392.1, 336.4],
+      [1378.2, 307.5],
+    ],
+    red: [
+      [1441.9, 290],
+      [1372.4, 313.2],
+      [1390.3, 286.6],
+      [1376.1, 257.9],
+    ],
   };
 
   const prismOptions = Object.keys(prismColors).map((color) => {
@@ -76,11 +99,6 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
   const selectLabel = t("filterTool.selectLabel");
 
   const isNoneSelected = selectedColor === "none";
-  const arrowPoint: string =
-    arrows[selectedColor as string].split(" ").pop() || "";
-  const labelPosition = arrows[selectedColor]
-    ? (arrowPoint || "").split(",")
-    : [];
 
   return (
     <Styled.Wrapper>
@@ -196,7 +214,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
                   ? `url(#no-arrow-${key})`
                   : prismColors[key as FilterColor],
               }}
-              d={rays[key]}
+              d={rays[key as FilterColor]}
               role="listitem"
               aria-label={t(`filterTool.colors.${key}`)}
             />
@@ -230,7 +248,9 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
                 "--arrow-opacity": isArrowHidden(key as FilterColor) && 0,
                 "--arrow-fill": prismColors[key as FilterColor],
               }}
-              points={arrows[key]}
+              points={arrows[key as FilterColor]
+                .map((a) => a.join(","))
+                .join(" ")}
               role={isNoneSelected ? "listitem" : "presentation"}
               aria-label={
                 isNoneSelected ? t(`filterTool.colors.${key}`) : undefined
@@ -240,8 +260,8 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
           {!isNoneSelected && (
             <text
               role="listitem"
-              x={labelPosition[0]}
-              y={labelPosition[1]}
+              x={arrows[selectedColor][3][0]}
+              y={arrows[selectedColor][3][1]}
               fill="#ffffff"
               dy="-25"
             >
