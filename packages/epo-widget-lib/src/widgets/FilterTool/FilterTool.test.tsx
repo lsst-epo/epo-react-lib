@@ -14,15 +14,14 @@ describe("Filter Tool", () => {
 
     expect(redRay).toBeVisible();
     expect(redArrow).toBeVisible();
-    expect(violetRay).not.toBeVisible();
-    expect(violetArrow).not.toBeVisible();
+    expect(violetRay).toHaveStyle({ "--ray-fill": "url(#no-arrow-violet)" });
+    expect(violetArrow).toHaveStyle({ "--arrow-opacity": "0" });
   });
   it("Changes displayed rays based on user selection", () => {
     render(
       <FilterTool selectedColor="red" selectionCallback={selectionCallback} />
     );
 
-    const select = screen.getByRole("combobox");
     const option = screen.getByText("violet");
 
     const redRay = document.getElementById("red_ray");
@@ -32,8 +31,8 @@ describe("Filter Tool", () => {
 
     expect(redRay).toBeVisible();
     expect(redArrow).toBeVisible();
-    expect(violetRay).not.toBeVisible();
-    expect(violetArrow).not.toBeVisible();
+    expect(violetRay).toHaveStyle({ "--ray-fill": "url(#no-arrow-violet)" });
+    expect(violetArrow).toHaveStyle({ "--arrow-opacity": "0" });
 
     fireEvent.click(option);
 
