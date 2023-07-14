@@ -12,7 +12,6 @@ export const SelectContainer = styled.div`
   display: inline-block;
   font-size: 14px;
   position: relative;
-  min-width: var(--min-width);
   max-width: var(--max-width);
   width: var(--width);
 `;
@@ -34,6 +33,7 @@ export const SelectDropdown = styled.ul`
 
 export const DropdownText = styled.span`
   grid-column: 3;
+  white-space: nowrap;
 `;
 
 export const DropdownOption = styled.li`
