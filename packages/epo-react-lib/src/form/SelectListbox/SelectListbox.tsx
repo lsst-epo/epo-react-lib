@@ -1,4 +1,4 @@
-import { FunctionComponent, useLayoutEffect, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { useUID } from "react-uid";
 import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
@@ -65,13 +65,6 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
     onChangeCallback,
     isMultiselect,
   } as any);
-  const [selectWidth, setSelectWidth] = useState(0);
-
-  useLayoutEffect(() => {
-    if (listRef.current) {
-      setSelectWidth(listRef.current.clientWidth);
-    }
-  }, []);
 
   const clickOutsideCallback = () => {
     setIsDropdownOpen(false);
@@ -93,7 +86,6 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   return (
     <Styled.SelectContainer
       style={{
-        "--min-width": `${selectWidth}px`,
         "--max-width": maxWidth,
         "--width": width,
       }}
