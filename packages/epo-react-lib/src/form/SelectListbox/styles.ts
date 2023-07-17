@@ -83,7 +83,7 @@ export const SelectButton = styled.button`
   svg {
     color: var(--select-border-color);
     transform: rotate(-90deg);
-    padding-top: 10px;
+    margin-inline-start: 10px;
     flex-shrink: 0;
   }
 
