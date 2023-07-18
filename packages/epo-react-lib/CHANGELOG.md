@@ -21,6 +21,7 @@
 
 ### New
 
+- updated `styled-components` to v6.x
 - Individual modules for components have been added, alongside the barrel import. Import modules either by doing
   ```javascript
   import { Accordion } from "@rubin-epo/epo-react-lib";
