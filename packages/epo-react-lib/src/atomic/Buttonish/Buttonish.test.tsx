@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Buttonish from ".";
 
 const text = "Stuff and Things";
-const url = "https://rubinobs.org";
+const url = "https://rubinobservatory.org";
 const className = "some-class";
 const id = "some-id";
 

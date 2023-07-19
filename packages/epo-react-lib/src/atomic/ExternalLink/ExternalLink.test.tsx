@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import ExternalLink from ".";
 
 const props = {
-  href: "https://rubinobs.org/",
+  href: "https://rubinobservatory.org/",
   children: "Rubin Observatory",
 };
 

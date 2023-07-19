@@ -6,11 +6,10 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const supportedLngs = ["en", "es"];
 const ns = ["epo-react-lib"];
 i18n
-  .use(Backend)
   .use(initReactI18next)
   .use(LanguageDetector)
+  .use(Backend)
   .init({
-    debug: true,
     lng: "en",
     fallbackLng: "en",
     ns,
@@ -18,7 +17,6 @@ i18n
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     supportedLngs,
-    // resources,
   });
 
 export default i18n;

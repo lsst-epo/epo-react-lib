@@ -1,13 +1,12 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Buttonish from ".";
 
-const meta: ComponentMeta<typeof Buttonish> = {
+const meta: Meta<typeof Buttonish> = {
   component: Buttonish,
   argTypes: {
     text: {
       control: "text",
-      defaultValue: "Rubin Observatory",
       description: "Text to be displayed in button",
       type: {
         name: "string",
@@ -35,9 +34,10 @@ const meta: ComponentMeta<typeof Buttonish> = {
 };
 export default meta;
 
-export const ExternalLink: ComponentStoryObj<typeof Buttonish> = {
+export const ExternalLink: StoryObj<typeof Buttonish> = {
   args: {
-    url: "https://rubinobs.org/",
+    text: "Rubin Observatory",
+    url: "https://rubinobservatory.org/",
   },
 };
 
@@ -46,8 +46,9 @@ const BASE_URL =
     ? process.env.STORYBOOK_PUBLIC_BASE_URL
     : process.env.NEXT_PUBLIC_BASE_URL;
 
-export const InternalLink: ComponentStoryObj<typeof Buttonish> = {
+export const InternalLink: StoryObj<typeof Buttonish> = {
   args: {
+    ...ExternalLink.args,
     url: `${BASE_URL}/?path=/story/atomic-accordion--primary`,
   },
 };

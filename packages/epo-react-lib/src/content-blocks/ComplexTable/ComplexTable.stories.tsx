@@ -13,7 +13,7 @@ const MockTableContent: ComplexTableRow[] = [
       {
         id: "3MeJAm",
         cellContent:
-          "<a href='https://rubinobs.org/' target='_blank'>Header</a>",
+          "<a href='https://rubinobservatory.org/' target='_blank'>Header</a>",
       },
       {
         id: "fD8HUc",
@@ -22,7 +22,7 @@ const MockTableContent: ComplexTableRow[] = [
       {
         id: "C5l39F",
         cellContent:
-          "<a href='https://rubinobs.org/' target='_blank'>Header</a>",
+          "<a href='https://rubinobservatory.org/' target='_blank'>Header</a>",
       },
     ],
   },
@@ -35,15 +35,17 @@ const MockTableContent: ComplexTableRow[] = [
       {
         id: "OVp7Dp",
         cellContent:
-          "<a href='https://rubinobs.org/' target='_blank'>Rubin Observatory</a>",
+          "<a href='https://rubinobservatory.org/' target='_blank'>Rubin Observatory</a>",
       },
       {
         id: "QRm6AM",
-        cellContent: "<ul><li>I am an unordered list</li><li>I am an unordered list</li><li>I am an unordered list</li></ul>",
+        cellContent:
+          "<ul><li>I am an unordered list</li><li>I am an unordered list</li><li>I am an unordered list</li></ul>",
       },
       {
         id: "0S8OAG",
-        cellContent: "<ol><li>I am an ordered list</li><li>I am an ordered list</li><li>I am an ordered list</li></ol>",
+        cellContent:
+          "<ol><li>I am an ordered list</li><li>I am an ordered list</li><li>I am an ordered list</li></ol>",
       },
     ],
   },
