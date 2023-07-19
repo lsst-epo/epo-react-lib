@@ -27,6 +27,7 @@ const config: StorybookConfig = {
   ],
   async viteFinal(config) {
     return mergeConfig(config, {
+      base: "/epo-react-lib/@rubin-epo/epo-react-lib/",
       resolve: {
         alias: {
           path: "path-browserify",

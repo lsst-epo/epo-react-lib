@@ -40,7 +40,7 @@ const embedFont = (
 export const baseFont = srcs.reduce<string>((result, src) => {
   result += embedFont(
     "Source Sans Pro",
-    "/fonts/source-sans-pro-v18-latin",
+    "./fonts/source-sans-pro-v18-latin",
     src.fontWeight,
     src.fontStyle
   );
