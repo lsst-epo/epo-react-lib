@@ -13,7 +13,7 @@ const props = {
         {
           id: "3MeJAm",
           cellContent:
-            "<a href='https://rubinobs.org/' target='_blank'>Header</a>",
+            "<a href='https://rubinobservatory.org/' target='_blank'>Header</a>",
         },
         {
           id: "fD8HUc",
@@ -22,7 +22,7 @@ const props = {
         {
           id: "C5l39F",
           cellContent:
-            "<a href='https://rubinobs.org/' target='_blank'>Header</a>",
+            "<a href='https://rubinobservatory.org/' target='_blank'>Header</a>",
         },
       ],
     },
@@ -35,7 +35,7 @@ const props = {
         {
           id: "OVp7Dp",
           cellContent:
-            "<a href='https://rubinobs.org/' target='_blank'>Rubin Observatory</a>",
+            "<a href='https://rubinobservatory.org/' target='_blank'>Rubin Observatory</a>",
         },
         {
           id: "QRm6AM",

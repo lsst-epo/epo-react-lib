@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import MixedLink from ".";
 
 const props = {
-  url: "https://rubinobs.org/",
+  url: "https://rubinobservatory.org/",
   children: "Rubin Observatory",
 };
 
@@ -20,8 +20,8 @@ test("should contain href and external link attrs", () => {
   );
 });
 test("should contain href and no external link attrs", () => {
-  process.env.NEXT_PUBLIC_BASE_URL = "https://rubinobs.org";
-  const url = "rubinobs.org/help";
+  process.env.NEXT_PUBLIC_BASE_URL = "https://rubinobservatory.org";
+  const url = "rubinobservatory.org/help";
 
   render(<MixedLink {...props} url={url} />);
 

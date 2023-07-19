@@ -1,19 +1,18 @@
 import Icons from "@/svg/icons";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { children } from "@/storybook/utilities/argTypes";
 
 import Button from ".";
 
-const meta: ComponentMeta<typeof Button> = {
+const meta: Meta<typeof Button> = {
   component: Button,
   argTypes: {
     children,
     styleAs: {
       control: {
         type: "select",
-        options: ["primary", "secondary", "tertiary", "educator"],
       },
-      defaultValue: "primary",
+      options: ["primary", "secondary", "tertiary", "educator"],
       description: "Visual style",
       table: {
         category: "Styling",
@@ -27,7 +26,6 @@ const meta: ComponentMeta<typeof Button> = {
     },
     isInactive: {
       control: "boolean",
-      defaultValue: false,
       description:
         "This is a disabled style without disabling the button. Good for a11y - button is visible even if form isn't complete.",
       table: {
@@ -50,7 +48,6 @@ const meta: ComponentMeta<typeof Button> = {
     },
     isBlock: {
       control: "boolean",
-      defaultValue: false,
       description: "Determines if button is a full width block or not.",
       table: {
         category: "Styling",
@@ -62,8 +59,8 @@ const meta: ComponentMeta<typeof Button> = {
     icon: {
       control: {
         type: "select",
-        options: Object.keys(Icons),
       },
+      options: Object.keys(Icons),
       description: "SVG icons.",
       table: {
         category: "Icon",
@@ -86,17 +83,19 @@ const meta: ComponentMeta<typeof Button> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Button> = {};
+export const Primary: StoryObj<typeof Button> = {
+  args: { children: "Rubin Observatory" },
+};
 
-export const Secondary: ComponentStoryObj<typeof Button> = {
-  args: { styleAs: "secondary" },
+export const Secondary: StoryObj<typeof Button> = {
+  args: { ...Primary.args, styleAs: "secondary" },
 };
-export const Tertiary: ComponentStoryObj<typeof Button> = {
-  args: { styleAs: "tertiary" },
+export const Tertiary: StoryObj<typeof Button> = {
+  args: { ...Primary.args, styleAs: "tertiary" },
 };
-export const Educator: ComponentStoryObj<typeof Button> = {
-  args: { styleAs: "educator" },
+export const Educator: StoryObj<typeof Button> = {
+  args: { ...Primary.args, styleAs: "educator" },
 };
-export const WithIcon: ComponentStoryObj<typeof Button> = {
+export const WithIcon: StoryObj<typeof Button> = {
   args: { icon: "Account", children: "With Icon" },
 };

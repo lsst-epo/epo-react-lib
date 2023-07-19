@@ -1,6 +1,4 @@
 export const children = {
-  control: "text",
-  defaultValue: "Rubin Observatory",
   description: "React child",
   table: {
     type: {

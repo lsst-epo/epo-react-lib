@@ -24,6 +24,6 @@ export default meta;
 
 export const Primary: ComponentStoryObj<typeof CopyUrlButton> = {
   args: {
-    url: "https://rubinobs.org/",
+    url: "https://rubinobservatory.org/",
   },
 };
