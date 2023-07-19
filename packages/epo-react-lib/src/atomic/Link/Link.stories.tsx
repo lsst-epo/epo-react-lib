@@ -11,7 +11,7 @@ export default meta;
 
 export const Primary: ComponentStoryObj<typeof Link> = {
   args: {
-    href: "https://rubinobs.org/",
+    href: "https://rubinobservatory.org/",
     children: "Rubin Observatory",
   },
 };

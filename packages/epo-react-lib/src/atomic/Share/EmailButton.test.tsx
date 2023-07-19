@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import EmailButton from "./EmailButton";
 
-const url = "https://rubinobs.org";
+const url = "https://rubinobservatory.org";
 const title = "New image gallery posts!";
 
 const props = { url, title };
