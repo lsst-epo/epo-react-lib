@@ -1,8 +1,9 @@
-const path = require("path");
-const { mergeConfig } = require("vite");
+import { mergeConfig } from "vite";
+import { resolve } from "path";
+import { StorybookConfig } from "@storybook/react-vite";
 
-const config = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+const config: StorybookConfig = {
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -11,17 +12,22 @@ const config = {
     "@storybook/addon-a11y",
     "storybook-react-i18next",
   ],
-  framework: "@storybook/react",
-  core: {
-    builder: "@storybook/builder-vite",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
   },
+  core: {},
   features: {
     storyStoreV7: true,
   },
   staticDirs: [
     {
-      from: "../node_modules/@rubin-epo/epo-react-lib/dist/fonts",
+      from: "../../../node_modules/@rubin-epo/epo-react-lib/dist/fonts",
       to: "/fonts",
+    },
+    {
+      from: "../../../node_modules/@rubin-epo/epo-react-lib/dist/localeStrings",
+      to: "/locales",
     },
     { from: "../public/localeStrings", to: "/locales" },
   ],
@@ -43,22 +49,23 @@ const config = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
-      base: "/epo-react-lib/@rubin-epo/epo-widget-lib/",
       resolve: {
         alias: {
           path: "path-browserify",
-          "@/assets": path.resolve(__dirname, "../src/assets"),
-          "@/atomic": path.resolve(__dirname, "../src/atomic"),
-          "@/hooks": path.resolve(__dirname, "../src/hooks"),
-          "@/lib": path.resolve(__dirname, "../src/lib"),
-          "@/storybook": path.resolve(__dirname, "./"),
-          "@/styles": path.resolve(__dirname, "../src/styles"),
-          "@/types": path.resolve(__dirname, "../src/types"),
-          "@/widgets": path.resolve(__dirname, "../src/widgets"),
+          "@/storybook": resolve(__dirname, "./"),
         },
+      },
+      define: {
+        "process.env.STORYBOOK_ENV": JSON.stringify(process.env.STORYBOOK_ENV),
+        "process.env.STORYBOOK_PUBLIC_BASE_URL": JSON.stringify(
+          process.env.STORYBOOK_PUBLIC_BASE_URL
+        ),
       },
     });
   },
+  docs: {
+    autodocs: true,
+  },
 };
 
-module.exports = config;
+export default config;
