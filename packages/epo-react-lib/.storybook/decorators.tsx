@@ -1,10 +1,10 @@
 import React from "react";
-import { DecoratorFn } from "@storybook/react";
+import { Decorator } from "@storybook/react";
 import { withTests } from "@storybook/addon-jest";
 import results from "../.jest-test-results.json";
 import GlobalStyle from "../src/styles/globalStyles";
 
-const withTheme: DecoratorFn = (StoryFn) => {
+const withTheme: Decorator = (StoryFn) => {
   return (
     <>
       <GlobalStyle />

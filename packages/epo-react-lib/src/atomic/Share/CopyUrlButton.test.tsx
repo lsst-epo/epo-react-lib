@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import CopyUrlButton from "./CopyUrlButton";
 
-const url = "https://rubinobs.org";
+const url = "https://rubinobservatory.org";
 
 const props = { url };
 const originalClipboard = { ...global.navigator.clipboard };

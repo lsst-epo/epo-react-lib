@@ -36,7 +36,7 @@ export default meta;
 
 export const Primary: ComponentStoryObj<typeof FacebookButton> = {
   args: {
-    url: "https://rubinobs.org/",
+    url: "https://rubinobservatory.org/",
     title: "New image gallery posts!",
   },
 };

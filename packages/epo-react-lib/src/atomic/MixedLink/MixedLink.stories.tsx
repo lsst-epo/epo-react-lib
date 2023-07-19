@@ -80,7 +80,8 @@ export default meta;
 
 export const ExternalLink: ComponentStoryObj<typeof MixedLink> = {
   args: {
-    url: "https://rubinobs.org/",
+    children: "Rubin Observatory",
+    url: "https://rubinobservatory.org/",
   },
 };
 
@@ -91,6 +92,7 @@ const BASE_URL =
 
 export const InternalLink: ComponentStoryObj<typeof MixedLink> = {
   args: {
+    ...ExternalLink.args,
     url: `${BASE_URL}`,
     params: { path: "/story/atomic-accordion--primary" },
   },
