@@ -12,6 +12,7 @@ i18n
   .use(Backend)
   .use(LanguageDetector)
   .init({
+    backend: { loadPath: "./locales/{{lng}}/{{ns}}.json" },
     debug: true,
     lng: "en",
     fallbackLng: "en",
