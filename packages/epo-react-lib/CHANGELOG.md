@@ -41,3 +41,9 @@
   // to
   import localeStrings from "@rubin-epo/epo-react-lib/localeStrings";
   ```
+
+## 2.0.1
+
+- refactor `Container` so that `className` can be properly attached for restyling with `styled-components`
+- add nested example to `Container` storybook
+- remove type exports from main module

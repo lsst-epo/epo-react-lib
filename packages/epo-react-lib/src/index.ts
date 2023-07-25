@@ -1,6 +1,6 @@
 // Styles
 
-export * from '@/styles/index'
+export * from "@/styles/index";
 
 // Atomic
 export { default as Accordion } from "@/atomic/Accordion";
@@ -50,15 +50,6 @@ export {
   MenuItem,
   MenuItemRadio,
 } from "@/layout/SlideoutMenu";
-
-export * from "@/types/carousel";
-export * from "@/types/gallery";
-export * from "@/types/image";
-export * from "@/types/progress";
-export * from "@/types/select-listbox";
-export * from "@/types/select";
-export * from "@/types/share-button";
-export * from "@/types/svg";
 
 // SVG
 export { default as IconComposer } from "@/svg/IconComposer";
