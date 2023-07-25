@@ -4,7 +4,6 @@ import {
   containerRegular,
   containerWide,
 } from "@/styles/utils";
-import { tokens } from "@/styles/abstracts";
 import { padding, SpacingSize } from "@/styles/mixins/layout";
 
 interface SectionProps {
@@ -15,13 +14,13 @@ interface SectionProps {
 export type ContainerWidth = "narrow" | "regular" | "wide";
 
 interface InnerProps {
-  $className?: string;
   $width?: ContainerWidth;
   $nested: any;
 }
 
 export const Section = styled.section<SectionProps>`
-  background-color: ${({ $bgColor }) => tokens[$bgColor]};
+  background-color: var(--section-background-color);
+
   ${({ $paddingSize }) =>
     $paddingSize &&
     `${padding("top", $paddingSize)}${padding("bottom", $paddingSize)}`}
@@ -31,9 +30,7 @@ export const Section = styled.section<SectionProps>`
   }
 `;
 
-export const Inner = styled.div.attrs<InnerProps>(({ $className }) => ({
-  className: $className,
-}))<InnerProps>`
+export const Inner = styled.div<InnerProps>`
   ${({ $width = "regular", $nested }) => {
     if ($nested) return ``;
 
