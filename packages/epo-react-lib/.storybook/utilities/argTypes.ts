@@ -10,7 +10,7 @@ export const children = {
 };
 export const objChildren = {
   ...children,
-  control: "object",
+  control: "none",
 };
 export const className = {
   control: "text",

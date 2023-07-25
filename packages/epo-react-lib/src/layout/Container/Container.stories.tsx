@@ -1,9 +1,15 @@
 import { palette } from "@/styles/abstracts";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from "@storybook/react";
 import { objChildren, className } from "@/storybook/utilities/argTypes";
 import MockChildren from "@/storybook/utilities/mocks";
 
+import NestedContext from "@/contexts/Nested";
 import Container from ".";
+import { styled } from "styled-components";
 
 const meta: ComponentMeta<typeof Container> = {
   component: Container,
@@ -49,8 +55,20 @@ const meta: ComponentMeta<typeof Container> = {
 };
 export default meta;
 
+const Template: ComponentStory<typeof Container> = (args) => {
+  return (
+    <NestedContext.Provider value={true}>
+      <Container {...args} />
+    </NestedContext.Provider>
+  );
+};
+
 export const Primary: ComponentStoryObj<typeof Container> = {
   args: {
     children: MockChildren,
   },
 };
+
+export const Nested = Template.bind({});
+
+Nested.args = { children: MockChildren };
