@@ -1,4 +1,4 @@
-import { Figure, Image } from "../../src";
+import { Figure } from "../../src";
 
 const imageProps = {
   image: {
