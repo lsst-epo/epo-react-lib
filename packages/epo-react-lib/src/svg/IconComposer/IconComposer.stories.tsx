@@ -1,4 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryObj,
+} from "@storybook/react";
+import styled from "styled-components";
 import { className } from "@/storybook/utilities/argTypes";
 import Icons from "../icons";
 
@@ -45,8 +50,36 @@ const meta: ComponentMeta<typeof IconComposer> = {
 };
 export default meta;
 
+const IconGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-size, 36px), 1fr));
+  gap: 0.5rem;
+  width: 100%;
+`;
+
+const Template: ComponentStory<typeof IconComposer> = ({
+  size = 36,
+  ...args
+}) => {
+  return (
+    <IconGrid style={{ "--grid-size": isNaN(size) ? size : `${size}px` }}>
+      {Object.keys(Icons).map((key) => (
+        <IconComposer key={key} {...args} size={size} icon={key} />
+      ))}
+    </IconGrid>
+  );
+};
+
 export const Example: ComponentStoryObj<typeof IconComposer> = {
   args: {
     icon: "Search",
   },
+};
+
+export const AllIcons: ComponentStoryObj<typeof IconComposer> = Template.bind(
+  {}
+);
+
+AllIcons.args = {
+  size: 36,
 };
