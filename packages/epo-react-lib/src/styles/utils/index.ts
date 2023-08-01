@@ -109,11 +109,13 @@ export const respond = (
   return respondBase(content, size, operator, aspect);
 };
 
-export const token = (which: string | string[]) => {
+export function token(which: string): string;
+export function token(which: string[]): { [key: string]: string };
+export function token(which: unknown): unknown {
   if (typeof which === "string") {
     return tokens[which];
   } else if (Array.isArray(which)) {
-    let obj = which.reduce(function (result: { [key: string]: string }, item) {
+    let obj = which.reduce((result: { [key: string]: string }, item) => {
       result[item] = tokens[item];
       return result;
     }, {});
@@ -121,7 +123,7 @@ export const token = (which: string | string[]) => {
   } else {
     return tokens;
   }
-};
+}
 
 export const ScreenreaderText = styled.span`
   ${aHidden}
