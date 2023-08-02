@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren, useState } from "react";
-import { ImageShape } from "@rubin-epo/epo-react-lib";
+import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import useInterval from "@/hooks/useInterval";
 import * as Styled from "./styles";
 import { getClampedArrayIndex } from "@/lib/utils";
