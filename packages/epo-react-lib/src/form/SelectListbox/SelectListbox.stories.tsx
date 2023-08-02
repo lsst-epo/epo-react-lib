@@ -1,13 +1,9 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { options } from "./__mocks__";
 import SelectListbox from ".";
 import { useState } from "react";
 
-const meta: ComponentMeta<typeof SelectListbox> = {
+const meta: Meta<typeof SelectListbox> = {
   component: SelectListbox,
   argTypes: {
     options: {
@@ -155,7 +151,7 @@ const meta: ComponentMeta<typeof SelectListbox> = {
 
 export default meta;
 
-const Template: ComponentStory<typeof SelectListbox> = ({
+const Template: StoryFn<typeof SelectListbox> = ({
   value: argValue,
   ...args
 }) => {
@@ -173,13 +169,10 @@ const Template: ComponentStory<typeof SelectListbox> = ({
   );
 };
 
-export const Primary: ComponentStoryObj<typeof SelectListbox> = Template.bind(
-  {}
-);
+export const Primary: StoryFn<typeof SelectListbox> = Template.bind({});
 
 Primary.args = { options, value: "red" };
 
-export const MultiSelect: ComponentStoryObj<typeof SelectListbox> =
-  Template.bind({});
+export const MultiSelect: StoryFn<typeof SelectListbox> = Template.bind({});
 
 MultiSelect.args = { options, value: ["red", "green"], isMultiselect: true };

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Figure } from "../../src";
 
 const imageProps = {
@@ -25,7 +26,7 @@ export const mockSlidePropsSecond = {
   key: "b1",
 };
 
-const Children = [
+const Children: ReactNode = [
   <Figure {...mockSlidePropsFirst} />,
   <Figure {...mockSlidePropsSecond} />,
 ];

@@ -1,9 +1,11 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import { useUID } from "react-uid";
 import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
 import { useAccessibleDropdown, useOnOutsideClick } from "./hooks";
+
+export type { ListboxOption };
 
 type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
   ? {
