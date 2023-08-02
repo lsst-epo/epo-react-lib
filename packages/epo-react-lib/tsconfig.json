@@ -17,6 +17,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "outDir": "dist/types",
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/atomic/*": ["src/atomic/*"],

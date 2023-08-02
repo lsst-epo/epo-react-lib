@@ -2,6 +2,8 @@ import { ImageShape } from "@/types/image";
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
 
+export type { ImageShape };
+
 export interface ImageProps {
   image: ImageShape;
   className?: string;

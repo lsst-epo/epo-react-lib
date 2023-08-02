@@ -1,17 +1,12 @@
 import { palette } from "@/styles/abstracts";
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { objChildren, className } from "@/storybook/utilities/argTypes";
 import MockChildren from "@/storybook/utilities/mocks";
 
 import NestedContext from "@/contexts/Nested";
 import Container from ".";
-import { styled } from "styled-components";
 
-const meta: ComponentMeta<typeof Container> = {
+const meta: Meta<typeof Container> = {
   component: Container,
   argTypes: {
     children: objChildren,
@@ -55,7 +50,7 @@ const meta: ComponentMeta<typeof Container> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Container> = (args) => {
+const Template: StoryFn<typeof Container> = (args) => {
   return (
     <NestedContext.Provider value={true}>
       <Container {...args} />
@@ -63,7 +58,7 @@ const Template: ComponentStory<typeof Container> = (args) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof Container> = {
+export const Primary: StoryObj<typeof Container> = {
   args: {
     children: MockChildren,
   },

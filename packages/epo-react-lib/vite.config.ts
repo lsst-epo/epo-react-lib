@@ -14,6 +14,7 @@ export default defineConfig({
       insertTypesEntry: true,
       entryRoot: "./src",
       exclude: ["./**/*.stories.tsx", "./**/*.test.tsx"],
+      rollupTypes: true,
     }),
   ],
   root: "./",
