@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import {
   singleData,
   multiData,
@@ -6,11 +6,13 @@ import {
   multiSpectralOptions,
   readOnlyData,
 } from "./__mocks__";
+import { prepareData } from "./utilities";
 
 import ColorTool from ".";
 import { Option } from "@rubin-epo/epo-react-lib";
+import { useState } from "react";
 
-const meta: ComponentMeta<typeof ColorTool> = {
+const meta: Meta<typeof ColorTool> = {
   argTypes: {
     isDisplayOnly: {
       control: "boolean",
@@ -144,12 +146,28 @@ const meta: ComponentMeta<typeof ColorTool> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ColorTool> = {
-  args: {
-    data: singleData,
-    selectedData: singleData[0].objects[0],
-    colorOptions,
-  },
+const Template: StoryFn<typeof ColorTool> = (args) => {
+  const [selectedData, setSelectedData] = useState(
+    prepareData(args.selectedData)
+  );
+
+  return (
+    <ColorTool
+      {...args}
+      selectedData={selectedData}
+      selectionCallback={(selected) => {
+        setSelectedData(selected);
+        args.selectionCallback && args.selectionCallback(selected);
+      }}
+    />
+  );
+};
+
+export const Primary: StoryFn<typeof ColorTool> = Template.bind({});
+Primary.args = {
+  data: singleData,
+  selectedData: singleData[0].objects[0],
+  colorOptions,
 };
 
 const objectOptions: Option[] = [];
@@ -164,21 +182,19 @@ multiData.forEach((category) => {
   });
 });
 
-export const MultipleImages: ComponentStoryObj<typeof ColorTool> = {
-  args: {
-    data: multiData,
-    objectOptions,
-    selectedData: multiData[0].objects[0],
-    colorOptions: multiSpectralOptions,
-  },
+export const MultipleImages: StoryFn<typeof ColorTool> = Template.bind({});
+MultipleImages.args = {
+  data: multiData,
+  objectOptions,
+  selectedData: multiData[0].objects[0],
+  colorOptions: multiSpectralOptions,
 };
 
-export const DisplayOnly: ComponentStoryObj<typeof ColorTool> = {
-  args: {
-    data: readOnlyData,
-    objectOptions,
-    selectedData: readOnlyData[0].objects[0],
-    colorOptions: multiSpectralOptions,
-    isDisplayOnly: true,
-  },
+export const DisplayOnly: StoryFn<typeof ColorTool> = Template.bind({});
+DisplayOnly.args = {
+  data: readOnlyData,
+  objectOptions,
+  selectedData: readOnlyData[0].objects[0],
+  colorOptions: multiSpectralOptions,
+  isDisplayOnly: true,
 };

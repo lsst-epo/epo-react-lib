@@ -1,9 +1,10 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { ComponentStoryObj, Meta, StoryFn } from "@storybook/react";
 import { data, images, biggerData } from "./mocks";
 
 import SourceSelector from ".";
+import { useState } from "react";
 
-const meta: ComponentMeta<typeof SourceSelector> = {
+const meta: Meta<typeof SourceSelector> = {
   argTypes: {
     width: {
       description: "Static width for the widget in pixels",
@@ -137,24 +138,38 @@ const meta: ComponentMeta<typeof SourceSelector> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof SourceSelector> = {
-  args: { sources: data.sources, images },
+const Template: StoryFn<typeof SourceSelector> = (args) => {
+  const [selectedSource, setSelectedSource] = useState(
+    args.selectedSource || []
+  );
+
+  return (
+    <SourceSelector
+      {...args}
+      selectedSource={selectedSource}
+      selectionCallback={(sources) => {
+        setSelectedSource(sources);
+        args.selectionCallback && args.selectionCallback(sources);
+      }}
+    />
+  );
 };
 
-export const Alerts: ComponentStoryObj<typeof SourceSelector> = {
-  args: {
-    sources: biggerData.sources,
-    images: biggerData.alerts?.map((a) => a.image),
-    alerts: biggerData.alerts,
-  },
+export const Primary: StoryFn<typeof SourceSelector> = Template.bind({});
+Primary.args = { sources: data.sources, images };
+
+export const Alerts: StoryFn<typeof SourceSelector> = Template.bind({});
+Alerts.args = {
+  sources: biggerData.sources,
+  images: biggerData.alerts?.map((a) => a.image),
+  alerts: biggerData.alerts,
 };
 
-export const DisplayOnly: ComponentStoryObj<typeof SourceSelector> = {
-  args: {
-    sources: biggerData.sources,
-    selectedSource: [biggerData.sources[0]],
-    images: biggerData.alerts?.map((a) => a.image),
-    alerts: biggerData.alerts,
-    isDisplayOnly: true,
-  },
+export const DisplayOnly: StoryFn<typeof SourceSelector> = Template.bind({});
+DisplayOnly.args = {
+  sources: biggerData.sources,
+  selectedSource: [biggerData.sources[0]],
+  images: biggerData.alerts?.map((a) => a.image),
+  alerts: biggerData.alerts,
+  isDisplayOnly: true,
 };

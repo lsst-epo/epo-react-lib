@@ -65,10 +65,10 @@ const CameraFilter: FunctionComponent = () => {
         </colgroup>
         <Styled.FilterNames>
           <tr>
-            {filters.map(({ band }) => (
+            {filters.map(({ band }, i) => (
               <Styled.FilterName
                 id={`${band}-name`}
-                key={band}
+                key={i}
                 band={band}
                 scope="col"
                 aria-hidden={!band}

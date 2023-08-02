@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const BlinkerImage = styled.img<{ $active: boolean }>`
+export const BlinkerImage = styled.img`
   position: absolute;
   top: 0;
   right: 0;
@@ -15,13 +15,5 @@ export const BlinkerImage = styled.img<{ $active: boolean }>`
   -o-user-drag: none;
   -ms-user-drag: none;
   user-drag: none;
-
-  ${({ $active }) =>
-    $active
-      ? css`
-          visibility: visible;
-        `
-      : css`
-          visibility: hidden;
-        `}
+  visibility: var(--image-visibility, hidden);
 `;
