@@ -1,7 +1,7 @@
 import { FunctionComponent, MouseEvent, ReactNode, useState } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
-import { ImageShape } from "@rubin-epo/epo-react-lib";
+import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import * as Styled from "./styles";
 import Points from "./Points";
