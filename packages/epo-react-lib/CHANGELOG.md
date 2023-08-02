@@ -51,3 +51,4 @@
 ## 2.0.2
 
 - add signature overloads to `token`
+- export `ImageShape`, `Option`, and `ListBoxOption` from their modules

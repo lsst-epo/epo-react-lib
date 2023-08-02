@@ -1,14 +1,10 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { className } from "@/storybook/utilities/argTypes";
 import { useState } from "react";
 
 import HorizontalSlider from ".";
 
-const meta: ComponentMeta<typeof HorizontalSlider> = {
+const meta: Meta<typeof HorizontalSlider> = {
   component: HorizontalSlider,
   argTypes: {
     className: { ...className, table: { category: "Styling" } },
@@ -133,7 +129,7 @@ const meta: ComponentMeta<typeof HorizontalSlider> = {
 
 export default meta;
 
-const Template: ComponentStory<typeof HorizontalSlider> = ({
+const Template: StoryFn<typeof HorizontalSlider> = ({
   value: argValue,
   ...args
 }) => {
@@ -151,16 +147,14 @@ const Template: ComponentStory<typeof HorizontalSlider> = ({
   );
 };
 
-export const Primary: ComponentStoryObj<typeof HorizontalSlider> =
-  Template.bind({});
+export const Primary: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 Primary.args = {
   value: 50,
   label: "primaryExample",
 };
 
-export const DoubleHandle: ComponentStoryObj<typeof HorizontalSlider> =
-  Template.bind({});
+export const DoubleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 DoubleHandle.args = {
   value: [20, 80],
