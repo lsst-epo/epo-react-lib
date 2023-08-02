@@ -1,6 +1,8 @@
 import { forwardRef, HTMLProps } from "react";
 import { Option } from "@/types/select";
 import * as Styled from "./styles";
+
+export type { Option };
 interface SelectProps extends HTMLProps<HTMLSelectElement> {
   options: Option[];
   emptyOption?: Option;

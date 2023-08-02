@@ -5,7 +5,7 @@ import { SpacingSize } from "@/styles/mixins/layout";
 import { palette } from "@/styles/abstracts";
 import { useNestedContext } from "@/contexts/Nested";
 
-interface ContainerProps {
+export interface ContainerProps {
   bgColor?: keyof typeof palette;
   className?: string;
   width?: Styled.ContainerWidth;
