@@ -1,11 +1,9 @@
-import { FormEvent, FunctionComponent, useState, useEffect } from "react";
-import useResizeObserver from "use-resize-observer";
+import { FormEvent, FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import {
   getCategoryName,
   getDataFiltersByName,
   isResetButtonActive,
-  prepareData,
   resetFilters,
 } from "./utilities";
 import * as Styled from "./styles";
@@ -53,7 +51,7 @@ interface ColorToolProps {
 const ColorTool: FunctionComponent<ColorToolProps> = ({
   data,
   objectOptions = [],
-  selectedData: preSelectedData,
+  selectedData,
   colorOptions = [],
   selectionCallback,
   isDisabled = false,
@@ -61,15 +59,6 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   hideImage = false,
   hideSubtitle = false,
 }) => {
-  const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
-  const [selectedData, setSelectedData] = useState<AstroObject>(
-    prepareData(preSelectedData)
-  );
-
-  useEffect(() => {
-    selectionCallback && selectionCallback(selectedData);
-  }, [selectedData]);
-
   const handleFilterChange = (updatedFilter: ImageFilter) => {
     const { label } = updatedFilter;
     const { filters } = selectedData;
@@ -77,23 +66,30 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
       f.label === label ? updatedFilter : f
     );
 
-    return setSelectedData({
-      ...selectedData,
-      filters: updatedFilters,
-    });
+    return (
+      selectionCallback &&
+      selectionCallback({
+        ...selectedData,
+        filters: updatedFilters,
+      })
+    );
   };
 
   const handleCategorySelection = (event: FormEvent<HTMLSelectElement>) => {
     const { value } = event.target as HTMLSelectElement;
 
-    return setSelectedData({
-      name: value,
-      filters: getDataFiltersByName(data, value),
-    });
+    return (
+      selectionCallback &&
+      selectionCallback({
+        name: value,
+        filters: getDataFiltersByName(data, value),
+      })
+    );
   };
 
   const handleReset = () =>
-    setSelectedData({
+    selectionCallback &&
+    selectionCallback({
       ...selectedData,
       filters: resetFilters(selectedData.filters),
     });
@@ -105,89 +101,91 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   const selectedCategoryName = getCategoryName(data, selectedObjectName);
 
   return (
-    <Styled.WidgetContainer
-      ref={ref}
-      $isCondensed={width < 1000}
-      $hideControls={isDisplayOnly}
-    >
-      {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
-        <Styled.Subtitle>
-          {hasMultipleDatasets && (
-            <>
-              <dt>{t("colorTool.labels.object_type")}</dt>
-              <dd>{selectedCategoryName}</dd>
-            </>
-          )}
-          {!hideSubtitle && (
-            <>
-              <dt>
-                {t("colorTool.labels.object", {
-                  context: hasMultipleDatasets ? "selected" : false,
-                })}
-              </dt>
-              <dd>{selectedObjectName}</dd>
-            </>
-          )}
-          {}
-        </Styled.Subtitle>
-      )}
-      {!isDisplayOnly && (
-        <Styled.ControlsContainer>
-          {hasMultipleDatasets && (
-            <Styled.SelectionContainer>
-              <Select
-                id="astroObjectSelector"
-                placeholder={selectPlaceholder}
-                options={objectOptions}
-                onChange={handleCategorySelection}
-                value={selectedObjectName}
-                disabled={isDisabled}
-              />
-            </Styled.SelectionContainer>
-          )}
-          {filters && (
-            <>
-              <Styled.ToolsHeader id="filterLabel">
-                {t("colorTool.labels.filter")}
-              </Styled.ToolsHeader>
-              <Styled.ToolsHeader id="colorLabel">
-                {t("colorTool.labels.color")}
-              </Styled.ToolsHeader>
-              <Styled.ToolsHeader id="intensityLabel">
-                {t("colorTool.labels.color_intensity")}
-              </Styled.ToolsHeader>
-            </>
-          )}
-          {filters &&
-            filters.map((imageFilter) => {
-              const { label, isDisabled: isFilterDisabled } = imageFilter;
-
-              return (
-                <FilterControls
-                  key={`filter-${label}`}
-                  filter={imageFilter}
-                  isDisabled={isDisabled || isFilterDisabled}
-                  colorOptions={colorOptions}
-                  onChangeFilterCallback={handleFilterChange}
-                  buttonLabelledById="filterLabel"
-                  selectLabelledById="colorLabel"
-                  sliderLabelledById="intensityLabel"
+    <Styled.WidgetContainer>
+      <Styled.WidgetLayout
+        style={{
+          "--controls-row": isDisplayOnly ? "'image image'" : undefined,
+        }}
+      >
+        {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
+          <Styled.Subtitle>
+            {hasMultipleDatasets && (
+              <>
+                <dt>{t("colorTool.labels.object_type")}</dt>
+                <dd>{selectedCategoryName}</dd>
+              </>
+            )}
+            {!hideSubtitle && (
+              <>
+                <dt>
+                  {t("colorTool.labels.object", {
+                    context: hasMultipleDatasets ? "selected" : false,
+                  })}
+                </dt>
+                <dd>{selectedObjectName}</dd>
+              </>
+            )}
+            {}
+          </Styled.Subtitle>
+        )}
+        {!isDisplayOnly && (
+          <Styled.ControlsContainer>
+            {hasMultipleDatasets && (
+              <Styled.SelectionContainer>
+                <Select
+                  id="astroObjectSelector"
+                  placeholder={selectPlaceholder}
+                  options={objectOptions}
+                  onChange={handleCategorySelection}
+                  value={selectedObjectName}
+                  disabled={isDisabled}
                 />
-              );
-            })}
-        </Styled.ControlsContainer>
-      )}
-      {!hideImage && <ImageComposite {...{ filters }} />}
-      {selectedObjectName && !isDisplayOnly && (
-        <Styled.ResetButton
-          disabled={isDisabled || !isResetButtonActive(selectedData)}
-          onClick={handleReset}
-          icon="RotateLeftWithCenter"
-        >
-          {t("colorTool.actions.reset")}
-        </Styled.ResetButton>
-      )}
-      {caption && <Styled.Caption>{caption}</Styled.Caption>}
+              </Styled.SelectionContainer>
+            )}
+            {filters && (
+              <>
+                <Styled.ToolsHeader id="filterLabel">
+                  {t("colorTool.labels.filter")}
+                </Styled.ToolsHeader>
+                <Styled.ToolsHeader id="colorLabel">
+                  {t("colorTool.labels.color")}
+                </Styled.ToolsHeader>
+                <Styled.ToolsHeader id="intensityLabel">
+                  {t("colorTool.labels.color_intensity")}
+                </Styled.ToolsHeader>
+              </>
+            )}
+            {filters &&
+              filters.map((imageFilter) => {
+                const { label, isDisabled: isFilterDisabled } = imageFilter;
+
+                return (
+                  <FilterControls
+                    key={`filter-${label}`}
+                    filter={imageFilter}
+                    isDisabled={isDisabled || isFilterDisabled}
+                    colorOptions={colorOptions}
+                    onChangeFilterCallback={handleFilterChange}
+                    buttonLabelledById="filterLabel"
+                    selectLabelledById="colorLabel"
+                    sliderLabelledById="intensityLabel"
+                  />
+                );
+              })}
+          </Styled.ControlsContainer>
+        )}
+        {!hideImage && <ImageComposite {...{ filters }} />}
+        {selectedObjectName && !isDisplayOnly && (
+          <Styled.ResetButton
+            disabled={isDisabled || !isResetButtonActive(selectedData)}
+            onClick={handleReset}
+            icon="RotateLeftWithCenter"
+          >
+            {t("colorTool.actions.reset")}
+          </Styled.ResetButton>
+        )}
+        {caption && <Styled.Caption>{caption}</Styled.Caption>}
+      </Styled.WidgetLayout>
     </Styled.WidgetContainer>
   );
 };

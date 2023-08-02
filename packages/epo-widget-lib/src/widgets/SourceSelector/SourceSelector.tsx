@@ -1,10 +1,4 @@
-import {
-  FunctionComponent,
-  MouseEvent,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { FunctionComponent, MouseEvent, ReactNode, useState } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
 import { ImageShape } from "@rubin-epo/epo-react-lib";
@@ -41,7 +35,7 @@ interface SourceSelectorProps {
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   width = 600,
   height = 600,
-  selectedSource: preSelectedSource = [],
+  selectedSource = [],
   sources,
   alerts,
   images,
@@ -50,18 +44,13 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   color,
   isDisplayOnly = false,
 }) => {
-  const [selectedSource, setSelectedSource] =
-    useState<Source[]>(preSelectedSource);
   const [isLoaded, setLoaded] = useState(false);
   const [message, setMessage] = useState<ReactNode>();
   const [isMessageVisible, setMessageVisible] = useState(false);
   const [elapsed, setElapsed] = useState<Elapsed | null>(null);
+  const [imageIndex, setIndex] = useState(0);
   const { t } = useTranslation();
   const svgId = "sourceSelectorWidget";
-
-  useEffect(() => {
-    selectionCallback && selectionCallback(selectedSource);
-  }, [selectedSource]);
 
   const findData = (data: Source[], id: string, type: string) =>
     data.filter((d) => d.id === id && d.type === type);
@@ -76,7 +65,8 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
 
         if (!isAlreadySelected) {
           const newSelect = findData(sources, id, type);
-          setSelectedSource((value) => value.concat(newSelect));
+          selectionCallback &&
+            selectionCallback(selectedSource.concat(newSelect));
           setMessage(
             <>
               <IconComposer icon="checkmark" />
@@ -97,6 +87,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   };
 
   const handleBlinkChange = (index: number) => {
+    setIndex(index);
     if (alerts && alerts.length > 1) {
       const currentAlert = alerts[index];
       const diff = currentAlert.date - alerts[0].date;
@@ -121,28 +112,33 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
       )}
       <Styled.BackgroundBlinker
         images={images}
+        activeIndex={imageIndex}
         blinkCallback={handleBlinkChange}
-        loadedCallback={() => setLoaded(true)}
+        loadedCallback={() => {
+          console.log("loaded");
+          setLoaded(true);
+        }}
         {...blinkConfig}
-      />
-      {elapsed && <Styled.ElapsedDisplay {...elapsed} />}
-      <Styled.SVG
-        preserveAspectRatio="xMidYMid meet"
-        viewBox={`0 0 ${width} ${height}`}
-        onClick={handleClick}
-        id={svgId}
-        $isDisplayOnly={isDisplayOnly}
       >
-        <Points
-          xScale={getLinearScale([0, width], [0, width])}
-          yScale={getLinearScale([0, height], [height, 0])}
-          {...{
-            color,
-            sources,
-            selectedSource,
-          }}
-        />
-      </Styled.SVG>
+        {elapsed && <Styled.ElapsedDisplay {...elapsed} />}
+        <Styled.SVG
+          preserveAspectRatio="xMidYMid meet"
+          viewBox={`0 0 ${width} ${height}`}
+          onClick={handleClick}
+          id={svgId}
+          $isDisplayOnly={isDisplayOnly}
+        >
+          <Points
+            xScale={getLinearScale([0, width], [0, width])}
+            yScale={getLinearScale([0, height], [height, 0])}
+            {...{
+              color,
+              sources,
+              selectedSource,
+            }}
+          />
+        </Styled.SVG>
+      </Styled.BackgroundBlinker>
     </Styled.SourceSelectorContainer>
   );
 };
