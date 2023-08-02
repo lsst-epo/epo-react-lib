@@ -48,7 +48,7 @@
 - add nested example to `Container` storybook
 - remove type exports from main module
 
-## 2.0.2
+## 2.0.3
 
 - add signature overloads to `token`
 - export `ImageShape`, `Option`, and `ListBoxOption` from their modules
