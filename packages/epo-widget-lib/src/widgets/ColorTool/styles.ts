@@ -8,7 +8,7 @@ export const WidgetContainer = styled.section`
   container: colorTool / inline-size;
 `;
 
-const breakSize = token("BREAK_LARGE_TABLET_MIN") as string;
+const breakSize = token("BREAK_LARGE_TABLET_MIN");
 
 export const WidgetLayout = styled.div`
   --widget-areas: "title" "subtitle" "image" "caption" "controls" "reset";

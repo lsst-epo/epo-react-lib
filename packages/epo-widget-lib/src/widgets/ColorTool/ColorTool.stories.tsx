@@ -9,7 +9,7 @@ import {
 import { prepareData } from "./utilities";
 
 import ColorTool from ".";
-import { Option } from "@rubin-epo/epo-react-lib";
+import { Option } from "@rubin-epo/epo-react-lib/Select";
 import { useState } from "react";
 
 const meta: Meta<typeof ColorTool> = {

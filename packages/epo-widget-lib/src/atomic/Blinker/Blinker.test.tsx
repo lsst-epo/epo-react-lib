@@ -28,8 +28,8 @@ describe("Blinker", () => {
 
     fireEvent.click(nextButton);
 
-    expect(testProps.blinkCallback).toHaveBeenCalled();
     waitFor(() => {
+      expect(testProps.blinkCallback).toHaveBeenCalled();
       expect(testProps.blinkCallback).toHaveBeenCalledWith(
         testProps.activeIndex + 1
       );

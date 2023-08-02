@@ -2636,6 +2636,27 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
+"@rubin-epo/epo-react-lib@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-2.0.3.tgz#6b9567e88bb4d0992d35cce8e432ae80a79e8395"
+  integrity sha512-gTwTzPyhAFoC4DyD0P79YpN1YdrrK4/oId4F5RXyMyj84bnlDgThF92b7Pk//uQTmjVlIPaEHylyE8SivNDGsg==
+  dependencies:
+    "@castiron/style-mixins" "^1.0.6"
+    "@headlessui/react" "^1.7.5"
+    flickity "^3.0.0"
+    focus-trap "^7.4.2"
+    i18next "^22.4.10"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+    react-i18next "^12.0.0"
+    react-player "^2.12.0"
+    react-share "^4.4.1"
+    react-slider "^2.0.4"
+    react-uid "^2.3.2"
+    storybook "^7.1.0"
+    styled-components "^6.0.4"
+    upgrade "^1.1.0"
+
 "@rushstack/node-core-library@3.59.5":
   version "3.59.5"
   resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-3.59.5.tgz#38034d4c38b5ddd7d1c7f04233ce1b2209b7ae1f"
