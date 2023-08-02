@@ -1,4 +1,4 @@
-import { ImageShape } from "@rubin-epo/epo-react-lib";
+import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
 

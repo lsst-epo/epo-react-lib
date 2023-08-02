@@ -13,7 +13,7 @@ export const BlinkerContainer = styled.div`
   height: 100%;
 `;
 
-const breakSize: string = token("BREAK_MOBILE") as string;
+const breakSize = token("BREAK_MOBILE");
 
 export const BlinkerControls = styled(Controls)`
   grid-row: 2;

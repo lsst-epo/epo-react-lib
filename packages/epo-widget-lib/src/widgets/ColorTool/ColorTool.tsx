@@ -7,7 +7,8 @@ import {
   resetFilters,
 } from "./utilities";
 import * as Styled from "./styles";
-import { Select, Option, ListboxOption } from "@rubin-epo/epo-react-lib";
+import Select, { Option } from "@rubin-epo/epo-react-lib/Select";
+import { ListboxOption } from "@rubin-epo/epo-react-lib/SelectListbox";
 import FilterControls from "./FilterControls";
 import ImageComposite from "./ImageComposite";
 
