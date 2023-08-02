@@ -1,8 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { token } from "@rubin-epo/epo-react-lib/styles";
 import Controls from "./Controls/Controls";
 import Images from "./Images/Images";
 
 export const BlinkerContainer = styled.div`
+  container: blinker / inline-size;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr min-content;
@@ -11,30 +13,24 @@ export const BlinkerContainer = styled.div`
   height: 100%;
 `;
 
-export const BlinkerControls = styled(Controls)<{ $isCondensed: boolean }>`
-  grid-row: 2;
+const breakSize: string = token("BREAK_MOBILE") as string;
 
-  ${({ $isCondensed }) =>
-    $isCondensed
-      ? css`
-          margin-block-start: var(--PADDING_SMALL, 20px);
-        `
-      : css`
-          margin-block-end: var(--PADDING_SMALL, 20px);
-        `}
+export const BlinkerControls = styled(Controls)`
+  grid-row: 2;
+  margin-block-start: var(--PADDING_SMALL, 20px);
+
+  @container blinker (min-width: ${breakSize}) {
+    margin-block-end: var(--PADDING_SMALL, 20px);
+  }
 `;
 
-export const BlinkerImages = styled(Images)<{ $isCondensed: boolean }>`
+export const BlinkerImages = styled(Images)`
   aspect-ratio: 1;
+  grid-row: 1;
   width: 100%;
 
-  ${({ $isCondensed }) =>
-    $isCondensed
-      ? css`
-          grid-row: 1;
-        `
-      : css`
-          position: absolute;
-          grid-row: span 2;
-        `};
+  @container blinker (min-width: ${breakSize}) {
+    position: absolute;
+    grid-row: span 2;
+  }
 `;

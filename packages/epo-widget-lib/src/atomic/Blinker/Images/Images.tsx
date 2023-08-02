@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 import * as Styled from "./styles";
 import BlinkerImage from "../Image/Image";
@@ -17,24 +17,25 @@ const Images: FunctionComponent<ImagesProps> = ({
   loadedCallback,
 }) => {
   const [imagesLoaded, setImagesLoaded] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = imagesLoaded !== images.length;
 
-  const loadCallback = () => {
-    setImagesLoaded((count) => count + 1);
-  };
+  const loadCallback = useCallback(
+    () => setImagesLoaded((count) => count + 1),
+    []
+  );
 
   useEffect(() => {
-    setIsLoading(imagesLoaded !== images.length);
-
     if (!isLoading) {
       loadedCallback && loadedCallback();
     }
-  }, [imagesLoaded, isLoading]);
+  }, [isLoading]);
 
   return (
     <Styled.BlinkContainer data-testid="blinker-images" className={className}>
       {!imagesLoaded && <CircularLoader isVisible={isLoading} />}
-      <Styled.LoadingContainer $isLoading={isLoading}>
+      <Styled.LoadingContainer
+        style={{ "--loading-opacity": isLoading ? 0 : 1 }}
+      >
         {images.map((image, i) => {
           const { url } = image;
           const active = activeIndex === i;
