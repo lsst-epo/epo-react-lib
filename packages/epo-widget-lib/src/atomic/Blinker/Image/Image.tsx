@@ -19,8 +19,8 @@ const BlinkerImage: FunctionComponent<ImageProps> = ({
     <Styled.BlinkerImage
       alt={altText}
       src={url}
-      onLoad={loadCallback}
-      $active={active}
+      onLoad={() => loadCallback && loadCallback()}
+      style={{ "--image-visibility": active ? "visible" : "hidden" }}
     />
   );
 };

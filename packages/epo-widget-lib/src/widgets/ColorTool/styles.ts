@@ -1,34 +1,26 @@
 import styled, { css } from "styled-components";
 import Button from "@rubin-epo/epo-react-lib/Button";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
+import { token } from "@rubin-epo/epo-react-lib/styles";
 import FilterImage from "./FilterImage";
 
-export const WidgetContainer = styled.section<{
-  $isCondensed: boolean;
-  $hideControls: boolean;
-}>`
+export const WidgetContainer = styled.section`
+  container: colorTool / inline-size;
+`;
+
+const breakSize = token("BREAK_LARGE_TABLET_MIN") as string;
+
+export const WidgetLayout = styled.div`
+  --widget-areas: "title" "subtitle" "image" "caption" "controls" "reset";
+  --controls-row: "controls image";
   display: grid;
   gap: var(--PADDING_SMALL, 20px);
+  grid-template-areas: var(--widget-areas);
 
-  ${({ $isCondensed, $hideControls }) =>
-    $isCondensed
-      ? css`
-          grid-template-areas:
-            "title"
-            "subtitle"
-            "image"
-            "caption"
-            "controls"
-            "reset";
-        `
-      : css`
-          grid-template-areas:
-            "title title"
-            "subtitle subtitle"
-            ${$hideControls ? "'image image'" : "'controls image'"}
-            "reset reset"
-            "caption caption";
-        `}
+  @container colorTool (min-width: ${breakSize}) {
+    --widget-areas: "title title" "subtitle subtitle" var(--controls-row)
+      "reset reset" "caption caption";
+  }
 `;
 
 export const Title = styled.h2`
