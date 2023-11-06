@@ -1,24 +1,34 @@
-import { FunctionComponent, useRef, useEffect } from "react";
+import { FunctionComponent, HTMLAttributes, useRef } from "react";
+import useImage from "use-image";
+import * as Styled from "../styles";
 
-export interface FilterImageProps {
+export interface FilterImageProps extends HTMLAttributes<HTMLCanvasElement> {
   className?: string;
   height?: number;
   width?: number;
-  image: string;
+  url: string;
   color?: string;
   brightness?: number;
+  active: boolean;
+  filters?: {
+    [key: string]: number | undefined;
+  };
 }
 
 const FilterImage: FunctionComponent<FilterImageProps> = ({
   width = 600,
   height = 600,
   className,
-  image,
+  url,
   color = "transparent",
-  brightness = 1,
+  filters = {
+    brightness: 1,
+  },
+  active,
 }) => {
+  const [image, status] = useImage(url, "anonymous");
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const background = new Image();
+  const ctx = canvasRef.current?.getContext("2d");
 
   const updateColor = (
     ctx: CanvasRenderingContext2D,
@@ -26,40 +36,37 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
     canvasWidth: number,
     canvasHeight: number
   ) => {
-    ctx.fillStyle = color;
+    const safeColor = color === "" || color === null ? "transparent" : color;
+
+    ctx.fillStyle = safeColor;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   };
 
-  const updateCanvas = (image: string, color: string) => {
-    const ctx = canvasRef.current?.getContext("2d");
-
-    if (ctx) {
-      const safeColor =
-        CSS.supports && CSS.supports("background-color", color)
-          ? color
-          : "transparent";
-      const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
-      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-      ctx.globalCompositeOperation = "multiply";
-
-      background.onload = () => {
-        ctx?.drawImage(background, 0, 0, canvasWidth, canvasHeight);
-        updateColor(ctx, safeColor, canvasWidth, canvasHeight);
-      };
-
-      background.src = image;
-    }
+  const getFilters = (filters: { [key: string]: number }): string => {
+    return Object.keys(filters).reduce((prev, key, i) => {
+      return (prev += `${i > 0 ? " " : ""}${key}(${filters[key]})`);
+    }, "");
   };
 
-  useEffect(() => {
-    updateCanvas(image, color);
-  }, [color, image]);
+  if (ctx && image && status === "loaded") {
+    const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    ctx.globalCompositeOperation = "multiply";
+    ctx.filter = getFilters(filters);
+    ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+
+    updateColor(ctx, color, canvasWidth, canvasHeight);
+  }
 
   return (
-    <canvas
+    <Styled.Image
       ref={canvasRef}
-      style={{ filter: `brightness(${brightness}) contrast(1.3)` }}
       role="img"
+      style={{
+        "--image-visibility": active ? "visible" : "hidden",
+        "--image-opacity": active ? 1 : 0,
+      }}
       {...{ className, width, height }}
     />
   );
