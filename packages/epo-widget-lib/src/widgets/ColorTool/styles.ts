@@ -2,34 +2,29 @@ import styled, { css } from "styled-components";
 import Button from "@rubin-epo/epo-react-lib/Button";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { token } from "@rubin-epo/epo-react-lib/styles";
-import FilterImage from "./FilterImage";
 
 export const WidgetContainer = styled.section`
   container: colorTool / inline-size;
 `;
 
-const breakSize = token("BREAK_LARGE_TABLET_MIN");
+const breakSize = token("BREAK_DESKTOP_SMALL");
 
 export const WidgetLayout = styled.div`
-  --widget-areas: "title" "subtitle" "image" "caption" "controls" "reset";
+  --widget-areas: "image" "controls" "actions" "title";
   --controls-row: "controls image";
   display: grid;
   gap: var(--PADDING_SMALL, 20px);
   grid-template-areas: var(--widget-areas);
+  grid-template-columns: 1fr;
 
   @container colorTool (min-width: ${breakSize}) {
-    --widget-areas: "title title" "subtitle subtitle" var(--controls-row)
-      "reset reset" "caption caption";
+    --widget-areas: var(--controls-row) "actions actions" "title title";
+    grid-template-columns: 1fr var(--image-width, 1fr);
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.dl`
   grid-area: title;
-  margin: 0;
-`;
-
-export const Subtitle = styled.dl`
-  grid-area: subtitle;
   margin: 0;
   font-size: 18px;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
@@ -76,18 +71,7 @@ export const ImageContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
 `;
 
-export const BackgroundImage = styled.img<{ $filtersActive: boolean }>`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: ${({ $filtersActive }) => ($filtersActive ? "block" : "none")};
-  width: 100%;
-  height: 100%;
-`;
-
-export const FilteredImage = styled(FilterImage)<{ active: boolean }>`
+export const Image = styled.canvas`
   user-select: none;
   position: absolute;
   top: 0;
@@ -97,38 +81,17 @@ export const FilteredImage = styled(FilterImage)<{ active: boolean }>`
   width: 100%;
   height: 100%;
   mix-blend-mode: screen;
-
-  ${({ active }) =>
-    active
-      ? css`
-          visibility: visible;
-          opacity: 1;
-        `
-      : css`
-          visibility: hidden;
-          opacity: 0;
-        `}
+  opacity: var(--image-opacity, 0);
+  visibility: var(--image-visibility, hidden);
 `;
 
 export const SelectionContainer = styled.div`
-  grid-column: span 3;
+  margin-block-start: var(--PADDING_SMALL, 20px);
+  margin-inline: var(--PADDING_SMALL, 20px);
 `;
 
 export const ToolsHeader = styled.div`
   font-weight: var(--FONT_WEIGHT_BOLD, 600);
-`;
-
-export const Caption = styled.footer`
-  grid-area: caption;
-`;
-
-export const ResetButton = styled(Button)`
-  grid-area: reset;
-  text-align: left;
-
-  span {
-    text-align: left;
-  }
 `;
 
 export const FilterToggleButton = styled(Button)<{ $active: boolean }>`
