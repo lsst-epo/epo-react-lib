@@ -149,8 +149,6 @@ export const multiData: AstroCategory[] = [
     objects: [
       {
         name: "M51",
-        caption:
-          "Image credit:  T.A. Rector (University of Alaska Anchorage) and CTIO/NOAO/NSF and Subaru HSC Data Release 1",
         filters: [
           {
             label: "u",
@@ -871,6 +869,7 @@ export const singleData: AstroCategory[] = [
           {
             label: "R",
             color: "",
+            defaultValue: 10,
             value: 1,
             min: 0.5,
             max: 1.5,
@@ -882,6 +881,7 @@ export const singleData: AstroCategory[] = [
           {
             label: "G",
             color: "",
+            defaultValue: 20,
             value: 1,
             min: 0.5,
             max: 1.5,
@@ -893,6 +893,7 @@ export const singleData: AstroCategory[] = [
           {
             label: "B",
             color: "",
+            defaultValue: 30,
             value: 1,
             min: 0.5,
             max: 1.5,

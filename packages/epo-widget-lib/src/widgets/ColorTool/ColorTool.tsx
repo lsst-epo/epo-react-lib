@@ -1,16 +1,12 @@
-import { FormEvent, FunctionComponent } from "react";
+import { FormEvent, FunctionComponent, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  getCategoryName,
-  getDataFiltersByName,
-  isResetButtonActive,
-  resetFilters,
-} from "./utilities";
+import { getCategoryName, getDataFiltersByName } from "./utilities";
 import * as Styled from "./styles";
 import Select, { Option } from "@rubin-epo/epo-react-lib/Select";
 import { ListboxOption } from "@rubin-epo/epo-react-lib/SelectListbox";
 import FilterControls from "./FilterControls";
 import ImageComposite from "./ImageComposite";
+import Actions from "./Actions";
 
 export interface ImageFilter {
   label: string;
@@ -19,7 +15,7 @@ export interface ImageFilter {
   active: boolean;
   image: string;
   isDisabled: boolean;
-  value: number;
+  value?: number;
   defaultValue?: number;
   min: number;
   max: number;
@@ -28,13 +24,23 @@ export interface ImageFilter {
 
 export interface AstroObject {
   name: string;
-  caption?: string;
   filters: ImageFilter[];
 }
 
 export interface AstroCategory {
   type: string;
   objects: AstroObject[];
+}
+
+export type ColorToolAction = "reset" | "export" | "save";
+
+interface ColorToolConfig {
+  actions: Array<ColorToolAction>;
+  /** pixel width of the images in the tool */
+  width: number;
+  /** pixel height of the images in the tool */
+  height: number;
+  hideSubtitle?: boolean;
 }
 
 interface ColorToolProps {
@@ -45,8 +51,7 @@ interface ColorToolProps {
   colorOptions?: ListboxOption[];
   isDisabled?: boolean;
   isDisplayOnly?: boolean;
-  hideImage?: boolean;
-  hideSubtitle?: boolean;
+  config?: ColorToolConfig;
 }
 
 const ColorTool: FunctionComponent<ColorToolProps> = ({
@@ -57,9 +62,15 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   selectionCallback,
   isDisabled = false,
   isDisplayOnly = false,
-  hideImage = false,
-  hideSubtitle = false,
+  config = {
+    actions: ["reset"],
+    width: 600,
+    height: 600,
+    hideSubtitle: false,
+  },
 }) => {
+  const imageRef = useRef<HTMLDivElement>(null);
+
   const handleFilterChange = (updatedFilter: ImageFilter) => {
     const { label } = updatedFilter;
     const { filters } = selectedData;
@@ -88,61 +99,34 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     );
   };
 
-  const handleReset = () =>
-    selectionCallback &&
-    selectionCallback({
-      ...selectedData,
-      filters: resetFilters(selectedData.filters),
-    });
-
   const hasMultipleDatasets = data.length > 1;
+  const { actions, width, height, hideSubtitle } = config;
   const { t } = useTranslation();
   const selectPlaceholder = t("colorTool.actions.select_an_object");
-  const { filters, name: selectedObjectName, caption } = selectedData;
-  const selectedCategoryName = getCategoryName(data, selectedObjectName);
+  const { filters, name: selectedObjectName } = selectedData;
 
   return (
     <Styled.WidgetContainer>
       <Styled.WidgetLayout
         style={{
           "--controls-row": isDisplayOnly ? "'image image'" : undefined,
+          "--image-width": typeof width === "number" ? `${width}px` : width,
+          "--image-height": typeof height === "number" ? `${height}px` : height,
         }}
       >
         {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
-          <Styled.Subtitle>
-            {hasMultipleDatasets && (
-              <>
-                <dt>{t("colorTool.labels.object_type")}</dt>
-                <dd>{selectedCategoryName}</dd>
-              </>
-            )}
+          <Styled.Title>
             {!hideSubtitle && (
               <>
-                <dt>
-                  {t("colorTool.labels.object", {
-                    context: hasMultipleDatasets ? "selected" : false,
-                  })}
-                </dt>
+                <dt>{t("colorTool.labels.object")}</dt>
                 <dd>{selectedObjectName}</dd>
               </>
             )}
             {}
-          </Styled.Subtitle>
+          </Styled.Title>
         )}
         {!isDisplayOnly && (
           <Styled.ControlsContainer>
-            {hasMultipleDatasets && (
-              <Styled.SelectionContainer>
-                <Select
-                  id="astroObjectSelector"
-                  placeholder={selectPlaceholder}
-                  options={objectOptions}
-                  onChange={handleCategorySelection}
-                  value={selectedObjectName}
-                  disabled={isDisabled}
-                />
-              </Styled.SelectionContainer>
-            )}
             {filters && (
               <>
                 <Styled.ToolsHeader id="filterLabel">
@@ -175,17 +159,33 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
               })}
           </Styled.ControlsContainer>
         )}
-        {!hideImage && <ImageComposite {...{ filters }} />}
-        {selectedObjectName && !isDisplayOnly && (
-          <Styled.ResetButton
-            disabled={isDisabled || !isResetButtonActive(selectedData)}
-            onClick={handleReset}
-            icon="RotateLeftWithCenter"
-          >
-            {t("colorTool.actions.reset")}
-          </Styled.ResetButton>
+        <ImageComposite ref={imageRef} {...{ filters, width, height }}>
+          {hasMultipleDatasets && (
+            <Styled.SelectionContainer>
+              <Select
+                id="astroObjectSelector"
+                placeholder={selectPlaceholder}
+                options={objectOptions}
+                onChange={handleCategorySelection}
+                value={selectedObjectName}
+                disabled={isDisabled}
+              />
+            </Styled.SelectionContainer>
+          )}
+        </ImageComposite>
+        {!isDisplayOnly && (
+          <Actions
+            images={imageRef.current?.getElementsByTagName("canvas")}
+            {...{
+              actions,
+              selectedData,
+              width,
+              height,
+              isDisabled,
+              selectionCallback,
+            }}
+          />
         )}
-        {caption && <Styled.Caption>{caption}</Styled.Caption>}
       </Styled.WidgetLayout>
     </Styled.WidgetContainer>
   );
