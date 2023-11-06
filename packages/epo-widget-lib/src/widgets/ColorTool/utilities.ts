@@ -3,6 +3,7 @@ import find from "lodash/find";
 import isEmpty from "lodash/isEmpty";
 import { AstroCategory, AstroObject, ImageFilter } from "./ColorTool";
 
+/** calculates a value that can be used in the CSS {@link https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/brightness brightness filter } */
 export const getBrightnessValue = (min: number, max: number, value: number) => {
   const s = max - min;
   return s * (value / 100) + min;
@@ -10,12 +11,6 @@ export const getBrightnessValue = (min: number, max: number, value: number) => {
 
 export const isFilterActive = (filters: ImageFilter[]) =>
   filters.some((f) => f.active);
-
-export const isResetButtonActive = (data: AstroObject) => {
-  if (isEmpty(data)) return false;
-
-  return isFilterActive(data.filters);
-};
 
 export const updateFilters = (datum: AstroObject) =>
   datum.filters.map((f) => {
@@ -61,16 +56,8 @@ export const getCategoryName = (data: AstroCategory[], objectName: string) => {
   return type;
 };
 
-export const resetFilters = (filters: ImageFilter[]): ImageFilter[] =>
-  filters.map((filter) => {
-    const { defaultValue, min, max } = filter;
-    const value = defaultValue || 1;
+export const areActionsActive = (data: AstroObject) => {
+  if (isEmpty(data)) return false;
 
-    return {
-      ...filter,
-      active: false,
-      color: "",
-      brightness: getBrightnessValue(value, min, max),
-      value,
-    };
-  });
+  return isFilterActive(data.filters);
+};

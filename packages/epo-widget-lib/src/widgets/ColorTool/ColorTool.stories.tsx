@@ -28,33 +28,6 @@ const meta: Meta<typeof ColorTool> = {
         },
       },
     },
-    hideImage: {
-      control: "boolean",
-      description: "Hides the composited image.",
-      table: {
-        type: {
-          summary: "boolean",
-        },
-        category: "Display",
-        defaultValue: {
-          summary: false,
-        },
-      },
-    },
-    hideSubtitle: {
-      control: "boolean",
-      description:
-        "Hides the subtitle showing the selected object and category.",
-      table: {
-        type: {
-          summary: "boolean",
-        },
-        category: "Display",
-        defaultValue: {
-          summary: false,
-        },
-      },
-    },
     isDisabled: {
       control: "boolean",
       description: "Disables controls for the widget.",
@@ -168,6 +141,11 @@ Primary.args = {
   data: singleData,
   selectedData: singleData[0].objects[0],
   colorOptions,
+  config: {
+    actions: ["export", "reset"],
+    width: 600,
+    height: 600,
+  },
 };
 
 const objectOptions: Option[] = [];
@@ -188,6 +166,11 @@ MultipleImages.args = {
   objectOptions,
   selectedData: multiData[0].objects[0],
   colorOptions: multiSpectralOptions,
+  config: {
+    actions: ["export", "reset"],
+    width: 600,
+    height: 600,
+  },
 };
 
 export const DisplayOnly: StoryFn<typeof ColorTool> = Template.bind({});
