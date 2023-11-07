@@ -1,5 +1,5 @@
 import { FunctionComponent, HTMLAttributes, useRef } from "react";
-import useImage from "use-image";
+import useImage from "@/hooks/useImage";
 import * as Styled from "../styles";
 
 export interface FilterImageProps extends HTMLAttributes<HTMLCanvasElement> {
@@ -13,6 +13,7 @@ export interface FilterImageProps extends HTMLAttributes<HTMLCanvasElement> {
   filters?: {
     [key: string]: number | undefined;
   };
+  onLoadCallback?: () => void;
 }
 
 const FilterImage: FunctionComponent<FilterImageProps> = ({
@@ -25,8 +26,13 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
     brightness: 1,
   },
   active,
+  onLoadCallback,
 }) => {
-  const [image, status] = useImage(url, "anonymous");
+  const [image, status] = useImage({
+    url,
+    crossOrigin: "anonymous",
+    onLoadCallback,
+  });
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctx = canvasRef.current?.getContext("2d");
 
@@ -42,7 +48,9 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
   };
 
-  const getFilters = (filters: { [key: string]: number }): string => {
+  const getFilters = (filters: {
+    [key: string]: number | undefined;
+  }): string => {
     return Object.keys(filters).reduce((prev, key, i) => {
       return (prev += `${i > 0 ? " " : ""}${key}(${filters[key]})`);
     }, "");
