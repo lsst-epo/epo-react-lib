@@ -1,9 +1,10 @@
-import { FormEvent, FunctionComponent, useRef } from "react";
+import { FunctionComponent, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { getCategoryName, getDataFiltersByName } from "./utilities";
+import { getDataFiltersByName } from "./utilities";
 import * as Styled from "./styles";
-import Select, { Option } from "@rubin-epo/epo-react-lib/Select";
-import { ListboxOption } from "@rubin-epo/epo-react-lib/SelectListbox";
+import SelectListbox, {
+  ListboxOption,
+} from "@rubin-epo/epo-react-lib/SelectListbox";
 import FilterControls from "./FilterControls";
 import ImageComposite from "./ImageComposite";
 import Actions from "./Actions";
@@ -47,7 +48,7 @@ interface ColorToolProps {
   selectionCallback: (selectedData: AstroObject) => void;
   data: AstroCategory[];
   selectedData: AstroObject;
-  objectOptions?: Option[];
+  objectOptions?: ListboxOption[];
   colorOptions?: ListboxOption[];
   isDisabled?: boolean;
   isDisplayOnly?: boolean;
@@ -71,33 +72,39 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
 }) => {
   const imageRef = useRef<HTMLDivElement>(null);
 
-  const handleFilterChange = (updatedFilter: ImageFilter) => {
-    const { label } = updatedFilter;
-    const { filters } = selectedData;
-    const updatedFilters = filters.map((f) =>
-      f.label === label ? updatedFilter : f
-    );
+  const handleFilterChange = useCallback(
+    (updatedFilter: ImageFilter) => {
+      const { label } = updatedFilter;
+      const { filters } = selectedData;
+      const updatedFilters = filters.map((f) =>
+        f.label === label ? updatedFilter : f
+      );
 
-    return (
-      selectionCallback &&
-      selectionCallback({
-        ...selectedData,
-        filters: updatedFilters,
-      })
-    );
-  };
+      return (
+        selectionCallback &&
+        selectionCallback({
+          ...selectedData,
+          filters: updatedFilters,
+        })
+      );
+    },
+    [selectedData, selectionCallback]
+  );
 
-  const handleCategorySelection = (event: FormEvent<HTMLSelectElement>) => {
-    const { value } = event.target as HTMLSelectElement;
+  const handleObjectSelection = useCallback(
+    (value: string | null) => {
+      if (value === null) return;
 
-    return (
-      selectionCallback &&
-      selectionCallback({
-        name: value,
-        filters: getDataFiltersByName(data, value),
-      })
-    );
-  };
+      return (
+        selectionCallback &&
+        selectionCallback({
+          name: value,
+          filters: getDataFiltersByName(data, value),
+        })
+      );
+    },
+    [selectionCallback, data]
+  );
 
   const hasMultipleDatasets = data.length > 1;
   const { actions, width, height, hideSubtitle } = config;
@@ -159,16 +166,21 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
               })}
           </Styled.ControlsContainer>
         )}
-        <ImageComposite ref={imageRef} {...{ filters, width, height }}>
+        <ImageComposite
+          ref={imageRef}
+          {...{ filters, width, height, selectedObjectName }}
+        >
           {hasMultipleDatasets && (
             <Styled.SelectionContainer>
-              <Select
+              <SelectListbox
                 id="astroObjectSelector"
                 placeholder={selectPlaceholder}
                 options={objectOptions}
-                onChange={handleCategorySelection}
+                onChangeCallback={handleObjectSelection}
                 value={selectedObjectName}
-                disabled={isDisabled}
+                isDisabled={isDisabled}
+                width="100%"
+                maxWidth="100%"
               />
             </Styled.SelectionContainer>
           )}

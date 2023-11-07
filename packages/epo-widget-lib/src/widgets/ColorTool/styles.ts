@@ -64,13 +64,6 @@ export const Slider = styled(HorizontalSlider)`
   width: 100%;
 `;
 
-export const ImageContainer = styled.div`
-  position: relative;
-  aspect-ratio: 1 / 1;
-  grid-area: image;
-  background-color: rgba(0, 0, 0, 0.1);
-`;
-
 export const Image = styled.canvas`
   user-select: none;
   position: absolute;
@@ -86,8 +79,10 @@ export const Image = styled.canvas`
 `;
 
 export const SelectionContainer = styled.div`
-  margin-block-start: var(--PADDING_SMALL, 20px);
-  margin-inline: var(--PADDING_SMALL, 20px);
+  position: absolute;
+  top: var(--PADDING_SMALL, 20px);
+  left: var(--PADDING_SMALL, 20px);
+  width: calc(100% - var(--PADDING_SMALL, 20px) * 2);
 `;
 
 export const ToolsHeader = styled.div`
