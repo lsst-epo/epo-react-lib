@@ -16,7 +16,7 @@ export interface ImageFilter {
   active: boolean;
   image: string;
   isDisabled: boolean;
-  value?: number;
+  value: number;
   defaultValue?: number;
   min: number;
   max: number;
@@ -36,11 +36,11 @@ export interface AstroCategory {
 export type ColorToolAction = "reset" | "export" | "save";
 
 interface ColorToolConfig {
-  actions: Array<ColorToolAction>;
+  actions?: Array<ColorToolAction>;
   /** pixel width of the images in the tool */
-  width: number;
+  width?: number;
   /** pixel height of the images in the tool */
-  height: number;
+  height?: number;
   hideSubtitle?: boolean;
 }
 
@@ -70,6 +70,13 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     hideSubtitle: false,
   },
 }) => {
+  const defaultConfig = {
+    actions: ["reset"],
+    width: 600,
+    height: 600,
+    hideSubtitle: false,
+  };
+
   const imageRef = useRef<HTMLDivElement>(null);
 
   const handleFilterChange = useCallback(
@@ -107,7 +114,10 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   );
 
   const hasMultipleDatasets = data.length > 1;
-  const { actions, width, height, hideSubtitle } = config;
+  const { actions, width, height, hideSubtitle } = {
+    ...defaultConfig,
+    ...config,
+  };
   const { t } = useTranslation();
   const selectPlaceholder = t("colorTool.actions.select_an_object");
   const { filters, name: selectedObjectName } = selectedData;
@@ -187,9 +197,9 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
         </ImageComposite>
         {!isDisplayOnly && (
           <Actions
+            actions={actions as ColorToolAction[]}
             images={imageRef.current?.getElementsByTagName("canvas")}
             {...{
-              actions,
               selectedData,
               width,
               height,

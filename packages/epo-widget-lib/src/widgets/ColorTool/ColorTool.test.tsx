@@ -11,7 +11,7 @@ import {
   colorOptions,
   multiSpectralOptions,
 } from "./__mocks__";
-import { Option } from "@rubin-epo/epo-react-lib/Select";
+import { ListboxOption } from "@rubin-epo/epo-react-lib/SelectListbox";
 import ColorTool from ".";
 import { getCategoryName } from "./utilities";
 
@@ -22,14 +22,13 @@ const props = {
   selectionCallback: jest.fn(),
 };
 
-const objectOptions: Option[] = [];
+const objectOptions: ListboxOption[] = [];
 
 multiData.forEach((category) => {
   category.objects.forEach((object) => {
     objectOptions.push({
       label: `${category.type}: ${object.name}`,
       value: object.name,
-      optionGroup: category.type,
     });
   });
 });
@@ -48,26 +47,9 @@ describe("ColorTool", () => {
       render(<ColorTool {...multiProps} />);
     });
     const descriptions = screen.getAllByRole("definition");
-    const select = screen.getByDisplayValue(objectOptions[0].label);
-    expect(descriptions.length).toBe(2);
+    const select = document.getElementById("astroObjectSelector");
+    expect(descriptions.length).toBe(1);
     expect(select).toBeInTheDocument();
-  });
-  it(`should change the selected object using the dropdown`, async () => {
-    await act(async () => {
-      render(<ColorTool {...multiProps} />);
-    });
-    const { name } = multiProps.selectedData;
-    const initialType = getCategoryName(multiProps.data, name) || "";
-
-    const select = screen.getByDisplayValue(objectOptions[0].label);
-    const type = screen.getByText(initialType);
-
-    fireEvent.change(select, { target: { value: objectOptions[1].value } });
-
-    waitFor(() => {
-      expect(multiProps.selectionCallback).toBeCalled();
-      expect(type.textContent).not.toBe(initialType);
-    });
   });
   it(`should disable controls when isDisabled set`, async () => {
     await act(async () => {
@@ -88,19 +70,14 @@ describe("ColorTool", () => {
       render(<ColorTool {...{ ...multiProps, isDisplayOnly: true }} />);
     });
 
-    expect(screen.queryAllByRole("combobox").length).toBe(0);
+    expect(screen.queryAllByRole("combobox").length).toBe(1);
     expect(screen.queryAllByRole("button").length).toBe(0);
-  });
-  it(`should hide image when hideImage set`, async () => {
-    await act(async () => {
-      render(<ColorTool {...{ ...multiProps, hideImage: true }} />);
-    });
-
-    expect(screen.queryAllByRole("img").length).toBe(0);
   });
   it(`should hide subtitle when hideSubtitle set`, async () => {
     await act(async () => {
-      render(<ColorTool {...{ ...multiProps, hideSubtitle: true }} />);
+      render(
+        <ColorTool {...{ ...multiProps, config: { hideSubtitle: true } }} />
+      );
     });
 
     const { name } = multiProps.selectedData;

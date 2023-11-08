@@ -3,7 +3,7 @@ import { singleData, colorOptions } from "../__mocks__";
 import FilterControls from ".";
 import { getBrightnessValue } from "../utilities";
 
-const { value, min, max } = singleData[0].objects[0].filters[0];
+const { value = 1, min, max } = singleData[0].objects[0].filters[0];
 const props = {
   filter: {
     ...singleData[0].objects[0].filters[0],
