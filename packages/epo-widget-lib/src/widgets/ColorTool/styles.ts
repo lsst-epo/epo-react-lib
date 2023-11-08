@@ -4,6 +4,7 @@ import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const WidgetContainer = styled.section`
+  color: var(--neutral80, #404040);
   container: colorTool / inline-size;
 `;
 
