@@ -6,7 +6,7 @@ import FilterImage from ".";
 const meta: ComponentMeta<typeof FilterImage> = {
   argTypes: {
     className: argTypes.className,
-    image: {
+    url: {
       type: {
         name: "string",
         required: true,
@@ -91,8 +91,7 @@ export default meta;
 export const Primary: ComponentStoryObj<typeof FilterImage> = {
   args: {
     height: 300,
-    image:
-      "https://rubin.canto.com/direct/image/3jhaht4beh6aha6eiplkb5us6o/MlO1oSfjiMJBT25-VtnRD7B0-EI/original?content-type=image%2Fjpeg&name=Wide_View_Telescope_Mount.jpg",
+    url: "https://rubin.canto.com/direct/image/3jhaht4beh6aha6eiplkb5us6o/MlO1oSfjiMJBT25-VtnRD7B0-EI/original?content-type=image%2Fjpeg&name=Wide_View_Telescope_Mount.jpg",
     color: "#EC1C24",
   },
 };
