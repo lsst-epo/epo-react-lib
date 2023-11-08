@@ -85,6 +85,11 @@ export function isStyleSupported(prop: string, value: string): boolean {
     }
   }
 
+  // node, no way around this
+  if (typeof document === "undefined") {
+    return true;
+  }
+
   // Convert to camel-case for DOM interactions
   const camel = prop.replace(/-([a-z]|[0-9])/gi, function (all, letter) {
     return (letter + "").toUpperCase();
