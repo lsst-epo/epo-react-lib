@@ -1,5 +1,6 @@
 import { FunctionComponent, HTMLAttributes, useRef } from "react";
 import useImage from "@/hooks/useImage";
+import { isStyleSupported } from "../utilities";
 import * as Styled from "../styles";
 
 export interface FilterImageProps extends HTMLAttributes<HTMLCanvasElement> {
@@ -42,7 +43,7 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
     canvasWidth: number,
     canvasHeight: number
   ) => {
-    const safeColor = color === "" || color === null ? "transparent" : color;
+    const safeColor = isStyleSupported("color", color) ? color : "transparent";
 
     ctx.fillStyle = safeColor;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
