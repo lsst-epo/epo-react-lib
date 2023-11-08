@@ -73,16 +73,18 @@ export function isStyleSupported(prop: string, value: string): boolean {
   // If no value is supplied, use "inherit"
   value = arguments.length === 2 ? value : "inherit";
   // Try the native standard method first
-  if (window && "CSS" in window && "supports" in window.CSS) {
-    return window.CSS.supports(prop, value);
+  if (typeof window !== "undefined") {
+    if ("CSS" in window && "supports" in window.CSS) {
+      return window.CSS.supports(prop, value);
+    }
+    // Check Opera's native method
+    if ("supportsCSS" in window) {
+      return (
+        window.supportsCSS as (property: string, value: string) => boolean
+      )(prop, value);
+    }
   }
-  // Check Opera's native method
-  if (window && "supportsCSS" in window) {
-    return (window.supportsCSS as (property: string, value: string) => boolean)(
-      prop,
-      value
-    );
-  }
+
   // Convert to camel-case for DOM interactions
   const camel = prop.replace(/-([a-z]|[0-9])/gi, function (all, letter) {
     return (letter + "").toUpperCase();
