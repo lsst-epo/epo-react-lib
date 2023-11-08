@@ -8,6 +8,16 @@ const thumbBorder = 4;
 const thumbHeight = 14;
 
 export const HorizontalSliderContainer = styled.div`
+  --slider-color: inherit;
+  --slider-border-color: var(--blue20, #c7d4f4);
+  --slider-background-color: var(--neutral10, #f5f5f5);
+
+  &[data-theme="dark"] {
+    --slider-color: var(--white, #fff);
+    --slider-border-color: var(--white, #fff);
+    --slider-background-color: var(--neutral80, #404040);
+  }
+
   display: flex;
   flex-flow: column nowrap;
   padding-bottom: 16px;
@@ -21,20 +31,19 @@ export const TrackLabels = styled.div`
   padding: 0 3px 6px;
 `;
 
-export const Label = styled.div<{ $darkMode: boolean }>`
+export const Label = styled.div`
   box-sizing: border-box;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.6;
-  color: ${({ $darkMode }) =>
-    $darkMode ? css`var(--white, #fff)` : css`inherit`};
+  color: var(--slider-color);
 `;
 
-export const ThumbLabel = styled.span<{
-  $showThumbLabels: boolean;
-  $darkMode: boolean;
-}>`
+export const ThumbLabel = styled.span`
+  background-color: var(--slider-background-color);
+  border: 1px solid var(--slider-border-color);
   box-sizing: border-box;
+  color: var(--slider-color);
   position: absolute;
   top: calc(100% + ${thumbBorder}px);
   padding: 5px;
@@ -43,22 +52,9 @@ export const ThumbLabel = styled.span<{
   text-align: center;
   line-height: 1.35;
   border-radius: 5px;
-  opacity: ${({ $showThumbLabels }) => ($showThumbLabels ? 1 : 0)};
+  opacity: var(--thumb-label-opacity, 0);
   transition: opacity 0.4s ease-in-out;
   user-select: none;
-
-  ${({ $darkMode }) =>
-    $darkMode
-      ? css`
-          border: 1px solid var(--white);
-          background-color: var(--neutral80);
-          color: var(--white, #fff);
-        `
-      : css`
-          border: 1px solid var(--blue20);
-          background-color: var(--neutral10);
-          color: var(--black, #000);
-        `}
 `;
 
 export const ThumbContainer = styled.div`

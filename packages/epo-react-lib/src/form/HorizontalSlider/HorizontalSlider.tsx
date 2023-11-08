@@ -1,13 +1,12 @@
-import { isColorTransparent } from "@/lib/utils";
+import { isColorTransparent, isStyleSupported } from "@/lib/utils";
 import { useState, FunctionComponent } from "react";
+import { ReactSliderProps } from "react-slider";
 import * as Styled from "./styles";
 
 type SliderValue = number | readonly number[];
 
-type BaseProps = {
-  min?: number;
-  max?: number;
-  step?: number;
+interface BaseProps
+  extends Pick<ReactSliderProps, "min" | "max" | "step" | "className"> {
   label: string;
   minLabel?: string;
   maxLabel?: string;
@@ -15,16 +14,17 @@ type BaseProps = {
   color?: string;
   darkMode?: boolean;
   isDisabled?: boolean;
-  className?: string;
-};
+}
 
 interface SingleSliderProps extends BaseProps {
   value: number;
+  defaultValue?: number;
   onChangeCallback: (value: number, label: string) => void;
 }
 
 interface RangedSliderProps extends BaseProps {
   value: number[];
+  defaultValue?: number[];
   onChangeCallback: (value: number[], label: string) => void;
 }
 
@@ -35,6 +35,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   max = 100,
   step = 1,
   value,
+  defaultValue,
   onChangeCallback,
   label,
   minLabel,
@@ -55,21 +56,25 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
   const getValidColor = (color?: string) => {
     const validColor =
-      color && CSS.supports("color", color) && !isColorTransparent(color)
+      color && isStyleSupported("color", color) && !isColorTransparent(color)
         ? color
         : undefined;
 
     return isDisabled ? "var(--neutral60, #6a6e6e)" : validColor;
   };
 
-  const Track = (props: any, state: { index: number; value: SliderValue }) => {
+  const Track = (props: any, state: { index: number }) => {
     const { index } = state;
+    const { key, ...other } = props;
     const hasColor =
       (hasDoubleHandles && index === 1) || (!hasDoubleHandles && index === 0);
     const trackColor = getValidColor(color);
-
     return (
-      <Styled.Track color={hasColor ? trackColor : "transparent"} {...props} />
+      <Styled.Track
+        color={hasColor ? trackColor : "transparent"}
+        key={key}
+        {...other}
+      />
     );
   };
 
@@ -77,14 +82,15 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     props: any,
     state: { index: number; value: SliderValue; valueNow: number }
   ) => {
+    const { key, ...other } = props;
     const { valueNow } = state;
     const thumbColor = getValidColor(color);
 
     return (
-      <Styled.ThumbContainer {...{ ...props }}>
+      <Styled.ThumbContainer key={key} {...other}>
         <Styled.Thumb {...{ color: thumbColor, $isDisabled: isDisabled }} />
         <Styled.ThumbLabel
-          {...{ $showThumbLabels: showThumbLabels, $darkMode: darkMode }}
+          style={{ "--thumb-label-opacity": showThumbLabels ? 1 : 0 }}
         >
           {valueNow}
         </Styled.ThumbLabel>
@@ -96,19 +102,18 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   const maxLabelId = `${label}-max-label`;
 
   return (
-    <Styled.HorizontalSliderContainer {...{ className }}>
+    <Styled.HorizontalSliderContainer
+      data-theme={darkMode ? "dark" : "light"}
+      {...{ className }}
+    >
       {minLabel || maxLabel ? (
         <Styled.TrackLabels>
-          <Styled.Label id={minLabelId} {...{ $darkMode: darkMode }}>
-            {minLabel}
-          </Styled.Label>
-          <Styled.Label id={maxLabelId} {...{ $darkMode: darkMode }}>
-            {maxLabel}
-          </Styled.Label>
+          <Styled.Label id={minLabelId}>{minLabel}</Styled.Label>
+          <Styled.Label id={maxLabelId}>{maxLabel}</Styled.Label>
         </Styled.TrackLabels>
       ) : null}
       <Styled.HorizontalSlider
-        {...{ min, max, step, value, showThumbLabels }}
+        {...{ defaultValue, min, max, step, value, showThumbLabels }}
         onChange={() => {
           setShowThumbLabels(true);
         }}
