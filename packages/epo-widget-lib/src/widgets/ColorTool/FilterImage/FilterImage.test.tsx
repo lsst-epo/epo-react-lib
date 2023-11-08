@@ -1,10 +1,12 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import FilterImage from ".";
 
 const props = {
-  image: "https://via.placeholder.com/300",
+  url: "https://via.placeholder.com/300",
   width: 300,
   height: 300,
+  active: true,
+  onLoadCallback: jest.fn(),
 };
 
 describe("FilterImage", () => {
@@ -26,5 +28,14 @@ describe("FilterImage", () => {
     const img = canvas.toDataURL();
 
     expect(img).toMatchSnapshot();
+  });
+  it("should perform a callback when loading is complete", async () => {
+    await act(async () => {
+      render(<FilterImage {...props} />);
+    });
+
+    waitFor(() => {
+      expect(props.onLoadCallback).toBeCalled();
+    });
   });
 });
