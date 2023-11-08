@@ -73,11 +73,11 @@ export function isStyleSupported(prop: string, value: string): boolean {
   // If no value is supplied, use "inherit"
   value = arguments.length === 2 ? value : "inherit";
   // Try the native standard method first
-  if ("CSS" in window && "supports" in window.CSS) {
+  if (window && "CSS" in window && "supports" in window.CSS) {
     return window.CSS.supports(prop, value);
   }
   // Check Opera's native method
-  if ("supportsCSS" in window) {
+  if (window && "supportsCSS" in window) {
     return (window.supportsCSS as (property: string, value: string) => boolean)(
       prop,
       value
