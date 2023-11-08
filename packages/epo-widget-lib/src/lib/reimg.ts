@@ -57,7 +57,7 @@ function OutputProcessor(
     toJpeg: function (quality: number) {
       // quality should be between 0-1
       quality = quality || 1.0;
-      (function (q) {
+      ((q) => {
         this.toCanvas(function (canvas: HTMLCanvasElement) {
           var img = document.createElement("img");
           img.src = canvas.toDataURL("image/jpeg", q);

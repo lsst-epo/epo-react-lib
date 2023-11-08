@@ -4,6 +4,9 @@ import ImageComposite from ".";
 
 const props = {
   filters: singleData[0].objects[0].filters,
+  width: 600,
+  height: 600,
+  selectedObjectName: singleData[0].objects[0].name,
 };
 
 describe("ImageComposite", () => {
@@ -12,6 +15,6 @@ describe("ImageComposite", () => {
 
     const filters = screen.getAllByRole("img", { hidden: true });
 
-    expect(filters.length).toBe(props.filters.length + 1);
+    expect(filters.length).toBe(props.filters.length);
   });
 });
