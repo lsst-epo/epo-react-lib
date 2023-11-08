@@ -61,3 +61,40 @@ export const areActionsActive = (data: AstroObject) => {
 
   return isFilterActive(data.filters);
 };
+
+export function isStyleSupported(prop: string, value: string): boolean {
+  // If no value is supplied, use "inherit"
+  value = arguments.length === 2 ? value : "inherit";
+  // Try the native standard method first
+  if (typeof window !== "undefined") {
+    if ("CSS" in window && "supports" in window.CSS) {
+      return window.CSS.supports(prop, value);
+    }
+    // Check Opera's native method
+    if ("supportsCSS" in window) {
+      return (
+        window.supportsCSS as (property: string, value: string) => boolean
+      )(prop, value);
+    }
+  }
+
+  // node, no way around this
+  if (typeof document === "undefined") {
+    return true;
+  }
+
+  // Convert to camel-case for DOM interactions
+  const camel = prop.replace(/-([a-z]|[0-9])/gi, function (all, letter) {
+    return (letter + "").toUpperCase();
+  });
+  // Create test element
+  const el = document.createElement("div");
+  // Check if the property is supported
+  const support = camel in el.style;
+  // Assign the property and value to invoke
+  // the CSS interpreter
+  el.style.cssText = prop + ":" + value;
+  // Ensure both the property and value are
+  // supported and return
+  return support && el.style[camel as any] !== "";
+}
