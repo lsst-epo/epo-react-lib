@@ -1,6 +1,4 @@
-import styled, { css } from "styled-components";
-import Button from "@rubin-epo/epo-react-lib/Button";
-import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
+import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const WidgetContainer = styled.section`
@@ -8,18 +6,17 @@ export const WidgetContainer = styled.section`
   container: colorTool / inline-size;
 `;
 
-const breakSize = token("BREAK_DESKTOP_SMALL");
+const breakSize = token("BREAK_LARGE_TABLET_MIN");
 
 export const WidgetLayout = styled.div`
   --widget-areas: "image" "controls" "actions" "title";
-  --controls-row: "controls image";
   display: grid;
-  gap: var(--PADDING_SMALL, 20px);
+  gap: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
   grid-template-areas: var(--widget-areas);
   grid-template-columns: 1fr;
 
   @container colorTool (min-width: ${breakSize}) {
-    --widget-areas: var(--controls-row) "actions actions" "title title";
+    --widget-areas: "controls image" "actions actions" "title title";
     grid-template-columns: 1fr var(--image-width, 1fr);
   }
 `;
@@ -60,11 +57,6 @@ export const ControlsContainer = styled.div`
   align-items: center;
 `;
 
-export const Slider = styled(HorizontalSlider)`
-  padding: 0;
-  width: 100%;
-`;
-
 export const Image = styled.canvas`
   user-select: none;
   position: absolute;
@@ -81,41 +73,11 @@ export const Image = styled.canvas`
 
 export const SelectionContainer = styled.div`
   position: absolute;
-  top: var(--PADDING_SMALL, 20px);
-  left: var(--PADDING_SMALL, 20px);
-  width: calc(100% - var(--PADDING_SMALL, 20px) * 2);
+  top: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
+  left: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
+  width: calc(100% - var(--color-tool-padding, var(--PADDING_SMALL, 20px)) * 2);
 `;
 
 export const ToolsHeader = styled.div`
   font-weight: var(--FONT_WEIGHT_BOLD, 600);
-`;
-
-export const FilterToggleButton = styled(Button)<{ $active: boolean }>`
-  border-radius: 50%;
-  font-weight: var(--FONT_WEIGHT_MEDIUM, 500);
-  font-size: 22px;
-  text-transform: lowercase;
-  display: flex;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-
-  ${({ $active }) =>
-    $active
-      ? css`
-          background-color: var(--turquoise85, #12726c);
-          &:not(:disabled):not([aria-disabled="true"]):hover {
-            outline: 1px solid var(--white, #fff);
-            outline-offset: -3px;
-          }
-        `
-      : css`
-          background-color: #f7f7f7;
-          border-color: #6c6e6e;
-          color: #6c6e6e !important;
-          &:not(:disabled):not([aria-disabled="true"]):hover {
-            outline: 2px solid #6c6e6e;
-            outline-offset: -2px;
-          }
-        `}
 `;
