@@ -5,7 +5,7 @@ import { FunctionComponent } from "react";
 import { ImageFilter } from "../ColorTool";
 import { getBrightnessValue } from "../utilities";
 import { useTranslation } from "react-i18next";
-import * as Styled from "../styles";
+import * as Styled from "./styles";
 
 interface FilterControlProps {
   filter: ImageFilter;
@@ -48,14 +48,15 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
 
   return (
     <>
-      <Styled.FilterToggleButton
-        disabled={isDisabled}
-        onClick={handleImage}
-        $active={active}
-        aria-labelledby={buttonLabelledById}
-      >
-        {label}
-      </Styled.FilterToggleButton>
+      <Styled.FilterLabel aria-labelledby={buttonLabelledById}>
+        <Styled.HiddenCheckbox
+          disabled={isDisabled}
+          checked={active}
+          type="checkbox"
+          onChange={handleImage}
+        />
+        <Styled.FilterToggle as="span">{label}</Styled.FilterToggle>
+      </Styled.FilterLabel>
       <SelectListbox
         isDisabled={isDisabled}
         placeholder={selectPlaceholder}
