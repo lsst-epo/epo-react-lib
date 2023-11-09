@@ -70,7 +70,7 @@ describe("ColorTool", () => {
       render(<ColorTool {...{ ...multiProps, isDisplayOnly: true }} />);
     });
 
-    expect(screen.queryAllByRole("combobox").length).toBe(1);
+    expect(screen.queryAllByRole("combobox").length).toBe(0);
     expect(screen.queryAllByRole("button").length).toBe(0);
   });
   it(`should hide subtitle when hideSubtitle set`, async () => {

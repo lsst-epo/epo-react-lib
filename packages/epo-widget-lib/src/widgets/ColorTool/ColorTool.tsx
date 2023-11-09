@@ -78,6 +78,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   };
 
   const imageRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const handleFilterChange = useCallback(
     (updatedFilter: ImageFilter) => {
@@ -113,25 +114,33 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     [selectionCallback, data]
   );
 
-  const hasMultipleDatasets = data.length > 1;
+  const { filters, name: selectedObjectName } = selectedData;
   const { actions, width, height, hideSubtitle } = {
     ...defaultConfig,
     ...config,
   };
-  const { t } = useTranslation();
+
+  if (isDisplayOnly) {
+    return (
+      <ImageComposite
+        ref={imageRef}
+        {...{ filters, width, height, selectedObjectName }}
+      />
+    );
+  }
+
+  const hasMultipleDatasets = data.length > 1;
   const selectPlaceholder = t("colorTool.actions.select_an_object");
-  const { filters, name: selectedObjectName } = selectedData;
 
   return (
     <Styled.WidgetContainer>
       <Styled.WidgetLayout
         style={{
-          "--controls-row": isDisplayOnly ? "'image image'" : undefined,
           "--image-width": typeof width === "number" ? `${width}px` : width,
           "--image-height": typeof height === "number" ? `${height}px` : height,
         }}
       >
-        {selectedObjectName && (isDisplayOnly || hasMultipleDatasets) && (
+        {selectedObjectName && hasMultipleDatasets && (
           <Styled.Title>
             {!hideSubtitle && (
               <>
@@ -142,40 +151,38 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
             {}
           </Styled.Title>
         )}
-        {!isDisplayOnly && (
-          <Styled.ControlsContainer>
-            {filters && (
-              <>
-                <Styled.ToolsHeader id="filterLabel">
-                  {t("colorTool.labels.filter")}
-                </Styled.ToolsHeader>
-                <Styled.ToolsHeader id="colorLabel">
-                  {t("colorTool.labels.color")}
-                </Styled.ToolsHeader>
-                <Styled.ToolsHeader id="intensityLabel">
-                  {t("colorTool.labels.color_intensity")}
-                </Styled.ToolsHeader>
-              </>
-            )}
-            {filters &&
-              filters.map((imageFilter) => {
-                const { label, isDisabled: isFilterDisabled } = imageFilter;
+        <Styled.ControlsContainer>
+          {filters && (
+            <>
+              <Styled.ToolsHeader id="filterLabel">
+                {t("colorTool.labels.filter")}
+              </Styled.ToolsHeader>
+              <Styled.ToolsHeader id="colorLabel">
+                {t("colorTool.labels.color")}
+              </Styled.ToolsHeader>
+              <Styled.ToolsHeader id="intensityLabel">
+                {t("colorTool.labels.color_intensity")}
+              </Styled.ToolsHeader>
+            </>
+          )}
+          {filters &&
+            filters.map((imageFilter) => {
+              const { label, isDisabled: isFilterDisabled } = imageFilter;
 
-                return (
-                  <FilterControls
-                    key={`filter-${label}`}
-                    filter={imageFilter}
-                    isDisabled={isDisabled || isFilterDisabled}
-                    colorOptions={colorOptions}
-                    onChangeFilterCallback={handleFilterChange}
-                    buttonLabelledById="filterLabel"
-                    selectLabelledById="colorLabel"
-                    sliderLabelledById="intensityLabel"
-                  />
-                );
-              })}
-          </Styled.ControlsContainer>
-        )}
+              return (
+                <FilterControls
+                  key={`filter-${label}`}
+                  filter={imageFilter}
+                  isDisabled={isDisabled || isFilterDisabled}
+                  colorOptions={colorOptions}
+                  onChangeFilterCallback={handleFilterChange}
+                  buttonLabelledById="filterLabel"
+                  selectLabelledById="colorLabel"
+                  sliderLabelledById="intensityLabel"
+                />
+              );
+            })}
+        </Styled.ControlsContainer>
         <ImageComposite
           ref={imageRef}
           {...{ filters, width, height, selectedObjectName }}
@@ -195,19 +202,17 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
             </Styled.SelectionContainer>
           )}
         </ImageComposite>
-        {!isDisplayOnly && (
-          <Actions
-            actions={actions as ColorToolAction[]}
-            images={imageRef.current?.getElementsByTagName("canvas")}
-            {...{
-              selectedData,
-              width,
-              height,
-              isDisabled,
-              selectionCallback,
-            }}
-          />
-        )}
+        <Actions
+          actions={actions as ColorToolAction[]}
+          images={imageRef.current?.getElementsByTagName("canvas")}
+          {...{
+            selectedData,
+            width,
+            height,
+            isDisabled,
+            selectionCallback,
+          }}
+        />
       </Styled.WidgetLayout>
     </Styled.WidgetContainer>
   );
