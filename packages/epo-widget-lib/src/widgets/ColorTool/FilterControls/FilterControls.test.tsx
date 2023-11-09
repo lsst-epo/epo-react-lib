@@ -40,7 +40,7 @@ describe("FilterControls", () => {
   it(`should disable controls`, () => {
     render(<FilterControls {...{ ...props, isDisabled: true }} />);
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("checkbox");
     const select = screen.getByRole("combobox");
     const slider = screen.getByRole("slider");
 
@@ -51,7 +51,7 @@ describe("FilterControls", () => {
   it(`should call callback on modification`, () => {
     render(<FilterControls {...props} />);
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("checkbox");
 
     fireEvent.click(button);
 

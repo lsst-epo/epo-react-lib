@@ -33,7 +33,13 @@ const ImageComposite = forwardRef<
   );
 
   return (
-    <Styled.ImageContainer ref={ref}>
+    <Styled.ImageContainer
+      ref={ref}
+      style={{
+        "--image-width": typeof width === "number" ? `${width}px` : width,
+        "--image-height": typeof height === "number" ? `${height}px` : height,
+      }}
+    >
       {!imagesLoaded && isAnyActive && <CircularLoader isVisible={isLoading} />}
       <Styled.LoadingContainer
         style={{ "--loading-opacity": isLoading ? 0 : 1 }}
