@@ -53,6 +53,7 @@ interface ColorToolProps {
   isDisabled?: boolean;
   isDisplayOnly?: boolean;
   config?: ColorToolConfig;
+  className?: string;
 }
 
 const ColorTool: FunctionComponent<ColorToolProps> = ({
@@ -63,6 +64,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   selectionCallback,
   isDisabled = false,
   isDisplayOnly = false,
+  className,
   config = {
     actions: ["reset"],
     width: 600,
@@ -80,40 +82,6 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   const imageRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
 
-  const handleFilterChange = useCallback(
-    (updatedFilter: ImageFilter) => {
-      const { label } = updatedFilter;
-      const { filters } = selectedData;
-      const updatedFilters = filters.map((f) =>
-        f.label === label ? updatedFilter : f
-      );
-
-      return (
-        selectionCallback &&
-        selectionCallback({
-          ...selectedData,
-          filters: updatedFilters,
-        })
-      );
-    },
-    [selectedData, selectionCallback]
-  );
-
-  const handleObjectSelection = useCallback(
-    (value: string | null) => {
-      if (value === null) return;
-
-      return (
-        selectionCallback &&
-        selectionCallback({
-          name: value,
-          filters: getDataFiltersByName(data, value),
-        })
-      );
-    },
-    [selectionCallback, data]
-  );
-
   const { filters, name: selectedObjectName } = selectedData;
   const { actions, width, height, hideSubtitle } = {
     ...defaultConfig,
@@ -124,16 +92,44 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     return (
       <ImageComposite
         ref={imageRef}
-        {...{ filters, width, height, selectedObjectName }}
+        {...{ filters, width, height, selectedObjectName, className }}
       />
     );
   }
+
+  const handleFilterChange = (updatedFilter: ImageFilter) => {
+    const { label } = updatedFilter;
+    const { filters } = selectedData;
+    const updatedFilters = filters.map((f) =>
+      f.label === label ? updatedFilter : f
+    );
+
+    return (
+      selectionCallback &&
+      selectionCallback({
+        ...selectedData,
+        filters: updatedFilters,
+      })
+    );
+  };
+
+  const handleObjectSelection = (value: string | null) => {
+    if (value === null) return;
+
+    return (
+      selectionCallback &&
+      selectionCallback({
+        name: value,
+        filters: getDataFiltersByName(data, value),
+      })
+    );
+  };
 
   const hasMultipleDatasets = data.length > 1;
   const selectPlaceholder = t("colorTool.actions.select_an_object");
 
   return (
-    <Styled.WidgetContainer>
+    <Styled.WidgetContainer className={className}>
       <Styled.WidgetLayout
         style={{
           "--image-width": typeof width === "number" ? `${width}px` : width,
@@ -166,15 +162,14 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
             </>
           )}
           {filters &&
-            filters.map((imageFilter) => {
-              const { label, isDisabled: isFilterDisabled } = imageFilter;
+            filters.map((filter) => {
+              const { label, isDisabled: isFilterDisabled } = filter;
 
               return (
                 <FilterControls
+                  {...{ filter, colorOptions }}
                   key={`filter-${label}`}
-                  filter={imageFilter}
                   isDisabled={isDisabled || isFilterDisabled}
-                  colorOptions={colorOptions}
                   onChangeFilterCallback={handleFilterChange}
                   buttonLabelledById="filterLabel"
                   selectLabelledById="colorLabel"

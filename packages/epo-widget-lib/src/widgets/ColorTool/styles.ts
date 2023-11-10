@@ -53,7 +53,7 @@ export const ControlsContainer = styled.div`
   grid-template-columns: max-content minmax(100px, 1fr) minmax(100px, 2fr);
   grid-auto-rows: max-content;
   grid-area: controls;
-  gap: 10px;
+  gap: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
   align-items: center;
 `;
 

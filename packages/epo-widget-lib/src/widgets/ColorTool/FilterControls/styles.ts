@@ -2,6 +2,18 @@ import styled from "styled-components";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import Button from "@rubin-epo/epo-react-lib/Button";
 
+export const FilterContainer = styled.fieldset`
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: grid;
+  align-items: center;
+  gap: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
+  grid-template-columns: max-content minmax(100px, 1fr) minmax(100px, 2fr);
+  grid-auto-rows: max-content;
+  grid-column: 1 / -1;
+`;
+
 export const HiddenCheckbox = styled.input`
   position: absolute;
   left: -999px;
