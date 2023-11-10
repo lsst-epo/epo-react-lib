@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const WidgetContainer = styled.section`
   color: var(--neutral80, #404040);
   container: colorTool / inline-size;
 `;
 
-const breakSize = token("BREAK_LARGE_TABLET_MIN");
+const breakSize = "900px";
 
 export const WidgetLayout = styled.div`
-  --widget-areas: "image" "controls" "actions" "title";
+  --widget-areas: "image" "title" "controls" "actions";
   display: grid;
   gap: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
   grid-template-areas: var(--widget-areas);
