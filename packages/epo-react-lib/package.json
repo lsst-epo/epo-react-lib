@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-react-lib",
   "description": "Rubin Observatory Education & Public Outreach team React UI library.",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -67,8 +67,7 @@
     "react-slider": "^2.0.4",
     "react-uid": "^2.3.2",
     "storybook": "^7.1.0",
-    "styled-components": "^6.0.4",
-    "upgrade": "^1.1.0"
+    "styled-components": "^6.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
