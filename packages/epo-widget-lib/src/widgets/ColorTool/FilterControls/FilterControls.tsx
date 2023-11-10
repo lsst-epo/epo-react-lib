@@ -47,18 +47,17 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
   const selectPlaceholder = t("colorTool.actions.select_filter");
 
   return (
-    <>
-      <Styled.FilterLabel aria-labelledby={buttonLabelledById}>
+    <Styled.FilterContainer disabled={isDisabled}>
+      <Styled.FilterLabel>
         <Styled.HiddenCheckbox
-          disabled={isDisabled}
           checked={active}
           type="checkbox"
           onChange={handleImage}
+          aria-describedby={buttonLabelledById}
         />
         <Styled.FilterToggle as="span">{label}</Styled.FilterToggle>
       </Styled.FilterLabel>
       <SelectListbox
-        isDisabled={isDisabled}
         placeholder={selectPlaceholder}
         value={color}
         options={colorOptions}
@@ -71,11 +70,11 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
         min={1}
         max={100}
         onChangeCallback={handleBrightness}
-        isDisabled={!active}
+        isDisabled={!active || isDisabled}
         labelledbyId={sliderLabelledById}
         {...{ value, label, color }}
       />
-    </>
+    </Styled.FilterContainer>
   );
 };
 
