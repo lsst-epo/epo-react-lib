@@ -88,7 +88,7 @@
   "dependencies": {
     "@rubin-epo/epo-react-lib": "^2.0.3",
     "lodash": "^4.17.21",
-    "styled-components": "^6.0.4",
+    "styled-components": "^6.1.1",
     "use-resize-observer": "^9.1.0"
   }
 }
