@@ -7,9 +7,8 @@ export const ImageContainer = styled.div`
   position: relative;
   aspect-ratio: 1 / 1;
   grid-area: image;
-  background-color: rgba(0, 0, 0, 0.1);
-  max-width: var(--image-width);
-  max-height: var(--image-height);
+  background-color: rgba(0, 0, 0, var(--image-container-opacity, 0.1));
+  transition: background-color ease var(--DURATION, 0.2s);
 `;
 
 export const LoadingContainer = styled.div`

@@ -29,11 +29,9 @@ describe("FilterControls", () => {
       </>
     );
 
-    const button = screen.getByLabelText("Button");
     const select = screen.getByLabelText("Select");
     const slider = screen.getByLabelText("Slider");
 
-    expect(button).toBeInTheDocument();
     expect(select).toBeInTheDocument();
     expect(slider).toBeInTheDocument();
   });
@@ -46,7 +44,7 @@ describe("FilterControls", () => {
 
     expect(button).toBeDisabled();
     expect(select).toBeDisabled();
-    expect(slider.parentElement).toHaveClass("disabled");
+    expect(slider).toHaveAttribute("aria-disabled", "true");
   });
   it(`should call callback on modification`, () => {
     render(<FilterControls {...props} />);
