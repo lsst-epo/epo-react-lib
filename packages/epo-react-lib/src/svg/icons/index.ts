@@ -28,6 +28,7 @@ import Globe from "./Globe";
 import Google from "./Google";
 import Hamburger from "./Hamburger";
 import Info from "./Info";
+import InfoCircle from "./InfoCircle";
 import Instagram from "./Instagram";
 import Lightbulb from "./Lightbulb";
 import LinkedIn from "./LinkedIn";
@@ -95,6 +96,7 @@ const Icons = {
   Google,
   Hamburger,
   Info,
+  InfoCircle,
   Instagram,
   Lightbulb,
   LinkedIn,

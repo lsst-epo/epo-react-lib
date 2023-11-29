@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import EmailButton from "./EmailButton";
 
-const meta: ComponentMeta<typeof EmailButton> = {
+const meta: Meta<typeof EmailButton> = {
   component: EmailButton,
   argTypes: {
     url: {
@@ -30,11 +30,20 @@ const meta: ComponentMeta<typeof EmailButton> = {
         },
       },
     },
+    showText: {
+      description: "Shows the share button's label",
+      control: "boolean",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
   },
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof EmailButton> = {
+export const Primary: StoryObj<typeof EmailButton> = {
   args: {
     url: "https://rubinobservatory.org/",
     title: "New image gallery posts!",

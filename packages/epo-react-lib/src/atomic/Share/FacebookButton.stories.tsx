@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import FacebookButton from "./FacebookButton";
 
-const meta: ComponentMeta<typeof FacebookButton> = {
+const meta: Meta<typeof FacebookButton> = {
   component: FacebookButton,
   argTypes: {
     url: {
@@ -30,11 +30,20 @@ const meta: ComponentMeta<typeof FacebookButton> = {
         },
       },
     },
+    showText: {
+      description: "Shows the share button's label",
+      control: "boolean",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
   },
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof FacebookButton> = {
+export const Primary: StoryObj<typeof FacebookButton> = {
   args: {
     url: "https://rubinobservatory.org/",
     title: "New image gallery posts!",
