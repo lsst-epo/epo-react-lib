@@ -6,22 +6,23 @@ interface BaseButtonProps {
   label: string;
   icon: string;
   iconSize?: number;
-  bgColor?: string;
-  bgHoverColor?: string;
+  showText?: boolean;
 }
 
 const BaseButton: FunctionComponent<BaseButtonProps> = ({
   label,
   icon,
   iconSize,
-  bgColor = "#000",
-  bgHoverColor = "#000",
+  showText = false,
 }) => {
   return (
-    <Styled.Wrapper $bgColor={bgColor} $bgHoverColor={bgHoverColor}>
-      <IconComposer icon={icon} size={iconSize} />
-      <Styled.SrText>{label}</Styled.SrText>
-    </Styled.Wrapper>
+    <>
+      {showText && label}
+      <Styled.Wrapper>
+        <IconComposer icon={icon} size={iconSize} />
+        {!showText && <Styled.SrText>{label}</Styled.SrText>}
+      </Styled.Wrapper>
+    </>
   );
 };
 

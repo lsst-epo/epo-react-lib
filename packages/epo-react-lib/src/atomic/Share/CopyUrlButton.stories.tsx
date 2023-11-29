@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import CopyUrlButton from "./CopyUrlButton";
 
-const meta: ComponentMeta<typeof CopyUrlButton> = {
+const meta: Meta<typeof CopyUrlButton> = {
   component: CopyUrlButton,
   argTypes: {
     url: {
@@ -18,11 +18,20 @@ const meta: ComponentMeta<typeof CopyUrlButton> = {
         },
       },
     },
+    showText: {
+      description: "Shows the share button's label",
+      control: "boolean",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
   },
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof CopyUrlButton> = {
+export const Primary: StoryObj<typeof CopyUrlButton> = {
   args: {
     url: "https://rubinobservatory.org/",
   },
