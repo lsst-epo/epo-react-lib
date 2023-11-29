@@ -1,25 +1,39 @@
 import {
-  FunctionComponent,
   PropsWithChildren,
   useContext,
   useRef,
   useEffect,
+  HTMLProps,
+  ReactElement,
 } from "react";
 import MenuContext from "@/contexts/Menu";
-import { StyledMenuItem, StyledMenuItemWrapper } from "./styles";
-import { ButtonProps } from "@/atomic/Button";
+import * as Styled from "./styles";
+import { IconKey } from "@/svg/icons";
+import IconComposer from "@/svg/IconComposer";
 
-interface MenuItemProps extends ButtonProps {
+interface MenuButtonProps {
+  type?: "button";
   text: string;
+  icon: IconKey;
 }
 
-const MenuItem: FunctionComponent<PropsWithChildren<MenuItemProps>> = ({
-  text,
+interface MenuLinkProps extends HTMLProps<HTMLAnchorElement> {
+  type?: "link";
+  text: string;
+  icon: IconKey;
+}
+
+function MenuItem(props: PropsWithChildren<MenuLinkProps>): ReactElement;
+function MenuItem(props: PropsWithChildren<MenuButtonProps>): ReactElement;
+function MenuItem({
   children,
-  ...buttonProps
-}) => {
+  icon,
+  text,
+  type = "button",
+  ...restProps
+}: PropsWithChildren<MenuButtonProps | MenuLinkProps>): ReactElement {
   const menuContext = useContext(MenuContext);
-  const menuItemRef = useRef<HTMLButtonElement>();
+  const menuItemRef = useRef<HTMLButtonElement | HTMLAnchorElement>();
 
   if (!menuContext) {
     throw new Error("Menu item must be used within a Menu Context");
@@ -44,20 +58,21 @@ const MenuItem: FunctionComponent<PropsWithChildren<MenuItemProps>> = ({
     [...menuItems].indexOf(menuItemRef.current) === currentIndex;
 
   return (
-    <StyledMenuItemWrapper role="none">
-      <StyledMenuItem
-        {...(buttonProps as any)}
-        ref={menuItemRef}
+    <Styled.MenuItemWrapper role="none">
+      <Styled.MenuItem
+        {...restProps}
+        as={type === "link" ? "a" : undefined}
+        ref={menuItemRef as any}
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
-        iconSize={20}
       >
+        <IconComposer icon={icon} size={20} />
         {text}
-      </StyledMenuItem>
+      </Styled.MenuItem>
       {children}
-    </StyledMenuItemWrapper>
+    </Styled.MenuItemWrapper>
   );
-};
+}
 
 MenuItem.displayName = "Layout.SlideoutMenu.MenuItem";
 

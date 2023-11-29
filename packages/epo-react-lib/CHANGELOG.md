@@ -52,3 +52,11 @@
 
 - add signature overloads to `token`
 - export `ImageShape`, `Option`, and `ListBoxOption` from their modules
+
+## 2.0.10
+
+- add `showText` to share buttons to optionally display labels
+- add links as a valid `menuitem` in Slideout
+- add `InfoCircle` icon
+- reset all icons to stroke-width: 0
+- minor refactor to use CSS variables for backgrounds and hovers.

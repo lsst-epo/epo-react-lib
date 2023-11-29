@@ -1,27 +1,31 @@
 import { FunctionComponent } from "react";
 import { ShareButtonProps } from "@/types/share-button";
-
-import { TwitterShareButton } from "react-share";
 import { useTranslation } from "react-i18next";
 import BaseButton from "./BaseButton/BaseButton";
+import * as Styled from "./styles";
 
-const TwitterButton: FunctionComponent<ShareButtonProps> = ({ url, title }) => {
+const TwitterButton: FunctionComponent<ShareButtonProps> = ({
+  url,
+  title,
+  className,
+  showText,
+  ...shareProps
+}) => {
   const { t } = useTranslation();
 
   return (
-    <TwitterShareButton
-      url={url}
+    <Styled.TwitterShareButton
       title={t("share.twitter_title", { title })}
       hashtags={["RubinObs"]}
+      {...{ ...shareProps, url, className }}
     >
       <BaseButton
         label="Twitter"
         icon="shareTwitter"
         iconSize={44}
-        bgColor="#38a8e0"
-        bgHoverColor="#98d0f1"
+        showText={showText}
       />
-    </TwitterShareButton>
+    </Styled.TwitterShareButton>
   );
 };
 

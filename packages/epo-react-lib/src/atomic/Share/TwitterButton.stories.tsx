@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import TwitterButton from "./TwitterButton";
 
-const meta: ComponentMeta<typeof TwitterButton> = {
+const meta: Meta<typeof TwitterButton> = {
   component: TwitterButton,
   argTypes: {
     url: {
@@ -30,11 +30,20 @@ const meta: ComponentMeta<typeof TwitterButton> = {
         },
       },
     },
+    showText: {
+      description: "Shows the share button's label",
+      control: "boolean",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
   },
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof TwitterButton> = {
+export const Primary: StoryObj<typeof TwitterButton> = {
   args: {
     url: "https://rubinobservatory.org/",
     title: "New image gallery posts!",

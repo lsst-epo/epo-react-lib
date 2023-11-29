@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import Button from "@/atomic/Button";
+import { aButton } from "@/styles/mixins/appearance";
+import { fluidScale } from "@/styles/utils";
 
-export const StyledMenuItemWrapper = styled.div`
+export const MenuItemWrapper = styled.div`
+  display: flex;
   padding: 0;
   margin: 0;
 
@@ -10,14 +12,17 @@ export const StyledMenuItemWrapper = styled.div`
   }
 `;
 
-export const StyledMenuItem = styled(Button)`
-  --button-border-color: transparent;
-  --button-background-color: transparent;
-  --button-text-align: left;
+export const MenuItem = styled.button`
+  ${aButton}
 
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: ${fluidScale("20px", "16px")};
   border: none;
   stroke-width: 0.25px;
   width: 100%;
+  padding-inline-start: 15px;
 
   &:not(:disabled):not([aria-disabled="true"]):hover {
     text-decoration: underline;
