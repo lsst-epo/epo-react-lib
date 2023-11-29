@@ -263,7 +263,13 @@ const Template: ComponentStory<typeof SlideoutMenu> = ({ ...args }) => {
             onCloseCallback={() => setIsSubMenuOpen(false)}
           />
           <MenuItem icon="ArrowUpFromBracket" text="Share this investigation" />
-          <MenuItem icon="QuestionCircle" text="Help" />
+          <MenuItem
+            type="link"
+            href="https://rubinobservatory.org"
+            icon="QuestionCircle"
+            text="Help"
+            target="__blank"
+          />
           <AcknowledgementsSubmenu
             onOpenCallback={() => setIsSubMenuOpen(true)}
             onCloseCallback={() => setIsSubMenuOpen(false)}

@@ -1,28 +1,33 @@
-import { EmailShareButton } from "react-share";
 import { useTranslation } from "react-i18next";
 import BaseButton from "./BaseButton/BaseButton";
 import { FunctionComponent } from "react";
 import { ShareButtonProps } from "@/types/share-button";
+import * as Styled from "./styles";
 
-const EmailButton: FunctionComponent<ShareButtonProps> = ({ title, url }) => {
+const EmailButton: FunctionComponent<ShareButtonProps> = ({
+  title,
+  url,
+  className,
+  showText,
+  ...shareProps
+}) => {
   const { t } = useTranslation();
 
   return (
-    <EmailShareButton
-      url={url}
+    <Styled.EmailShareButton
       subject={t("share.email_subject", {
         title,
       })}
       body={url}
+      {...{ ...shareProps, className, url }}
     >
       <BaseButton
         label={t("share.email")}
         icon="shareEmail"
         iconSize={40}
-        bgColor="var(--turquoise85)"
-        bgHoverColor="#7fb3b1"
+        showText={showText}
       />
-    </EmailShareButton>
+    </Styled.EmailShareButton>
   );
 };
 
