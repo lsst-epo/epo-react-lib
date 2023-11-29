@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import * as Styled from "./styles";
 import BaseButton from "./BaseButton/BaseButton";
 
-const CopyUrlButton: FunctionComponent<Omit<ShareButtonProps, "title">> = ({
-  url,
-}) => {
+const CopyUrlButton: FunctionComponent<
+  Pick<ShareButtonProps, "url" | "className" | "showText">
+> = ({ url, className, showText }) => {
   const { t } = useTranslation();
 
   function onClick() {
@@ -16,13 +16,12 @@ const CopyUrlButton: FunctionComponent<Omit<ShareButtonProps, "title">> = ({
   }
 
   return (
-    <Styled.CopyUrlButton onClick={onClick}>
+    <Styled.CopyUrlButton {...{ className, onClick }}>
       <BaseButton
         label={t("share.copy_url")}
         icon="shareCopyUrl"
         iconSize={20}
-        bgColor="var(--turquoise70)"
-        bgHoverColor="#7ac1c2"
+        showText={showText}
       />
     </Styled.CopyUrlButton>
   );
