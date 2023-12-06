@@ -101,7 +101,7 @@ const meta: Meta<typeof SelectListbox> = {
       table: {
         category: "Function",
         type: {
-          summary: "(value?: string | string[]) => void",
+          summary: "(value: string | string[] | null) => void",
         },
       },
     },

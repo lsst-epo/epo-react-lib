@@ -113,7 +113,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     );
   };
 
-  const handleObjectSelection = (value?: string) => {
+  const handleObjectSelection = (value: string | null) => {
     if (!value) return;
 
     return (
