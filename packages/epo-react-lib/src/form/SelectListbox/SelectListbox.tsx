@@ -8,9 +8,9 @@ export type { ListboxOption };
 
 type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
   ? {
-      value?: string[];
+      value: string[] | null;
       isMultiselect?: true;
-      onChangeCallback: (value?: string[]) => void;
+      onChangeCallback: (value: string[] | null) => void;
       options: ListboxOption[];
       isDisabled?: boolean;
       placeholder?: string;
@@ -25,9 +25,9 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
       id?: string;
     }
   : {
-      value?: string | null;
+      value: string | null;
       isMultiselect?: false;
-      onChangeCallback: (value?: string) => void;
+      onChangeCallback: (value: string | null) => void;
       options: ListboxOption[];
       isDisabled?: boolean;
       placeholder?: string;
@@ -55,10 +55,10 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   className,
   id,
 }) => {
-  const getOptionFromValue = (value: string) =>
+  const getOptionFromValue = (value: string | null) =>
     options.find((o) => o.value === value);
 
-  const getLabel = (value: string | string[]) =>
+  const getLabel = (value: string | string[] | null) =>
     Array.isArray(value)
       ? value.map((v) => getOptionFromValue(v)?.label).join(", ")
       : getOptionFromValue(value)?.label;

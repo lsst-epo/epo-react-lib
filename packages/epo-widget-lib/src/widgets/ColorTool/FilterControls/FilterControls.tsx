@@ -32,7 +32,7 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
   const handleImage = () =>
     onChangeFilterCallback &&
     onChangeFilterCallback({ ...filter, active: !active });
-  const handleColorChange = (color?: string) =>
+  const handleColorChange = (color: string | null) =>
     color &&
     onChangeFilterCallback &&
     onChangeFilterCallback({ ...filter, color });
