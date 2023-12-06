@@ -55,14 +55,10 @@ describe("ColorTool", () => {
     await act(async () => {
       render(<ColorTool {...{ ...multiProps, isDisabled: true }} />);
     });
-    const selects = screen.getAllByRole("combobox");
     const buttons = screen.getAllByRole("button");
 
     buttons.forEach((b) => {
       expect(b).toBeDisabled();
-    });
-    selects.forEach((s) => {
-      expect(s).toBeDisabled();
     });
   });
   it(`should hide controls when isDisplayOnly set`, async () => {
@@ -70,7 +66,6 @@ describe("ColorTool", () => {
       render(<ColorTool {...{ ...multiProps, isDisplayOnly: true }} />);
     });
 
-    expect(screen.queryAllByRole("combobox").length).toBe(0);
     expect(screen.queryAllByRole("button").length).toBe(0);
   });
   it(`should hide subtitle when hideSubtitle set`, async () => {

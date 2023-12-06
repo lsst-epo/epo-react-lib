@@ -1,4 +1,4 @@
-import { fireEvent, render, act, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import Images from "./Images";
 
 const props = {
@@ -16,11 +16,9 @@ describe("BlinkerImages", () => {
     // Arrange
     const { getAllByRole } = render(<Images {...props} />);
     const images = getAllByRole("img", { hidden: true });
-    const active = images[props.activeIndex];
-    const styles = getComputedStyle(active);
 
     // Assert
-    expect(styles.visibility).toBe("visible");
+    expect(images[props.activeIndex]).toBeVisible();
   });
   test("Makes a callback when images have finished loading", () => {
     // Arrange

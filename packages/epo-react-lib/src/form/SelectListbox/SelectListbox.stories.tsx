@@ -25,17 +25,14 @@ const meta: Meta<typeof SelectListbox> = {
       control: "object",
       type: {
         name: "other",
-        value: "string | string[] | null",
-        required: true,
+        value: "string | string[]",
+        required: false,
       },
       description: "Initial value of the select dropdown",
       table: {
         category: "Model",
         type: {
-          summary: "string | string[] | null",
-        },
-        defaultValue: {
-          summary: "null",
+          summary: "string | string[]",
         },
       },
     },
@@ -62,20 +59,6 @@ const meta: Meta<typeof SelectListbox> = {
         name: "string",
       },
       description: "ID of the HTML element that labels this select dropdown",
-      table: {
-        category: "Labels",
-        type: {
-          summary: "string",
-        },
-      },
-    },
-    namespace: {
-      control: "text",
-      type: {
-        name: "string",
-      },
-      description:
-        "Unique identifier to be attached to element via ID and ARIA attributes. Will use `useUid()` if not specified.",
       table: {
         category: "Labels",
         type: {
@@ -118,7 +101,7 @@ const meta: Meta<typeof SelectListbox> = {
       table: {
         category: "Function",
         type: {
-          summary: "(value: string | string[] | null) => void",
+          summary: "(value?: string | string[]) => void",
         },
       },
     },
