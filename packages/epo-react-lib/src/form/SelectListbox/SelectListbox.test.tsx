@@ -22,14 +22,14 @@ describe("SelectListbox", () => {
   it("should disable selection based on props", () => {
     render(<SelectListbox {...{ ...props, isDisabled: true }} />);
 
-    const selectBox = screen.getByRole("combobox");
+    const selectBox = screen.getByRole("button");
 
     expect(selectBox).toBeDisabled();
   });
   it("should open a dropdown list if clicked", () => {
     render(<SelectListbox {...props} />);
 
-    const selectBox = screen.getByRole("combobox");
+    const selectBox = screen.getByRole("button");
 
     fireEvent.click(selectBox);
 
@@ -38,7 +38,7 @@ describe("SelectListbox", () => {
   it("should toggle the dropdown list if enter key, or space key pressed", async () => {
     render(<SelectListbox {...props} />);
 
-    const selectBox = screen.getByRole("combobox");
+    const selectBox = screen.getByRole("button");
 
     act(() => {
       selectBox.focus();
@@ -57,10 +57,9 @@ describe("SelectListbox", () => {
   it("should navigate the dropdown list options with arrow keys", () => {
     render(<SelectListbox {...props} />);
 
-    const selectBox = screen.getByRole("combobox");
-    const options = screen.getAllByRole("option");
-
+    const selectBox = screen.getByRole("button");
     fireEvent.click(selectBox);
+    const options = screen.getAllByRole("option");
 
     expect(options[0]).toHaveAttribute("aria-selected", "true");
 
@@ -73,10 +72,10 @@ describe("SelectListbox", () => {
   });
   it("should close the dropdown list on selection, escape key, and click outside", () => {
     render(<SelectListbox {...props} />);
-    const selectBox = screen.getByRole("combobox");
-    const options = screen.getAllByRole("option");
+    const selectBox = screen.getByRole("button");
 
     fireEvent.click(selectBox);
+    const options = screen.getAllByRole("option");
     fireEvent.click(options[0]);
 
     waitFor(() => {
@@ -99,9 +98,9 @@ describe("SelectListbox", () => {
   });
   it("should select an option on click, enter key, and space key and update the display", () => {
     render(<SelectListbox {...props} />);
-    const selectBox = screen.getByRole("combobox");
-    const options = screen.getAllByRole("option");
+    const selectBox = screen.getByRole("button");
     fireEvent.click(selectBox);
+    const options = screen.getAllByRole("option");
     fireEvent.click(options[0]);
     waitFor(() => {
       expect(selectBox).toHaveTextContent(props.options[0].label);
@@ -127,7 +126,10 @@ describe("SelectListbox", () => {
     render(
       <SelectListbox {...{ ...props, value: ["red"], isMultiselect: true }} />
     );
-    const selectBox = screen.getByRole("combobox");
+    const selectBox = screen.getByRole("button");
+
+    fireEvent.click(selectBox);
+
     const options = screen.getAllByRole("option");
     fireEvent.click(options[0]);
     fireEvent.click(options[1]);

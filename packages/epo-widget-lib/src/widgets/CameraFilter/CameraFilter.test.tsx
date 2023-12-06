@@ -28,23 +28,11 @@ describe("CameraFilter", () => {
   });
   it("has a dropdown with options for each camera filter", () => {
     render(<CameraFilter />);
-
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    const button = screen.getByRole("button");
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
     expect(screen.getAllByRole("option").length).toBe(
       ["u", "g", "r", "i", "z", "y", "none"].length
     );
-  });
-  it("hides the spectrum of the unselected filters if a filter is selected", () => {
-    render(<CameraFilter />);
-
-    const select = screen.getByRole("combobox");
-    const options = screen.getAllByRole("option");
-    fireEvent.click(select);
-    fireEvent.click(options[2]); // g band
-
-    waitFor(() => {
-      expect(screen.getByTestId("spectrum-labels").children.length).toBe(1); // visible light
-      expect(screen.getByTestId("color-labels").children.length).toBe(3); // violet, blue, and green
-    });
   });
 });

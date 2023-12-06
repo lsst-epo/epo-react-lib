@@ -32,7 +32,7 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
   const handleImage = () =>
     onChangeFilterCallback &&
     onChangeFilterCallback({ ...filter, active: !active });
-  const handleColorChange = (color: string | null) =>
+  const handleColorChange = (color?: string) =>
     color &&
     onChangeFilterCallback &&
     onChangeFilterCallback({ ...filter, color });
@@ -65,6 +65,7 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
         width="100%"
         maxWidth="100%"
         labelledById={selectLabelledById}
+        isDisabled={!active || isDisabled}
       />
       <Styled.Slider
         min={1}
