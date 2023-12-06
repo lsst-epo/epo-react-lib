@@ -275,7 +275,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
           options={prismOptions}
           isDisabled={isDisabled}
           value={selectedColor}
-          onChangeCallback={(value?: string) =>
+          onChangeCallback={(value?: string | null) =>
             selectionCallback &&
             selectionCallback((value as FilterColor) || "none")
           }
