@@ -39,7 +39,7 @@ describe("FilterControls", () => {
     render(<FilterControls {...{ ...props, isDisabled: true }} />);
 
     const button = screen.getByRole("checkbox");
-    const select = screen.getByRole("combobox");
+    const select = screen.getByRole("button");
     const slider = screen.getByRole("slider");
 
     expect(button).toBeDisabled();

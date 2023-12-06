@@ -1,8 +1,9 @@
 import { zStack } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
+import { Listbox } from "@headlessui/react";
 import styled from "styled-components";
 
-export const SelectContainer = styled.div`
+export const Select = styled.div`
   --select-background-color: var(--turquoise10, #d9f7f6);
   --select-border-color: var(--turquoise85, #12726c);
   --select-color: var(--turquoise95, #1f2121);
@@ -16,7 +17,7 @@ export const SelectContainer = styled.div`
   width: var(--width);
 `;
 
-export const SelectDropdown = styled.ul`
+export const Options = styled(Listbox.Options)`
   background-color: var(--select-background-color);
   border: 1px solid var(--select-border-color);
   border-radius: var(--select-padding);
@@ -29,6 +30,10 @@ export const SelectDropdown = styled.ul`
   z-index: ${zStack.dialog};
   top: calc(var(--select-height) + var(--select-padding));
   min-width: 100%;
+
+  &:focus-within {
+    outline: none;
+  }
 `;
 
 export const DropdownText = styled.span`
@@ -36,37 +41,25 @@ export const DropdownText = styled.span`
   white-space: nowrap;
 `;
 
-export const DropdownOption = styled.li`
-  &[aria-selected="true"] {
-    label {
-      border-color: var(--select-border-color);
-    }
-  }
+export const Option = styled(Listbox.Option)`
+  display: grid;
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  grid-template-rows: 1fr;
+  grid-template-columns: 0 15px 1fr;
+  gap: var(--select-padding);
+  height: var(--select-height);
+  padding: 0 10px 0 5px;
 
-  label {
-    display: grid;
-    align-items: center;
-    border: 1px solid transparent;
-    cursor: pointer;
-    grid-template-rows: 1fr;
-    grid-template-columns: 0 15px 1fr;
-    gap: var(--select-padding);
-    height: var(--select-height);
-    padding: 0 10px 0 5px;
-  }
-
-  input[type="radio"],
-  input[type="checkbox"] {
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0;
-    margin: 0;
+  &:hover,
+  &[data-headlessui-state="active"],
+  &[data-headlessui-state="active selected"] {
+    border-color: var(--select-border-color);
   }
 `;
 
-export const SelectButton = styled.button`
+export const SelectButton = styled(Listbox.Button)`
   ${protoButton()}
 
   background-color: var(--select-background-color);
@@ -89,13 +82,6 @@ export const SelectButton = styled.button`
 
   &:hover {
     outline: 1px solid var(--select-border-color);
-  }
-
-  &:not([aria-expanded="true"]) + ${SelectDropdown} {
-    height: 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
   }
 
   &:disabled {
