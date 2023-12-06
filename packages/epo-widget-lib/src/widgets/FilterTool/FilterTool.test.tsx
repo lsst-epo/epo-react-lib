@@ -22,8 +22,6 @@ describe("Filter Tool", () => {
       <FilterTool selectedColor="red" selectionCallback={selectionCallback} />
     );
 
-    const option = screen.getByText("violet");
-
     const redRay = document.getElementById("red_ray");
     const redArrow = document.getElementById("red_arrow");
     const violetRay = document.getElementById("violet_ray");
@@ -34,6 +32,9 @@ describe("Filter Tool", () => {
     expect(violetRay).toHaveStyle({ "--ray-fill": "url(#no-arrow-violet)" });
     expect(violetArrow).toHaveStyle({ "--arrow-opacity": "0" });
 
+    const select = screen.getByRole("button");
+    fireEvent.click(select);
+    const option = screen.getByText("violet");
     fireEvent.click(option);
 
     expect(selectionCallback).toBeCalledWith("violet");

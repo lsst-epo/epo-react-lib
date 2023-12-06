@@ -1,21 +1,23 @@
 import { FunctionComponent } from "react";
-import { useUID } from "react-uid";
 import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
-import { useAccessibleDropdown, useOnOutsideClick } from "./hooks";
+import { Listbox } from "@headlessui/react";
 
 export type { ListboxOption };
 
 type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
   ? {
-      value: string[] | null;
+      value?: string[];
       isMultiselect?: true;
-      onChangeCallback: (value: string[] | null) => void;
+      onChangeCallback: (value?: string[]) => void;
       options: ListboxOption[];
       isDisabled?: boolean;
       placeholder?: string;
       labelledById?: string;
+      /**
+       * @deprecated No longer used
+       */
       namespace?: string;
       maxWidth?: string;
       width?: string;
@@ -23,13 +25,16 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
       id?: string;
     }
   : {
-      value: string | null;
+      value?: string | null;
       isMultiselect?: false;
-      onChangeCallback: (value: string | null) => void;
+      onChangeCallback: (value?: string) => void;
       options: ListboxOption[];
       isDisabled?: boolean;
       placeholder?: string;
       labelledById?: string;
+      /**
+       * @deprecated No longer used
+       */
       namespace?: string;
       maxWidth?: string;
       width?: string;
@@ -38,114 +43,60 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
     };
 
 const SelectListbox: FunctionComponent<SelectListboxProps> = ({
-  value = null,
+  value,
   options,
   onChangeCallback,
-  isDisabled,
+  isDisabled: disabled,
   labelledById,
   placeholder = "Select",
-  namespace,
-  isMultiselect = false,
+  isMultiselect: multiple = false,
   maxWidth = "200px",
   width,
   className,
   id,
 }) => {
-  const uid = namespace || useUID();
-  const {
-    isDropdownOpen,
-    setIsDropdownOpen,
-    activeIndex,
-    setActiveIndex,
-    select,
-    setIsFocus,
-    listRef,
-    buttonRef,
-  } = useAccessibleDropdown({
-    options,
-    value,
-    onChangeCallback,
-    isMultiselect,
-  } as any);
-
-  const clickOutsideCallback = () => {
-    setIsDropdownOpen(false);
-    setIsFocus(false);
-  };
-
-  const { wrapperRef } = useOnOutsideClick(() => clickOutsideCallback());
-
-  const isChosen = (optionValue: string): boolean =>
-    value ? value.includes(optionValue) : false;
-
-  const getOptionFromValue = (value: string | null) =>
+  const getOptionFromValue = (value: string) =>
     options.find((o) => o.value === value);
 
-  const selectionLabel = Array.isArray(value)
-    ? value.map((v) => getOptionFromValue(v)?.label).join(", ")
-    : getOptionFromValue(value)?.label;
+  const getLabel = (value: string | string[]) =>
+    Array.isArray(value)
+      ? value.map((v) => getOptionFromValue(v)?.label).join(", ")
+      : getOptionFromValue(value)?.label;
 
   return (
-    <Styled.SelectContainer
+    <Listbox
+      as={Styled.Select}
       style={{
         "--max-width": maxWidth,
         "--width": width,
       }}
-      ref={wrapperRef}
-      className={className}
+      onChange={onChangeCallback}
+      aria-labelledby={labelledById}
+      {...{ value, disabled, multiple, className, id }}
     >
-      <Styled.SelectButton
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
-        ref={buttonRef}
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-controls={`${uid}_dropdown`}
-        aria-labelledby={labelledById}
-        aria-expanded={isDropdownOpen}
-        aria-activedescendant={`${uid}_element_${value}`}
-        disabled={isDisabled}
-        id={id}
-      >
-        <Styled.ButtonText>{selectionLabel || placeholder}</Styled.ButtonText>
-        <IconComposer icon="chevronThin" size={12} />
+      <Styled.SelectButton>
+        {({ value }) => (
+          <>
+            <Styled.ButtonText>
+              {getLabel(value) || placeholder}
+            </Styled.ButtonText>
+            <IconComposer icon="chevronThin" size={12} />
+          </>
+        )}
       </Styled.SelectButton>
-      <Styled.SelectDropdown
-        role="listbox"
-        ref={listRef}
-        id={`${uid}_dropdown`}
-        tabIndex={-1}
-        aria-multiselectable={isMultiselect}
-      >
-        {options.map(({ label, value: optionValue, icon }, index) => (
-          <Styled.DropdownOption
-            onMouseOver={() => setActiveIndex(index)}
-            id={`${uid}_element_${optionValue}`}
-            aria-selected={index === activeIndex}
-            role="option"
-            key={optionValue}
-          >
-            <label>
+      <Styled.Options>
+        {options.map(({ label, value, icon }) => (
+          <Styled.Option key={value} value={value}>
+            {({ selected }) => (
               <>
-                <input
-                  type={isMultiselect ? "checkbox" : "radio"}
-                  value={optionValue}
-                  checked={isChosen(optionValue)}
-                  onChange={() => select(optionValue)}
-                />
-                {isChosen(optionValue) ? (
-                  <IconComposer icon="checkmark" size={12} />
-                ) : (
-                  icon
-                )}
+                {selected ? <IconComposer icon="checkmark" size={12} /> : icon}
                 <Styled.DropdownText>{label}</Styled.DropdownText>
               </>
-            </label>
-          </Styled.DropdownOption>
+            )}
+          </Styled.Option>
         ))}
-      </Styled.SelectDropdown>
-    </Styled.SelectContainer>
+      </Styled.Options>
+    </Listbox>
   );
 };
 
