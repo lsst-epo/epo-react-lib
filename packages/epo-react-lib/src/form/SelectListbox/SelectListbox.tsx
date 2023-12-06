@@ -43,7 +43,7 @@ type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
     };
 
 const SelectListbox: FunctionComponent<SelectListboxProps> = ({
-  value,
+  value = null,
   options,
   onChangeCallback,
   isDisabled: disabled,
