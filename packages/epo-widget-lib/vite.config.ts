@@ -39,6 +39,7 @@ export default defineConfig({
         "@castiron/style-mixins",
         "@headlessui/react",
         /^@rubin-epo\/epo-react-lib*/,
+        "context-filter-polyfill",
         "flickity",
         "focus-trap",
         "i18next",
