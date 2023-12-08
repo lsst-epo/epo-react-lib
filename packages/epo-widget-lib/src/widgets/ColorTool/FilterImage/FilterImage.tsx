@@ -1,3 +1,4 @@
+import "context-filter-polyfill";
 import { FunctionComponent, HTMLAttributes, useRef } from "react";
 import useImage from "@/hooks/useImage";
 import { isStyleSupported } from "../utilities";
