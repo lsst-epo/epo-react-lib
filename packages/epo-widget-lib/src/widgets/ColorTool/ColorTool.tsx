@@ -79,7 +79,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     hideSubtitle: false,
   };
 
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLCanvasElement>(null);
   const { t } = useTranslation();
 
   const { filters, name: selectedObjectName } = selectedData;
@@ -199,11 +199,9 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
         </ImageComposite>
         <Actions
           actions={actions as ColorToolAction[]}
-          images={imageRef.current?.getElementsByTagName("canvas")}
+          canvas={imageRef.current}
           {...{
             selectedData,
-            width,
-            height,
             isDisabled,
             selectionCallback,
           }}
