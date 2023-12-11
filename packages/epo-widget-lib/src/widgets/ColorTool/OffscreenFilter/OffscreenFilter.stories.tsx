@@ -1,11 +1,10 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { argTypes } from "@/storybook/utilities";
 
-import FilterImage from ".";
+import OffscreenFilter from ".";
 
-const meta: ComponentMeta<typeof FilterImage> = {
+const meta: Meta<typeof OffscreenFilter> = {
   argTypes: {
-    className: argTypes.className,
     url: {
       type: {
         name: "string",
@@ -83,15 +82,31 @@ const meta: ComponentMeta<typeof FilterImage> = {
         },
       },
     },
+    debug: {
+      type: {
+        name: "boolean",
+      },
+      control: "boolean",
+      description: "Enable to view what is currently filtered",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+    },
   },
-  component: FilterImage,
+  component: OffscreenFilter,
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof FilterImage> = {
+export const Primary: StoryObj<typeof OffscreenFilter> = {
   args: {
     height: 300,
     url: "https://rubin.canto.com/direct/image/3jhaht4beh6aha6eiplkb5us6o/MlO1oSfjiMJBT25-VtnRD7B0-EI/original?content-type=image%2Fjpeg&name=Wide_View_Telescope_Mount.jpg",
     color: "#EC1C24",
+    debug: true,
   },
 };

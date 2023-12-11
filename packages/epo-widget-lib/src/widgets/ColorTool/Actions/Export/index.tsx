@@ -1,44 +1,24 @@
 import { FunctionComponent, PropsWithChildren, useCallback } from "react";
 import Button from "@rubin-epo/epo-react-lib/Button";
 import { fromCanvas } from "@/lib/reimg";
-import { ImageFilter } from "../../ColorTool";
 
 interface ExportProps {
-  images?: HTMLCollection;
+  canvas: HTMLCanvasElement | null;
   filename: string;
-  filters: ImageFilter[];
-  width: number;
-  height: number;
   isDisabled: boolean;
 }
 
 const Export: FunctionComponent<PropsWithChildren<ExportProps>> = ({
-  images,
-  filters,
+  canvas,
   filename,
-  width,
-  height,
-  children,
   isDisabled,
+  children,
 }) => {
   const handleExport = useCallback(() => {
-    const composite = document.createElement("canvas");
-    const ctx = composite.getContext("2d");
-
-    if (images && ctx) {
-      ctx.canvas.width = width;
-      ctx.canvas.height = height;
-      ctx.globalCompositeOperation = "screen";
-
-      Array.from<HTMLCanvasElement>(images as any).forEach((child, i) => {
-        if (filters[i].active) {
-          ctx.drawImage(child, 0, 0, width, height);
-        }
-      });
+    if (canvas) {
+      fromCanvas(canvas).downloadPng(filename);
     }
-
-    fromCanvas(composite).downloadPng(filename);
-  }, [images, filters]);
+  }, [canvas]);
 
   return (
     <Button

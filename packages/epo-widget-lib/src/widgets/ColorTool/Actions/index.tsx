@@ -10,23 +10,19 @@ interface ActionsProps {
   actions: Array<ColorToolAction>;
   isDisabled: boolean;
   selectedData: AstroObject;
-  images: HTMLCollection | undefined;
-  width: number;
-  height: number;
+  canvas: HTMLCanvasElement | null;
   selectionCallback: (data: AstroObject) => void;
 }
 
 const Actions: FunctionComponent<ActionsProps> = ({
   actions,
   isDisabled,
-  width,
-  height,
   selectedData,
   selectionCallback,
-  images,
+  canvas,
 }) => {
   const { t } = useTranslation();
-  const { filters, name: filename } = selectedData;
+  const { name: filename } = selectedData;
 
   const actionsDisabled = isDisabled || !areActionsActive(selectedData);
 
@@ -52,7 +48,7 @@ const Actions: FunctionComponent<ActionsProps> = ({
               <Export
                 key={i}
                 isDisabled={actionsDisabled}
-                {...{ filters, width, height, images, filename }}
+                {...{ canvas, filename }}
               >
                 Export
               </Export>

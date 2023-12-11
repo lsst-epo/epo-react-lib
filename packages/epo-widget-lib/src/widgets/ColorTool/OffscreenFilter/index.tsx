@@ -1,42 +1,42 @@
 import "context-filter-polyfill";
-import { FunctionComponent, HTMLAttributes, useRef } from "react";
+import { FunctionComponent, HTMLAttributes } from "react";
 import useImage from "@/hooks/useImage";
 import { isStyleSupported } from "../utilities";
-import * as Styled from "../styles";
 
-export interface FilterImageProps extends HTMLAttributes<HTMLCanvasElement> {
-  className?: string;
+export interface OffscreenFilterProps
+  extends HTMLAttributes<HTMLCanvasElement> {
   height?: number;
   width?: number;
   url: string;
   color?: string;
   brightness?: number;
-  active: boolean;
   filters?: {
     [key: string]: number | undefined;
   };
   onLoadCallback?: () => void;
+  onChangeCallback?: (canvas: HTMLCanvasElement) => void;
+  debug?: boolean;
 }
 
-const FilterImage: FunctionComponent<FilterImageProps> = ({
+const OffscreenFilter: FunctionComponent<OffscreenFilterProps> = ({
   width = 600,
   height = 600,
-  className,
   url,
   color = "transparent",
   filters = {
     brightness: 1,
   },
-  active,
   onLoadCallback,
+  onChangeCallback,
+  debug = false,
 }) => {
   const [image, status] = useImage({
     url,
     crossOrigin: "anonymous",
     onLoadCallback,
   });
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const ctx = canvasRef.current?.getContext("2d");
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
   const updateColor = (
     ctx: CanvasRenderingContext2D,
@@ -59,29 +59,21 @@ const FilterImage: FunctionComponent<FilterImageProps> = ({
   };
 
   if (ctx && image && status === "loaded") {
-    const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
-    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
+    ctx.clearRect(0, 0, width, height);
 
     ctx.globalCompositeOperation = "multiply";
     ctx.filter = getFilters(filters);
-    ctx.drawImage(image, 0, 0, canvasWidth, canvasHeight);
+    ctx.drawImage(image, 0, 0, width, height);
 
-    updateColor(ctx, color, canvasWidth, canvasHeight);
+    updateColor(ctx, color, width, height);
+    onChangeCallback && onChangeCallback(canvas);
   }
 
-  return (
-    <Styled.Image
-      ref={canvasRef}
-      role="img"
-      style={{
-        "--image-visibility": active ? "visible" : "hidden",
-        "--image-opacity": active ? 1 : 0,
-      }}
-      {...{ className, width, height }}
-    />
-  );
+  return debug ? <img src={canvas.toDataURL()} /> : null;
 };
 
-FilterImage.displayName = "Widgets.ColorTool.FilterImage";
+OffscreenFilter.displayName = "Widgets.ColorTool.OffscreenFilter";
 
-export default FilterImage;
+export default OffscreenFilter;

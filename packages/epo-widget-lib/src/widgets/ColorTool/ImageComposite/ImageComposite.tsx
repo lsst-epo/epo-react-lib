@@ -1,9 +1,16 @@
-import { forwardRef, PropsWithChildren, useCallback, useState } from "react";
+import {
+  forwardRef,
+  PropsWithChildren,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 import { ImageFilter } from "../ColorTool";
-import FilterImage from "../FilterImage";
+import OffscreenFilter from "../OffscreenFilter";
 import * as Styled from "./styles";
 import { isFilterActive } from "../utilities";
+import CompositeRenderer from "../CompositeRender";
 
 interface ImageCompositeProps {
   filters: ImageFilter[];
@@ -14,18 +21,28 @@ interface ImageCompositeProps {
 }
 
 const ImageComposite = forwardRef<
-  HTMLDivElement,
+  HTMLCanvasElement,
   PropsWithChildren<ImageCompositeProps>
 >(
   (
-    { filters, width, height, selectedObjectName, className, children },
+    {
+      filters,
+      width = 600,
+      height = 600,
+      selectedObjectName,
+      className,
+      children,
+    },
     ref
   ) => {
+    const layers = useRef<Array<HTMLCanvasElement>>([]);
     const [prevObject, setPrevObject] = useState(selectedObjectName);
     const [imagesLoaded, setImagesLoaded] = useState(0);
     const isAnyActive = isFilterActive(filters);
     const enabledFilters = filters.filter((f) => !f.isDisabled).length;
-    const isLoading = imagesLoaded !== enabledFilters;
+    const isLoading = imagesLoaded < enabledFilters;
+
+    console.log({ isLoading });
 
     if (selectedObjectName !== prevObject) {
       setPrevObject(selectedObjectName);
@@ -37,10 +54,13 @@ const ImageComposite = forwardRef<
       [imagesLoaded, filters]
     );
 
+    const handleFilterChange = (index: number, canvas: HTMLCanvasElement) => {
+      layers.current[index] = canvas;
+    };
+
     return (
       <Styled.ImageContainer
         className={className}
-        ref={ref}
         style={{
           "--image-container-opacity": imagesLoaded && isAnyActive ? 1 : 0.1,
         }}
@@ -52,16 +72,16 @@ const ImageComposite = forwardRef<
           style={{ "--loading-opacity": isLoading ? 0 : 1 }}
         >
           {filters &&
-            filters.map((filter) => {
-              const { label, image, color, brightness, active } = filter;
+            filters.map((filter, i) => {
+              const { label, image, color, brightness } = filter;
 
               return (
-                <FilterImage
-                  key={`filter-${label}`}
+                <OffscreenFilter
+                  key={label}
+                  onChangeCallback={(canvas) => handleFilterChange(i, canvas)}
                   {...{
                     url: image,
                     color,
-                    active,
                     width,
                     height,
                     filters: {
@@ -73,6 +93,12 @@ const ImageComposite = forwardRef<
                 />
               );
             })}
+          <CompositeRenderer
+            layers={layers.current}
+            renderLayers={filters.map(({ active }) => active)}
+            globalCompositeOperation="screen"
+            {...{ width, height, ref }}
+          />
         </Styled.LoadingContainer>
         {children}
       </Styled.ImageContainer>

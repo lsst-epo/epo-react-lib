@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`FilterImage should render an image 1`] = `"data:image/png;base64,00"`;
