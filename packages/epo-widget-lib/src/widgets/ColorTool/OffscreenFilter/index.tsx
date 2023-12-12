@@ -1,15 +1,13 @@
 import "context-filter-polyfill";
-import { FunctionComponent, HTMLAttributes } from "react";
+import { FunctionComponent } from "react";
 import useImage from "@/hooks/useImage";
-import { isStyleSupported } from "../utilities";
+import { getFilters, updateColor } from "../utilities";
 
-export interface OffscreenFilterProps
-  extends HTMLAttributes<HTMLCanvasElement> {
+export interface OffscreenFilterProps {
   height?: number;
   width?: number;
   url: string;
   color?: string;
-  brightness?: number;
   filters?: {
     [key: string]: number | undefined;
   };
@@ -37,26 +35,6 @@ const OffscreenFilter: FunctionComponent<OffscreenFilterProps> = ({
   });
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-
-  const updateColor = (
-    ctx: CanvasRenderingContext2D,
-    color: string,
-    canvasWidth: number,
-    canvasHeight: number
-  ) => {
-    const safeColor = isStyleSupported("color", color) ? color : "transparent";
-
-    ctx.fillStyle = safeColor;
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-  };
-
-  const getFilters = (filters: {
-    [key: string]: number | undefined;
-  }): string => {
-    return Object.keys(filters).reduce((prev, key, i) => {
-      return (prev += `${i > 0 ? " " : ""}${key}(${filters[key]})`);
-    }, "");
-  };
 
   if (ctx && image && status === "loaded") {
     ctx.canvas.width = width;
