@@ -42,8 +42,6 @@ const ImageComposite = forwardRef<
     const enabledFilters = filters.filter((f) => !f.isDisabled).length;
     const isLoading = imagesLoaded < enabledFilters;
 
-    console.log({ isLoading });
-
     if (selectedObjectName !== prevObject) {
       setPrevObject(selectedObjectName);
       setImagesLoaded(0);
@@ -96,7 +94,6 @@ const ImageComposite = forwardRef<
           <CompositeRenderer
             layers={layers.current}
             renderLayers={filters.map(({ active }) => active)}
-            globalCompositeOperation="screen"
             {...{ width, height, ref }}
           />
         </Styled.LoadingContainer>
