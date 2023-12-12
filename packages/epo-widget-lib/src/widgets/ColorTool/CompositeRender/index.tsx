@@ -1,40 +1,26 @@
 import { forwardRef } from "react";
+import { mergeCanvases } from "../utilities";
+import * as Styled from "./styles";
 
 interface CompositeRendererProps {
   layers: Array<HTMLCanvasElement>;
   renderLayers: Array<boolean>;
-  globalCompositeOperation?: GlobalCompositeOperation;
   width: number;
   height: number;
 }
 
 const CompositeRenderer = forwardRef<HTMLCanvasElement, CompositeRendererProps>(
-  (
-    {
-      layers = [],
-      renderLayers = [],
-      globalCompositeOperation = "source-over",
-      width,
-      height,
-    },
-    ref
-  ) => {
+  ({ layers = [], renderLayers = [], width, height }, ref) => {
     const ctx = ref?.current?.getContext("2d");
+    const activeLayers = layers.filter((f, i) => f && renderLayers[i]);
 
     if (ctx) {
-      ctx.canvas.width = width;
-      ctx.canvas.height = height;
-      ctx.globalCompositeOperation = globalCompositeOperation;
-
-      layers.forEach((layer, i) => {
-        if (renderLayers[i]) {
-          ctx.drawImage(layer, 0, 0, width, height);
-        }
-      });
+      ctx.clearRect(0, 0, width, height);
+      mergeCanvases(ctx, activeLayers, width, height);
     }
 
     return layers.length > 0 ? (
-      <canvas ref={ref} role="img" {...{ width, height }} />
+      <Styled.Image ref={ref} role="img" {...{ width, height }} />
     ) : null;
   }
 );
