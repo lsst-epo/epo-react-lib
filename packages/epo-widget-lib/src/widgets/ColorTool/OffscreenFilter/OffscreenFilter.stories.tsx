@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { argTypes } from "@/storybook/utilities";
 
 import OffscreenFilter from ".";
 
@@ -15,23 +14,6 @@ const meta: Meta<typeof OffscreenFilter> = {
       table: {
         type: {
           summary: "string",
-        },
-      },
-    },
-    brightness: {
-      type: {
-        name: "number",
-      },
-      control: { type: "number", min: 0, step: 0.1 },
-      description:
-        "Image brightness linear multiplier value. Applied to image via CSS `brightness()` function.",
-      table: {
-        type: {
-          summary: "number",
-        },
-        category: "Filters",
-        defaultValue: {
-          summary: 1,
         },
       },
     },

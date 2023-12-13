@@ -24,6 +24,7 @@ export default defineConfig({
           "src/widgets/CameraFilter/CameraFilter.tsx"
         ),
         ColorTool: resolve(__dirname, "src/widgets/ColorTool/ColorTool.tsx"),
+        ColorToolServer: resolve(__dirname, "src/widgets/ColorTool/server.ts"),
         FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
         SourceSelector: resolve(
           __dirname,
@@ -55,6 +56,7 @@ export default defineConfig({
         "react-share",
         "react-slider",
         "react-uid",
+        "skia-canvas",
         "styled-components",
         "use-resize-observer",
       ],

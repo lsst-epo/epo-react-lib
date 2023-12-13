@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",
@@ -89,6 +89,7 @@
     "@rubin-epo/epo-react-lib": "^2.0.13",
     "context-filter-polyfill": "^0.3.6",
     "lodash": "^4.17.21",
+    "skia-canvas": "^1.0.1",
     "styled-components": "^6.1.1",
     "use-resize-observer": "^9.1.0"
   }
