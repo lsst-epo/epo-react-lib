@@ -1,3 +1,4 @@
+import "context-filter-polyfill";
 import flattenDeep from "lodash/flattenDeep";
 import find from "lodash/find";
 import isEmpty from "lodash/isEmpty";
@@ -131,83 +132,4 @@ export const mergeCanvases = (
   layers.forEach((layer) => {
     context.drawImage(layer, 0, 0, width, height);
   });
-};
-
-export function getFilteredCanvas(
-  filters: Array<ImageFilter> = [],
-  width: number = 600,
-  height: number = 600
-): CanvasRenderingContext2D | undefined {
-  const activeFilters = filters.filter(({ active }) => active);
-  const filteredImages = activeFilters.map(
-    ({ image: url, color = "transparent", brightness }) => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      if (ctx) {
-        const image = new Image(width, height);
-        image.src = url;
-        image.crossOrigin = "anonymous";
-        image.onload = () => {
-          ctx.drawImage(image, 0, 0, width, height);
-        };
-
-        ctx.canvas.width = width;
-        ctx.canvas.height = height;
-        ctx.clearRect(0, 0, width, height);
-
-        ctx.globalCompositeOperation = "multiply";
-        ctx.filter = getFilters({ brightness, contrast: 1.3 });
-
-        updateColor(ctx, color, width, height);
-
-        return canvas;
-      }
-
-      return undefined;
-    }
-  );
-
-  const mergedCanvas = document.createElement("canvas");
-  const ctx = mergedCanvas.getContext("2d");
-
-  if (ctx) {
-    mergeCanvases(
-      ctx,
-      filteredImages.filter((f): f is HTMLCanvasElement => !!f),
-      width,
-      height
-    );
-
-    return ctx;
-  } else {
-    return undefined;
-  }
-}
-
-export const getFilteredImageBlob = (
-  filters: Array<ImageFilter> = [],
-  callback: BlobCallback,
-  width: number = 600,
-  height: number = 600
-) => {
-  const ctx = getFilteredCanvas(filters, width, height);
-
-  if (ctx) {
-    return ctx.canvas.toBlob(callback);
-  }
-  return undefined;
-};
-
-export const getFilteredImageBase64 = (
-  filters: Array<ImageFilter> = [],
-  width: number = 600,
-  height: number = 600
-) => {
-  const ctx = getFilteredCanvas(filters, width, height);
-
-  if (ctx) {
-    return ctx.canvas.toDataURL();
-  }
-  return undefined;
 };
