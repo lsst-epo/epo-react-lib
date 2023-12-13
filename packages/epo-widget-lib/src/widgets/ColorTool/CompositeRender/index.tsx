@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { MutableRefObject, forwardRef } from "react";
 import { mergeCanvases } from "../utilities";
 import * as Styled from "./styles";
 
@@ -11,7 +11,9 @@ interface CompositeRendererProps {
 
 const CompositeRenderer = forwardRef<HTMLCanvasElement, CompositeRendererProps>(
   ({ layers = [], renderLayers = [], width, height }, ref) => {
-    const ctx = ref?.current?.getContext("2d");
+    const ctx = (
+      ref as MutableRefObject<HTMLCanvasElement>
+    )?.current?.getContext("2d");
     const activeLayers = layers.filter((f, i) => f && renderLayers[i]);
 
     if (ctx) {
