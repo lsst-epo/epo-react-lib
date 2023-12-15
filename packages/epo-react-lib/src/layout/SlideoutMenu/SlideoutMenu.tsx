@@ -6,10 +6,10 @@ import {
   useRef,
   useState,
 } from "react";
-import { useOnClickOutside, useKeyDownEvent } from "@/hooks/listeners";
+import Slideout from "@/atomic/Slideout";
+import { useKeyDownEvent } from "@/hooks/listeners";
 import MenuContext from "@/contexts/Menu";
 import * as Styled from "./styles";
-import { MENU_TRANSITION_TIME } from "./constants";
 import IconComposer from "@/svg/IconComposer/IconComposer";
 
 interface SlideoutMenuProps {
@@ -37,7 +37,6 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   const menuItems = useRef<Set<HTMLButtonElement>>(new Set()).current;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHidden, setIsHidden] = useState(!isOpen);
 
   const isActive = isOpen && !isSubMenuOpen;
 
@@ -45,18 +44,6 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
     () => ({ menuItems, currentIndex }),
     [menuItems, currentIndex]
   );
-
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(firstItem);
-      setIsHidden(false);
-      onOpenCallback && onOpenCallback();
-    } else {
-      setTimeout(() => {
-        setIsHidden(true);
-      }, MENU_TRANSITION_TIME);
-    }
-  }, [isOpen]);
 
   useEffect(() => {
     if (isActive) {
@@ -106,7 +93,6 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
         ArrowUp: prevItem,
         Home: firstItem,
         End: lastItem,
-        Escape: handleClose,
       };
 
       const action = keyMap[key];
@@ -121,14 +107,9 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   const menuTitleId = `slideOutMenuTitle-${id}`;
 
   useKeyDownEvent(handleKeyDown);
-  useOnClickOutside(menuRef, handleClose);
 
   return (
-    <Styled.Overlay
-      role="none"
-      aria-hidden={!isOpen}
-      style={{ "--visibility": !isHidden && "visible" }}
-    >
+    <Slideout onCloseCallback={handleClose} {...{ isOpen, onOpenCallback }}>
       <Styled.MenuContainer
         ref={menuRef}
         role="menu"
@@ -154,7 +135,7 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
         </Styled.MenuHeader>
         <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
       </Styled.MenuContainer>
-    </Styled.Overlay>
+    </Slideout>
   );
 };
 

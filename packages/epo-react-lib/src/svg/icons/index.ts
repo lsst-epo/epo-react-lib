@@ -17,6 +17,8 @@ import Close from "./Close";
 import CloseCircle from "./CloseCircle";
 import Cloud from "./Cloud";
 import Doc from "./Doc";
+import DocInverted from "./DocInverted";
+import DocArrowRight from "./DocArrowRight";
 import Email from "./Email";
 import Expand from "./Expand";
 import Eye from "./Eye";
@@ -85,6 +87,8 @@ const Icons = {
   CloseCircle,
   Cloud,
   Doc,
+  DocArrowRight,
+  DocInverted,
   Email,
   Expand,
   Eye,

@@ -107,6 +107,7 @@ export default defineConfig({
           "src/svg/IconComposer/IconComposer.tsx"
         ),
         icons: resolve(__dirname, "src/svg/icons"),
+        Slideout: resolve(__dirname, "src/atomic/Slideout/index.tsx"),
       },
       formats: [defaultFormat, "cjs"],
       fileName: (format, name) =>

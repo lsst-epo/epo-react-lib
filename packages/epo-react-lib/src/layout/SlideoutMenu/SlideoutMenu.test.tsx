@@ -54,15 +54,4 @@ describe("Slideout menu", () => {
       expect(document.activeElement?.id).toBe(menuItems[1].id);
     });
   });
-  it("closes the menu when Escape is pressed", () => {
-    render(<SlideoutMenu {...props} />);
-
-    const menu = screen.getByRole("menu");
-
-    userEvent.keyboard("{Esc}");
-
-    waitFor(() => {
-      expect(menu).not.toBeVisible();
-    });
-  });
 });
