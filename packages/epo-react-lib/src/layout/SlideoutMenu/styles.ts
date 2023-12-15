@@ -1,39 +1,6 @@
 import styled from "styled-components";
-import { zStack, BREAK_TABLET_MIN } from "@/styles/abstracts";
+import { BREAK_TABLET_MIN } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
-import {
-  MENU_TRANSITION_TIME,
-  MENU_SLIDE_TIME,
-  MENU_SLIDE_DELAY,
-} from "./constants";
-
-export const Overlay = styled.div`
-  --menu-transition-time: ${MENU_TRANSITION_TIME}ms;
-  --menu-slide-time: ${MENU_SLIDE_TIME}ms;
-  --menu-slide-delay: ${MENU_SLIDE_DELAY}ms;
-
-  --background-color: transparent;
-  --pointer-events: none;
-  --transform: translateX(-100%);
-
-  background-color: var(--background-color, transparent);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: ${zStack.dialog};
-  transition: background-color var(--menu-slide-time);
-  transition-delay: var(--menu-slide-delay);
-  pointer-events: var(--pointer-events);
-  visibility: var(--visibility, hidden);
-
-  &:not([aria-hidden="true"]) {
-    --background-color: rgba(0, 0, 0, 0.7);
-    --pointer-events: auto;
-    --transform: translateX(0);
-  }
-`;
 
 export const MenuContainer = styled.div`
   --menu-padding: var(--PADDING_SMALL, 20px);
@@ -45,12 +12,6 @@ export const MenuContainer = styled.div`
   height: 100%;
   width: 20rem;
   max-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: transform var(--menu-slide-time) ease-in;
-  transition-delay: var(--menu-slide-delay);
-  transform: var(--transform);
   overflow-y: auto;
 
   & > * + * {
