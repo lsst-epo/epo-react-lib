@@ -1,0 +1,36 @@
+{
+  "color": {
+    "orange": {
+      "01": {
+        "value": "#FFFDFA",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "03": {
+        "value": "#FFF8F0",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "07": {
+        "value": "#ffedd9",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "10": {
+        "value": "#ffe7cc",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "31": {
+        "value": "#FAB364",
+        "attributes": {
+          "category": "color"
+        }
+      }
+    }
+  }
+}
