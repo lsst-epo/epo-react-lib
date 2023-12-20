@@ -1,43 +1,19 @@
-import palette from "@/styles/abstracts/palette";
+import palette from "./palette";
+import * as baseTokens from "@rubin-epo/epo-style-dictionary/legacy/tokens";
 
-export const tokens: { [key: string]: string } = {
+const { Z_STACK_DIALOG, Z_STACK_HEADER, Z_STACK_LOADER, ...rest } = baseTokens;
+
+export const tokens = {
   ...palette,
-  BREAK_HEADER_LAYOUT: "1500px",
-  BREAK_DESKTOP: "1280px",
-  BREAK_DESKTOP_SMALL: "1130px",
-  BREAK_LARGE_TABLET: "850px",
-  BREAK_LARGE_TABLET_MIN: "851px",
-  BREAK_TABLET: "768px",
-  BREAK_TABLET_MIN: "769px",
-  BREAK_PHABLET: "600px",
-  BREAK_PHABLET_MIN: "601px",
-  BREAK_MOBILE: "446px",
-  // For extremely thin devices, or users with largeer font bases
-  BREAK_MOBILE_MIN: "280px",
-  CONTAINER_MAX: "2560px",
-  CONTAINER_FULL: "1920px",
-  CONTAINER_WIDE: "1435px",
-  CONTAINER_REGULAR: "1160px",
-  CONTAINER_NARROW: "900px",
-  FONT_WEIGHT_NORMAL: "400",
-  FONT_WEIGHT_MEDIUM: "500",
-  FONT_WEIGHT_BOLD: "600",
-  FONT_SIZE_BASE_DESKTOP: "22px",
-  FONT_SIZE_BASE_MOBILE: "16px",
-  FONT_STACK_BASE: `"Source Sans Pro", system-ui`,
-  LINE_HEIGHT_BASE: "1.636",
-  PADDING_LARGE: "100px",
-  PADDING_MEDIUM: "40px",
-  PADDING_SMALL: "20px",
-  DURATION: "0.2s",
-  DURATION_SLOW: "0.4s",
-  DURATION_SUPER_SLOW: "1s",
+  ...rest,
 };
 
+export type StyleToken = keyof typeof tokens;
+
 export const zStack = {
-  loader: 45,
-  dialog: 35,
-  header: 25,
+  loader: Z_STACK_LOADER,
+  dialog: Z_STACK_DIALOG,
+  header: Z_STACK_HEADER,
 };
 
 export const white = tokens.white;
@@ -65,7 +41,6 @@ export const turquoise70 = tokens.turquoise70;
 export const turquoise80 = tokens.turquoise80;
 export const turquoise85 = tokens.turquoise85;
 export const turquoise90 = tokens.turquoise90;
-export const blue10 = tokens.blue10;
 export const red = tokens.red;
 export const red20 = tokens.red20;
 export const red40 = tokens.red40;
