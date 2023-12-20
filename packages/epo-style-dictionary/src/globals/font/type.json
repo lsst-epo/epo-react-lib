@@ -1,0 +1,10 @@
+{
+  "font": {
+    "type": {
+      "base": {
+        "value": "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui",
+        "attributes": { "category": "font" }
+      }
+    }
+  }
+}

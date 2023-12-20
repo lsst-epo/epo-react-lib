@@ -2,7 +2,7 @@
   "color": {
     "neutral": {
       "00": {
-        "value": "#fffffff",
+        "value": "#ffffff",
         "attributes": {
           "category": "color"
         }
@@ -14,6 +14,7 @@
         }
       },
       "04": {
+        "comment": "Rubin Pale Gray",
         "value": "#f5f5f5",
         "attributes": {
           "category": "color"
@@ -38,6 +39,7 @@
         }
       },
       "12": {
+        "comment": "Rubin Light Gray",
         "value": "#dce0e3",
         "attributes": {
           "category": "color"
@@ -56,6 +58,7 @@
         }
       },
       "58": {
+        "comment": "Rubin Gray",
         "value": "#6A6E6E",
         "attributes": {
           "category": "color"
@@ -68,6 +71,7 @@
         }
       },
       "80": {
+        "comment": "Rubin Charcoal",
         "value": "#313333",
         "attributes": {
           "category": "color"
@@ -80,6 +84,7 @@
         }
       },
       "87": {
+        "comment": "Rubin Black",
         "value": "#1f2121",
         "attributes": {
           "category": "color"

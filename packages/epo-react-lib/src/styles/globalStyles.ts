@@ -2,9 +2,9 @@
 
 import { createGlobalStyle } from "styled-components";
 import { baseFont } from "@/styles/mixins/font";
-import { fluidScale } from "@/styles/utils";
+import { fluidScale, token } from "@/styles/utils";
 import base from "@/styles/base";
-import { tokens } from "@/styles/abstracts";
+import { StyleToken, tokens } from "@/styles/abstracts";
 
 const {
   BREAK_MOBILE,
@@ -14,7 +14,7 @@ const {
 } = tokens;
 
 const createCSSGlobalStyles = () => {
-  return Object.keys(tokens).map((k) => `--${k}: ${tokens[k]};`);
+  return Object.keys(tokens).map((k) => `--${k}: ${token(k as StyleToken)};`);
 };
 
 const GlobalStyles = createGlobalStyle<{ includeFonts?: boolean }>`

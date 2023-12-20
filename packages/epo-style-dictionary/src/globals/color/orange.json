@@ -26,6 +26,7 @@
         }
       },
       "31": {
+        "comment": "Rubin Orange",
         "value": "#FAB364",
         "attributes": {
           "category": "color"

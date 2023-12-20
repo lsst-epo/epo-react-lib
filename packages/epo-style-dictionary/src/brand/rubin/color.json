@@ -71,9 +71,41 @@
       }
     },
     "accent": {
-      "orange": "{color.orange.31}",
-      "attributes": {
-        "category": "color"
+      "orange": {
+        "value": "{color.orange.31}",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "blue": {
+        "value": "{color.blue.62}",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "green": {
+        "value": "{color.green.54}",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "red": {
+        "value": "{color.red.39}",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "yellow": {
+        "value": "{color.yellow.30}",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "purple": {
+        "value": "{color.purple.37}",
+        "attributes": {
+          "category": "color"
+        }
       }
     }
   }

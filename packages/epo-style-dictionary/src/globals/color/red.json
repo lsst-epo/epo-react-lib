@@ -1,28 +1,28 @@
 {
   "color": {
-    "turquoise": {
-      "04": {
-        "value": "#edfffe",
+    "red": {
+      "15": {
+        "value": "#f2c3c0",
         "attributes": {
           "category": "color"
         }
       },
-      "18": {
-        "comment": "Rubin Light Turquoise",
-        "value": "#B1F2EF",
+      "24": {
+        "value": "#FF8489",
         "attributes": {
           "category": "color"
         }
       },
-      "63": {
-        "comment": "Rubin Turquoise",
-        "value": "#00BABC",
+      "39": {
+        "comment": "Rubin Red",
+        "value": "#ED4C4C",
         "attributes": {
           "category": "color"
         }
       },
-      "74": {
-        "value": "#12726d",
+      "47": {
+        "comment": "Contrast safer version of Rubin Red",
+        "value": "#cf4040",
         "attributes": {
           "category": "color"
         }
