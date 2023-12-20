@@ -1,0 +1,40 @@
+{
+  "color": {
+    "teal": {
+      "09": {
+        "comment": "Rubin Pale Teal",
+        "value": "#D9F7F6",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "68": {
+        "comment": "Rubin Light Teal",
+        "value": "#009FA1",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "72": {
+        "comment": "Rubin Teal",
+        "value": "#058B8C",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "74": {
+        "value": "#117273",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "83": {
+        "comment": "Rubin Dark Teal",
+        "value": "#0c4a47",
+        "attributes": {
+          "category": "color"
+        }
+      }
+    }
+  }
+}

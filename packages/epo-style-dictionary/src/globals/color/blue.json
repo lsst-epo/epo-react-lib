@@ -1,0 +1,19 @@
+{
+  "color": {
+    "blue": {
+      "13": {
+        "value": "#C7D4F4",
+        "attributes": {
+          "category": "color"
+        }
+      },
+      "62": {
+        "comment": "Rubin Blue",
+        "value": "#1C81A4",
+        "attributes": {
+          "category": "color"
+        }
+      }
+    }
+  }
+}

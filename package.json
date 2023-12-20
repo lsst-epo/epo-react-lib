@@ -7,11 +7,11 @@
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/epo-react-lib",
+    "packages/epo-widget-lib",
+    "packages/epo-style-dictionary"
+  ],
   "scripts": {
     "build-storybook": "build-storybook",
     "deploy-storybook": "mkdir ./.out && touch ./.out/.nojekyll && storybook-to-ghpages --packages=packages --out=.out",

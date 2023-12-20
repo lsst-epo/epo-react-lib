@@ -1,0 +1,26 @@
+{
+  "size": {
+    "containers": {
+      "max": {
+        "value": "2560{space.units.pixel}",
+        "attributes": { "category": "containers" }
+      },
+      "full": {
+        "value": "1920{space.units.pixel}",
+        "attributes": { "category": "containers" }
+      },
+      "wide": {
+        "value": "1435{space.units.pixel}",
+        "attributes": { "category": "containers" }
+      },
+      "regular": {
+        "value": "1160{space.units.pixel}",
+        "attributes": { "category": "containers" }
+      },
+      "narrow": {
+        "value": "900{space.units.pixel}",
+        "attributes": { "category": "containers" }
+      }
+    }
+  }
+}
