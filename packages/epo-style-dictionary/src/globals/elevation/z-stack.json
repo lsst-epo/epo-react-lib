@@ -1,0 +1,9 @@
+{
+  "elevation": {
+    "z-stack": {
+      "loader": { "value": 45, "attributes": { "category": "elevation" } },
+      "dialog": { "value": 35, "attributes": { "category": "elevation" } },
+      "header": { "value": 25, "attributes": { "category": "elevation" } }
+    }
+  }
+}

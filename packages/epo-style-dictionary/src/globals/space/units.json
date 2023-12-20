@@ -1,0 +1,18 @@
+{
+  "space": {
+    "units": {
+      "pixel": {
+        "value": "px",
+        "attributes": {
+          "category": "space"
+        }
+      },
+      "second": {
+        "value": "s",
+        "attributes": {
+          "category": "space"
+        }
+      }
+    }
+  }
+}

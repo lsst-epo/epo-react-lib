@@ -3,10 +3,10 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Mon, 18 Dec 2023 23:58:25 GMT
+ * Generated on Wed, 20 Dec 2023 17:10:03 GMT
  */
 
-export const white = "#000000";
+export const white = "#ffffff";
 export const offWhite = "#e9e9e9";
 export const neutral02 = "#fafafa";
 export const neutral08 = "#ebebeb";
@@ -18,6 +18,7 @@ export const neutral40 = "#9e9ea3";
 export const neutral60 = "#6a6e6e";
 export const neutral80 = "#404040";
 export const neutral90 = "#2b2e34";
+export const neutral95 = "#1f2121";
 export const black = "#000000";
 export const turquoise05 = "#edfffe";
 export const turquoise07 = "#edfffe"; // Merged with turquoise05
@@ -36,3 +37,8 @@ export const orange05 = "#fff8f0"; // Merged with orange04
 export const orange10 = "#ffedd9";
 export const orange20 = "#ffe7cc";
 export const orange55 = "#fab364";
+export const blue20 = "#c7d4f4";
+export const green05 = "#d7e6cf";
+export const red = "#cf4040";
+export const red20 = "#f2c3c0";
+export const red40 = "#ff8489";
