@@ -1,0 +1,48 @@
+{
+  "font": {
+    "typography": {
+      "weight": {
+        "normal": {
+          "value": "400",
+          "attributes": {
+            "category": "font"
+          }
+        },
+        "medium": {
+          "value": "500",
+          "attributes": {
+            "category": "font"
+          }
+        },
+        "bold": {
+          "value": "600",
+          "attributes": {
+            "category": "font"
+          }
+        }
+      },
+      "size": {
+        "desktop": {
+          "value": "22{space.units.pixel}",
+          "attributes": {
+            "category": "font"
+          }
+        },
+        "mobile": {
+          "value": "16{space.units.pixel}",
+          "attributes": {
+            "category": "font"
+          }
+        }
+      },
+      "line-height": {
+        "base": {
+          "value": "1.636",
+          "attributes": {
+            "category": "font"
+          }
+        }
+      }
+    }
+  }
+}

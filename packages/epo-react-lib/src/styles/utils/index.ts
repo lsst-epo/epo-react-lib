@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { fluidScaleBase, stripUnit, respondBase } from "@castiron/style-mixins";
 import { aHidden } from "@/styles/mixins/appearance";
-import { tokens, palette as colorTokens } from "@/styles/abstracts";
+import { tokens, palette as colorTokens, StyleToken } from "@/styles/abstracts";
 
 export function fluidScale(
   max: string,
@@ -17,7 +17,7 @@ export const containerMax = () => protoContainer(tokens.CONTAINER_MAX);
 
 export const containerFull = () => protoContainer(tokens.CONTAINER_FULL);
 
-export const containerFullBleed = (width = "CONTAINER_MAX") => {
+export const containerFullBleed = (width: StyleToken = "CONTAINER_MAX") => {
   return `
     width: 100%;
     max-width: ${tokens[width]};
@@ -68,7 +68,8 @@ export const needsDarkColor = (hexColor: string) => {
   return r * 0.299 + g * 0.587 + b * 0.114 > 186;
 };
 
-export const palette = (color: string) => colorTokens[color];
+export const palette = (color: string) =>
+  (colorTokens as { [key: string]: string })[color];
 
 export const protoContainer = (
   maxWidth = tokens.CONTAINER_WIDE,
@@ -109,16 +110,19 @@ export const respond = (
   return respondBase(content, size, operator, aspect);
 };
 
-export function token(which: string): string;
-export function token(which: string[]): { [key: string]: string };
+export function token(which: StyleToken): string;
+export function token(which: StyleToken[]): { [key: string]: string };
 export function token(which: unknown): unknown {
   if (typeof which === "string") {
-    return tokens[which];
+    return tokens[which as StyleToken];
   } else if (Array.isArray(which)) {
-    const obj = which.reduce((result: { [key: string]: string }, item) => {
-      result[item] = tokens[item];
-      return result;
-    }, {});
+    let obj = which.reduce(
+      (result: Record<StyleToken, string>, item: StyleToken) => {
+        result[item] = tokens[item];
+        return result;
+      },
+      {}
+    );
     return obj;
   } else {
     return tokens;
