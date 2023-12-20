@@ -1,4 +1,5 @@
-import { tokens } from "@/styles/abstracts";
+import { token } from "@/styles/utils";
+import { StyleToken } from "../abstracts";
 
 type BoxEdge = "top" | "right" | "bottom" | "left";
 export type SpacingSize = "large" | "medium" | "small";
@@ -13,7 +14,11 @@ const Edges: {
 };
 
 export const padding = (edge: BoxEdge, size: SpacingSize) =>
-  `padding-${Edges[edge]}: ${tokens[`PADDING_${size.toUpperCase()}`]};`;
+  `padding-${Edges[edge]}: ${token(
+    `PADDING_${size.toUpperCase()}` as StyleToken
+  )};`;
 
 export const margin = (edge: BoxEdge, size: SpacingSize) =>
-  `margin-${Edges[edge]}: ${tokens[`MARGIN_${size.toUpperCase()}`]};`;
+  `margin-${Edges[edge]}: ${token(
+    `MARGIN_${size.toUpperCase()}` as StyleToken
+  )};`;

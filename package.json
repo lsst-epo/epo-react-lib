@@ -11,7 +11,8 @@
     "packages/epo-react-lib",
     "packages/epo-widget-lib",
     "packages/eslint-config-react",
-    "packages/prettier-config"
+    "packages/prettier-config",
+    "packages/epo-style-dictionary"
   ],
   "scripts": {
     "postinstall": "yarn workspace @rubin-epo/epo-react-lib run build",

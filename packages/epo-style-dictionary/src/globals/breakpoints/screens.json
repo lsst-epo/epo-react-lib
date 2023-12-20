@@ -1,0 +1,67 @@
+{
+  "breakpoints": {
+    "screens": {
+      "desktop": {
+        "value": "1280{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "desktop_small": {
+        "value": "1130{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "tablet_large": {
+        "value": "850{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "tablet_large_min": {
+        "value": "851{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "tablet": {
+        "value": "768{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "tablet_min": {
+        "value": "769{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "phablet": {
+        "value": "600{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "phablet_min": {
+        "value": "601{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "mobile": {
+        "value": "446{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      },
+      "mobile_min": {
+        "comment": "For extremely thin devices, or users with larger font bases",
+        "value": "280{space.units.pixel}",
+        "attributes": {
+          "category": "breakpoints"
+        }
+      }
+    }
+  }
+}

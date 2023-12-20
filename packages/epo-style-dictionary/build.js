@@ -1,17 +1,37 @@
-const StyleDictionaryPackage = require("style-dictionary");
+const StyleDictionary = require("style-dictionary");
 
 const legacyPlatforms = {
-  "library/legacy/colors/js": {
+  "legacy/colors/js": {
     transforms: ["attribute/cti", "name/cti/camel", "size/rem", "color/hex"],
-    buildPath: "dist/web/library/",
+    buildPath: "dist/web/legacy/palette/",
 
     options: {
       fileHeader: "LegacyTokens",
     },
     files: [
       {
-        destination: "tokens.legacy.js",
+        destination: "index.js",
         format: "javascript/es6",
+        filter: {
+          attributes: {
+            category: "color",
+            legacy: true,
+          },
+        },
+      },
+      {
+        destination: "index.cjs",
+        format: "javascript/module-flat",
+        filter: {
+          attributes: {
+            category: "color",
+            legacy: true,
+          },
+        },
+      },
+      {
+        format: "typescript/es6-declarations",
+        destination: "index.d.ts",
         filter: {
           attributes: {
             category: "color",
@@ -21,8 +41,8 @@ const legacyPlatforms = {
       },
     ],
   },
-  "library/legacy/css/colors/js": {
-    buildPath: "dist/web/library/",
+  "legacy/colors/css": {
+    buildPath: "dist/web/legacy/palette/",
     transforms: [
       "attribute/cti",
       "name/cti/camel",
@@ -34,14 +54,9 @@ const legacyPlatforms = {
     options: {
       fileHeader: "LegacyTokens",
     },
-    filter: {
-      attributes: {
-        legacy: true,
-      },
-    },
     files: [
       {
-        destination: "tokens.legacy.css",
+        destination: "index.css",
         format: "css/variables",
         filter: {
           attributes: {
@@ -52,9 +67,34 @@ const legacyPlatforms = {
       },
     ],
   },
+  "legacy/tokens/js": {
+    transformGroup: "tokens-js",
+    buildPath: "dist/web/legacy/tokens/",
+
+    options: {
+      fileHeader: "LegacyTokens",
+    },
+    files: [
+      {
+        destination: "index.js",
+        format: "javascript/es6",
+        filter: "legacyToken",
+      },
+      {
+        destination: "index.cjs",
+        format: "javascript/module-flat",
+        filter: "legacyToken",
+      },
+      {
+        format: "typescript/es6-declarations",
+        destination: "index.d.ts",
+        filter: "legacyToken",
+      },
+    ],
+  },
 };
 const platforms = {
-  "library-legacy": legacyPlatforms,
+  legacy: legacyPlatforms,
   rubin: {},
 };
 
@@ -70,9 +110,9 @@ function getStyleDictionaryConfig(brand) {
 // REGISTER CUSTOM FORMATS + TEMPLATES + TRANSFORMS + TRANSFORM GROUPS
 
 // if you want to see the available pre-defined formats, transforms and transform groups uncomment this
-// console.log(StyleDictionaryPackage);
+// console.log(StyleDictionary);
 
-StyleDictionaryPackage.registerFormat({
+StyleDictionary.registerFormat({
   name: "json/flat",
   formatter: function (dictionary) {
     return JSON.stringify(dictionary.allProperties, null, 2);
@@ -83,7 +123,7 @@ StyleDictionaryPackage.registerFormat({
 // because I wanted to apply the "token" prefix only to actual tokens and not to the aliases
 // but I've found out that in case of "name/cti/constant" the prefix was not respecting the case for the "prefix" part
 //
-// StyleDictionaryPackage.registerTransform({
+// StyleDictionary.registerTransform({
 //     name: 'name/prefix-token',
 //     type: 'name',
 //     matcher: function(prop) {
@@ -94,7 +134,7 @@ StyleDictionaryPackage.registerFormat({
 //     }
 // });
 
-StyleDictionaryPackage.registerFileHeader({
+StyleDictionary.registerFileHeader({
   name: "LegacyTokens",
   fileHeader: (defaultMessage) => {
     return [
@@ -106,7 +146,7 @@ StyleDictionaryPackage.registerFileHeader({
   },
 });
 
-StyleDictionaryPackage.registerTransform({
+StyleDictionary.registerTransform({
   name: "size/pxToPt",
   type: "value",
   matcher: function (prop) {
@@ -117,7 +157,7 @@ StyleDictionaryPackage.registerTransform({
   },
 });
 
-StyleDictionaryPackage.registerTransform({
+StyleDictionary.registerTransform({
   name: "size/pxToPt",
   type: "value",
   matcher: function (prop) {
@@ -128,7 +168,7 @@ StyleDictionaryPackage.registerTransform({
   },
 });
 
-StyleDictionaryPackage.registerTransform({
+StyleDictionary.registerTransform({
   name: "size/pxToDp",
   type: "value",
   matcher: function (prop) {
@@ -139,35 +179,42 @@ StyleDictionaryPackage.registerTransform({
   },
 });
 
-StyleDictionaryPackage.registerTransformGroup({
+StyleDictionary.registerTransformGroup({
   name: "tokens-js",
   transforms: ["name/cti/constant", "size/px", "color/hex"],
 });
 
-StyleDictionaryPackage.registerTransformGroup({
+StyleDictionary.registerTransformGroup({
   name: "tokens-json",
   transforms: ["attribute/cti", "name/cti/kebab", "size/px", "color/css"],
 });
 
-StyleDictionaryPackage.registerTransformGroup({
+StyleDictionary.registerTransformGroup({
   name: "tokens-scss",
-  // to see the pre-defined "scss" transformation use: console.log(StyleDictionaryPackage.transformGroup['scss']);
+  // to see the pre-defined "scss" transformation use: console.log(StyleDictionary.transformGroup['scss']);
   transforms: ["name/cti/kebab", "time/seconds", "size/px", "color/css"],
+});
+
+StyleDictionary.registerFilter({
+  name: "legacyToken",
+  matcher: function (token) {
+    return (
+      token.attributes.legacy === true && token.attributes.category !== "color"
+    );
+  },
 });
 
 console.log("Build started...");
 
 // PROCESS THE DESIGN TOKENS FOR THE DIFFEREN BRANDS AND PLATFORMS
 
-["rubin", "library-legacy"].map(function (platform) {
+["rubin", "legacy"].map(function (platform) {
   console.log("\n==============================================");
   console.log(`\nProcessing: [${platform}]`);
 
-  const StyleDictionary = StyleDictionaryPackage.extend(
-    getStyleDictionaryConfig(platform)
-  );
+  const dictionary = StyleDictionary.extend(getStyleDictionaryConfig(platform));
 
-  StyleDictionary.buildAllPlatforms();
+  dictionary.buildAllPlatforms();
 
   console.log("\nEnd processing");
 });
