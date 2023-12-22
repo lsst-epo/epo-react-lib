@@ -50,7 +50,7 @@ const Actions: FunctionComponent<ActionsProps> = ({
                 isDisabled={actionsDisabled}
                 {...{ canvas, filename }}
               >
-                Export
+                {t("colorTool.actions.export")}
               </Export>
             );
 

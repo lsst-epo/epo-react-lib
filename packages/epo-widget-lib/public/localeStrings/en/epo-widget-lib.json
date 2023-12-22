@@ -52,7 +52,8 @@
     "actions": {
       "select_an_object": "Select an object",
       "select_filter": "Select a filter",
-      "reset": "Reset"
+      "reset": "Reset",
+      "export": "Export"
     }
   },
   "source_selector": {
