@@ -1,1 +1,52 @@
-{}
+{
+  "select_listbox": {
+    "placeholder": "Seleccionar"
+  },
+  "pagination": {
+    "label": "Paginación",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "current-slide": "Diapositiva {{current}}",
+    "showing-current-slide": "Mostrando diapositiva {{current}} de {{length}}",
+    "showing-range": "Mostrando {{from}} a {{to}} de {{length}}",
+    "previous_name": "Anterior ({{name}})",
+    "next_name": "Siguiente ({{name}})",
+    "back_to_name": "Volver a {{name}}"
+  },
+  "form": {
+    "email": "Correo",
+    "email_required": "Correo(requerido)",
+    "first_name": "Nombre",
+    "last_name": "Apellido",
+    "topic": "Asunto",
+    "inquiry": "Consulta",
+    "password": "Contraseña",
+    "password_required": "Contraseña (requerida)",
+    "current_password": "Contraseña actual",
+    "new_password": "Nueva contraseña",
+    "confirm_password": "Confirmar nueva contraseña",
+    "show_password": "Mostrar contraseña",
+    "hide_password": "Ocultar contraseña",
+    "create_password": "Crear contraseña (requerido)",
+    "create_password_instructions": "Las contraseñas deben tener al menos 8 caracteres y una mezcla de letras, números y otros símbolos.",
+    "school": "Institución",
+    "preferred_language": "Idioma preferido",
+    "email_subscription": "Suscripción de correo",
+    "send": "Enviar",
+    "sending": "Enviando…",
+    "submitting": "Enviando...",
+    "reset": "Reestablecer formulario",
+    "cancel": "Cancelar",
+    "error": "Error:",
+    "confirm": "¡Entendido!"
+  },
+  "share": {
+    "label_current": "Compartir la página actual",
+    "label_item": "Compartir {{title}}",
+    "copy_url": "Copiar URL",
+    "email": "Correo",
+    "email_subject": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}",
+    "facebook_quote": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}",
+    "twitter_title": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}"
+  }
+}
