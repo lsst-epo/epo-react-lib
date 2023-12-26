@@ -104,7 +104,12 @@ export const getFilters = (filters: {
   [key: string]: number | undefined;
 }): string => {
   return Object.keys(filters).reduce((prev, key, i) => {
-    return (prev += `${i > 0 ? " " : ""}${key}(${filters[key]})`);
+    if (filters[key] !== undefined) {
+      return (prev += `${i > 0 ? " " : ""}${key}(${
+        (filters[key] as number) * 100
+      }%)`);
+    }
+    return "";
   }, "");
 };
 

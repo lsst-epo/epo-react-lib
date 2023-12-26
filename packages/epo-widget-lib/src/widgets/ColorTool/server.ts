@@ -27,7 +27,7 @@ const mergeCanvases = (
   context.globalCompositeOperation = globalCompositeOperation;
 
   layers.forEach((layer) => {
-    context.drawCanvas(layer, 0, 0, width, height);
+    context.drawImage(layer, 0, 0, width, height);
   });
 };
 
@@ -40,15 +40,16 @@ async function getFilteredCanvas(
 
   const filteredImages = await Promise.all(
     activeFilters.map(
-      async ({ image: url, color = "transparent", brightness }) => {
+      async ({ image: url, color = "transparent", brightness = 1 }) => {
         const canvas = new Canvas(width, height);
         const ctx = canvas.getContext("2d");
 
-        const image = await loadImage(url);
-        ctx.drawImage(image, 0, 0, width, height);
-
+        ctx.clearRect(0, 0, width, height);
         ctx.globalCompositeOperation = "multiply";
         ctx.filter = getFilters({ brightness, contrast: 1.3 });
+
+        const image = await loadImage(url);
+        ctx.drawImage(image, 0, 0, width, height);
 
         updateColor(ctx, color, width, height);
 
@@ -74,7 +75,7 @@ const getFilteredImageBase64 = async (
 ) => {
   const canvas = await getFilteredCanvas(filters, width, height);
 
-  return canvas.toDataURL(format);
+  return canvas.toDataURL(format, { matte: "#000000" });
 };
 
 export default getFilteredImageBase64;
