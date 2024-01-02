@@ -48,5 +48,8 @@
     "email_subject": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}",
     "facebook_quote": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}",
     "twitter_title": "¡Hola! Mira esta información de la web del Observatorio Rubin: {{title}}"
+  },
+  "video": {
+    "unsupported": "Su navegador no soporta este formato multimedia."
   }
 }

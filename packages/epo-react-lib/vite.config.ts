@@ -65,7 +65,7 @@ export default defineConfig({
         ),
         Share: resolve(__dirname, "src/atomic/Share"),
         Toast: resolve(__dirname, "src/atomic/Toast/Toast.tsx"),
-        Video: resolve(__dirname, "src/atomic/Video/Video.tsx"),
+        Video: resolve(__dirname, "src/atomic/Video/index.tsx"),
         SimpleTable: resolve(
           __dirname,
           "src/content-blocks/SimpleTable/SimpleTable.tsx"
@@ -152,6 +152,7 @@ export default defineConfig({
         "react/jsx-runtime",
         "react-dom",
         "react-i18next",
+        "react-player/base",
         "react-player/youtube",
         "react-share",
         "react-slider",

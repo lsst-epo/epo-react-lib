@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Video from ".";
 
-const meta: ComponentMeta<typeof Video> = {
+const meta: Meta<typeof Video> = {
   component: Video,
   argTypes: {
     url: {
@@ -18,6 +18,6 @@ const meta: ComponentMeta<typeof Video> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Video> = {
+export const Primary: StoryObj<typeof Video> = {
   args: { url: "https://www.youtube.com/watch?v=wd2hL3yI_-E" },
 };
