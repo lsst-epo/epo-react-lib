@@ -48,5 +48,8 @@
     "email_subject": " Hey! Check out this info from Rubin Observatory's website: {{title}}",
     "facebook_quote": "Hey! Check out this info from Rubin Observatory's website: {{title}}",
     "twitter_title": "Hey! Check out this info from Rubin Observatory's website: {{title}}"
+  },
+  "video": {
+    "unsupported": "Your browser does not support this media format."
   }
 }
