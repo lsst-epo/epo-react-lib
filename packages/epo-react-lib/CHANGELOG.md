@@ -60,3 +60,8 @@
 - add `InfoCircle` icon
 - reset all icons to stroke-width: 0
 - minor refactor to use CSS variables for backgrounds and hovers.
+
+## 2.0.16
+
+- new `GenericPlayer` for playing DAM assets
+- integrated Investigations-style horizontal and vertical layouts into `Figure`
