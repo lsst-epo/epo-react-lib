@@ -13,6 +13,10 @@ const meta: Meta<typeof Figure> = {
     },
     children,
     withBackground: { control: "boolean", defaultValue: false },
+    layout: {
+      control: "select",
+      options: ["horizontal", "vertical"],
+    },
   },
 };
 export default meta;
