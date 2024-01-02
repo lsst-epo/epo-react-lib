@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Video from ".";
+import Video from "../..";
 const props = {
   url: "https://www.youtube.com/watch?v=wd2hL3yI_-E",
 };
