@@ -8,18 +8,24 @@ export const Figure = styled.figure`
   background-color: var(--figure-background-color);
   padding: var(--figure-padding);
 
-  &:after {
-    content: "";
-    visibility: hidden;
-    display: block;
-    height: 0;
-    clear: both;
+  &[data-layout="horizontal"] {
+    &:after {
+      content: "";
+      visibility: hidden;
+      display: block;
+      height: 0;
+      clear: both;
+    }
   }
 `;
 
 export const FigCaption = styled.figcaption`
   font-size: ${ptToEm("14pt")};
   line-height: 1.428;
+
+  &[data-layout="vertical"] {
+    margin-block-start: var(--figcaption-gap);
+  }
 `;
 
 export const FloatWrapper = styled.div`

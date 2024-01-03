@@ -1,5 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import * as Styled from "./styles";
+import ConditionalWrapper from "@/utils/ConditionalWrapper";
 
 interface FigureProps {
   children: ReactNode;
@@ -17,27 +18,27 @@ const Figure: FunctionComponent<FigureProps> = ({
   className,
 }) => (
   <Styled.Figure
-    style={{
-      "--figure-background-color":
-        withBackground && "var(--neutral10, #f5f5f5)",
-      "--figure-padding": withBackground && "var(--PADDING_SMALL, 20px)",
-    }}
+    data-layout={layout}
+    style={
+      withBackground
+        ? {
+            "--figure-background-color": "var(--neutral10, #f5f5f5)",
+            "--figure-padding": "var(--PADDING_SMALL, 20px)",
+          }
+        : undefined
+    }
     className={className}
   >
-    {layout === "horizontal" ? (
-      <Styled.FloatWrapper>{children}</Styled.FloatWrapper>
-    ) : (
-      children
-    )}
+    <ConditionalWrapper
+      condition={layout === "horizontal"}
+      wrapper={(children) => (
+        <Styled.FloatWrapper>{children}</Styled.FloatWrapper>
+      )}
+    >
+      {children}
+    </ConditionalWrapper>
     {caption && (
-      <Styled.FigCaption
-        style={{
-          marginBlockStart:
-            layout === "vertical" ? "var(--figcaption-gap)" : undefined,
-        }}
-      >
-        {caption}
-      </Styled.FigCaption>
+      <Styled.FigCaption data-layout={layout}>{caption}</Styled.FigCaption>
     )}
   </Styled.Figure>
 );
