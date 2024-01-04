@@ -18,7 +18,6 @@ const CircularLoader: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Circular loader icon</title>
       <path
         d="M36.4,3.5c0.9,0.2,1.8,0.4,2.7,0.7v8.4c0,0.1,0,0.3,0.1,0.4c0.1,0.4,0.3,0.8,0.7,1c1.5,0.8,2.9,1.8,4.1,3
 			c0,0.2-0.1,0.4-0.1,0.7c0,1.6,1.3,2.9,2.9,2.9s2.9-1.3,2.9-2.9s-1.3-2.9-2.9-2.9c-0.3,0-0.5,0-0.7,0.1c-1.2-1.2-2.5-2.2-4-3V5.3

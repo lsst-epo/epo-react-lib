@@ -20,7 +20,6 @@ const ArrowUpFromBracket: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Arrow up from bracket icon</title>
       <g transform="translate(1 1)">
         <path
           d="M6,18v7.153a1.788,1.788,0,0,0,1.788,1.788h10.73a1.788,1.788,0,0,0,1.788-1.788V18"

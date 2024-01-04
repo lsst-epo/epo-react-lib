@@ -21,7 +21,6 @@ const Close: FunctionComponent<SVGProps> = ({
 
   return (
     <svg {...mergedSvgProps}>
-      <title>Close icon</title>
       <g strokeWidth={2}>
         <path d="m.707 16.707 16-16" />
         <path d="m.707.707 16 16" />

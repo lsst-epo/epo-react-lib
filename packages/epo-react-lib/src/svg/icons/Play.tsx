@@ -17,8 +17,7 @@ const Play: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps} aria-labelledby="playTitle">
-      <title id="playTitle">Play icon</title>
+    <svg {...mergedSvgProps}>
       <path d="M8.5,0,17,15H0Z" transform="translate(15) rotate(90)" />
     </svg>
   );
