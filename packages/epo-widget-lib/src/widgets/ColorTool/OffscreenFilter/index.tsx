@@ -41,11 +41,12 @@ const OffscreenFilter: FunctionComponent<OffscreenFilterProps> = ({
     ctx.canvas.height = height;
     ctx.clearRect(0, 0, width, height);
 
-    ctx.globalCompositeOperation = "multiply";
     ctx.filter = getFilters(filters);
+
     ctx.drawImage(image, 0, 0, width, height);
 
     updateColor(ctx, color, width, height);
+
     onChangeCallback && onChangeCallback(canvas);
   }
 

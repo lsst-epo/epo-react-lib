@@ -119,10 +119,13 @@ export const updateColor = (
   canvasWidth: number,
   canvasHeight: number
 ) => {
+  ctx.globalCompositeOperation = "multiply";
   const safeColor = isStyleSupported("color", color) ? color : "transparent";
 
   ctx.fillStyle = safeColor;
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+  ctx.globalCompositeOperation = "source-over";
 };
 
 export const mergeCanvases = (
