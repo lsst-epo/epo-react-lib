@@ -19,7 +19,7 @@ describe("TwitterButton", () => {
 
     const button = screen.getByRole("button");
 
-    const icon = within(button).getByTitle("Share Twitter");
+    const icon = within(button).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
 });

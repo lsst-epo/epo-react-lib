@@ -17,8 +17,7 @@ const Backward: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps} aria-labelledby="backwardTitle">
-      <title id="backwardTitle">Backward icon</title>
+    <svg {...mergedSvgProps}>
       <path d="M4.5,0,9,8H0Z" transform="translate(7 9) rotate(-90)" />
       <path d="M4.5,0,9,8H0Z" transform="translate(0 9) rotate(-90)" />
     </svg>

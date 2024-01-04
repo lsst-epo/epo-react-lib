@@ -17,8 +17,7 @@ const Forward: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps} aria-labelledby="forwardTitle">
-      <title id="forwardTitle">Forward icon</title>
+    <svg {...mergedSvgProps}>
       <g transform="translate(-2737 -1072)">
         <path
           d="M4.5,0,9,8H0Z"

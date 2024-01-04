@@ -18,7 +18,6 @@ const ShareEmail: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Share Email</title>
       <path
         d="M323.328,446.452h-27.04v-17.86h27.04Zm0-20.152h-27.04A2.288,2.288,0,0,0,294,428.588v17.864a2.288,2.288,0,0,0,2.288,2.288h27.04a2.288,2.288,0,0,0,2.288-2.288v-17.86a2.288,2.288,0,0,0-2.288-2.288"
         transform="translate(-283.808 -411.522)"

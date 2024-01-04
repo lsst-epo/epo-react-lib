@@ -17,8 +17,7 @@ const Pause: FunctionComponent<SVGProps> = ({
 
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps} aria-labelledby="pauseTitle">
-      <title id="pauseTitle">Pause icon</title>
+    <svg {...mergedSvgProps}>
       <g transform="translate(-2739 -1064)">
         <rect width="4" height="15" transform="translate(2739 1064)" />
         <rect width="4" height="15" transform="translate(2748 1064)" />

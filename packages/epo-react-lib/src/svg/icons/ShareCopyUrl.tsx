@@ -18,7 +18,6 @@ const ShareCopyUrl: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Copy URL</title>
       <path
         d="M33.6,622.3q.181.241.384.467a5.574,5.574,0,0,1-.384-.467"
         transform="translate(-32.334 -598.851)"

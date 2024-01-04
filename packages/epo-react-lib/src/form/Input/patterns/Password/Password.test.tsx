@@ -17,7 +17,7 @@ describe("Input", () => {
   it("Renders toggle icon", () => {
     render(<Password className={className} id={id} />);
     const toggle = screen.getByRole("button");
-    const icon = within(toggle).getByTitle("Eye icon");
+    const icon = within(toggle).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
   it("Toggles password display", () => {

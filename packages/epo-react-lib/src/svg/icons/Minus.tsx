@@ -20,7 +20,6 @@ const Minus: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Minus icon</title>
       <path
         d="M12,1.12,10.88,0,0,10.88,1.12,12Z"
         transform="translate(8.485 0) rotate(45)"
