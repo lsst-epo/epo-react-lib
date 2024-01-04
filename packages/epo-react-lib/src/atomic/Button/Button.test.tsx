@@ -33,7 +33,7 @@ describe("Button", () => {
   it("Renders icon", () => {
     render(<Button icon="Chevron">{children}</Button>);
     const button = screen.getByTestId("button");
-    const icon = within(button).getByTitle("Chevron icon");
+    const icon = within(button).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
 });

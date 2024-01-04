@@ -18,7 +18,6 @@ const Chevron: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Chevron icon</title>
       <polygon points="15.212 22.283 5.204 12 15.212 1.717 18.796 5.203 12.181 12 18.796 18.797 15.212 22.283" />
     </svg>
   );

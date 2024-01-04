@@ -19,7 +19,6 @@ const CloseCircle: FunctionComponent<SVGProps> = ({
 
   return (
     <svg {...mergedSvgProps}>
-      <title>Close circle icon</title>
       <circle cx="10" cy="10" r="10" />
       <g transform="translate(5 5)">
         <path

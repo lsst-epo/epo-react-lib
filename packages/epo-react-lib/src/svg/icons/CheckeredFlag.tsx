@@ -18,7 +18,6 @@ const CheckeredFlag: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Checkered flag icon</title>
       <g transform="translate(-3 29)">
         <g transform="translate(7.169 -25.817)">
           <path

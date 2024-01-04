@@ -6,7 +6,7 @@ import { SVGProps } from "@/types/svg";
 export interface IconComposerProps extends SVGProps {
   icon: IconKey | string;
   customIcons?: { [key: string]: ComponentType<SVGProps> };
-  size?: number;
+  size?: number | string;
 }
 
 /**
@@ -33,9 +33,9 @@ export default class IconComposer extends PureComponent<IconComposerProps> {
 
     if (!IconComponent) {
       console.debug(
-        `${this.props.icon} icon could not be find. Check spelling and any custom icons added.`
+        `${this.props.icon} icon could not be found. Check spelling and any custom icons added.`
       );
-      return false;
+      return null;
     }
 
     return createElement(IconComponent, {
