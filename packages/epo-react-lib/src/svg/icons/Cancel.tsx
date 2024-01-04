@@ -18,7 +18,6 @@ const Cancel: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Cancel icon</title>
       <path
         fill="#ed4c4c"
         transform="translate(-.57 -.57)"

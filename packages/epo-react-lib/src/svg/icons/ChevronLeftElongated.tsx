@@ -27,7 +27,6 @@ const ChevronLeftElongated: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Elongated left chevron icon</title>
       <line y1="11" x2="6" transform="translate(0.439 0.239)" strokeWidth="1" />
       <line
         x2="6"

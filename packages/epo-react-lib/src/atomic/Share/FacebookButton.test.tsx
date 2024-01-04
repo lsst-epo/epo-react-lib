@@ -18,8 +18,7 @@ describe("FacebookButton", () => {
     render(<FacebookButton {...props} />);
 
     const button = screen.getByRole("button");
-
-    const icon = within(button).getByTitle("Share Facebook");
+    const icon = within(button).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
 });

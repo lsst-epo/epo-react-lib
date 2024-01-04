@@ -117,10 +117,10 @@ export default defineConfig({
       plugins: [
         banner2((chunk) => {
           const useClient = `"use client"\n\n`;
-          const hooks = ["useState", "useEffect", "useRef", "useContext"];
           const { importedBindings } = chunk;
+          const dependencies = Object.values(importedBindings).flat();
 
-          if (Object.keys(importedBindings).length > 0) {
+          if (dependencies.length > 0) {
             if (
               importedBindings["styled-components"] &&
               importedBindings["styled-components"].length > 0
@@ -128,17 +128,7 @@ export default defineConfig({
               return useClient;
             }
 
-            if (
-              importedBindings["react"] &&
-              importedBindings["react"].filter((value) => hooks.includes(value))
-            ) {
-              return useClient;
-            }
-
-            if (
-              importedBindings["react-i18next"] &&
-              importedBindings["react-i18next"].includes("useTranslation")
-            ) {
+            if (dependencies.some((value) => value.includes("use"))) {
               return useClient;
             }
           }

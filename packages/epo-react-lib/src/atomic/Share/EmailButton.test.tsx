@@ -18,8 +18,7 @@ describe("EmailButton", () => {
     render(<EmailButton {...props} />);
 
     const button = screen.getByRole("button");
-
-    const icon = within(button).getByTitle("Share Email");
+    const icon = within(button).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
 });

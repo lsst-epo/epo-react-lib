@@ -19,7 +19,6 @@ const CaretDown: FunctionComponent<SVGProps> = ({
   const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
     <svg {...mergedSvgProps}>
-      <title>Caret down icon</title>
       <path d="M0,0,9,9l9-9Z" />
     </svg>
   );

@@ -47,8 +47,7 @@ describe("CopyUrlButton", () => {
     render(<CopyUrlButton {...props} />);
 
     const button = screen.getByRole("button");
-
-    const icon = within(button).getByTitle("Copy URL");
+    const icon = within(button).getByRole("presentation");
     expect(icon).toBeInTheDocument();
   });
 });

@@ -1,19 +1,16 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import { className } from "@/storybook/utilities/argTypes";
 import Icons from "../icons";
 
 import IconComposer from ".";
 
-const meta: ComponentMeta<typeof IconComposer> = {
+const meta: Meta<typeof IconComposer> = {
   component: IconComposer,
   argTypes: {
     icon: {
-      control: { type: "select", options: Object.keys(Icons) },
+      control: { type: "select" },
+      options: Object.keys(Icons),
       description: "Name of the icon to be rendered",
       table: { category: "Model" },
     },
@@ -28,7 +25,7 @@ const meta: ComponentMeta<typeof IconComposer> = {
       table: { category: "Styling" },
     },
     size: {
-      control: "text",
+      control: "object",
       description: "Size to render the SVG icon",
       table: { type: { summary: "string | number" }, category: "Styling" },
     },
@@ -57,12 +54,9 @@ const IconGrid = styled.div`
   width: 100%;
 `;
 
-const Template: ComponentStory<typeof IconComposer> = ({
-  size = 36,
-  ...args
-}) => {
+const Template: StoryFn<typeof IconComposer> = ({ size = 36, ...args }) => {
   return (
-    <IconGrid style={{ "--grid-size": isNaN(size) ? size : `${size}px` }}>
+    <IconGrid style={{ "--grid-size": Number(size) ? size : `${size}px` }}>
       {Object.keys(Icons).map((key) => (
         <IconComposer key={key} {...args} size={size} icon={key} />
       ))}
@@ -70,16 +64,20 @@ const Template: ComponentStory<typeof IconComposer> = ({
   );
 };
 
-export const Example: ComponentStoryObj<typeof IconComposer> = {
+export const Playground: StoryObj<typeof IconComposer> = {
   args: {
     icon: "Search",
   },
 };
 
-export const AllIcons: ComponentStoryObj<typeof IconComposer> = Template.bind(
-  {}
-);
+export const AllIcons: StoryObj<typeof IconComposer> = Template.bind({});
 
 AllIcons.args = {
   size: 36,
+};
+
+AllIcons.parameters = {
+  controls: {
+    exclude: /.*/g,
+  },
 };
