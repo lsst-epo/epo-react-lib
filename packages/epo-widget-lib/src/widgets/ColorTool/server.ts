@@ -1,35 +1,6 @@
-import {
-  Canvas,
-  CanvasRenderingContext2D,
-  loadImage,
-  ExportFormat,
-} from "skia-canvas";
+import { Canvas, loadImage, ExportFormat } from "skia-canvas";
 import { ImageFilter } from "./ColorTool";
-import { getFilters } from "./utilities";
-
-const updateColor = (
-  ctx: CanvasRenderingContext2D,
-  color: string,
-  canvasWidth: number,
-  canvasHeight: number
-) => {
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-};
-
-const mergeCanvases = (
-  context: CanvasRenderingContext2D,
-  layers: Array<Canvas> = [],
-  width: number,
-  height: number,
-  globalCompositeOperation: GlobalCompositeOperation = "screen"
-) => {
-  context.globalCompositeOperation = globalCompositeOperation;
-
-  layers.forEach((layer) => {
-    context.drawImage(layer, 0, 0, width, height);
-  });
-};
+import { getFilters, updateColor, mergeCanvases } from "./utilities";
 
 async function getFilteredCanvas(
   filters: Array<ImageFilter> = [],
@@ -41,17 +12,17 @@ async function getFilteredCanvas(
   const filteredImages = await Promise.all(
     activeFilters.map(
       async ({ image: url, color = "transparent", brightness = 1 }) => {
+        const image = await loadImage(url);
         const canvas = new Canvas(width, height);
         const ctx = canvas.getContext("2d");
 
         ctx.clearRect(0, 0, width, height);
-        ctx.globalCompositeOperation = "multiply";
+
         ctx.filter = getFilters({ brightness, contrast: 1.3 });
 
-        const image = await loadImage(url);
         ctx.drawImage(image, 0, 0, width, height);
 
-        updateColor(ctx, color, width, height);
+        updateColor(ctx as any, color, width, height);
 
         return canvas;
       }
@@ -61,7 +32,7 @@ async function getFilteredCanvas(
   const canvas = new Canvas(width, height);
   const ctx = canvas.getContext("2d");
 
-  mergeCanvases(ctx, filteredImages, width, height);
+  mergeCanvases(ctx as any, filteredImages as any, width, height);
 
   return canvas;
 }
