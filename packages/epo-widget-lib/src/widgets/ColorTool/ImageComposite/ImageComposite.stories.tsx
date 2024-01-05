@@ -1,10 +1,11 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { StoryFn, Meta, StoryObj } from "@storybook/react";
 import { readOnlyData } from "../__mocks__";
 
 import ImageComposite from ".";
-import { updateFilters } from "../utilities";
+import { updateFilters } from "../lib/utils";
+import { useRef } from "react";
 
-const meta: ComponentMeta<typeof ImageComposite> = {
+const meta: Meta<typeof ImageComposite> = {
   argTypes: {
     filters: {
       type: {
@@ -26,8 +27,14 @@ const meta: ComponentMeta<typeof ImageComposite> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ImageComposite> = {
-  args: {
-    filters: updateFilters(readOnlyData[0].objects[0]),
-  },
+const Template: StoryFn<typeof ImageComposite> = (args) => {
+  const ref = useRef<HTMLCanvasElement>(null);
+
+  return <ImageComposite {...args} ref={ref} />;
+};
+
+export const Primary: StoryObj<typeof ImageComposite> = Template.bind({});
+
+Primary.args = {
+  filters: updateFilters(readOnlyData[0].objects[0]),
 };

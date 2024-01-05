@@ -24,7 +24,10 @@ export default defineConfig({
           "src/widgets/CameraFilter/CameraFilter.tsx"
         ),
         ColorTool: resolve(__dirname, "src/widgets/ColorTool/ColorTool.tsx"),
-        ColorToolServer: resolve(__dirname, "src/widgets/ColorTool/server.ts"),
+        ColorToolServer: resolve(
+          __dirname,
+          "src/widgets/ColorTool/lib/server.ts"
+        ),
         FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
         SourceSelector: resolve(
           __dirname,

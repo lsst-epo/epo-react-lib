@@ -4,7 +4,7 @@ import Reset from "./Reset";
 import Export from "./Export";
 import * as Styled from "./styles";
 import { useTranslation } from "react-i18next";
-import { areActionsActive } from "../utilities";
+import { areActionsActive } from "../lib/utils";
 
 interface ActionsProps {
   actions: Array<ColorToolAction>;
