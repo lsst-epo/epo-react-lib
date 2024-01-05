@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { singleData, colorOptions } from "../__mocks__";
 import FilterControls from ".";
-import { getBrightnessValue } from "../utilities";
+import { getBrightnessValue } from "../lib/utils";
 
 const { value = 1, min, max } = singleData[0].objects[0].filters[0];
 const props = {

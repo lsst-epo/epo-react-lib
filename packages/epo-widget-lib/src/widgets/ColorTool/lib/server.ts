@@ -1,6 +1,6 @@
 import { Canvas, loadImage, ExportFormat } from "skia-canvas";
-import { ImageFilter } from "./ColorTool";
-import { getFilters, updateColor, mergeCanvases } from "./utilities";
+import { ImageFilter } from "../ColorTool";
+import { getFilters, updateColor, mergeCanvases } from "./canvas";
 
 async function getFilteredCanvas(
   filters: Array<ImageFilter> = [],

@@ -1,8 +1,7 @@
-import "context-filter-polyfill";
 import flattenDeep from "lodash/flattenDeep";
 import find from "lodash/find";
 import isEmpty from "lodash/isEmpty";
-import { AstroCategory, AstroObject, ImageFilter } from "./ColorTool";
+import { AstroCategory, AstroObject, ImageFilter } from "../ColorTool";
 
 /** calculates a value that can be used in the CSS {@link https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/brightness brightness filter } */
 export const getBrightnessValue = (min: number, max: number, value: number) => {
@@ -99,45 +98,3 @@ export function isStyleSupported(prop: string, value: string): boolean {
   // supported and return
   return support && el.style[camel as any] !== "";
 }
-
-export const getFilters = (filters: {
-  [key: string]: number | undefined;
-}): string => {
-  return Object.keys(filters).reduce((prev, key, i) => {
-    if (filters[key] !== undefined) {
-      return (prev += `${i > 0 ? " " : ""}${key}(${
-        (filters[key] as number) * 100
-      }%)`);
-    }
-    return "";
-  }, "");
-};
-
-export const updateColor = (
-  ctx: CanvasRenderingContext2D,
-  color: string,
-  canvasWidth: number,
-  canvasHeight: number
-) => {
-  ctx.globalCompositeOperation = "multiply";
-  const safeColor = isStyleSupported("color", color) ? color : "transparent";
-
-  ctx.fillStyle = safeColor;
-  ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-  ctx.globalCompositeOperation = "source-over";
-};
-
-export const mergeCanvases = (
-  context: CanvasRenderingContext2D,
-  layers: Array<HTMLCanvasElement> = [],
-  width: number,
-  height: number,
-  globalCompositeOperation: GlobalCompositeOperation = "screen"
-) => {
-  context.globalCompositeOperation = globalCompositeOperation;
-
-  layers.forEach((layer) => {
-    context.drawImage(layer, 0, 0, width, height);
-  });
-};

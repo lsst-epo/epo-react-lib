@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { singleData, colorOptions } from "../__mocks__";
 
 import FilterControls from ".";
-import { getBrightnessValue } from "../utilities";
+import { getBrightnessValue } from "../lib/utils";
 import { useState } from "react";
 import { ImageFilter } from "../ColorTool";
 
