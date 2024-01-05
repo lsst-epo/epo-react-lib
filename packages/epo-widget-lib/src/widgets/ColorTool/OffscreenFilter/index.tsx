@@ -1,7 +1,6 @@
-import "context-filter-polyfill";
 import { FunctionComponent } from "react";
 import useImage from "@/hooks/useImage";
-import { getFilters, updateColor } from "../utilities";
+import { getFilters, updateColor } from "../lib/canvas";
 
 export interface OffscreenFilterProps {
   height?: number;

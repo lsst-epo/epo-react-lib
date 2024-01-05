@@ -9,7 +9,7 @@ import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 import { ImageFilter } from "../ColorTool";
 import OffscreenFilter from "../OffscreenFilter";
 import * as Styled from "./styles";
-import { isFilterActive } from "../utilities";
+import { isFilterActive } from "../lib/utils";
 import CompositeRenderer from "../CompositeRender";
 
 interface ImageCompositeProps {

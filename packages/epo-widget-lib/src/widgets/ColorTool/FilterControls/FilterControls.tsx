@@ -3,7 +3,7 @@ import SelectListbox, {
 } from "@rubin-epo/epo-react-lib/SelectListbox";
 import { FunctionComponent } from "react";
 import { ImageFilter } from "../ColorTool";
-import { getBrightnessValue } from "../utilities";
+import { getBrightnessValue } from "../lib/utils";
 import { useTranslation } from "react-i18next";
 import * as Styled from "./styles";
 

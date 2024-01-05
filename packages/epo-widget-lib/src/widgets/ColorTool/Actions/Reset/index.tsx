@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import Button from "@rubin-epo/epo-react-lib/Button";
 import { AstroObject, ImageFilter } from "../../ColorTool";
-import { getBrightnessValue } from "../../utilities";
+import { getBrightnessValue } from "../../lib/utils";
 
 interface ResetProps {
   isDisabled: boolean;

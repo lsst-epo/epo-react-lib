@@ -1,5 +1,5 @@
 import { MutableRefObject, forwardRef } from "react";
-import { mergeCanvases } from "../utilities";
+import { mergeCanvases } from "../lib/canvas";
 import * as Styled from "./styles";
 
 interface CompositeRendererProps {
