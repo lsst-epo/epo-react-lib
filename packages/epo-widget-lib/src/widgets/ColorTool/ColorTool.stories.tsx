@@ -6,7 +6,7 @@ import {
   multiSpectralOptions,
   readOnlyData,
 } from "./__mocks__";
-import { prepareData } from "./utilities";
+import { prepareData } from "./lib/utils";
 
 import ColorTool from ".";
 import { Option } from "@rubin-epo/epo-react-lib/Select";

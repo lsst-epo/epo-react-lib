@@ -13,7 +13,7 @@ import {
 } from "./__mocks__";
 import { ListboxOption } from "@rubin-epo/epo-react-lib/SelectListbox";
 import ColorTool from ".";
-import { getCategoryName } from "./utilities";
+import { getCategoryName } from "./lib/utils";
 
 const props = {
   data: singleData,
