@@ -1,6 +1,6 @@
 import { FunctionComponent, PropsWithChildren, useId } from "react";
 
-interface ClippingContainerProps {
+export interface ClippingContainerProps {
   x: number;
   y: number;
   width: number;
