@@ -24,7 +24,7 @@ export default defineConfig({
           __dirname,
           "src/widgets/CameraFilter/CameraFilter.tsx"
         ),
-        Charts: resolve(__dirname, "src/widgets/charts/index.tsx"),
+        Charts: resolve(__dirname, "src/charts/index.tsx"),
         ColorTool: resolve(__dirname, "src/widgets/ColorTool/ColorTool.tsx"),
         ColorToolServer: resolve(
           __dirname,

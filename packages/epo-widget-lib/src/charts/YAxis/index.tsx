@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import * as Styled from "../styles";
 import { Domain, ScaleFunction, BaseAxisProps } from "../types";
 
-interface YAxisProps extends BaseAxisProps {
+export interface YAxisProps extends BaseAxisProps {
   yDomain: Domain;
   yScale: ScaleFunction;
   x?: number;
