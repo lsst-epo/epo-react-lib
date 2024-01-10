@@ -13,6 +13,11 @@ export const Tick = styled.line`
   stroke-width: 2;
 `;
 
+export const Bar = styled.rect`
+  cursor: pointer;
+  transform-origin: center bottom;
+`;
+
 export const XLabel = styled.text`
   font-size: 0.5em;
   text-anchor: middle;
