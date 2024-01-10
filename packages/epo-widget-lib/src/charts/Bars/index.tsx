@@ -2,7 +2,7 @@ import { FunctionComponent, HTMLProps } from "react";
 import { Domain, ScaleFunction } from "../types";
 import * as Styled from "../styles";
 
-interface Bar {
+export interface Bar {
   stroke?: string;
   fill?: string;
   width?: number;
@@ -10,7 +10,7 @@ interface Bar {
   props?: HTMLProps<SVGRectElement>;
 }
 
-interface BarsProps {
+export interface BarsProps {
   data: Array<Bar>;
   xDomain: Domain;
   yDomain: Domain;

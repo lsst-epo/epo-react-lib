@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
-interface BaseChartProps {
+export interface BaseChartProps {
   width?: number;
   height?: number;
   minX?: number;

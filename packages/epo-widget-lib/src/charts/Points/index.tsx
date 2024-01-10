@@ -1,7 +1,7 @@
 import { FunctionComponent, HTMLProps } from "react";
 import { Domain, ScaleFunction } from "../types";
 
-interface Point {
+export interface Point {
   stroke?: string;
   fill?: string;
   width?: number;
@@ -10,7 +10,7 @@ interface Point {
   props?: HTMLProps<SVGCircleElement>;
 }
 
-interface PointsProps {
+export interface PointsProps {
   data: Array<Point>;
   xScale: ScaleFunction;
   yScale: ScaleFunction;
