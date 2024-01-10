@@ -1,8 +1,7 @@
 import { FunctionComponent } from "react";
 import * as Styled from "./styles";
-import { LabelFormatter } from "../types";
 
-interface TooltipProps {
+export interface TooltipProps {
   value: number | string;
   x: number;
   y: number;

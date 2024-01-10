@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Domain, ScaleFunction } from "../types";
 import * as Styled from "../styles";
 
-interface GuidelinesProps {
+export interface GuidelinesProps {
   guides: number;
   direction?: "horizontal" | "vertical";
   xScale: ScaleFunction;
