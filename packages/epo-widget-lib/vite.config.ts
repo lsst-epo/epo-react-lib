@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
+import banner2 from "rollup-plugin-banner2";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 
@@ -40,6 +41,26 @@ export default defineConfig({
         `${name}.${format === defaultFormat ? "js" : format}`,
     },
     rollupOptions: {
+      plugins: [
+        banner2((chunk) => {
+          const useClient = `"use client"\n\n`;
+          const { importedBindings } = chunk;
+          const dependencies = Object.values(importedBindings).flat();
+
+          if (dependencies.length > 0) {
+            if (
+              importedBindings["styled-components"] &&
+              importedBindings["styled-components"].length > 0
+            ) {
+              return useClient;
+            }
+
+            if (dependencies.some((value) => value.includes("use"))) {
+              return useClient;
+            }
+          }
+        }),
+      ],
       external: [
         "@castiron/style-mixins",
         "@headlessui/react",
