@@ -51,7 +51,7 @@ const XAxis: FunctionComponent<XAxisProps> = ({
             const label = labelFormatter(value, i);
 
             return (
-              <g role="listitem" key={`${label}-${i}`}>
+              <g role="listitem" key={i}>
                 <Styled.Tick
                   x1={position}
                   x2={position}
