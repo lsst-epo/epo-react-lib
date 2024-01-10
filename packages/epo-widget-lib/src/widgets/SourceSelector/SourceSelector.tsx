@@ -5,7 +5,7 @@ import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import * as Styled from "./styles";
 import Points from "./Points";
 import Message from "./Message";
-import { getLinearScale } from "./utilities";
+import { getLinearScale } from "@/lib/utils";
 
 interface BlinkConfig {
   autoplay?: boolean;
