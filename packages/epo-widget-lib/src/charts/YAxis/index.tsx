@@ -50,19 +50,17 @@ const YAxis: FunctionComponent<YAxisProps> = ({
             const position = yScale(value);
 
             return (
-              <>
-                <g role="listitem" key={`${label}-${i}`}>
-                  <Styled.Tick
-                    x1={x - tickLength}
-                    x2={x}
-                    y1={position}
-                    y2={position}
-                  />
-                  <Styled.YLabel x={x - tickLength - 2} y={position}>
-                    {label}
-                  </Styled.YLabel>
-                </g>
-              </>
+              <g role="listitem" key={i}>
+                <Styled.Tick
+                  x1={x - tickLength}
+                  x2={x}
+                  y1={position}
+                  y2={position}
+                />
+                <Styled.YLabel x={x - tickLength - 2} y={position}>
+                  {label}
+                </Styled.YLabel>
+              </g>
             );
           })}
         </g>
