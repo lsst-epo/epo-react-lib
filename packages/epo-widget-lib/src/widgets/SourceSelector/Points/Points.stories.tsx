@@ -3,7 +3,7 @@ import { SourceDataset } from "@/types/astro";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import Points from ".";
-import { getLinearScale } from "../utilities";
+import { getLinearScale } from "@/lib/utils";
 
 const width = 600;
 const height = 600;
