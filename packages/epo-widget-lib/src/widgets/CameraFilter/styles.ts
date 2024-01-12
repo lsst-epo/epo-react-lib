@@ -1,7 +1,10 @@
-import { Band } from "@/types/astro";
 import styled, { css } from "styled-components";
+import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const FilterContainer = styled.div`
+  container-type: inline-size;
+  container-name: camera-filter;
+
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -9,13 +12,15 @@ export const FilterContainer = styled.div`
   position: relative;
 `;
 
-export const FilterTable = styled.table<{ range: number; offset: number }>`
+export const FilterTitle = styled.h3`
+  margin-block: 1em;
+`;
+
+export const FilterTable = styled.table`
   border-collapse: collapse;
   text-align: center;
-  ${({ range, offset }) => css`
-    margin-left: ${offset.toFixed(2)}%;
-    width: ${range.toFixed(2)}%;
-  `}
+  margin-inline-start: var(--filter-table-margin-inline-start);
+  width: var(--filter-table-width);
 `;
 export const FilterRanges = styled.tbody`
   display: table-header-group;
@@ -30,21 +35,22 @@ export const FilterRange = styled.td`
 export const Wavelength = styled.span`
   font-size: 80%;
 `;
-export const FilterName = styled.th<{ band?: Band; $isCondensed: boolean }>`
+export const FilterName = styled.th`
   font-size: 120%;
   font-weight: var(--FONT_WEIGHT_NORMAL, 400);
+  border: var(--filter-name-border);
+  border-width: 1px;
 
-  ${({ band, $isCondensed }) => css`
-    border: ${band ? "solid #b2b2b2" : "none"};
-    border-width: ${$isCondensed ? "1px" : "3px"};
-  `};
+  @container camera-filter (min-width: ${token("BREAK_TABLET")}) {
+    border-width: 3px;
+  }
 `;
 
 export const SelectContainer = styled.div`
   min-width: 20ch;
   width: 50%;
   max-width: 30ch;
-  margin-block-start: 1em;
+  margin-block: 1em;
   justify-self: center;
   text-align: left;
 `;
@@ -54,17 +60,49 @@ export const SelectLabel = styled.label`
 `;
 
 export const SpectrumLabel = styled.text`
-  font-size: 0.75em;
+  font-size: 2em;
+
+  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+    font-size: 1.25em;
+  }
+
+  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+    font-size: 0.75em;
+  }
 `;
 
 export const ColorName = styled.tspan`
-  font-size: 0.75em;
+  font-size: 2em;
+
+  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+    font-size: 1.25em;
+  }
+
+  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+    font-size: 0.75em;
+  }
 `;
 export const ColorSpectrum = styled.tspan`
-  font-size: 0.5em;
+  font-size: 1.5em;
+
+  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+    font-size: 1em;
+  }
+
+  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+    font-size: 0.5em;
+  }
 `;
 export const ColorSpectrumUnit = styled.tspan`
-  font-size: 0.4em;
+  font-size: 1.3em;
+
+  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+    font-size: 0.8em;
+  }
+
+  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+    font-size: 0.4em;
+  }
 `;
 
 export const CondensedRangeRow = styled.ul`

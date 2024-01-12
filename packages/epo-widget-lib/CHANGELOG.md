@@ -5,3 +5,8 @@
 ## 0.6.8
 
 - add [polyfill](https://github.com/davidenke/context-filter-polyfill) for HTML Canvas `filter` methods on Safari browser
+
+## 0.6.13
+
+- update linear gradients for Camera Filter Tool
+- A11Y changes for Camera Filter Tool
