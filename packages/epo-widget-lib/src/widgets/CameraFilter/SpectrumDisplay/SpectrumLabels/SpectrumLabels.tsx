@@ -37,7 +37,7 @@ const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
       aria-live="polite"
       data-testid="spectrum-labels"
     >
-      {spectrums.map(({ name, upper, lower, colors }) => {
+      {spectrums.map(({ name, upper, lower, colors }, i) => {
         const safeUpper = upper || max;
         const safeLower = lower || min;
         const isHidden =
@@ -47,10 +47,14 @@ const SpectrumLabels: FunctionComponent<SpectrumLabelsProps> = ({
           <g role="listitem" aria-hidden={isHidden} key={name}>
             <Styled.SpectrumLabel
               key={name}
-              x={(safeUpper - safeLower) / 2 + safeLower}
-              y="25%"
+              x={
+                isCondensed && i === 0
+                  ? safeLower
+                  : (safeUpper - safeLower) / 2 + safeLower
+              }
+              y="50"
               dominantBaseline="middle"
-              textAnchor="middle"
+              textAnchor={isCondensed && i === 0 ? "start" : "middle"}
             >
               {t(`camera_filter.labels.${name}`)}
             </Styled.SpectrumLabel>

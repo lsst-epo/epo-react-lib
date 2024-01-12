@@ -6,13 +6,6 @@ import CameraFilter from ".";
 const meta: ComponentMeta<typeof CameraFilter> = {
   argTypes: {},
   component: CameraFilter,
-  decorators: [
-    (Story) => (
-      <Container>
-        <Story />
-      </Container>
-    ),
-  ],
 };
 export default meta;
 

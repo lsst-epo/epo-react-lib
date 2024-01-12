@@ -34,8 +34,8 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               stroke="#b2b2b2"
               x1={midpoint}
               x2={midpoint}
-              y1="50%"
-              y2={isCondensed ? "52.5%" : "55%"}
+              y1="100"
+              y2={isCondensed ? "105" : "110"}
               role="presentation"
             />
             <line
@@ -43,13 +43,13 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               stroke="#b2b2b2"
               x1={midpoint}
               x2={textPosition}
-              y1={isCondensed ? "52.5%" : "55%"}
-              y2={isCondensed ? "72.5%" : "70%"}
+              y1={isCondensed ? "105" : "110"}
+              y2={isCondensed ? "145" : "140"}
               role="presentation"
             />
             <circle
               cx={textPosition}
-              cy={isCondensed ? "72.5%" : "70%"}
+              cy={isCondensed ? "145" : "140"}
               r={isCondensed ? 15 : 10}
               fill={color}
               role="presentation"
@@ -58,7 +58,7 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
               x={textPosition}
               dominantBaseline="middle"
               textAnchor="middle"
-              y={isCondensed ? "75%" : "75%"}
+              y="150"
               role="listitem"
               aria-hidden={isHidden}
             >

@@ -1,7 +1,10 @@
 import { Band } from "@/types/astro";
 
-export type Range<T, N extends number, R extends T[] = []> =
-  R["length"] extends N ? R : Range<T, N, [T, ...R]>;
+export type Range<
+  T,
+  N extends number,
+  R extends T[] = []
+> = R["length"] extends N ? R : Range<T, N, [T, ...R]>;
 
 export interface Filter {
   band?: Band;
@@ -51,43 +54,42 @@ const ultraviolet: GradientStop[] = [
   { offset: 1, stopColor: "#861cff" },
 ];
 const visible: GradientStop[] = [
-  { offset: 0, stopColor: "#861cff" },
-  { offset: 0.253, stopColor: "blue" },
-  { offset: 0.266, stopColor: "#001ee0" },
-  { offset: 0.302, stopColor: "#006d91" },
-  { offset: 0.334, stopColor: "#00ab53" },
-  { offset: 0.361, stopColor: "#00d826" },
-  { offset: 0.382, stopColor: "#00f40a" },
-  { offset: 0.394, stopColor: "lime" },
-  { offset: 0.409, stopColor: "#05fe00" },
-  { offset: 0.427, stopColor: "#14fc01" },
-  { offset: 0.447, stopColor: "#2df803" },
-  { offset: 0.468, stopColor: "#50f406" },
+  { offset: 0.11, stopColor: "#861cff" },
+  { offset: 0.25, stopColor: "blue" },
+  { offset: 0.27, stopColor: "#001ee0" },
+  { offset: 0.3, stopColor: "#006d91" },
+  { offset: 0.33, stopColor: "#00ab53" },
+  { offset: 0.36, stopColor: "#00d826" },
+  { offset: 0.38, stopColor: "#00f40a" },
+  { offset: 0.39, stopColor: "lime" },
+  { offset: 0.41, stopColor: "#05fe00" },
+  { offset: 0.43, stopColor: "#14fc01" },
+  { offset: 0.45, stopColor: "#2df803" },
+  { offset: 0.47, stopColor: "#50f406" },
   { offset: 0.49, stopColor: "#7cee0a" },
-  { offset: 0.513, stopColor: "#b3e70e" },
-  { offset: 0.536, stopColor: "#f2de14" },
+  { offset: 0.51, stopColor: "#b3e70e" },
+  { offset: 0.54, stopColor: "#f2de14" },
   { offset: 0.54, stopColor: "#ffdd15" },
-  { offset: 0.559, stopColor: "#fccb17" },
-  { offset: 0.598, stopColor: "#f49f1e" },
-  { offset: 0.615, stopColor: "#f18922" },
-  { offset: 0.634, stopColor: "#f08220" },
+  { offset: 0.56, stopColor: "#fccb17" },
+  { offset: 0.6, stopColor: "#f49f1e" },
+  { offset: 0.62, stopColor: "#f18922" },
+  { offset: 0.63, stopColor: "#f08220" },
   { offset: 0.66, stopColor: "#f0711c" },
   { offset: 0.69, stopColor: "#ef5415" },
-  { offset: 0.723, stopColor: "#ed2d0b" },
-  { offset: 0.755, stopColor: "#ec0000" },
+  { offset: 0.72, stopColor: "#ed2d0b" },
+  { offset: 0.75, stopColor: "#ec0000" },
+  { offset: 0.79, stopColor: "#eb0303" },
+  { offset: 0.82, stopColor: "#e90f0f" },
+  { offset: 0.86, stopColor: "#e62323" },
+  { offset: 0.89, stopColor: "#e23e3e" },
+  { offset: 0.93, stopColor: "#dc6262" },
+  { offset: 0.96, stopColor: "#d58e8e" },
+  { offset: 0.99, stopColor: "#cdc0c0" },
+  { offset: 1, stopColor: "#ccc" },
 ];
 const infrared: GradientStop[] = [
-  { offset: 0, stopColor: "#ec0000" },
-  { offset: 0.387, stopColor: "#ea0e0e" },
-  { offset: 0.526, stopColor: "#e53737" },
-  { offset: 0.625, stopColor: "#e15d5d" },
-  { offset: 0.705, stopColor: "#dd7d7d" },
-  { offset: 0.774, stopColor: "#da9898" },
-  { offset: 0.835, stopColor: "#d8aeae" },
-  { offset: 0.89, stopColor: "#d6bfbf" },
-  { offset: 0.941, stopColor: "#d4cbcb" },
-  { offset: 0.986, stopColor: "#d4d2d2" },
-  { offset: 1, stopColor: "#d4d4d4" },
+  { offset: 0, stopColor: "#ccc" },
+  { offset: 1, stopColor: "#f2f2f2" },
 ];
 
 export const colors: VisibleColor[] = [

@@ -22,7 +22,7 @@ const SpectrumDisplay: FunctionComponent<SpectrumDisplayProps> = ({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
-      viewBox={`${min} 0 ${range} 200`}
+      viewBox={`${min} 0 ${range} 300`}
       data-testid="spectrum-display"
     >
       <defs>
@@ -37,7 +37,7 @@ const SpectrumDisplay: FunctionComponent<SpectrumDisplayProps> = ({
           </linearGradient>
         ))}
         <mask id="spectrumMask">
-          <rect width="100%" height="50%" fill="white" x={min} />
+          <rect width="100%" height="100" fill="white" x={min} />
           {activeFilter && (
             <>
               <rect

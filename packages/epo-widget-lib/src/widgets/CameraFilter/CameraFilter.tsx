@@ -40,7 +40,7 @@ const CameraFilter: FunctionComponent = () => {
 
   return (
     <Styled.FilterContainer ref={ref}>
-      <h1>{t("camera_filter.title")}</h1>
+      <Styled.FilterTitle>{t("camera_filter.title")}</Styled.FilterTitle>
       {isCondensed && (
         <CondensedFilterRanges
           filters={filtersOnly}
@@ -48,9 +48,16 @@ const CameraFilter: FunctionComponent = () => {
         />
       )}
       <Styled.FilterTable
-        aria-hidden={isCondensed}
-        range={(filterRange / spectrumRange) * 100}
-        offset={((filterMin - min) / spectrumRange) * 100}
+        style={{
+          "--filter-table-margin-inline-start": `${(
+            ((filterMin - min) / spectrumRange) *
+            100
+          ).toFixed(2)}%`,
+          "--filter-table-width": `${(
+            (filterRange / spectrumRange) *
+            100
+          ).toFixed(2)}%`,
+        }}
         data-testid="expanded-filters"
       >
         <colgroup>
@@ -68,11 +75,12 @@ const CameraFilter: FunctionComponent = () => {
             {filters.map(({ band }, i) => (
               <Styled.FilterName
                 id={`${band}-name`}
+                style={{
+                  "--filter-name-border": band ? "solid #b2b2b2" : "none",
+                }}
                 key={i}
-                band={band}
                 scope="col"
                 aria-hidden={!band}
-                $isCondensed={isCondensed}
               >
                 {band}
               </Styled.FilterName>
