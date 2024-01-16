@@ -1,4 +1,4 @@
-import { PureComponent, ComponentType, createElement } from "react";
+import { ComponentType, FunctionComponent } from "react";
 import Icons, { IconKey } from "@/svg/icons";
 import { capitalize } from "@/lib/utils";
 import { SVGProps } from "@/types/svg";
@@ -18,32 +18,22 @@ export interface IconComposerProps extends SVGProps {
  * For example a floppy disk icon should be named "FloppyDisk" and not "Save", there could be multiple
  * icons associated with the action "Save" but there is only one floppy disk.
  */
-export default class IconComposer extends PureComponent<IconComposerProps> {
-  get iconComponent() {
-    const { icon, customIcons = {} } = this.props;
-    const key = capitalize(icon) as IconKey;
-    const { [key]: component } = { ...Icons, ...customIcons };
+const IconComposer: FunctionComponent<IconComposerProps> = ({
+  icon,
+  customIcons = {},
+  ...props
+}) => {
+  const key = capitalize(icon) as IconKey;
+  const { [key]: IconComponent } = { ...Icons, ...customIcons };
 
-    return component;
+  if (!IconComponent) {
+    console.debug(
+      `${icon} icon could not be found. Check spelling and any custom icons added.`
+    );
+    return null;
   }
 
-  render() {
-    const { className, size, fill, stroke, svgProps } = this.props;
-    const IconComponent = this.iconComponent;
+  return <IconComponent {...props} />;
+};
 
-    if (!IconComponent) {
-      console.debug(
-        `${this.props.icon} icon could not be found. Check spelling and any custom icons added.`
-      );
-      return null;
-    }
-
-    return createElement(IconComponent, {
-      svgProps,
-      className,
-      size,
-      fill,
-      stroke,
-    });
-  }
-}
+export default IconComposer;
