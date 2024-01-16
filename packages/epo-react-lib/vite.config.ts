@@ -122,6 +122,13 @@ export default defineConfig({
 
           if (dependencies.length > 0) {
             if (
+              importedBindings["react-i18next"] &&
+              importedBindings["react-i18next"].length > 0
+            ) {
+              return useClient;
+            }
+
+            if (
               importedBindings["styled-components"] &&
               importedBindings["styled-components"].length > 0
             ) {
