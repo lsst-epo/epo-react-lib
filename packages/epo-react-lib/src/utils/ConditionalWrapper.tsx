@@ -7,8 +7,9 @@ interface ConditionalWrapperProps {
 
 const ConditionalWrapper: FunctionComponent<
   PropsWithChildren<ConditionalWrapperProps>
-> = ({ condition, wrapper, children }) =>
-  condition ? wrapper(children) : children;
+> = ({ condition, wrapper, children }) => (
+  <>{condition ? wrapper(children) : children}</>
+);
 
 ConditionalWrapper.displayName = "Util.ConditionalWrapper";
 
