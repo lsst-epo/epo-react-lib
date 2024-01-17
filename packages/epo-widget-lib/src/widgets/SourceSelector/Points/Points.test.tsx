@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { data } from "../mocks";
+import { biggerData } from "../mocks";
 import Points from ".";
 import { getLinearScale } from "../utilities";
 
@@ -9,7 +9,7 @@ const domain = [0, 1200];
 
 const xScale = getLinearScale(domain, [0, width]);
 const yScale = getLinearScale(domain, [height, 0]);
-const { sources } = data;
+const { sources } = biggerData;
 
 const props = {
   sources,

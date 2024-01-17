@@ -1,5 +1,5 @@
-import { ComponentStoryObj, Meta, StoryFn } from "@storybook/react";
-import { data, images, biggerData } from "./mocks";
+import { Meta, StoryFn } from "@storybook/react";
+import { biggerData } from "./mocks";
 
 import SourceSelector from ".";
 import { useState } from "react";
@@ -64,10 +64,10 @@ const meta: Meta<typeof SourceSelector> = {
     },
     selectedSource: {
       control: "object",
-      description: "Pre-selected sources to show when the widget renders",
+      description: "Selected sources",
       table: {
         type: {
-          summary: "Source[]",
+          summary: "string[]",
         },
         defaultValue: {
           summary: "[]",
@@ -75,30 +75,22 @@ const meta: Meta<typeof SourceSelector> = {
         category: "Model",
       },
     },
-    images: {
-      type: {
-        name: "other",
-        value: "Image[]",
-        required: true,
-      },
-      description:
-        "Images to be shown in the blinker. Can be a single or multiple images, images can be associated with an alert by giving it the same array index as its alert.",
-      table: {
-        type: {
-          summary: "Image[]",
-        },
-        defaultValue: {
-          summary: "[]",
-        },
-        category: "Configuration",
-      },
-    },
     selectionCallback: {
       description: "Callback for when users have found a new source.",
       action: "Source found",
       table: {
         type: {
-          summary: "(selected: Source[]) => void",
+          summary: "(selected: string[]) => void",
+        },
+        category: "Function",
+      },
+    },
+    alertChangeCallback: {
+      description: "Callback for when an alert changes.",
+      action: "Alert changed",
+      table: {
+        type: {
+          summary: "(index: number) => void",
         },
         category: "Function",
       },
@@ -142,34 +134,36 @@ const Template: StoryFn<typeof SourceSelector> = (args) => {
   const [selectedSource, setSelectedSource] = useState(
     args.selectedSource || []
   );
+  const [activeAlertIndex, setActiveAlertIndex] = useState(
+    args.activeAlertIndex || 0
+  );
 
   return (
     <SourceSelector
       {...args}
-      selectedSource={selectedSource}
+      {...{ activeAlertIndex, selectedSource }}
       selectionCallback={(sources) => {
         setSelectedSource(sources);
         args.selectionCallback && args.selectionCallback(sources);
+      }}
+      alertChangeCallback={(index) => {
+        setActiveAlertIndex(index);
+        args.alertChangeCallback && args.alertChangeCallback(index);
       }}
     />
   );
 };
 
 export const Primary: StoryFn<typeof SourceSelector> = Template.bind({});
-Primary.args = { sources: data.sources, images };
-
-export const Alerts: StoryFn<typeof SourceSelector> = Template.bind({});
-Alerts.args = {
+Primary.args = {
   sources: biggerData.sources,
-  images: biggerData.alerts?.map((a) => a.image),
   alerts: biggerData.alerts,
 };
 
 export const DisplayOnly: StoryFn<typeof SourceSelector> = Template.bind({});
 DisplayOnly.args = {
   sources: biggerData.sources,
-  selectedSource: [biggerData.sources[0]],
-  images: biggerData.alerts?.map((a) => a.image),
+  selectedSource: [biggerData.sources[0].id],
   alerts: biggerData.alerts,
   isDisplayOnly: true,
 };
