@@ -4,7 +4,7 @@ import { Source, SourceType } from "@/types/astro";
 
 interface PointsProps {
   sources?: Source[];
-  selectedSource?: Source[];
+  selectedSource?: string[];
   activeType?: SourceType;
   xScale: (value: number) => number;
   yScale: (value: number) => number;
@@ -26,9 +26,7 @@ const Points: FunctionComponent<PointsProps> = ({
       {sources.map((d) => {
         const { type, id, color, radius = NaN, x, y } = d;
         const modR = 0.6 * radius;
-        const isSelected = selectedSource.some(
-          (s) => s.id === id && s.type === type
-        );
+        const isSelected = selectedSource.includes(id);
         const isActive = activeType ? activeType === type : false;
 
         return (

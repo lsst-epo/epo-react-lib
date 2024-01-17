@@ -1,10 +1,11 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import SourceSelector from ".";
-import { data, images, biggerData } from "./mocks";
+import { biggerData } from "./mocks";
 
 const selectionCallback = jest.fn();
-const { sources } = data;
-const props = { sources, images, selectionCallback };
+const alertChangeCallback = jest.fn();
+const { sources, alerts } = biggerData;
+const props = { sources, alerts, selectionCallback, alertChangeCallback };
 
 describe("SourceSelector", () => {
   it("should render sources into an SVG", () => {

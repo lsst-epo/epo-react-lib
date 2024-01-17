@@ -31,5 +31,5 @@ export interface SourceDataset {
   ra: number;
   redshift: number;
   sources: Source[];
-  alerts?: Alert[];
+  alerts: Alert[];
 }

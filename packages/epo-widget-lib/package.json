@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
-  "version": "0.6.13",
+  "version": "0.7.0",
   "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",

@@ -1,7 +1,6 @@
 import { FunctionComponent, MouseEvent, ReactNode, useState } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
-import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import * as Styled from "./styles";
 import Points from "./Points";
@@ -14,19 +13,15 @@ interface BlinkConfig {
   duration?: number;
 }
 
-interface Elapsed {
-  day: number;
-  hour: number;
-}
-
 interface SourceSelectorProps {
   width?: number;
   height?: number;
   sources: Source[];
-  alerts?: Alert[];
-  selectedSource?: Source[];
-  images: ImageShape[];
-  selectionCallback?: (data: Source[]) => void;
+  alerts: Alert[];
+  selectedSource?: string[];
+  activeAlertIndex?: number;
+  alertChangeCallback: (index: number) => void;
+  selectionCallback: (data: string[]) => void;
   blinkConfig?: BlinkConfig;
   color?: string;
   isDisplayOnly?: boolean;
@@ -37,8 +32,9 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   height = 600,
   selectedSource = [],
   sources,
-  alerts,
-  images,
+  alerts = [],
+  activeAlertIndex = 0,
+  alertChangeCallback,
   selectionCallback,
   blinkConfig,
   color,
@@ -47,13 +43,8 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   const [isLoaded, setLoaded] = useState(false);
   const [message, setMessage] = useState<ReactNode>();
   const [isMessageVisible, setMessageVisible] = useState(false);
-  const [elapsed, setElapsed] = useState<Elapsed | null>(null);
-  const [imageIndex, setIndex] = useState(0);
   const { t } = useTranslation();
   const svgId = "sourceSelectorWidget";
-
-  const findData = (data: Source[], id: string, type: string) =>
-    data.filter((d) => d.id === id && d.type === type);
 
   const handleClick = (event: MouseEvent<SVGElement>) => {
     if (isLoaded && !isDisplayOnly) {
@@ -61,12 +52,10 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
       const { id, type } = (target as SVGElement).dataset;
 
       if (id && type) {
-        const isAlreadySelected = findData(selectedSource, id, type).length > 0;
+        const isAlreadySelected = selectedSource.includes(id);
 
         if (!isAlreadySelected) {
-          const newSelect = findData(sources, id, type);
-          selectionCallback &&
-            selectionCallback(selectedSource.concat(newSelect));
+          selectionCallback && selectionCallback(selectedSource.concat(id));
           setMessage(
             <>
               <IconComposer icon="checkmark" />
@@ -86,18 +75,14 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     setMessageVisible(false);
   };
 
-  const handleBlinkChange = (index: number) => {
-    setIndex(index);
-    if (alerts && alerts.length > 1) {
-      const currentAlert = alerts[index];
-      const diff = currentAlert.date - alerts[0].date;
+  const currentAlert = alerts[activeAlertIndex];
+  const diff = currentAlert.date - alerts[0].date;
+  const day = Math.round(diff);
+  const hour = Math.round((24 / diff) % 24) || 0;
 
-      setElapsed({
-        day: Math.round(diff),
-        hour: Math.round((24 / diff) % 24) || 0,
-      });
-    }
-  };
+  const images = isDisplayOnly
+    ? [alerts[activeAlertIndex].image]
+    : alerts.map(({ image }) => image);
 
   return (
     <Styled.SourceSelectorContainer {...{ width, height }}>
@@ -112,21 +97,21 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
       )}
       <Styled.BackgroundBlinker
         images={images}
-        activeIndex={imageIndex}
-        blinkCallback={handleBlinkChange}
+        activeIndex={activeAlertIndex}
+        blinkCallback={alertChangeCallback}
         loadedCallback={() => {
           console.log("loaded");
           setLoaded(true);
         }}
         {...blinkConfig}
       >
-        {elapsed && <Styled.ElapsedDisplay {...elapsed} />}
+        {alerts.length > 0 && <Styled.ElapsedDisplay {...{ day, hour }} />}
         <Styled.SVG
           preserveAspectRatio="xMidYMid meet"
+          style={{ cursor: isDisplayOnly ? "default" : "pointer" }}
           viewBox={`0 0 ${width} ${height}`}
           onClick={handleClick}
           id={svgId}
-          $isDisplayOnly={isDisplayOnly}
         >
           <Points
             xScale={getLinearScale([0, width], [0, width])}
