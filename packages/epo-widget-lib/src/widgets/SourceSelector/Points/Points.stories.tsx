@@ -82,7 +82,7 @@ const meta: ComponentMeta<typeof Points> = {
         "ID of the currently selected source that will be visible to the user.",
       table: {
         type: {
-          summary: "Source[]",
+          summary: "string[]",
         },
         category: "Model",
       },
@@ -123,7 +123,7 @@ const yScale = getLinearScale(domain, [height, 0]);
 export const Primary: ComponentStoryObj<typeof Points> = {
   args: {
     sources: data.sources,
-    selectedSource: [data.sources[0]],
+    selectedSource: [data.sources[0].id],
     xScale,
     yScale,
   },

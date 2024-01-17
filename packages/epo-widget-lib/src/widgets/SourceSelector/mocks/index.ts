@@ -1,31 +1,5 @@
 import { SourceDataset } from "@/types/astro";
 
-export const data: SourceDataset = {
-  name: "All Three Filters",
-  id: "ZTF19abvhduf",
-  color: "#fed828",
-  distance: 124.63102831794073,
-  dec: 56.07525,
-  velocity: 8573.901530035577,
-  ra: 97.139708,
-  redshift: 0.029,
-  sources: [
-    {
-      type: "galaxyFilter",
-      id: "01",
-      x: 295,
-      y: 315,
-      color: "#fed828",
-    },
-  ],
-};
-
-export const images = [
-  {
-    url: "https://rubin.canto.com/direct/image/qh2lvca3k90spe75kk8sahtk2b/5mspThNrRG8R3Gc7oV7pt8UzXzI/original?content-type=image%2Fpng&name=Dropout_galaxy_UVISTADR1_J100121.94.png",
-  },
-];
-
 export const biggerData: SourceDataset = {
   id: "ZTF19abqmpsr",
   name: "expanding-universe::widgets.hubble_plotter.galaxies.0.name",
@@ -45,7 +19,7 @@ export const biggerData: SourceDataset = {
     },
     {
       type: "galaxy",
-      id: "01",
+      id: "02",
       x: 350,
       y: 230,
       color: "#fed828",
