@@ -86,7 +86,7 @@
     "react-i18next": "^12.2.0"
   },
   "dependencies": {
-    "@rubin-epo/epo-react-lib": "^2.0.13",
+    "@rubin-epo/epo-react-lib": "^2.0.16-rc.1",
     "context-filter-polyfill": "^0.3.6",
     "lodash": "^4.17.21",
     "skia-canvas": "^1.0.1",
