@@ -1,10 +1,9 @@
 import { SourceType } from "@/types/astro";
-import { FunctionComponent } from "react";
+import { FunctionComponent, MouseEventHandler } from "react";
 import * as Styled from "./styles";
 
 export interface PointProps {
   type: SourceType;
-  id: string;
   isSelected: boolean;
   isActive: boolean;
   x: number;
@@ -12,11 +11,11 @@ export interface PointProps {
   radius?: number;
   className?: string;
   color: string;
+  onClickCallback?: MouseEventHandler<SVGCircleElement>;
 }
 
 const Point: FunctionComponent<PointProps> = ({
   type,
-  id,
   isActive,
   isSelected,
   x,
@@ -24,6 +23,7 @@ const Point: FunctionComponent<PointProps> = ({
   radius,
   className,
   color,
+  onClickCallback,
 }) => {
   const defaultRadii: { [key: string]: number } = {
     supernova: 20,
@@ -58,8 +58,7 @@ const Point: FunctionComponent<PointProps> = ({
 
   return (
     <Styled.Point
-      data-id={id}
-      data-type={type}
+      onClick={onClickCallback}
       cx={x}
       cy={y}
       r={isActive ? activeRadius : baseRadius}

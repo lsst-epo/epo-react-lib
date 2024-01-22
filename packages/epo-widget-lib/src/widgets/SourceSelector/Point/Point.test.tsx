@@ -10,7 +10,6 @@ const props: PointProps = {
   isActive: false,
   color: "#000",
   type: "galaxy",
-  id: "01",
 };
 
 describe("Point", () => {
@@ -26,17 +25,5 @@ describe("Point", () => {
     expect(point).toHaveAttribute("cx", props.x.toString());
     expect(point).toHaveAttribute("cy", props.y.toString());
     expect(point).toHaveAttribute("r", props.radius?.toString());
-  });
-  it(`should add id and type data attributes`, () => {
-    render(
-      <svg>
-        <Point {...props} />
-      </svg>
-    );
-
-    const point = screen.getByRole("listitem");
-
-    expect(point).toHaveAttribute("data-type", props.type);
-    expect(point).toHaveAttribute("data-id", props.id);
   });
 });

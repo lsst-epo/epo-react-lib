@@ -1,11 +1,10 @@
-import { FunctionComponent, MouseEvent, ReactNode, useState } from "react";
+import { FunctionComponent, ReactNode, useState } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import * as Styled from "./styles";
-import Points from "./Points";
 import Message from "./Message";
-import { getLinearScale } from "@/lib/utils";
+import { PointSelector } from ".";
 
 interface BlinkConfig {
   autoplay?: boolean;
@@ -23,8 +22,8 @@ interface SourceSelectorProps {
   alertChangeCallback: (index: number) => void;
   selectionCallback: (data: string[]) => void;
   blinkConfig?: BlinkConfig;
-  color?: string;
   isDisplayOnly?: boolean;
+  className?: string;
 }
 
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
@@ -37,8 +36,8 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   alertChangeCallback,
   selectionCallback,
   blinkConfig,
-  color,
   isDisplayOnly = false,
+  className,
 }) => {
   const [isLoaded, setLoaded] = useState(false);
   const [message, setMessage] = useState<ReactNode>();
@@ -46,12 +45,9 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   const { t } = useTranslation();
   const svgId = "sourceSelectorWidget";
 
-  const handleClick = (event: MouseEvent<SVGElement>) => {
+  const handleClick = (id?: string) => {
     if (isLoaded && !isDisplayOnly) {
-      const { target } = event;
-      const { id, type } = (target as SVGElement).dataset;
-
-      if (id && type) {
+      if (id) {
         const isAlreadySelected = selectedSource.includes(id);
 
         if (!isAlreadySelected) {
@@ -85,7 +81,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     : alerts.map(({ image }) => image);
 
   return (
-    <Styled.SourceSelectorContainer {...{ width, height }}>
+    <Styled.SourceSelectorContainer {...{ width, height, className }}>
       {!isDisplayOnly && (
         <Message
           onMessageChangeCallback={handleMessageChange}
@@ -99,30 +95,15 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         images={images}
         activeIndex={activeAlertIndex}
         blinkCallback={alertChangeCallback}
-        loadedCallback={() => {
-          console.log("loaded");
-          setLoaded(true);
-        }}
+        loadedCallback={() => setLoaded(true)}
         {...blinkConfig}
       >
         {alerts.length > 0 && <Styled.ElapsedDisplay {...{ day, hour }} />}
-        <Styled.SVG
-          preserveAspectRatio="xMidYMid meet"
-          style={{ cursor: isDisplayOnly ? "default" : "pointer" }}
-          viewBox={`0 0 ${width} ${height}`}
-          onClick={handleClick}
+        <PointSelector
           id={svgId}
-        >
-          <Points
-            xScale={getLinearScale([0, width], [0, width])}
-            yScale={getLinearScale([0, height], [height, 0])}
-            {...{
-              color,
-              sources,
-              selectedSource,
-            }}
-          />
-        </Styled.SVG>
+          onSelectCallback={handleClick}
+          {...{ width, height, sources, selectedSource }}
+        />
       </Styled.BackgroundBlinker>
     </Styled.SourceSelectorContainer>
   );

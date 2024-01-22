@@ -105,16 +105,6 @@ const meta: Meta<typeof SourceSelector> = {
         category: "Configuration",
       },
     },
-    color: {
-      control: "color",
-      description: "Color to override any other colors defined for sources.",
-      table: {
-        type: {
-          summary: "string",
-        },
-        category: "Styling",
-      },
-    },
     isDisplayOnly: {
       control: "boolean",
       description:
