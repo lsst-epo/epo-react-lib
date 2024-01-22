@@ -57,6 +57,11 @@
     }
   },
   "source_selector": {
+    "selected_source": "Selected {{type}}:",
+    "sources": {
+      "galaxy": "Galaxy",
+      "supernova": "Supernova"
+    },
     "messages": {
       "success": "You found it!",
       "failure": "Try again."

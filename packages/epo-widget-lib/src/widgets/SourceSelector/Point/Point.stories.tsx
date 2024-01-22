@@ -19,20 +19,6 @@ const meta: ComponentMeta<typeof Point> = {
         category: "Display",
       },
     },
-    id: {
-      type: {
-        name: "string",
-        required: true,
-      },
-      control: "text",
-      description: "Unique identifier for each object",
-      table: {
-        type: {
-          summary: "string",
-        },
-        category: "Display",
-      },
-    },
     className: {
       ...className,
       table: {
