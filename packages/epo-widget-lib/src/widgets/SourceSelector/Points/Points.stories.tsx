@@ -17,6 +17,7 @@ const data: SourceDataset = {
   velocity: 8573.901530035577,
   ra: 97.139708,
   redshift: 0.029,
+  alerts: [],
   sources: [
     {
       id: "01",
@@ -85,17 +86,6 @@ const meta: ComponentMeta<typeof Points> = {
           summary: "string[]",
         },
         category: "Model",
-      },
-    },
-    color: {
-      control: "color",
-      description:
-        "Override color to be used in place of data points defined colors.",
-      table: {
-        type: {
-          summary: "string",
-        },
-        category: "Styling",
       },
     },
   },
