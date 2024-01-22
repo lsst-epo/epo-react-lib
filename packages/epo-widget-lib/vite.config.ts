@@ -20,6 +20,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
+        Atomic: resolve(__dirname, "src/atomic/index.tsx"),
         CameraFilter: resolve(
           __dirname,
           "src/widgets/CameraFilter/CameraFilter.tsx"
@@ -33,7 +34,7 @@ export default defineConfig({
         FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
         SourceSelector: resolve(
           __dirname,
-          "src/widgets/SourceSelector/SourceSelector.tsx"
+          "src/widgets/SourceSelector/index.tsx"
         ),
       },
       formats: [defaultFormat, "cjs"],

@@ -9,7 +9,7 @@ interface PointsProps {
   xScale: (value: number) => number;
   yScale: (value: number) => number;
   className?: string;
-  color?: string;
+  onClickCallback?: (id: string) => void;
 }
 
 const Points: FunctionComponent<PointsProps> = ({
@@ -19,7 +19,7 @@ const Points: FunctionComponent<PointsProps> = ({
   className,
   xScale,
   yScale,
-  color: colorOverride,
+  onClickCallback,
 }) => {
   return (
     <g className={className} role="list">
@@ -31,12 +31,22 @@ const Points: FunctionComponent<PointsProps> = ({
 
         return (
           <Point
-            key={`point-${type}-${id}`}
-            {...{ id, type, isActive, isSelected, className }}
+            key={id}
             radius={xScale(x - modR) - xScale(x + modR)}
             x={xScale(x)}
             y={yScale(y)}
-            color={colorOverride || color}
+            onClickCallback={(event) => {
+              event.stopPropagation();
+              return onClickCallback && onClickCallback(id);
+            }}
+            {...{
+              id,
+              type,
+              isActive,
+              isSelected,
+              className,
+              color,
+            }}
           />
         );
       })}

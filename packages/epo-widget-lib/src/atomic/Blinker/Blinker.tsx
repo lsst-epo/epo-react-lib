@@ -13,6 +13,7 @@ export interface BlinkerProps {
   blinkCallback?: (activeIndex: number) => void;
   loadedCallback?: () => void;
   className?: string;
+  showControls?: boolean;
 }
 
 const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
@@ -24,6 +25,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   blinkCallback,
   loadedCallback,
   className,
+  showControls,
   children,
 }) => {
   const [playing, setPlaying] = useState(autoplay);
@@ -75,7 +77,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
         {...{ images, activeIndex }}
       />
       {children}
-      {canBlink && (
+      {canBlink && showControls && (
         <Styled.BlinkerControls
           isDisabled={!loaded}
           {...{

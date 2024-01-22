@@ -18,6 +18,7 @@ export const SVG = styled.svg`
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
 `;
 
 export const BackgroundBlinker = styled(Blinker)`
