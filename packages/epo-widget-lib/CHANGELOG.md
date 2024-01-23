@@ -10,8 +10,9 @@
 
 - update linear gradients for Camera Filter Tool
 - A11Y changes for Camera Filter Tool
-  
+
 ## 0.7.0
 
 - add Rollup banner plugin to output `use client` on React Client Components
 - add Chart module with SVG components for base container, bar plots, point plots, X axis, Y Axis, tooltips, guidelines, and handling overflows
+- refactor Source Selector for greater modularity, individually export the Message, Point Selector, and Selection List components.
