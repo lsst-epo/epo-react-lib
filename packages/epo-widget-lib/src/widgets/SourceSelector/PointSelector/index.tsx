@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { getLinearScale } from "../utilities";
+import { getLinearScale } from "@/lib/utils";
 import Point from "../Point";
 import * as Styled from "../styles";
 import { Source } from "@/types/astro";
