@@ -25,7 +25,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   blinkCallback,
   loadedCallback,
   className,
-  showControls,
+  showControls = true,
   children,
 }) => {
   const [playing, setPlaying] = useState(autoplay);
