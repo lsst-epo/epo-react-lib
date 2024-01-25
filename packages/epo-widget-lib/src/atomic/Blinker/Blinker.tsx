@@ -1,8 +1,8 @@
 import { FunctionComponent, PropsWithChildren, useState } from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
+import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
 import * as Styled from "./styles";
-import { getClampedArrayIndex } from "@/lib/utils";
 
 export interface BlinkerProps {
   images: ImageShape[];
@@ -70,11 +70,12 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   return (
     <Styled.BlinkerContainer className={className}>
       <Styled.BlinkerImages
-        loadedCallback={() => {
+        loadCallback={() => {
           setLoaded(true);
           loadedCallback && loadedCallback();
         }}
-        {...{ images, activeIndex }}
+        visible={activeIndex}
+        {...{ images }}
       />
       {children}
       {canBlink && showControls && (

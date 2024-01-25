@@ -1,7 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Blinker from ".";
 
-const imagesId = "blinker-images";
 const controlsId = "blinker-controls";
 const testProps = {
   images: [
@@ -16,9 +15,12 @@ const testProps = {
 describe("Blinker", () => {
   test("Blinker renders with required props", () => {
     // Arrange
-    const { getByTestId } = render(<Blinker {...testProps} />);
+    const { getByTestId, getByRole } = render(<Blinker {...testProps} />);
+
+    const images = getByRole("img");
+
     // Assert
-    expect(getByTestId(imagesId)).toBeInTheDocument();
+    expect(images).toBeInTheDocument();
     expect(getByTestId(controlsId)).toBeInTheDocument();
   });
   test("Controls call callback", async () => {
