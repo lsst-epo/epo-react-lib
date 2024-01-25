@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Controls from "./Controls/Controls";
-import Images from "./Images/Images";
+import ImageStack from "../ImageStack";
 
 export const BlinkerContainer = styled.div`
   display: grid;
@@ -16,7 +16,7 @@ export const BlinkerControls = styled(Controls)`
   margin-block-start: var(--PADDING_SMALL, 20px);
 `;
 
-export const BlinkerImages = styled(Images)`
+export const BlinkerImages = styled(ImageStack)`
   aspect-ratio: 1;
   grid-row: 1;
   width: 100%;
