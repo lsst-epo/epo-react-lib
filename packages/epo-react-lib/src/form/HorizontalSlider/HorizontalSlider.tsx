@@ -41,7 +41,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   minLabel,
   maxLabel,
   labelledbyId,
-  color = "#313333",
+  color,
   darkMode = false,
   isDisabled = false,
   className,
@@ -58,7 +58,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     const validColor =
       color && isStyleSupported("color", color) && !isColorTransparent(color)
         ? color
-        : undefined;
+        : "#313333";
 
     return isDisabled ? "var(--neutral60, #6a6e6e)" : validColor;
   };
@@ -75,7 +75,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
       <Styled.Track
         style={{
           ...style,
-          "--track-color": hasColor ? trackColor : "transparent",
+          "--track-color": hasColor && trackColor,
         }}
         key={key}
         {...other}
