@@ -1,11 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ReactSlider from "react-slider";
 
 const sliderHeight = 18;
 const sliderBorder = 8;
 const trackHeight = 6;
 const thumbBorder = 4;
-const thumbHeight = 14;
 
 export const HorizontalSliderContainer = styled.div`
   --slider-color: inherit;
@@ -46,6 +45,8 @@ export const ThumbLabel = styled.span`
   color: var(--slider-color);
   position: absolute;
   top: calc(100% + ${thumbBorder}px);
+  left: 50%;
+  transform: translateX(-50%);
   padding: 5px;
   font-size: 14px;
   font-weight: normal;
@@ -64,36 +65,54 @@ export const ThumbContainer = styled.div`
   }
 `;
 
-export const Thumb = styled.div<{ color?: string; $isDisabled: boolean }>`
+export const Thumb = styled.div`
+  --thumb-height: 14px;
+
+  background-color: var(--thumb-color);
   box-sizing: border-box;
   position: relative;
-  width: ${thumbHeight}px;
-  height: ${thumbHeight}px;
-  color: var(--white, #fff);
+  cursor: grab;
+  width: var(--thumb-height);
+  height: var(--thumb-height);
   text-align: center;
   border-radius: 50%;
 
-  ${({ color = "#313333", $isDisabled }) => css`
-    cursor: ${$isDisabled ? "not-allowed" : "grab"};
-    background-color: ${$isDisabled ? "var(--neutral60, #6a6e6e)" : color};
+  &::before {
+    --click-box-height: calc(var(--thumb-height) * 2);
 
-    &:focus,
-    &:active,
-    &.active {
-      cursor: ${$isDisabled ? "not-allowed" : "grabbing"};
-      outline: none;
+    content: "";
+    display: inline-block;
+    position: relative;
+    left: -50%;
+    top: -50%;
+    width: var(--click-box-height);
+    height: var(--click-box-height);
+  }
 
-      ${ThumbLabel} {
-        opacity: 1;
-      }
-    }
-  `}
+  &[aria-disabled="true"] {
+    background-color: var(--neutral60, #6a6e6e);
+    cursor: not-allowed;
+  }
+
+  &:not([aria-disabled="true"]):focus,
+  &:not([aria-disabled="true"]):hover,
+  &:not([aria-disabled="true"]):active,
+  &:not([aria-disabled="true"]).active {
+    outline: none;
+    --thumb-label-opacity: 1;
+  }
+
+  &:not([aria-disabled="true"]):active,
+  &:not([aria-disabled="true"]).active,
+  &:not([aria-disabled="true"]):focus {
+    cursor: grabbing;
+  }
 `;
 
-export const Track = styled.div<{ color?: string }>`
+export const Track = styled.div`
   box-sizing: border-box;
   border-radius: ${trackHeight / 2}px;
-  background-color: ${({ color = "#313333" }) => color};
+  background-color: var(--track-color);
   height: ${trackHeight}px;
 `;
 
