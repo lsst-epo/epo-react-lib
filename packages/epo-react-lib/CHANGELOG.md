@@ -65,3 +65,7 @@
 
 - new `GenericPlayer` for playing DAM assets
 - integrated Investigations-style horizontal and vertical layouts into `Figure`
+
+## 2.0.17
+
+- `HorizontalSlider` shows thumb label during hover and focus in addition to during changes
