@@ -46,9 +46,11 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   isDisabled = false,
   className,
 }) => {
+  const [showThumbLabels, setShowThumbLabels] = useState(false);
   const hasDoubleHandles = Array.isArray(value) && value.length > 1;
 
   const handleChange = (value: SliderValue) => {
+    setShowThumbLabels(false);
     if (onChangeCallback) onChangeCallback(value as number & number[], label);
   };
 
@@ -91,7 +93,11 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     return (
       <Styled.ThumbContainer
         key={key}
-        style={{ ...style, "--thumb-color": trackColor }}
+        style={{
+          ...style,
+          "--thumb-color": trackColor,
+          "--thumb-label-opacity": showThumbLabels ? 1 : undefined,
+        }}
         {...other}
       >
         <Styled.Thumb aria-disabled={isDisabled}>
@@ -117,6 +123,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
       ) : null}
       <Styled.HorizontalSlider
         {...{ defaultValue, min, max, step, value }}
+        onBeforeChange={() => setShowThumbLabels(true)}
         onAfterChange={handleChange}
         renderTrack={Track}
         renderThumb={Thumb}
