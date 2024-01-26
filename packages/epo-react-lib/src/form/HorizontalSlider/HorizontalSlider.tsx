@@ -41,16 +41,14 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   minLabel,
   maxLabel,
   labelledbyId,
-  color,
+  color = "#313333",
   darkMode = false,
   isDisabled = false,
   className,
 }) => {
-  const [showThumbLabels, setShowThumbLabels] = useState(false);
   const hasDoubleHandles = Array.isArray(value) && value.length > 1;
 
   const handleChange = (value: SliderValue) => {
-    setShowThumbLabels(false);
     if (onChangeCallback) onChangeCallback(value as number & number[], label);
   };
 
@@ -63,15 +61,20 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     return isDisabled ? "var(--neutral60, #6a6e6e)" : validColor;
   };
 
+  const trackColor = getValidColor(color);
+
   const Track = (props: any, state: { index: number }) => {
     const { index } = state;
-    const { key, ...other } = props;
+    const { key, style, ...other } = props;
     const hasColor =
       (hasDoubleHandles && index === 1) || (!hasDoubleHandles && index === 0);
-    const trackColor = getValidColor(color);
+
     return (
       <Styled.Track
-        color={hasColor ? trackColor : "transparent"}
+        style={{
+          ...style,
+          "--track-color": hasColor ? trackColor : "transparent",
+        }}
         key={key}
         {...other}
       />
@@ -82,18 +85,18 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     props: any,
     state: { index: number; value: SliderValue; valueNow: number }
   ) => {
-    const { key, ...other } = props;
+    const { key, style, ...other } = props;
     const { valueNow } = state;
-    const thumbColor = getValidColor(color);
 
     return (
-      <Styled.ThumbContainer key={key} {...other}>
-        <Styled.Thumb {...{ color: thumbColor, $isDisabled: isDisabled }} />
-        <Styled.ThumbLabel
-          style={{ "--thumb-label-opacity": showThumbLabels ? 1 : 0 }}
-        >
-          {valueNow}
-        </Styled.ThumbLabel>
+      <Styled.ThumbContainer
+        key={key}
+        style={{ ...style, "--thumb-color": trackColor }}
+        {...other}
+      >
+        <Styled.Thumb aria-disabled={isDisabled}>
+          <Styled.ThumbLabel>{valueNow}</Styled.ThumbLabel>
+        </Styled.Thumb>
       </Styled.ThumbContainer>
     );
   };
@@ -113,10 +116,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         </Styled.TrackLabels>
       ) : null}
       <Styled.HorizontalSlider
-        {...{ defaultValue, min, max, step, value, showThumbLabels }}
-        onChange={() => {
-          setShowThumbLabels(true);
-        }}
+        {...{ defaultValue, min, max, step, value }}
         onAfterChange={handleChange}
         renderTrack={Track}
         renderThumb={Thumb}
