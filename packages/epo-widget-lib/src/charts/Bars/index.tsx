@@ -7,46 +7,42 @@ export interface Bar {
   fill?: string;
   width?: number;
   value: number;
+  x: number;
   props?: HTMLProps<SVGRectElement>;
 }
 
 export interface BarsProps {
   data: Array<Bar>;
-  xDomain: Domain;
   yDomain: Domain;
   xScale: ScaleFunction;
   yScale: ScaleFunction;
-  ticks: number;
+  y?: number;
 }
 
 const Bars: FunctionComponent<BarsProps> = ({
   data,
-  xDomain,
   yDomain,
   xScale,
   yScale,
-  ticks,
+  y = yScale(yDomain[1]),
 }) => {
   if (data.length === 0) return null;
 
-  const interval = (xDomain[1] - xDomain[0]) / ticks;
-
   return (
-    <g>
-      {data.map(({ stroke, fill, width = 8, value, props }, i) => {
-        const height = yScale(value);
-
+    <g role="list">
+      {data.map(({ stroke, fill, width = 8, x, value, props }, i) => {
         if (value === 0) return null;
+        const height = yScale(value) - yScale(yDomain[0]);
 
-        const x = xScale(interval * i);
-        const y = yScale(yDomain[1] - value);
         return (
           <Styled.Bar
-            {...{ height, x, y, width }}
+            role="listitem"
+            {...{ height, y, width }}
+            x={xScale(x)}
             fill={fill || "var(--bar-fill, #12726D)"}
             stroke={stroke || "var(--bar-stroke, transparent)"}
             key={i}
-            transform={`translate(-${width / 2} 1)`}
+            transform={`translate(-${width / 2} -${height})`}
             {...props}
           />
         );

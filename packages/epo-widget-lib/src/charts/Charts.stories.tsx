@@ -13,6 +13,7 @@ import {
 } from ".";
 import { getLinearScale } from "@/lib/utils";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
+import { max, nice } from "d3-array";
 
 const meta: Meta = {
   title: "Charts",
@@ -77,13 +78,13 @@ const ScatterTemplate: StoryFn = (args) => {
   const ticks = 10;
   const width = 400;
   const height = 400;
-  const padding = 25;
+  const margin = { top: 25, bottom: 25, left: 25, right: 25 };
   const [xDomain, setXDomain] = useState([0, 200]);
   const [yDomain, setYDomain] = useState([0, 200]);
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
-  const xRange = [0 + padding, width - padding];
-  const yRange = [0 + padding, height - padding];
+  const xRange = [0 + margin.left, width - margin.right];
+  const yRange = [0 + margin.top, height - margin.bottom];
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
@@ -112,14 +113,14 @@ const ScatterTemplate: StoryFn = (args) => {
       <VerticalButtons>
         <ArrowButton
           data-direction="up"
-          onClick={() => setYDomain([yDomain[0] - 20, yDomain[1] - 20])}
+          onClick={() => setYDomain([yDomain[0] + 20, yDomain[1] + 20])}
           disabled={yDomain[1] === 0}
         >
           <IconComposer icon="Chevron" />
         </ArrowButton>
         <ArrowButton
           data-direction="down"
-          onClick={() => setYDomain([yDomain[0] + 20, yDomain[1] + 20])}
+          onClick={() => setYDomain([yDomain[0] - 20, yDomain[1] - 20])}
           disabled={yDomain[0] === 0}
         >
           <IconComposer icon="Chevron" />
@@ -127,11 +128,7 @@ const ScatterTemplate: StoryFn = (args) => {
       </VerticalButtons>
       <Base {...{ width, height }}>
         <XAxis y={yScale(yDomain[1])} {...{ xDomain, xScale, ticks }} />
-        <YAxis
-          x={xScale(xDomain[0])}
-          labelFormatter={(v) => 200 - v}
-          {...{ yDomain, yScale, ticks }}
-        />
+        <YAxis x={xScale(xDomain[0])} {...{ yDomain, yScale, ticks }} />
         <ClippingContainer
           x={xScale(xDomain[0])}
           y={yScale(yDomain[0])}
@@ -180,46 +177,50 @@ const ScatterTemplate: StoryFn = (args) => {
 };
 
 const HistogramTemplate: StoryFn = (args) => {
-  const ticks = 10;
+  const xTicks = 10;
+  const yTicks = 6;
   const width = 400;
   const height = 400;
-  const padding = 30;
   const yMax = 12;
-  const xPad = 10;
-  const [xDomain, setXDomain] = useState([0, 200]);
-  const [yDomain, setYDomain] = useState([0, yMax]);
+  const margin = {
+    top: 30,
+    right: 10,
+    bottom: 30,
+    left: 20,
+  };
+  const [xMin, setXMin] = useState(0);
+  const [xMax, setXMax] = useState(200);
+  const xDomain = nice(xMin, xMax, xTicks);
+  const yDomain = nice(0, yMax, yTicks);
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
-  const xRange = [0 + padding, width - padding];
-  const yRange = [0 + padding, height - padding];
+  const xRange = [0 + margin.left, width - margin.right];
+  const yRange = [0 + margin.top, height - margin.bottom];
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
-  const binInterval = (xDomain[1] - xDomain[0]) / ticks;
-  const bins = new Array(width / binInterval).fill(0);
+  const binInterval = (xDomain[1] - xDomain[0]) / xTicks;
+  const bins = new Array(width / binInterval).fill(0).map((_, i) => {
+    return { bin: i * binInterval, value: 0 };
+  });
 
   args.data.forEach(({ x }: { x: number }) => {
     const bin = Math.floor((x * width) / binInterval);
 
-    bins[bin]++;
+    bins[bin].value++;
   });
 
-  const data = bins.map((value, i) => {
+  const data = bins.map(({ bin, value }, i) => {
     return {
+      x: bin,
       value,
-      width: 10,
+      width: 12,
       props: {
-        onMouseEnter: () => {
-          setHoveredIndex(i);
-        },
-        onMouseLeave: () => {
-          setHoveredIndex(undefined);
-        },
+        onMouseEnter: () => setHoveredIndex(i),
+        onMouseLeave: () => setHoveredIndex(undefined),
       },
     };
   });
-
-  console.log({ hoveredIndex, binInterval });
 
   return (
     <Container>
@@ -227,32 +228,30 @@ const HistogramTemplate: StoryFn = (args) => {
       <Base {...{ width, height }}>
         <XAxis
           y={yScale(yDomain[1])}
-          padding={xPad}
-          {...{ xDomain, xScale, ticks }}
+          ticks={xTicks}
+          {...{ xDomain, xScale, margin }}
         />
         <YAxis
-          x={xScale(xDomain[0]) - xPad}
-          labelFormatter={(v) => yMax - v}
+          x={xScale(xDomain[0]) - margin.left / 2}
           showBaseline={false}
-          ticks={6}
-          {...{ yDomain, yScale }}
+          ticks={yTicks}
+          {...{ yDomain, yScale, margin }}
         />
         <ClippingContainer
-          x={xScale(xDomain[0]) - xPad}
-          y={yScale(yDomain[0])}
-          width={xRange[1] - xRange[0] + xPad * 2}
-          height={yRange[1] - yRange[0]}
+          x={xScale(xDomain[0]) - margin.left / 2}
+          y={yScale(yDomain[0]) - margin.top}
+          width={xRange[1] - xRange[0]}
+          height={yRange[1] - yRange[0] + margin.top}
         >
           <Guidelines
-            guides={6}
-            padding={xPad}
-            {...{ xScale, yScale, xDomain, yDomain }}
+            guides={yTicks}
+            {...{ xScale, yScale, xDomain, yDomain, margin }}
           />
-          <Bars {...{ xScale, yScale, yDomain, xDomain, ticks, data }} />
+          <Bars {...{ xScale, yScale, yDomain, data }} />
         </ClippingContainer>
         {hoveredIndex && (
           <Tooltip
-            x={xScale(hoveredIndex * binInterval)}
+            x={xScale(bins[hoveredIndex].bin)}
             y={yScale(yDomain[1] - data[hoveredIndex].value)}
             value={data[hoveredIndex].value}
           />
@@ -261,15 +260,21 @@ const HistogramTemplate: StoryFn = (args) => {
       <HorizontalButtons>
         <ArrowButton
           data-direction="left"
-          onClick={() => setXDomain([xDomain[0] - 20, xDomain[1] - 20])}
-          disabled={xDomain[0] === 0}
+          onClick={() => {
+            setXMin(xMin - 20);
+            setXMax(xMax - 20);
+          }}
+          disabled={xMin <= 0}
         >
           <IconComposer icon="Chevron" />
         </ArrowButton>
         <ArrowButton
           data-direction="right"
-          onClick={() => setXDomain([xDomain[0] + 20, xDomain[1] + 20])}
-          disabled={xDomain[1] >= 400}
+          onClick={() => {
+            setXMin(xMin + 20);
+            setXMax(xMax + 20);
+          }}
+          disabled={xMax >= 400}
         >
           <IconComposer icon="Chevron" />
         </ArrowButton>

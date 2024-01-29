@@ -16,11 +16,13 @@ const meta: Meta<typeof YAxis> = {
         defaultValue: { summary: 0 },
       },
     },
-    labelFormatter: {
+    labelRender: {
       description: "Method to format the labels attached to each tick",
       table: {
-        type: { summary: "(value: number, index: string) => ReactNode" },
-        defaultValue: { summary: "(v) => v" },
+        type: {
+          summary:
+            "(value: number, x: number, y: number, index: string) => ReactNode",
+        },
       },
     },
     labelledById: {
@@ -109,12 +111,7 @@ const Template: StoryFn<typeof YAxis> = (args) => {
   return (
     <Container>
       <Chart minX={0} width={400} height={400}>
-        <YAxis
-          {...args}
-          x={xScale(xDomain[0])}
-          labelFormatter={(v) => 400 - v}
-          {...{ yDomain, yScale }}
-        />
+        <YAxis {...args} x={xScale(xDomain[0])} {...{ yDomain, yScale }} />
       </Chart>
       <ButtonContainer>
         <ArrowButton

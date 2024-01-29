@@ -16,6 +16,7 @@ const Tooltip: FunctionComponent<TooltipProps> = ({
   height = 16,
   className,
 }) => {
+  if (!x || !y) return null;
   const label = String(value);
   const width = Math.max(label.length * 8, 20);
   const arrowWidth = 6;

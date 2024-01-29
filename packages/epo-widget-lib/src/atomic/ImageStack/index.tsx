@@ -1,4 +1,9 @@
-import { CSSProperties, FunctionComponent, useState } from "react";
+import {
+  CSSProperties,
+  FunctionComponent,
+  PropsWithChildren,
+  useState,
+} from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import after from "lodash/after";
 import * as Styled from "./styles";
@@ -14,7 +19,7 @@ export interface ImageStackProps {
   height?: number;
 }
 
-const ImageStack: FunctionComponent<ImageStackProps> = ({
+const ImageStack: FunctionComponent<PropsWithChildren<ImageStackProps>> = ({
   images,
   visible,
   describedById,
@@ -23,6 +28,7 @@ const ImageStack: FunctionComponent<ImageStackProps> = ({
   className,
   width,
   height,
+  children,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -61,6 +67,7 @@ const ImageStack: FunctionComponent<ImageStackProps> = ({
           />
         );
       })}
+      {children}
     </Styled.StackContainer>
   );
 };

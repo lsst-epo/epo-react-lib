@@ -20,6 +20,7 @@
     "paths": {
       "@/assets/*": ["src/assets/*"],
       "@/atomic/*": ["src/atomic/*"],
+      "@/charts/*": ["src/charts/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/lib/*": ["src/lib/*"],
       "@/storybook/*": [".storybook/*"],
