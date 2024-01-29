@@ -2,13 +2,14 @@ import { forwardRef, HTMLProps, PropsWithChildren } from "react";
 import { IconKey } from "@/svg/icons";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
+import { IconComposerProps } from "@/svg/IconComposer/IconComposer";
 
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 
 export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
   className?: string;
   icon?: IconKey;
-  iconSize?: number;
+  iconSize?: IconComposerProps["size"];
   isBlock?: boolean;
   styleAs?: ButtonStyleAs;
   /** This is a disabled style without disabling the button.
