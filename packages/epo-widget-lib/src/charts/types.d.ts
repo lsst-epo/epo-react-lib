@@ -1,13 +1,25 @@
 import { ReactNode } from "react";
 
+export interface ChartMargin {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
 export type Domain = Array<number>;
 export type ScaleFunction = (value: number) => number;
-export type LabelFormatter = (value: number, index?: number) => ReactNode;
+export type HistogramData = Array<{ bin: number; value: number }>;
+export type LabelRenderer = (
+  value: number,
+  x: number,
+  y: number,
+  index?: number
+) => ReactNode;
 export interface BaseAxisProps {
   ticks: number;
-  labelFormatter?: LabelFormatter;
+  labelRender?: LabelRenderer;
   labelledById?: string;
   showBaseline?: boolean;
-  padding?: number;
+  margin?: ChartMargin;
   className?: string;
 }
