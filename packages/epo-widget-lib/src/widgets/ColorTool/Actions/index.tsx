@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
-import { AstroObject, ColorToolAction } from "../ColorTool";
-import Reset from "./Reset";
+import { useTranslation } from "react-i18next";
+import * as Button from "@/atomic/Button";
+import { AstroObject, ColorToolAction, ImageFilter } from "../ColorTool";
 import Export from "./Export";
 import * as Styled from "./styles";
-import { useTranslation } from "react-i18next";
-import { areActionsActive } from "../lib/utils";
+import { areActionsActive, getBrightnessValue } from "../lib/utils";
 
 interface ActionsProps {
   actions: Array<ColorToolAction>;
@@ -14,6 +14,20 @@ interface ActionsProps {
   selectionCallback: (data: AstroObject) => void;
 }
 
+const resetFilters = (filters: ImageFilter[]): ImageFilter[] =>
+  filters.map((filter) => {
+    const { defaultValue, min, max } = filter;
+    const value = defaultValue || 1;
+
+    return {
+      ...filter,
+      active: false,
+      color: "",
+      brightness: getBrightnessValue(min, max, value),
+      value,
+    };
+  });
+
 const Actions: FunctionComponent<ActionsProps> = ({
   actions,
   isDisabled,
@@ -22,31 +36,32 @@ const Actions: FunctionComponent<ActionsProps> = ({
   canvas,
 }) => {
   const { t } = useTranslation();
-  const { name: filename } = selectedData;
+  const { name: filename, filters } = selectedData;
 
   const actionsDisabled = isDisabled || !areActionsActive(selectedData);
 
   return (
     <Styled.Actions>
-      {actions.map((action, i) => {
+      {actions.map((action) => {
         switch (action) {
           case "reset":
             return (
-              <Reset
-                key={i}
+              <Button.Reset
+                key={action}
                 isDisabled={actionsDisabled}
-                {...{ selectedData }}
-                onResetCallback={(data) =>
-                  selectionCallback && selectionCallback(data)
+                onResetCallback={() =>
+                  selectionCallback &&
+                  selectionCallback({
+                    ...selectedData,
+                    filters: resetFilters(filters),
+                  })
                 }
-              >
-                {t("colorTool.actions.reset")}
-              </Reset>
+              />
             );
           case "export":
             return (
               <Export
-                key={i}
+                key={action}
                 isDisabled={actionsDisabled}
                 {...{ canvas, filename }}
               >

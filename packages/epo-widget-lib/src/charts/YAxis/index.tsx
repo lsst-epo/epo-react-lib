@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
-import * as Styled from "../styles";
+import { ticks as d3Ticks } from "d3-array";
 import { Domain, ScaleFunction, BaseAxisProps } from "../types";
+import * as Styled from "../styles";
 
 export interface YAxisProps extends BaseAxisProps {
   yDomain: Domain;
@@ -13,9 +14,9 @@ const YAxis: FunctionComponent<YAxisProps> = ({
   yDomain = [0, 1],
   yScale = (v) => v,
   x = 0,
-  padding = 0,
+  margin,
   ticks = 0,
-  labelFormatter = (v) => v,
+  labelRender,
   labelledById,
   showBaseline = true,
   tickLength = 5,
@@ -27,8 +28,9 @@ const YAxis: FunctionComponent<YAxisProps> = ({
     return null;
   }
 
-  /** the value interval between ticks */
-  const interval = (yDomain[1] - yDomain[0]) / ticks;
+  const defaultMargins = { top: 0, right: 0, bottom: 0, left: 0 };
+  const finalMargins = { ...defaultMargins, ...margin };
+  const tickArr = d3Ticks(yDomain[0], yDomain[1], ticks);
 
   return (
     <>
@@ -36,30 +38,30 @@ const YAxis: FunctionComponent<YAxisProps> = ({
         <Styled.BaseLine
           x1={x}
           x2={x}
-          y1={yScale(yDomain[0]) - padding}
-          y2={yScale(yDomain[1]) + padding}
+          y1={yScale(yDomain[0]) - finalMargins.top}
+          y2={yScale(yDomain[1]) + finalMargins.bottom}
         />
       )}
       {ticks > 0 && (
         <g role="list" aria-labelledby={labelledById} className={className}>
-          {Array.from(Array(ticks + 1)).map((tick, i) => {
-            /** the numeric value of the tick */
-            const value = yDomain[0] + interval * i;
+          {tickArr.map((value, i) => {
+            if (value <= yDomain[0]) return null;
 
-            const label = labelFormatter ? labelFormatter(value) : value;
-            const position = yScale(value);
+            const labelY = yScale(yDomain[1] - value + yDomain[0]);
+            const labelX = x - tickLength;
 
             return (
               <g role="listitem" key={i}>
-                <Styled.Tick
-                  x1={x - tickLength}
-                  x2={x}
-                  y1={position}
-                  y2={position}
-                />
-                <Styled.YLabel x={x - tickLength - 2} y={position}>
-                  {label}
-                </Styled.YLabel>
+                {tickLength > 0 && (
+                  <Styled.Tick x1={labelX} x2={x} y1={labelY} y2={labelY} />
+                )}
+                {labelRender ? (
+                  labelRender(value, labelX, labelY, i)
+                ) : (
+                  <Styled.YLabel x={labelX} y={labelY}>
+                    {value}
+                  </Styled.YLabel>
+                )}
               </g>
             );
           })}

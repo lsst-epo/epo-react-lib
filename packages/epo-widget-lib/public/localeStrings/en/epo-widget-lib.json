@@ -79,5 +79,12 @@
       "visible": "Visible Light",
       "infrared": "Infrared"
     }
+  },
+  "supernova_three_vector": {
+    "histogram": {
+      "x_label": "Distance [kpc]",
+      "bar_label_one": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernova",
+      "bar_label_other": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernovae"
+    }
   }
 }
