@@ -40,11 +40,13 @@ const meta: Meta<typeof XAxis> = {
         defaultValue: { summary: 0 },
       },
     },
-    labelFormatter: {
+    labelRender: {
       description: "Method to format the labels attached to each tick",
       table: {
-        type: { summary: "(value: number, index: string) => ReactNode" },
-        defaultValue: { summary: "(v) => v" },
+        type: {
+          summary:
+            "(value: number, x: number, y: number, index: string) => ReactNode",
+        },
       },
     },
     labelledById: {
@@ -118,8 +120,8 @@ const ArrowButton = styled.button`
 `;
 
 const Template: StoryFn<typeof XAxis> = (args) => {
-  const { padding = 0 } = args;
-  const xRange = [0 + padding, 400 - padding];
+  const { margin } = args;
+  const xRange = [0 + margin.left, 400 - margin.right];
   const [xDomain, setXDomain] = useState(args.xDomain || [0, 400]);
   const xScale = getLinearScale(xDomain, xRange);
 
@@ -149,5 +151,5 @@ export const Primary: StoryObj<typeof XAxis> = Template.bind({});
 Primary.args = {
   ticks: 10,
   y: 375,
-  padding: 25,
+  margin: { top: 25, bottom: 25, left: 25, right: 25 },
 };

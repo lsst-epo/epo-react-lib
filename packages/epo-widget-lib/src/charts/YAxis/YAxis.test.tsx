@@ -4,19 +4,18 @@ import { getLinearScale } from "@/lib/utils";
 
 const domain = [0, 100];
 const yScale = getLinearScale(domain, domain);
+const ticks = 10;
 
 describe("X Axis", () => {
   it("should render some ticks", () => {
     // Arrange
     render(
       <svg>
-        <YAxis yDomain={[0, 100]} ticks={10} yScale={yScale} />
+        <YAxis yDomain={[0, 100]} ticks={ticks} yScale={yScale} />
       </svg>
     );
-    // Act
-    const ticks = screen.getAllByRole("listitem");
     // Assert
-    expect(ticks.length).toBe(11);
+    expect(screen.getAllByRole("listitem").length).toBe(ticks);
   });
   it("should format the values in their label", () => {
     // Arrange
@@ -26,15 +25,13 @@ describe("X Axis", () => {
           yDomain={[0, 100]}
           ticks={1}
           yScale={yScale}
-          labelFormatter={(v) => `Value: ${v}`}
+          labelRender={(v) => <text>Value: {v}</text>}
         />
       </svg>
     );
     // Act
-    const firstTick = screen.getByText("Value: 0");
-    const secondTick = screen.getByText("Value: 100");
+    const tick = screen.getByText("Value: 100");
     // Assert
-    expect(firstTick).toBeDefined();
-    expect(secondTick).toBeDefined();
+    expect(tick).toBeDefined();
   });
 });

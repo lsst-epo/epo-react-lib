@@ -109,15 +109,11 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      "@/assets": resolve(__dirname, "./src/assets"),
-      "@/atomic": resolve(__dirname, "./src/atomic"),
-      "@/hooks": resolve(__dirname, "./src/hooks"),
-      "@/lib": resolve(__dirname, "./src/lib"),
-      "@/storybook": resolve(__dirname, "./.storybook"),
-      "@/styles": resolve(__dirname, "./src/styles"),
-      "@/types": resolve(__dirname, "./src/types"),
-      "@/widgets": resolve(__dirname, "./src/widgets"),
-    },
+    alias: [
+      {
+        find: "@",
+        replacement: resolve(__dirname, "./src"),
+      },
+    ],
   },
 });

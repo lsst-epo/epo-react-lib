@@ -88,7 +88,7 @@ const Template: StoryFn<typeof Guidelines> = (args) => {
           ticks={args.guides}
           x={xScale(args.xDomain[0])}
           yDomain={args.yDomain}
-          labelFormatter={(v) => 400 - v}
+          // labelFormatter={(v) => 400 - v}
           {...{ yScale }}
         />
         <Guidelines {...args} {...{ xScale, yScale }} />

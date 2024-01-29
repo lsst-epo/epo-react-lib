@@ -52,7 +52,7 @@ const Template: StoryFn<typeof Points> = (args) => {
           ticks={10}
           x={xScale(xDomain[0])}
           yDomain={yDomain}
-          labelFormatter={(v) => 400 - v}
+          // labelFormatter={(v) => 400 - v}
           {...{ yScale }}
         />
         <Points {...args} {...{ xScale, yScale, data }} />

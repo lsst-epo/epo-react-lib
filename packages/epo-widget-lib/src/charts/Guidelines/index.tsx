@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
-import { Domain, ScaleFunction } from "../types";
+import { ticks } from "d3-array";
+import { ChartMargin, Domain, ScaleFunction } from "../types";
 import * as Styled from "../styles";
 
 export interface GuidelinesProps {
@@ -9,7 +10,7 @@ export interface GuidelinesProps {
   xDomain: Domain;
   yScale: ScaleFunction;
   yDomain: Domain;
-  padding?: number;
+  margin?: ChartMargin;
   className?: string;
 }
 
@@ -20,37 +21,36 @@ const Guidelines: FunctionComponent<GuidelinesProps> = ({
   xDomain = [0, 1],
   yScale = (v) => v,
   yDomain = [0, 1],
-  padding = 0,
+  margin,
   className,
 }) => {
   if (guides === 0) return null;
 
   const domain = direction === "horizontal" ? yDomain : xDomain;
   const scale = direction === "horizontal" ? yScale : xScale;
-  const interval = (domain[1] - domain[0]) / guides;
+
+  const defaultMargins = { top: 0, right: 0, bottom: 0, left: 0 };
+  const finalMargins = { ...defaultMargins, ...margin };
+  const tickArr = ticks(domain[1], domain[0], guides);
 
   return (
     <g className={className}>
-      {Array(guides + 1)
-        .fill(undefined)
-        .map((_, i) => {
-          const value = domain[0] + interval * i;
+      {tickArr.map((value, i) => {
+        /** the visual location of the tick, accounting for padding */
+        const position = scale(value);
+        const start =
+          direction === "horizontal"
+            ? [xScale(xDomain[0]) - finalMargins.left, position]
+            : [position - finalMargins.top, yScale(yDomain[0])];
+        const end =
+          direction === "horizontal"
+            ? [xScale(xDomain[1]) + finalMargins.right, position]
+            : [position, yScale(yDomain[1]) + finalMargins.bottom];
 
-          /** the visual location of the tick, accounting for padding */
-          const position = scale(value);
-          const start =
-            direction === "horizontal"
-              ? [xScale(xDomain[0]) - padding, position]
-              : [position - padding, yScale(yDomain[0])];
-          const end =
-            direction === "horizontal"
-              ? [xScale(xDomain[1]) + padding, position]
-              : [position, yScale(yDomain[1]) + padding];
-
-          return (
-            <Styled.Guide key={i} points={`${start.join()} ${end.join()}`} />
-          );
-        })}
+        return (
+          <Styled.Guide key={i} points={`${start.join()} ${end.join()}`} />
+        );
+      })}
     </g>
   );
 };
