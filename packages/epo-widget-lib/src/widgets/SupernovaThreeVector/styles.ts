@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 import * as Button from "@/atomic/Button";
 import DistanceHistogram from "./Histogram";
+import BaseSkymap from "./Skymap";
 
 export const ThreeVectorContainer = styled.div`
   container-type: inline-size;
@@ -10,9 +11,9 @@ export const ThreeVectorContainer = styled.div`
 export const ThreeVectorLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr min-content min-content;
+  grid-template-rows: min-content 1fr min-content min-content;
   grid-template-areas:
-    "projection"
+    "skymap"
     "histogram"
     "slider"
     "reset";
@@ -22,8 +23,8 @@ export const ThreeVectorLayout = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr min-content min-content;
     grid-template-areas:
-      "histogram projection"
-      "slider projection"
+      "histogram skymap"
+      "slider skymap"
       "reset reset";
   }
 `;
@@ -61,4 +62,20 @@ export const SliderContainer = styled.div`
 
 export const ResetButton = styled(Button.Reset)`
   grid-area: reset;
+`;
+
+export const Skymap = styled(BaseSkymap)`
+  grid-area: skymap;
+  max-width: 100%;
+`;
+
+export const OffscreenLabel = styled.span`
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 `;

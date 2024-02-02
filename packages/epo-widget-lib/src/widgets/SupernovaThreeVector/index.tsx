@@ -1,23 +1,37 @@
 import { FunctionComponent, useState } from "react";
-import { nice, max, min, tickIncrement } from "d3-array";
+import { nice, max, min } from "d3-array";
+import sumBy from "lodash/sumBy";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
+import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { ChartMargin, HistogramData } from "@/charts/types";
+import { getLinearScale, between } from "@/lib/utils";
+import { SkymapObject } from "./Skymap";
 import * as Styled from "./styles";
-import { getLinearScale } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface SupernovaThreeVectorProps {
-  data: HistogramData;
+  histogramData: HistogramData;
+  binnedImages: Array<ImageShape>;
+  step: number;
+  userData: Array<SkymapObject>;
 }
 
 const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
-  data,
+  histogramData,
+  userData,
+  binnedImages,
+  step = 100,
 }) => {
+  const { t } = useTranslation();
   const margin: ChartMargin = {
     top: 20,
     bottom: 50,
     left: 50,
     right: 0,
   };
+
+  const liveDescriptionId = "skyMapDescription";
+
   const width = 600;
   const height = width / 1.6;
   const xRange = [margin.left, width - margin.right];
@@ -28,10 +42,12 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
 
   const yMin = 0;
   const yMax =
-    max(data, (d) => d.value) || Math.max(...data.map(({ value }) => value));
-  const xMin = min(data, (d) => d.bin) || 0;
+    max(histogramData, (d) => d.value) ||
+    Math.max(...histogramData.map(({ value }) => value));
+  const xMin = min(histogramData, (d) => d.bin) || 0;
   const xMax =
-    max(data, (d) => d.bin) || Math.max(...data.map(({ bin }) => bin));
+    max(histogramData, (d) => d.bin) ||
+    Math.max(...histogramData.map(({ bin }) => bin));
 
   const xDomain = nice(xMin, xMax, xTicks);
   const yDomain = nice(yMin, yMax || yMin, yTicks);
@@ -39,8 +55,7 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
-  const step = tickIncrement(xMin, xMax, data.length);
-  const [activeRange, setActiveRange] = useState(xDomain);
+  const [activeRange, setActiveRange] = useState([xMin, xMax]);
 
   /** the width of the slider border + half the width of the track thumb */
   const sliderOffset = 15;
@@ -52,15 +67,23 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
     (1 - xScale(xMax) / width) * 100
   }% - ${sliderOffset}px)`;
 
-  console.log({ sliderLeftMargin, sliderRightMargin });
+  const visibleImages = histogramData.map(({ bin }) =>
+    between(bin, activeRange[0], activeRange[1])
+  );
+
+  const visibleUserObjects = userData.filter(({ distance }) =>
+    between(distance, activeRange[0], activeRange[1] + step)
+  );
+
+  console.log({ visibleUserObjects });
 
   return (
     <Styled.ThreeVectorContainer>
       <Styled.ThreeVectorLayout>
         <Styled.HistogramContainer>
           <Styled.Histogram
+            data={histogramData}
             {...{
-              data,
               activeRange,
               xDomain,
               yDomain,
@@ -87,15 +110,41 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
             max={xMax}
             step={step}
             value={activeRange}
+            ariaValuetext={({ valueNow }) =>
+              t("supernova_three_vector.slider.valueLabel", { value: valueNow })
+            }
             label="distanceSlider"
             color="var(--turquoise85,#12726D)"
-            onChangeCallback={(value: number[]) =>
-              setActiveRange([value[0], value[1]])
+            minLabel={`${xMin} kpc`}
+            maxLabel={`${xMax} kpc`}
+            onChangeCallback={(value) =>
+              Array.isArray(value) && setActiveRange(value)
             }
           />
         </Styled.SliderContainer>
-        <Styled.ResetButton onResetCallback={() => setActiveRange(xDomain)} />
+        <Styled.Skymap
+          objects={visibleUserObjects}
+          images={binnedImages}
+          describedById={liveDescriptionId}
+          {...{ visibleImages }}
+        />
+        <Styled.ResetButton
+          onResetCallback={() => setActiveRange([xMin, xMax])}
+        />
       </Styled.ThreeVectorLayout>
+      <Styled.OffscreenLabel aria-live="polite" id={liveDescriptionId}>
+        {t("supernova_three_vector.skymap.description", {
+          supernovaCount: sumBy(histogramData, ({ bin, value }) => {
+            if (between(bin, activeRange[0], activeRange[1])) {
+              return value;
+            }
+            return 0;
+          }),
+          userObjectCount: visibleUserObjects.length,
+          min: activeRange[0],
+          max: activeRange[1] + step,
+        })}
+      </Styled.OffscreenLabel>
     </Styled.ThreeVectorContainer>
   );
 };

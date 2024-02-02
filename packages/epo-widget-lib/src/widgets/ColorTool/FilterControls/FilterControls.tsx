@@ -70,7 +70,9 @@ const FilterControls: FunctionComponent<FilterControlProps> = ({
       <Styled.Slider
         min={1}
         max={100}
-        onChangeCallback={handleBrightness}
+        onChangeCallback={(value) =>
+          typeof value === "number" && handleBrightness(value)
+        }
         isDisabled={!active || isDisabled}
         labelledbyId={sliderLabelledById}
         {...{ value, label, color }}

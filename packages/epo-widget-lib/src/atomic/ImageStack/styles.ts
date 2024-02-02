@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 
 export const StackContainer = styled.div`
-  background-color: var(--neutral95, #1f2121);
+  background-color: var(--image-stack-background, transparent);
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
