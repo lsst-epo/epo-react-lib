@@ -1,5 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import HorizontalSlider from ".";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { composeStories } from "@storybook/react";
+import * as stories from "./HorizontalSlider.stories";
 
 beforeEach(() => {
   window.ResizeObserver =
@@ -11,43 +13,70 @@ beforeEach(() => {
     }));
 });
 
-const min = 10;
-const max = 120;
-const value = 50;
+const onChangeCallback = jest.fn();
 
-const props = {
-  min,
-  max,
-  value,
-  onChangeCallback: jest.fn(),
-  label: "test-slider",
-};
+const { SingleHandle, DoubleHandle, Disabled } = composeStories(stories, {
+  args: { onChangeCallback },
+});
 
 describe("HorizontalSlider", () => {
   it("Creates an accessible slider", () => {
-    render(<HorizontalSlider {...props} />);
+    const { getByRole } = render(<SingleHandle />);
 
-    const slider = screen.getByRole("slider");
+    const slider = getByRole("slider");
+
+    const { min, value, max } = SingleHandle.args;
 
     expect(slider).toBeDefined;
-    expect(slider).toHaveAttribute("aria-valuemin", min.toString());
-    expect(slider).toHaveAttribute("aria-valuenow", value.toString());
-    expect(slider).toHaveAttribute("aria-valuemax", max.toString());
+    expect(slider).toHaveAttribute("aria-valuemin", min?.toString());
+    expect(slider).toHaveAttribute("aria-valuenow", value?.toString());
+    expect(slider).toHaveAttribute("aria-valuemax", max?.toString());
     expect(slider).toHaveAttribute("aria-orientation", "horizontal");
   });
   it("Displays a double handled slider", () => {
-    const values = [20, 80];
-    const minLabel = "MinLabel";
-    const maxLabel = "MaxLabel";
+    const { getByLabelText } = render(<DoubleHandle />);
 
-    render(
-      <HorizontalSlider {...{ ...props, value: values, minLabel, maxLabel }} />
-    );
+    const { value, minLabel, maxLabel } = DoubleHandle.args;
 
-    const left = screen.getByLabelText(minLabel);
-    const right = screen.getByLabelText(maxLabel);
-    expect(left).toHaveAttribute("aria-valuenow", values[0].toString());
-    expect(left).to;
-    expect(right).toHaveAttribute("aria-valuenow", values[1].toString());
+    if (minLabel && maxLabel && Array.isArray(value)) {
+      const left = getByLabelText(minLabel);
+      const right = getByLabelText(maxLabel);
+
+      expect(left).toHaveAttribute("aria-valuenow", value[0].toString());
+      expect(right).toHaveAttribute("aria-valuenow", value[1].toString());
+    }
+  });
+  it("Performs a callback when the value is changed", () => {
+    onChangeCallback.mockClear();
+    const { getByRole } = render(<SingleHandle />);
+
+    const slider = getByRole("slider");
+
+    act(() => {
+      slider.focus();
+      userEvent.keyboard("{ArrowDown}");
+    });
+
+    waitFor(() => {
+      expect(onChangeCallback).toBeCalled();
+    });
+  });
+  it("Should use a default color for invalid or transparent tracks", () => {
+    const { getByTestId } = render(<SingleHandle color="transparent" />);
+
+    const track = getByTestId("slider-track-0");
+    const thumb = getByTestId("slider-thumb");
+    const trackStyles = getComputedStyle(track);
+    const thumbStyles = getComputedStyle(thumb);
+
+    expect(trackStyles.backgroundColor).not.toBe("transparent");
+    expect(thumbStyles.backgroundColor).not.toBe("transparent");
+  });
+  it("Disable the slider", () => {
+    const { getByRole } = render(<Disabled />);
+
+    const slider = getByRole("slider");
+
+    expect(slider).toHaveAttribute("aria-disabled", "true");
   });
 });
