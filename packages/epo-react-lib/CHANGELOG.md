@@ -70,6 +70,11 @@
 
 - `HorizontalSlider` shows thumb label during hover and focus in addition to during changes
 
-## 2.0.17
+## 2.0.19
 
 - added default color for invalid `HorizontalSlider` color props
+
+## 2.0.20
+
+- expand test coverage of `HorizontalSlider`
+- add `ariaValueNow` to `HorizontalSlider` props

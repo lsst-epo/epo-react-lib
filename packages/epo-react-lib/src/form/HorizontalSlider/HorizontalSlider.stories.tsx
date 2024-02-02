@@ -138,18 +138,18 @@ const Template: StoryFn<typeof HorizontalSlider> = ({
   return (
     <HorizontalSlider
       {...args}
-      value={value as any}
-      onChangeCallback={(value: any) => {
-        args.onChangeCallback(value, args.label);
-        return setValue(value);
+      value={value}
+      onChangeCallback={(v, i) => {
+        args.onChangeCallback && args.onChangeCallback(v, i);
+        return setValue(v);
       }}
     />
   );
 };
 
-export const Primary: StoryFn<typeof HorizontalSlider> = Template.bind({});
+export const SingleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
-Primary.args = {
+SingleHandle.args = {
   value: 50,
   label: "primaryExample",
 };
@@ -161,4 +161,11 @@ DoubleHandle.args = {
   label: "doubleHandleExample",
   minLabel: "Min",
   maxLabel: "Max",
+};
+
+export const Disabled: StoryFn<typeof HorizontalSlider> = Template.bind({});
+
+Disabled.args = {
+  ...SingleHandle.args,
+  isDisabled: true,
 };

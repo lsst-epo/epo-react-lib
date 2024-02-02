@@ -3,10 +3,18 @@ import { useState, FunctionComponent } from "react";
 import { ReactSliderProps } from "react-slider";
 import * as Styled from "./styles";
 
-type SliderValue = number | readonly number[];
-
-interface BaseProps
-  extends Pick<ReactSliderProps, "min" | "max" | "step" | "className"> {
+interface HorizontalSliderProps
+  extends Pick<
+    ReactSliderProps<number | readonly number[]>,
+    | "value"
+    | "min"
+    | "max"
+    | "step"
+    | "className"
+    | "ariaValuetext"
+    | "defaultValue"
+  > {
+  onChangeCallback: ReactSliderProps<number | readonly number[]>["onChange"];
   label: string;
   minLabel?: string;
   maxLabel?: string;
@@ -16,26 +24,8 @@ interface BaseProps
   isDisabled?: boolean;
 }
 
-interface SingleSliderProps extends BaseProps {
-  value: number;
-  defaultValue?: number;
-  onChangeCallback: (value: number, label: string) => void;
-}
-
-interface RangedSliderProps extends BaseProps {
-  value: number[];
-  defaultValue?: number[];
-  onChangeCallback: (value: number[], label: string) => void;
-}
-
-export type HorizontalSliderProps = SingleSliderProps | RangedSliderProps;
-
 const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
-  min = 0,
-  max = 100,
-  step = 1,
   value,
-  defaultValue,
   onChangeCallback,
   label,
   minLabel,
@@ -45,14 +35,10 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   darkMode = false,
   isDisabled = false,
   className,
+  ...props
 }) => {
   const [showThumbLabels, setShowThumbLabels] = useState(false);
   const hasDoubleHandles = Array.isArray(value) && value.length > 1;
-
-  const handleChange = (value: SliderValue) => {
-    setShowThumbLabels(false);
-    if (onChangeCallback) onChangeCallback(value as number & number[], label);
-  };
 
   const getValidColor = (color?: string) => {
     const validColor =
@@ -65,7 +51,10 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
   const trackColor = getValidColor(color);
 
-  const Track = (props: any, state: { index: number }) => {
+  const Track: ReactSliderProps<number | readonly number[]>["renderTrack"] = (
+    props,
+    state
+  ) => {
     const { index } = state;
     const { key, style, ...other } = props;
     const hasColor =
@@ -73,6 +62,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
     return (
       <Styled.Track
+        data-testid={`slider-track-${index}`}
         style={{
           ...style,
           "--track-color": hasColor && trackColor,
@@ -83,9 +73,9 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     );
   };
 
-  const Thumb = (
-    props: any,
-    state: { index: number; value: SliderValue; valueNow: number }
+  const Thumb: ReactSliderProps<number | readonly number[]>["renderThumb"] = (
+    props,
+    state
   ) => {
     const { key, style, ...other } = props;
     const { valueNow } = state;
@@ -100,7 +90,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         }}
         {...other}
       >
-        <Styled.Thumb aria-disabled={isDisabled}>
+        <Styled.Thumb aria-disabled={isDisabled} data-testid="slider-thumb">
           <Styled.ThumbLabel>{valueNow}</Styled.ThumbLabel>
         </Styled.Thumb>
       </Styled.ThumbContainer>
@@ -122,9 +112,10 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         </Styled.TrackLabels>
       ) : null}
       <Styled.HorizontalSlider
-        {...{ defaultValue, min, max, step, value }}
+        {...{ value, ...props }}
         onBeforeChange={() => setShowThumbLabels(true)}
-        onAfterChange={handleChange}
+        onChange={onChangeCallback}
+        onAfterChange={() => setShowThumbLabels(false)}
         renderTrack={Track}
         renderThumb={Thumb}
         ariaLabelledby={
