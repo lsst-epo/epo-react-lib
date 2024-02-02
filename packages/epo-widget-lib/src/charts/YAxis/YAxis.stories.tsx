@@ -115,12 +115,12 @@ const Template: StoryFn<typeof YAxis> = (args) => {
       </Chart>
       <ButtonContainer>
         <ArrowButton
-          onClick={() => setYDomain([yDomain[0] - 40, yDomain[1] - 40])}
+          onClick={() => setYDomain([yDomain[0] + 40, yDomain[1] + 40])}
         >
           <IconComposer icon="Chevron" />
         </ArrowButton>
         <ArrowButton
-          onClick={() => setYDomain([yDomain[0] + 40, yDomain[1] + 40])}
+          onClick={() => setYDomain([yDomain[0] - 40, yDomain[1] - 40])}
         >
           <IconComposer icon="Chevron" />
         </ArrowButton>

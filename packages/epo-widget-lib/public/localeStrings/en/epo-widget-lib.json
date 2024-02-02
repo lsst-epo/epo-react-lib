@@ -85,6 +85,17 @@
       "x_label": "Distance [kpc]",
       "bar_label_one": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernova",
       "bar_label_other": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernovae"
+    },
+    "slider": {
+      "label": "Select visible range",
+      "valueLabel": "{{value}} kiloparsecs"
+    },
+    "skymap": {
+      "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
+      "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} kiloparsecs.",
+      "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} kiloparsecs.",
+      "user_supernova_count_one": "{{count}} of your supernovae is visible.",
+      "user_supernova_count_other": "{{count}} of your supernovae are visible."
     }
   }
 }
