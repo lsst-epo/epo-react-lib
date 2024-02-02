@@ -1,9 +1,4 @@
-import {
-  CSSProperties,
-  FunctionComponent,
-  PropsWithChildren,
-  useState,
-} from "react";
+import { CSSProperties, FunctionComponent, useState } from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import after from "lodash/after";
 import * as Styled from "./styles";
@@ -13,13 +8,14 @@ export interface ImageStackProps {
   visible?: number | Array<boolean>;
   describedById?: string;
   loadCallback?: () => void;
-  mixBlendMode?: Extract<CSSProperties, "mixBlendMode">;
+  mixBlendMode?: CSSProperties["mixBlendMode"];
   className?: string;
   width?: number;
   height?: number;
+  showBackdrop?: boolean;
 }
 
-const ImageStack: FunctionComponent<PropsWithChildren<ImageStackProps>> = ({
+const ImageStack: FunctionComponent<ImageStackProps> = ({
   images,
   visible,
   describedById,
@@ -28,7 +24,7 @@ const ImageStack: FunctionComponent<PropsWithChildren<ImageStackProps>> = ({
   className,
   width,
   height,
-  children,
+  showBackdrop = true,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -45,6 +41,7 @@ const ImageStack: FunctionComponent<PropsWithChildren<ImageStackProps>> = ({
       aria-describedby={describedById}
       className={className}
       style={{
+        "--image-stack-background": showBackdrop && "var(--neutral95, #1f2121)",
         aspectRatio: `${width || images[0].width} / ${
           height || images[0].height
         }`,
@@ -67,7 +64,6 @@ const ImageStack: FunctionComponent<PropsWithChildren<ImageStackProps>> = ({
           />
         );
       })}
-      {children}
     </Styled.StackContainer>
   );
 };

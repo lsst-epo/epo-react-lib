@@ -71,7 +71,7 @@ const images = urls.map((url) => {
   return { url, width: 640, height: 613 };
 });
 
-export const Primary: StoryObj<typeof ImageStack> = {
+export const OneActive: StoryObj<typeof ImageStack> = {
   args: { images, visible: 0 },
 };
 export const MultipleActive: StoryObj<typeof ImageStack> = {
