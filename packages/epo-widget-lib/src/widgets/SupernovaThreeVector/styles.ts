@@ -17,7 +17,7 @@ export const ThreeVectorLayout = styled.div`
     "histogram"
     "slider"
     "reset";
-  gap: var(--PADDING_SMALL, 20px);
+  gap: calc(var(--PADDING_SMALL, 20px) / 2);
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     grid-template-columns: 1fr 1fr;
@@ -27,6 +27,10 @@ export const ThreeVectorLayout = styled.div`
       "slider skymap"
       "reset reset";
   }
+
+  @container (min-width: ${token("BREAK_TABLET_MIN")}) {
+    gap: var(--PADDING_SMALL, 20px);
+  }
 `;
 
 export const HistogramContainer = styled.div`
@@ -35,7 +39,7 @@ export const HistogramContainer = styled.div`
 `;
 
 export const Histogram = styled(DistanceHistogram)`
-  font-size: 2em;
+  font-size: 2.25em;
 
   @container (
     min-width: ${token("BREAK_MOBILE")}
@@ -64,7 +68,30 @@ export const ResetButton = styled(Button.Reset)`
   grid-area: reset;
 `;
 
-export const Skymap = styled(BaseSkymap)`
+export const SkymapContainer = styled.div`
+  container-type: inline-size;
   grid-area: skymap;
+`;
+
+export const Skymap = styled(BaseSkymap)`
   max-width: 100%;
+  font-size: 2.25em;
+
+  @container (
+  min-width: ${token("BREAK_MOBILE")}
+) {
+    font-size: 1.5em;
+  }
+
+  @container (
+  min-width: ${token("BREAK_PHABLET_MIN")}
+) {
+    font-size: 1.25em;
+  }
+
+  @container (
+  min-width: ${token("BREAK_LARGE_TABLET_MIN")}
+) {
+    font-size: 1em;
+  }
 `;
