@@ -36,9 +36,9 @@ const Skymap: FunctionComponent<SkymapProps> = ({
   const chartHeight = 300;
 
   const margins: ChartMargin = {
-    top: 10,
+    top: 20,
     right: 0,
-    bottom: 10,
+    bottom: 20,
     left: 20,
   };
 
