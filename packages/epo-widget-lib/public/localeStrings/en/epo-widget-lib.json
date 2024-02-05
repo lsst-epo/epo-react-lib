@@ -94,8 +94,9 @@
       "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
       "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} kiloparsecs.",
       "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} kiloparsecs.",
-      "user_supernova_count_one": "{{count}} of your supernovae is visible.",
-      "user_supernova_count_other": "{{count}} of your supernovae are visible."
+      "user_supernova_count_zero": "None of your supernovae are visible.",
+      "user_supernova_count_one": "{{count}} of your supernovae is visible near {{coords}}.",
+      "user_supernova_count_other": "{{count}} of your supernovae are visible near {{coords}}."
     }
   }
 }

@@ -16,3 +16,8 @@
 - add Rollup banner plugin to output `use client` on React Client Components
 - add Chart module with SVG components for base container, bar plots, point plots, X axis, Y Axis, tooltips, guidelines, and handling overflows
 - refactor Source Selector for greater modularity, individually export the Message, Point Selector, and Selection List components.
+
+## 0.8.0
+
+- add `SupernovaThreeVector` widget
+- extract `ImageStacker` into atomic component

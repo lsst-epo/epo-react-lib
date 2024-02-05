@@ -36,6 +36,10 @@ export default defineConfig({
           __dirname,
           "src/widgets/SourceSelector/index.tsx"
         ),
+        SupernovaThreeVector: resolve(
+          __dirname,
+          "src/widgets/SupernovaThreeVector/index.tsx"
+        ),
       },
       formats: [defaultFormat, "cjs"],
       fileName: (format, name) =>

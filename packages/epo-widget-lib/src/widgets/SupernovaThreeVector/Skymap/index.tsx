@@ -1,12 +1,12 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { geoAitoff } from "d3-geo-projection";
 import { geoPath, geoGraticule, GeoPermissibleObjects } from "d3-geo";
 import { range } from "d3-array";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { Base } from "@/charts/index";
 import { ChartMargin } from "@/charts/types";
-import * as Styled from "./styles";
 import ImageStack from "@/atomic/ImageStack";
+import * as Styled from "./styles";
 
 export interface SkymapObject {
   id: string;
@@ -31,6 +31,7 @@ const Skymap: FunctionComponent<SkymapProps> = ({
   visibleImages = [],
   describedById,
 }) => {
+  const [loaded, setLoaded] = useState(false);
   const chartWidth = 600;
   const chartHeight = 300;
 
@@ -83,7 +84,8 @@ const Skymap: FunctionComponent<SkymapProps> = ({
       </mask>
       <Styled.Background d={pathGenerator(graticule.outline())} />
       <Styled.Graticule d={pathGenerator(graticule())} />
-      <foreignObject
+      <Styled.ImageStackerWrapper
+        style={{ "--image-stack-opacity": loaded && 1 }}
         x={margins.left}
         y={margins.top}
         width={chartWidth - outlineStroke}
@@ -93,10 +95,12 @@ const Skymap: FunctionComponent<SkymapProps> = ({
         <ImageStack
           {...{ images, describedById }}
           visible={visibleImages}
-          showBackdrop={false}
           mixBlendMode="multiply"
+          loadCallback={() => setLoaded(true)}
+          showBackdrop={false}
+          showLoader={false}
         />
-      </foreignObject>
+      </Styled.ImageStackerWrapper>
       <g>
         {objects.map(({ id, lat, long }) => {
           return (
