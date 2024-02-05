@@ -32,14 +32,6 @@ const meta: Meta<typeof YAxis> = {
         type: { summary: "string" },
       },
     },
-    padding: {
-      control: "number",
-      description: "Padding between edge of the chart and start of the ticks",
-      table: {
-        type: { summary: "number" },
-        defaultValue: { summary: 0 },
-      },
-    },
     tickLength: {
       control: "number",
       description: "Horizontal of each tick",
@@ -100,9 +92,11 @@ const ArrowButton = styled.button`
 `;
 
 const Template: StoryFn<typeof YAxis> = (args) => {
-  const { padding = 0 } = args;
-  const xRange = [0 + padding, 400 - padding];
-  const yRange = [0 + padding, 400 - padding];
+  const { margin } = args;
+  const { left = 0, right = 0, bottom = 0, top = 0 } = margin || {};
+
+  const xRange = [0 + left, 400 - right];
+  const yRange = [0 + top, 400 - bottom];
   const [xDomain] = useState([0, 400]);
   const [yDomain, setYDomain] = useState(args.yDomain || [0, 400]);
   const xScale = getLinearScale(xDomain, xRange);
@@ -133,5 +127,5 @@ export const Primary: StoryObj<typeof YAxis> = Template.bind({});
 
 Primary.args = {
   ticks: 10,
-  padding: 40,
+  margin: { left: 40, right: 40, top: 40, bottom: 40 },
 };

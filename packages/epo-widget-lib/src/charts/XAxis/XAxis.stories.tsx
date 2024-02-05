@@ -56,14 +56,6 @@ const meta: Meta<typeof XAxis> = {
         type: { summary: "string" },
       },
     },
-    padding: {
-      control: "number",
-      description: "Padding between edge of the chart and start of the ticks",
-      table: {
-        type: { summary: "number" },
-        defaultValue: { summary: 0 },
-      },
-    },
     tickHeight: {
       control: "number",
       description: "Vertical height of each tick",
@@ -121,7 +113,8 @@ const ArrowButton = styled.button`
 
 const Template: StoryFn<typeof XAxis> = (args) => {
   const { margin } = args;
-  const xRange = [0 + margin.left, 400 - margin.right];
+  const { left = 0, right = 0 } = margin || {};
+  const xRange = [0 + left, 400 - right];
   const [xDomain, setXDomain] = useState(args.xDomain || [0, 400]);
   const xScale = getLinearScale(xDomain, xRange);
 
