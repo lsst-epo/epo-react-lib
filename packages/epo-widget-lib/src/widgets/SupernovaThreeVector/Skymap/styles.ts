@@ -16,12 +16,12 @@ export const Outline = styled.path`
 `;
 
 export const LatLabel = styled.text`
-  font-size: 0.75em;
+  font-size: 0.5em;
   text-anchor: end;
 `;
 
 export const LongLabel = styled.text`
-  font-size: 0.75em;
+  font-size: 0.5em;
   text-anchor: middle;
   dominant-baseline: central;
 `;
