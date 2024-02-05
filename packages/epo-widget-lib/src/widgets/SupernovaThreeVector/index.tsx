@@ -1,13 +1,13 @@
 import { FunctionComponent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { nice, max, min } from "d3-array";
-import sumBy from "lodash/sumBy";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { ChartMargin, HistogramData } from "@/charts/types";
 import { getLinearScale, between } from "@/lib/utils";
 import { SkymapObject } from "./Skymap";
+import LiveLabel from "./LiveLabel";
 import * as Styled from "./styles";
-import { useTranslation } from "react-i18next";
 
 interface SupernovaThreeVectorProps {
   histogramData: HistogramData;
@@ -67,7 +67,7 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
     (1 - xScale(xMax) / width) * 100
   }% - ${sliderOffset}px)`;
 
-  const visibleImages = histogramData.map(({ bin }) =>
+  const selectedBins = histogramData.map(({ bin }) =>
     between(bin, activeRange[0], activeRange[1])
   );
 
@@ -75,7 +75,13 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
     between(distance, activeRange[0], activeRange[1] + step)
   );
 
-  console.log({ visibleUserObjects });
+  const supernovaCount = histogramData.reduce((prev, { value }, i) => {
+    if (selectedBins[i]) {
+      return prev + value;
+    }
+
+    return prev;
+  }, 0);
 
   return (
     <Styled.ThreeVectorContainer>
@@ -126,25 +132,19 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
           objects={visibleUserObjects}
           images={binnedImages}
           describedById={liveDescriptionId}
-          {...{ visibleImages }}
+          visibleImages={selectedBins}
         />
         <Styled.ResetButton
           onResetCallback={() => setActiveRange([xMin, xMax])}
         />
       </Styled.ThreeVectorLayout>
-      <Styled.OffscreenLabel aria-live="polite" id={liveDescriptionId}>
-        {t("supernova_three_vector.skymap.description", {
-          supernovaCount: sumBy(histogramData, ({ bin, value }) => {
-            if (between(bin, activeRange[0], activeRange[1])) {
-              return value;
-            }
-            return 0;
-          }),
-          userObjectCount: visibleUserObjects.length,
-          min: activeRange[0],
-          max: activeRange[1] + step,
-        })}
-      </Styled.OffscreenLabel>
+      <LiveLabel
+        id={liveDescriptionId}
+        objects={visibleUserObjects}
+        min={activeRange[0]}
+        max={activeRange[1] + step}
+        {...{ supernovaCount }}
+      />
     </Styled.ThreeVectorContainer>
   );
 };

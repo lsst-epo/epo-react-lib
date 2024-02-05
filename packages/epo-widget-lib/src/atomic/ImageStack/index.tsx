@@ -13,6 +13,7 @@ export interface ImageStackProps {
   width?: number;
   height?: number;
   showBackdrop?: boolean;
+  showLoader?: boolean;
 }
 
 const ImageStack: FunctionComponent<ImageStackProps> = ({
@@ -25,6 +26,7 @@ const ImageStack: FunctionComponent<ImageStackProps> = ({
   width,
   height,
   showBackdrop = true,
+  showLoader = true,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +49,7 @@ const ImageStack: FunctionComponent<ImageStackProps> = ({
         }`,
       }}
     >
-      {loading && <Styled.StackLoader isVisible />}
+      {showLoader && loading && <Styled.StackLoader isVisible />}
       {images.map(({ url, width, height }, i) => {
         const isVisible = Array.isArray(visible) ? visible[i] : visible === i;
 
