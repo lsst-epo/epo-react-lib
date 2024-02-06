@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
-export const Tooltip = styled.g`
-  cursor: default;
+export const Tooltip = styled.div`
+  background-color: #dce0e3;
+  border-radius: 4px;
+  font-size: 0.5em;
+  line-height: 1;
+  padding: 2px 4px;
+  text-align: center;
+  position: absolute;
 `;
 
-export const TooltipBackground = styled.rect`
-  fill: #dce0e3;
-`;
+export const Arrow = styled.div`
+  width: 0;
+  height: 0;
+  border-left: var(--arrow-width, 6px) solid transparent;
+  border-right: var(--arrow-width, 6px) solid transparent;
 
-export const TooltipText = styled.text`
-  font-size: 12px;
-  color: var(--black, #000);
-  dominant-baseline: central;
-  text-anchor: middle;
-  fill: var(--black, #000);
-`;
+  border-top: var(--arrow-width, 6px) solid #dce0e3;
 
-export const TooltipArrow = styled.polygon`
-  fill: #dce0e3;
+  position: absolute;
+  left: 0;
 `;

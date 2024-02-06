@@ -53,6 +53,8 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
   const yRoot = yScale(yDomain[1]);
   const xAxisLabelId = "xAxisLabel";
 
+  const hasTooltip = typeof hoveredIndex === "number";
+
   const bars = data.map(({ value, bin }, i) => {
     return {
       x: bin,
@@ -101,13 +103,13 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
         )}
         {...{ xDomain, xScale, margin }}
       />
-      {typeof hoveredIndex !== "undefined" && (
-        <Tooltip
-          value={bars[hoveredIndex].value}
-          x={xScale(data[hoveredIndex].bin)}
-          y={yScale(yDomain[1] - bars[hoveredIndex].value)}
-        />
-      )}
+      <Tooltip
+        x={hasTooltip ? xScale(data[hoveredIndex].bin) : 0}
+        y={hasTooltip ? yScale(yDomain[1] - bars[hoveredIndex].value) : 0}
+        visible={hasTooltip}
+      >
+        {hasTooltip ? bars[hoveredIndex].value : null}
+      </Tooltip>
       <Styled.XAxisLabel id={xAxisLabelId} x="50%" y={height}>
         {t("supernova_three_vector.histogram.x_label")}
       </Styled.XAxisLabel>
