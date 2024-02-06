@@ -128,12 +128,14 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
             }
           />
         </Styled.SliderContainer>
-        <Styled.Skymap
-          objects={visibleUserObjects}
-          images={binnedImages}
-          describedById={liveDescriptionId}
-          visibleImages={selectedBins}
-        />
+        <Styled.SkymapContainer>
+          <Styled.Skymap
+            objects={visibleUserObjects}
+            images={binnedImages}
+            describedById={liveDescriptionId}
+            visibleImages={selectedBins}
+          />
+        </Styled.SkymapContainer>
         <Styled.ResetButton
           onResetCallback={() => setActiveRange([xMin, xMax])}
         />

@@ -1,52 +1,113 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
 export interface TooltipProps {
-  value: number | string;
   x: number;
   y: number;
-  height?: number;
+  visible: boolean;
+  origin?: string;
   className?: string;
 }
 
-const Tooltip: FunctionComponent<TooltipProps> = ({
-  value,
+const getXOffset = (origin: string, arrowSize: number) => {
+  if (origin.includes("left")) return `calc(0% + ${arrowSize}px)`;
+  if (origin.includes("right")) return `calc(-100% - ${arrowSize}px)`;
+  if (origin.includes("center")) return "-50%";
+
+  return "-50%";
+};
+const getYOffset = (origin: string, arrowSize: number) => {
+  if (origin.includes("top")) return `calc(0% + ${arrowSize}px)`;
+  if (origin.includes("bottom")) return `calc(-100% - ${arrowSize}px)`;
+  if (origin.includes("center")) return "-50%";
+
+  return "-50%";
+};
+
+const getArrowPosition = (origin: string) => {
+  let left = "0";
+  let top = "0";
+  let translateX = "0";
+  let translateY = "0";
+  let rotate = "0deg";
+
+  if (origin.includes("center")) {
+    left = "50%";
+    top = "50%";
+    translateX = "-50%";
+    translateY = "-50%";
+  }
+  if (origin.includes("top")) {
+    top = "0";
+    translateY = "-100%";
+    rotate = "180deg";
+  }
+  if (origin.includes("right")) {
+    left = "100%";
+    translateX = "-25%";
+    rotate = "-90deg";
+  }
+  if (origin.includes("left")) {
+    left = "0";
+    translateX = "-75%";
+    rotate = "90deg";
+  }
+  if (origin.includes("bottom")) {
+    top = "100%";
+    translateY = "0";
+  }
+
+  return {
+    left,
+    top,
+    transform: `translate(${translateX}, ${translateY}) rotate(${rotate})`,
+  };
+};
+
+const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
   x,
   y,
-  height = 16,
+  visible = true,
+  origin = "center bottom",
+  children,
   className,
 }) => {
-  if (!x || !y) return null;
-  const label = String(value);
-  const width = Math.max(label.length * 8, 20);
+  if (typeof x === "undefined" || typeof y === "undefined") return null;
+  const defaultOrigin = "center center";
+  const fullOrigin = [...origin.split(" "), ...defaultOrigin.split(" ")]
+    .slice(0, 2)
+    .join(" ");
+
   const arrowWidth = 6;
-  const xCenter = x + width / 2;
+
+  const xOffset = getXOffset(fullOrigin, arrowWidth);
+  const yOffset = getYOffset(fullOrigin, arrowWidth);
+
+  const showArrow =
+    fullOrigin.includes("center") &&
+    fullOrigin.split(" ").filter((o) => o !== "center").length === 1;
+  const arrowPosition = getArrowPosition(fullOrigin);
 
   return (
-    <Styled.Tooltip
-      transform={`translate(-${width / 2} -${height * 1.5})`}
-      className={className}
-    >
-      <Styled.TooltipBackground
-        rx={4}
-        width={width}
-        height={height}
-        {...{ x, y }}
-      />
-      <Styled.TooltipArrow
-        points={`${xCenter - arrowWidth} ${y + height} ${
-          xCenter + arrowWidth
-        } ${y + height} ${xCenter} ${y + height + arrowWidth}`}
-      />
-      <Styled.TooltipText
-        width={width}
-        height={height}
-        x={xCenter}
-        y={y + height / 2}
+    <foreignObject x={0} y={0} width="100%" height="100%" pointerEvents="none">
+      <Styled.Tooltip
+        className={className}
+        style={{
+          transform: `translate(calc(${xOffset} + ${x}px), calc(${yOffset} + ${y}px))`,
+        }}
+        hidden={!visible}
       >
-        {label}
-      </Styled.TooltipText>
-    </Styled.Tooltip>
+        {children}
+        {showArrow && (
+          <Styled.Arrow
+            style={{
+              "--arrow-size": `${arrowWidth}px`,
+              ...arrowPosition,
+            }}
+          />
+        )}
+      </Styled.Tooltip>
+    </foreignObject>
   );
 };
 
