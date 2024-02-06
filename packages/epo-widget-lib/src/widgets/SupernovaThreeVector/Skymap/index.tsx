@@ -95,7 +95,6 @@ const Skymap: FunctionComponent<SkymapProps> = ({
         <ImageStack
           {...{ images, describedById }}
           visible={visibleImages}
-          mixBlendMode="multiply"
           loadCallback={() => setLoaded(true)}
           showBackdrop={false}
           showLoader={false}

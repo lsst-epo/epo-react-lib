@@ -13,7 +13,7 @@ import {
 } from ".";
 import { getLinearScale } from "@/lib/utils";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
-import { max, nice } from "d3-array";
+import { nice } from "d3-array";
 
 const meta: Meta = {
   title: "Charts",
@@ -88,6 +88,8 @@ const ScatterTemplate: StoryFn = (args) => {
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
+  const hasTooltip = typeof hoveredIndex === "number";
+
   const data = args.data.map(
     ({ x, y }: { x: number; y: number }, i: number) => {
       const finalX = x * width;
@@ -150,10 +152,10 @@ const ScatterTemplate: StoryFn = (args) => {
           <Tooltip
             x={xScale(data[hoveredIndex].x)}
             y={yScale(yDomain[1] - yDomain[0] - data[hoveredIndex].y)}
-            value={`[${parseInt(data[hoveredIndex].x)},${parseInt(
-              data[hoveredIndex].y
-            )}]`}
-          />
+            visible={hasTooltip}
+          >{`[${parseInt(data[hoveredIndex].x)},${parseInt(
+            data[hoveredIndex].y
+          )}]`}</Tooltip>
         )}
       </Base>
       <HorizontalButtons>
@@ -204,6 +206,8 @@ const HistogramTemplate: StoryFn = (args) => {
     return { bin: i * binInterval, value: 0 };
   });
 
+  const hasTooltip = typeof hoveredIndex === "number";
+
   args.data.forEach(({ x }: { x: number }) => {
     const bin = Math.floor((x * width) / binInterval);
 
@@ -249,12 +253,14 @@ const HistogramTemplate: StoryFn = (args) => {
           />
           <Bars {...{ xScale, yScale, yDomain, data }} />
         </ClippingContainer>
-        {hoveredIndex && (
+        {hasTooltip && (
           <Tooltip
             x={xScale(bins[hoveredIndex].bin)}
             y={yScale(yDomain[1] - data[hoveredIndex].value)}
-            value={data[hoveredIndex].value}
-          />
+            visible={hasTooltip}
+          >
+            {data[hoveredIndex].value}
+          </Tooltip>
         )}
       </Base>
       <HorizontalButtons>
