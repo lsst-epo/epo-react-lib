@@ -5,20 +5,21 @@ export interface TooltipProps {
   x: number;
   y: number;
   visible: boolean;
+  offset?: number;
   origin?: string;
   className?: string;
 }
 
-const getXOffset = (origin: string, arrowSize: number) => {
-  if (origin.includes("left")) return `calc(0% + ${arrowSize}px)`;
-  if (origin.includes("right")) return `calc(-100% - ${arrowSize}px)`;
+const getXOffset = (origin: string, offset: number) => {
+  if (origin.includes("left")) return `calc(0% + ${offset}px)`;
+  if (origin.includes("right")) return `calc(-100% - ${offset}px)`;
   if (origin.includes("center")) return "-50%";
 
   return "-50%";
 };
-const getYOffset = (origin: string, arrowSize: number) => {
-  if (origin.includes("top")) return `calc(0% + ${arrowSize}px)`;
-  if (origin.includes("bottom")) return `calc(-100% - ${arrowSize}px)`;
+const getYOffset = (origin: string, offset: number) => {
+  if (origin.includes("top")) return `calc(0% + ${offset}px)`;
+  if (origin.includes("bottom")) return `calc(-100% - ${offset}px)`;
   if (origin.includes("center")) return "-50%";
 
   return "-50%";
@@ -68,6 +69,7 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
   x,
   y,
   visible = true,
+  offset = 5,
   origin = "center bottom",
   children,
   className,
@@ -80,8 +82,8 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
 
   const arrowWidth = 6;
 
-  const xOffset = getXOffset(fullOrigin, arrowWidth);
-  const yOffset = getYOffset(fullOrigin, arrowWidth);
+  const xOffset = getXOffset(fullOrigin, arrowWidth + offset);
+  const yOffset = getYOffset(fullOrigin, arrowWidth + offset);
 
   const showArrow =
     fullOrigin.includes("center") &&
