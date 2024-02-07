@@ -1,0 +1,70 @@
+{
+  "elapsed_time": {
+    "title": "Tiempo transcurrido",
+    "step": {
+      "day_one": "Día",
+      "day_other": "Días",
+      "hour_one": "Hora",
+      "hour_other": "Horas",
+      "minute_one": "Minuto",
+      "minute_other": "Minutos",
+      "second_one": "Segundo",
+      "second_other": "Segundos",
+      "year_one": "Año",
+      "year_other": "Años"
+    }
+  },
+  "filterTool": {
+    "title": "Herramienta de filtro",
+    "filter": "Filtro",
+    "whiteLight": "Luz blanca",
+    "prism": "Prisma",
+    "selectLabel": "Selecciona un filtro:",
+    "light_out": "Luz que pasa",
+    "light_filtered": "Luz filtrada",
+    "colors": {
+      "violet": "Violeta",
+      "blue": "Azul",
+      "green": "Verde",
+      "yellow": "Amarillo",
+      "orange": "Naranjo",
+      "red": "Rojo",
+      "none": "Ninguno"
+    }
+  },
+  "colorTool": {
+    "labels": {
+      "object_type": "Tipo de objeto:",
+      "object": "Objeto:",
+      "object_selected": "Objeto seleccionado:",
+      "filter": "Filtro",
+      "color": "Color",
+      "color_intensity": "Intensidad de color"
+    },
+    "actions": {
+      "select_an_object": "Selecciona un objeto",
+      "select_filter": "Selecciona un filtro",
+      "reset": "Reiniciar",
+      "export": "Exportar"
+    }
+  },
+  "source_selector": {
+    "messages": {
+      "success": "¡Muy bien!",
+      "failure": "Inténtalo de nuevo."
+    }
+  },
+  "camera_filter": {
+    "title": "Rangos de los filtros de la cámara LSST del Observatorio Rubin",
+    "labels": {
+      "select": "Seleccione uno de los filtros Rubin",
+      "option": "Filtro {{band}}",
+      "option_none": "Ninguno",
+      "captured_range": "Espectro electromagnético capturado con el filtro {{filter}} aplicado",
+      "captured_range_no_filter": "Espectro electromagnético sin filtro aplicado.",
+      "ultraviolet": "Ultravioleta",
+      "visible": "Luz visible",
+      "infrared": "Infrarrojo"
+    }
+  }
+}

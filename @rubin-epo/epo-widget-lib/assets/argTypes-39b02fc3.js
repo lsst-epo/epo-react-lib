@@ -1,0 +1,1 @@
+const t={control:"text",defaultValue:"Rubin Observatory",description:"React child",table:{type:{summary:"ReactNode"}}},e={...t,control:"object"},o={control:"text",description:"CSS class to attach",table:{type:{summary:"string"}}};export{o as c,e as o};

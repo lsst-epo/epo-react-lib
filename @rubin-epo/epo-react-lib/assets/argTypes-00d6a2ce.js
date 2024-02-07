@@ -1,0 +1,1 @@
+const t={description:"React child",table:{type:{summary:"ReactNode"}}},a={...t,control:"none"},c={control:"text",description:"CSS class to attach",table:{type:{summary:"string"}}};export{c as a,t as c,a as o};

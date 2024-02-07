@@ -1,0 +1,5 @@
+import{j as m}from"./jsx-runtime-94f6e698.js";import{s as l}from"./styled-components.browser.esm-3d9e3c21.js";const p=l.svg`
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: var(--aspect-ratio);
+`,t=({width:e=900,height:a=300,minX:r=0,minY:s=0,children:i,className:n})=>m.jsx(p,{preserveAspectRatio:"xMidYMid meet",viewBox:`${r} ${s} ${e} ${a}`,className:n,style:{"--aspect-ratio":`${e} / ${a}`,"--min-width":`${e}px`},role:"group",children:i});t.displayName="Charts.Base";const d=t;try{Charts.Base.displayName="Charts.Base",Charts.Base.__docgenInfo={description:"",displayName:"Charts.Base",props:{width:{defaultValue:{value:"900"},description:"",name:"width",required:!1,type:{name:"number"}},height:{defaultValue:{value:"300"},description:"",name:"height",required:!1,type:{name:"number"}},minX:{defaultValue:{value:"0"},description:"",name:"minX",required:!1,type:{name:"number"}},minY:{defaultValue:{value:"0"},description:"",name:"minY",required:!1,type:{name:"number"}},className:{defaultValue:null,description:"",name:"className",required:!1,type:{name:"string"}}}}}catch{}export{d as B};

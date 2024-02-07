@@ -1,0 +1,1 @@
+const r=(o=200,n=200)=>{const t=document.createElement("canvas");t.width=o,t.height=n;const e=t.getContext("2d");if(!e)return"";const a=e.createLinearGradient(0,0,o,n);return a.addColorStop(0,"#bfa4b3"),a.addColorStop(.5,"#8d86a6"),a.addColorStop(1,"#535473"),e.fillStyle=a,e.fillRect(0,0,o,n),t.toDataURL()};export{r as g};
