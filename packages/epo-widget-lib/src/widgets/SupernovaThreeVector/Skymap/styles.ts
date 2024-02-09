@@ -30,3 +30,10 @@ export const ImageStackerWrapper = styled.foreignObject`
   opacity: var(--image-stack-opacity, 0);
   transition: opacity var(--DURATION_SLOW, 0.4s) ease;
 `;
+
+export const UserObject = styled.circle`
+  cursor: pointer;
+  fill: #ffdb78;
+  stroke: #313333;
+  stroke-width: 5;
+`;
