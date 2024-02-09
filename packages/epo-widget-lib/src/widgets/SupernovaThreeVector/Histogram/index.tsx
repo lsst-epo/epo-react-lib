@@ -69,8 +69,8 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
           binMin: bin,
           binMax: bin + step,
         }),
-        onMouseEnter: () => setHoveredIndex(i),
-        onMouseLeave: () => setHoveredIndex(undefined),
+        onMouseOver: () => setHoveredIndex(i),
+        onMouseOut: () => setHoveredIndex(undefined),
       },
     };
   });
