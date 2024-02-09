@@ -84,7 +84,7 @@ const ScatterTemplate: StoryFn = (args) => {
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
   const xRange = [0 + margin.left, width - margin.right];
-  const yRange = [0 + margin.top, height - margin.bottom];
+  const yRange = [height - margin.bottom, 0 + margin.top];
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
@@ -129,13 +129,13 @@ const ScatterTemplate: StoryFn = (args) => {
         </ArrowButton>
       </VerticalButtons>
       <Base {...{ width, height }}>
-        <XAxis y={yScale(yDomain[1])} {...{ xDomain, xScale, ticks }} />
+        <XAxis y={yScale(yDomain[0])} {...{ xDomain, xScale, ticks }} />
         <YAxis x={xScale(xDomain[0])} {...{ yDomain, yScale, ticks }} />
         <ClippingContainer
           x={xScale(xDomain[0])}
-          y={yScale(yDomain[0])}
+          y={yScale(yDomain[1])}
           width={xRange[1] - xRange[0]}
-          height={yRange[1] - yRange[0]}
+          height={yRange[0] - yRange[1] + margin.top}
         >
           <Guidelines
             guides={ticks}
@@ -197,7 +197,7 @@ const HistogramTemplate: StoryFn = (args) => {
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
   const xRange = [0 + margin.left, width - margin.right];
-  const yRange = [0 + margin.top, height - margin.bottom];
+  const yRange = [height - margin.bottom, 0 + margin.top];
   const xScale = getLinearScale(xDomain, xRange);
   const yScale = getLinearScale(yDomain, yRange);
 
@@ -231,7 +231,7 @@ const HistogramTemplate: StoryFn = (args) => {
       <div />
       <Base {...{ width, height }}>
         <XAxis
-          y={yScale(yDomain[1])}
+          y={yScale(yDomain[0])}
           ticks={xTicks}
           {...{ xDomain, xScale, margin }}
         />
@@ -243,9 +243,9 @@ const HistogramTemplate: StoryFn = (args) => {
         />
         <ClippingContainer
           x={xScale(xDomain[0]) - margin.left / 2}
-          y={yScale(yDomain[0]) - margin.top}
+          y={yScale(yDomain[1]) - margin.top}
           width={xRange[1] - xRange[0]}
-          height={yRange[1] - yRange[0] + margin.top}
+          height={yRange[0] - yRange[1] + margin.top}
         >
           <Guidelines
             guides={yTicks}

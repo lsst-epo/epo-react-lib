@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getLinearScale } from "@/lib/utils";
 
 const meta: Meta<typeof YAxis> = {
+  tags: ["autodocs"],
   argTypes: {
     ticks: {
       control: "number",
@@ -96,7 +97,7 @@ const Template: StoryFn<typeof YAxis> = (args) => {
   const { left = 0, right = 0, bottom = 0, top = 0 } = margin || {};
 
   const xRange = [0 + left, 400 - right];
-  const yRange = [0 + top, 400 - bottom];
+  const yRange = [400 - bottom, 0 + top];
   const [xDomain] = useState([0, 400]);
   const [yDomain, setYDomain] = useState(args.yDomain || [0, 400]);
   const xScale = getLinearScale(xDomain, xRange);

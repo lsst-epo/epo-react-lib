@@ -34,7 +34,7 @@ const Points: FunctionComponent<PointsProps> = ({
           <circle
             key={i}
             cx={xScale(x)}
-            cy={yScale(yDomain[1] - y + yDomain[0])}
+            cy={yScale(y)}
             r={width / 2}
             fill={fill || "var(--point-fill, #12726D)"}
             stroke={stroke || "var(--point-stroke, #12726D)"}

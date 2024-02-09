@@ -24,7 +24,7 @@ const Bars: FunctionComponent<BarsProps> = ({
   yDomain,
   xScale,
   yScale,
-  y = yScale(yDomain[1]),
+  y = yScale(yDomain[0]),
 }) => {
   if (data.length === 0) return null;
 
@@ -32,7 +32,8 @@ const Bars: FunctionComponent<BarsProps> = ({
     <g role="list">
       {data.map(({ stroke, fill, width = 8, x, value, props }, i) => {
         if (value === 0) return null;
-        const height = yScale(value) - yScale(yDomain[0]);
+        const height = y - yScale(value);
+        console.log({ value, height });
 
         return (
           <Styled.Bar
