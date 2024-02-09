@@ -30,7 +30,9 @@ const XAxis: FunctionComponent<XAxisProps> = ({
 
   const defaultMargins = { top: 0, right: 0, bottom: 0, left: 0 };
   const finalMargins = { ...defaultMargins, ...margin };
-  const tickArr = d3Ticks(xDomain[0], xDomain[1], ticks);
+  const tickArr = Array.isArray(ticks)
+    ? ticks
+    : d3Ticks(xDomain[0], xDomain[1], ticks);
 
   return (
     <>
@@ -42,7 +44,7 @@ const XAxis: FunctionComponent<XAxisProps> = ({
           y2={y}
         />
       )}
-      {ticks > 0 && (
+      {tickArr.length > 0 && (
         <g role="list" aria-labelledby={labelledById} className={className}>
           {tickArr.map((value, i) => {
             if (value >= xDomain[1]) return null;

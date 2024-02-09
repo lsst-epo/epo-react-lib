@@ -16,7 +16,7 @@ export type LabelRenderer = (
   index?: number
 ) => ReactNode;
 export interface BaseAxisProps {
-  ticks: number;
+  ticks: number | number[];
   labelRender?: LabelRenderer;
   labelledById?: string;
   showBaseline?: boolean;

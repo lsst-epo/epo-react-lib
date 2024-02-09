@@ -35,7 +35,9 @@ const YAxis: FunctionComponent<YAxisProps> = ({
 
   const defaultMargins = { top: 0, right: 0, bottom: 0, left: 0 };
   const finalMargins = { ...defaultMargins, ...margin };
-  const tickArr = d3Ticks(yDomain[0], yDomain[1], ticks);
+  const tickArr = Array.isArray(ticks)
+    ? ticks
+    : d3Ticks(yDomain[0], yDomain[1], ticks);
 
   return (
     <>
@@ -47,11 +49,13 @@ const YAxis: FunctionComponent<YAxisProps> = ({
           y2={yScale(yDomain[1]) - finalMargins.bottom}
         />
       )}
-      {ticks > 0 && (
+      {tickArr.length > 0 && (
         <g role="list" aria-labelledby={labelledById} className={className}>
           {tickArr.map((value, i) => {
             const labelY = yScale(value);
             const labelX = x - tickLength;
+
+            console.log({ value, labelY });
 
             return (
               <g role="listitem" key={i}>

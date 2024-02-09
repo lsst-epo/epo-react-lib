@@ -64,3 +64,13 @@ export const getLinearScale = (
     return t * (range[1] - range[0]) + range[0];
   };
 };
+
+const precision = (number: number, precision: number) => {
+  const factor = Math.pow(10, precision);
+  const n = precision < 0 ? number : 0.01 / factor + number;
+  return Math.round(n * factor) / factor;
+};
+
+export const timestampFromMJD = (mjd: number) => (mjd - 40587) * 86400000;
+export const mjdFromTimestamp = (timestamp: number, pre = 5) =>
+  precision(timestamp / 86400000 + 40587, pre);
