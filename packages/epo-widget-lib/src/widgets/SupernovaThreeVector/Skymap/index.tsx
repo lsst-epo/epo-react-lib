@@ -3,7 +3,7 @@ import { geoAitoff } from "d3-geo-projection";
 import { geoPath, geoGraticule, GeoPermissibleObjects } from "d3-geo";
 import { range } from "d3-array";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
-import { Base } from "@/charts/index";
+import { Base, Tooltip } from "@/charts/index";
 import { ChartMargin } from "@/charts/types";
 import ImageStack from "@/atomic/ImageStack";
 import * as Styled from "./styles";
@@ -32,6 +32,7 @@ const Skymap: FunctionComponent<SkymapProps> = ({
   describedById,
 }) => {
   const [loaded, setLoaded] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number>();
   const chartWidth = 600;
   const chartHeight = 300;
 
@@ -77,6 +78,12 @@ const Skymap: FunctionComponent<SkymapProps> = ({
   const pathGenerator = (object: GeoPermissibleObjects): string | undefined =>
     path(object) || undefined;
 
+  const hoveredItem =
+    typeof hoveredIndex !== "undefined" ? objects[hoveredIndex] : undefined;
+  const hoveredCoords = (!!hoveredItem
+    ? projection([hoveredItem?.long, hoveredItem?.lat])
+    : [0, 0]) || [0, 0];
+
   return (
     <Base {...{ width, height, className }}>
       <mask id="imageMask">
@@ -101,12 +108,14 @@ const Skymap: FunctionComponent<SkymapProps> = ({
         />
       </Styled.ImageStackerWrapper>
       <g>
-        {objects.map(({ id, lat, long }) => {
+        {objects.map(({ id, lat, long }, i) => {
           return (
-            <circle
+            <Styled.UserObject
               key={id}
               transform={`translate(${projection([long, lat])})`}
-              r={5}
+              r={6}
+              onMouseOver={() => setHoveredIndex(i)}
+              onMouseOut={() => setHoveredIndex(undefined)}
             />
           );
         })}
@@ -141,6 +150,13 @@ const Skymap: FunctionComponent<SkymapProps> = ({
         strokeWidth={outlineStroke}
         d={pathGenerator(graticule.outline())}
       />
+      <Tooltip
+        visible={!!hoveredItem}
+        x={hoveredCoords[0]}
+        y={hoveredCoords[1]}
+      >
+        {hoveredItem?.id}
+      </Tooltip>
     </Base>
   );
 };
