@@ -24,7 +24,7 @@ const Template: StoryFn<typeof Points> = (args) => {
   const height = 400;
   const padding = 25;
   const xRange = [0 + padding, width - padding];
-  const yRange = [0 + padding, height - padding];
+  const yRange = [height - padding, 0 + padding];
   const xDomain = [0, 400];
   const yDomain = [0, 400];
   const xScale = getLinearScale(xDomain, xRange);
@@ -44,7 +44,7 @@ const Template: StoryFn<typeof Points> = (args) => {
       <Chart minX={0} {...{ width, height }}>
         <XAxis
           ticks={10}
-          y={yScale(yDomain[1])}
+          y={yScale(yDomain[0])}
           xDomain={xDomain}
           {...{ xScale }}
         />
@@ -52,7 +52,6 @@ const Template: StoryFn<typeof Points> = (args) => {
           ticks={10}
           x={xScale(xDomain[0])}
           yDomain={yDomain}
-          // labelFormatter={(v) => 400 - v}
           {...{ yScale }}
         />
         <Points {...args} {...{ xScale, yScale, data }} />

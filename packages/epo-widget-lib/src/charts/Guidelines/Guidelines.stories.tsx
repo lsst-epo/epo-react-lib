@@ -71,7 +71,7 @@ const Template: StoryFn<typeof Guidelines> = (args) => {
   const height = 400;
   const padding = 25;
   const xRange = [0 + padding, width - padding];
-  const yRange = [0 + padding, height - padding];
+  const yRange = [height - padding, 0 + padding];
   const xScale = getLinearScale(args.xDomain, xRange);
   const yScale = getLinearScale(args.yDomain, yRange);
 
@@ -80,7 +80,7 @@ const Template: StoryFn<typeof Guidelines> = (args) => {
       <Chart minX={0} {...{ width, height }}>
         <XAxis
           ticks={args.guides}
-          y={yScale(args.yDomain[1])}
+          y={yScale(args.yDomain[0])}
           xDomain={args.xDomain}
           {...{ xScale }}
         />
