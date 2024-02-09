@@ -50,7 +50,7 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
   const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
-  const yRoot = yScale(yDomain[1]);
+  const yRoot = yScale(yDomain[0]);
   const xAxisLabelId = "xAxisLabel";
 
   const hasTooltip = typeof hoveredIndex === "number";
@@ -105,7 +105,7 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
       />
       <Tooltip
         x={hasTooltip ? xScale(data[hoveredIndex].bin) : 0}
-        y={hasTooltip ? yScale(yDomain[1] - bars[hoveredIndex].value) : 0}
+        y={hasTooltip ? yScale(bars[hoveredIndex].value) : 0}
         visible={hasTooltip}
       >
         {hasTooltip ? bars[hoveredIndex].value : null}

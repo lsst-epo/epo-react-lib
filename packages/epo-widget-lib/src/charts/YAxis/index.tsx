@@ -10,6 +10,11 @@ export interface YAxisProps extends BaseAxisProps {
   tickLength?: number;
 }
 
+/**
+ * YAxis creates an axis with ticks. It needs a yDomain (your input data) and a yScale method to place
+ * the ticks and data. Remember that SVG starts from the upper left corner, so the yScale will need an inverted
+ * range for most purposes.
+ */
 const YAxis: FunctionComponent<YAxisProps> = ({
   yDomain = [0, 1],
   yScale = (v) => v,
@@ -38,16 +43,14 @@ const YAxis: FunctionComponent<YAxisProps> = ({
         <Styled.BaseLine
           x1={x}
           x2={x}
-          y1={yScale(yDomain[0]) - finalMargins.top}
-          y2={yScale(yDomain[1]) + finalMargins.bottom}
+          y1={yScale(yDomain[0]) + finalMargins.top}
+          y2={yScale(yDomain[1]) - finalMargins.bottom}
         />
       )}
       {ticks > 0 && (
         <g role="list" aria-labelledby={labelledById} className={className}>
           {tickArr.map((value, i) => {
-            if (value <= yDomain[0]) return null;
-
-            const labelY = yScale(yDomain[1] - value + yDomain[0]);
+            const labelY = yScale(value);
             const labelX = x - tickLength;
 
             return (
