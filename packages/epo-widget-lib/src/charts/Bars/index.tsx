@@ -33,7 +33,6 @@ const Bars: FunctionComponent<BarsProps> = ({
       {data.map(({ stroke, fill, width = 8, x, value, props }, i) => {
         if (value === 0) return null;
         const height = y - yScale(value);
-        console.log({ value, height });
 
         return (
           <Styled.Bar
