@@ -35,7 +35,7 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   const width = 600;
   const height = width / 1.6;
   const xRange = [margin.left, width - margin.right];
-  const yRange = [margin.top, height - margin.bottom];
+  const yRange = [height - margin.bottom, margin.top];
 
   const xTicks = 6;
   const yTicks = 7;
