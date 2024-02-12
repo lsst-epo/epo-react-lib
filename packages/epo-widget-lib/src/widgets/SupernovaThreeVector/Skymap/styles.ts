@@ -31,7 +31,7 @@ export const ImageStackerWrapper = styled.foreignObject`
   transition: opacity var(--DURATION_SLOW, 0.4s) ease;
 `;
 
-export const UserObject = styled.circle`
+export const UserObject = styled.path`
   cursor: pointer;
   fill: #ffdb78;
   stroke: #313333;

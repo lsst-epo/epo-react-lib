@@ -6,8 +6,3 @@ export const YLabel = styled.text`
   font-size: 0.4em;
   text-anchor: end;
 `;
-
-export const XAxisLabel = styled.text`
-  font-size: 0.5em;
-  text-anchor: middle;
-`;
