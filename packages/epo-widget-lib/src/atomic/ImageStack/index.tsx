@@ -1,4 +1,11 @@
-import { CSSProperties, FunctionComponent, useState } from "react";
+import {
+  CSSProperties,
+  FunctionComponent,
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+} from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import after from "lodash/after";
 import * as Styled from "./styles";
@@ -28,17 +35,42 @@ const ImageStack: FunctionComponent<ImageStackProps> = ({
   showBackdrop = true,
   showLoader = true,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
 
-  const onComplete = after(images.length, () => {
-    setLoading(false);
-    loadCallback && loadCallback();
-  });
+  useEffect(() => {
+    // must be wrapped in useEffect so the callback does not happen during render
+    if (!loading) {
+      loadCallback && loadCallback();
+    }
+  }, [loading]);
+
+  const onComplete = useCallback(
+    after(images.length, () => {
+      setLoading(false);
+    }),
+    []
+  );
 
   if (!images || images.length === 0) return null;
 
+  if (loading && containerRef.current) {
+    const imageElements = Array.from(
+      containerRef.current.getElementsByTagName("img")
+    );
+
+    const hasCompleted = imageElements.every(({ complete }) => !!complete);
+
+    // additional safety in the event images are loaded from disk
+    // and do not fire the onLoad event
+    if (hasCompleted) {
+      setLoading(false);
+    }
+  }
+
   return (
     <Styled.StackContainer
+      ref={containerRef}
       role="img"
       aria-describedby={describedById}
       className={className}

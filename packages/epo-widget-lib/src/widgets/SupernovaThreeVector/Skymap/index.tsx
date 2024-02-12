@@ -73,7 +73,7 @@ const Skymap: FunctionComponent<SkymapProps> = ({
   const latLabels = range(latMin + latStep, latMax, latStep);
   const longLabels = range(longMin + longStep, longMax, longStep);
 
-  const path = geoPath(projection);
+  const path = geoPath(projection).pointRadius(6);
 
   const pathGenerator = (object: GeoPermissibleObjects): string | undefined =>
     path(object) || undefined;
@@ -112,8 +112,10 @@ const Skymap: FunctionComponent<SkymapProps> = ({
           return (
             <Styled.UserObject
               key={id}
-              transform={`translate(${projection([long, lat])})`}
-              r={6}
+              d={pathGenerator({
+                type: "Point",
+                coordinates: [long, lat],
+              })}
               onMouseOver={() => setHoveredIndex(i)}
               onMouseOut={() => setHoveredIndex(undefined)}
             />
