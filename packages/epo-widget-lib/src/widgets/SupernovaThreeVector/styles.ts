@@ -9,6 +9,7 @@ export const ThreeVectorContainer = styled.div`
 `;
 
 export const ThreeVectorLayout = styled.div`
+  align-items: center;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr min-content min-content;
@@ -24,7 +25,7 @@ export const ThreeVectorLayout = styled.div`
     grid-template-rows: 1fr min-content min-content;
     grid-template-areas:
       "histogram skymap"
-      "slider skymap"
+      "slider ."
       "reset reset";
   }
 
