@@ -76,7 +76,15 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
   });
 
   return (
-    <Base minX={xDomain[0]} minY={yDomain[0]} {...{ width, height, className }}>
+    <Base
+      minX={xDomain[0]}
+      minY={yDomain[0]}
+      {...{ width, height, className }}
+      horizontalLabel={
+        t("supernova_three_vector.histogram.x_label") || undefined
+      }
+      horizontalLabelId={xAxisLabelId}
+    >
       <YAxis
         showBaseline={false}
         x={xScale(xDomain[0]) - 10}
@@ -110,9 +118,6 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
       >
         {hasTooltip ? bars[hoveredIndex].value : null}
       </Tooltip>
-      <Styled.XAxisLabel id={xAxisLabelId} x="50%" y={height}>
-        {t("supernova_three_vector.histogram.x_label")}
-      </Styled.XAxisLabel>
     </Base>
   );
 };

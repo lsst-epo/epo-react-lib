@@ -15,7 +15,7 @@ describe("X Axis", () => {
       </svg>
     );
     // Assert
-    expect(screen.getAllByRole("listitem").length).toBe(ticks);
+    expect(screen.getAllByRole("listitem").length).toBe(ticks + 1);
   });
   it("should format the values in their label", () => {
     // Arrange

@@ -24,8 +24,8 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
 }) => {
   const { t } = useTranslation();
   const margin: ChartMargin = {
-    top: 20,
-    bottom: 50,
+    top: 30,
+    bottom: 30,
     left: 50,
     right: 0,
   };
