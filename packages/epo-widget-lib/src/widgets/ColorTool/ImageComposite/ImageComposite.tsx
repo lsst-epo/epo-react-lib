@@ -1,22 +1,23 @@
 import {
   forwardRef,
+  MutableRefObject,
   PropsWithChildren,
-  useCallback,
-  useRef,
   useState,
 } from "react";
-import CircularLoader from "@rubin-epo/epo-react-lib/CircularLoader";
 import { ImageFilter } from "../ColorTool";
-import OffscreenFilter from "../OffscreenFilter";
-import * as Styled from "./styles";
 import { isFilterActive } from "../lib/utils";
-import CompositeRenderer from "../CompositeRender";
+import useFilteredImages from "../hooks/useFilteredImages";
+import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
+import { mergeCanvases } from "../lib/canvas";
+import * as Styled from "./styles";
 
 interface ImageCompositeProps {
   filters: ImageFilter[];
+  images: Array<ImageShape>;
   width: number;
   height: number;
   selectedObjectName: string;
+  isDisplayOnly?: boolean;
   className?: string;
 }
 
@@ -32,71 +33,56 @@ const ImageComposite = forwardRef<
       selectedObjectName,
       className,
       children,
+      isDisplayOnly,
+      images,
     },
     ref
   ) => {
-    const layers = useRef<Array<HTMLCanvasElement>>([]);
     const [prevObject, setPrevObject] = useState(selectedObjectName);
-    const [imagesLoaded, setImagesLoaded] = useState(0);
+    const [loaded, setLoaded] = useState(false);
     const isAnyActive = isFilterActive(filters);
-    const enabledFilters = filters.filter((f) => !f.isDisabled).length;
-    const isLoading = imagesLoaded < enabledFilters;
 
     if (selectedObjectName !== prevObject) {
       setPrevObject(selectedObjectName);
-      setImagesLoaded(0);
+      setLoaded(false);
     }
 
-    const onLoadCallback = useCallback(
-      () => setImagesLoaded((count) => count + 1),
-      [imagesLoaded, filters]
+    const imgElements = useFilteredImages({
+      images,
+      filters,
+      loadedCallback: () => setLoaded(true),
+    });
+
+    const activeLayers = imgElements?.filter(
+      (f, i): f is HTMLCanvasElement => !!f && !!filters[i].active
     );
 
-    const handleFilterChange = (index: number, canvas: HTMLCanvasElement) => {
-      layers.current[index] = canvas;
-    };
+    const ctx = (
+      ref as MutableRefObject<HTMLCanvasElement>
+    )?.current?.getContext("2d");
+
+    if (ctx) {
+      ctx.clearRect(0, 0, width, height);
+      mergeCanvases(ctx, activeLayers, width, height);
+    }
 
     return (
       <Styled.ImageContainer
-        className={className}
         style={{
-          "--image-container-opacity": imagesLoaded && isAnyActive ? 1 : 0.1,
+          aspectRatio: `${width} / ${height}`,
+          maxWidth: isDisplayOnly ? `${width}px` : undefined,
+          "--image-container-opacity": loaded && isAnyActive ? 1 : 0.1,
         }}
+        {...{ className }}
       >
-        {!imagesLoaded && isAnyActive && (
-          <CircularLoader isVisible={isLoading} />
-        )}
-        <Styled.LoadingContainer
-          style={{ "--loading-opacity": isLoading ? 0 : 1 }}
-        >
-          {filters &&
-            filters.map((filter, i) => {
-              const { label, image, color, brightness } = filter;
-
-              return (
-                <OffscreenFilter
-                  key={label}
-                  onChangeCallback={(canvas) => handleFilterChange(i, canvas)}
-                  {...{
-                    url: image,
-                    color,
-                    width,
-                    height,
-                    filters: {
-                      brightness,
-                      contrast: 1.3,
-                    },
-                    onLoadCallback,
-                  }}
-                />
-              );
-            })}
-          <CompositeRenderer
-            layers={layers.current}
-            renderLayers={filters.map(({ active }) => active)}
-            {...{ width, height, ref }}
-          />
-        </Styled.LoadingContainer>
+        {!loaded && isAnyActive && <Styled.Loader isVisible={!loaded} />}
+        <Styled.Image
+          style={{ "--loading-opacity": !loaded ? 0 : 1 }}
+          ref={ref}
+          role="img"
+          hidden={!loaded}
+          {...{ width, height }}
+        />
         {children}
       </Styled.ImageContainer>
     );

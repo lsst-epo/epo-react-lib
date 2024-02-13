@@ -37,4 +37,7 @@ export const Primary: StoryObj<typeof ImageComposite> = Template.bind({});
 
 Primary.args = {
   filters: updateFilters(readOnlyData[0].objects[0]),
+  images: readOnlyData[0].objects[0].filters.map(({ image }) => {
+    return { url: image, width: 600, height: 600 };
+  }),
 };
