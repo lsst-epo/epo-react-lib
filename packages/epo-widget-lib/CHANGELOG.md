@@ -27,3 +27,4 @@
 - extend `Charts.Base` wrapper with labels
 - add `useAxis` hook
 - add `LightCurvePlot`
+- refactor `ColorTool` to perform callbacks correctly when images load from cache
