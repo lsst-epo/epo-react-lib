@@ -88,11 +88,16 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     ...config,
   };
 
+  const images = filters.map(({ image }) => {
+    return { url: image, width, height };
+  });
+
   if (isDisplayOnly) {
     return (
       <ImageComposite
         ref={imageRef}
-        {...{ filters, width, height, selectedObjectName, className }}
+        isDisplayOnly
+        {...{ filters, width, height, selectedObjectName, className, images }}
       />
     );
   }
@@ -180,7 +185,13 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
         </Styled.ControlsContainer>
         <ImageComposite
           ref={imageRef}
-          {...{ filters, width, height, selectedObjectName }}
+          {...{
+            filters,
+            width,
+            height,
+            selectedObjectName,
+            images,
+          }}
         >
           {hasMultipleDatasets && (
             <Styled.SelectionContainer>
