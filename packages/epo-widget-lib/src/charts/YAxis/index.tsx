@@ -55,8 +55,6 @@ const YAxis: FunctionComponent<YAxisProps> = ({
             const labelY = yScale(value);
             const labelX = x - tickLength;
 
-            console.log({ value, labelY });
-
             return (
               <g role="listitem" key={i}>
                 {tickLength > 0 && (
