@@ -47,8 +47,11 @@ export const intersection = (a: number[] = [], b: number[] = []) => {
 export const getLinearScale = (
   domain: number[] = [0, 1],
   range: number[] = [0, 1],
-  clamp = false
+  options?: { clamp?: boolean; fractionDigits?: number }
 ): ((domainValue: number) => number) => {
+  const defaultOptions = { clamp: false, fractionDigits: 2 };
+  const { clamp, fractionDigits } = { ...defaultOptions, ...options };
+
   return (val: number) => {
     const sub = domain[1] - domain[0];
 
@@ -61,7 +64,9 @@ export const getLinearScale = (
       t = Math.min(Math.max(t, 0), 1);
     }
 
-    return t * (range[1] - range[0]) + range[0];
+    return Number(
+      (t * (range[1] - range[0]) + range[0]).toFixed(fractionDigits)
+    );
   };
 };
 

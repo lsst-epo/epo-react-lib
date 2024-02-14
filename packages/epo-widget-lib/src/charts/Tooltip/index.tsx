@@ -2,8 +2,8 @@ import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
 export interface TooltipProps {
-  x: number;
-  y: number;
+  x?: number;
+  y?: number;
   visible: boolean;
   offset?: number;
   origin?: string;
@@ -74,7 +74,6 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
   children,
   className,
 }) => {
-  if (typeof x === "undefined" || typeof y === "undefined") return null;
   const defaultOrigin = "center center";
   const fullOrigin = [...origin.split(" "), ...defaultOrigin.split(" ")]
     .slice(0, 2)
@@ -92,23 +91,25 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
 
   return (
     <foreignObject x={0} y={0} width="100%" height="100%" pointerEvents="none">
-      <Styled.Tooltip
-        className={className}
-        style={{
-          transform: `translate(calc(${xOffset} + ${x}px), calc(${yOffset} + ${y}px))`,
-        }}
-        hidden={!visible}
-      >
-        {children}
-        {showArrow && (
-          <Styled.Arrow
-            style={{
-              "--arrow-size": `${arrowWidth}px`,
-              ...arrowPosition,
-            }}
-          />
-        )}
-      </Styled.Tooltip>
+      {typeof x === "number" && typeof y === "number" && (
+        <Styled.Tooltip
+          className={className}
+          style={{
+            transform: `translate(calc(${xOffset} + ${x}px), calc(${yOffset} + ${y}px))`,
+          }}
+          hidden={!visible}
+        >
+          {children}
+          {showArrow && (
+            <Styled.Arrow
+              style={{
+                "--arrow-size": `${arrowWidth}px`,
+                ...arrowPosition,
+              }}
+            />
+          )}
+        </Styled.Tooltip>
+      )}
     </foreignObject>
   );
 };
