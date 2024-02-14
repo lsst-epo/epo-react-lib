@@ -100,5 +100,18 @@
       "user_supernova_count_one": "{{count}} of your supernovae is visible near {{coords}}.",
       "user_supernova_count_other": "{{count}} of your supernovae are visible near {{coords}}."
     }
+  },
+  "light_curve": {
+    "plot": {
+      "x_label": "Days",
+      "y_label": "Apparent Magnitude (m)",
+      "plot_label": "Supernovae magnitude before and after peak magnitude",
+      "point_label_before_one": "Apparent Magnitude: {{magnitude}} {{count}} day before peak",
+      "point_label_before_other": "Apparent Magnitude: {{magnitude}} {{count}} days before peak",
+      "point_label_peak": "Apparent Magnitude: {{magnitude}} at peak",
+      "point_label_after_one": "Apparent Magnitude: {{magnitude}} {{count}} day after peak",
+      "point_label_after_other": "Apparent Magnitude: {{magnitude}} {{count}} days after peak",
+      "tooltip": "Apparent Magnitude: {{magnitude}}<br/>Date: {{date}}"
+    }
   }
 }
