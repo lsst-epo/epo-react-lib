@@ -1,6 +1,7 @@
 import { Domain, Scale, ScaleFactory, ScaleFunction } from "@/charts/types";
 import { getLinearScale } from "@/lib/utils";
 import { nice, range } from "d3-array";
+import { useCallback, useMemo } from "react";
 
 interface UseAxisProps {
   min: number;
@@ -29,10 +30,19 @@ const useAxis = ({
   scale: scaleType = "linear",
   scaleOptions,
 }: UseAxisProps): Axis => {
-  const tickCount = (Math.ceil((max - min + 1) / 10) * 10) / step;
-  const domain = nice(min, max, tickCount);
+  const tickCount = useMemo(
+    () => (Math.ceil((max - min + 1) / 10) * 10) / step,
+    [min, max, step]
+  );
+  const domain = useMemo(
+    () => nice(min, max, tickCount),
+    [min, max, tickCount]
+  );
   const ticks = range(domain[0], domain[1], step);
-  const scale = scales[scaleType](domain, scaleRange, scaleOptions);
+  const scale = useCallback(
+    scales[scaleType](domain, scaleRange, scaleOptions),
+    [domain, scaleRange, scaleType]
+  );
 
   return [domain, ticks, scale];
 };

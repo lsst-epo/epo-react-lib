@@ -6,3 +6,5 @@ export { default as Points } from "./Points";
 export { default as Tooltip } from "./Tooltip";
 export { default as ClippingContainer } from "./ClippingContainer";
 export { default as Bars } from "./Bars";
+export { default as Viewport } from "./Viewport";
+export { default as ForeignObject } from "./ForeignObject";
