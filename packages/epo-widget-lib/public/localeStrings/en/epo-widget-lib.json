@@ -102,6 +102,11 @@
     }
   },
   "light_curve": {
+    "live_regions": {
+      "curve_residual_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
+      "curve_residual_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}",
+      "apparent_magnitude": ""
+    },
     "plot": {
       "x_label": "Days",
       "y_label": "Apparent Magnitude (m)",

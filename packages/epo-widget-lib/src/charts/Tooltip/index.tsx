@@ -1,4 +1,5 @@
 import { FunctionComponent, PropsWithChildren } from "react";
+import { ForeignObject } from "..";
 import * as Styled from "./styles";
 
 export interface TooltipProps {
@@ -90,7 +91,7 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
   const arrowPosition = getArrowPosition(fullOrigin);
 
   return (
-    <foreignObject x={0} y={0} width="100%" height="100%" pointerEvents="none">
+    <ForeignObject>
       {typeof x === "number" && typeof y === "number" && (
         <Styled.Tooltip
           className={className}
@@ -110,7 +111,7 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
           )}
         </Styled.Tooltip>
       )}
-    </foreignObject>
+    </ForeignObject>
   );
 };
 
