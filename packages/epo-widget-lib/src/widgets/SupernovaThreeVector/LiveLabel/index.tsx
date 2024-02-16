@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import round from "lodash/round";
 import { SkymapObject } from "../Skymap";
-import * as Styled from "./styles";
+import LiveRegion from "@/atomic/LiveRegion";
 
 interface LiveLabelProps {
   id: string;
@@ -39,7 +39,7 @@ const LiveLabel: FunctionComponent<LiveLabelProps> = ({
   );
 
   return (
-    <Styled.OffscreenLabel aria-live="polite" id={id}>
+    <LiveRegion id={id}>
       {t("supernova_three_vector.skymap.description", {
         supernovaCount,
         userObjectCount: objects.length,
@@ -47,7 +47,7 @@ const LiveLabel: FunctionComponent<LiveLabelProps> = ({
         min,
         max,
       })}
-    </Styled.OffscreenLabel>
+    </LiveRegion>
   );
 };
 

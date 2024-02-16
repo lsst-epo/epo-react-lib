@@ -1,5 +1,9 @@
 import { ReactNode } from "react";
 
+export interface Point {
+  x: number;
+  y: number;
+}
 export interface ChartMargin {
   top: number;
   right: number;

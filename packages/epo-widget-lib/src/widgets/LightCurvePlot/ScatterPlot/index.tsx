@@ -2,42 +2,36 @@ import { FunctionComponent, PropsWithChildren, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { max, min } from "d3-array";
 import useAxis from "@/charts/hooks/useAxis";
-import { Base, Tooltip, XAxis, YAxis } from "@/charts/index";
-import { Alert } from "@/types/astro";
+import { Base, Tooltip, Viewport, XAxis, YAxis } from "@/charts/index";
 import { ChartMargin } from "@/charts/types";
-import { timestampFromMJD } from "@/lib/utils";
+import { timestampFromMJD } from "@/lib/helpers";
+import { formatMagnitudePoints } from "../helpers";
+import defaults from "../defaults";
 import Point from "../Point";
 
-interface LightCurvePlotProps {
-  alerts: Array<Alert>;
+export interface ScatterPlotProps {
+  data: ReturnType<typeof formatMagnitudePoints>;
   activeAlertId?: number;
-  peakMjd: number;
-  yMin?: number;
+  yMin: number;
   yMax?: number;
+  width?: number;
+  height?: number;
 }
 
-const daysSincePeak = (current: number, peak: number) => {
-  return current - peak;
-};
-
-const LightCurvePlot: FunctionComponent<
-  PropsWithChildren<LightCurvePlotProps>
-> = ({ alerts, activeAlertId, peakMjd, yMin = 14, yMax = 20, children }) => {
+const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
+  data,
+  activeAlertId,
+  yMin = defaults.yMin,
+  yMax = defaults.yMax,
+  width = defaults.width,
+  height = defaults.height,
+  children,
+}) => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
   const [hoveredIndex, setHovered] = useState<number>();
-  const data = alerts.map(({ date, magnitude, error, id }) => {
-    return {
-      x: daysSincePeak(date, peakMjd),
-      y: magnitude,
-      error,
-      magnitude,
-      id,
-      date,
-    };
-  });
 
   const activeItem =
     typeof hoveredIndex !== "undefined"
@@ -50,26 +44,27 @@ const LightCurvePlot: FunctionComponent<
     right: 10,
     bottom: 20,
   };
-  const width = 600;
-  const height = 600;
 
   const xMin = min(data, ({ x }) => x) || Math.min(...data.map(({ x }) => x));
   const xMax = max(data, ({ x }) => x) || Math.max(...data.map(({ x }) => x));
+  const xRange = [0 + margins.left, width - margins.right];
 
   const [xDomain, xTicks, xScale] = useAxis({
     min: xMin,
     max: xMax,
-    step: 10,
-    range: [0 + margins.left, width - margins.right],
+    step: defaults.xStep,
+    range: xRange,
   });
 
   const xRoot = xScale(xDomain[0]);
 
+  const yRange = [0 + margins.top, height - margins.bottom];
+
   const [yDomain, yTicks, yScale] = useAxis({
     min: yMin,
     max: yMax,
-    step: 0.5,
-    range: [0 + margins.top, height - margins.bottom],
+    step: defaults.yStep,
+    range: yRange,
   });
 
   const yRoot = yScale(yDomain[1]);
@@ -118,7 +113,16 @@ const LightCurvePlot: FunctionComponent<
           );
         })}
       </g>
-      {children}
+      <Viewport
+        x={xRoot}
+        y={yScale(yDomain[0])}
+        outerWidth={xRange[1] - xRange[0]}
+        outerHeight={yRange[1] - yRange[0]}
+        innerWidth={width}
+        innerHeight={height}
+      >
+        {children}
+      </Viewport>
       <Tooltip
         x={activeItem ? xScale(activeItem.x) : undefined}
         y={activeItem ? yScale(activeItem.y) : undefined}
@@ -126,7 +130,7 @@ const LightCurvePlot: FunctionComponent<
         offset={6}
       >
         <Trans i18nKey="light_curve.plot.tooltip">
-          Apparent Magnitude: {{ magnitude: activeItem?.magnitude }}
+          Apparent Magnitude: {{ magnitude: activeItem?.y }}
           <br />
           Date:
           {{
@@ -140,6 +144,6 @@ const LightCurvePlot: FunctionComponent<
   );
 };
 
-LightCurvePlot.displayName = "Widgets.LightCurve.Plot";
+ScatterPlot.displayName = "Widgets.LightCurve.ScatterPlot";
 
-export default LightCurvePlot;
+export default ScatterPlot;
