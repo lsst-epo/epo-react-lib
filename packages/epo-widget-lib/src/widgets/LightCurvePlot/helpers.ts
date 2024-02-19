@@ -60,9 +60,11 @@ export const estimateMagnitudeWithOffset = (
   yOffset: number
 ) => estimateMagnitude(x, gaussianWidth) - yOffset;
 
-// questions
-// where is phase correction used?
-// p[0] = 0 to 4, step 0.01 ex. 2
-// p[1] = -50 to 50, step 0.1 ex. -5
-// delta m 15 is difference between peak and 15 day observation
-// live region should read out the residual (total difference) between curve and observations
+export const calculateResidual = (
+  data: { x: number; y: number; error: number },
+  gaussianWidth: number,
+  yOffset: number
+) =>
+  Math.abs(
+    data.y - estimateMagnitudeWithOffset(data.x, gaussianWidth, yOffset)
+  );

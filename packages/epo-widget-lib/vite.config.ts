@@ -32,6 +32,10 @@ export default defineConfig({
           "src/widgets/ColorTool/lib/server.ts"
         ),
         FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
+        LightCurvePlot: resolve(
+          __dirname,
+          "src/widgets/LightCurvePlot/index.tsx"
+        ),
         SourceSelector: resolve(
           __dirname,
           "src/widgets/SourceSelector/index.tsx"

@@ -6,12 +6,15 @@ import * as Styled from "./styles";
 
 interface DM15DisplayProps {
   gaussianWidth: number;
+  className?: string;
 }
 
 const DM15Display: FunctionComponent<DM15DisplayProps> = ({
   gaussianWidth,
+  className,
 }) => {
   const {
+    t,
     i18n: { language },
   } = useTranslation();
   const peak = estimateMagnitude(0, gaussianWidth);
@@ -20,7 +23,7 @@ const DM15Display: FunctionComponent<DM15DisplayProps> = ({
 
   return (
     <ForeignObject>
-      <Styled.DisplayContainer>
+      <Styled.DisplayContainer className={className}>
         <Styled.Line />
         <math>
           <mn>&Delta;</mn>
@@ -29,7 +32,11 @@ const DM15Display: FunctionComponent<DM15DisplayProps> = ({
             <mn>15</mn>
           </msub>
           <mo>=</mo>
-          <mn>
+          <mn
+            role="status"
+            aria-live="polite"
+            aria-label={t("light_curve.deltaM15.label") || undefined}
+          >
             {Number(dm15).toLocaleString(language, {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,

@@ -4,18 +4,18 @@ import { getLinearScale } from "@/lib/utils";
 
 const domain = [0, 100];
 const xScale = getLinearScale(domain, domain);
-const ticks = 10;
+const ticks = [0, 25, 50, 75];
 
 describe("X Axis", () => {
   it("should render some ticks", () => {
     // Arrange
     render(
       <svg>
-        <XAxis xDomain={[0, 100]} ticks={10} xScale={xScale} />
+        <XAxis xDomain={[0, 100]} ticks={ticks} xScale={xScale} />
       </svg>
     );
     // Assert
-    expect(screen.getAllByRole("listitem").length).toBe(ticks + 1);
+    expect(screen.getAllByRole("listitem").length).toBe(ticks.length);
   });
   it("should format the values in their label", () => {
     // Arrange

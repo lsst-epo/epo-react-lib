@@ -102,10 +102,22 @@
     }
   },
   "light_curve": {
-    "live_regions": {
-      "curve_residual_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
-      "curve_residual_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}",
-      "apparent_magnitude": ""
+    "deltaM15": {
+      "label": "Delta m 15:"
+    },
+    "curve": {
+      "controls": {
+        "gaussian_width": "Gaussian Width",
+        "y_offset": "Y Offset"
+      },
+      "description_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
+      "description_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}"
+    },
+    "magnitude_slider": {
+      "label": "Estimate the apparent magnitude",
+      "value_above": "Apparent magnitude is {{magnitude}}, {{distance}} higher than the peak of the light curve.",
+      "value_below": "Apparent magnitude is {{magnitude}}, {{distance}} lower than the peak of the light curve.",
+      "value_equal": "Apparent magnitude is {{magnitude}}, equal to the peak of the light curve."
     },
     "plot": {
       "x_label": "Days",

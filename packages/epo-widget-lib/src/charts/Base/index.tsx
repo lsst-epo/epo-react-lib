@@ -28,7 +28,10 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
   return (
     <Styled.ChartContainer>
       {verticalLabel && (
-        <Styled.VerticalLabel id={verticalLabelId}>
+        <Styled.VerticalLabel
+          id={verticalLabelId}
+          aria-hidden={!!verticalLabelId}
+        >
           {verticalLabel}
         </Styled.VerticalLabel>
       )}
@@ -45,7 +48,10 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
         {children}
       </Styled.SVG>
       {horizontalLabel && (
-        <Styled.HorizontalLabel id={horizontalLabelId}>
+        <Styled.HorizontalLabel
+          id={horizontalLabelId}
+          aria-hidden={!!horizontalLabelId}
+        >
           {horizontalLabel}
         </Styled.HorizontalLabel>
       )}

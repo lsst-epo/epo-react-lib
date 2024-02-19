@@ -1,32 +1,25 @@
-import { FunctionComponent, useState } from "react";
-import { max, min, range } from "d3-array";
+import { FunctionComponent } from "react";
+import { useTranslation } from "react-i18next";
+import { max, min } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
-import { Alert } from "@/types/astro";
 import useAxis from "@/charts/hooks/useAxis";
 import defaults from "../defaults";
 import Plot from "../ScatterPlot";
 import LightCurve from "../LightCurve";
-import DM15Display from "../DM15Display";
-import { formatMagnitudePoints, estimateMagnitude } from "../helpers";
-
-import * as Styled from "./styles";
+import LightCurveLabel from "../A11Y/LightCurveLabel";
+import { formatMagnitudePoints, estimateMagnitudeWithOffset } from "../helpers";
 import { Reset } from "@/atomic/Button";
-import CurveResidual from "../A11Y/CurveResidual";
 import MagnitudeSlider from "../MagnitudeSlider";
+import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
+import * as Styled from "./styles";
 
-interface PlotWithLightCurveProps {
-  alerts: Array<Alert>;
+interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
   gaussianWidth: number;
   yOffset: number;
+  userMagnitude: number;
+  onUserMagnitudeChangeCallback: (value: number) => void;
   onGaussianChangeCallback: (value: number) => void;
   onYOffsetChangeCallback: (value: number) => void;
-  activeAlertId?: number;
-  peakMjd: number;
-  yMin: number;
-  yMax?: number;
-  width?: number;
-  height?: number;
-  className?: string;
 }
 
 const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
@@ -34,23 +27,36 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   yOffset = defaults.yOffset,
   alerts,
   peakMjd,
-
+  name,
   yMin = defaults.yMin,
   yMax = defaults.yMax,
   width = defaults.width,
   height = defaults.height,
+  userMagnitude = (yMax - yMin) / 2 + yMin,
+  onUserMagnitudeChangeCallback,
   onGaussianChangeCallback,
   onYOffsetChangeCallback,
   className,
   ...props
 }) => {
-  const [userMagnitude, setMagnitude] = useState((yMax - yMin) / 2 + yMin);
-  const data = formatMagnitudePoints(alerts, peakMjd);
+  const { t } = useTranslation();
 
-  console.log({ userMagnitude });
+  const controlsFormId = "lightCurveControls";
+  const gaussianLabelId = "gaussianWidthLabel";
+  const yOffsetLabelId = "yOffsetLabel";
+
+  const data = formatMagnitudePoints(alerts, peakMjd);
 
   const xMin = min(data, ({ x }) => x) || Math.min(...data.map(({ x }) => x));
   const xMax = max(data, ({ x }) => x) || Math.max(...data.map(({ x }) => x));
+
+  const handleReset = () => {
+    onUserMagnitudeChangeCallback &&
+      onUserMagnitudeChangeCallback((yMax - yMin) / 2 + yMin);
+    onYOffsetChangeCallback && onYOffsetChangeCallback(defaults.yOffset);
+    onGaussianChangeCallback &&
+      onGaussianChangeCallback(defaults.gaussianWidth);
+  };
 
   const [xDomain, xTicks, xScale] = useAxis({
     min: xMin,
@@ -66,14 +72,12 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     range: [0, height],
   });
 
-  const magnitudes = range(xDomain[0], xDomain[1], 0.75).map((x) => {
-    return { x, y: estimateMagnitude(x, gaussianWidth) };
-  });
+  const estimatedPeak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
 
   return (
     <Styled.Container className={className}>
       <Styled.PlotContainer>
-        <Styled.PlotTitle>Supernova B</Styled.PlotTitle>
+        {name && <Styled.PlotTitle>{name}</Styled.PlotTitle>}
         <Plot
           {...{
             ...props,
@@ -85,53 +89,70 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
           }}
         >
           <LightCurve
-            data={magnitudes}
-            yOffset={yScale(yDomain[0] - yOffset)}
-            {...{ xScale, yScale }}
+            {...{
+              gaussianWidth,
+              yOffset,
+              xDomain,
+              xScale,
+              yScale,
+              yDomain,
+            }}
           />
           <MagnitudeSlider
             magnitude={userMagnitude}
-            onMagnitudeChangeCallback={(v) => setMagnitude(v)}
-            xMin={0}
-            xMax={width}
-            {...{ yMin, yMax, yScale }}
+            onMagnitudeChangeCallback={(v) =>
+              onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
+            }
+            {...{ yMin, yMax, yScale, estimatedPeak }}
           />
-          <DM15Display {...{ gaussianWidth }} />
+          <Styled.DM15Display {...{ gaussianWidth }} />
         </Plot>
-        <CurveResidual {...{ data, gaussianWidth, yOffset }} />
       </Styled.PlotContainer>
-      <HorizontalSlider
-        label="Gaussian Width"
-        color="var(--turquoise85, #12726D)"
-        min={defaults.gaussianMin}
-        max={defaults.gaussianMax}
-        step={defaults.gaussianStep}
-        value={gaussianWidth}
-        onChangeCallback={(value) =>
-          typeof value === "number" &&
-          onGaussianChangeCallback &&
-          onGaussianChangeCallback(value)
-        }
-      />
-      <HorizontalSlider
-        label="Y Offset"
-        color="var(--turquoise85, #12726D)"
-        min={defaults.yOffsetMin}
-        max={defaults.yOffsetMax}
-        step={defaults.yOffsetStep}
-        value={yOffset}
-        onChangeCallback={(value) =>
-          typeof value === "number" &&
-          onYOffsetChangeCallback &&
-          onYOffsetChangeCallback(value)
-        }
-      />
-      <Reset
-        onResetCallback={() => {
-          onYOffsetChangeCallback && onYOffsetChangeCallback(defaults.yOffset);
-          onGaussianChangeCallback &&
-            onGaussianChangeCallback(defaults.gaussianWidth);
-        }}
+      <Styled.Controls id={controlsFormId}>
+        <div>
+          <Styled.ControlLabel id={gaussianLabelId}>
+            {t("light_curve.curve.controls.gaussian_width")}
+          </Styled.ControlLabel>
+          <HorizontalSlider
+            label="Gaussian Width"
+            labelledbyId={gaussianLabelId}
+            color="var(--turquoise85, #12726D)"
+            min={defaults.gaussianMin}
+            max={defaults.gaussianMax}
+            step={defaults.gaussianStep}
+            value={gaussianWidth}
+            onChangeCallback={(value) =>
+              typeof value === "number" &&
+              onGaussianChangeCallback &&
+              onGaussianChangeCallback(value)
+            }
+          />
+        </div>
+        <div>
+          <Styled.ControlLabel id={yOffsetLabelId}>
+            {t("light_curve.curve.controls.y_offset")}
+          </Styled.ControlLabel>
+          <HorizontalSlider
+            label="Y Offset"
+            labelledbyId={yOffsetLabelId}
+            color="var(--turquoise85, #12726D)"
+            min={defaults.yOffsetMin}
+            max={defaults.yOffsetMax}
+            step={defaults.yOffsetStep}
+            value={yOffset}
+            onChangeCallback={(value) =>
+              typeof value === "number" &&
+              onYOffsetChangeCallback &&
+              onYOffsetChangeCallback(value)
+            }
+          />
+        </div>
+
+        <Reset onResetCallback={handleReset} />
+      </Styled.Controls>
+      <LightCurveLabel
+        controlledById={controlsFormId}
+        {...{ data, gaussianWidth, yOffset, estimatedPeak }}
       />
     </Styled.Container>
   );

@@ -1,32 +1,24 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import minBy from "lodash/minBy";
+import { calculateResidual, formatMagnitudePoints } from "../../helpers";
 import { between } from "@/lib/utils";
-import LiveRegion from "@/atomic/LiveRegion";
-import {
-  estimateMagnitudeWithOffset,
-  formatMagnitudePoints,
-} from "../../helpers";
+import * as Styled from "./styles";
 
-interface CurveResidualProps {
+interface LightCurveLabelProps {
   data: ReturnType<typeof formatMagnitudePoints>;
+  controlledById?: string;
+  estimatedPeak: number;
   gaussianWidth: number;
   yOffset: number;
 }
 
-const calculateResidual = (
-  data: { x: number; y: number; error: number },
-  gaussianWidth: number,
-  yOffset: number
-) =>
-  Math.abs(
-    data.y - estimateMagnitudeWithOffset(data.x, gaussianWidth, yOffset)
-  );
-
-const CurveResidual: FunctionComponent<CurveResidualProps> = ({
+const LightCurveLabel: FunctionComponent<LightCurveLabelProps> = ({
   data,
   gaussianWidth,
   yOffset,
+  controlledById,
+  estimatedPeak,
 }) => {
   const {
     t,
@@ -40,12 +32,11 @@ const CurveResidual: FunctionComponent<CurveResidualProps> = ({
         (prev, curr) => prev + calculateResidual(curr, gaussianWidth, yOffset),
         0
       ) / data.length;
-  const peak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
   const { y: brightest } = minBy(data, ({ y }) => y) || {};
 
   return (
-    <LiveRegion>
-      {t("light_curve.live_regions.curve_residual", {
+    <Styled.HiddenOutput form={controlledById}>
+      {t("light_curve.curve.description", {
         residual: meanResidual.toLocaleString(language, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
@@ -54,12 +45,12 @@ const CurveResidual: FunctionComponent<CurveResidualProps> = ({
           minimumFractionDigits: 1,
           maximumFractionDigits: 1,
         }),
-        context: peak < Number(brightest) ? "above" : "below",
+        context: estimatedPeak < Number(brightest) ? "above" : "below",
       })}
-    </LiveRegion>
+    </Styled.HiddenOutput>
   );
 };
 
-CurveResidual.displayName = "Widgets.LightCurve.A11Y.CurveResidual";
+LightCurveLabel.displayName = "Widgets.LightCurvel.A11Y.LightCurveLabel";
 
-export default CurveResidual;
+export default LightCurveLabel;
