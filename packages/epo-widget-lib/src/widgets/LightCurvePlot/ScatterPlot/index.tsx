@@ -33,6 +33,11 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   } = useTranslation();
   const [hoveredIndex, setHovered] = useState<number>();
 
+  const xAxisLabel = t("light_curve.plot.x_label");
+  const xAxisLabelId = "xAxisLabel";
+  const yAxisLabel = t("light_curve.plot.y_label");
+  const yAxisLabelId = "yAxisLabel";
+
   const activeItem =
     typeof hoveredIndex !== "undefined"
       ? data[hoveredIndex]
@@ -78,8 +83,10 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   return (
     <Base
       {...{ width, height }}
-      horizontalLabel="Days"
-      verticalLabel="Apparent Magnitude (m)"
+      horizontalLabel={xAxisLabel}
+      horizontalLabelId={xAxisLabelId}
+      verticalLabel={yAxisLabel}
+      verticalLabelId={yAxisLabelId}
     >
       <rect
         x={xScale(0)}
@@ -88,8 +95,18 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
         height={yRoot - yScale(yDomain[0])}
         fill="#F5F5F5"
       />
-      <XAxis ticks={xTicks} y={yRoot} {...{ xDomain, xScale }} />
-      <YAxis ticks={yTicks} x={xRoot} {...{ yDomain, yScale }} />
+      <XAxis
+        ticks={xTicks}
+        y={yRoot}
+        labelledById={xAxisLabelId}
+        {...{ xDomain, xScale }}
+      />
+      <YAxis
+        ticks={yTicks}
+        x={xRoot}
+        labelledById={yAxisLabelId}
+        {...{ yDomain, yScale }}
+      />
       <g role="list" aria-label={t("light_curve.plot.plot_label") || undefined}>
         {data.map(({ x, y, error, id }, i) => {
           const days = Math.round(x);
@@ -130,7 +147,13 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
         offset={6}
       >
         <Trans i18nKey="light_curve.plot.tooltip">
-          Apparent Magnitude: {{ magnitude: activeItem?.y }}
+          Apparent Magnitude:{" "}
+          {{
+            magnitude: activeItem?.y.toLocaleString(language, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }),
+          }}
           <br />
           Date:
           {{

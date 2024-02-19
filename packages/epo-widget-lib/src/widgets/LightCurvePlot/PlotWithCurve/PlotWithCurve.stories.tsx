@@ -22,15 +22,17 @@ const { alerts } = biggerData;
 const peakMjd = (minBy(alerts, ({ magnitude }) => magnitude)?.date || 0) - 0.5;
 
 const Template: StoryFn<typeof PlotWithCurve> = (args) => {
+  const [userMagnitude, setUserMagnitude] = useState(args.userMagnitude);
   const [gaussianWidth, setGaussianWidth] = useState(args.gaussianWidth);
   const [yOffset, setYOffset] = useState(args.yOffset);
 
   return (
     <PlotWithCurve
       {...args}
-      {...{ gaussianWidth, yOffset }}
+      {...{ gaussianWidth, yOffset, userMagnitude }}
       onGaussianChangeCallback={(value) => setGaussianWidth(value)}
       onYOffsetChangeCallback={(value) => setYOffset(value)}
+      onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
     />
   );
 };

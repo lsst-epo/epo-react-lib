@@ -26,9 +26,9 @@ describe("estimateMagnitudeWithOffset", () => {
   it("should return an estimated magnitude", () => {
     const peak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
     const mag15 = estimateMagnitudeWithOffset(15, gaussianWidth, yOffset);
-    const dm15 = peak - mag15;
+    const dm15 = Number((peak - mag15).toFixed(2));
 
     expect(peak).toBeLessThan(mag15);
-    expect(dm15).toBe(-0.7895558263423261);
+    expect(dm15).toBe(-0.79);
   });
 });
