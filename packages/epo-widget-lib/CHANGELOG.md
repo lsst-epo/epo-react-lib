@@ -21,3 +21,9 @@
 
 - add `SupernovaThreeVector` widget
 - extract `ImageStacker` into atomic component
+
+## 0.9.0
+
+- extend `Charts.Base` wrapper with labels
+- add `useAxis` hook
+- add `LightCurvePlot`
