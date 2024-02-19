@@ -4,9 +4,9 @@ import { getLinearScale } from "@/lib/utils";
 
 const domain = [0, 100];
 const yScale = getLinearScale(domain, domain);
-const ticks = 10;
+const ticks = [0, 25, 50, 75];
 
-describe("X Axis", () => {
+describe("Y Axis", () => {
   it("should render some ticks", () => {
     // Arrange
     render(
@@ -15,7 +15,7 @@ describe("X Axis", () => {
       </svg>
     );
     // Assert
-    expect(screen.getAllByRole("listitem").length).toBe(ticks);
+    expect(screen.getAllByRole("listitem").length).toBe(ticks.length);
   });
   it("should format the values in their label", () => {
     // Arrange

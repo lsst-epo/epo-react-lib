@@ -2,17 +2,17 @@ import styled from "styled-components";
 import ReactSlider from "react-slider";
 
 export const Slider = styled(ReactSlider)`
-  --thumb-size: 1em;
+  --thumb-size: 20px;
+  --thumb-border-width: 2px;
 
   width: 100%;
-  height: calc(100% + var(--thumb-size) + 2px);
-  top: calc((var(--thumb-size) / 2) * -1);
+  height: 100%;
 `;
 
 export const ThumbBar = styled.div`
   box-sizing: border-box;
   border: none;
-  border-bottom: 2px dashed var(--black, #000);
+  border-bottom: var(--thumb-border-width) dashed var(--black, #000);
   flex-grow: 1;
 `;
 
@@ -20,7 +20,13 @@ export const ThumbContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  height: 0px;
   width: 100%;
+  overflow: visible;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ThumbHandle = styled.div`
@@ -28,14 +34,13 @@ export const ThumbHandle = styled.div`
   box-sizing: border-box;
   cursor: grab;
   background-color: var(--white, #fff);
-  border: 2px solid var(--black, #000);
+  border: var(--thumb-border-width) solid var(--black, #000);
   border-radius: 50%;
   pointer-events: auto;
-  width: 1em;
+  width: var(--thumb-size);
 
   &:not([aria-disabled="true"]):active,
-  &:not([aria-disabled="true"]).active,
-  &:not([aria-disabled="true"]) {
+  &:not([aria-disabled="true"]).active {
     cursor: grabbing;
   }
 `;
