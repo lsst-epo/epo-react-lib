@@ -16,7 +16,9 @@ const Figure: FunctionComponent<FigureProps> = ({
 }) => (
   <Styled.Figure $withBackground={withBackground} className={className}>
     {children}
-    {caption && <Styled.FigCaption>{caption}</Styled.FigCaption>}
+    {caption && (
+      <Styled.FigCaption dangerouslySetInnerHTML={{ __html: caption }} />
+    )}
   </Styled.Figure>
 );
 
