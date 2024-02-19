@@ -4,7 +4,6 @@ import BaseDM15Display from "../DM15Display";
 export const Container = styled.div`
   --light-curve-padding: var(--PADDING_SMALL, 20px);
 
-  container-type: inline-size;
   display: grid;
   gap: var(--light-curve-padding);
   grid-template-rows: 1fr min-content;
@@ -14,6 +13,7 @@ export const Container = styled.div`
 export const PlotContainer = styled.div`
   display: flex;
   flex-direction: column;
+  container-type: inline-size;
   background-color: var(--white, #fff);
   border: 1px solid var(--turquoise55, #009fa1);
   gap: var(--light-curve-padding);
