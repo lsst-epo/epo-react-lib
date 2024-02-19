@@ -10,7 +10,7 @@ export const PlotContainer = styled.div`
   background-color: var(--white, #fff);
   border: 1px solid var(--turquoise55, #009fa1);
   gap: var(--light-curve-padding);
-  padding: var(--light-curve-padding) 0;
+  padding: var(--light-curve-padding, var(--PADDING_SMALL, 20px)) 0;
 `;
 
 export const Chart = styled(Base)`
@@ -35,6 +35,6 @@ export const Chart = styled(Base)`
 `;
 
 export const PlotTitle = styled.h3`
-  padding-inline: var(--light-curve-padding);
+  padding-inline: var(--light-curve-padding, var(--PADDING_SMALL, 20px));
   margin: 0;
 `;
