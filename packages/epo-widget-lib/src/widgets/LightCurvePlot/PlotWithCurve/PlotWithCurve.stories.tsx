@@ -39,4 +39,4 @@ const Template: StoryFn<typeof PlotWithCurve> = (args) => {
 
 export const Primary: StoryObj<typeof PlotWithCurve> = Template.bind({});
 
-Primary.args = { alerts, peakMjd };
+Primary.args = { alerts, peakMjd, name: "Supernova A" };

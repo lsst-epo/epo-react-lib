@@ -27,7 +27,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   yOffset = defaults.yOffset,
   alerts,
   peakMjd,
-  name,
   yMin = defaults.yMin,
   yMax = defaults.yMax,
   width = defaults.width,
@@ -76,38 +75,35 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
 
   return (
     <Styled.Container className={className}>
-      <Styled.PlotContainer>
-        {name && <Styled.PlotTitle>{name}</Styled.PlotTitle>}
-        <Plot
+      <Plot
+        {...{
+          ...props,
+          data,
+          width,
+          height,
+          yMin,
+          yMax,
+        }}
+      >
+        <LightCurve
           {...{
-            ...props,
-            data,
-            width,
-            height,
-            yMin,
-            yMax,
+            gaussianWidth,
+            yOffset,
+            xDomain,
+            xScale,
+            yScale,
+            yDomain,
           }}
-        >
-          <LightCurve
-            {...{
-              gaussianWidth,
-              yOffset,
-              xDomain,
-              xScale,
-              yScale,
-              yDomain,
-            }}
-          />
-          <MagnitudeSlider
-            magnitude={userMagnitude}
-            onMagnitudeChangeCallback={(v) =>
-              onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
-            }
-            {...{ yMin, yMax, yScale, estimatedPeak }}
-          />
-          <Styled.DM15Display {...{ gaussianWidth }} />
-        </Plot>
-      </Styled.PlotContainer>
+        />
+        <MagnitudeSlider
+          magnitude={userMagnitude}
+          onMagnitudeChangeCallback={(v) =>
+            onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
+          }
+          {...{ yMin, yMax, yScale, estimatedPeak }}
+        />
+        <Styled.DM15Display {...{ gaussianWidth }} />
+      </Plot>
       <Styled.Controls id={controlsFormId}>
         <div>
           <Styled.ControlLabel id={gaussianLabelId}>

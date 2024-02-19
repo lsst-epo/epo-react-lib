@@ -8,9 +8,11 @@ import { timestampFromMJD } from "@/lib/helpers";
 import { formatMagnitudePoints } from "../helpers";
 import defaults from "../defaults";
 import Point from "../Point";
+import * as Styled from "./styles";
 
 export interface ScatterPlotProps {
   data: ReturnType<typeof formatMagnitudePoints>;
+  name?: string;
   activeAlertId?: number;
   yMin: number;
   yMax?: number;
@@ -25,6 +27,7 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   yMax = defaults.yMax,
   width = defaults.width,
   height = defaults.height,
+  name,
   children,
 }) => {
   const {
@@ -45,7 +48,7 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const margins: ChartMargin = {
     top: 10,
-    left: 30,
+    left: 35,
     right: 10,
     bottom: 20,
   };
@@ -81,89 +84,95 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   };
 
   return (
-    <Base
-      {...{ width, height }}
-      horizontalLabel={xAxisLabel}
-      horizontalLabelId={xAxisLabelId}
-      verticalLabel={yAxisLabel}
-      verticalLabelId={yAxisLabelId}
-    >
-      <rect
-        x={xScale(0)}
-        y={yScale(yDomain[0])}
-        width={xScale(15) - xScale(0)}
-        height={yRoot - yScale(yDomain[0])}
-        fill="#F5F5F5"
-      />
-      <XAxis
-        ticks={xTicks}
-        y={yRoot}
-        labelledById={xAxisLabelId}
-        {...{ xDomain, xScale }}
-      />
-      <YAxis
-        ticks={yTicks}
-        x={xRoot}
-        labelledById={yAxisLabelId}
-        {...{ yDomain, yScale }}
-      />
-      <g role="list" aria-label={t("light_curve.plot.plot_label") || undefined}>
-        {data.map(({ x, y, error, id }, i) => {
-          const days = Math.round(x);
-          const context = days > 0 ? "after" : days === 0 ? "peak" : "before";
-          return (
-            <Point
-              key={id}
-              x={xScale(x)}
-              y={yScale(y)}
-              error={yScale(error) - yScale(0)}
-              onMouseOver={() => setHovered(i)}
-              onMouseOut={() => setHovered(undefined)}
-              description={
-                t("light_curve.plot.point_label", {
-                  magnitude: y,
-                  count: Math.abs(days),
-                  context,
-                }) || undefined
-              }
-            />
-          );
-        })}
-      </g>
-      <Viewport
-        x={xRoot}
-        y={yScale(yDomain[0])}
-        outerWidth={xRange[1] - xRange[0]}
-        outerHeight={yRange[1] - yRange[0]}
-        innerWidth={width}
-        innerHeight={height}
+    <Styled.PlotContainer>
+      {name && <Styled.PlotTitle>{name}</Styled.PlotTitle>}
+      <Styled.Chart
+        {...{ width, height }}
+        horizontalLabel={xAxisLabel}
+        horizontalLabelId={xAxisLabelId}
+        verticalLabel={yAxisLabel}
+        verticalLabelId={yAxisLabelId}
       >
-        {children}
-      </Viewport>
-      <Tooltip
-        x={activeItem ? xScale(activeItem.x) : undefined}
-        y={activeItem ? yScale(activeItem.y) : undefined}
-        visible={!!activeItem}
-        offset={6}
-      >
-        <Trans i18nKey="light_curve.plot.tooltip">
-          Apparent Magnitude:{" "}
-          {{
-            magnitude: activeItem?.y.toLocaleString(language, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }),
-          }}
-          <br />
-          Date:
-          {{
-            date: new Date(
-              timestampFromMJD(activeItem?.date || 0)
-            ).toLocaleString(language, tooltipDateOptions),
-          }}
-        </Trans>
-      </Tooltip>
-    </Base>
+        <rect
+          x={xScale(0)}
+          y={yScale(yDomain[0])}
+          width={xScale(15) - xScale(0)}
+          height={yRoot - yScale(yDomain[0])}
+          fill="#F5F5F5"
+        />
+        <XAxis
+          ticks={xTicks}
+          y={yRoot}
+          labelledById={xAxisLabelId}
+          {...{ xDomain, xScale }}
+        />
+        <YAxis
+          ticks={yTicks}
+          x={xRoot}
+          labelledById={yAxisLabelId}
+          {...{ yDomain, yScale }}
+        />
+        <g
+          role="list"
+          aria-label={t("light_curve.plot.plot_label") || undefined}
+        >
+          {data.map(({ x, y, error, id }, i) => {
+            const days = Math.round(x);
+            const context = days > 0 ? "after" : days === 0 ? "peak" : "before";
+            return (
+              <Point
+                key={id}
+                x={xScale(x)}
+                y={yScale(y)}
+                error={yScale(error) - yScale(0)}
+                onMouseOver={() => setHovered(i)}
+                onMouseOut={() => setHovered(undefined)}
+                description={
+                  t("light_curve.plot.point_label", {
+                    magnitude: y,
+                    count: Math.abs(days),
+                    context,
+                  }) || undefined
+                }
+              />
+            );
+          })}
+        </g>
+        <Viewport
+          x={xRoot}
+          y={yScale(yDomain[0])}
+          outerWidth={xRange[1] - xRange[0]}
+          outerHeight={yRange[1] - yRange[0]}
+          innerWidth={width}
+          innerHeight={height}
+        >
+          {children}
+        </Viewport>
+        <Tooltip
+          x={activeItem ? xScale(activeItem.x) : undefined}
+          y={activeItem ? yScale(activeItem.y) : undefined}
+          visible={!!activeItem}
+          offset={6}
+        >
+          <Trans i18nKey="light_curve.plot.tooltip">
+            Apparent Magnitude:{" "}
+            {{
+              magnitude: activeItem?.y.toLocaleString(language, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }),
+            }}
+            <br />
+            Date:
+            {{
+              date: new Date(
+                timestampFromMJD(activeItem?.date || 0)
+              ).toLocaleString(language, tooltipDateOptions),
+            }}
+          </Trans>
+        </Tooltip>
+      </Styled.Chart>
+    </Styled.PlotContainer>
   );
 };
 

@@ -14,5 +14,5 @@ const { alerts } = biggerData;
 const peakMjd = (minBy(alerts, ({ magnitude }) => magnitude)?.date || 0) - 0.5;
 
 export const Primary: StoryObj<typeof PlotWithoutCurve> = {
-  args: { alerts, peakMjd },
+  args: { alerts, peakMjd, name: "Supernova A" },
 };
