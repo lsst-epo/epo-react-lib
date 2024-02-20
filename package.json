@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "author": "Rubin EPO",
   "repository": {
@@ -13,6 +13,7 @@
     ]
   },
   "scripts": {
+    "postinstall": "yarn workspaces run build",
     "build-storybook": "build-storybook",
     "deploy-storybook": "mkdir ./.out && touch ./.out/.nojekyll && storybook-to-ghpages --packages=packages --out=.out",
     "test": "yarn workspaces run test",
