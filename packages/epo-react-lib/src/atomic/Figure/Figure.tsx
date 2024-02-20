@@ -1,16 +1,15 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import * as Styled from "./styles";
 import ConditionalWrapper from "@/utils/ConditionalWrapper";
 
-interface FigureProps {
-  children: ReactNode;
+export interface FigureProps {
   layout?: "horizontal" | "vertical";
   caption?: string;
   withBackground?: boolean;
   className?: string;
 }
 
-const Figure: FunctionComponent<FigureProps> = ({
+const Figure: FunctionComponent<PropsWithChildren<FigureProps>> = ({
   children,
   caption,
   layout = "vertical",
@@ -38,7 +37,10 @@ const Figure: FunctionComponent<FigureProps> = ({
       {children}
     </ConditionalWrapper>
     {caption && (
-      <Styled.FigCaption data-layout={layout}>{caption}</Styled.FigCaption>
+      <Styled.FigCaption
+        data-layout={layout}
+        dangerouslySetInnerHTML={{ __html: caption }}
+      />
     )}
   </Styled.Figure>
 );

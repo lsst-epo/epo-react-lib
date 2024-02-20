@@ -1,4 +1,5 @@
 export const children = {
+  control: "none",
   description: "React child",
   table: {
     type: {
