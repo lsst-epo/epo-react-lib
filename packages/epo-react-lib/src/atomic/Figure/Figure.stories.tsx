@@ -12,26 +12,51 @@ const meta: Meta<typeof Figure> = {
       control: "text",
     },
     children,
-    withBackground: { control: "boolean", defaultValue: false },
+    withBackground: {
+      control: "boolean",
+      table: { type: { summary: "boolean" } },
+    },
     layout: {
       control: "select",
       options: ["horizontal", "vertical"],
+      table: {
+        type: { summary: "horizontal | vertical" },
+        defaultValue: { summary: "vertical" },
+      },
     },
   },
 };
 export default meta;
 
-export const Primary: StoryObj<typeof Figure> = {
+export const VerticalLayout: StoryObj<typeof Figure> = {
   args: {
-    children: <Image image={{ url: getGradientImage() }} />,
+    children: (
+      <Image
+        image={{
+          url: "https://rubin.canto.com/direct/image/2378fnrgod2nnfha8mt8fool0q/Jn8gNFKti6C9EsMjscGaiHzWQlE/m800/800",
+          altText:
+            "Wide view of the Rubin Observatory facility and smaller surrounding buildings against an orange and purple twilight sky",
+          width: 800,
+          height: 530,
+        }}
+      />
+    ),
     caption:
-      "Cosmic ipsum Lagrange points hydrogen double star lunar orbital eccentricity solar wind synodic Earthshine gamma ray astronomical unit variable star half moon cosmology spectroscope red shift",
+      "Rubin Observatory at twilight, May 15, 2022. Credit: Rubin Obs/NSF/AURA",
+    withBackground: false,
+  },
+};
+
+export const HorizontalLayout: StoryObj<typeof Figure> = {
+  args: {
+    ...VerticalLayout.args,
+    layout: "horizontal",
   },
 };
 
 export const WithBackground: StoryObj<typeof Figure> = {
   args: {
-    ...Primary.args,
+    ...VerticalLayout.args,
     withBackground: true,
   },
 };

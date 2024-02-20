@@ -78,3 +78,7 @@
 
 - expand test coverage of `HorizontalSlider`
 - add `ariaValueNow` to `HorizontalSlider` props
+
+## 2.0.21
+
+- make `Figure` caption RichText capable
