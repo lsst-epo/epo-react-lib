@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-react-lib",
   "description": "Rubin Observatory Education & Public Outreach team React UI library.",
-  "version": "2.0.20",
+  "version": "2.0.22",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -16,12 +16,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "publish:clean": "rm -r tempPublish & yarn build && clean-publish",
-    "publish:local": "rm -r tempPublish & yarn build && clean-publish --without-publish",
-    "storybook": "yarn run test:generate-output && storybook dev -p 6006",
+    "prebuild": "rm -fr tempPublish",
+    "publish-clean": "yarn test && yarn build && clean-publish",
+    "publish-beta": "yarn build && clean-publish --tag beta",
+    "publish-local": "yarn build && clean-publish --without-publish",
+    "storybook": "yarn test:generate-output && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "storybook-to-ghpages",
     "test": "jest",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
