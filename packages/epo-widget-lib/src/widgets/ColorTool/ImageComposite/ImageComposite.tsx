@@ -45,14 +45,10 @@ const ImageComposite = forwardRef<
       setPrevObject(selectedObjectName);
     }
 
-    const [imgElements, loaded] = useFilteredImages({
+    const [imgElements, loading] = useFilteredImages({
       images,
       filters,
     });
-
-    const activeLayers = imgElements?.filter(
-      (f, i): f is HTMLCanvasElement => !!f && !!filters[i].active
-    );
 
     const ctx = (
       ref as MutableRefObject<HTMLCanvasElement>
@@ -60,7 +56,7 @@ const ImageComposite = forwardRef<
 
     if (ctx) {
       ctx.clearRect(0, 0, width, height);
-      mergeCanvases(ctx, activeLayers, width, height);
+      mergeCanvases(ctx, imgElements, width, height);
     }
 
     return (
@@ -68,16 +64,16 @@ const ImageComposite = forwardRef<
         style={{
           aspectRatio: `${width} / ${height}`,
           maxWidth: isDisplayOnly ? `${width}px` : undefined,
-          "--image-container-opacity": loaded && isAnyActive ? 1 : 0.1,
+          "--image-container-opacity": !loading && isAnyActive ? 1 : 0.1,
         }}
         {...{ className }}
       >
-        {!loaded && isAnyActive && <Styled.Loader isVisible={!loaded} />}
+        {loading && isAnyActive && <Styled.Loader isVisible={loading} />}
         <Styled.Image
-          style={{ "--loading-opacity": !loaded ? 0 : 1 }}
+          style={{ "--loading-opacity": loading ? 0 : 1 }}
           ref={ref}
           role="img"
-          hidden={!loaded}
+          hidden={loading}
           {...{ width, height }}
         />
         {children}
