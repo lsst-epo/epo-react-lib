@@ -39,18 +39,15 @@ const ImageComposite = forwardRef<
     ref
   ) => {
     const [prevObject, setPrevObject] = useState(selectedObjectName);
-    const [loaded, setLoaded] = useState(false);
     const isAnyActive = isFilterActive(filters);
 
     if (selectedObjectName !== prevObject) {
       setPrevObject(selectedObjectName);
-      setLoaded(false);
     }
 
-    const imgElements = useFilteredImages({
+    const [imgElements, loaded] = useFilteredImages({
       images,
       filters,
-      loadedCallback: () => setLoaded(true),
     });
 
     const activeLayers = imgElements?.filter(
