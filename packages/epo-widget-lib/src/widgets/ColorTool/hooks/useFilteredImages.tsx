@@ -18,12 +18,13 @@ const useFilteredImages = ({
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const [imgElements, setImages] = useState<Array<HTMLImageElement>>();
 
-  const loaded =
-    imagesLoaded === images.length ||
-    imgElements?.every(({ complete }) => !!complete);
+  const anyImageIncomplete = imgElements?.some(({ complete }) => !complete);
+
+  const loading = imagesLoaded !== images.length && anyImageIncomplete;
 
   useLayoutEffect(() => {
     if (!isEqual(previousImages, images)) {
+      setImagesLoaded(0);
       setImages(
         images.map(({ url, width, height }) => {
           const img = new Image(width, height);
@@ -37,6 +38,10 @@ const useFilteredImages = ({
       );
     }
   }, [images]);
+
+  if (loading) {
+    return [[], !!loading];
+  }
 
   const canvases = [...(imgElements || [])]
     .map((img, i) => {
@@ -63,7 +68,9 @@ const useFilteredImages = ({
     })
     .filter((img): img is HTMLCanvasElement => !!img);
 
-  return [canvases, !!loaded];
+  console.log({ canvases });
+
+  return [canvases, !!loading];
 };
 
 export default useFilteredImages;
