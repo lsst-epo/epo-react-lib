@@ -16,9 +16,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "publish:clean": "rm -r tempPublish & yarn build && clean-publish",
-    "publish:local": "rm -r tempPublish & yarn build && clean-publish --without-publish",
+    "prebuild": "rm -fr tempPublish",
+    "publish-clean": "yarn test && yarn build && clean-publish",
+    "publish-beta": "yarn build && clean-publish --tag beta",
+    "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "yarn run test:generate-output && storybook dev -p 6007",
     "build-storybook": "storybook build",
     "test": "jest",
