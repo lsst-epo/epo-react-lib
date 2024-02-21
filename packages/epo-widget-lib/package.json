@@ -23,8 +23,8 @@
     "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "yarn run test:generate-output && storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "test": "jest",
-    "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
+    "test": "jest --max-workers=2",
+    "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true"
   },
   "files": [
     "README.md",
