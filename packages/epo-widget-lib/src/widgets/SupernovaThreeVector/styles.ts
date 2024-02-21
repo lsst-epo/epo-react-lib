@@ -9,7 +9,8 @@ export const ThreeVectorContainer = styled.div`
 `;
 
 export const ThreeVectorLayout = styled.div`
-  align-items: center;
+  --three-vector-gap: calc(var(--PADDING_SMALL, 20px) / 2);
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr min-content min-content;
@@ -18,7 +19,7 @@ export const ThreeVectorLayout = styled.div`
     "histogram"
     "slider"
     "reset";
-  gap: calc(var(--PADDING_SMALL, 20px) / 2);
+  gap: var(--three-vector-gap);
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     grid-template-columns: 1fr 1fr;
@@ -30,11 +31,15 @@ export const ThreeVectorLayout = styled.div`
   }
 
   @container (min-width: ${token("BREAK_TABLET_MIN")}) {
-    gap: var(--PADDING_SMALL, 20px);
+    --three-vector-gap: var(--PADDING_SMALL, 20px);
+    gap: var(--three-vector-gap);
   }
 `;
 
 export const HistogramContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--three-vector-gap);
   container-type: inline-size;
   grid-area: histogram;
 `;
@@ -70,6 +75,9 @@ export const ResetButton = styled(Button.Reset)`
 `;
 
 export const SkymapContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--three-vector-gap);
   container-type: inline-size;
   grid-area: skymap;
 `;
@@ -95,4 +103,8 @@ export const Skymap = styled(BaseSkymap)`
 ) {
     font-size: 1em;
   }
+`;
+
+export const ChartTitle = styled.h4`
+  margin: 0;
 `;
