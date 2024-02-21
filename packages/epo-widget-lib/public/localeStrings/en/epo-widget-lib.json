@@ -82,6 +82,7 @@
   },
   "supernova_three_vector": {
     "histogram": {
+      "title": "Supernova Distances",
       "x_label": "Distance [kpc]",
       "bar_label_one": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernova",
       "bar_label_other": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernovae"
@@ -91,6 +92,7 @@
       "valueLabel": "{{value}} kiloparsecs"
     },
     "skymap": {
+      "title": "Supernova Distribution",
       "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
       "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} kiloparsecs.",
       "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} kiloparsecs.",
