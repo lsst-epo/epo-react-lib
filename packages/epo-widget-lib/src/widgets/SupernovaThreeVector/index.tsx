@@ -87,6 +87,9 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
     <Styled.ThreeVectorContainer>
       <Styled.ThreeVectorLayout>
         <Styled.HistogramContainer>
+          <Styled.ChartTitle>
+            {t("supernova_three_vector.histogram.title")}
+          </Styled.ChartTitle>
           <Styled.Histogram
             data={histogramData}
             {...{
@@ -104,7 +107,6 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
             }}
           />
         </Styled.HistogramContainer>
-
         <Styled.SliderContainer
           style={{
             paddingInlineStart: sliderLeftMargin,
@@ -129,6 +131,9 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
           />
         </Styled.SliderContainer>
         <Styled.SkymapContainer>
+          <Styled.ChartTitle>
+            {t("supernova_three_vector.skymap.title")}
+          </Styled.ChartTitle>
           <Styled.Skymap
             objects={visibleUserObjects}
             images={binnedImages}
