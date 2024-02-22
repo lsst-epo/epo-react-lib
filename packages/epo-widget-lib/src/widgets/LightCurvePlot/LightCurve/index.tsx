@@ -37,6 +37,7 @@ const LightCurve: FunctionComponent<LightCurveProps> = ({
       fill="none"
       strokeWidth={2}
       stroke="var(--black,#000)"
+      pointerEvents="none"
     />
   );
 };
