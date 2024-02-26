@@ -1,18 +1,16 @@
-import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import { ForeignObject } from "@/charts/index";
 import { estimateMagnitude } from "../helpers";
 import * as Styled from "./styles";
 
-interface DM15DisplayProps {
-  gaussianWidth: number;
-  className?: string;
-}
-
-const DM15Display: FunctionComponent<DM15DisplayProps> = ({
-  gaussianWidth,
-  className,
-}) => {
+/**
+ *
+ * @param {object} props
+ * @param {number} props.gaussianWidth
+ * @param {string} [props.className]
+ * @returns
+ */
+const DM15Display = ({ gaussianWidth, className }) => {
   const {
     t,
     i18n: { language },
@@ -25,7 +23,7 @@ const DM15Display: FunctionComponent<DM15DisplayProps> = ({
     <ForeignObject>
       <Styled.DisplayContainer className={className}>
         <Styled.Line />
-        <math>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
           <mn>&Delta;</mn>
           <msub>
             <mi>m</mi>
