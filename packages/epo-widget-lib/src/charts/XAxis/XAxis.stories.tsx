@@ -120,7 +120,7 @@ const Template: StoryFn<typeof XAxis> = (args) => {
 
   return (
     <Container>
-      <Chart minX={0} width={400} height={400}>
+      <Chart xMin={0} width={400} height={400}>
         <XAxis {...args} xDomain={xDomain} xScale={xScale} />
       </Chart>
       <ButtonContainer>

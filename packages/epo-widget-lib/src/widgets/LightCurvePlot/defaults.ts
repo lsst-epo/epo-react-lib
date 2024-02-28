@@ -1,4 +1,6 @@
 const defaults = {
+  xMin: -10,
+  xMax: 50,
   xStep: 10,
   yStep: 0.5,
   yMin: 14,

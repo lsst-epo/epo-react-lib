@@ -105,7 +105,7 @@ const Template: StoryFn<typeof YAxis> = (args) => {
 
   return (
     <Container>
-      <Chart minX={0} width={400} height={400}>
+      <Chart xMin={0} width={400} height={400}>
         <YAxis {...args} x={xScale(xDomain[0])} {...{ yDomain, yScale }} />
       </Chart>
       <ButtonContainer>

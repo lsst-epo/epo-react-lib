@@ -77,7 +77,7 @@ const Template: StoryFn<typeof Guidelines> = (args) => {
 
   return (
     <Container>
-      <Chart minX={0} {...{ width, height }}>
+      <Chart xMin={0} {...{ width, height }}>
         <XAxis
           ticks={args.guides}
           y={yScale(args.yDomain[0])}
