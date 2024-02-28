@@ -41,7 +41,7 @@ const Template: StoryFn<typeof Points> = (args) => {
 
   return (
     <Container>
-      <Chart minX={0} {...{ width, height }}>
+      <Chart xMin={0} {...{ width, height }}>
         <XAxis
           ticks={10}
           y={yScale(yDomain[0])}

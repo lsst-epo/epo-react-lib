@@ -1,12 +1,10 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
+import { Bounds } from "../types";
 
-export interface BaseChartProps {
-  width?: number;
-  height?: number;
-  minX?: number;
-  minY?: number;
+export interface BaseChartProps extends Partial<Bounds> {
   className?: string;
+  title?: string;
   verticalLabel?: string;
   verticalLabelId?: string;
   horizontalLabel?: string;
@@ -16,17 +14,19 @@ export interface BaseChartProps {
 const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
   width = 900,
   height = 300,
-  minX = 0,
-  minY = 0,
+  xMin = 0,
+  yMin = 0,
   verticalLabel,
   verticalLabelId,
   horizontalLabel,
   horizontalLabelId,
+  title,
   children,
   className,
 }) => {
   return (
     <Styled.ChartContainer>
+      {title && <Styled.Title>{title}</Styled.Title>}
       {verticalLabel && (
         <Styled.VerticalLabel
           id={verticalLabelId}
@@ -37,7 +37,7 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
       )}
       <Styled.SVG
         preserveAspectRatio="xMidYMid meet"
-        viewBox={`${minX} ${minY} ${width} ${height}`}
+        viewBox={`${xMin} ${yMin} ${width} ${height}`}
         className={className}
         style={{
           "--aspect-ratio": `${width} / ${height}`,

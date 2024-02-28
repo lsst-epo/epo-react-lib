@@ -1,18 +1,11 @@
 import { FunctionComponent } from "react";
 import { Alert } from "@/types/astro";
-import Plot from "../ScatterPlot";
+import Plot, { ScatterPlotProps } from "../ScatterPlot";
 import { formatMagnitudePoints } from "../helpers";
 
-export interface PlotWithoutCurveProps {
+export interface PlotWithoutCurveProps extends Omit<ScatterPlotProps, "data"> {
   alerts: Array<Alert>;
-  name: string;
-  activeAlertId?: number;
   peakMjd: number;
-  yMin: number;
-  yMax?: number;
-  width?: number;
-  height?: number;
-  className?: string;
 }
 
 const PlotWithoutCurve: FunctionComponent<PlotWithoutCurveProps> = ({

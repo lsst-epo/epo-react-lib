@@ -69,9 +69,9 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
           })
         }
         onChange={onMagnitudeChangeCallback}
-        renderThumb={(props) => {
+        renderThumb={({ key, ...props }) => {
           return (
-            <Styled.ThumbContainer {...props}>
+            <Styled.ThumbContainer key={key} {...props}>
               <Styled.ThumbBar />
               <Styled.ThumbHandle />
             </Styled.ThumbContainer>

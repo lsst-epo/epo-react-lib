@@ -30,7 +30,7 @@ const meta: Meta<typeof Base> = {
         },
       },
     },
-    minX: {
+    xMin: {
       control: "number",
       description: "The upper left corner X coordinate",
       table: {
@@ -42,7 +42,7 @@ const meta: Meta<typeof Base> = {
         },
       },
     },
-    minY: {
+    yMin: {
       control: "number",
       description: "The upper left corner Y coordinate",
       table: {
@@ -104,14 +104,14 @@ const ArrowButton = styled.button`
 `;
 
 const Template: StoryFn<typeof Base> = (args) => {
-  const [min, setMin] = useState([args.minX || 0, args.minY || 0]);
+  const [min, setMin] = useState([args.xMin || 0, args.yMin || 0]);
 
   return (
     <Container>
       <Base
         {...args}
-        minX={min[0]}
-        minY={min[1]}
+        xMin={min[0]}
+        yMin={min[1]}
         width={args.width || 5}
         height={args.height || 5}
       >
