@@ -5,11 +5,12 @@ export const ChartContainer = styled.div`
 
   display: grid;
   grid-template-columns: var(--label-gutter) 1fr;
-  grid-template-rows: 1fr var(--label-gutter);
+  grid-template-rows: auto 1fr var(--label-gutter);
   grid-template-areas:
+    "title title"
     "vertical-label chart"
     ". horizontal-label";
-  padding-inline-end: var(--label-gutter);
+  padding-inline-end: calc(var(--label-gutter) / 2);
 `;
 
 export const HorizontalLabel = styled.span`
@@ -32,4 +33,13 @@ export const SVG = styled.svg`
   height: 100%;
   max-width: 100%;
   aspect-ratio: var(--aspect-ratio);
+`;
+
+export const Title = styled.h3`
+  display: flex;
+  align-items: center;
+  grid-area: title;
+  height: var(--label-gutter);
+  padding-inline: calc(var(--label-gutter) / 2);
+  margin: 0;
 `;

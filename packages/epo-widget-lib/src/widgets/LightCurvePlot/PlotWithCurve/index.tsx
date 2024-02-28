@@ -14,9 +14,9 @@ import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
 import * as Styled from "./styles";
 
 interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
-  gaussianWidth: number;
-  yOffset: number;
-  userMagnitude: number;
+  gaussianWidth?: number;
+  yOffset?: number;
+  userMagnitude?: number;
   onUserMagnitudeChangeCallback: (value: number) => void;
   onGaussianChangeCallback: (value: number) => void;
   onYOffsetChangeCallback: (value: number) => void;
@@ -85,24 +85,29 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
           yMax,
         }}
       >
-        <LightCurve
-          {...{
-            gaussianWidth,
-            yOffset,
-            xDomain,
-            xScale,
-            yScale,
-            yDomain,
-          }}
-        />
-        <MagnitudeSlider
-          magnitude={userMagnitude}
-          onMagnitudeChangeCallback={(v) =>
-            onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
-          }
-          {...{ yMin, yMax, yScale, estimatedPeak }}
-        />
-        <Styled.DM15Display {...{ gaussianWidth }} />
+        {data.length > 0 ? (
+          <>
+            <LightCurve
+              {...{
+                gaussianWidth,
+                yOffset,
+                xDomain,
+                xScale,
+                yScale,
+                yDomain,
+              }}
+            />
+            <MagnitudeSlider
+              magnitude={userMagnitude}
+              onMagnitudeChangeCallback={(v) =>
+                onUserMagnitudeChangeCallback &&
+                onUserMagnitudeChangeCallback(v)
+              }
+              {...{ yMin, yMax, yScale, estimatedPeak }}
+            />
+            <Styled.DM15Display {...{ gaussianWidth }} />
+          </>
+        ) : null}
       </Plot>
       <Styled.Controls id={controlsFormId}>
         <div>

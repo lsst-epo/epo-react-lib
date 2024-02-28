@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import ForeignObject from "../ForeignObject";
+
+export const TooltipContainer = styled(ForeignObject)`
+  overflow: visible;
+`;
 
 export const Tooltip = styled.div`
   background-color: #dce0e3;

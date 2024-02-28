@@ -1,34 +1,39 @@
 import { FunctionComponent, PropsWithChildren, useState } from "react";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { max, min } from "d3-array";
 import useAxis from "@/charts/hooks/useAxis";
-import { Base, Tooltip, Viewport, XAxis, YAxis } from "@/charts/index";
-import { ChartMargin } from "@/charts/types";
-import { timestampFromMJD } from "@/lib/helpers";
+import {
+  ClippingContainer,
+  Tooltip,
+  Viewport,
+  XAxis,
+  YAxis,
+} from "@/charts/index";
+import { ChartMargin, Bounds } from "@/charts/types";
 import { formatMagnitudePoints } from "../helpers";
 import defaults from "../defaults";
 import Point from "../Point";
 import * as Styled from "./styles";
 
-export interface ScatterPlotProps {
+export interface ScatterPlotProps extends Partial<Bounds> {
   data: ReturnType<typeof formatMagnitudePoints>;
   name?: string;
   activeAlertId?: number;
-  yMin: number;
-  yMax?: number;
-  width?: number;
-  height?: number;
+  className?: string;
 }
 
 const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   data,
   activeAlertId,
+  xMin,
+  xMax,
   yMin = defaults.yMin,
   yMax = defaults.yMax,
   width = defaults.width,
   height = defaults.height,
   name,
   children,
+  className,
 }) => {
   const {
     t,
@@ -48,18 +53,16 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const margins: ChartMargin = {
     top: 10,
-    left: 35,
+    left: 40,
     right: 10,
-    bottom: 20,
+    bottom: 25,
   };
 
-  const xMin = min(data, ({ x }) => x) || Math.min(...data.map(({ x }) => x));
-  const xMax = max(data, ({ x }) => x) || Math.max(...data.map(({ x }) => x));
   const xRange = [0 + margins.left, width - margins.right];
 
   const [xDomain, xTicks, xScale] = useAxis({
-    min: xMin,
-    max: xMax,
+    min: xMin || min(data, ({ x }) => x) || defaults.xMin,
+    max: xMax || max(data, ({ x }) => x) || defaults.xMax,
     step: defaults.xStep,
     range: xRange,
   });
@@ -77,21 +80,15 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const yRoot = yScale(yDomain[1]);
 
-  const tooltipDateOptions: Intl.DateTimeFormatOptions = {
-    timeZone: "UTC",
-    dateStyle: "short",
-    timeStyle: "short",
-  };
-
   return (
-    <Styled.PlotContainer>
-      {name && <Styled.PlotTitle>{name}</Styled.PlotTitle>}
+    <Styled.PlotContainer className={className}>
       <Styled.Chart
         {...{ width, height }}
         horizontalLabel={xAxisLabel}
         horizontalLabelId={xAxisLabelId}
         verticalLabel={yAxisLabel}
         verticalLabelId={yAxisLabelId}
+        title={name}
       >
         <rect
           x={xScale(0)}
@@ -112,32 +109,41 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
           labelledById={yAxisLabelId}
           {...{ yDomain, yScale }}
         />
-        <g
-          role="list"
-          aria-label={t("light_curve.plot.plot_label") || undefined}
+        <ClippingContainer
+          x={xRoot}
+          y={yScale(yDomain[0])}
+          width={xRange[1] - xRange[0]}
+          height={yRange[1] - yRange[0]}
         >
-          {data.map(({ x, y, error, id }, i) => {
-            const days = Math.round(x);
-            const context = days > 0 ? "after" : days === 0 ? "peak" : "before";
-            return (
-              <Point
-                key={id}
-                x={xScale(x)}
-                y={yScale(y)}
-                error={yScale(error) - yScale(0)}
-                onMouseOver={() => setHovered(i)}
-                onMouseOut={() => setHovered(undefined)}
-                description={
-                  t("light_curve.plot.point_label", {
-                    magnitude: y,
-                    count: Math.abs(days),
-                    context,
-                  }) || undefined
-                }
-              />
-            );
-          })}
-        </g>
+          <g
+            role="list"
+            aria-label={t("light_curve.plot.plot_label") || undefined}
+          >
+            {data.map(({ x, y, error, id }, i) => {
+              const days = Math.round(x);
+              const context =
+                days > 0 ? "after" : days === 0 ? "peak" : "before";
+              return (
+                <Point
+                  key={id}
+                  x={xScale(x)}
+                  y={yScale(y)}
+                  error={yScale(error) - yScale(0)}
+                  onMouseOver={() => setHovered(i)}
+                  onMouseOut={() => setHovered(undefined)}
+                  description={
+                    t("light_curve.plot.point_label", {
+                      magnitude: y,
+                      count: Math.abs(days),
+                      context,
+                    }) || undefined
+                  }
+                />
+              );
+            })}
+          </g>
+        </ClippingContainer>
+
         <Viewport
           x={xRoot}
           y={yScale(yDomain[0])}
@@ -154,22 +160,12 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
           visible={!!activeItem}
           offset={6}
         >
-          <Trans i18nKey="light_curve.plot.tooltip">
-            Apparent Magnitude:{" "}
-            {{
-              magnitude: activeItem?.y.toLocaleString(language, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }),
-            }}
-            <br />
-            Date:
-            {{
-              date: new Date(
-                timestampFromMJD(activeItem?.date || 0)
-              ).toLocaleString(language, tooltipDateOptions),
-            }}
-          </Trans>
+          {t("light_curve.plot.tooltip", {
+            magnitude: activeItem?.y.toLocaleString(language, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }),
+          })}
         </Tooltip>
       </Styled.Chart>
     </Styled.PlotContainer>

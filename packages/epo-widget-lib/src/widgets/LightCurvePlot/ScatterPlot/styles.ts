@@ -5,16 +5,18 @@ import { Base } from "@/charts/index";
 
 export const PlotContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  aspect-ratio: 1;
+  color: var(--neutral95, #1f2121);
   container-type: inline-size;
   background-color: var(--white, #fff);
   border: 1px solid var(--turquoise55, #009fa1);
   gap: var(--light-curve-padding);
-  padding: var(--light-curve-padding, var(--PADDING_SMALL, 20px)) 0;
 `;
 
 export const Chart = styled(Base)`
   font-size: 2.25em;
+  overflow: visible;
+
   @container (
   min-width: ${token("BREAK_MOBILE")}
 ) {
@@ -32,9 +34,4 @@ export const Chart = styled(Base)`
 ) {
     font-size: 1em;
   }
-`;
-
-export const PlotTitle = styled.h3`
-  padding-inline: var(--light-curve-padding, var(--PADDING_SMALL, 20px));
-  margin: 0;
 `;
