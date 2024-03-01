@@ -3,6 +3,7 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { biggerData } from "@/widgets/SourceSelector/mocks";
 import minBy from "lodash/minBy";
 import PlotWithCurve from ".";
+import Container from "@rubin-epo/epo-react-lib/Container";
 
 const meta: Meta<typeof PlotWithCurve> = {
   argTypes: {
@@ -27,16 +28,22 @@ const Template: StoryFn<typeof PlotWithCurve> = (args) => {
   const [yOffset, setYOffset] = useState(args.yOffset);
 
   return (
-    <PlotWithCurve
-      {...args}
-      {...{ gaussianWidth, yOffset, userMagnitude }}
-      onGaussianChangeCallback={(value) => setGaussianWidth(value)}
-      onYOffsetChangeCallback={(value) => setYOffset(value)}
-      onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
-    />
+    <Container>
+      <PlotWithCurve
+        {...args}
+        {...{ gaussianWidth, yOffset, userMagnitude }}
+        onGaussianChangeCallback={(value) => setGaussianWidth(value)}
+        onYOffsetChangeCallback={(value) => setYOffset(value)}
+        onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
+      />
+    </Container>
   );
 };
 
 export const Primary: StoryObj<typeof PlotWithCurve> = Template.bind({});
 
 Primary.args = { alerts, peakMjd, name: "Supernova A" };
+
+export const ReadOnly: StoryObj<typeof PlotWithCurve> = Template.bind({});
+
+ReadOnly.args = { alerts, peakMjd, name: "Supernova A", isDisplayOnly: true };

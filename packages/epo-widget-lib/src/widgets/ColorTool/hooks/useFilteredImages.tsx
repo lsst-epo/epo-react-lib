@@ -68,8 +68,6 @@ const useFilteredImages = ({
     })
     .filter((img): img is HTMLCanvasElement => !!img);
 
-  console.log({ canvases });
-
   return [canvases, !!loading];
 };
 
