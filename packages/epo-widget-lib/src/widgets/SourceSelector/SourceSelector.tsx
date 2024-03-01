@@ -19,8 +19,8 @@ interface SourceSelectorProps {
   alerts: Alert[];
   selectedSource?: string[];
   activeAlertIndex?: number;
-  alertChangeCallback: (index: number) => void;
-  selectionCallback: (data: string[]) => void;
+  alertChangeCallback?: (index: number) => void;
+  selectionCallback?: (data: string[]) => void;
   blinkConfig?: BlinkConfig;
   isDisplayOnly?: boolean;
   className?: string;
@@ -98,7 +98,9 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         loadedCallback={() => setLoaded(true)}
         {...blinkConfig}
       >
-        {alerts.length > 0 && <Styled.ElapsedDisplay {...{ day, hour }} />}
+        {alerts.length > 0 && !isDisplayOnly && (
+          <Styled.ElapsedDisplay {...{ day, hour }} />
+        )}
         <PointSelector
           id={svgId}
           onSelectCallback={handleClick}

@@ -16,6 +16,16 @@ export const ThumbBar = styled.div`
   flex-grow: 1;
 `;
 
+export const ThumbHandle = styled.div`
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  background-color: var(--white, #fff);
+  border: var(--thumb-border-width) solid var(--black, #000);
+  border-radius: 50%;
+  pointer-events: auto;
+  width: var(--thumb-size);
+`;
+
 export const ThumbContainer = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -27,20 +37,15 @@ export const ThumbContainer = styled.div`
   &:focus {
     outline: none;
   }
-`;
 
-export const ThumbHandle = styled.div`
-  aspect-ratio: 1;
-  box-sizing: border-box;
-  cursor: grab;
-  background-color: var(--white, #fff);
-  border: var(--thumb-border-width) solid var(--black, #000);
-  border-radius: 50%;
-  pointer-events: auto;
-  width: var(--thumb-size);
+  &:not([aria-disabled="true"]) {
+    ${ThumbHandle} {
+      cursor: grab;
+    }
 
-  &:not([aria-disabled="true"]):active,
-  &:not([aria-disabled="true"]).active {
-    cursor: grabbing;
+    &:active,
+    &.active {
+      cursor: grabbing;
+    }
   }
 `;
