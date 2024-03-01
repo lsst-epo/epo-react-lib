@@ -9,6 +9,7 @@ interface MagnitudeSliderProps {
   magnitude: number;
   onMagnitudeChangeCallback: (value: number) => void;
   estimatedPeak: number;
+  disabled?: boolean;
 }
 
 const distanceContext = (
@@ -44,6 +45,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   yMax,
   onMagnitudeChangeCallback,
   estimatedPeak,
+  disabled,
 }) => {
   const {
     t,
@@ -59,6 +61,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
         min={yMin}
         max={yMax}
         step={0.1}
+        disabled={disabled}
         ariaValuetext={() =>
           t("light_curve.magnitude_slider.value", {
             ...distanceContext(estimatedPeak, magnitude, language),
