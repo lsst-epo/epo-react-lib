@@ -28,6 +28,7 @@ const useFilteredImages = ({
       setImages(
         images.map(({ url, width, height }) => {
           const img = new Image(width, height);
+          img.crossOrigin = "anonymous";
           img.onload = () => {
             setImagesLoaded((value) => value + 1);
           };
