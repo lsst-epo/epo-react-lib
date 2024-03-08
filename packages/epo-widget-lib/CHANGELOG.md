@@ -28,3 +28,7 @@
 - add `useAxis` hook
 - add `LightCurvePlot`
 - refactor `ColorTool` to perform callbacks correctly when images load from cache
+
+## 0.9.2
+
+- add `crossOrigin = "anonymous"` to `useFilteredImages`
