@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const DisplayContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+`;
+export const Display = styled.div`
   display: flex;
   align-items: center;
   gap: 1ch;
+  min-height: 1em;
 `;
 
 export const Line = styled.div`
