@@ -106,7 +106,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
                 onUserMagnitudeChangeCallback(v)
               }
               disabled={isDisplayOnly}
-              {...{ yMin, yMax, yScale, estimatedPeak }}
+              {...{ yMin, yMax, yScale, estimatedPeak, width, height }}
             />
             <Styled.DM15Display {...{ gaussianWidth }} />
           </>

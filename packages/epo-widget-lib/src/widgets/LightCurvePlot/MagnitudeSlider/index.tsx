@@ -10,6 +10,8 @@ interface MagnitudeSliderProps {
   onMagnitudeChangeCallback: (value: number) => void;
   estimatedPeak: number;
   disabled?: boolean;
+  width?: number;
+  height?: number;
 }
 
 const distanceContext = (
@@ -46,6 +48,8 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   onMagnitudeChangeCallback,
   estimatedPeak,
   disabled,
+  width,
+  height,
 }) => {
   const {
     t,
@@ -53,7 +57,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   } = useTranslation();
 
   return (
-    <ForeignObject>
+    <ForeignObject {...{ width, height }}>
       <Styled.Slider
         ariaLabel={t("light_curve.magnitude_slider.label") || undefined}
         orientation="vertical"
@@ -72,9 +76,13 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
           })
         }
         onChange={onMagnitudeChangeCallback}
-        renderThumb={({ key, ...props }) => {
+        renderThumb={({ key, style, ...props }) => {
           return (
-            <Styled.ThumbContainer key={key} {...props}>
+            <Styled.ThumbContainer
+              key={key}
+              {...props}
+              style={{ ...style, position: "fixed" }}
+            >
               <Styled.ThumbBar />
               <Styled.ThumbHandle />
             </Styled.ThumbContainer>

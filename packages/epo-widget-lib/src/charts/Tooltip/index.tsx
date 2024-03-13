@@ -1,5 +1,6 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
+import { isSafari } from "@/lib/utils";
 
 export interface TooltipProps {
   x?: number;
@@ -94,9 +95,17 @@ const Tooltip: FunctionComponent<PropsWithChildren<TooltipProps>> = ({
       {typeof x === "number" && typeof y === "number" && (
         <Styled.Tooltip
           className={className}
-          style={{
-            transform: `translate(calc(${xOffset} + ${x}px), calc(${yOffset} + ${y}px))`,
-          }}
+          style={
+            isSafari()
+              ? {
+                  left: `${x}px`,
+                  top: `${y}px`,
+                  transform: `translate(${xOffset},${yOffset})`,
+                }
+              : {
+                  transform: `translate(calc(${xOffset} + ${x}px), calc(${yOffset} + ${y}px))`,
+                }
+          }
           hidden={!visible}
         >
           {children}

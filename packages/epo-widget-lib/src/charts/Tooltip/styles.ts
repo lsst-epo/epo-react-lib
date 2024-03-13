@@ -12,7 +12,7 @@ export const Tooltip = styled.div`
   line-height: 1;
   padding: 2px 4px;
   text-align: center;
-  position: absolute;
+  position: fixed;
 `;
 
 export const Arrow = styled.div`

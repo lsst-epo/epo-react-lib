@@ -41,12 +41,12 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
         className={className}
         style={{
           "--aspect-ratio": `${width} / ${height}`,
-          "--min-width": `${width}px`,
         }}
         role="group"
       >
         {children}
       </Styled.SVG>
+
       {horizontalLabel && (
         <Styled.HorizontalLabel
           id={horizontalLabelId}

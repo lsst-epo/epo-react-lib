@@ -1,16 +1,18 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 
 const ForeignObject: FunctionComponent<
-  PropsWithChildren<{ className?: string }>
-> = ({ children, className }) => {
+  PropsWithChildren<{
+    className?: string;
+    width?: number | string;
+    height?: number | string;
+  }>
+> = ({ children, className, width = "100%", height = "100%" }) => {
   return (
     <foreignObject
-      className={className}
       x={0}
       y={0}
-      width="100%"
-      height="100%"
       pointerEvents="none"
+      {...{ className, width, height }}
     >
       {children}
     </foreignObject>
