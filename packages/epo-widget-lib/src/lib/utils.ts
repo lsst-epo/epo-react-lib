@@ -75,3 +75,9 @@ export const precision = (number: number, precision: number) => {
   const n = precision < 0 ? number : 0.01 / factor + number;
   return Math.round(n * factor) / factor;
 };
+
+export const isSafari = (): boolean => {
+  const chromeInAgent = navigator.userAgent.indexOf("Chrome") > -1;
+  const safariInAgent = navigator.userAgent.indexOf("Safari") > -1;
+  return safariInAgent && !chromeInAgent;
+};
