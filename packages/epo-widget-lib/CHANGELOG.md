@@ -32,3 +32,7 @@
 ## 0.9.2
 
 - add `crossOrigin = "anonymous"` to `useFilteredImages`
+
+## 0.9.3
+
+- Firefox and Safari compatibility fixes for `LightCurvePlot`

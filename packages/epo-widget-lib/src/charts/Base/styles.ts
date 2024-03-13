@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const ChartContainer = styled.div`
-  --label-gutter: 2em;
+  --label-height: 3em;
+  --label-gutter: calc(var(--label-height) / 2);
 
   display: grid;
-  grid-template-columns: var(--label-gutter) 1fr;
-  grid-template-rows: auto 1fr var(--label-gutter);
+  grid-template-columns: var(--label-height) 1fr var(--label-height);
+  grid-template-rows: var(--label-height) 1fr var(--label-height);
   grid-template-areas:
-    "title title"
-    "vertical-label chart"
-    ". horizontal-label";
-  padding-inline-end: calc(var(--label-gutter) / 2);
+    "title title ."
+    "vertical-label chart ."
+    ". horizontal-label .";
+  width: 100%;
 `;
 
 export const HorizontalLabel = styled.span`
@@ -30,7 +31,6 @@ export const VerticalLabel = styled.span`
 
 export const SVG = styled.svg`
   grid-area: chart;
-  height: 100%;
   max-width: 100%;
   aspect-ratio: var(--aspect-ratio);
 `;
@@ -39,7 +39,6 @@ export const Title = styled.h3`
   display: flex;
   align-items: center;
   grid-area: title;
-  height: var(--label-gutter);
-  padding-inline: calc(var(--label-gutter) / 2);
+  padding-inline: var(--label-gutter);
   margin: 0;
 `;
