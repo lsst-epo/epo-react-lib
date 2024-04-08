@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: grid;
   gap: var(--light-curve-padding);
   grid-template-rows: 1fr min-content;
-  grid-template-columns: 1fr;
+  position: relative;
 `;
 
 export const PlotContainer = styled.div`
@@ -18,6 +18,7 @@ export const PlotContainer = styled.div`
   border: 1px solid var(--turquoise55, #009fa1);
   gap: var(--light-curve-padding);
   padding: var(--light-curve-padding);
+  grid-template-columns: 1fr;
 `;
 
 export const PlotTitle = styled.h3`

@@ -33,15 +33,14 @@ export const ThumbContainer = styled.div`
   height: 0px;
   width: 100%;
   overflow: visible;
+  pointer-events: auto;
 
   &:focus {
     outline: none;
   }
 
   &:not([aria-disabled="true"]) {
-    ${ThumbHandle} {
-      cursor: grab;
-    }
+    cursor: grab;
 
     &:active,
     &.active {

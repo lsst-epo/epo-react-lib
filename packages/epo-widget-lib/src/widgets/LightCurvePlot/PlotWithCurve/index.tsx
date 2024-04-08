@@ -78,6 +78,16 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   return (
     <Styled.Container className={className}>
       <Plot
+        slider={
+          <MagnitudeSlider
+            magnitude={userMagnitude}
+            onMagnitudeChangeCallback={(v) =>
+              onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
+            }
+            disabled={isDisplayOnly}
+            {...{ yMin, yMax, yScale, estimatedPeak, width, height }}
+          />
+        }
         {...{
           ...props,
           data,
@@ -99,15 +109,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
                 yDomain,
               }}
             />
-            <MagnitudeSlider
-              magnitude={userMagnitude}
-              onMagnitudeChangeCallback={(v) =>
-                onUserMagnitudeChangeCallback &&
-                onUserMagnitudeChangeCallback(v)
-              }
-              disabled={isDisplayOnly}
-              {...{ yMin, yMax, yScale, estimatedPeak, width, height }}
-            />
+
             <Styled.DM15Display {...{ gaussianWidth }} />
           </>
         ) : null}

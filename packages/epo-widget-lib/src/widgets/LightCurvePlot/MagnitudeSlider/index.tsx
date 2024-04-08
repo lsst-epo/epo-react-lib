@@ -57,39 +57,33 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   } = useTranslation();
 
   return (
-    <ForeignObject {...{ width, height }}>
-      <Styled.Slider
-        ariaLabel={t("light_curve.magnitude_slider.label") || undefined}
-        orientation="vertical"
-        value={magnitude}
-        min={yMin}
-        max={yMax}
-        step={0.1}
-        disabled={disabled}
-        ariaValuetext={() =>
-          t("light_curve.magnitude_slider.value", {
-            ...distanceContext(estimatedPeak, magnitude, language),
-            magnitude: magnitude.toLocaleString(language, {
-              minimumFractionDigits: 1,
-              maximumFractionDigits: 1,
-            }),
-          })
-        }
-        onChange={onMagnitudeChangeCallback}
-        renderThumb={({ key, style, ...props }) => {
-          return (
-            <Styled.ThumbContainer
-              key={key}
-              {...props}
-              style={{ ...style, position: "fixed" }}
-            >
-              <Styled.ThumbBar />
-              <Styled.ThumbHandle />
-            </Styled.ThumbContainer>
-          );
-        }}
-      />
-    </ForeignObject>
+    <Styled.Slider
+      ariaLabel={t("light_curve.magnitude_slider.label") || undefined}
+      orientation="vertical"
+      value={magnitude}
+      min={yMin}
+      max={yMax}
+      step={0.1}
+      disabled={disabled}
+      ariaValuetext={() =>
+        t("light_curve.magnitude_slider.value", {
+          ...distanceContext(estimatedPeak, magnitude, language),
+          magnitude: magnitude.toLocaleString(language, {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+          }),
+        })
+      }
+      onChange={onMagnitudeChangeCallback}
+      renderThumb={({ key, style, ...props }) => {
+        return (
+          <Styled.ThumbContainer key={key} {...props} style={style}>
+            <Styled.ThumbBar />
+            <Styled.ThumbHandle />
+          </Styled.ThumbContainer>
+        );
+      }}
+    />
   );
 };
 
