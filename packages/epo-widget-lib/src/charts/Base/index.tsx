@@ -26,14 +26,20 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
 }) => {
   return (
     <Styled.ChartContainer>
-      {title && <Styled.Title>{title}</Styled.Title>}
+      {title && (
+        <Styled.TitleWrapper>
+          <Styled.Title>{title}</Styled.Title>
+        </Styled.TitleWrapper>
+      )}
       {verticalLabel && (
-        <Styled.VerticalLabel
-          id={verticalLabelId}
-          aria-hidden={!!verticalLabelId}
-        >
-          {verticalLabel}
-        </Styled.VerticalLabel>
+        <>
+          <Styled.VerticalLabelWrapper>
+            <Styled.Label id={verticalLabelId} aria-hidden={!!verticalLabelId}>
+              {verticalLabel}
+            </Styled.Label>
+          </Styled.VerticalLabelWrapper>
+          <Styled.Filler />
+        </>
       )}
       <Styled.SVG
         preserveAspectRatio="xMidYMid meet"
@@ -48,12 +54,14 @@ const BaseChart: FunctionComponent<PropsWithChildren<BaseChartProps>> = ({
       </Styled.SVG>
 
       {horizontalLabel && (
-        <Styled.HorizontalLabel
-          id={horizontalLabelId}
-          aria-hidden={!!horizontalLabelId}
-        >
-          {horizontalLabel}
-        </Styled.HorizontalLabel>
+        <Styled.HorizontalLabelWrapper>
+          <Styled.Label
+            id={horizontalLabelId}
+            aria-hidden={!!horizontalLabelId}
+          >
+            {horizontalLabel}
+          </Styled.Label>
+        </Styled.HorizontalLabelWrapper>
       )}
     </Styled.ChartContainer>
   );

@@ -4,12 +4,9 @@ export interface Point {
   x: number;
   y: number;
 }
-export interface ChartMargin {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-}
+
+export type ChartEdge = "top" | "right" | "bottom" | "left";
+export type ChartMargin = Record<ChartEdge, number>;
 
 export interface XBounds {
   xMin: number;

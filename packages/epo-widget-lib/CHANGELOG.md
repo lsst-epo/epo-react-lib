@@ -36,3 +36,8 @@
 ## 0.9.3
 
 - Firefox and Safari compatibility fixes for `LightCurvePlot`
+
+## 0.9.4
+
+- remove label space if not filled by a label
+- move `MagnitudeSlider` outside of SVG for Safari compatibility
