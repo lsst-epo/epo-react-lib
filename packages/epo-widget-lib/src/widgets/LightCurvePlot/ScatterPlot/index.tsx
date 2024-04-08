@@ -1,4 +1,9 @@
-import { FunctionComponent, PropsWithChildren, useState } from "react";
+import {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { max, min } from "d3-array";
 import useAxis from "@/charts/hooks/useAxis";
@@ -9,7 +14,7 @@ import {
   XAxis,
   YAxis,
 } from "@/charts/index";
-import { ChartMargin, Bounds } from "@/charts/types";
+import { ChartMargin, Bounds, ChartEdge } from "@/charts/types";
 import { formatMagnitudePoints } from "../helpers";
 import defaults from "../defaults";
 import Point from "../Point";
@@ -20,7 +25,24 @@ export interface ScatterPlotProps extends Partial<Bounds> {
   name?: string;
   activeAlertId?: number;
   className?: string;
+  slider?: ReactNode;
 }
+
+const addMargins = (margins: ChartMargin, width: number, height: number) => {
+  const styles: Record<string, string> = {};
+  const keys = Object.keys(margins) as Array<ChartEdge>;
+  keys.forEach((key: ChartEdge) => {
+    const size = key === "top" || key === "bottom" ? height : width;
+
+    const keyName = `${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+
+    styles[`padding${keyName}`] = `${(margins[key] / size) * 100}%`;
+  });
+
+  console.log({ styles });
+
+  return styles;
+};
 
 const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   data,
@@ -33,6 +55,7 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   height = defaults.height,
   name,
   children,
+  slider,
   className,
 }) => {
   const {
@@ -53,9 +76,9 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const margins: ChartMargin = {
     top: 10,
-    left: 40,
     right: 10,
     bottom: 25,
+    left: 40,
   };
 
   const xRange = [0 + margins.left, width - margins.right];
@@ -168,6 +191,15 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
           })}
         </Tooltip>
       </Styled.Chart>
+      {slider && (
+        <Styled.SliderOuterWrapper>
+          <Styled.SliderInnerWrapper
+            style={{ ...addMargins(margins, width, height) }}
+          >
+            {slider}
+          </Styled.SliderInnerWrapper>
+        </Styled.SliderOuterWrapper>
+      )}
     </Styled.PlotContainer>
   );
 };
