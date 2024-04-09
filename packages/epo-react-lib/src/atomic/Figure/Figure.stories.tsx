@@ -3,7 +3,6 @@ import { children } from "@/storybook/utilities/argTypes";
 
 import Figure from ".";
 import Image from "../Image/Image";
-import { getGradientImage } from "@/storybook/utilities/helpers";
 
 const meta: Meta<typeof Figure> = {
   component: Figure,

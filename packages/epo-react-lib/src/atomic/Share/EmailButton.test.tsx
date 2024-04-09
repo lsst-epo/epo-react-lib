@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import EmailButton from "./EmailButton";
 
 const url = "https://rubinobservatory.org";

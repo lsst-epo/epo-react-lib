@@ -56,8 +56,8 @@ describe("ComplexTable", () => {
 
     const table = screen.getByRole("table");
 
-    expect(table).toBeInTheDocument;
-    expect(table).toHaveAccessibleName;
+    expect(table).toBeInTheDocument();
+    expect(table).toHaveAccessibleName();
   });
   it("should render rows", () => {
     render(<ComplexTable {...props} />);

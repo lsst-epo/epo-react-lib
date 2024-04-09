@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "@/atomic/Button";
 import { aButton, protoButton } from "@/styles/mixins/appearance";
 
 export const StyledMenuItemWrapper = styled.div`

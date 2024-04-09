@@ -21,8 +21,10 @@ export default meta;
 export const Primary: ComponentStoryObj<typeof FormButtons> = {
   args: {
     children: [
-      <Button styleAs="tertiary">Reset</Button>,
-      <Button>Submit</Button>,
+      <Button key="first" styleAs="tertiary">
+        Reset
+      </Button>,
+      <Button key="second">Submit</Button>,
     ],
   },
 };

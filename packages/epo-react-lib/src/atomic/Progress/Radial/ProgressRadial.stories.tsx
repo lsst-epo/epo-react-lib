@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 
 import ProgressRadial from ".";
-import Container from "@/layout/Container";
 
 const meta: ComponentMeta<typeof ProgressRadial> = {
   component: ProgressRadial,

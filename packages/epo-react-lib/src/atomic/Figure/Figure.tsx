@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 import ConditionalWrapper from "@/utils/ConditionalWrapper";
 
