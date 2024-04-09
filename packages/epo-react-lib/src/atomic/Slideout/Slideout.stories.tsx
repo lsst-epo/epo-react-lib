@@ -79,6 +79,15 @@ const Panel = styled.div`
 const Template: StoryFn<typeof Slideout> = (args) => {
   const [isOpen, setIsOpen] = useState(args.isOpen || false);
 
+  const text = ` Cosmic ipsum helium perturbation Hubble's law gravity visual magnitude
+  limb equinox Bailey's beads escape velocity eccentricity meteoroid
+  superior planets black hole revolve Oort cloud Sputnik singularity
+  planetoid translunar ice giant Lagrange points twinkling ecliptic
+  apastron circumpolar planet perihelion nebula gibbous moon local arm
+  event horizon space station penumbra orbital eccentricity zodiac
+  eclipse Kepler's laws north star sun wormhole minor planet spectrum
+  deep space dark matter celestial coordinates cosmology asterism moon`;
+
   return (
     <>
       <Button onClick={() => setIsOpen(true)} isBlock>
@@ -99,14 +108,7 @@ const Template: StoryFn<typeof Slideout> = (args) => {
               : "height"]: "100%",
           }}
         >
-          Cosmic ipsum helium perturbation Hubble's law gravity visual magnitude
-          limb equinox Bailey's beads escape velocity eccentricity meteoroid
-          superior planets black hole revolve Oort cloud Sputnik singularity
-          planetoid translunar ice giant Lagrange points twinkling ecliptic
-          apastron circumpolar planet perihelion nebula gibbous moon local arm
-          event horizon space station penumbra orbital eccentricity zodiac
-          eclipse Kepler's laws north star sun wormhole minor planet spectrum
-          deep space dark matter celestial coordinates cosmology asterism moon
+          {text}
           <Button onClick={() => setIsOpen(false)} isBlock>
             Close
           </Button>

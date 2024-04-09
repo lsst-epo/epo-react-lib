@@ -1,0 +1,9 @@
+node_modules
+dist
+dist/*
+storybook-static
+tempPublish
+__mocks__
+__mocks__/*
+
+.out/*

@@ -43,7 +43,7 @@ describe("SimpleTable", () => {
 
     const table = screen.getByRole("list");
 
-    expect(table).toBeInTheDocument;
+    expect(table).toBeInTheDocument();
   });
   it("should render a list item for each row", () => {
     render(<SimpleTable {...props} />);

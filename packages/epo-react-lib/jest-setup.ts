@@ -6,9 +6,11 @@ beforeAll(() => {
     observe() {
       // do nothing
     }
+
     unobserve() {
       // do nothing
     }
+
     disconnect() {
       // do nothing
     }

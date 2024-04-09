@@ -7,7 +7,7 @@ const props = { url };
 const originalClipboard = { ...global.navigator.clipboard };
 
 beforeEach(() => {
-  let clipboardData = ""; //initalizing clipboard data so it can be used in testing
+  let clipboardData = ""; // initalizing clipboard data so it can be used in testing
   const mockClipboard = {
     writeText: jest.fn((data) => {
       clipboardData = data;

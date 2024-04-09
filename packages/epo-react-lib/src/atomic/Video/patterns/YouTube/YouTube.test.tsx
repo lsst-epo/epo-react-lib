@@ -8,7 +8,7 @@ jest.mock("react-player/youtube", () => ({
   __esModule: true,
   default: ({ url }: { url: string }) => (
     <div data-testid="video-player">
-      <iframe src={url} />
+      <iframe title="test-frame" src={url} />
     </div>
   ),
 }));

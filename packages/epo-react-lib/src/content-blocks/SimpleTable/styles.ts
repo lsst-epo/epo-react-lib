@@ -1,7 +1,6 @@
 import { tokens } from "@/styles/abstracts";
-import { respond } from "@/styles/utils";
+import { respond, cContentRte } from "@/styles/utils";
 import styled, { css } from "styled-components";
-import { cContentRte } from "@/styles/utils";
 
 const colors = {
   none: tokens.neutral10,

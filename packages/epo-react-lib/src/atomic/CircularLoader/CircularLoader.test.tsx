@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import CircularLoader from ".";
 
 beforeEach(() => {
@@ -11,10 +11,6 @@ beforeEach(() => {
     }));
 });
 
-const min = 10;
-const max = 120;
-const value = 50;
-
 const props = {
   description: "Loading",
 };
@@ -25,7 +21,7 @@ describe("CircularLoader", () => {
 
     const loader = screen.getByRole("status");
 
-    expect(loader).toBeDefined;
+    expect(loader).toBeDefined();
     expect(loader).toHaveAttribute("aria-live", "assertive");
     expect(loader).toHaveAttribute("aria-atomic", "true");
     expect(loader).toHaveAccessibleDescription(props.description);

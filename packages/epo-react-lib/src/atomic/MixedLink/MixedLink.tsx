@@ -5,19 +5,6 @@ import ExternalLink from "@/atomic/ExternalLink";
 import { normalizePathData, isAbsoluteUrl } from "@/lib/utils";
 import { isInternalUrl } from "@/helpers/index";
 
-const getPathnameInput = ({
-  element,
-  url,
-}: {
-  element?: MixedLinkElement;
-  url: string;
-}): string => {
-  if (element?.uri) return element.uri;
-  if (!url) return "/";
-  if (isAbsoluteUrl(url)) return new URL(url).pathname;
-  return url;
-};
-
 interface MixedLinkElement {
   uri: string;
 }
@@ -40,6 +27,19 @@ interface MixedLinkProps extends HTMLProps<HTMLAnchorElement> {
   };
   prefetch?: boolean;
 }
+
+const getPathnameInput = ({
+  element,
+  url,
+}: {
+  element?: MixedLinkElement;
+  url: string;
+}): string => {
+  if (element?.uri) return element.uri;
+  if (!url) return "/";
+  if (isAbsoluteUrl(url)) return new URL(url).pathname;
+  return url;
+};
 
 const MixedLink: FunctionComponent<PropsWithChildren<MixedLinkProps>> = ({
   children,
@@ -76,7 +76,7 @@ const MixedLink: FunctionComponent<PropsWithChildren<MixedLinkProps>> = ({
         prefetch={prefetch}
         {...(restProps as any)}
       >
-        {children ? children : customText ?? text}
+        {children || (customText ?? text)}
       </Link>
     );
   }

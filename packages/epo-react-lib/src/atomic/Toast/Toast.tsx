@@ -11,7 +11,7 @@ const Toast: FunctionComponent<PropsWithChildren<ToastProps>> = ({
   className,
   forIds,
 }) => (
-  <output role="status" htmlFor={forIds?.join(" ")} {...{ className }}>
+  <output htmlFor={forIds?.join(" ")} {...{ className }}>
     {children}
   </output>
 );
