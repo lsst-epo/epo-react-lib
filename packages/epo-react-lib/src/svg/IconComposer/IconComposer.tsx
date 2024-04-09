@@ -27,7 +27,7 @@ const IconComposer: FunctionComponent<IconComposerProps> = ({
   const { [key]: IconComponent } = { ...Icons, ...customIcons };
 
   if (!IconComponent) {
-    console.debug(
+    console.error(
       `${icon} icon could not be found. Check spelling and any custom icons added.`
     );
     return null;

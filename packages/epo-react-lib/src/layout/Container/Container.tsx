@@ -32,7 +32,7 @@ const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
       {...(elAttributes as any)}
     >
       <Styled.Inner
-        className={!!className ? `${className} ${className}__inner` : undefined}
+        className={className ? `${className} ${className}__inner` : undefined}
         $width={width}
         $nested={nested}
       >

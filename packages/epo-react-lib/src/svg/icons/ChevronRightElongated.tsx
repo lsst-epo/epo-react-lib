@@ -1,13 +1,13 @@
+import { FunctionComponent } from "react";
+import { SVGProps } from "@/types/svg";
+import defaultProps from "./defaultProps";
+import { stripUnit } from "@castiron/style-mixins";
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="6.878"
   height="21.877"
   viewBox="0 0 6.878 21.877"
 ></svg>;
-import { FunctionComponent } from "react";
-import { SVGProps } from "@/types/svg";
-import defaultProps from "./defaultProps";
-import { stripUnit } from "@castiron/style-mixins";
 
 const ChevronRightElongated: FunctionComponent<SVGProps> = ({
   className,

@@ -129,11 +129,8 @@ const meta: Meta<typeof HorizontalSlider> = {
 
 export default meta;
 
-const Template: StoryFn<typeof HorizontalSlider> = ({
-  value: argValue,
-  ...args
-}) => {
-  const [value, setValue] = useState(argValue);
+const Template: StoryFn<typeof HorizontalSlider> = (args) => {
+  const [value, setValue] = useState(args.value);
 
   return (
     <HorizontalSlider

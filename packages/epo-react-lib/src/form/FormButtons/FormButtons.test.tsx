@@ -3,8 +3,10 @@ import FormButton from ".";
 import Button from "@/atomic/Button";
 
 const children = [
-  <Button styleAs="tertiary">Reset</Button>,
-  <Button>Submit</Button>,
+  <Button key="first" styleAs="tertiary">
+    Reset
+  </Button>,
+  <Button key="second">Submit</Button>,
 ];
 
 describe("FormButtons", () => {
