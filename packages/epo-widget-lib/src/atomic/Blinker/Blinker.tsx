@@ -2,6 +2,7 @@ import { FunctionComponent, PropsWithChildren, useState } from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
+import ImageStack from "../ImageStack";
 import * as Styled from "./styles";
 
 export interface BlinkerProps {
@@ -69,7 +70,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
 
   return (
     <Styled.BlinkerContainer className={className}>
-      <Styled.BlinkerImages
+      <ImageStack
         loadCallback={() => {
           setLoaded(true);
           loadedCallback && loadedCallback();
