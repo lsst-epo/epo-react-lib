@@ -39,8 +39,6 @@ const addMargins = (margins: ChartMargin, width: number, height: number) => {
     styles[`padding${keyName}`] = `${(margins[key] / size) * 100}%`;
   });
 
-  console.log({ styles });
-
   return styles;
 };
 
@@ -92,16 +90,16 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const xRoot = xScale(xDomain[0]);
 
-  const yRange = [0 + margins.top, height - margins.bottom];
+  const yRange = [height - margins.bottom, 0 + margins.top];
 
   const [yDomain, yTicks, yScale] = useAxis({
     min: yMin,
     max: yMax,
-    step: defaults.yStep,
+    step: yMin < yMax ? Math.abs(defaults.yStep) : defaults.yStep,
     range: yRange,
   });
 
-  const yRoot = yScale(yDomain[1]);
+  const yRoot = yScale(yDomain[0]);
 
   return (
     <Styled.PlotContainer className={className}>
@@ -113,31 +111,19 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
         verticalLabelId={yAxisLabelId}
         title={name}
       >
-        <rect
-          x={xScale(0)}
-          y={yScale(yDomain[0])}
-          width={xScale(15) - xScale(0)}
-          height={yRoot - yScale(yDomain[0])}
-          fill="#F5F5F5"
-        />
-        <XAxis
-          ticks={xTicks}
-          y={yRoot}
-          labelledById={xAxisLabelId}
-          {...{ xDomain, xScale }}
-        />
-        <YAxis
-          ticks={yTicks}
-          x={xRoot}
-          labelledById={yAxisLabelId}
-          {...{ yDomain, yScale }}
-        />
         <ClippingContainer
           x={xRoot}
-          y={yScale(yDomain[0])}
+          y={yScale(yDomain[1])}
           width={xRange[1] - xRange[0]}
-          height={yRange[1] - yRange[0]}
+          height={yRange[0] - yRange[1]}
         >
+          <rect
+            x={xScale(0)}
+            y={yScale(yDomain[1])}
+            width={xScale(15) - xScale(0)}
+            height={yRoot - yScale(yDomain[1])}
+            fill="#F5F5F5"
+          />
           <g
             role="list"
             aria-label={t("light_curve.plot.plot_label") || undefined}
@@ -166,7 +152,18 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
             })}
           </g>
         </ClippingContainer>
-
+        <XAxis
+          ticks={xTicks}
+          y={yRoot}
+          labelledById={xAxisLabelId}
+          {...{ xDomain, xScale }}
+        />
+        <YAxis
+          ticks={yTicks}
+          x={xRoot}
+          labelledById={yAxisLabelId}
+          {...{ yDomain, yScale }}
+        />
         <Viewport
           x={xRoot}
           y={yScale(yDomain[0])}

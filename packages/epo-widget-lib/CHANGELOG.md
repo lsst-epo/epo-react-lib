@@ -45,3 +45,7 @@
 ## 0.9.5
 
 - move `Blinker` controls to overlay
+
+## 0.9.7
+
+- set `yMin` to always equal bottom of scatterplot, set `yMax` to always equal top.
