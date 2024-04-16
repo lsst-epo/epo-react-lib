@@ -1,18 +1,6 @@
-import styled, { css } from "styled-components";
-import * as StyledSVG from "@/styles/svg";
+import styled from "styled-components";
 import Blinker from "@/atomic/Blinker";
 import ElapsedTime from "@/atomic/ElapsedTime";
-
-export const SourceSelectorContainer = styled(StyledSVG.Container)<{
-  width: number;
-  height: number;
-}>`
-  ${({ width, height }) => css`
-    aspect-ratio: ${width} / ${height};
-    max-width: ${width}px;
-    max-height: ${height}px;
-  `}
-`;
 
 export const SVG = styled.svg`
   position: absolute;

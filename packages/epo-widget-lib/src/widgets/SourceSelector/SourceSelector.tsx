@@ -2,6 +2,7 @@ import { FunctionComponent, ReactNode, useState } from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
+import { Container } from "@/styles/svg";
 import * as Styled from "./styles";
 import Message from "./Message";
 import { PointSelector } from ".";
@@ -81,7 +82,10 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     : alerts.map(({ image }) => image);
 
   return (
-    <Styled.SourceSelectorContainer {...{ width, height, className }}>
+    <Container
+      style={{ aspectRatio: `${width} / ${height}` }}
+      {...{ className }}
+    >
       {!isDisplayOnly && (
         <Message
           onMessageChangeCallback={handleMessageChange}
@@ -107,7 +111,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
           {...{ width, height, sources, selectedSource }}
         />
       </Styled.BackgroundBlinker>
-    </Styled.SourceSelectorContainer>
+    </Container>
   );
 };
 
