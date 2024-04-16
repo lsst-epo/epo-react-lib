@@ -41,3 +41,7 @@
 
 - remove label space if not filled by a label
 - move `MagnitudeSlider` outside of SVG for Safari compatibility
+
+## 0.9.5
+
+- move `Blinker` controls to overlay
