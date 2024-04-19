@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useRef } from "react";
+import { FunctionComponent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { getDataFiltersByName } from "./lib/utils";
 import * as Styled from "./styles";

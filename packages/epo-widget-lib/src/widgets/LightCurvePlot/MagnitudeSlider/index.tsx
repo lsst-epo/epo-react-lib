@@ -9,8 +9,6 @@ interface MagnitudeSliderProps {
   onMagnitudeChangeCallback: (value: number) => void;
   estimatedPeak: number;
   disabled?: boolean;
-  width?: number;
-  height?: number;
 }
 
 const distanceContext = (

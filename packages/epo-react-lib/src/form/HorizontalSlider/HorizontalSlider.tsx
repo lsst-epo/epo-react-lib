@@ -1,19 +1,25 @@
+/* eslint-disable react/prop-types */
 import { isColorTransparent, isStyleSupported } from "@/lib/utils";
 import { useState, FunctionComponent } from "react";
 import { ReactSliderProps } from "react-slider";
 import * as Styled from "./styles";
 
-interface HorizontalSliderProps
-  extends Pick<
-    ReactSliderProps<number | readonly number[]>,
-    | "value"
-    | "min"
-    | "max"
-    | "step"
-    | "className"
-    | "ariaValuetext"
-    | "defaultValue"
-  > {
+type BaseSliderProps = Pick<
+  ReactSliderProps<number | readonly number[]>,
+  | "value"
+  | "min"
+  | "max"
+  | "step"
+  | "className"
+  | "ariaValuetext"
+  | "defaultValue"
+>;
+
+type RenderTrack = ReactSliderProps<number | readonly number[]>["renderTrack"];
+
+type RenderThumb = ReactSliderProps<number | readonly number[]>["renderThumb"];
+
+export interface HorizontalSliderProps extends BaseSliderProps {
   onChangeCallback: ReactSliderProps<number | readonly number[]>["onChange"];
   label: string;
   minLabel?: string;
@@ -51,10 +57,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
   const trackColor = getValidColor(color);
 
-  const Track: ReactSliderProps<number | readonly number[]>["renderTrack"] = (
-    props,
-    state
-  ) => {
+  const Track: RenderTrack = (props, state) => {
     const { index } = state;
     const { key, style, ...other } = props;
     const hasColor =
@@ -73,10 +76,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
     );
   };
 
-  const Thumb: ReactSliderProps<number | readonly number[]>["renderThumb"] = (
-    props,
-    state
-  ) => {
+  const Thumb: RenderThumb = (props, state) => {
     const { key, style, ...other } = props;
     const { valueNow } = state;
 

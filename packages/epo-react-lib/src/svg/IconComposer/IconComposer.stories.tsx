@@ -54,7 +54,8 @@ const IconGrid = styled.div`
   width: 100%;
 `;
 
-const Template: StoryFn<typeof IconComposer> = ({ size = 36, ...args }) => {
+const Template: StoryFn<typeof IconComposer> = (args) => {
+  const { size = 36 } = args;
   return (
     <IconGrid style={{ "--grid-size": Number(size) ? size : `${size}px` }}>
       {Object.keys(Icons).map((key) => (

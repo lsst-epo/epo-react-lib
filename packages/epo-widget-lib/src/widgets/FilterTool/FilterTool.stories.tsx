@@ -3,7 +3,6 @@ import {
   ComponentStory,
   ComponentStoryObj,
 } from "@storybook/react";
-import { Container } from "@rubin-epo/epo-react-lib";
 
 import FilterTool from ".";
 import { useState } from "react";
@@ -51,11 +50,8 @@ const meta: ComponentMeta<typeof FilterTool> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof FilterTool> = ({
-  selectedColor: argColor,
-  ...args
-}) => {
-  const [color, setColor] = useState(argColor);
+const Template: ComponentStory<typeof FilterTool> = (args) => {
+  const [color, setColor] = useState(args.selectedColor);
 
   return (
     <FilterTool

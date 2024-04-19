@@ -1,17 +1,18 @@
 {
   "private": true,
-  "version": "0.5.0",
+  "version": "0.5.2",
   "license": "MIT",
   "author": "Rubin EPO",
   "repository": {
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/epo-react-lib",
+    "packages/epo-widget-lib",
+    "packages/eslint-config-react",
+    "packages/prettier-config"
+  ],
   "scripts": {
     "postinstall": "yarn workspace @rubin-epo/epo-react-lib run build",
     "build-storybook": "build-storybook",
