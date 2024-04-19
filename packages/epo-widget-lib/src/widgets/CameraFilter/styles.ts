@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const FilterContainer = styled.div`

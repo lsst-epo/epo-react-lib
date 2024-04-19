@@ -59,14 +59,14 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
       onGaussianChangeCallback(defaults.gaussianWidth);
   };
 
-  const [xDomain, xTicks, xScale] = useAxis({
+  const [xDomain, , xScale] = useAxis({
     min: xMin,
     max: xMax,
     step: defaults.xStep,
     range: [0, width],
   });
 
-  const [yDomain, yTicks, yScale] = useAxis({
+  const [yDomain, , yScale] = useAxis({
     min: yMin,
     max: yMax,
     step: defaults.yStep,

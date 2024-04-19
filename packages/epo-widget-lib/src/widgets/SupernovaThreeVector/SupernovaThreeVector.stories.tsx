@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Categories from "@/storybook/utilities/categories";
 import SupernovaThreeVector from ".";
 
 const meta: Meta<typeof SupernovaThreeVector> = {

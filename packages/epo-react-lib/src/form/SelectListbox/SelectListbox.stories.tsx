@@ -134,11 +134,8 @@ const meta: Meta<typeof SelectListbox> = {
 
 export default meta;
 
-const Template: StoryFn<typeof SelectListbox> = ({
-  value: argValue,
-  ...args
-}) => {
-  const [value, setValue] = useState(argValue);
+const Template: StoryFn<typeof SelectListbox> = (args) => {
+  const [value, setValue] = useState(args.value);
 
   return (
     <SelectListbox

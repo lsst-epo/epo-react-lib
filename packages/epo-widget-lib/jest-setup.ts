@@ -6,9 +6,11 @@ beforeAll(() => {
     observe() {
       // do nothing
     }
+
     unobserve() {
       // do nothing
     }
+
     disconnect() {
       // do nothing
     }
@@ -16,7 +18,7 @@ beforeAll(() => {
 
   window.ResizeObserver = ResizeObserver;
   global.CSS = {
-    supports: (k, v?) => false,
+    supports: () => false,
     escape: (k) => k,
   };
 });

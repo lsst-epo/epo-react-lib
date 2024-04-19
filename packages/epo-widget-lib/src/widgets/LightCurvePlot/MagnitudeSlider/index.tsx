@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
-import { ForeignObject } from "@/charts/index";
 import * as Styled from "./styles";
 
 interface MagnitudeSliderProps {
@@ -10,8 +9,6 @@ interface MagnitudeSliderProps {
   onMagnitudeChangeCallback: (value: number) => void;
   estimatedPeak: number;
   disabled?: boolean;
-  width?: number;
-  height?: number;
 }
 
 const distanceContext = (
@@ -48,8 +45,6 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   onMagnitudeChangeCallback,
   estimatedPeak,
   disabled,
-  width,
-  height,
 }) => {
   const {
     t,

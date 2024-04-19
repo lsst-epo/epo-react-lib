@@ -29,8 +29,8 @@ export const intersection = (a: number[] = [], b: number[] = []) => {
   const min = a[0] < b[0] ? a : b;
   const max = min === a ? b : a;
 
-  //min ends before max starts -> no intersection
-  if (min[1] < max[0]) return null; //the ranges don't intersect
+  // min ends before max starts -> no intersection
+  if (min[1] < max[0]) return null; // the ranges don't intersect
 
   return [max[0], min[1] < max[1] ? min[1] : max[1]];
 };

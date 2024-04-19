@@ -1,18 +1,20 @@
-function OutputProcessor(encodedData: string): { [key: string]: Function };
+function OutputProcessor(encodedData: string): {
+  [key: string]: (...args: any) => any;
+};
 function OutputProcessor(
   encodedData: string,
   svgElement: SVGElement
-): { [key: string]: Function };
+): { [key: string]: (...args: any) => any };
 function OutputProcessor(
   encodedData: string,
   svgElement?: SVGElement
-): { [key: string]: Function } {
+): { [key: string]: (...args: any) => any } {
   const isPng = function () {
     return encodedData.indexOf("data:image/png") === 0;
   };
 
   const downloadImage = function (data: string, filename: string) {
-    var a = document.createElement("a");
+    const a = document.createElement("a");
     a.href = data;
     a.download = filename;
     document.body.appendChild(a);
@@ -35,7 +37,7 @@ function OutputProcessor(
       canvas.height = boundedRect?.height || 0;
       const canvasCtx = canvas.getContext("2d");
 
-      var img = this.toImg();
+      const img = this.toImg();
       img.onload = function () {
         canvasCtx?.drawImage(img, 0, 0);
         callback(canvas);
@@ -43,13 +45,13 @@ function OutputProcessor(
     },
     toPng: function () {
       if (isPng()) {
-        var img = document.createElement("img");
+        const img = document.createElement("img");
         img.src = encodedData;
         return img;
       }
 
       this.toCanvas(function (canvas: HTMLCanvasElement) {
-        var img = document.createElement("img");
+        const img = document.createElement("img");
         img.src = canvas.toDataURL();
         return img;
       });
@@ -59,7 +61,7 @@ function OutputProcessor(
       quality = quality || 1.0;
       ((q) => {
         this.toCanvas(function (canvas: HTMLCanvasElement) {
-          var img = document.createElement("img");
+          const img = document.createElement("img");
           img.src = canvas.toDataURL("image/jpeg", q);
           return img;
         });

@@ -1,5 +1,5 @@
 import { FunctionComponent, HTMLProps } from "react";
-import { Domain, ScaleFunction } from "../types";
+import { ScaleFunction } from "../types";
 
 export interface Point {
   stroke?: string;
@@ -14,7 +14,6 @@ export interface PointsProps {
   data: Array<Point>;
   xScale: ScaleFunction;
   yScale: ScaleFunction;
-  yDomain: Domain;
   className?: string;
 }
 
@@ -22,7 +21,6 @@ const Points: FunctionComponent<PointsProps> = ({
   data,
   xScale,
   yScale,
-  yDomain,
   className,
 }) => {
   if (data.length === 0) return null;

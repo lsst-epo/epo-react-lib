@@ -70,29 +70,20 @@ const meta: ComponentMeta<typeof BasicModal> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof BasicModal> = ({
-  open,
-  title,
-  description,
-  darkMode,
-  children,
-  ...args
-}) => {
-  const [isOpen, setIsOpen] = useState(open || false);
+const Template: ComponentStory<typeof BasicModal> = (args) => {
+  const [isOpen, setIsOpen] = useState(args.open);
 
   return (
     <>
       <Button onClick={() => setIsOpen(true)}>Click to open modal</Button>
       <BasicModal
+        {...args}
         open={isOpen}
         onClose={(event) => {
           args.onClose(event);
           return setIsOpen(false);
         }}
-        {...{ title, description, darkMode }}
-      >
-        {children}
-      </BasicModal>
+      />
     </>
   );
 };

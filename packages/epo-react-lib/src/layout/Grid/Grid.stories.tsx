@@ -13,10 +13,10 @@ const image = {
 };
 
 const Children = [
-  <Image {...{ image }} />,
-  <Image {...{ image }} />,
-  <Image {...{ image }} />,
-  <Image {...{ image }} />,
+  <Image key="first" {...{ image }} />,
+  <Image key="second" {...{ image }} />,
+  <Image key="third" {...{ image }} />,
+  <Image key="fourth" {...{ image }} />,
 ];
 
 const meta: ComponentMeta<typeof Grid> = {
