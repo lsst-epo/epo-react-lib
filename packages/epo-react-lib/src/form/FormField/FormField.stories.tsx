@@ -100,7 +100,7 @@ const passwordProps = {
 
 export const TextField: ComponentStoryObj<typeof FormField> = {
   args: {
-    children: [<Input {...textFieldProps} />],
+    children: <Input {...textFieldProps} />,
     htmlFor: textFieldId,
     label: "Form text field",
     description: "Some instructions for this field",
@@ -110,7 +110,7 @@ export const TextField: ComponentStoryObj<typeof FormField> = {
 
 export const PasswordField: ComponentStoryObj<typeof FormField> = {
   args: {
-    children: [<Password {...passwordProps} />],
+    children: <Password {...passwordProps} />,
     htmlFor: passwordId,
     label: "Form text field",
     description: "Some instructions for this field",
@@ -120,7 +120,7 @@ export const PasswordField: ComponentStoryObj<typeof FormField> = {
 
 export const WithError: ComponentStoryObj<typeof FormField> = {
   args: {
-    children: [<Input {...textFieldProps} />],
+    children: <Input {...textFieldProps} />,
     htmlFor: textFieldId,
     label: "Form text field",
     description: "Some instructions for this field",

@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { geoAitoff } from "d3-geo-projection";
-import { geoPath, geoGraticule, GeoPermissibleObjects } from "d3-geo";
+import { geoPath, geoGraticule, type GeoPermissibleObjects } from "d3-geo";
 import { range } from "d3-array";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { Base, Tooltip } from "@/charts/index";
@@ -80,7 +80,7 @@ const Skymap: FunctionComponent<SkymapProps> = ({
 
   const hoveredItem =
     typeof hoveredIndex !== "undefined" ? objects[hoveredIndex] : undefined;
-  const hoveredCoords = (!!hoveredItem
+  const hoveredCoords = (hoveredItem
     ? projection([hoveredItem?.long, hoveredItem?.lat])
     : [0, 0]) || [0, 0];
 

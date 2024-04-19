@@ -4,6 +4,7 @@ import SelectListbox from "@rubin-epo/epo-react-lib/SelectListbox";
 import ColorSwatch from "@rubin-epo/epo-react-lib/ColorSwatch";
 import * as Styled from "./styles";
 
+type FilterColor = "violet" | "blue" | "green" | "yellow" | "orange" | "red";
 interface FilterToolProps {
   selectionCallback?: (color: FilterColor) => void;
   selectedColor?: FilterColor | "none";
@@ -11,8 +12,6 @@ interface FilterToolProps {
   id?: string;
   labelledById?: string;
 }
-
-type FilterColor = "violet" | "blue" | "green" | "yellow" | "orange" | "red";
 
 const FilterTool: FunctionComponent<FilterToolProps> = ({
   selectedColor = "none",

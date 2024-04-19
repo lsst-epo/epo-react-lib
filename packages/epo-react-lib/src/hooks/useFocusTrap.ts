@@ -1,4 +1,4 @@
-import { createFocusTrap, FocusTrap } from "focus-trap";
+import { createFocusTrap } from "focus-trap";
 import { useEffect } from "react";
 
 interface Options {
@@ -12,7 +12,7 @@ export function useFocusTrap(
   options: Options = {}
 ) {
   useEffect(() => {
-    let trap: FocusTrap;
+    let trap: ReturnType<typeof createFocusTrap>;
 
     function focusElement() {
       if (!elementRef.current) {

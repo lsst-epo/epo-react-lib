@@ -11,11 +11,9 @@ describe("Container", () => {
       id: "containerContent",
     };
     render(
-      <Container
-        children={MockChildren}
-        elAttributes={attrs}
-        className="container"
-      />
+      <Container elAttributes={attrs} className="container">
+        {MockChildren}
+      </Container>
     );
 
     const section = screen.getByRole(attrs.role);

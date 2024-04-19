@@ -27,7 +27,7 @@ describe("HorizontalSlider", () => {
 
     const { min, value, max } = SingleHandle.args;
 
-    expect(slider).toBeDefined;
+    expect(slider).toBeDefined();
     expect(slider).toHaveAttribute("aria-valuemin", min?.toString());
     expect(slider).toHaveAttribute("aria-valuenow", value?.toString());
     expect(slider).toHaveAttribute("aria-valuemax", max?.toString());
