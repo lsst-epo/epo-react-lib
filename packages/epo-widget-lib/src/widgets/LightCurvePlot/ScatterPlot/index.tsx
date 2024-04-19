@@ -122,7 +122,9 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
             y={yScale(yDomain[1])}
             width={xScale(15) - xScale(0)}
             height={yRoot - yScale(yDomain[1])}
-            fill="#F5F5F5"
+            stroke="var(--neutral60,##6A6E6E)"
+            strokeDasharray={6}
+            fill="var(--neutral20,#DCE0E3)"
           />
           <g
             role="list"
@@ -166,9 +168,9 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
         />
         <Viewport
           x={xRoot}
-          y={yScale(yDomain[0])}
+          y={yScale(yDomain[1])}
           outerWidth={xRange[1] - xRange[0]}
-          outerHeight={yRange[1] - yRange[0]}
+          outerHeight={yRange[0] - yRange[1]}
           innerWidth={width}
           innerHeight={height}
         >

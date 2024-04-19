@@ -32,7 +32,7 @@ const LightCurve: FunctionComponent<LightCurveProps> = ({
 
   return (
     <path
-      transform={`translate(0,${yScale(yDomain[0] - yOffset)})`}
+      transform={`translate(0,${yScale(yDomain[1] - yOffset)})`}
       d={curve}
       fill="none"
       strokeWidth={2}

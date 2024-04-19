@@ -107,8 +107,8 @@
     },
     "curve": {
       "controls": {
-        "gaussian_width": "Gaussian Width",
-        "y_offset": "Y Offset"
+        "gaussian_width": "Curve Width",
+        "y_offset": "Vertical (y) Offset"
       },
       "description_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
       "description_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}"

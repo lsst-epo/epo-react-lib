@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
-import { ForeignObject } from "@/charts/index";
 import * as Styled from "./styles";
 
 interface MagnitudeSliderProps {
@@ -48,23 +47,21 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
   onMagnitudeChangeCallback,
   estimatedPeak,
   disabled,
-  width,
-  height,
 }) => {
   const {
     t,
     i18n: { language },
   } = useTranslation();
 
+  const min = yMin > yMax ? yMax : yMin;
+  const max = yMin > yMax ? yMin : yMax;
+
   return (
     <Styled.Slider
       ariaLabel={t("light_curve.magnitude_slider.label") || undefined}
       orientation="vertical"
       value={magnitude}
-      min={yMin}
-      max={yMax}
       step={0.1}
-      disabled={disabled}
       ariaValuetext={() =>
         t("light_curve.magnitude_slider.value", {
           ...distanceContext(estimatedPeak, magnitude, language),
@@ -83,6 +80,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
           </Styled.ThumbContainer>
         );
       }}
+      {...{ min, max, disabled }}
     />
   );
 };

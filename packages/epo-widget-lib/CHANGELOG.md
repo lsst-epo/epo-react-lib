@@ -49,3 +49,8 @@
 ## 0.9.7
 
 - set `yMin` to always equal bottom of scatterplot, set `yMax` to always equal top.
+
+## 0.9.8
+
+- fix to `LightCurvePlot`
+- change localization text

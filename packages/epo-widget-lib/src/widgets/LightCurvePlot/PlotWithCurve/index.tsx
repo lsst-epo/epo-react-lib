@@ -70,7 +70,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     min: yMin,
     max: yMax,
     step: defaults.yStep,
-    range: [0, height],
+    range: [height, 0],
   });
 
   const estimatedPeak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
