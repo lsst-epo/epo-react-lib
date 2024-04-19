@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "main": "./eslint-config.js",
   "files": [
     "eslint-config.js",
