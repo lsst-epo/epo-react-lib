@@ -53,8 +53,8 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
     i18n: { language },
   } = useTranslation();
 
-  const min = yMin > yMax ? yMax : yMin;
-  const max = yMin > yMax ? yMin : yMax;
+  const min = Math.min(yMin, yMax);
+  const max = Math.max(yMin, yMax);
 
   return (
     <Styled.Slider
