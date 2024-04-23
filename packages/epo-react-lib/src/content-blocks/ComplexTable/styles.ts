@@ -18,7 +18,7 @@ export const Table = styled.table<TableProps>`
   width: 100%;
   border-collapse: collapse;
 
-  ${({ $styleAs, $verticalAlignment = "top" }) =>
+  ${({ $styleAs, $verticalAlignment = "top" }: TableProps) =>
     $styleAs === "secondary"
       ? css`
           --ComplexTable-cell-bg: var(--neutral10);
@@ -39,7 +39,7 @@ export const Caption = styled.caption<{ $isChild: boolean }>`
   font-weight: bold;
   text-align: start;
 
-  ${({ $isChild }) => ($isChild ? aHidden : null)}
+  ${({ $isChild }: { $isChild: boolean }) => ($isChild ? aHidden : null)}
 `;
 
 export const TableRow = styled.tr`
@@ -55,12 +55,12 @@ interface TableCellProps {
 }
 
 export const TableCell = styled.td<TableCellProps>`
-  ${({ $background }) =>
+  ${({ $background }: TableCellProps) =>
     css`
       background-color: ${$background || "var(--ComplexTable-cell-bg)"};
       color: ${$background ? "var(--black)" : "inherit"};
     `};
-  ${({ $hasFlexibleCellWidth }) =>
+  ${({ $hasFlexibleCellWidth }: TableCellProps) =>
     $hasFlexibleCellWidth && `white-space: nowrap;`}
 
   min-width: ${fluidScale("180px", "110px")};

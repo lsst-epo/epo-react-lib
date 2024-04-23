@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { BaseProgressProps } from "@/types/progress";
 import * as Styled from "./styles";
 
-interface ProgressRadialProps extends BaseProgressProps {
+export interface ProgressRadialProps extends BaseProgressProps {
   darkMode?: boolean;
   role?: "progressbar" | "meter";
 }

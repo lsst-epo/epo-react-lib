@@ -2,11 +2,12 @@ import { FunctionComponent } from "react";
 import { ScreenreaderText } from "@/styles/utils";
 import * as Styled from "./styles";
 
-interface ColorSwatchProps {
+type SwatchSize = "small" | "normal" | "large";
+export interface ColorSwatchProps {
   className?: string;
   content?: string;
   color: string;
-  size?: "small" | "normal" | "large";
+  size?: SwatchSize;
 }
 
 const ColorSwatch: FunctionComponent<ColorSwatchProps> = ({

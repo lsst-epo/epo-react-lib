@@ -21,7 +21,7 @@ interface InnerProps {
 export const Section = styled.section<SectionProps>`
   background-color: var(--section-background-color);
 
-  ${({ $paddingSize }) =>
+  ${({ $paddingSize }: SectionProps) =>
     $paddingSize &&
     `${padding("top", $paddingSize)}${padding("bottom", $paddingSize)}`}
 
@@ -31,7 +31,7 @@ export const Section = styled.section<SectionProps>`
 `;
 
 export const Inner = styled.div<InnerProps>`
-  ${({ $width = "regular", $nested }) => {
+  ${({ $width = "regular", $nested }: InnerProps) => {
     if ($nested) return ``;
 
     switch ($width) {

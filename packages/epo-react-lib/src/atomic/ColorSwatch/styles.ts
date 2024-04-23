@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import styled, { RuleSet, css } from "styled-components";
+import type { ColorSwatchProps } from "./ColorSwatch";
 
 const small = css`
   width: 11px;
@@ -15,7 +16,7 @@ const large = css`
   height: calc(var(--PADDING_SMALL, 20px) * 1.5);
 `;
 
-const sizes = { small, normal, large };
+const sizes: Record<string, RuleSet<object>> = { small, normal, large };
 
 export const ColorSwatch = styled.span.attrs(({ color }) => ({
   style: { backgroundColor: color },
@@ -26,5 +27,5 @@ export const ColorSwatch = styled.span.attrs(({ color }) => ({
   border: 1px solid var(--black, #000);
   transition: background-color var(--DURATION, 0.2s) ease-in-out;
 
-  ${({ size }) => sizes[size]}
+  ${({ size }: ColorSwatchProps) => size && sizes[size]}
 `;
