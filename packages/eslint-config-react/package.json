@@ -14,6 +14,9 @@
     "eslint-config.js",
     "README.md"
   ],
+  "scripts": {
+    "test": "echo \"Unit testing is not configured for package \\\"eslint-config-react\\\", skipping.\""
+  },
   "devDependencies": {
     "@babel/eslint-parser": "7.16.5",
     "@rushstack/eslint-patch": "^1.10.1",
