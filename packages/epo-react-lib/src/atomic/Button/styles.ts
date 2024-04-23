@@ -20,14 +20,14 @@ export const Button = styled.button<StyledButtonProps>`
   font-size: ${fluidScale("20px", "16px")};
   text-align: center;
 
-  ${({ $isBlock }) =>
+  ${({ $isBlock }: StyledButtonProps) =>
     $isBlock &&
     css`
       display: flex;
       width: 100%;
     `}
 
-  ${({ $hasIcon }) =>
+  ${({ $hasIcon }: StyledButtonProps) =>
     $hasIcon &&
     css`
       display: inline-flex;

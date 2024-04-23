@@ -36,7 +36,7 @@ export const LoaderContainer = styled.div.attrs<LoaderProps>(
 
   svg {
     animation-name: ${spinAnimation};
-    animation-duration: ${({ $speed }) => speeds[$speed]};
+    animation-duration: ${({ $speed }: LoaderProps) => speeds[$speed]};
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }

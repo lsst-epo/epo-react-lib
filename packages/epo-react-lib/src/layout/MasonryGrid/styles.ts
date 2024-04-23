@@ -56,7 +56,7 @@ export const BrickRow = styled.div<BrickRowProps>`
       height: 100%;
     }
   }
-  ${({ $brickSizes }) => $brickSizes}
+  ${({ $brickSizes }: BrickRowProps) => $brickSizes}
 
   @media (max-width: 640px) {
     display: block;

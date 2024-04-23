@@ -55,7 +55,7 @@ export const Inner = styled.div<InnerProps>`
   background: var(--white);
   max-width: 100vw;
 
-  ${({ $darkMode }) =>
+  ${({ $darkMode }: InnerProps) =>
     $darkMode &&
     `
       color: #fff;

@@ -1,8 +1,6 @@
-// My css.d.ts file
+import "react";
 
-declare module "csstype" {
-  interface Properties {
-    // Allow any CSS Custom Properties
-    [index: `--${string}`]: any;
-  }
+type CustomProp = { [key in `--${string}`]: any };
+declare module "react" {
+  export interface CSSProperties extends CustomProp {}
 }
