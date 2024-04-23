@@ -14,6 +14,7 @@ import {
   XAxis,
   YAxis,
 } from "@/charts/index";
+import BaseScatterPlot from "@/charts/ScatterPlot";
 import { ChartMargin, Bounds, ChartEdge } from "@/charts/types";
 import { formatMagnitudePoints } from "../helpers";
 import defaults from "../defaults";
@@ -63,9 +64,9 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
   const [hoveredIndex, setHovered] = useState<number>();
 
   const xAxisLabel = t("light_curve.plot.x_label");
-  const xAxisLabelId = "xAxisLabel";
+  // const xAxisLabelId = "xAxisLabel";
   const yAxisLabel = t("light_curve.plot.y_label");
-  const yAxisLabelId = "yAxisLabel";
+  // const yAxisLabelId = "yAxisLabel";
 
   const activeItem =
     typeof hoveredIndex !== "undefined"
@@ -81,29 +82,31 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
 
   const xRange = [0 + margins.left, width - margins.right];
 
-  const [xDomain, xTicks, xScale] = useAxis({
-    min: xMin || min(data, ({ x }) => x) || defaults.xMin,
-    max: xMax || max(data, ({ x }) => x) || defaults.xMax,
-    step: defaults.xStep,
-    range: xRange,
-  });
-
-  const xRoot = xScale(xDomain[0]);
-
   const yRange = [height - margins.bottom, 0 + margins.top];
-
-  const [yDomain, yTicks, yScale] = useAxis({
-    min: yMin,
-    max: yMax,
-    step: yMin < yMax ? Math.abs(defaults.yStep) : defaults.yStep,
-    range: yRange,
-  });
-
-  const yRoot = yScale(yDomain[0]);
 
   return (
     <Styled.PlotContainer className={className}>
-      <Styled.Chart
+      <BaseScatterPlot
+        {...{ width, height, margins }}
+        title={name}
+        xAxis={{
+          min: xMin || min(data, ({ x }) => x) || defaults.xMin,
+          max: xMax || max(data, ({ x }) => x) || defaults.xMax,
+          step: defaults.xStep,
+          range: xRange,
+          label: xAxisLabel,
+        }}
+        yAxis={{
+          min: yMin,
+          max: yMax,
+          step: yMin < yMax ? Math.abs(defaults.yStep) : defaults.yStep,
+          range: yRange,
+          label: yAxisLabel,
+        }}
+      >
+        {children}
+      </BaseScatterPlot>
+      {/* <Styled.Chart
         {...{ width, height }}
         horizontalLabel={xAxisLabel}
         horizontalLabelId={xAxisLabelId}
@@ -189,7 +192,7 @@ const ScatterPlot: FunctionComponent<PropsWithChildren<ScatterPlotProps>> = ({
             }),
           })}
         </Tooltip>
-      </Styled.Chart>
+      </Styled.Chart> */}
       {slider && (
         <Styled.SliderOuterWrapper>
           <Styled.SliderInnerWrapper
