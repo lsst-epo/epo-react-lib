@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@rubin-epo/eslint-config-react": "1.0.0",
+    "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "@storybook/addon-a11y": "^7.6.3",
     "@storybook/addon-actions": "^7.6.3",
     "@storybook/addon-docs": "^7.6.3",
@@ -94,7 +94,6 @@
   },
   "dependencies": {
     "@rubin-epo/epo-react-lib": "^2.0.20",
-    "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "context-filter-polyfill": "^0.3.6",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.0",
