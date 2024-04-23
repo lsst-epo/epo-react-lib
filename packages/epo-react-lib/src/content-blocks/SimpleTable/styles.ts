@@ -54,7 +54,7 @@ export const Title = styled.dt<SimpleTableColorProps>`
   padding-inline-end: 6px;
   padding-block-end: 22px;
 
-  ${({ $color = "none" }) =>
+  ${({ $color = "none" }: SimpleTableColorProps) =>
     css`
       background: ${colors[$color]};
       --SimpleTable-link-color: ${linkColors[$color]};
@@ -70,7 +70,7 @@ export const Description = styled.dd<SimpleTableColorProps>`
   padding: 20px;
   padding-block-end: 22px;
 
-  ${({ $color = "none" }) =>
+  ${({ $color = "none" }: SimpleTableColorProps) =>
     css`
       background: ${colors[$color]};
       --SimpleTable-link-color: ${linkColors[$color]};

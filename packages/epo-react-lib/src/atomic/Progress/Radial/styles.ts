@@ -20,7 +20,8 @@ export const ProgressArc = styled.circle`
 `;
 
 export const MarkerText = styled.text<{ $darkMode: boolean }>`
-  fill: ${({ $darkMode }) => ($darkMode ? "var(--white,#fff)" : "inherit")};
+  fill: ${({ $darkMode }: { $darkMode: boolean }) =>
+    $darkMode ? "var(--white,#fff)" : "inherit"};
   text-anchor: middle;
   dominant-baseline: central;
   font-variant: tabular-nums;

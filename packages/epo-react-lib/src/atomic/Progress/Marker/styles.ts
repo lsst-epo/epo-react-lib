@@ -11,7 +11,7 @@ interface MarkerProps extends SimpleValue {
 export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
   style: { left: `${$value}%` },
 }))<MarkerProps>`
-  ${({ $filled, $active, $background, $hoverable, $value }) =>
+  ${({ $filled, $active, $background, $hoverable, $value }: MarkerProps) =>
     css`
       --marker-border-color: ${$active
         ? css`var(--progress-bar-background)`
@@ -48,7 +48,7 @@ export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
   );
   transition: left var(--DURATION, 0.2s);
 
-  ${({ $hoverable }) =>
+  ${({ $hoverable }: MarkerProps) =>
     $hoverable &&
     css`
       cursor: pointer;

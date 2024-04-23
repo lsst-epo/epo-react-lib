@@ -11,7 +11,7 @@ export const Message = styled(Toast)<{ $isOpen: boolean }>`
   justify-content: center;
   gap: 1ch;
   width: 100%;
-  height: ${({ $isOpen }) => ($isOpen ? 24 : 0)}px;
+  height: ${({ $isOpen }: { $isOpen: boolean }) => ($isOpen ? 24 : 0)}px;
   overflow: hidden;
   background-color: var(--black, #000);
   color: #30e0e3;

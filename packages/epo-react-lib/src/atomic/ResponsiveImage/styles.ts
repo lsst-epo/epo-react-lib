@@ -8,14 +8,14 @@ export const ResponsiveImageContainer = styled.div<ResponsiveImageContainerProps
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: ${({ $aspectRatio }) =>
+  padding-top: ${({ $aspectRatio }: ResponsiveImageContainerProps) =>
     $aspectRatio.length > 1
       ? `${($aspectRatio[1] / $aspectRatio[0]) * 100}%}`
       : "100%"};
 
   @supports (aspect-ratio: auto) {
     padding-top: 0;
-    aspect-ratio: ${({ $aspectRatio }) =>
+    aspect-ratio: ${({ $aspectRatio }: ResponsiveImageContainerProps) =>
       `${$aspectRatio[0]} / ${$aspectRatio[1]}`};
   }
 
