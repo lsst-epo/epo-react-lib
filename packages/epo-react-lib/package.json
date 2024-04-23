@@ -58,7 +58,6 @@
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
     "@headlessui/react": "^1.7.17",
-    "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
     "i18next": "^22.4.10",
@@ -76,7 +75,7 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.18.6",
-    "@rubin-epo/eslint-config-react": "1.0.0",
+    "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "@storybook/addon-actions": "^7.6.3",
     "@storybook/addon-essentials": "^7.6.3",
     "@storybook/addon-interactions": "^7.6.3",
