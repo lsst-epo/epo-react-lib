@@ -1,5 +1,5 @@
 import { FunctionComponent, HTMLProps } from "react";
-import { Domain, ScaleFunction } from "../types";
+import { Domain, ScaleFunction } from "../../types/charts";
 import * as Styled from "../styles";
 
 export interface Bar {

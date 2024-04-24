@@ -1,8 +1,6 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
-import { max, min } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
-import useAxis from "@/charts/hooks/useAxis";
 import defaults from "../defaults";
 import Plot from "../ScatterPlot";
 import LightCurve from "../LightCurve";
@@ -12,6 +10,7 @@ import { Reset } from "@/atomic/Button";
 import MagnitudeSlider from "../MagnitudeSlider";
 import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
 import * as Styled from "./styles";
+import Viewport from "@/charts/Viewport";
 
 interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
   gaussianWidth?: number;
@@ -48,9 +47,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
 
   const data = formatMagnitudePoints(alerts, peakMjd);
 
-  const xMin = min(data, ({ x }) => x) || Math.min(...data.map(({ x }) => x));
-  const xMax = max(data, ({ x }) => x) || Math.max(...data.map(({ x }) => x));
-
   const handleReset = () => {
     onUserMagnitudeChangeCallback &&
       onUserMagnitudeChangeCallback((yMax - yMin) / 2 + yMin);
@@ -58,20 +54,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     onGaussianChangeCallback &&
       onGaussianChangeCallback(defaults.gaussianWidth);
   };
-
-  const [xDomain, , xScale] = useAxis({
-    min: xMin,
-    max: xMax,
-    step: defaults.xStep,
-    range: [0, width],
-  });
-
-  const [yDomain, , yScale] = useAxis({
-    min: yMin,
-    max: yMax,
-    step: defaults.yStep,
-    range: [height, 0],
-  });
 
   const estimatedPeak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
 
@@ -85,19 +67,19 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
               onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
             }
             disabled={isDisplayOnly}
-            {...{ yMin, yMax, yScale, estimatedPeak, width, height }}
+            {...{ yMin, yMax, estimatedPeak }}
           />
         }
-        {...{
-          ...props,
-          data,
-          width,
-          height,
-          yMin,
-          yMax,
-        }}
-      >
-        {data.length > 0 ? (
+        renderInFront={({
+          xScale,
+          yScale,
+          xDomain,
+          yDomain,
+          xStart,
+          xEnd,
+          yStart,
+          yEnd,
+        }) => (
           <>
             <LightCurve
               {...{
@@ -109,11 +91,28 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
                 yDomain,
               }}
             />
-
-            <Styled.DM15Display {...{ gaussianWidth }} />
+            <Viewport
+              x={xStart}
+              y={yEnd}
+              outerHeight={yStart - yEnd}
+              outerWidth={xEnd - xStart}
+              innerWidth={width}
+              innerHeight={height}
+            >
+              <Styled.DM15Display {...{ gaussianWidth }} />
+            </Viewport>
           </>
-        ) : null}
-      </Plot>
+        )}
+        {...{
+          ...props,
+          data,
+          width,
+          height,
+          yMin,
+          yMax,
+        }}
+      />
+      {data.length > 0 ? <></> : null}
       {!isDisplayOnly && (
         <Styled.Controls id={controlsFormId}>
           <div>
