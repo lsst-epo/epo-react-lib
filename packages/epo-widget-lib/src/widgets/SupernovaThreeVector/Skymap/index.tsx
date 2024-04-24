@@ -4,7 +4,7 @@ import { geoPath, geoGraticule, type GeoPermissibleObjects } from "d3-geo";
 import { range } from "d3-array";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { Base, Tooltip } from "@/charts/index";
-import { ChartMargin } from "@/charts/types";
+import { ChartMargin } from "@/types/charts";
 import ImageStack from "@/atomic/ImageStack";
 import * as Styled from "./styles";
 

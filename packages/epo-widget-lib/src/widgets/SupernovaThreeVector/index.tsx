@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { nice, max, min } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
-import { ChartMargin, HistogramData } from "@/charts/types";
+import { ChartMargin, HistogramData } from "@/types/charts";
 import { getLinearScale, between } from "@/lib/utils";
 import { SkymapObject } from "./Skymap";
 import LiveLabel from "./LiveLabel";

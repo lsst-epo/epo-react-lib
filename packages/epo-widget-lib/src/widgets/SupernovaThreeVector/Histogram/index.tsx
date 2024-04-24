@@ -5,7 +5,7 @@ import {
   Domain,
   HistogramData,
   ScaleFunction,
-} from "@/charts/types";
+} from "@/types/charts";
 import Base from "@/charts/Base";
 import XAxis from "@/charts/XAxis";
 import Guidelines from "@/charts/Guidelines";

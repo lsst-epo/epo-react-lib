@@ -1,43 +1,53 @@
-import { FunctionComponent, HTMLProps } from "react";
-import { ScaleFunction } from "../types";
-
-export interface Point {
-  stroke?: string;
-  fill?: string;
-  width?: number;
-  x: number;
-  y: number;
-  props?: HTMLProps<SVGCircleElement>;
-}
+import { FunctionComponent } from "react";
+import { Point, ScaleFunction } from "@/types/charts";
+import ErrorBar from "./ErrorBar";
+import { defaultPoint } from "../defaults";
 
 export interface PointsProps {
   data: Array<Point>;
+  label?: string;
   xScale: ScaleFunction;
   yScale: ScaleFunction;
   className?: string;
+  onHoverCallback: (index: number) => void;
+  onHoverOutCallback: () => void;
 }
 
 const Points: FunctionComponent<PointsProps> = ({
   data,
+  label,
   xScale,
   yScale,
+  onHoverCallback,
+  onHoverOutCallback,
   className,
 }) => {
   if (data.length === 0) return null;
 
   return (
-    <g className={className}>
-      {data.map(({ stroke, fill, width = 4, x, y, props }, i) => {
+    <g role="list" aria-label={label} className={className}>
+      {data.map((point, i) => {
+        const { stroke, fill, radius, x, y, description, error, id, props } = {
+          ...defaultPoint,
+          ...point,
+        };
+
         return (
-          <circle
-            key={i}
-            cx={xScale(x)}
-            cy={yScale(y)}
-            r={width / 2}
-            fill={fill || "var(--point-fill, #12726D)"}
-            stroke={stroke || "var(--point-stroke, #12726D)"}
-            {...props}
-          />
+          <g
+            key={id}
+            role="listitem"
+            aria-label={description}
+            transform={`translate(${xScale(x)},${yScale(y)})`}
+            onMouseEnter={() => onHoverCallback && onHoverCallback(i)}
+            onMouseLeave={() => onHoverOutCallback && onHoverOutCallback()}
+          >
+            {error && <ErrorBar {...{ error, xScale, yScale }} />}
+            <circle
+              cursor="pointer"
+              r={radius}
+              {...{ stroke, fill, ...props }}
+            />
+          </g>
         );
       })}
     </g>
