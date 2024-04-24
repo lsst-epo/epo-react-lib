@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { nice, range } from "d3-array";
-import { Domain, Scale, ScaleFactory, ScaleFunction } from "@/charts/types";
+import { Domain, Scale, ScaleFactory, ScaleFunction } from "@/types/charts";
 import { getLinearScale } from "@/lib/utils";
 
 interface UseAxisProps {

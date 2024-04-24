@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { ticks } from "d3-array";
-import { ChartMargin, Domain, ScaleFunction } from "../types";
+import { ChartMargin, Domain, ScaleFunction } from "../../types/charts";
 import * as Styled from "../styles";
 
 export interface GuidelinesProps {
@@ -17,10 +17,10 @@ export interface GuidelinesProps {
 const Guidelines: FunctionComponent<GuidelinesProps> = ({
   guides = 0,
   direction = "horizontal",
-  xScale = (v) => v,
-  xDomain = [0, 1],
-  yScale = (v) => v,
-  yDomain = [0, 1],
+  xScale,
+  xDomain,
+  yScale,
+  yDomain,
   margin,
   className,
 }) => {
@@ -32,6 +32,8 @@ const Guidelines: FunctionComponent<GuidelinesProps> = ({
   const defaultMargins = { top: 0, right: 0, bottom: 0, left: 0 };
   const finalMargins = { ...defaultMargins, ...margin };
   const tickArr = ticks(domain[1], domain[0], guides);
+
+  console.log({ guides, tickArr });
 
   return (
     <g className={className}>
