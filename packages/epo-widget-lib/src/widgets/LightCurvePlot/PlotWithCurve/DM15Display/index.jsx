@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useTranslation } from "react-i18next";
 import { ForeignObject } from "@/charts/index";
-import { estimateMagnitude } from "../helpers";
+import { estimateMagnitude } from "../../helpers";
 import * as Styled from "./styles";
 
 /**

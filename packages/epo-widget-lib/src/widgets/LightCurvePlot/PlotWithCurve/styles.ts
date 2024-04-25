@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BaseDM15Display from "../DM15Display";
+import BaseDM15Display from "./DM15Display";
 
 export const Container = styled.div`
   --light-curve-padding: var(--PADDING_SMALL, 20px);

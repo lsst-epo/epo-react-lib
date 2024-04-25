@@ -84,6 +84,7 @@ export type HistogramData = Array<{ bin: number; value: number }>;
 // Renderers
 
 export type PlotChildRenderer = (props: {
+  Data: ReactNode;
   xScale: ScaleFunction;
   yScale: ScaleFunction;
   xDomain: Domain;

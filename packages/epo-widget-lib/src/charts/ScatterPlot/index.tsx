@@ -15,7 +15,7 @@ import {
 } from "@/types/charts";
 import useAxis from "@/charts/hooks/useAxis";
 import * as Styled from "./styles";
-import { pointRadius } from "../defaults";
+import defaults from "../defaults";
 
 interface AxisConfig {
   label: string;
@@ -34,10 +34,9 @@ export interface ScatterPlotProps {
   activePointId?: string | number;
   title?: string;
   className?: string;
-  margins?: ChartMargin;
+  margins?: Partial<ChartMargin>;
   tooltip?: string | ((point: Point) => ReactNode);
-  renderBehind?: PlotChildRenderer;
-  renderInFront?: PlotChildRenderer;
+  plotChildren?: PlotChildRenderer;
 }
 
 const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
@@ -49,13 +48,13 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   height,
   title,
   activePointId,
-  margins = { top: 0, right: 0, bottom: 0, left: 0 },
+  margins: customMargins,
   tooltip,
-  renderBehind,
-  renderInFront,
+  plotChildren,
 }) => {
   const [hoveredIndex, setHovered] = useState<number>();
   const { label, points } = data;
+  const margins = { ...defaults.margins, ...customMargins };
 
   const activePoint =
     typeof hoveredIndex !== "undefined"
@@ -79,7 +78,17 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const outerWidth = Math.abs(xRange[1] - xRange[0]);
   const outerHeight = Math.abs(yRange[1] - yRange[0]);
 
+  const Data = (
+    <Points
+      data={points}
+      onHoverCallback={(i) => setHovered(i)}
+      onHoverOutCallback={() => setHovered(undefined)}
+      {...{ label, xScale, yScale }}
+    />
+  );
+
   const renderProps = {
+    Data,
     xScale,
     yScale,
     yStart,
@@ -110,7 +119,6 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
         width={outerWidth}
         height={outerHeight}
       >
-        {renderBehind && renderBehind(renderProps)}
         {xAxis.guidelines && (
           <Guidelines
             guides={xTicks.length}
@@ -124,13 +132,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
             {...{ xDomain, yDomain, xScale, yScale }}
           />
         )}
-        <Points
-          data={points}
-          onHoverCallback={(i) => setHovered(i)}
-          onHoverOutCallback={() => setHovered(undefined)}
-          {...{ label, xScale, yScale }}
-        />
-        {renderInFront && renderInFront(renderProps)}
+        {plotChildren ? plotChildren(renderProps) : Data}
       </ClippingContainer>
       <XAxis
         ticks={xTicks}
@@ -138,15 +140,17 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
         labelledById={xAxisLabelId}
         {...{ xDomain, xScale }}
       />
-      <Tooltip
-        x={activePoint ? xScale(activePoint.x) : undefined}
-        y={activePoint ? yScale(activePoint.y) : undefined}
-        visible={!!activePoint}
-        offset={pointRadius}
-      >
-        {activePoint && typeof tooltip === "function" && tooltip(activePoint)}
-        {activePoint && typeof tooltip === "string" && tooltip}
-      </Tooltip>
+      {tooltip && (
+        <Tooltip
+          x={activePoint ? xScale(activePoint.x) : undefined}
+          y={activePoint ? yScale(activePoint.y) : undefined}
+          visible={!!activePoint}
+          offset={defaults.pointRadius}
+        >
+          {activePoint && typeof tooltip === "function" && tooltip(activePoint)}
+          {activePoint && typeof tooltip === "string" && tooltip}
+        </Tooltip>
+      )}
     </Styled.Chart>
   );
 };

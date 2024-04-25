@@ -33,8 +33,6 @@ const Guidelines: FunctionComponent<GuidelinesProps> = ({
   const finalMargins = { ...defaultMargins, ...margin };
   const tickArr = ticks(domain[1], domain[0], guides);
 
-  console.log({ guides, tickArr });
-
   return (
     <g className={className}>
       {tickArr.map((value, i) => {

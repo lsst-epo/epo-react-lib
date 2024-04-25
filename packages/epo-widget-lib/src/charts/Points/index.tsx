@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { Point, ScaleFunction } from "@/types/charts";
 import ErrorBar from "./ErrorBar";
-import { defaultPoint } from "../defaults";
+import defaults from "../defaults";
 
 export interface PointsProps {
   data: Array<Point>;
@@ -28,7 +28,7 @@ const Points: FunctionComponent<PointsProps> = ({
     <g role="list" aria-label={label} className={className}>
       {data.map((point, i) => {
         const { stroke, fill, radius, x, y, description, error, id, props } = {
-          ...defaultPoint,
+          ...defaults.point,
           ...point,
         };
 
