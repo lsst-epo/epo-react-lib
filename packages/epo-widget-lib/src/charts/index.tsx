@@ -8,3 +8,4 @@ export { default as ClippingContainer } from "./ClippingContainer";
 export { default as Bars } from "./Bars";
 export { default as Viewport } from "./Viewport";
 export { default as ForeignObject } from "./ForeignObject";
+export { default as ScatterPlot } from "./ScatterPlot";

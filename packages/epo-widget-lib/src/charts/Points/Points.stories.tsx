@@ -34,6 +34,7 @@ const Template: StoryFn<typeof Points> = (args) => {
 
   for (let i = 0; i < 25; i++) {
     data.push({
+      id: i,
       x: Math.random() * width,
       y: Math.random() * height,
     });

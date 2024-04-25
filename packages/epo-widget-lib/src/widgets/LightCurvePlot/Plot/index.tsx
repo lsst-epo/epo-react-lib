@@ -7,18 +7,18 @@ import {
   Bounds,
   ChartEdge,
   PlotChildRenderer,
+  Point,
 } from "@/types/charts";
-import { formatMagnitudePoints } from "../helpers";
 import defaults from "../defaults";
 import * as Styled from "./styles";
 
-export interface ScatterPlotProps extends Partial<Bounds> {
-  data: ReturnType<typeof formatMagnitudePoints>;
+export interface PlotProps extends Partial<Bounds> {
+  data: Array<Point>;
   name?: string;
   activeAlertId?: number;
   className?: string;
   slider?: ReactNode;
-  renderInFront?: PlotChildRenderer;
+  plotChildren?: PlotChildRenderer;
 }
 
 const addMargins = (margins: ChartMargin, width: number, height: number) => {
@@ -35,7 +35,7 @@ const addMargins = (margins: ChartMargin, width: number, height: number) => {
   return styles;
 };
 
-const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
+const Plot: FunctionComponent<PlotProps> = ({
   data,
   activeAlertId,
   xMin,
@@ -47,7 +47,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   name,
   slider,
   className,
-  renderInFront,
+  plotChildren,
 }) => {
   const {
     t,
@@ -67,7 +67,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   return (
     <Styled.PlotContainer className={className}>
       <BaseScatterPlot
-        {...{ width, height, margins, renderInFront }}
+        {...{ width, height, margins }}
         activePointId={activeAlertId}
         title={name}
         xAxis={{
@@ -84,25 +84,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
         }}
         data={{
           label: t("light_curve.plot.plot_label"),
-          points: data.map(({ x, y, error, id }) => {
-            const days = Math.round(x);
-            const context = days > 0 ? "after" : days === 0 ? "peak" : "before";
-
-            return {
-              x,
-              y,
-              id,
-              error: {
-                y: { min: error, max: error },
-              },
-              description:
-                t("light_curve.plot.point_label", {
-                  magnitude: y,
-                  count: Math.abs(days),
-                  context,
-                }) || undefined,
-            };
-          }),
+          points: data,
         }}
         tooltip={({ y }) =>
           t("light_curve.plot.tooltip", {
@@ -112,16 +94,21 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
             }),
           })
         }
-        renderBehind={({ xScale, yStart, yEnd }) => (
-          <rect
-            x={xScale(0)}
-            y={yEnd}
-            width={xScale(15) - xScale(0)}
-            height={yStart - yEnd}
-            stroke="var(--neutral60,##6A6E6E)"
-            strokeDasharray={6}
-            fill="var(--neutral20,#DCE0E3)"
-          />
+        plotChildren={({ xScale, yStart, yEnd, Data, ...props }) => (
+          <>
+            <rect
+              x={xScale(0)}
+              y={yEnd}
+              width={xScale(15) - xScale(0)}
+              height={yStart - yEnd}
+              stroke="var(--neutral60,##6A6E6E)"
+              strokeDasharray={6}
+              fill="var(--neutral20,#DCE0E3)"
+            />
+            {Data}
+            {plotChildren &&
+              plotChildren({ xScale, yStart, yEnd, Data, ...props })}
+          </>
         )}
       />
       {slider && (
@@ -137,6 +124,6 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   );
 };
 
-ScatterPlot.displayName = "Widgets.LightCurve.ScatterPlot";
+Plot.displayName = "Widgets.LightCurve.Plot";
 
-export default ScatterPlot;
+export default Plot;

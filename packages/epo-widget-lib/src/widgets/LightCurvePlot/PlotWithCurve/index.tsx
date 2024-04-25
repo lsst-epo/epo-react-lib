@@ -2,12 +2,12 @@ import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import defaults from "../defaults";
-import Plot from "../ScatterPlot";
-import LightCurve from "../LightCurve";
-import LightCurveLabel from "../A11Y/LightCurveLabel";
-import { formatMagnitudePoints, estimateMagnitudeWithOffset } from "../helpers";
+import Plot from "../Plot";
+import LightCurve from "./LightCurve";
+import LightCurveLabel from "./A11Y/LightCurveLabel";
+import { useAlertsAsPoints, estimateMagnitudeWithOffset } from "../helpers";
 import { Reset } from "@/atomic/Button";
-import MagnitudeSlider from "../MagnitudeSlider";
+import MagnitudeSlider from "./MagnitudeSlider";
 import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
 import * as Styled from "./styles";
 import Viewport from "@/charts/Viewport";
@@ -45,7 +45,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   const gaussianLabelId = "gaussianWidthLabel";
   const yOffsetLabelId = "yOffsetLabel";
 
-  const data = formatMagnitudePoints(alerts, peakMjd);
+  const data = useAlertsAsPoints(alerts, peakMjd);
 
   const handleReset = () => {
     onUserMagnitudeChangeCallback &&
@@ -70,7 +70,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
             {...{ yMin, yMax, estimatedPeak }}
           />
         }
-        renderInFront={({
+        plotChildren={({
           xScale,
           yScale,
           xDomain,

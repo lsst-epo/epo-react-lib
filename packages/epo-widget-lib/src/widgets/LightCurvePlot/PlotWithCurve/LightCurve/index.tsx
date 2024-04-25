@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { range } from "d3-array";
 import { Domain, ScaleFunction } from "@/types/charts";
-import { estimateMagnitude } from "../helpers";
+import { estimateMagnitude } from "../../helpers";
 
 interface LightCurveProps {
   xScale: ScaleFunction;

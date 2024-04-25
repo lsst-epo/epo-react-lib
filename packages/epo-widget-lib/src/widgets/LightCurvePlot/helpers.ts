@@ -1,22 +1,39 @@
 import { Alert } from "@/types/astro";
+import { Point } from "@/types/charts";
+import { useTranslation } from "react-i18next";
 
 export const daysSincePeak = (current: number, peak: number) => {
   return current - peak;
 };
 
-export const formatMagnitudePoints = (
+export const useAlertsAsPoints = (
   alerts: Array<Alert>,
   phaseCorrection: number
-) =>
-  alerts.map(({ date, magnitude, error, id }) => {
+): Array<Point> => {
+  const { t } = useTranslation();
+
+  return alerts.map(({ date, magnitude, error, id }) => {
+    const x = daysSincePeak(date, phaseCorrection);
+    const days = Math.round(x);
+    const context = days > 0 ? "after" : days === 0 ? "peak" : "before";
+
     return {
-      x: daysSincePeak(date, phaseCorrection),
+      x,
       y: magnitude,
-      error,
+      error: {
+        y: { min: error, max: error },
+      },
       id,
       date,
+      description:
+        t("light_curve.plot.point_label", {
+          magnitude,
+          count: Math.abs(days),
+          context,
+        }) || undefined,
     };
   });
+};
 
 export const gaussianBump = (x: number, gaussianWidth: number) => {
   const loc = 5.0;

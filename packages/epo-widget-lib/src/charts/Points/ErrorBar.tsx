@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { ErrorRange, ScaleFunction } from "@/types/charts";
-import { errorBarCapWidth, defaultErrorBarStyles } from "../defaults";
+import defaults from "../defaults";
 
 interface ErrorBarProps {
   error: Record<string, ErrorRange>;
@@ -39,36 +39,36 @@ const ErrorBar: FunctionComponent<ErrorBarProps> = ({
           {x.max && (
             <>
               <line
-                y1={-errorBarCapWidth}
-                y2={errorBarCapWidth}
+                y1={-defaults.errorBarCapWidth}
+                y2={defaults.errorBarCapWidth}
                 x1={x.max}
                 x2={x.max}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
               <line
                 y1={0}
                 y2={0}
                 x1={0}
                 x2={x.max}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
             </>
           )}
           {x.min && (
             <>
               <line
-                y1={-errorBarCapWidth}
-                y2={errorBarCapWidth}
+                y1={-defaults.errorBarCapWidth}
+                y2={defaults.errorBarCapWidth}
                 x1={x.min}
                 x2={x.min}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
               <line
                 y1={0}
                 y2={0}
                 x1={x.min}
                 x2={0}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
             </>
           )}
@@ -79,36 +79,36 @@ const ErrorBar: FunctionComponent<ErrorBarProps> = ({
           {y.max && (
             <>
               <line
-                x1={-errorBarCapWidth}
-                x2={errorBarCapWidth}
+                x1={-defaults.errorBarCapWidth}
+                x2={defaults.errorBarCapWidth}
                 y1={y.max}
                 y2={y.max}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
               <line
                 x1={0}
                 x2={0}
                 y1={0}
                 y2={y.max}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
             </>
           )}
           {y.min && (
             <>
               <line
-                x1={-errorBarCapWidth}
-                x2={errorBarCapWidth}
+                x1={-defaults.errorBarCapWidth}
+                x2={defaults.errorBarCapWidth}
                 y1={y.min}
                 y2={y.min}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
               <line
                 x1={0}
                 x2={0}
                 y1={y.min}
                 y2={0}
-                {...defaultErrorBarStyles}
+                {...defaults.errorBarStyles}
               />
             </>
           )}
