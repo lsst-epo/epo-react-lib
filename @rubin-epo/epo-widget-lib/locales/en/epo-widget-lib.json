@@ -1,0 +1,134 @@
+{
+  "blinker": {
+    "controls": {
+      "backward": "Rewind",
+      "forward": "Forward",
+      "play": "Play",
+      "pause": "Pause"
+    }
+  },
+  "elapsed_time": {
+    "title": "Elapsed Time",
+    "step": {
+      "day_one": "Day",
+      "day_other": "Days",
+      "hour_one": "Hour",
+      "hour_other": "Hours",
+      "minute_one": "Minute",
+      "minute_other": "Minutes",
+      "second_one": "Second",
+      "second_other": "Seconds",
+      "year_one": "Year",
+      "year_other": "Years"
+    }
+  },
+  "filterTool": {
+    "title": "Filter Tool",
+    "filter": "Filter",
+    "whiteLight": "White Light",
+    "prism": "Prism",
+    "selectLabel": "Select a filter:",
+    "light_out": "Light out",
+    "light_filtered": "Light filtered",
+    "colors": {
+      "violet": "Violet",
+      "blue": "Blue",
+      "green": "Green",
+      "yellow": "Yellow",
+      "orange": "Orange",
+      "red": "Red",
+      "none": "None"
+    }
+  },
+  "colorTool": {
+    "labels": {
+      "object_type": "Object type:",
+      "object": "Object:",
+      "object_selected": "Selected object:",
+      "filter": "Filter",
+      "color": "Color",
+      "color_intensity": "Color Intensity"
+    },
+    "actions": {
+      "select_an_object": "Select an object",
+      "select_filter": "Select a filter",
+      "reset": "Reset",
+      "export": "Export"
+    }
+  },
+  "source_selector": {
+    "selected_source": "Selected {{type}}:",
+    "sources": {
+      "galaxy": "Galaxy",
+      "supernova": "Supernova"
+    },
+    "messages": {
+      "success": "You found it!",
+      "failure": "Try again."
+    }
+  },
+  "camera_filter": {
+    "title": "Rubin Observatory LSST Camera Filter Ranges",
+    "labels": {
+      "select": "Select one of the Rubin filters",
+      "option": "{{band}} filter",
+      "option_none": "None",
+      "captured_range": "Electromagnetic spectrums captured with {{filter}} filter applied",
+      "captured_range_no_filter": "Electromagnetic spectrums without filter applied",
+      "ultraviolet": "Ultraviolet",
+      "visible": "Visible Light",
+      "infrared": "Infrared"
+    }
+  },
+  "supernova_three_vector": {
+    "histogram": {
+      "title": "Supernova Distances",
+      "x_label": "Distance [kpc]",
+      "bar_label_one": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernova",
+      "bar_label_other": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernovae"
+    },
+    "slider": {
+      "label": "Select visible range",
+      "valueLabel": "{{value}} kiloparsecs"
+    },
+    "skymap": {
+      "title": "Supernova Distribution",
+      "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
+      "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} kiloparsecs.",
+      "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} kiloparsecs.",
+      "user_supernova_count_zero": "None of your supernovae are visible.",
+      "user_supernova_count_one": "{{count}} of your supernovae is visible near {{coords}}.",
+      "user_supernova_count_other": "{{count}} of your supernovae are visible near {{coords}}."
+    }
+  },
+  "light_curve": {
+    "deltaM15": {
+      "label": "Delta m 15:"
+    },
+    "curve": {
+      "controls": {
+        "gaussian_width": "Curve Width",
+        "y_offset": "Vertical (y) Offset"
+      },
+      "description_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
+      "description_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}"
+    },
+    "magnitude_slider": {
+      "label": "Estimate the apparent magnitude",
+      "value_above": "Apparent magnitude is {{magnitude}}, {{distance}} higher than the peak of the light curve.",
+      "value_below": "Apparent magnitude is {{magnitude}}, {{distance}} lower than the peak of the light curve.",
+      "value_equal": "Apparent magnitude is {{magnitude}}, equal to the peak of the light curve."
+    },
+    "plot": {
+      "x_label": "Days",
+      "y_label": "Apparent Magnitude (m)",
+      "plot_label": "Supernovae magnitude before and after peak magnitude",
+      "point_label_before_one": "Apparent Magnitude: {{magnitude}} {{count}} day before peak",
+      "point_label_before_other": "Apparent Magnitude: {{magnitude}} {{count}} days before peak",
+      "point_label_peak": "Apparent Magnitude: {{magnitude}} at peak",
+      "point_label_after_one": "Apparent Magnitude: {{magnitude}} {{count}} day after peak",
+      "point_label_after_other": "Apparent Magnitude: {{magnitude}} {{count}} days after peak",
+      "tooltip": "Apparent Magnitude: {{magnitude}}"
+    }
+  }
+}

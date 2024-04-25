@@ -1,0 +1,7 @@
+import{s as d,j as a}from"./styled-components.browser.esm-e0114bd2.js";import{C as l}from"./Container-4222a0a1.js";import{B as m}from"./index-237b72e7.js";import"./index-8db94870.js";import"./_commonjsHelpers-042e6b4d.js";import"./index-223833fa.js";import"./index-12ae03d4.js";import"./utils-54f41c78.js";import"./index-abcb9422.js";import"./styles-2fca3e33.js";import"./range-6bc2a9a0.js";import"./index-b48b975d.js";import"./index-a35313c6.js";import"./index-600f51cf.js";import"./index-69893c61.js";import"./index-3d39e395.js";import"./index-42ed9bd3.js";const D={argTypes:{},component:m},x=d(l)`
+  container-type: inline-size;
+`,h=t=>a.jsx(x,{width:"narrow",children:a.jsx(m,{...t})}),o=400,i=400,p=[];for(let t=0;t<25;t++)p.push({id:t,x:Math.random()*o,y:Math.random()*i});const g={label:"Storybook Data",points:p},u={min:0,max:o,step:50,label:"Width"},y={min:0,max:i,step:50,label:"Height"},r=h.bind({});r.args={width:o,height:i,data:g,xAxis:u,yAxis:y,tooltip:({x:t,y:c})=>`x: ${t.toFixed(0)} y: ${c.toFixed(0)}`,margins:{left:40,bottom:20,top:0,right:0}};var e,s,n;r.parameters={...r.parameters,docs:{...(e=r.parameters)==null?void 0:e.docs,source:{originalSource:`args => {
+  return <Container width="narrow">
+      <ScatterPlot {...args} />
+    </Container>;
+}`,...(n=(s=r.parameters)==null?void 0:s.docs)==null?void 0:n.source}}};const H=["Primary"];export{r as Primary,H as __namedExportsOrder,D as default};
