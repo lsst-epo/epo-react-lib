@@ -1,6 +1,6 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
-import { Bounds } from "../../types/charts";
+import { Bounds } from "@/types/charts";
 
 export interface BaseChartProps extends Partial<Bounds> {
   className?: string;
