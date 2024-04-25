@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { ticks } from "d3-array";
-import { ChartMargin, Domain, ScaleFunction } from "../../types/charts";
+import { ChartMargin, Domain, ScaleFunction } from "@/types/charts";
 import * as Styled from "../styles";
 
 export interface GuidelinesProps {

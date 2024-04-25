@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { ticks as d3Ticks } from "d3-array";
-import { Domain, ScaleFunction, BaseAxisProps } from "../../types/charts";
+import { Domain, ScaleFunction, BaseAxisProps } from "@/types/charts";
 import * as Styled from "../styles";
 
 export interface XAxisProps extends BaseAxisProps {
