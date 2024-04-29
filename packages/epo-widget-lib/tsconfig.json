@@ -22,6 +22,7 @@
       "@/atomic/*": ["src/atomic/*"],
       "@/charts/*": ["src/charts/*"],
       "@/hooks/*": ["src/hooks/*"],
+      "@/layout/*": ["src/layout/*"],
       "@/lib/*": ["src/lib/*"],
       "@/storybook/*": [".storybook/*"],
       "@/styles/*": ["src/styles/*"],
