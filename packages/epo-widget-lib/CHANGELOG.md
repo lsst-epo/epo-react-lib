@@ -54,3 +54,7 @@
 
 - fix to `LightCurvePlot`
 - change localization text
+
+## 0.9.9
+
+- add `AspectRatio` and `Controls` layouts
