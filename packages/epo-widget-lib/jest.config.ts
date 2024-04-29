@@ -9,6 +9,7 @@ const config: JestConfigWithTsJest = {
     "^@/assets(.*)$": "<rootDir>/src/assets$1",
     "^@/atomic(.*)$": "<rootDir>/src/atomic$1",
     "^@/hooks(.*)$": "<rootDir>/src/hooks$1",
+    "^@/layout(.*)$": "<rootDir>/src/layout$1",
     "^@/lib(.*)$": "<rootDir>/src/lib$1",
     "^@/storybook(.*)$": "<rootDir>/.storybook$1",
     "^@/styles(.*)$": "<rootDir>/src/styles$1",
