@@ -2,10 +2,8 @@ import styled from "styled-components";
 import BaseDM15Display from "./DM15Display";
 
 export const Container = styled.div`
-  --light-curve-padding: var(--PADDING_SMALL, 20px);
-
   display: grid;
-  gap: var(--light-curve-padding);
+  gap: var(--widget-padding);
   grid-template-rows: 1fr min-content;
   position: relative;
 `;
@@ -16,8 +14,8 @@ export const PlotContainer = styled.div`
   container-type: inline-size;
   background-color: var(--white, #fff);
   border: 1px solid var(--turquoise55, #009fa1);
-  gap: var(--light-curve-padding);
-  padding: var(--light-curve-padding);
+  gap: var(--widget-padding);
+  padding: var(--widget-padding);
   grid-template-columns: 1fr;
 `;
 
@@ -34,10 +32,10 @@ export const DM15Display = styled(BaseDM15Display)`
 export const Controls = styled.form`
   display: flex;
   flex-direction: column;
-  gap: var(--light-curve-padding);
+  gap: var(--widget-padding);
 `;
 
 export const ControlLabel = styled.span`
   display: block;
-  margin-block-end: var(--light-curve-padding);
+  margin-block-end: var(--widget-padding);
 `;

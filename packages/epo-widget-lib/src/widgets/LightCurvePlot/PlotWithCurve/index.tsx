@@ -11,6 +11,7 @@ import MagnitudeSlider from "./MagnitudeSlider";
 import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
 import * as Styled from "./styles";
 import Viewport from "@/charts/Viewport";
+import Controls from "@/layout/Controls";
 
 interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
   gaussianWidth?: number;
@@ -58,110 +59,116 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   const estimatedPeak = estimateMagnitudeWithOffset(0, gaussianWidth, yOffset);
 
   return (
-    <Styled.Container className={className}>
-      <Plot
-        slider={
-          <MagnitudeSlider
-            magnitude={userMagnitude}
-            onMagnitudeChangeCallback={(v) =>
-              onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
+    <>
+      <Controls
+        className={className}
+        widget={
+          <Plot
+            slider={
+              <MagnitudeSlider
+                magnitude={userMagnitude}
+                onMagnitudeChangeCallback={(v) =>
+                  onUserMagnitudeChangeCallback &&
+                  onUserMagnitudeChangeCallback(v)
+                }
+                disabled={isDisplayOnly}
+                {...{ yMin, yMax, estimatedPeak }}
+              />
             }
-            disabled={isDisplayOnly}
-            {...{ yMin, yMax, estimatedPeak }}
+            plotChildren={({
+              xScale,
+              yScale,
+              xDomain,
+              yDomain,
+              xStart,
+              xEnd,
+              yStart,
+              yEnd,
+            }) => (
+              <>
+                <LightCurve
+                  {...{
+                    gaussianWidth,
+                    yOffset,
+                    xDomain,
+                    xScale,
+                    yScale,
+                    yDomain,
+                  }}
+                />
+                <Viewport
+                  x={xStart}
+                  y={yEnd}
+                  outerHeight={yStart - yEnd}
+                  outerWidth={xEnd - xStart}
+                  innerWidth={width}
+                  innerHeight={height}
+                >
+                  <Styled.DM15Display {...{ gaussianWidth }} />
+                </Viewport>
+              </>
+            )}
+            {...{
+              ...props,
+              data,
+              width,
+              height,
+              yMin,
+              yMax,
+            }}
           />
         }
-        plotChildren={({
-          xScale,
-          yScale,
-          xDomain,
-          yDomain,
-          xStart,
-          xEnd,
-          yStart,
-          yEnd,
-        }) => (
-          <>
-            <LightCurve
-              {...{
-                gaussianWidth,
-                yOffset,
-                xDomain,
-                xScale,
-                yScale,
-                yDomain,
-              }}
-            />
-            <Viewport
-              x={xStart}
-              y={yEnd}
-              outerHeight={yStart - yEnd}
-              outerWidth={xEnd - xStart}
-              innerWidth={width}
-              innerHeight={height}
-            >
-              <Styled.DM15Display {...{ gaussianWidth }} />
-            </Viewport>
-          </>
-        )}
-        {...{
-          ...props,
-          data,
-          width,
-          height,
-          yMin,
-          yMax,
-        }}
-      />
-      {data.length > 0 ? <></> : null}
-      {!isDisplayOnly && (
-        <Styled.Controls id={controlsFormId}>
-          <div>
-            <Styled.ControlLabel id={gaussianLabelId}>
-              {t("light_curve.curve.controls.gaussian_width")}
-            </Styled.ControlLabel>
-            <HorizontalSlider
-              label="Gaussian Width"
-              labelledbyId={gaussianLabelId}
-              color="var(--turquoise85, #12726D)"
-              min={defaults.gaussianMin}
-              max={defaults.gaussianMax}
-              step={defaults.gaussianStep}
-              value={gaussianWidth}
-              onChangeCallback={(value) =>
-                typeof value === "number" &&
-                onGaussianChangeCallback &&
-                onGaussianChangeCallback(value)
-              }
-            />
-          </div>
-          <div>
-            <Styled.ControlLabel id={yOffsetLabelId}>
-              {t("light_curve.curve.controls.y_offset")}
-            </Styled.ControlLabel>
-            <HorizontalSlider
-              label="Y Offset"
-              labelledbyId={yOffsetLabelId}
-              color="var(--turquoise85, #12726D)"
-              min={defaults.yOffsetMin}
-              max={defaults.yOffsetMax}
-              step={defaults.yOffsetStep}
-              value={yOffset}
-              onChangeCallback={(value) =>
-                typeof value === "number" &&
-                onYOffsetChangeCallback &&
-                onYOffsetChangeCallback(value)
-              }
-            />
-          </div>
-
-          <Reset onResetCallback={handleReset} />
-        </Styled.Controls>
-      )}
+        controls={
+          !isDisplayOnly && (
+            <Styled.Controls id={controlsFormId}>
+              <div>
+                <Styled.ControlLabel id={gaussianLabelId}>
+                  {t("light_curve.curve.controls.gaussian_width")}
+                </Styled.ControlLabel>
+                <HorizontalSlider
+                  label="Gaussian Width"
+                  labelledbyId={gaussianLabelId}
+                  color="var(--turquoise85, #12726D)"
+                  min={defaults.gaussianMin}
+                  max={defaults.gaussianMax}
+                  step={defaults.gaussianStep}
+                  value={gaussianWidth}
+                  onChangeCallback={(value) =>
+                    typeof value === "number" &&
+                    onGaussianChangeCallback &&
+                    onGaussianChangeCallback(value)
+                  }
+                />
+              </div>
+              <div>
+                <Styled.ControlLabel id={yOffsetLabelId}>
+                  {t("light_curve.curve.controls.y_offset")}
+                </Styled.ControlLabel>
+                <HorizontalSlider
+                  label="Y Offset"
+                  labelledbyId={yOffsetLabelId}
+                  color="var(--turquoise85, #12726D)"
+                  min={defaults.yOffsetMin}
+                  max={defaults.yOffsetMax}
+                  step={defaults.yOffsetStep}
+                  value={yOffset}
+                  onChangeCallback={(value) =>
+                    typeof value === "number" &&
+                    onYOffsetChangeCallback &&
+                    onYOffsetChangeCallback(value)
+                  }
+                />
+              </div>
+            </Styled.Controls>
+          )
+        }
+        actions={!isDisplayOnly && <Reset onResetCallback={handleReset} />}
+      ></Controls>
       <LightCurveLabel
         controlledById={controlsFormId}
         {...{ data, gaussianWidth, yOffset, estimatedPeak }}
       />
-    </Styled.Container>
+    </>
   );
 };
 

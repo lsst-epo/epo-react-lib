@@ -1,9 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
+import styled from "styled-components";
 import SupernovaThreeVector from ".";
+
+const Container = styled.div`
+  display: block;
+  container-type: inline-size;
+`;
 
 const meta: Meta<typeof SupernovaThreeVector> = {
   argTypes: {},
   component: SupernovaThreeVector,
+  decorators: (Story) => <Container>{Story()}</Container>,
 };
 export default meta;
 

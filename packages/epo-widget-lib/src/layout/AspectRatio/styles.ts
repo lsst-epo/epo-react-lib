@@ -3,12 +3,16 @@ import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const AspectRatio = styled.div`
-  --widget-max-width: 100vh;
   --aspect-ratio: var(--aspect-small-ratio, 1);
 
-  aspect-ratio: var(--aspect-ratio);
-  max-width: calc(var(--widget-max-width) * var(--aspect-ratio));
+  height: 100vh;
+  position: relative;
 
+  @container (min-width: ${token("BREAK_MOBILE")}) {
+    max-width: calc(var(--widget-max-width, 100vh) * var(--aspect-ratio));
+    height: auto;
+    aspect-ratio: var(--aspect-ratio);
+  }
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     --aspect-ratio: var(--aspect-med-ratio, 1);
   }
