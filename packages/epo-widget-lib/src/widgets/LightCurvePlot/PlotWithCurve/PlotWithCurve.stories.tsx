@@ -4,6 +4,7 @@ import { biggerData } from "@/widgets/SourceSelector/mocks";
 import minBy from "lodash/minBy";
 import PlotWithCurve from ".";
 import Container from "@rubin-epo/epo-react-lib/Container";
+import styled from "styled-components";
 
 const meta: Meta<typeof PlotWithCurve> = {
   argTypes: {
@@ -22,6 +23,11 @@ const { alerts } = biggerData;
 
 const peakMjd = (minBy(alerts, ({ magnitude }) => magnitude)?.date || 0) - 0.5;
 
+const InnerContainer = styled.div`
+  display: block;
+  container-type: inline-size;
+`;
+
 const Template: StoryFn<typeof PlotWithCurve> = (args) => {
   const [userMagnitude, setUserMagnitude] = useState(args.userMagnitude);
   const [gaussianWidth, setGaussianWidth] = useState(args.gaussianWidth);
@@ -29,13 +35,15 @@ const Template: StoryFn<typeof PlotWithCurve> = (args) => {
 
   return (
     <Container>
-      <PlotWithCurve
-        {...args}
-        {...{ gaussianWidth, yOffset, userMagnitude }}
-        onGaussianChangeCallback={(value) => setGaussianWidth(value)}
-        onYOffsetChangeCallback={(value) => setYOffset(value)}
-        onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
-      />
+      <InnerContainer>
+        <PlotWithCurve
+          {...args}
+          {...{ gaussianWidth, yOffset, userMagnitude }}
+          onGaussianChangeCallback={(value) => setGaussianWidth(value)}
+          onYOffsetChangeCallback={(value) => setYOffset(value)}
+          onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
+        />
+      </InnerContainer>
     </Container>
   );
 };

@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactNode } from "react";
-import AspectRatio from "../AspectRatio";
+import AspectRatio from "@/layout/AspectRatio";
 import * as Styled from "./styles";
 
 interface WidgetControlsProps {
@@ -7,6 +7,7 @@ interface WidgetControlsProps {
   controls: ReactNode;
   actions?: ReactNode;
   caption?: ReactNode;
+  className?: string;
 }
 
 const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
@@ -14,18 +15,27 @@ const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
   controls,
   actions,
   caption,
+  className,
 }) => {
   return (
     <AspectRatio
       ratio="landscape"
       medScreenRatio="landscape"
       smallScreenRatio="portrait"
+      {...{ className }}
     >
       <Styled.WidgetLayout>
-        <Styled.WidgetSlot ratio="square">{widget}</Styled.WidgetSlot>
-        <Styled.ControlsSlot>{controls}</Styled.ControlsSlot>
-        <Styled.ActionsSlot>{actions}</Styled.ActionsSlot>
-        <Styled.CaptionSlot>{caption}</Styled.CaptionSlot>
+        <Styled.InteractionRow>
+          <Styled.Widget>{widget}</Styled.Widget>
+          {caption && (
+            <Styled.PortraitCaption>{caption}</Styled.PortraitCaption>
+          )}
+          {controls && <Styled.Controls>{controls}</Styled.Controls>}
+        </Styled.InteractionRow>
+        {actions && <Styled.Actions>{actions}</Styled.Actions>}
+        {caption && (
+          <Styled.LandscapeCaption>{caption}</Styled.LandscapeCaption>
+        )}
       </Styled.WidgetLayout>
     </AspectRatio>
   );
