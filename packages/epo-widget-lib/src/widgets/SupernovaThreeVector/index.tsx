@@ -84,7 +84,7 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   }, 0);
 
   return (
-    <Styled.ThreeVectorContainer>
+    <Styled.ThreeVectorContainer ratio="landscape">
       <Styled.ThreeVectorLayout>
         <Styled.HistogramContainer>
           <Styled.ChartTitle>

@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { Alert } from "@/types/astro";
 import Plot, { PlotProps } from "../Plot";
 import { useAlertsAsPoints } from "../helpers";
+import AspectRatio from "@/layout/AspectRatio";
 
 export interface PlotWithoutCurveProps extends Omit<PlotProps, "data"> {
   alerts: Array<Alert>;
@@ -16,12 +17,14 @@ const PlotWithoutCurve: FunctionComponent<PlotWithoutCurveProps> = ({
   const data = useAlertsAsPoints(alerts, peakMjd);
 
   return (
-    <Plot
-      {...{
-        ...props,
-        data,
-      }}
-    />
+    <AspectRatio ratio="square">
+      <Plot
+        {...{
+          ...props,
+          data,
+        }}
+      />
+    </AspectRatio>
   );
 };
 

@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
+import AspectRatio from "@/layout/AspectRatio";
 import * as Button from "@/atomic/Button";
 import DistanceHistogram from "./Histogram";
 import BaseSkymap from "./Skymap";
 
-export const ThreeVectorContainer = styled.div`
+export const ThreeVectorContainer = styled(AspectRatio)`
   container-type: inline-size;
 `;
 
@@ -21,7 +22,7 @@ export const ThreeVectorLayout = styled.div`
     "reset";
   gap: var(--three-vector-gap);
 
-  @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
+  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr min-content min-content;
     grid-template-areas:
