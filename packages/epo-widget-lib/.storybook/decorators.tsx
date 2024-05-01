@@ -13,10 +13,24 @@ const withTheme: Decorator = (StoryFn) => {
   );
 };
 
+const Container: Decorator = (StoryFn) => {
+  return (
+    <div
+      style={{
+        "--widget-max-height": "calc(100vh - 2rem)",
+        containerType: "inline-size",
+      }}
+    >
+      {StoryFn()}
+    </div>
+  );
+};
+
 // export all decorators that should be globally applied in an array
 export const globalDecorators = [
   withTheme,
   withTests({
     results,
   }),
+  Container,
 ];
