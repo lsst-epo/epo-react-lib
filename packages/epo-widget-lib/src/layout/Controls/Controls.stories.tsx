@@ -23,27 +23,21 @@ const Control = styled.div`
   height: 2rem;
 `;
 
-const Container = styled.div`
-  container-type: inline-size;
-`;
-
 const Template: StoryFn<typeof Controls> = (args) => {
   return (
-    <Container>
-      <Controls
-        {...args}
-        widget={<Widget />}
-        controls={
-          <>
-            <Control />
-            <Control />
-            <Control />
-          </>
-        }
-        caption="Selected Object"
-        actions={<ResetButton onResetCallback={() => undefined} />}
-      />
-    </Container>
+    <Controls
+      {...args}
+      widget={<Widget />}
+      controls={
+        <>
+          <Control />
+          <Control />
+          <Control />
+        </>
+      }
+      caption="Selected Object"
+      actions={<ResetButton onResetCallback={() => undefined} />}
+    />
   );
 };
 
