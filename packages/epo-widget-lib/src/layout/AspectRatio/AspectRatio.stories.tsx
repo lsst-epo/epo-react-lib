@@ -35,17 +35,11 @@ const Filler = styled.div`
   height: 100%;
 `;
 
-const Container = styled.div`
-  container-type: inline-size;
-`;
-
 const Template: StoryFn<typeof AspectRatio> = (args) => {
   return (
-    <Container>
-      <AspectRatio {...args}>
-        <Filler />
-      </AspectRatio>
-    </Container>
+    <AspectRatio {...args}>
+      <Filler />
+    </AspectRatio>
   );
 };
 
