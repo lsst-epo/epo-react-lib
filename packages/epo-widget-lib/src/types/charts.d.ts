@@ -29,6 +29,14 @@ export type LabelRenderer = (
   index?: number
 ) => ReactNode;
 
+export interface AxisConfig {
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  guidelines?: boolean;
+}
+
 export interface BaseAxisProps {
   ticks: number | number[];
   labelRender?: LabelRenderer;

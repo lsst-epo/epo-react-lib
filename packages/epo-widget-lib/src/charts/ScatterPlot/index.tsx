@@ -8,6 +8,7 @@ import {
   Guidelines,
 } from "@/charts/index";
 import {
+  AxisConfig,
   ChartMargin,
   PlotChildRenderer,
   Point,
@@ -16,14 +17,6 @@ import {
 import useAxis from "@/charts/hooks/useAxis";
 import * as Styled from "./styles";
 import defaults from "../defaults";
-
-interface AxisConfig {
-  label: string;
-  min: number;
-  max: number;
-  step: number;
-  guidelines?: boolean;
-}
 
 export interface ScatterPlotProps {
   xAxis: AxisConfig;
@@ -56,6 +49,8 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const { label, points } = data;
   const margins = { ...defaults.margins, ...customMargins };
 
+  console.log({ margins });
+
   const activePoint =
     typeof hoveredIndex !== "undefined"
       ? points[hoveredIndex]
@@ -81,8 +76,8 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const Data = (
     <Points
       data={points}
-      onHoverCallback={(i) => setHovered(i)}
-      onHoverOutCallback={() => setHovered(undefined)}
+      onHoverCallback={tooltip ? (i) => setHovered(i) : undefined}
+      onHoverOutCallback={tooltip ? () => setHovered(undefined) : undefined}
       {...{ label, xScale, yScale }}
     />
   );
