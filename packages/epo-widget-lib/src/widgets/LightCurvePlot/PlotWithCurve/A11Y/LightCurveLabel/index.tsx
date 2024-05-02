@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import minBy from "lodash/minBy";
-import { calculateResidual, formatMagnitudePoints } from "../../../helpers";
+import { calculateResidual, useAlertsAsPoints } from "../../../helpers";
 import { between } from "@/lib/utils";
 import * as Styled from "./styles";
 
 interface LightCurveLabelProps {
-  data: ReturnType<typeof formatMagnitudePoints>;
+  data: ReturnType<typeof useAlertsAsPoints>;
   controlledById?: string;
   estimatedPeak: number;
   gaussianWidth: number;

@@ -9,8 +9,8 @@ export interface PointsProps {
   xScale: ScaleFunction;
   yScale: ScaleFunction;
   className?: string;
-  onHoverCallback: (index: number) => void;
-  onHoverOutCallback: () => void;
+  onHoverCallback?: (index: number) => void;
+  onHoverOutCallback?: () => void;
 }
 
 const Points: FunctionComponent<PointsProps> = ({
