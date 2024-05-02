@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import * as Button from "@/atomic/Button";
 import { AstroObject, ColorToolAction, ImageFilter } from "../ColorTool";
 import Export from "./Export";
-import * as Styled from "./styles";
 import { areActionsActive, getBrightnessValue } from "../lib/utils";
 
 interface ActionsProps {
@@ -41,7 +40,7 @@ const Actions: FunctionComponent<ActionsProps> = ({
   const actionsDisabled = isDisabled || !areActionsActive(selectedData);
 
   return (
-    <Styled.Actions>
+    <>
       {actions.map((action) => {
         switch (action) {
           case "reset":
@@ -76,7 +75,7 @@ const Actions: FunctionComponent<ActionsProps> = ({
             return null;
         }
       })}
-    </Styled.Actions>
+    </>
   );
 };
 

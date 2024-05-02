@@ -12,6 +12,7 @@ export const WidgetLayout = styled.div`
   max-height: 100%;
   gap: var(--widget-padding);
   padding: var(--widget-padding);
+  overflow-y: auto;
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     --widget-padding: var(--PADDING_SMALL, 20px);
@@ -19,6 +20,7 @@ export const WidgetLayout = styled.div`
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     height: 100%;
+    overflow-y: initial;
   }
 `;
 
@@ -35,12 +37,14 @@ export const InteractionRow = styled.div`
 
 export const Widget = styled.div`
   aspect-ratio: 1;
+  flex: 1 1 auto;
   max-height: 100%;
   max-width: 100%;
   justify-self: center;
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     max-height: unset;
+    height: 100%;
   }
 `;
 
@@ -48,7 +52,7 @@ export const Controls = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--widget-padding);
-  width: 100%;
+  flex: 0 1 100%;
 `;
 
 export const Actions = styled.div`

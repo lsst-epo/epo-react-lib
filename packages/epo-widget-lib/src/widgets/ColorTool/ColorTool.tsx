@@ -8,6 +8,7 @@ import SelectListbox, {
 import FilterControls from "./FilterControls";
 import ImageComposite from "./ImageComposite";
 import Actions from "./Actions";
+import AspectRatio from "@/layout/AspectRatio";
 
 export interface ImageFilter {
   label: string;
@@ -94,11 +95,13 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
 
   if (isDisplayOnly) {
     return (
-      <ImageComposite
-        ref={imageRef}
-        isDisplayOnly
-        {...{ filters, width, height, selectedObjectName, className, images }}
-      />
+      <AspectRatio ratio="square">
+        <ImageComposite
+          ref={imageRef}
+          isDisplayOnly
+          {...{ filters, width, height, selectedObjectName, className, images }}
+        />
+      </AspectRatio>
     );
   }
 
@@ -134,24 +137,35 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
   const selectPlaceholder = t("colorTool.actions.select_an_object");
 
   return (
-    <Styled.WidgetContainer className={className}>
-      <Styled.WidgetLayout
-        style={{
-          "--image-width": typeof width === "number" ? `${width}px` : width,
-          "--image-height": typeof height === "number" ? `${height}px` : height,
-        }}
-      >
-        {selectedObjectName && hasMultipleDatasets && (
-          <Styled.Title>
-            {!hideSubtitle && (
-              <>
-                <dt>{t("colorTool.labels.object")}</dt>
-                <dd>{selectedObjectName}</dd>
-              </>
-            )}
-            {}
-          </Styled.Title>
-        )}
+    <Styled.WidgetLayout
+      widget={
+        <ImageComposite
+          ref={imageRef}
+          {...{
+            filters,
+            width,
+            height,
+            selectedObjectName,
+            images,
+          }}
+        >
+          {hasMultipleDatasets && (
+            <Styled.SelectionContainer>
+              <SelectListbox
+                id="astroObjectSelector"
+                placeholder={selectPlaceholder}
+                options={objectOptions}
+                onChangeCallback={handleObjectSelection}
+                value={selectedObjectName}
+                isDisabled={isDisabled}
+                width="100%"
+                maxWidth="100%"
+              />
+            </Styled.SelectionContainer>
+          )}
+        </ImageComposite>
+      }
+      controls={
         <Styled.ControlsContainer>
           {filters && (
             <>
@@ -183,31 +197,8 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
               );
             })}
         </Styled.ControlsContainer>
-        <ImageComposite
-          ref={imageRef}
-          {...{
-            filters,
-            width,
-            height,
-            selectedObjectName,
-            images,
-          }}
-        >
-          {hasMultipleDatasets && (
-            <Styled.SelectionContainer>
-              <SelectListbox
-                id="astroObjectSelector"
-                placeholder={selectPlaceholder}
-                options={objectOptions}
-                onChangeCallback={handleObjectSelection}
-                value={selectedObjectName}
-                isDisabled={isDisabled}
-                width="100%"
-                maxWidth="100%"
-              />
-            </Styled.SelectionContainer>
-          )}
-        </ImageComposite>
+      }
+      actions={
         <Actions
           actions={actions as ColorToolAction[]}
           canvas={imageRef.current}
@@ -217,8 +208,22 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
             selectionCallback,
           }}
         />
-      </Styled.WidgetLayout>
-    </Styled.WidgetContainer>
+      }
+      caption={
+        selectedObjectName &&
+        hasMultipleDatasets && (
+          <Styled.Title>
+            {!hideSubtitle && (
+              <>
+                <dt>{t("colorTool.labels.object")}</dt>
+                <dd>{selectedObjectName}</dd>
+              </>
+            )}
+            {}
+          </Styled.Title>
+        )
+      }
+    />
   );
 };
 

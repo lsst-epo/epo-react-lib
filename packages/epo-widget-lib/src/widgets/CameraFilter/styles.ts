@@ -9,11 +9,12 @@ export const FilterContainer = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   text-align: center;
+  padding-block: var(--PADDING_SMALL, 20px);
   position: relative;
 `;
 
 export const FilterTitle = styled.h3`
-  margin-block: 1em;
+  margin: 0;
 `;
 
 export const FilterTable = styled.table`
@@ -21,6 +22,10 @@ export const FilterTable = styled.table`
   text-align: center;
   margin-inline-start: var(--filter-table-margin-inline-start);
   width: var(--filter-table-width);
+
+  @container (min-width: ${token("BREAK_TABLET")}) {
+    margin-block-start: var(--PADDING_SMALL, 20px);
+  }
 `;
 export const FilterRanges = styled.tbody`
   display: table-header-group;
@@ -41,7 +46,7 @@ export const FilterName = styled.th`
   border: var(--filter-name-border);
   border-width: 1px;
 
-  @container camera-filter (min-width: ${token("BREAK_TABLET")}) {
+  @container (min-width: ${token("BREAK_TABLET")}) {
     border-width: 3px;
   }
 `;
@@ -50,7 +55,6 @@ export const SelectContainer = styled.div`
   min-width: 20ch;
   width: 50%;
   max-width: 30ch;
-  margin-block: 1em;
   justify-self: center;
   text-align: left;
 `;
@@ -62,11 +66,11 @@ export const SelectLabel = styled.label`
 export const SpectrumLabel = styled.text`
   font-size: 2em;
 
-  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+  @container (min-width: ${token("BREAK_MOBILE")}) {
     font-size: 1.25em;
   }
 
-  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+  @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     font-size: 0.75em;
   }
 `;
@@ -74,33 +78,33 @@ export const SpectrumLabel = styled.text`
 export const ColorName = styled.tspan`
   font-size: 2em;
 
-  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+  @container (min-width: ${token("BREAK_MOBILE")}) {
     font-size: 1.25em;
   }
 
-  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+  @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     font-size: 0.75em;
   }
 `;
 export const ColorSpectrum = styled.tspan`
   font-size: 1.5em;
 
-  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+  @container (min-width: ${token("BREAK_MOBILE")}) {
     font-size: 1em;
   }
 
-  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+  @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     font-size: 0.5em;
   }
 `;
 export const ColorSpectrumUnit = styled.tspan`
   font-size: 1.3em;
 
-  @container camera-filter (min-width: ${token("BREAK_MOBILE")}) {
+  @container (min-width: ${token("BREAK_MOBILE")}) {
     font-size: 0.8em;
   }
 
-  @container camera-filter (min-width: ${token("BREAK_PHABLET_MIN")}) {
+  @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     font-size: 0.4em;
   }
 `;
@@ -110,7 +114,7 @@ export const CondensedRangeRow = styled.ul`
   justify-content: space-between;
   line-height: 1.2;
   font-size: 80%;
-  margin: 0;
+  margin: var(--PADDING_SMALL, 20px) 0 0;
   padding: 0;
   list-style-type: none;
 `;

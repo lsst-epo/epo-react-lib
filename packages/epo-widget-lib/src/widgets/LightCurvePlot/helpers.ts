@@ -78,7 +78,7 @@ export const estimateMagnitudeWithOffset = (
 ) => estimateMagnitude(x, gaussianWidth) - yOffset;
 
 export const calculateResidual = (
-  data: { x: number; y: number; error: number },
+  data: Point,
   gaussianWidth: number,
   yOffset: number
 ) =>

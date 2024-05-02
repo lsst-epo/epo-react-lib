@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import AspectRatio from "@/layout/AspectRatio";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(AspectRatio)`
   background-color: var(--black, #000);
 `;
 

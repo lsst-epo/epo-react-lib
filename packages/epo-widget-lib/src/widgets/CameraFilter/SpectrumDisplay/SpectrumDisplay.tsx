@@ -22,7 +22,7 @@ const SpectrumDisplay: FunctionComponent<SpectrumDisplayProps> = ({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMinYMin meet"
-      viewBox={`${min} 0 ${range} 300`}
+      viewBox={`${min} 0 ${range} 260`}
       data-testid="spectrum-display"
     >
       <defs>
