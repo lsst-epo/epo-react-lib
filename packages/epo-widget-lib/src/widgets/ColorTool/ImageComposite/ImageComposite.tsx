@@ -33,7 +33,6 @@ const ImageComposite = forwardRef<
       selectedObjectName,
       className,
       children,
-      isDisplayOnly,
       images,
     },
     ref
@@ -62,8 +61,6 @@ const ImageComposite = forwardRef<
     return (
       <Styled.ImageContainer
         style={{
-          aspectRatio: `${width} / ${height}`,
-          maxWidth: isDisplayOnly ? `${width}px` : undefined,
           "--image-container-opacity": !loading && isAnyActive ? 1 : 0.1,
         }}
         {...{ className }}
@@ -71,10 +68,9 @@ const ImageComposite = forwardRef<
         {loading && isAnyActive && <Styled.Loader isVisible={loading} />}
         <Styled.Image
           style={{ "--loading-opacity": loading ? 0 : 1 }}
-          ref={ref}
           role="img"
           hidden={loading}
-          {...{ width, height }}
+          {...{ width, height, ref }}
         />
         {children}
       </Styled.ImageContainer>

@@ -7,6 +7,7 @@ import { filters, Filter, rangeConfig } from "./data";
 import * as Styled from "./styles";
 import CondensedFilterRanges from "./CondensedFilterRanges";
 import SpectrumDisplay from "./SpectrumDisplay";
+import AspectRatio from "@/layout/AspectRatio";
 
 const CameraFilter: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -39,91 +40,93 @@ const CameraFilter: FunctionComponent = () => {
   const activeFilter = filters.find(({ band }) => band === activeFilterBand);
 
   return (
-    <Styled.FilterContainer ref={ref}>
-      <Styled.FilterTitle>{t("camera_filter.title")}</Styled.FilterTitle>
-      {isCondensed && (
-        <CondensedFilterRanges
-          filters={filtersOnly}
-          {...{ min, spectrumRange }}
-        />
-      )}
-      <Styled.FilterTable
-        style={{
-          "--filter-table-margin-inline-start": `${(
-            ((filterMin - min) / spectrumRange) *
-            100
-          ).toFixed(2)}%`,
-          "--filter-table-width": `${(
-            (filterRange / spectrumRange) *
-            100
-          ).toFixed(2)}%`,
-        }}
-        data-testid="expanded-filters"
-      >
-        <colgroup>
-          {filters.map(({ range }) => (
-            <col
-              key={range.join("")}
-              style={{
-                width: `${((range[1] - range[0]) / filterRange) * 100}%`,
-              }}
-            />
-          ))}
-        </colgroup>
-        <Styled.FilterNames>
-          <tr>
-            {filters.map(({ band }, i) => (
-              <Styled.FilterName
-                id={`${band}-name`}
+    <AspectRatio ratio="landscape">
+      <Styled.FilterContainer ref={ref}>
+        <Styled.FilterTitle>{t("camera_filter.title")}</Styled.FilterTitle>
+        {isCondensed && (
+          <CondensedFilterRanges
+            filters={filtersOnly}
+            {...{ min, spectrumRange }}
+          />
+        )}
+        <Styled.FilterTable
+          style={{
+            "--filter-table-margin-inline-start": `${(
+              ((filterMin - min) / spectrumRange) *
+              100
+            ).toFixed(2)}%`,
+            "--filter-table-width": `${(
+              (filterRange / spectrumRange) *
+              100
+            ).toFixed(2)}%`,
+          }}
+          data-testid="expanded-filters"
+        >
+          <colgroup>
+            {filters.map(({ range }) => (
+              <col
+                key={range.join("")}
                 style={{
-                  "--filter-name-border": band ? "solid #b2b2b2" : "none",
+                  width: `${((range[1] - range[0]) / filterRange) * 100}%`,
                 }}
-                key={i}
-                scope="col"
-                aria-hidden={!band}
-              >
-                {band}
-              </Styled.FilterName>
+              />
             ))}
-          </tr>
-        </Styled.FilterNames>
-        {!isCondensed && (
-          <Styled.FilterRanges>
+          </colgroup>
+          <Styled.FilterNames>
             <tr>
-              {filters.map(({ band, range }) => (
-                <Styled.FilterRange key={range.join()} aria-hidden={!band}>
-                  {band && (
-                    <>
-                      {range.join("–")}
-                      <br />
-                      <Styled.Wavelength>nm</Styled.Wavelength>
-                    </>
-                  )}
-                </Styled.FilterRange>
+              {filters.map(({ band }, i) => (
+                <Styled.FilterName
+                  id={`${band}-name`}
+                  style={{
+                    "--filter-name-border": band ? "solid #b2b2b2" : "none",
+                  }}
+                  key={i}
+                  scope="col"
+                  aria-hidden={!band}
+                >
+                  {band}
+                </Styled.FilterName>
               ))}
             </tr>
-          </Styled.FilterRanges>
-        )}
-      </Styled.FilterTable>
-      <SpectrumDisplay
-        {...{ min, max, range: spectrumRange, isCondensed, activeFilter }}
-      />
-      <Styled.SelectContainer>
-        <Styled.SelectLabel id="filterSelectLabel">
-          {t("camera_filter.labels.select")}
-        </Styled.SelectLabel>
-        <SelectListbox
-          options={options}
-          value={activeFilterBand}
-          onChangeCallback={(value: string | null) =>
-            setActiveFilterBand(value)
-          }
-          width="100%"
-          maxWidth="100%"
-          labelledById="filterSelectLabel"
+          </Styled.FilterNames>
+          {!isCondensed && (
+            <Styled.FilterRanges>
+              <tr>
+                {filters.map(({ band, range }) => (
+                  <Styled.FilterRange key={range.join()} aria-hidden={!band}>
+                    {band && (
+                      <>
+                        {range.join("–")}
+                        <br />
+                        <Styled.Wavelength>nm</Styled.Wavelength>
+                      </>
+                    )}
+                  </Styled.FilterRange>
+                ))}
+              </tr>
+            </Styled.FilterRanges>
+          )}
+        </Styled.FilterTable>
+        <SpectrumDisplay
+          {...{ min, max, range: spectrumRange, isCondensed, activeFilter }}
         />
-      </Styled.SelectContainer>
-    </Styled.FilterContainer>
+        <Styled.SelectContainer>
+          <Styled.SelectLabel id="filterSelectLabel">
+            {t("camera_filter.labels.select")}
+          </Styled.SelectLabel>
+          <SelectListbox
+            options={options}
+            value={activeFilterBand}
+            onChangeCallback={(value: string | null) =>
+              setActiveFilterBand(value)
+            }
+            width="100%"
+            maxWidth="100%"
+            labelledById="filterSelectLabel"
+          />
+        </Styled.SelectContainer>
+      </Styled.FilterContainer>
+    </AspectRatio>
   );
 };
 

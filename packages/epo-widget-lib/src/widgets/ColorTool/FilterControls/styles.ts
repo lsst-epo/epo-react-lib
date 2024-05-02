@@ -8,7 +8,7 @@ export const FilterContainer = styled.fieldset`
   border: none;
   display: grid;
   align-items: center;
-  gap: var(--color-tool-padding, var(--PADDING_SMALL, 20px));
+  gap: var(--widget-padding);
   grid-template-columns: max-content minmax(100px, 1fr) minmax(100px, 2fr);
   grid-auto-rows: max-content;
   grid-column: 1 / -1;
