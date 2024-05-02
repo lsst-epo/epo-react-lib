@@ -32,6 +32,10 @@ export default defineConfig({
           "src/widgets/ColorTool/lib/server.ts"
         ),
         FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
+        IsochronePlot: resolve(
+          __dirname,
+          "src/widgets/IsochronePlot/index.tsx"
+        ),
         LightCurvePlot: resolve(
           __dirname,
           "src/widgets/LightCurvePlot/index.tsx"
