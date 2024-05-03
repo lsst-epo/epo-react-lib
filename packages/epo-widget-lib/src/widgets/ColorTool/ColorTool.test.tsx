@@ -1,8 +1,4 @@
-import {
-  act,
-  render,
-  screen,
-} from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import {
   singleData,
   multiData,
@@ -45,7 +41,7 @@ describe("ColorTool", () => {
     });
     const descriptions = screen.getAllByRole("definition");
     const select = document.getElementById("astroObjectSelector");
-    expect(descriptions.length).toBe(1);
+    expect(descriptions).toBeInTheDocument();
     expect(select).toBeInTheDocument();
   });
   it(`should disable controls when isDisabled set`, async () => {

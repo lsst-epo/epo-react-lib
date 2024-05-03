@@ -7,9 +7,9 @@ export const AspectRatio = styled.div`
 
   aspect-ratio: var(--aspect-ratio);
   position: relative;
-  max-width: calc(var(--widget-max-height, 100vh) * var(--aspect-ratio));
+  width: calc(var(--widget-max-height, 100vh) * var(--aspect-ratio));
   max-height: var(--widget-max-height, 100vh);
-  width: 100%;
+  max-width: 100%;
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     --aspect-ratio: var(--aspect-med-ratio, 1);

@@ -58,3 +58,4 @@
 ## 0.9.9
 
 - add `AspectRatio` and `Controls` layouts
+- retrofit existing widgets to use `AspectRatio` and `Controls`

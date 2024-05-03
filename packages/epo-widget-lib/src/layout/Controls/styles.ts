@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const WidgetLayout = styled.div`
-  --widget-padding: calc(var(--PADDING_SMALL, 20px) / 2);
+  --default-widget-padding: calc(var(--PADDING_SMALL, 20px) / 2);
+  --widget-gap: var(--widget-padding, var(--default-widget-padding));
 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: 100%;
   max-height: 100%;
-  gap: var(--widget-padding);
-  padding: var(--widget-padding);
+  gap: var(--widget-gap);
   overflow-y: auto;
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
-    --widget-padding: var(--PADDING_SMALL, 20px);
+    --default-widget-padding: var(--PADDING_SMALL, 20px);
   }
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
@@ -28,7 +28,7 @@ export const InteractionRow = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: var(--widget-padding);
+  gap: var(--widget-gap);
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     flex-direction: row-reverse;
@@ -51,14 +51,14 @@ export const Widget = styled.div`
 export const Controls = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--widget-padding);
+  gap: var(--widget-gap);
   flex: 0 1 100%;
 `;
 
 export const Actions = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--widget-padding);
+  gap: var(--widget-gap);
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     flex-direction: row;
