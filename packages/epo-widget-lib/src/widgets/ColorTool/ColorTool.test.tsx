@@ -41,7 +41,7 @@ describe("ColorTool", () => {
     });
     const descriptions = screen.getAllByRole("definition");
     const select = document.getElementById("astroObjectSelector");
-    expect(descriptions).toBeInTheDocument();
+    expect(descriptions.length).toBeGreaterThan(0);
     expect(select).toBeInTheDocument();
   });
   it(`should disable controls when isDisabled set`, async () => {
