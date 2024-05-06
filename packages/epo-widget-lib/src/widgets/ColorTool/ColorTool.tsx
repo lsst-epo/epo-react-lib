@@ -165,7 +165,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
           )}
         </ImageComposite>
       }
-      controls={
+      controls={() => (
         <Styled.ControlsContainer>
           {filters && (
             <>
@@ -197,7 +197,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
               );
             })}
         </Styled.ControlsContainer>
-      }
+      )}
       actions={
         <Actions
           actions={actions as ColorToolAction[]}

@@ -49,8 +49,6 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const { label, points } = data;
   const margins = { ...defaults.margins, ...customMargins };
 
-  console.log({ margins });
-
   const activePoint =
     typeof hoveredIndex !== "undefined"
       ? points[hoveredIndex]

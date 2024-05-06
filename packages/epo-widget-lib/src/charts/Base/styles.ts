@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const ChartContainer = styled.div`
-  --label-height: 3em;
+  --label-height: 2em;
   --label-gutter: calc(var(--label-height) / 2);
 
   display: grid;
@@ -14,6 +15,10 @@ export const ChartContainer = styled.div`
   /* for Safari */
   align-items: center;
   width: 100%;
+
+  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+    --label-height: 3em;
+  }
 `;
 
 export const HorizontalLabel = styled.div`

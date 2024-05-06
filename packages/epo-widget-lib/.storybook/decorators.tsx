@@ -18,6 +18,7 @@ const Container: Decorator = (StoryFn) => {
     <div
       style={{
         "--widget-max-height": "calc(100vh - 2rem)",
+        "--widget-padding": "var(--PADDING_SMALL,20px)",
         containerType: "inline-size",
       }}
     >
