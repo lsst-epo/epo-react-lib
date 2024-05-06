@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
-import { Point, ScaleFunction } from "@/types/charts";
+import { PlotPoint, ScaleFunction } from "@/types/charts";
 import ErrorBar from "./ErrorBar";
 import defaults from "../defaults";
 
 export interface PointsProps {
-  data: Array<Point>;
+  data: Array<PlotPoint>;
   label?: string;
   xScale: ScaleFunction;
   yScale: ScaleFunction;

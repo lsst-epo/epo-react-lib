@@ -11,6 +11,7 @@ import {
 } from "@/types/charts";
 import defaults from "../defaults";
 import * as Styled from "./styles";
+import PlotWrapper from "@/atomic/PlotWrapper";
 
 export interface PlotProps extends Partial<Bounds> {
   data: Array<Point>;
@@ -65,7 +66,7 @@ const Plot: FunctionComponent<PlotProps> = ({
   };
 
   return (
-    <Styled.PlotContainer className={className}>
+    <PlotWrapper className={className}>
       <BaseScatterPlot
         {...{ width, height, margins }}
         activePointId={activeAlertId}
@@ -120,7 +121,7 @@ const Plot: FunctionComponent<PlotProps> = ({
           </Styled.SliderInnerWrapper>
         </Styled.SliderOuterWrapper>
       )}
-    </Styled.PlotContainer>
+    </PlotWrapper>
   );
 };
 

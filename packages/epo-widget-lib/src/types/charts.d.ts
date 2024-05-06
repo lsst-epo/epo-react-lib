@@ -66,6 +66,11 @@ export interface ErrorRange {
 }
 
 export interface Point {
+  x: number;
+  y: number;
+}
+
+export interface PlotPoint {
   stroke?: string;
   fill?: string;
   radius?: number;
@@ -82,7 +87,7 @@ export interface Point {
 
 export interface ScatterPlotDataset {
   label: string;
-  points: Array<Point>;
+  points: Array<PlotPoint>;
 }
 
 export type HistogramData = Array<{ bin: number; value: number }>;

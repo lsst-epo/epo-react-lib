@@ -3,18 +3,6 @@ import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 import { Base } from "@/charts/index";
 
-export const PlotContainer = styled.div`
-  --label-height: 3em;
-
-  aspect-ratio: 1;
-  color: var(--neutral95, #1f2121);
-  container-type: inline-size;
-  background-color: var(--white, #fff);
-  border: 1px solid var(--turquoise55, #009fa1);
-  gap: var(--light-curve-padding);
-  position: relative;
-`;
-
 export const Chart = styled(Base)`
   font-size: 2.5em;
   overflow: visible;

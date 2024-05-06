@@ -101,6 +101,7 @@
     "d3-geo-projection": "^4.0.0",
     "lodash": "^4.17.21",
     "react-slider": "^2.0.6",
+    "simplify-js": "^1.2.4",
     "skia-canvas": "^1.0.1",
     "styled-components": "^6.1.1",
     "use-resize-observer": "^9.1.0"
