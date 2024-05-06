@@ -1,6 +1,7 @@
 "use client";
 import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
+import Loader from "@/atomic/Loader";
 
 export const WidgetLayout = styled.div`
   --default-widget-padding: calc(var(--PADDING_SMALL, 20px) / 2);
@@ -41,6 +42,7 @@ export const Widget = styled.div`
   max-height: 100%;
   max-width: 100%;
   justify-self: center;
+  position: relative;
 
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     max-height: unset;
@@ -48,7 +50,7 @@ export const Widget = styled.div`
   }
 `;
 
-export const Controls = styled.div`
+export const Controls = styled.form`
   display: flex;
   flex-direction: column;
   gap: var(--widget-gap);
@@ -71,4 +73,10 @@ export const LandscapeCaption = styled.div`
   @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
     display: block;
   }
+`;
+
+export const StackedLoader = styled(Loader)`
+  position: absolute;
+  top: 0;
+  left: 0;
 `;

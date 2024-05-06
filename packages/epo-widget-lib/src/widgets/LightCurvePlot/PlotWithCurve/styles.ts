@@ -28,14 +28,3 @@ export const DM15Display = styled(BaseDM15Display)`
   margin: 2px 1em;
   padding: 2px;
 `;
-
-export const Controls = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: var(--widget-padding);
-`;
-
-export const ControlLabel = styled.span`
-  display: block;
-  margin-block-end: var(--widget-padding);
-`;
