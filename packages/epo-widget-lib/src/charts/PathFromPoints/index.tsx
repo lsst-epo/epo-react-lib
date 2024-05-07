@@ -1,12 +1,10 @@
 import { FunctionComponent, SVGProps } from "react";
 import { Point } from "@/types/charts";
-import simplify from "simplify-js";
 
 type Props = {
   points: Array<Point>;
   className?: string;
   svgProps?: SVGProps<SVGPathElement>;
-  optimizePoints?: boolean;
 };
 
 const buildPath = (points: Array<Point>) =>
@@ -18,8 +16,9 @@ const PathFromPoints: FunctionComponent<Props> = ({
   points,
   className,
   svgProps,
-  optimizePoints = true,
 }) => {
+  if (points.length === 0) return null;
+
   const defaultProps = {
     fill: "none",
     strokeWidth: 2,
@@ -29,9 +28,7 @@ const PathFromPoints: FunctionComponent<Props> = ({
 
   const props = { ...defaultProps, ...svgProps };
 
-  const d = optimizePoints
-    ? buildPath(simplify(points, 0.8))
-    : buildPath(points);
+  const d = buildPath(points);
 
   return <path {...{ ...props, className, d }} />;
 };

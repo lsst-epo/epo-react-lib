@@ -9,6 +9,7 @@ interface WidgetControlsProps {
   caption?: ReactNode;
   className?: string;
   isLoading?: boolean;
+  isDisplayOnly?: boolean;
 }
 
 const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
@@ -18,8 +19,17 @@ const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
   caption,
   className,
   isLoading,
+  isDisplayOnly,
 }) => {
   const controlsId = useId();
+
+  if (isDisplayOnly)
+    return (
+      <AspectRatio ratio="square">
+        {widget}
+        {isLoading && <Styled.StackedLoader />}
+      </AspectRatio>
+    );
 
   return (
     <AspectRatio

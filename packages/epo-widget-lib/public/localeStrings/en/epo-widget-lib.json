@@ -130,5 +130,16 @@
       "point_label_after_other": "Apparent Magnitude: {{magnitude}} {{count}} days after peak",
       "tooltip": "Apparent Magnitude: {{magnitude}}"
     }
+  },
+  "isochrone_plot": {
+    "output": "{{age}} Gyrs {{distance}} Lyrs",
+    "plot": {
+      "x_label": "Color Index",
+      "y_label": "Apparent G Magnitude"
+    },
+    "controls": {
+      "age": "Age",
+      "distance": "Distance"
+    }
   }
 }
