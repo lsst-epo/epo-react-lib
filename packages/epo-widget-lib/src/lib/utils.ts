@@ -1,3 +1,5 @@
+import isNil from "lodash/isNil";
+
 /** clamps the index to the bounds of an array
  *  if the index is higher than the final index
  *  it will clamp to 0, if it is lower it will clamp
@@ -80,4 +82,16 @@ export const isSafari = (): boolean => {
   const chromeInAgent = navigator.userAgent.indexOf("Chrome") > -1;
   const safariInAgent = navigator.userAgent.indexOf("Safari") > -1;
   return safariInAgent && !chromeInAgent;
+};
+
+export const defaultsMerger = (objValue: any, srcValue: any) => {
+  if (isNil(srcValue) && objValue) {
+    return objValue;
+  }
+
+  if (isNil(srcValue) && isNil(srcValue)) {
+    return srcValue;
+  }
+
+  return srcValue;
 };

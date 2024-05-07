@@ -2,10 +2,17 @@ import { FunctionComponent } from "react";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { IsochroneValue } from "..";
 import ControlLabel from "@/atomic/ControlLabel";
+import { useTranslation } from "react-i18next";
+
+interface Config {
+  min: number;
+  max: number;
+  step: number;
+}
 
 type Props = {
   value: Required<IsochroneValue>;
-  ageValues: Array<string>;
+  configs: Record<keyof IsochroneValue, Config>;
   onChangeCallback: (value: IsochroneValue) => void;
   isDisabled?: boolean;
 };
@@ -13,15 +20,11 @@ type Props = {
 const Controls: FunctionComponent<Props> = ({
   value,
   onChangeCallback,
-  ageValues,
+  configs,
   isDisabled = false,
 }) => {
-  const { age, distance } = value;
-
-  const handleChange = (
-    name: string,
-    newValue: number | string | readonly number[]
-  ) => {
+  const { t } = useTranslation();
+  const handleChange = (name: string, newValue: number | readonly number[]) => {
     onChangeCallback && onChangeCallback({ ...value, [name]: newValue });
   };
 
@@ -32,35 +35,26 @@ const Controls: FunctionComponent<Props> = ({
 
   return (
     <>
-      <ControlLabel
-        label="Age"
-        input={(id) => (
-          <HorizontalSlider
-            label="Age"
-            labelledbyId={id}
-            min={0}
-            max={ageValues.length - 1}
-            value={age ? ageValues.indexOf(age) : 0}
-            onChangeCallback={(value) =>
-              handleChange("age", ageValues[value as number])
-            }
-            {...sharedProps}
+      {Object.keys(configs).map((key) => {
+        const { min, max, step } = configs[key as keyof IsochroneValue];
+
+        return (
+          <ControlLabel
+            key={key}
+            label={t(`isochrone_plot.controls.${key}`)}
+            input={(id) => (
+              <HorizontalSlider
+                label={key}
+                labelledbyId={id}
+                value={value[key as keyof IsochroneValue]}
+                onChangeCallback={(value) => handleChange(key, value)}
+                {...{ ...sharedProps, ...{ min, max, step } }}
+              />
+            )}
+            labelBy
           />
-        )}
-        labelBy
-      />
-      <ControlLabel
-        label="Distance"
-        input={(id) => (
-          <HorizontalSlider
-            label="Distance"
-            labelledbyId={id}
-            onChangeCallback={(value) => handleChange("distance", value)}
-            {...sharedProps}
-          />
-        )}
-        labelBy
-      />
+        );
+      })}
     </>
   );
 };

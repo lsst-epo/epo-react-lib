@@ -1,6 +1,7 @@
 "use client";
 import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
+import Loader from "@/atomic/Loader";
 
 export const AspectRatio = styled.div`
   --aspect-ratio: var(--aspect-small-ratio, 1);
@@ -17,4 +18,10 @@ export const AspectRatio = styled.div`
   @container (min-width: ${token("BREAK_DESKTOP_SMALL")}) {
     --aspect-ratio: var(--aspect-large-ratio, 1);
   }
+`;
+
+export const StackedLoader = styled(Loader)`
+  position: absolute;
+  top: 0;
+  left: 0;
 `;

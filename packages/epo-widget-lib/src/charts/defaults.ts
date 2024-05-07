@@ -13,6 +13,12 @@ export const point: Partial<PlotPoint> = {
   stroke: "var(--point-stroke, #12726D)",
 };
 
+export const canvasPoint = {
+  radius: pointRadius,
+  fill: "#12726D",
+  stroke: "#12726D",
+};
+
 // Error Bars
 
 export const errorBarCapWidth = pointRadius / 2;
@@ -30,6 +36,7 @@ const defaults = {
   margins,
   pointRadius,
   point,
+  canvasPoint,
   errorBarCapWidth,
   errorBarStyles,
 };

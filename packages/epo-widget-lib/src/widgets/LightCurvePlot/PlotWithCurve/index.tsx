@@ -1,11 +1,15 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
+import { range } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import defaults from "../defaults";
 import Plot from "../Plot";
-import LightCurve from "./LightCurve";
 import LightCurveLabel from "./A11Y/LightCurveLabel";
-import { useAlertsAsPoints, estimateMagnitudeWithOffset } from "../helpers";
+import {
+  useAlertsAsPoints,
+  estimateMagnitudeWithOffset,
+  estimateMagnitude,
+} from "../helpers";
 import { Reset } from "@/atomic/Button";
 import MagnitudeSlider from "./MagnitudeSlider";
 import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
@@ -14,6 +18,7 @@ import Viewport from "@/charts/Viewport";
 import Controls from "@/layout/Controls";
 import AspectRatio from "@/layout/AspectRatio";
 import ControlLabel from "@/atomic/ControlLabel";
+import PathFromPoints from "@/charts/PathFromPoints";
 
 interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
   gaussianWidth?: number;
@@ -79,14 +84,15 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
         yEnd,
       }) => (
         <>
-          <LightCurve
-            {...{
-              gaussianWidth,
-              yOffset,
-              xDomain,
-              xScale,
-              yScale,
-              yDomain,
+          <PathFromPoints
+            points={range(xDomain[0], xDomain[1], 0.5).map((x) => {
+              return {
+                x: xScale(x),
+                y: yScale(estimateMagnitude(x, gaussianWidth)),
+              };
+            })}
+            svgProps={{
+              transform: `translate(0,${yScale(yDomain[1] - yOffset)})`,
             }}
           />
           <Viewport
