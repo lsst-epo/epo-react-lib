@@ -1,30 +1,33 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import IsochronePlot from ".";
-import { points, ageLibrary } from "./mock";
+import { getAgeLibrary } from "./mock";
+import data from "./mock/points.json";
 import { useState } from "react";
 
 const meta: Meta<typeof IsochronePlot> = {
-  argTypes: {
-    onChangeCallback: {
-      action: "Form value changed",
-    },
-  },
+  argTypes: {},
   component: IsochronePlot,
 };
 export default meta;
 
 const props = {
-  data: points,
-  ageLibrary,
+  data,
+  name: "M67",
+  yAxis: {
+    max: 7,
+  },
 };
 
-const Template: StoryFn<typeof IsochronePlot> = (args) => {
+const Template: StoryFn<typeof IsochronePlot> = (
+  args,
+  { loaded: { ageLibrary } }
+) => {
   const [value, setValue] = useState(args.value);
   return (
     <IsochronePlot
-      {...{ ...args, value }}
+      {...{ ...args, value, ageLibrary }}
+      isLoading={!ageLibrary}
       onChangeCallback={(value) => {
-        args.onChangeCallback(value);
         setValue(value);
       }}
     />
@@ -34,7 +37,17 @@ const Template: StoryFn<typeof IsochronePlot> = (args) => {
 export const Primary: StoryObj<typeof IsochronePlot> = Template.bind({});
 
 Primary.args = { ...props };
+Primary.loaders = [
+  async () => ({
+    ageLibrary: await getAgeLibrary(),
+  }),
+];
 
 export const ReadOnly: StoryObj<typeof IsochronePlot> = Template.bind({});
 
-ReadOnly.args = { ...props, isDisplayOnly: true };
+ReadOnly.args = {
+  ...Primary.args,
+  isDisplayOnly: true,
+  value: { age: 9.5, distance: 9.75 },
+};
+ReadOnly.loaders = Primary.loaders;

@@ -1,16 +1,19 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
+import { useTranslation } from "react-i18next";
+import mergeWith from "lodash/mergeWith";
 import { AxisConfig, Point, PlotPoint } from "@/types/charts";
 import WidgetControls from "@/layout/Controls";
 import ScatterPlot from "@/charts/ScatterPlot";
-import AspectRatio from "@/layout/AspectRatio";
 import Controls from "./Controls";
 import ResetButton from "@/atomic/Button/patterns/Reset";
 import defaults from "./defaults";
 import PlotWrapper from "@/atomic/PlotWrapper";
 import Readout from "@/charts/Readout";
 import PathFromPoints from "@/charts/PathFromPoints";
+import { defaultsMerger } from "@/lib/utils";
+import { parsecsToLightyears } from "@/lib/helpers";
 
-export type IsochroneValue = { age?: string; distance?: number };
+export type IsochroneValue = { age?: number; distance?: number };
 export type AgeLibrary = {
   ages: Record<string, Array<Point>>;
 };
@@ -22,8 +25,9 @@ type Props = {
   value?: IsochroneValue;
   ageLibrary: AgeLibrary;
   onChangeCallback: (value: IsochroneValue) => void;
-  xAxis: AxisConfig;
-  yAxis: AxisConfig;
+  xAxis?: Partial<AxisConfig>;
+  yAxis?: Partial<AxisConfig>;
+  name?: string;
 };
 
 const IsochronePlot: FunctionComponent<Props> = ({
@@ -31,28 +35,73 @@ const IsochronePlot: FunctionComponent<Props> = ({
   value: userValue,
   ageLibrary,
   isDisplayOnly = false,
-  isLoading,
+  isLoading: isLoadingExternal,
+  xAxis: configuredXAxis,
+  yAxis: configuredYAxis,
+  name,
   onChangeCallback,
 }) => {
-  const { width, height, value: defaultValue } = defaults;
-  const { ages } = ageLibrary;
-  const ageValues = Object.keys(ages).map((age) => age);
-  const value = {
-    ...defaultValue,
-    ...{ age: ageValues[0] },
-    ...userValue,
-  };
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+  const isPrepared = !isLoadingExternal && !isLoading;
+
+  const { width, height } = defaults;
+  const { ages = {} } = ageLibrary;
+  const ageKeys = Object.keys(ages);
+  const ageValues = ageKeys.map(parseFloat);
+  const { age, distance }: Required<IsochroneValue> = mergeWith(
+    {},
+    defaults.value,
+    { age: ageValues[0] },
+    userValue,
+    defaultsMerger
+  );
 
   const margins = { top: 0, right: 0, bottom: 20, left: 20 };
-  const xAxis = { label: "Color Index", step: 1, min: -1, max: 4 };
-  const yAxis = { label: "Apparent G Magnitude", step: 2, min: 22, max: 8 };
 
-  const isochrone = ages[value.age];
+  const xAxis: AxisConfig = mergeWith(
+    {},
+    defaults.xAxis,
+    configuredXAxis,
+    { label: t("isochrone_plot.plot.x_label") },
+    defaultsMerger
+  );
+
+  const yAxis = mergeWith({}, defaults.yAxis, configuredYAxis, {
+    label: t("isochrone_plot.plot.y_label"),
+  });
+
+  const isochrone = ages[age?.toFixed(1) || 0] || [];
+
+  const configs: Record<keyof IsochroneValue, any> = {
+    age: {
+      min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
+      max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
+      step: 0.5,
+    },
+    distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
+  };
 
   const Widget = (
     <PlotWrapper>
       <ScatterPlot
-        data={{ label: "Star Cluster", points: data }}
+        optimizedRender
+        title={name}
+        onLoadedCallback={() => setIsLoading(false)}
+        data={{
+          label: "Star Cluster",
+          points: data.map((point) => {
+            return {
+              ...point,
+              radius: 4,
+              stroke: "rgba(18,114,108,0.5)",
+              fill: "rgba(18,114,108,0.25)",
+            };
+          }),
+        }}
         plotChildren={({
           Data,
           xScale,
@@ -61,14 +110,18 @@ const IsochronePlot: FunctionComponent<Props> = ({
           yEnd,
           xStart,
           xEnd,
+          yDomain,
         }) => (
           <>
             {Data}
-            {value?.age && (
+            {age && (
               <PathFromPoints
                 points={isochrone.map(({ x, y }) => {
                   return { x: xScale(x), y: yScale(y) };
                 })}
+                svgProps={{
+                  transform: `translate(0,${yScale(distance + yDomain[1])})`,
+                }}
               />
             )}
             <Readout
@@ -80,8 +133,16 @@ const IsochronePlot: FunctionComponent<Props> = ({
                 innerWidth: width,
                 innerHeight: height,
               }}
+              position="center right"
             >
-              {value?.age} Gyrs {value?.distance} Mlyrs
+              {t("isochrone_plot.output", {
+                age: age.toLocaleString(language, { minimumFractionDigits: 1 }),
+                distance: parsecsToLightyears(
+                  Math.pow(10, distance / 5 + 1)
+                ).toLocaleString(language, {
+                  maximumFractionDigits: 0,
+                }),
+              })}
             </Readout>
           </>
         )}
@@ -90,25 +151,26 @@ const IsochronePlot: FunctionComponent<Props> = ({
     </PlotWrapper>
   );
 
-  if (isDisplayOnly) return <AspectRatio ratio="square">{Widget}</AspectRatio>;
-
   return (
     <WidgetControls
       widget={Widget}
-      controls={() => <Controls {...{ value, ageValues, onChangeCallback }} />}
+      controls={() => (
+        <Controls
+          {...{ value: { age, distance }, configs, onChangeCallback }}
+        />
+      )}
       actions={
         <ResetButton
           onResetCallback={() => {
             onChangeCallback &&
-              onChangeCallback({ ...defaultValue, ...{ age: ageValues[0] } });
+              onChangeCallback({ ...defaults.value, ...{ age: ageValues[0] } });
           }}
         />
       }
-      {...{ isLoading }}
+      isLoading={!isPrepared}
+      {...{ isDisplayOnly }}
     />
   );
 };
-
-IsochronePlot.displayName = "Widgets.IsochronePlot";
 
 export default IsochronePlot;

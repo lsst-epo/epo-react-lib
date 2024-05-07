@@ -17,6 +17,7 @@ import {
 import useAxis from "@/charts/hooks/useAxis";
 import * as Styled from "./styles";
 import defaults from "../defaults";
+import CanvasPoints from "../canvas/Points";
 
 export interface ScatterPlotProps {
   xAxis: AxisConfig;
@@ -29,6 +30,8 @@ export interface ScatterPlotProps {
   className?: string;
   margins?: Partial<ChartMargin>;
   tooltip?: string | ((point: Point) => ReactNode);
+  optimizedRender?: boolean;
+  onLoadedCallback?: () => void;
   plotChildren?: PlotChildRenderer;
 }
 
@@ -43,6 +46,8 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   activePointId,
   margins: customMargins,
   tooltip,
+  onLoadedCallback,
+  optimizedRender,
   plotChildren,
 }) => {
   const [hoveredIndex, setHovered] = useState<number>();
@@ -71,7 +76,23 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const outerWidth = Math.abs(xRange[1] - xRange[0]);
   const outerHeight = Math.abs(yRange[1] - yRange[0]);
 
-  const Data = (
+  const Data = optimizedRender ? (
+    <CanvasPoints
+      data={points}
+      {...{
+        width,
+        height,
+        xStart,
+        yStart,
+        xEnd,
+        yEnd,
+        xScale,
+        yScale,
+        onLoadedCallback,
+        label,
+      }}
+    />
+  ) : (
     <Points
       data={points}
       onHoverCallback={tooltip ? (i) => setHovered(i) : undefined}
