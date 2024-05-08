@@ -57,12 +57,7 @@ export const Controls = styled.div`
 
 export const Actions = styled.div`
   display: flex;
-  flex-direction: column;
   gap: var(--widget-gap);
-
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
-    flex-direction: row;
-  }
 `;
 
 export const PortraitCaption = styled.div`

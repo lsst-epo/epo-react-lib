@@ -24,7 +24,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
 
   const prismColors: { [key in FilterColor | "none"]: string } = {
     violet: "#861cff",
-    blue: "#0019ff",
+    blue: "#006da8",
     green: "#6bd853",
     yellow: "#ffdd15",
     orange: "#f18922",
