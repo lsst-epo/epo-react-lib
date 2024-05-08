@@ -7,7 +7,6 @@ import { filters, Filter, rangeConfig } from "./data";
 import * as Styled from "./styles";
 import CondensedFilterRanges from "./CondensedFilterRanges";
 import SpectrumDisplay from "./SpectrumDisplay";
-import AspectRatio from "@/layout/AspectRatio";
 
 const CameraFilter: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -40,7 +39,7 @@ const CameraFilter: FunctionComponent = () => {
   const activeFilter = filters.find(({ band }) => band === activeFilterBand);
 
   return (
-    <AspectRatio ratio="landscape">
+    <Styled.FilterWrapper ratio="landscape" smallScreenRatio="square">
       <Styled.FilterContainer ref={ref}>
         <Styled.FilterTitle>{t("camera_filter.title")}</Styled.FilterTitle>
         {isCondensed && (
@@ -126,7 +125,7 @@ const CameraFilter: FunctionComponent = () => {
           />
         </Styled.SelectContainer>
       </Styled.FilterContainer>
-    </AspectRatio>
+    </Styled.FilterWrapper>
   );
 };
 

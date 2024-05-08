@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
+import AspectRatio from "@/layout/AspectRatio";
+
+export const FilterWrapper = styled(AspectRatio)`
+  display: flex;
+  align-items: center;
+`;
 
 export const FilterContainer = styled.div`
   container-type: inline-size;
-  container-name: camera-filter;
 
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   text-align: center;
-  padding-block: var(--PADDING_SMALL, 20px);
-  position: relative;
+  width: 100%;
 `;
 
 export const FilterTitle = styled.h3`

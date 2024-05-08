@@ -59,3 +59,9 @@
 
 - add `AspectRatio` and `Controls` layouts
 - retrofit existing widgets to use `AspectRatio` and `Controls`
+
+## 0.9.11-beta.1
+
+- adjust color contrast in Filter Tool
+- adjust aspect ratio of Camera Filter Tool
+- adjust layout of actions in widget control layout
