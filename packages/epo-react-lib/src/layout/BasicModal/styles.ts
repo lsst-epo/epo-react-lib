@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { zStack } from "@/styles/abstracts";
 import { fluidScale } from "@/styles/utils";
-import { Dialog as BaseDialog } from "@headlessui/react";
+import {
+  Dialog as BaseDialog,
+  DialogTitle,
+  Description as BaseDescription,
+} from "@headlessui/react";
 import BaseFormButtons from "@/form/FormButtons";
 import { ReactNode } from "react";
 import { protoButton } from "@/styles/mixins/appearance";
@@ -38,9 +42,9 @@ export const Dialog = styled(BaseDialog)<DialogProps>`
   justify-content: center;
 `;
 
-export const Title = BaseDialog.Title;
+export const Title = DialogTitle;
 
-export const Description = styled(BaseDialog.Description)`
+export const Description = styled(BaseDescription)`
   font-size: 0.909em;
   line-height: 1.5;
 

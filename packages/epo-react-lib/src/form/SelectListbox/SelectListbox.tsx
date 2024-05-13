@@ -84,7 +84,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
           </>
         )}
       </Styled.SelectButton>
-      <Styled.Options>
+      <Styled.Options modal={false}>
         {options.map(({ label, value, icon }) => (
           <Styled.Option key={value} value={value}>
             {({ selected }) => (
