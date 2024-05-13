@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-react-lib",
   "description": "Rubin Observatory Education & Public Outreach team React UI library.",
-  "version": "2.0.23",
+  "version": "2.0.24-beta.1",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^2.0.3",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
     "i18next": "^22.4.10",

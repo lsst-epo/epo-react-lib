@@ -21,7 +21,7 @@ const BasicModal: FunctionComponent<BasicModalProps> = ({
 }) => {
   return (
     <Styled.Dialog open={open} onClose={() => onClose()}>
-      <Styled.Overlay />
+      <Styled.Overlay aria-hidden={true} />
       <Styled.Inner $darkMode={darkMode}>
         <Styled.CloseButton type="button" aria-label="Close" onClick={onClose}>
           <IconComposer icon="close" />

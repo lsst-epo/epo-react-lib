@@ -1,5 +1,5 @@
 import { FunctionComponent, PropsWithChildren, useRef } from "react";
-import { Transition } from "@headlessui/react";
+import { Transition, TransitionChild } from "@headlessui/react";
 import { useOnClickOutside, useKeyDownEvent } from "@/hooks/listeners";
 import * as Styled from "./styles";
 
@@ -79,7 +79,7 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
       data-testid="slideout"
     >
       {showBackground && (
-        <Transition.Child
+        <TransitionChild
           as={Styled.Overlay}
           role="none"
           enterFrom="closed"
@@ -90,7 +90,7 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
           leaveTo="closed"
         />
       )}
-      <Transition.Child
+      <TransitionChild
         ref={containerRef}
         as={Styled.SlideoutContainer}
         style={{ "--transform": translation, ...styles }}
@@ -103,7 +103,7 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
         data-testid="slideoutContainer"
       >
         {children}
-      </Transition.Child>
+      </TransitionChild>
     </Transition>
   );
 };

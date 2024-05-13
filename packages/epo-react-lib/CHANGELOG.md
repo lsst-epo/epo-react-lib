@@ -82,3 +82,7 @@
 ## 2.0.21
 
 - make `Figure` caption RichText capable
+
+# 2.0.24
+
+- update `@headlessui/react` to 2.x
