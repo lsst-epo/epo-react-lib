@@ -3,6 +3,7 @@ import {
   intersection,
   getClampedArrayIndex,
   getLinearScale,
+  mergeWithDefaults,
 } from "./utils";
 
 const domain = [0, 10];
@@ -67,5 +68,36 @@ describe("intersection", () => {
     const output = intersection([1, 5], [9, 10]);
 
     expect(output).toBeNull();
+  });
+});
+describe("mergeWithDefaults", () => {
+  const defaults: Record<string, number> = {
+    min: 10,
+    max: 20,
+  };
+
+  it("should overwrite the defaults if value is available", () => {
+    const value: Record<string, number> = { min: 100, max: 0 };
+    const result = mergeWithDefaults(value, defaults);
+
+    Object.keys(result).forEach((key) => {
+      expect(result[key]).toEqual(value[key]);
+    });
+  });
+  it("should use defaults if value is null", () => {
+    const value: Record<string, number | null> = { min: null, max: null };
+    const result = mergeWithDefaults(value, defaults);
+
+    Object.keys(result).forEach((key) => {
+      expect(result[key]).toEqual(defaults[key]);
+    });
+  });
+  it("should use defaults if value is undefined", () => {
+    const value: Record<string, number | undefined> = { max: undefined };
+    const result = mergeWithDefaults(value, defaults);
+
+    Object.keys(result).forEach((key) => {
+      expect(result[key]).toEqual(defaults[key]);
+    });
   });
 });

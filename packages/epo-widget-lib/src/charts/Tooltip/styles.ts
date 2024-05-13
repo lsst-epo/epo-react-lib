@@ -8,7 +8,6 @@ export const TooltipContainer = styled(ForeignObject)`
 export const Tooltip = styled.div`
   background-color: #dce0e3;
   border-radius: 4px;
-  font-size: 0.5em;
   line-height: 1;
   padding: 2px 4px;
   text-align: center;

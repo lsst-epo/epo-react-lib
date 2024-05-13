@@ -13,7 +13,7 @@ interface Config {
 type Props = {
   value: Required<IsochroneValue>;
   configs: Record<keyof IsochroneValue, Config>;
-  onChangeCallback: (value: IsochroneValue) => void;
+  onChangeCallback?: (value: IsochroneValue) => void;
   isDisabled?: boolean;
 };
 

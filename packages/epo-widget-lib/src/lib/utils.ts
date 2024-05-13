@@ -1,4 +1,6 @@
+import mergeWith from "lodash/mergeWith";
 import isNil from "lodash/isNil";
+import { Point } from "@/types/charts";
 
 /** clamps the index to the bounds of an array
  *  if the index is higher than the final index
@@ -86,12 +88,21 @@ export const isSafari = (): boolean => {
 
 export const defaultsMerger = (objValue: any, srcValue: any) => {
   if (isNil(srcValue) && objValue) {
-    return objValue;
-  }
-
-  if (isNil(srcValue) && isNil(srcValue)) {
-    return srcValue;
+    return isNil(objValue) ? srcValue : objValue;
   }
 
   return srcValue;
 };
+
+export const mergeWithDefaults = (value: any, defaultValues: any) =>
+  mergeWith({}, defaultValues, value, defaultsMerger);
+
+export const buildPath = (
+  points: Array<Point>,
+  translate: Array<number> = [0, 0]
+) =>
+  points.reduce((prev, { x, y }, i) => {
+    return (prev += `${i === 0 ? "M" : " L"}${x + translate[0]},${
+      y + translate[1]
+    }`);
+  }, "");

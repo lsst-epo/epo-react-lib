@@ -5,7 +5,7 @@ const defaults = {
     age: 0,
     distance: 0,
   },
-  xAxis: { step: 1, min: -1, max: 4 },
+  xAxis: { step: 1, min: -1, max: 3 },
   yAxis: { step: 2, min: 22, max: 8 },
 };
 

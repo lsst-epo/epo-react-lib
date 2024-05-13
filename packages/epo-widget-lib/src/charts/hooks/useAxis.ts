@@ -30,19 +30,18 @@ const useAxis = ({
   scale: scaleType = "linear",
   scaleOptions,
 }: UseAxisProps): Axis => {
+  const adjustedStep = max > min ? Math.abs(step) : -Math.abs(step);
+  const halfStep = adjustedStep / 2;
+
   const tickCount = useMemo(
     () => Math.abs((Math.ceil((max - min + 1) / 10) * 10) / step),
     [min, max, step]
   );
   const domain = useMemo(
-    () => nice(min, max, tickCount),
-    [min, max, tickCount]
+    () => nice(min - halfStep, max + halfStep, tickCount),
+    [min, max, tickCount, halfStep]
   );
-  const ticks = range(
-    domain[0],
-    domain[1],
-    max > min ? Math.abs(step) : -Math.abs(step)
-  );
+  const ticks = range(domain[0] + halfStep, domain[1], adjustedStep);
   const scale = useCallback(
     scales[scaleType](domain, scaleRange, scaleOptions),
     [domain, scaleRange, scaleType]

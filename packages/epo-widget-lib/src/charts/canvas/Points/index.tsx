@@ -21,7 +21,18 @@ const CanvasPoints: FunctionComponent<Props> = ({
   onLoadedCallback,
   label,
 }) => {
-  const [points, setPoints] = useState<string>();
+  const [pointCount, setPointCount] = useState<number>();
+  const [renderedPoints, setRenderedPoints] = useState<string>();
+
+  useEffect(() => {
+    return () => {
+      if (renderedPoints) {
+        URL.revokeObjectURL(renderedPoints);
+      }
+    };
+  }, []);
+
+  if (data.length === 0) return null;
 
   const drawPoint = (point: PlotPoint, context: CanvasRenderingContext2D) => {
     const { stroke, fill, radius, x, y } = {
@@ -42,7 +53,11 @@ const CanvasPoints: FunctionComponent<Props> = ({
     context.stroke();
   };
 
-  useEffect(() => {
+  if (pointCount !== data.length) {
+    if (renderedPoints) {
+      URL.revokeObjectURL(renderedPoints);
+    }
+
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
@@ -51,28 +66,22 @@ const CanvasPoints: FunctionComponent<Props> = ({
     if (context) {
       context.clearRect(0, 0, width, height);
       context.lineWidth = 1;
-      context.strokeStyle = "green";
 
       data.forEach((point) => drawPoint(point, context));
 
       canvas.toBlob((blob) => {
         if (blob) {
-          setPoints(URL.createObjectURL(blob));
+          setRenderedPoints(URL.createObjectURL(blob));
+          setPointCount(data.length);
           onLoadedCallback && onLoadedCallback();
         }
       });
     }
-
-    return () => {
-      if (points) {
-        URL.revokeObjectURL(points);
-      }
-    };
-  }, []);
+  }
 
   return (
     <image
-      href={points}
+      href={renderedPoints}
       aria-description={label}
       x={0}
       y={0}

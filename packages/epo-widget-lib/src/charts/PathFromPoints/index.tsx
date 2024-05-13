@@ -1,16 +1,12 @@
 import { FunctionComponent, SVGProps } from "react";
 import { Point } from "@/types/charts";
+import { buildPath } from "@/lib/utils";
 
 type Props = {
   points: Array<Point>;
   className?: string;
   svgProps?: SVGProps<SVGPathElement>;
 };
-
-const buildPath = (points: Array<Point>) =>
-  points.reduce((prev, { x, y }, i) => {
-    return (prev += `${i === 0 ? "M" : " L"}${x},${y}`);
-  }, "");
 
 const PathFromPoints: FunctionComponent<Props> = ({
   points,
@@ -30,7 +26,7 @@ const PathFromPoints: FunctionComponent<Props> = ({
 
   const d = buildPath(points);
 
-  return <path {...{ ...props, className, d }} />;
+  return <path strokeLinejoin="round" {...{ ...props, className, d }} />;
 };
 
 PathFromPoints.displayName = "Charts.Path";
