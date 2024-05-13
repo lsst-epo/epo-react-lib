@@ -42,6 +42,7 @@ export const SVG = styled.svg`
   max-width: 100%;
   max-height: 100%;
   aspect-ratio: var(--aspect-ratio);
+  z-index: 1;
 `;
 
 export const TitleWrapper = styled.div`

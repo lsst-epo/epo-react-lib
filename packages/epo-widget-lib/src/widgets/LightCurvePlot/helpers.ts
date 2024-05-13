@@ -1,5 +1,5 @@
 import { Alert } from "@/types/astro";
-import { Point } from "@/types/charts";
+import { PlotPoint, Point } from "@/types/charts";
 import { useTranslation } from "react-i18next";
 
 export const daysSincePeak = (current: number, peak: number) => {
@@ -9,7 +9,7 @@ export const daysSincePeak = (current: number, peak: number) => {
 export const useAlertsAsPoints = (
   alerts: Array<Alert>,
   phaseCorrection: number
-): Array<Point> => {
+): Array<PlotPoint> => {
   const { t } = useTranslation();
 
   return alerts.map(({ date, magnitude, error, id }) => {
