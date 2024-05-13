@@ -1,6 +1,10 @@
 import { zStack } from "@/styles/abstracts";
 import { protoButton } from "@/styles/mixins/appearance";
-import { Listbox } from "@headlessui/react";
+import {
+  ListboxOptions,
+  ListboxOption,
+  ListboxButton,
+} from "@headlessui/react";
 import styled from "styled-components";
 
 export const Select = styled.div`
@@ -17,7 +21,7 @@ export const Select = styled.div`
   width: var(--width);
 `;
 
-export const Options = styled(Listbox.Options)`
+export const Options = styled(ListboxOptions)`
   background-color: var(--select-background-color);
   border: 1px solid var(--select-border-color);
   border-radius: var(--select-padding);
@@ -41,7 +45,7 @@ export const DropdownText = styled.span`
   white-space: nowrap;
 `;
 
-export const Option = styled(Listbox.Option)`
+export const Option = styled(ListboxOption)`
   display: grid;
   align-items: center;
   border: 1px solid transparent;
@@ -59,7 +63,7 @@ export const Option = styled(Listbox.Option)`
   }
 `;
 
-export const SelectButton = styled(Listbox.Button)`
+export const SelectButton = styled(ListboxButton)`
   ${protoButton()}
 
   background-color: var(--select-background-color);
