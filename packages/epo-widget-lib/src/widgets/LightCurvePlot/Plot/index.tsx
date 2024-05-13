@@ -7,14 +7,14 @@ import {
   Bounds,
   ChartEdge,
   PlotChildRenderer,
-  Point,
+  PlotPoint,
 } from "@/types/charts";
 import defaults from "../defaults";
 import * as Styled from "./styles";
 import PlotWrapper from "@/atomic/PlotWrapper";
 
 export interface PlotProps extends Partial<Bounds> {
-  data: Array<Point>;
+  data: Array<PlotPoint>;
   name?: string;
   activeAlertId?: number;
   className?: string;

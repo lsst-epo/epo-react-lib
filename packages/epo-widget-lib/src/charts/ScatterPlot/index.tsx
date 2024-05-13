@@ -30,10 +30,15 @@ export interface ScatterPlotProps {
   className?: string;
   margins?: Partial<ChartMargin>;
   tooltip?: string | ((point: Point) => ReactNode);
-  optimizedRender?: boolean;
+  renderer?: "svg" | "canvas";
   onLoadedCallback?: () => void;
   plotChildren?: PlotChildRenderer;
 }
+
+const Renderers = {
+  svg: Points,
+  canvas: CanvasPoints,
+};
 
 const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   data,
@@ -47,7 +52,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   margins: customMargins,
   tooltip,
   onLoadedCallback,
-  optimizedRender,
+  renderer = "svg",
   plotChildren,
 }) => {
   const [hoveredIndex, setHovered] = useState<number>();
@@ -76,28 +81,13 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
   const outerWidth = Math.abs(xRange[1] - xRange[0]);
   const outerHeight = Math.abs(yRange[1] - yRange[0]);
 
-  const Data = optimizedRender ? (
-    <CanvasPoints
-      data={points}
-      {...{
-        width,
-        height,
-        xStart,
-        yStart,
-        xEnd,
-        yEnd,
-        xScale,
-        yScale,
-        onLoadedCallback,
-        label,
-      }}
-    />
-  ) : (
+  const Points = Renderers[renderer];
+  const Data = (
     <Points
       data={points}
       onHoverCallback={tooltip ? (i) => setHovered(i) : undefined}
       onHoverOutCallback={tooltip ? () => setHovered(undefined) : undefined}
-      {...{ label, xScale, yScale }}
+      {...{ width, height, xScale, yScale, label, onLoadedCallback }}
     />
   );
 

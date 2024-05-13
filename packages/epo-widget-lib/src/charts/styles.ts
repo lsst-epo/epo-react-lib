@@ -19,13 +19,11 @@ export const Bar = styled.rect`
 `;
 
 export const XLabel = styled.text`
-  font-size: 0.5em;
   text-anchor: middle;
   dominant-baseline: hanging;
 `;
 
 export const YLabel = styled.text`
-  font-size: 0.5em;
   text-anchor: end;
-  dominant-baseline: mathematical;
+  dominant-baseline: central;
 `;
