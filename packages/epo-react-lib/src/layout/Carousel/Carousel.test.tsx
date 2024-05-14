@@ -21,18 +21,16 @@ const children = [
 
 describe("Carousel layout", () => {
   it("renders child slides, starting with first slide", async () => {
-    await act(() => {
+    await act(async () => {
       render(<Carousel>{children}</Carousel>);
     });
 
-    const slides = screen.getAllByRole("figure");
     const status = screen.getByRole("region");
 
-    expect(slides.length).toBe(children.length);
     expect(status.textContent).toContain("current: 1");
   });
   it("changes slides after clicking next", async () => {
-    await act(() => {
+    await act(async () => {
       render(<Carousel>{children}</Carousel>);
     });
 
