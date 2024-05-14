@@ -24,7 +24,8 @@
   },
   "supportedLocales": [],
   "scripts": {
-    "build": "node ./build.js"
+    "build": "node ./build.js",
+    "postinstall": "build"
   },
   "files": [
     "CHANGELOG.md",
