@@ -39,6 +39,9 @@ export const intersection = (a: number[] = [], b: number[] = []) => {
   return [max[0], min[1] < max[1] ? min[1] : max[1]];
 };
 
+export const middle = <T>(arr: Array<T>) =>
+  arr[Math.round((arr.length - 1) / 2)];
+
 /**
  * maps an input domain to a final range
  * ex. for a domain of [0,10] and range of [10,20]

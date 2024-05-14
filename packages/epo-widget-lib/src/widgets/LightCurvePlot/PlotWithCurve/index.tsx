@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useId } from "react";
 import { useTranslation } from "react-i18next";
 import { range } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
@@ -50,6 +50,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   const { t } = useTranslation();
 
   const data = useAlertsAsPoints(alerts, peakMjd);
+  const controlsFormId = useId();
 
   const handleReset = () => {
     onUserMagnitudeChangeCallback &&
@@ -127,7 +128,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
       <Controls
         className={className}
         widget={Widget}
-        controls={(controlsFormId) => (
+        controls={
           <>
             <ControlLabel
               label={t("light_curve.curve.controls.gaussian_width")}
@@ -174,7 +175,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
               {...{ data, gaussianWidth, yOffset, estimatedPeak }}
             />
           </>
-        )}
+        }
         actions={<Reset onResetCallback={handleReset} />}
       ></Controls>
     </>
