@@ -53,7 +53,7 @@ export default function useCarousel(options: CarouselOptions): CarouselConfig {
   useEffect(() => {
     async function loadFlickity() {
       if (carouselRef) {
-        const Flickity = (await import("flickity")).default;
+        const { default: Flickity } = await import("flickity");
         flickity.current = new Flickity(carouselRef, mergedOptions);
 
         const length =
