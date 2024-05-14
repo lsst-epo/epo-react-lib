@@ -28,13 +28,13 @@ const Template: StoryFn<typeof Controls> = (args) => {
     <Controls
       {...args}
       widget={<Widget />}
-      controls={() => (
+      controls={
         <>
           <Control />
           <Control />
           <Control />
         </>
-      )}
+      }
       caption="Selected Object"
       actions={<ResetButton onResetCallback={() => undefined} />}
     />

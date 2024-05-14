@@ -41,12 +41,17 @@ const Controls: FunctionComponent<Props> = ({
         return (
           <ControlLabel
             key={key}
-            label={t(`isochrone_plot.controls.${key}`)}
+            label={t(`isochrone_plot.controls.${key}.label`)}
             input={(id) => (
               <HorizontalSlider
                 label={key}
                 labelledbyId={id}
                 value={value[key as keyof IsochroneValue]}
+                ariaValuetext={
+                  t(`isochrone_plot.controls.${key}.textValue`, {
+                    value: value[key as keyof IsochroneValue],
+                  }) || undefined
+                }
                 onChangeCallback={(value) => handleChange(key, value)}
                 {...{ ...sharedProps, ...{ min, max, step } }}
               />

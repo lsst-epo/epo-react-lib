@@ -1,4 +1,5 @@
-import { FunctionComponent, PropsWithChildren } from "react";
+import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
+import { ScreenreaderText } from "@rubin-epo/epo-react-lib/styles";
 import { ForeignObject, Viewport } from "..";
 import { ViewportProps } from "../Viewport";
 import * as Styled from "./styles";
@@ -7,6 +8,8 @@ type Props = {
   className?: string;
   position?: string;
   viewport?: ViewportProps;
+  forIds?: string | Array<string>;
+  forScreenreaders?: ReactNode;
 };
 
 const getPosition = (position: string = "") => {
@@ -56,11 +59,19 @@ const Readout: FunctionComponent<PropsWithChildren<Props>> = ({
   children,
   position,
   viewport,
+  forIds,
+  forScreenreaders,
 }) => {
   const Readout = (
     <ForeignObject>
       <Styled.DisplayContainer style={getPosition(position)}>
-        <Styled.Display className={className}>{children}</Styled.Display>
+        <Styled.Display
+          form={Array.isArray(forIds) ? forIds.join(" ") : forIds}
+          {...{ className }}
+        >
+          <span aria-hidden={!!forScreenreaders}>{children}</span>
+          <ScreenreaderText>{forScreenreaders}</ScreenreaderText>
+        </Styled.Display>
       </Styled.DisplayContainer>
     </ForeignObject>
   );
