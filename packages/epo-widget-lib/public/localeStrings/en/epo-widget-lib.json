@@ -133,13 +133,20 @@
   },
   "isochrone_plot": {
     "output": "{{age}} Gyrs {{distance}} Lyrs",
+    "output_screenreader": "{{age}} gigayears {{distance}} lightyears",
     "plot": {
       "x_label": "Color Index",
       "y_label": "Apparent G Magnitude"
     },
     "controls": {
-      "age": "Age",
-      "distance": "Distance"
+      "age": {
+        "label": "Age",
+        "textValue": "{{value}} gigayears"
+      },
+      "distance": {
+        "label": "Distance",
+        "textValue": "{{value}} magnitude offset"
+      }
     }
   }
 }

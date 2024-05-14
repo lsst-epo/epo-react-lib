@@ -7,7 +7,7 @@ export const DisplayContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const Display = styled.div`
+export const Display = styled.output`
   background-color: var(--white, #fff);
   display: flex;
   align-items: center;

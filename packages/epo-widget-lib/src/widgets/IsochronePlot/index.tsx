@@ -1,16 +1,19 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
+import useResizeObserver from "use-resize-observer";
+import { token } from "@rubin-epo/epo-react-lib/styles";
+
 import { AxisConfig, Point, PlotPoint } from "@/types/charts";
 import WidgetControls from "@/layout/Controls";
 import ScatterPlot from "@/charts/ScatterPlot";
-import Controls from "./Controls";
 import ResetButton from "@/atomic/Button/patterns/Reset";
-import defaults from "./defaults";
 import PlotWrapper from "@/atomic/PlotWrapper";
 import Readout from "@/charts/Readout";
 import PathFromPoints from "@/charts/PathFromPoints";
-import { mergeWithDefaults } from "@/lib/utils";
+import { mergeWithDefaults, middle } from "@/lib/utils";
 import { parsecsToLightyears } from "@/lib/helpers";
+import Controls from "./Controls";
+import defaults from "./defaults";
 import CurveFit from "./A11Y/CurveFit";
 
 export type IsochroneValue = { age?: number; distance?: number };
@@ -30,6 +33,19 @@ type Props = {
   name?: string;
 };
 
+const getPointRadius = (width?: number) => {
+  if (!width) return defaults.pointRadius.lg;
+
+  if (width < parseFloat(token("BREAK_PHABLET_MIN"))) {
+    return defaults.pointRadius.md;
+  }
+  if (width < parseFloat(token("BREAK_LARGE_TABLET"))) {
+    return defaults.pointRadius.sm;
+  }
+
+  return defaults.pointRadius.lg;
+};
+
 const IsochronePlot: FunctionComponent<Props> = ({
   data,
   value: userValue,
@@ -41,11 +57,13 @@ const IsochronePlot: FunctionComponent<Props> = ({
   name,
   onChangeCallback,
 }) => {
+  const { ref, width: containerWidth } = useResizeObserver<HTMLDivElement>();
   const {
     t,
     i18n: { language },
   } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
+  const controlsId = useId();
 
   const isPrepared = !isLoadingExternal && !isLoading;
   const margins = { top: 0, right: 0, bottom: 20, left: 20 };
@@ -70,26 +88,26 @@ const IsochronePlot: FunctionComponent<Props> = ({
     age: {
       min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
       max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
-      step: 0.5,
+      step: ageValues[1] - ageValues[0],
     },
     distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
   };
 
+  const defaultValue = {
+    age: ageValues.length > 0 ? middle(ageValues) : 0,
+    distance:
+      (configs.distance.max - configs.distance.min) / 2 + configs.distance.min,
+  };
+
   const { age, distance }: Required<IsochroneValue> = mergeWithDefaults(
     userValue,
-    {
-      distance:
-        (configs.distance.max - configs.distance.min) / 2 +
-        configs.distance.min,
-      age:
-        ageValues.length > 0
-          ? ageValues[Math.round((ageValues.length - 1) / 2)]
-          : 0,
-    }
+    defaultValue
   );
 
+  const radius = getPointRadius(containerWidth);
+
   const Widget = (
-    <PlotWrapper>
+    <PlotWrapper ref={ref}>
       <ScatterPlot
         renderer="canvas"
         title={name}
@@ -99,7 +117,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
           points: data.map((point) => {
             return {
               ...point,
-              radius: 4,
+              radius,
               stroke: "rgba(18,114,108,0.5)",
               fill: "rgba(18,114,108,0.25)",
             };
@@ -129,6 +147,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
                   <PathFromPoints
                     points={isochrone}
                     svgProps={{
+                      strokeWidth: 2,
                       transform: `translate(0,${offset})`,
                     }}
                   />
@@ -137,38 +156,51 @@ const IsochronePlot: FunctionComponent<Props> = ({
                     points={isochrone}
                     svgProps={{
                       transform: `translate(0,${offset})`,
-                      strokeWidth: 40,
-                      stroke: "rgba(0,0,0,0.2)",
+                      strokeWidth: 15,
+                      stroke: "rgba(0,0,0,0.1)",
                     }}
                   />
                 </>
               )}
-              <Readout
-                viewport={{
-                  x: xStart,
-                  y: yEnd,
-                  outerHeight: yStart - yEnd,
-                  outerWidth: xEnd - xStart,
-                  innerWidth: width,
-                  innerHeight: height,
-                }}
-                position="center right"
-              >
-                {t("isochrone_plot.output", {
-                  age: age.toLocaleString(language, {
-                    minimumFractionDigits: 1,
-                  }),
-                  distance: parsecsToLightyears(
-                    Math.pow(10, distance / 5 + 1)
-                  ).toLocaleString(language, {
-                    maximumFractionDigits: 0,
-                  }),
-                })}
-                <CurveFit
-                  points={data}
-                  {...{ isochrone, offset, xScale, yScale, width, height }}
-                />
-              </Readout>
+              {isPrepared && (
+                <Readout
+                  viewport={{
+                    x: xStart,
+                    y: yEnd,
+                    outerHeight: yStart - yEnd,
+                    outerWidth: xEnd - xStart,
+                    innerWidth: width,
+                    innerHeight: height,
+                  }}
+                  position="center right"
+                  forIds={controlsId}
+                  forScreenreaders={
+                    <CurveFit
+                      points={data}
+                      value={{ age, distance }}
+                      {...{
+                        isochrone,
+                        offset,
+                        xScale,
+                        yScale,
+                        width,
+                        height,
+                      }}
+                    />
+                  }
+                >
+                  {t("isochrone_plot.output", {
+                    age: age.toLocaleString(language, {
+                      minimumFractionDigits: 1,
+                    }),
+                    distance: parsecsToLightyears(
+                      Math.pow(10, distance / 5 + 1)
+                    ).toLocaleString(language, {
+                      maximumFractionDigits: 0,
+                    }),
+                  })}
+                </Readout>
+              )}
             </>
           );
         }}
@@ -180,21 +212,20 @@ const IsochronePlot: FunctionComponent<Props> = ({
   return (
     <WidgetControls
       widget={Widget}
-      controls={() => (
+      controls={
         <Controls
           {...{ value: { age, distance }, configs, onChangeCallback }}
         />
-      )}
+      }
       actions={
         <ResetButton
           onResetCallback={() => {
-            onChangeCallback &&
-              onChangeCallback({ ...defaults.value, ...{ age: ageValues[0] } });
+            onChangeCallback && onChangeCallback(defaultValue);
           }}
         />
       }
       isLoading={!isPrepared}
-      {...{ isDisplayOnly }}
+      {...{ isDisplayOnly, controlsId }}
     />
   );
 };

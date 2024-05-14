@@ -1,6 +1,7 @@
 import { buildPath } from "@/lib/utils";
 import { Point, ScaleFunction } from "@/types/charts";
 import { FunctionComponent, useMemo } from "react";
+import { IsochroneValue } from "..";
 
 type Props = {
   points: Array<Point>;
@@ -10,6 +11,18 @@ type Props = {
   yScale: ScaleFunction;
   width: number;
   height: number;
+  value: IsochroneValue;
+};
+
+const fitFeedback = (fit: number) => {
+  if (fit < 25) {
+  }
+  if (fit < 50) {
+  }
+  if (fit < 70) {
+  }
+  if (fit < 85) {
+  }
 };
 
 const CurveFit: FunctionComponent<Props> = ({
@@ -20,6 +33,7 @@ const CurveFit: FunctionComponent<Props> = ({
   yScale,
   width,
   height,
+  value,
 }) => {
   const isochronePath = buildPath(isochrone, [0, offset]);
   const pointsOnCurve = useMemo(() => {
@@ -33,7 +47,7 @@ const CurveFit: FunctionComponent<Props> = ({
       context.clearRect(0, 0, width, height);
 
       const path = new Path2D(isochronePath);
-      context.lineWidth = 40;
+      context.lineWidth = 15;
       context.stroke(path);
 
       const pointsInStroke = filteredPoints.filter((point) => {
@@ -49,14 +63,7 @@ const CurveFit: FunctionComponent<Props> = ({
     return 0;
   }, [isochrone, xScale, yScale]);
 
-  // const getStatus = () => {
-  //   console.log({ pointsOnCurve, previousPointsOnCurve });
-  //   if (pointsOnCurve === previousPointsOnCurve) return "No change";
-
-  //   return pointsOnCurve > previousPointsOnCurve ? "closer" : "farther";
-  // };
-
-  return <span>{pointsOnCurve}%</span>;
+  return <></>;
 };
 
 CurveFit.displayName = "IsochronePlot.A11Y.CurveFit";
