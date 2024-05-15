@@ -15,9 +15,8 @@
     "packages/epo-style-dictionary"
   ],
   "scripts": {
-    "postinstall": "yarn workspace @rubin-epo/epo-react-lib run build",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "mkdir ./.out && touch ./.out/.nojekyll && storybook-to-ghpages --packages=packages --out=.out",
+    "build-storybook": "yarn workspace @rubin-epo/epo-react-lib run build-storybook -o ../../storybook-static && yarn workspace @rubin-epo/epo-widget-lib run build-storybook -o ../../storybook-static/epo-widget-lib",
+    "deploy-storybook": "mkdir ./storybook-static && touch ./storybook-static/.nojekyll && storybook-to-ghpages --packages=packages --out=.out",
     "test": "yarn workspaces run test",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },

@@ -25,6 +25,17 @@ const config: StorybookConfig = {
       to: "/locales",
     },
   ],
+  refs: (config, { configType }) => {
+    return {
+      "epo-widget-lib": {
+        title: "EPO Widget Library",
+        url:
+          configType === "DEVELOPMENT"
+            ? "http://localhost:6007"
+            : "/epo-react-lib/epo-widget-lib",
+      },
+    };
+  },
   async viteFinal(config) {
     return mergeConfig(config, {
       base: "/epo-react-lib/@rubin-epo/epo-react-lib/",
