@@ -3,6 +3,7 @@ import Point from ".";
 import { PointProps } from "./Point";
 
 const props: PointProps = {
+  id: "test",
   x: 50,
   y: 50,
   radius: 10,

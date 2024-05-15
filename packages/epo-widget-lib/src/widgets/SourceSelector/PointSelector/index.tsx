@@ -1,5 +1,4 @@
-import { FunctionComponent } from "react";
-import { getLinearScale } from "@/lib/utils";
+import { FunctionComponent, MouseEventHandler } from "react";
 import Point from "../Point";
 import * as Styled from "../styles";
 import { Source } from "@/types/astro";
@@ -21,14 +20,17 @@ const PointSelector: FunctionComponent<PointSelectorProps> = ({
   selectedSource,
   onSelectCallback,
 }) => {
-  const xScale = getLinearScale([0, width], [0, width]);
-  const yScale = getLinearScale([0, height], [0, height]);
+  const handleClick: MouseEventHandler<SVGSVGElement> = (event) => {
+    const { id } = event.target as SVGSVGElement;
+
+    onSelectCallback && onSelectCallback(id);
+  };
 
   return (
     <Styled.SVG
       preserveAspectRatio="xMidYMid meet"
       viewBox={`0 0 ${width} ${height}`}
-      onClick={() => onSelectCallback && onSelectCallback(undefined)}
+      onClick={handleClick}
       id={id}
     >
       <g role="list">
@@ -40,20 +42,7 @@ const PointSelector: FunctionComponent<PointSelectorProps> = ({
           return (
             <Point
               key={id}
-              x={xScale(x)}
-              y={yScale(y)}
-              onClickCallback={(event) => {
-                event.stopPropagation();
-                return onSelectCallback && onSelectCallback(id);
-              }}
-              {...{
-                radius,
-                id,
-                type,
-                isActive,
-                isSelected,
-                color,
-              }}
+              {...{ x, y, radius, id, type, isActive, isSelected, color }}
             />
           );
         })}
