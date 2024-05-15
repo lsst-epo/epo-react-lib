@@ -1,18 +1,43 @@
-import { SourceType } from "@/types/astro";
+import { Source } from "@/types/astro";
 import { FunctionComponent, MouseEventHandler } from "react";
 import * as Styled from "./styles";
 
-export interface PointProps {
-  type: SourceType;
+export interface PointProps extends Source {
   isSelected: boolean;
   isActive: boolean;
-  x: number;
-  y: number;
-  radius?: number;
   className?: string;
-  color: string;
   onClickCallback?: MouseEventHandler<SVGCircleElement>;
 }
+
+const getRadius = (type: string, radius?: number | string) => {
+  const defaultRadii: { [key: string]: number } = {
+    supernova: 20,
+    galaxy: 60,
+    galaxyFilter: 25,
+  };
+
+  if (radius) {
+    if (typeof radius === "number") return Math.abs(radius);
+
+    return radius;
+  }
+
+  const { [type]: r = 8 } = defaultRadii;
+
+  return r;
+};
+
+const getStroke = (isActive: boolean, isSelected: boolean, color: string) => {
+  if (isActive) {
+    return "#fed828";
+  }
+
+  if (isSelected) {
+    return color;
+  }
+
+  return "transparent";
+};
 
 const Point: FunctionComponent<PointProps> = ({
   type,
@@ -24,49 +49,22 @@ const Point: FunctionComponent<PointProps> = ({
   className,
   color,
   onClickCallback,
+  id,
 }) => {
-  const defaultRadii: { [key: string]: number } = {
-    supernova: 20,
-    galaxy: 60,
-    galaxyFilter: 25,
-  };
-
-  const getRadius = (type: string, radius?: number) => {
-    if (radius) {
-      return Math.abs(radius);
-    }
-
-    const { [type]: r = 8 } = defaultRadii;
-
-    return r;
-  };
-
-  const getStroke = (isActive: boolean, isSelected: boolean, color: string) => {
-    if (isActive) {
-      return "#fed828";
-    }
-
-    if (isSelected) {
-      return color;
-    }
-
-    return "transparent";
-  };
-
-  const baseRadius = getRadius(type, radius);
-  const activeRadius = Math.max(10, baseRadius * 1.2);
+  const r = getRadius(type, radius);
 
   return (
     <Styled.Point
       onClick={onClickCallback}
       cx={x}
       cy={y}
-      r={isActive ? activeRadius : baseRadius}
       fill="transparent"
       stroke={getStroke(isActive, isSelected, color)}
+      strokeWidth={3}
+      transform={`scale(${isActive ? 1.2 : 1})`}
       tabIndex={0}
       role="listitem"
-      {...{ $isSelected: isSelected, className }}
+      {...{ className, r, id }}
     />
   );
 };

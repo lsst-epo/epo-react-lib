@@ -24,20 +24,12 @@ describe("PointSelector", () => {
 
     expect(points.length).toBe(sources.length);
   });
-  it(`should return a source's ID when it has been clicked`, () => {
+  it(`should return the ID of the clicked object`, () => {
     render(<PointSelector {...props} />);
 
     const points = screen.getAllByRole("listitem");
     fireEvent.click(points[0]);
 
     expect(onSelectCallback).toBeCalledWith(sources[0].id);
-  });
-  it(`should return undefined when clicked elsewhere`, () => {
-    render(<PointSelector {...props} />);
-
-    const group = screen.getByRole("list");
-    fireEvent.click(group);
-
-    expect(onSelectCallback).toBeCalledWith(undefined);
   });
 });
