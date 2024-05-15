@@ -23,7 +23,7 @@
     "publish-beta": "yarn build && clean-publish --tag beta",
     "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "yarn run test:generate-output && storybook dev -p 6007",
-    "build-storybook": "storybook build",
+    "build-storybook": "yarn test:generate-output && storybook build",
     "test": "jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true"
   },
