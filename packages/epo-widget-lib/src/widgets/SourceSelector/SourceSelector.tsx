@@ -3,9 +3,11 @@ import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import AspectRatio from "@/layout/AspectRatio";
-import * as Styled from "./styles";
 import Message from "./Message";
 import { PointSelector } from ".";
+import Loader from "@/atomic/Loader";
+import ElapsedTime from "@/atomic/ElapsedTime";
+import * as Styled from "./styles";
 
 interface BlinkConfig {
   autoplay?: boolean;
@@ -24,8 +26,25 @@ interface SourceSelectorProps {
   selectionCallback?: (data: string[]) => void;
   blinkConfig?: BlinkConfig;
   isDisplayOnly?: boolean;
+  isLoading?: boolean;
   className?: string;
 }
+
+const calculateDiff = (alerts: Array<Alert>, activeIndex: number) => {
+  const zeroDay = { day: 0, hour: 0 };
+  const currentAlert = alerts[activeIndex];
+
+  if (!currentAlert) return zeroDay;
+
+  const diff = currentAlert?.date - alerts[0]?.date;
+
+  if (!diff) return zeroDay;
+
+  return {
+    day: Math.round(diff) || 0,
+    hour: Math.round((24 / diff) % 24) || 0,
+  };
+};
 
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   width = 600,
@@ -38,33 +57,43 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   selectionCallback,
   blinkConfig,
   isDisplayOnly = false,
+  isLoading: isLoadingExternal,
   className,
 }) => {
-  const [isLoaded, setLoaded] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [message, setMessage] = useState<ReactNode>();
   const [isMessageVisible, setMessageVisible] = useState(false);
   const { t } = useTranslation();
   const svgId = "sourceSelectorWidget";
+  const isPrepared = !isLoading && !isLoadingExternal;
 
-  const handleClick = (id?: string) => {
-    if (isLoaded && !isDisplayOnly) {
-      if (id) {
-        const isAlreadySelected = selectedSource.includes(id);
+  const notFound = () => {
+    setMessage(t("source_selector.messages.failure"));
+    setMessageVisible(true);
+  };
 
-        if (!isAlreadySelected) {
-          selectionCallback && selectionCallback(selectedSource.concat(id));
-          setMessage(
-            <>
-              <IconComposer icon="checkmark" />
-              {t("source_selector.messages.success")}
-            </>
-          );
-          setMessageVisible(true);
-        }
-      } else {
-        setMessage(t("source_selector.messages.failure"));
+  const handleClick = (clickedId?: string) => {
+    if (!isPrepared || isDisplayOnly) return;
+
+    if (clickedId) {
+      const isValidSource = !!sources.find(({ id }) => id === clickedId);
+      const isUnselected = !selectedSource.includes(clickedId);
+
+      if (isValidSource && isUnselected) {
+        selectionCallback &&
+          selectionCallback(selectedSource.concat(clickedId));
+        setMessage(
+          <>
+            <IconComposer icon="checkmark" />
+            {t("source_selector.messages.success")}
+          </>
+        );
         setMessageVisible(true);
+      } else {
+        notFound();
       }
+    } else {
+      notFound();
     }
   };
 
@@ -72,13 +101,10 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     setMessageVisible(false);
   };
 
-  const currentAlert = alerts[activeAlertIndex];
-  const diff = currentAlert.date - alerts[0].date;
-  const day = Math.round(diff);
-  const hour = Math.round((24 / diff) % 24) || 0;
+  const { day, hour } = calculateDiff(alerts, activeAlertIndex);
 
   const images = isDisplayOnly
-    ? [alerts[activeAlertIndex].image]
+    ? [alerts[activeAlertIndex]?.image]
     : alerts.map(({ image }) => image);
 
   return (
@@ -96,11 +122,11 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         images={images}
         activeIndex={activeAlertIndex}
         blinkCallback={alertChangeCallback}
-        loadedCallback={() => setLoaded(true)}
+        loadedCallback={() => setLoading(false)}
         {...blinkConfig}
       >
         {alerts.length > 0 && !isDisplayOnly && (
-          <Styled.ElapsedDisplay {...{ day, hour }} />
+          <ElapsedTime {...{ day, hour }} />
         )}
         <PointSelector
           id={svgId}
@@ -108,6 +134,8 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
           {...{ width, height, sources, selectedSource }}
         />
       </Styled.BackgroundBlinker>
+
+      {!isPrepared && <Loader />}
     </AspectRatio>
   );
 };

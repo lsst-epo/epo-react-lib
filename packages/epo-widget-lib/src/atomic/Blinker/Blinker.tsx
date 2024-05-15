@@ -78,18 +78,20 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
         visible={activeIndex}
         {...{ images }}
       />
-      {children}
-      {canBlink && showControls && (
-        <Styled.BlinkerControls
-          isDisabled={!loaded}
-          {...{
-            playing,
-            handleStartStop,
-            handleNext,
-            handlePrevious,
-          }}
-        />
-      )}
+      <Styled.ControlsContainer>
+        {canBlink && showControls && (
+          <Styled.BlinkerControls
+            isDisabled={!loaded}
+            {...{
+              playing,
+              handleStartStop,
+              handleNext,
+              handlePrevious,
+            }}
+          />
+        )}
+        {children}
+      </Styled.ControlsContainer>
     </Styled.BlinkerContainer>
   );
 };

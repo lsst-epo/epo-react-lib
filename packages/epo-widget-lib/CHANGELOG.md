@@ -66,3 +66,9 @@
 - adjust aspect ratio of Camera Filter Tool
 - adjust layout of actions in widget control layout
 - update `epo-react-lib`
+
+# 0.9.12
+
+- `SourceSelector` changes
+  - new loader with internal/external wait
+  - space selections by percent

@@ -1,15 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Point = styled.circle<{
-  $isSelected: boolean;
-}>`
+export const Point = styled.circle`
   cursor: pointer;
-  transition: fill ease var(--DURATION, 0.2s), r ease-out 400ms;
-  ${({ $isSelected }: { $isSelected: boolean }) =>
-    $isSelected &&
-    css`
-      stroke-width: 3;
-    `}
+  transition: transform ease var(--DURATION, 0.2s);
+  transform-origin: center;
 
   &:focus {
     outline: none;

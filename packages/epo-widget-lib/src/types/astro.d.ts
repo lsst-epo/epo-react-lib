@@ -6,10 +6,10 @@ export type SourceType = "supernova" | "galaxy" | "galaxyFilter";
 export interface Source {
   id: string;
   type: SourceType;
-  x: number;
-  y: number;
+  x: number | string;
+  y: number | string;
   color: string;
-  radius?: number;
+  radius?: number | string;
 }
 
 export interface Alert {
