@@ -31,11 +31,12 @@ const config: StorybookConfig = {
     },
     { from: "../public/localeStrings", to: "/locales" },
   ],
-  async viteFinal(config) {
+  async viteFinal(config, { configType }) {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
     return mergeConfig(config, {
-      base: "./epo-react-lib/epo-widget-lib/",
+      base:
+        configType === "PRODUCTION" ? "/epo-react-lib/epo-widget-lib/" : "/",
       resolve: {
         alias: {
           path: "path-browserify",
