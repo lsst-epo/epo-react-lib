@@ -36,7 +36,7 @@ const config: StorybookConfig = {
         url:
           configType === "DEVELOPMENT"
             ? "http://localhost:6007"
-            : "./epo-react-lib/epo-widget-lib",
+            : "/epo-react-lib/epo-widget-lib/",
       },
     };
   },
