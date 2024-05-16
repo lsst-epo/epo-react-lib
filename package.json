@@ -15,6 +15,7 @@
     "packages/epo-style-dictionary"
   ],
   "scripts": {
+    "postinstall": "yarn workspace @rubin-epo/epo-react-lib run build",
     "build-storybook:production": "yarn workspace @rubin-epo/epo-react-lib run build-storybook:production && yarn workspace @rubin-epo/epo-widget-lib run build-storybook:production",
     "test": "yarn workspaces run test",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
