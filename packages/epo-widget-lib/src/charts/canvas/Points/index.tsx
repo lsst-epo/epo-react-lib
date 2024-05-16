@@ -19,7 +19,6 @@ const CanvasPoints: FunctionComponent<Props> = ({
   xScale,
   yScale,
   onLoadedCallback,
-  label,
 }) => {
   const [pointCount, setPointCount] = useState<number>();
   const [renderedPoints, setRenderedPoints] = useState<string>();
@@ -53,15 +52,26 @@ const CanvasPoints: FunctionComponent<Props> = ({
     context.stroke();
   };
 
+  const setupCanvas = (canvas: HTMLCanvasElement) => {
+    const dpr = window?.devicePixelRatio || 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    const context = canvas.getContext("2d");
+
+    if (context) {
+      context.scale(dpr, dpr);
+
+      return context;
+    }
+  };
+
   if (pointCount !== data.length) {
     if (renderedPoints) {
       URL.revokeObjectURL(renderedPoints);
     }
 
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    const context = canvas.getContext("2d");
+    const canvas = document?.createElement("canvas");
+    const context = setupCanvas(canvas);
 
     if (context) {
       context.clearRect(0, 0, width, height);
@@ -79,15 +89,7 @@ const CanvasPoints: FunctionComponent<Props> = ({
     }
   }
 
-  return (
-    <image
-      href={renderedPoints}
-      aria-description={label}
-      x={0}
-      y={0}
-      {...{ width, height }}
-    />
-  );
+  return <image href={renderedPoints} x={0} y={0} {...{ width, height }} />;
 };
 
 CanvasPoints.displayName = "Charts.Canvas.Points";

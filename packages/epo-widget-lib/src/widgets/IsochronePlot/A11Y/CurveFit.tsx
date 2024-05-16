@@ -1,7 +1,7 @@
 import { buildPath } from "@/lib/utils";
 import { Point, ScaleFunction } from "@/types/charts";
 import { FunctionComponent, useMemo } from "react";
-import { IsochroneValue } from "..";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   points: Array<Point>;
@@ -11,18 +11,7 @@ type Props = {
   yScale: ScaleFunction;
   width: number;
   height: number;
-  value: IsochroneValue;
-};
-
-const fitFeedback = (fit: number) => {
-  if (fit < 25) {
-  }
-  if (fit < 50) {
-  }
-  if (fit < 70) {
-  }
-  if (fit < 85) {
-  }
+  value: Record<string, string>;
 };
 
 const CurveFit: FunctionComponent<Props> = ({
@@ -35,6 +24,10 @@ const CurveFit: FunctionComponent<Props> = ({
   height,
   value,
 }) => {
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const isochronePath = buildPath(isochrone, [0, offset]);
   const pointsOnCurve = useMemo(() => {
     const filteredPoints = points.filter(({ y }) => y < 16);
@@ -57,13 +50,22 @@ const CurveFit: FunctionComponent<Props> = ({
         return context.isPointInStroke(path, x, y);
       });
 
-      return Math.floor((pointsInStroke.length / filteredPoints.length) * 100);
+      return pointsInStroke.length / filteredPoints.length;
     }
 
     return 0;
   }, [isochrone, xScale, yScale]);
 
-  return <></>;
+  return (
+    <>
+      {t("isochrone_plot.output_screenreader", {
+        ...value,
+        percent: Intl.NumberFormat(language, { style: "percent" }).format(
+          pointsOnCurve
+        ),
+      })}
+    </>
+  );
 };
 
 CurveFit.displayName = "IsochronePlot.A11Y.CurveFit";
