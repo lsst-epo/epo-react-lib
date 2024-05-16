@@ -133,7 +133,7 @@
   },
   "isochrone_plot": {
     "output": "{{age}} Gyrs {{distance}} Lyrs",
-    "output_screenreader": "{{age}} gigayears {{distance}} lightyears",
+    "output_screenreader": "{{age}} gigayears {{distance}} lightyears, {{percent}} of stars are on the curve.",
     "plot": {
       "x_label": "Color Index",
       "y_label": "Apparent G Magnitude"

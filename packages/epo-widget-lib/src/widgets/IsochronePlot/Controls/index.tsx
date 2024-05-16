@@ -36,8 +36,6 @@ const Controls: FunctionComponent<Props> = ({
   return (
     <>
       {Object.keys(configs).map((key) => {
-        const { min, max, step } = configs[key as keyof IsochroneValue];
-
         return (
           <ControlLabel
             key={key}
@@ -53,7 +51,7 @@ const Controls: FunctionComponent<Props> = ({
                   }) || undefined
                 }
                 onChangeCallback={(value) => handleChange(key, value)}
-                {...{ ...sharedProps, ...{ min, max, step } }}
+                {...{ ...sharedProps, ...configs[key as keyof IsochroneValue] }}
               />
             )}
             labelBy

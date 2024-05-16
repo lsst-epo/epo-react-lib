@@ -72,3 +72,7 @@
 - `SourceSelector` changes
   - new loader with internal/external wait
   - space selections by percent
+
+# 0.10.0
+
+- add `IsochronePlot` widget

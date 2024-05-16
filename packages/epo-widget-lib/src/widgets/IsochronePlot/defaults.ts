@@ -6,7 +6,7 @@ const defaults = {
   pointRadius: {
     sm: 4,
     md: 6,
-    lg: 8,
+    lg: 6,
   },
 };
 

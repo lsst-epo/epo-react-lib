@@ -69,8 +69,8 @@ const IsochronePlot: FunctionComponent<Props> = ({
   const margins = { top: 0, right: 0, bottom: 20, left: 20 };
   const { width, height } = defaults;
   const { ages = {} } = ageLibrary;
-  const ageKeys = Object.keys(ages).toSorted(
-    (a, b) => parseFloat(a) - parseFloat(b)
+  const ageKeys = Object.keys(ages).sort(
+    (a: string, b: string) => parseFloat(a) - parseFloat(b)
   );
   const ageValues = ageKeys.map(parseFloat);
 
@@ -88,7 +88,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
     age: {
       min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
       max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
-      step: ageValues[1] - ageValues[0],
+      step: ageValues[1] - ageValues[0] || 0.5,
     },
     distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
   };
@@ -105,6 +105,17 @@ const IsochronePlot: FunctionComponent<Props> = ({
   );
 
   const radius = getPointRadius(containerWidth);
+
+  const localizedValues = {
+    age: age.toLocaleString(language, {
+      minimumFractionDigits: 1,
+    }),
+    distance: parsecsToLightyears(
+      Math.pow(10, distance / 5 + 1)
+    ).toLocaleString(language, {
+      maximumFractionDigits: 0,
+    }),
+  };
 
   const Widget = (
     <PlotWrapper ref={ref}>
@@ -143,24 +154,13 @@ const IsochronePlot: FunctionComponent<Props> = ({
             <>
               {Data}
               {age && (
-                <>
-                  <PathFromPoints
-                    points={isochrone}
-                    svgProps={{
-                      strokeWidth: 2,
-                      transform: `translate(0,${offset})`,
-                    }}
-                  />
-
-                  <PathFromPoints
-                    points={isochrone}
-                    svgProps={{
-                      transform: `translate(0,${offset})`,
-                      strokeWidth: 15,
-                      stroke: "rgba(0,0,0,0.1)",
-                    }}
-                  />
-                </>
+                <PathFromPoints
+                  points={isochrone}
+                  svgProps={{
+                    strokeWidth: 2,
+                    transform: `translate(0,${offset})`,
+                  }}
+                />
               )}
               {isPrepared && (
                 <Readout
@@ -177,7 +177,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
                   forScreenreaders={
                     <CurveFit
                       points={data}
-                      value={{ age, distance }}
+                      value={localizedValues}
                       {...{
                         isochrone,
                         offset,
@@ -190,14 +190,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
                   }
                 >
                   {t("isochrone_plot.output", {
-                    age: age.toLocaleString(language, {
-                      minimumFractionDigits: 1,
-                    }),
-                    distance: parsecsToLightyears(
-                      Math.pow(10, distance / 5 + 1)
-                    ).toLocaleString(language, {
-                      maximumFractionDigits: 0,
-                    }),
+                    ...localizedValues,
                   })}
                 </Readout>
               )}
@@ -214,11 +207,13 @@ const IsochronePlot: FunctionComponent<Props> = ({
       widget={Widget}
       controls={
         <Controls
+          isDisabled={!isPrepared}
           {...{ value: { age, distance }, configs, onChangeCallback }}
         />
       }
       actions={
         <ResetButton
+          isDisabled={!isPrepared}
           onResetCallback={() => {
             onChangeCallback && onChangeCallback(defaultValue);
           }}
