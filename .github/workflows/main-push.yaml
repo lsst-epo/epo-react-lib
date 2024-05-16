@@ -12,11 +12,15 @@ permissions:
   pages: write
   id-token: write
 
+environment:
+  name: github-pages
+
 # List of jobs
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
     strategy:
       matrix:
         node-version: [20.9]
