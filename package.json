@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "license": "MIT",
   "author": "Rubin EPO",
   "repository": {
@@ -15,12 +15,9 @@
     "packages/epo-style-dictionary"
   ],
   "scripts": {
-    "build-storybook": "yarn workspace @rubin-epo/epo-react-lib run build-storybook -o ../../storybook-static && yarn workspace @rubin-epo/epo-widget-lib run build-storybook -o ../../storybook-static/epo-widget-lib",
-    "deploy-storybook": "mkdir ./storybook-static && touch ./storybook-static/.nojekyll && storybook-to-ghpages --packages=packages --out=.out",
+    "build-storybook:production": "yarn workspace @rubin-epo/epo-react-lib run build-storybook:production && yarn workspace @rubin-epo/epo-widget-lib run build-storybook:production",
     "test": "yarn workspaces run test",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
   },
-  "devDependencies": {
-    "@storybook/storybook-deployer": "^2.8.16"
-  }
+  "devDependencies": {}
 }

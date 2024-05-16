@@ -20,7 +20,6 @@ tempPublish/
 .out/*
 
 # testing
-.jest-test-results.json
 
 # Editor directories and files
 .vscode/*

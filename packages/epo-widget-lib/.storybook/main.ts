@@ -48,8 +48,10 @@ const config: StorybookConfig = {
     };
   },
   async viteFinal(config) {
+    config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
+
     return mergeConfig(config, {
-      base: "/epo-react-lib/@rubin-epo/epo-widget-lib/",
+      base: "/epo-react-lib/epo-widget-lib/",
       resolve: {
         alias: {
           path: "path-browserify",
