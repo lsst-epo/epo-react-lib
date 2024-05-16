@@ -35,7 +35,7 @@ const config: StorybookConfig = {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
     return mergeConfig(config, {
-      base: "/epo-react-lib/epo-widget-lib/",
+      base: "./epo-react-lib/epo-widget-lib/",
       resolve: {
         alias: {
           path: "path-browserify",

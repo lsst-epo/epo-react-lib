@@ -36,15 +36,15 @@ const config: StorybookConfig = {
         url:
           configType === "DEVELOPMENT"
             ? "http://localhost:6007"
-            : "/epo-react-lib/epo-widget-lib",
+            : "./epo-react-lib/epo-widget-lib",
       },
     };
   },
-  async viteFinal(config) {
+  async viteFinal(config, { configType }) {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
     return mergeConfig(config, {
-      base: "/epo-react-lib/",
+      base: "./epo-react-lib/",
       resolve: {
         alias: {
           path: "path-browserify",

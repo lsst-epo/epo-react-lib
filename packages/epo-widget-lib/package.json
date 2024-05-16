@@ -24,7 +24,7 @@
     "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "yarn storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "build-storybook:production": "yarn build-storybook -o ../../storybook-static",
+    "build-storybook:production": "yarn build-storybook -o ../../storybook-static/epo-widget-lib",
     "test": "jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true"
   },
