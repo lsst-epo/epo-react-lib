@@ -1,6 +1,7 @@
 import { mergeConfig } from "vite";
 import { resolve, dirname, join } from "path";
 import { StorybookConfig } from "@storybook/react-vite";
+import react from "@vitejs/plugin-react";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -16,6 +17,9 @@ const config: StorybookConfig = {
     options: {},
   },
   core: {},
+  typescript: {
+    reactDocgen: "react-docgen", // 👈 react-docgen configured here.
+  },
   features: {
     storyStoreV7: true,
   },
@@ -37,8 +41,10 @@ const config: StorybookConfig = {
     };
   },
   async viteFinal(config) {
+    config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
+
     return mergeConfig(config, {
-      base: "/epo-react-lib/@rubin-epo/epo-react-lib/",
+      base: "/epo-react-lib/",
       resolve: {
         alias: {
           path: "path-browserify",

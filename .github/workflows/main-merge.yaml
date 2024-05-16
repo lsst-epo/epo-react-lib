@@ -8,9 +8,7 @@ on:
       - "main" # Replace with the branch you want to deploy from
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # List of jobs
 jobs:
@@ -24,19 +22,16 @@ jobs:
     steps:
       # Manual Checkout
       - uses: actions/checkout@v4
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        uses: Borales/actions-yarn@v5.0.0
+        run: yarn --frozen-lockfile
+      - name: Build Storybook
+        run: yarn deploy-storybook
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          cmd: install # will run `yarn install` command
-      #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
-      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
-        with:
-          install_command: yarn install # default: npm ci
-          build_command: yarn build-storybook # default: npm run build-storybook
-          path: storybook-static # default: dist/storybook
-          checkout: false # default: true
+          folder: storybook-static # The folder the action should deploy.
+          token: ${{ secrets.GITHUB_TOKEN }}

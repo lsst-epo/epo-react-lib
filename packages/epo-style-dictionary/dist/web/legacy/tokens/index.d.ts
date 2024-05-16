@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Wed, 15 May 2024 19:05:35 GMT
+ * Generated on Thu, 16 May 2024 22:19:26 GMT
  */
 
 export const FONT_WEIGHT_NORMAL : string;
