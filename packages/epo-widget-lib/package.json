@@ -22,7 +22,7 @@
     "publish-clean": "yarn test && yarn build && clean-publish",
     "publish-beta": "yarn build && clean-publish --tag beta",
     "publish-local": "yarn build && clean-publish --without-publish",
-    "storybook": "yarn storybook dev -p 6007",
+    "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static/epo-widget-lib",
     "test": "jest --max-workers=2",
