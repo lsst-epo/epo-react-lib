@@ -31,22 +31,6 @@ const config: StorybookConfig = {
     },
     { from: "../public/localeStrings", to: "/locales" },
   ],
-  refs: (config, { configType }) => {
-    if (configType === "DEVELOPMENT") {
-      return {
-        "epo-react-lib": {
-          title: "EPO UI Library",
-          url: "http://localhost:6006",
-        },
-      };
-    }
-    return {
-      "epo-react-lib": {
-        title: "EPO UI Library",
-        url: "https://lsst-epo.github.io/epo-react-lib/@rubin-epo/epo-react-lib",
-      },
-    };
-  },
   async viteFinal(config) {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
