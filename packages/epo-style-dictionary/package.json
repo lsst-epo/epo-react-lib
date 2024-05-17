@@ -25,7 +25,6 @@
   "supportedLocales": [],
   "scripts": {
     "build": "node ./build.js",
-    "postinstall": "yarn build",
     "test": "echo \"Unit testing is not configured for package \\\"epo-style-dictionary\\\", skipping.\""
   },
   "files": [
