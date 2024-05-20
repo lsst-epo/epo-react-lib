@@ -131,7 +131,6 @@ export default defineConfig({
         "react-player/youtube",
         "react-share",
         "react-slider",
-        "react-uid",
         "styled-components",
       ],
       output: {

@@ -97,7 +97,6 @@ export default defineConfig({
         "react-player/youtube",
         "react-share",
         "react-slider",
-        "react-uid",
         "skia-canvas",
         "styled-components",
         "use-resize-observer",
