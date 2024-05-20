@@ -86,3 +86,7 @@
 # 2.0.24
 
 - update `@headlessui/react` to 2.x
+
+# 2.0.25
+
+- replace `react-uid` with `useId`
