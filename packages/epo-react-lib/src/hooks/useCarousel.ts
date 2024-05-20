@@ -1,6 +1,5 @@
 import { CarouselConfig, CarouselOptions } from "@/types/carousel";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useUID } from "react-uid";
+import { useState, useEffect, useRef, useCallback, useId } from "react";
 
 const DEFAULT_OPTIONS: Required<CarouselOptions> = {
   selectedAttraction: 0.075,
@@ -38,7 +37,7 @@ export default function useCarousel(options: CarouselOptions): CarouselConfig {
     }
   }, []);
 
-  const uid = useUID();
+  const uid = useId();
 
   const mergedOptions: Required<CarouselOptions> = Object.assign(
     {},
