@@ -8,6 +8,7 @@ interface Config {
   min: number;
   max: number;
   step: number;
+  marks?: boolean;
 }
 
 type Props = {
@@ -42,7 +43,6 @@ const Controls: FunctionComponent<Props> = ({
             label={t(`isochrone_plot.controls.${key}.label`)}
             input={(id) => (
               <HorizontalSlider
-                label={key}
                 labelledbyId={id}
                 value={value[key as keyof IsochroneValue]}
                 ariaValuetext={

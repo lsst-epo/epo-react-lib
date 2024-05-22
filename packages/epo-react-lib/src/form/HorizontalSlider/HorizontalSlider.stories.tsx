@@ -45,16 +45,6 @@ const meta: Meta<typeof HorizontalSlider> = {
         type: { summary: "number | number[]" },
       },
     },
-    label: {
-      control: "text",
-      type: { name: "string", required: true },
-      description:
-        "Unique label attached to the slider to differentiate it in callbacks.",
-      table: {
-        category: "Labels",
-        type: { summary: "string" },
-      },
-    },
     minLabel: {
       control: "text",
       description:
@@ -148,14 +138,12 @@ export const SingleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 SingleHandle.args = {
   value: 50,
-  label: "primaryExample",
 };
 
 export const DoubleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 DoubleHandle.args = {
   value: [20, 80],
-  label: "doubleHandleExample",
   minLabel: "Min",
   maxLabel: "Max",
 };
@@ -165,4 +153,12 @@ export const Disabled: StoryFn<typeof HorizontalSlider> = Template.bind({});
 Disabled.args = {
   ...SingleHandle.args,
   isDisabled: true,
+};
+
+export const Marks: StoryFn<typeof HorizontalSlider> = Template.bind({});
+
+Marks.args = {
+  ...SingleHandle.args,
+  marks: 10,
+  step: 10,
 };
