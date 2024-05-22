@@ -94,7 +94,7 @@
     "react-i18next": "^12.2.0"
   },
   "dependencies": {
-    "@rubin-epo/epo-react-lib": "^2.0.26",
+    "@rubin-epo/epo-react-lib": "^2.0.27",
     "context-filter-polyfill": "^0.3.6",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.0",
