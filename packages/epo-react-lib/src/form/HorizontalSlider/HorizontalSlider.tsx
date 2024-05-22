@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import { isColorTransparent, isStyleSupported } from "@/lib/utils";
-import { useState, FunctionComponent } from "react";
+import { useState, FunctionComponent, useId } from "react";
 import { ReactSliderProps } from "react-slider";
+import Mark from "./Mark";
+import Track from "./Track";
 import * as Styled from "./styles";
 
 type BaseSliderProps = Pick<
@@ -13,15 +15,13 @@ type BaseSliderProps = Pick<
   | "className"
   | "ariaValuetext"
   | "defaultValue"
+  | "marks"
 >;
-
-type RenderTrack = ReactSliderProps<number | readonly number[]>["renderTrack"];
 
 type RenderThumb = ReactSliderProps<number | readonly number[]>["renderThumb"];
 
 export interface HorizontalSliderProps extends BaseSliderProps {
   onChangeCallback: ReactSliderProps<number | readonly number[]>["onChange"];
-  label: string;
   minLabel?: string;
   maxLabel?: string;
   labelledbyId?: string;
@@ -30,53 +30,32 @@ export interface HorizontalSliderProps extends BaseSliderProps {
   isDisabled?: boolean;
 }
 
+const getValidColor = (color?: string, disabled = false) => {
+  const validColor =
+    color && isStyleSupported("color", color) && !isColorTransparent(color)
+      ? color
+      : "#313333";
+
+  return disabled ? "var(--neutral60, #6a6e6e)" : validColor;
+};
+
 const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   value,
   onChangeCallback,
-  label,
   minLabel,
   maxLabel,
   labelledbyId,
   color,
   darkMode = false,
-  isDisabled = false,
+  isDisabled: disabled = false,
   className,
   ...props
 }) => {
+  const id = useId();
   const [showThumbLabels, setShowThumbLabels] = useState(false);
-  const hasDoubleHandles = Array.isArray(value) && value.length > 1;
+  const hasDoubleHandles = typeof value === "object" && value.length > 1;
 
-  const getValidColor = (color?: string) => {
-    const validColor =
-      color && isStyleSupported("color", color) && !isColorTransparent(color)
-        ? color
-        : "#313333";
-
-    return isDisabled ? "var(--neutral60, #6a6e6e)" : validColor;
-  };
-
-  const trackColor = getValidColor(color);
-
-  const Track: RenderTrack = (props, state) => {
-    const { index } = state;
-    const { key, style, ...other } = props;
-    const hasColor =
-      (hasDoubleHandles && index === 1) || (!hasDoubleHandles && index === 0);
-
-    return (
-      <Styled.Track
-        data-testid={`slider-track-${index}`}
-        style={{
-          ...style,
-          "--track-color": hasColor && trackColor,
-        }}
-        key={key}
-        {...other}
-      />
-    );
-  };
-
-  const Thumb: RenderThumb = (props, state) => {
+  const renderThumb: RenderThumb = (props, state) => {
     const { key, style, ...other } = props;
     const { valueNow } = state;
 
@@ -85,23 +64,25 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         key={key}
         style={{
           ...style,
-          "--thumb-color": trackColor,
-          "--thumb-label-opacity": showThumbLabels ? 1 : undefined,
+          "--opacity-label-thumb": showThumbLabels ? 1 : undefined,
         }}
         {...other}
       >
-        <Styled.Thumb aria-disabled={isDisabled} data-testid="slider-thumb">
+        <Styled.Thumb aria-disabled={disabled} data-testid="slider-thumb">
           <Styled.ThumbLabel>{valueNow}</Styled.ThumbLabel>
         </Styled.Thumb>
       </Styled.ThumbContainer>
     );
   };
 
-  const minLabelId = `${label}-min-label`;
-  const maxLabelId = `${label}-max-label`;
+  const minLabelId = `${id}-min-label`;
+  const maxLabelId = `${id}-max-label`;
 
   return (
     <Styled.HorizontalSliderContainer
+      style={{
+        "--color-background-track": getValidColor(color),
+      }}
       data-theme={darkMode ? "dark" : "light"}
       {...{ className }}
     >
@@ -112,16 +93,19 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         </Styled.TrackLabels>
       ) : null}
       <Styled.HorizontalSlider
-        {...{ value, ...props }}
+        {...{ value, disabled, renderThumb, ...props }}
         onBeforeChange={() => setShowThumbLabels(true)}
         onChange={onChangeCallback}
         onAfterChange={() => setShowThumbLabels(false)}
-        renderTrack={Track}
-        renderThumb={Thumb}
+        renderTrack={({ key, ...props }, state) => (
+          <Track key={key} {...{ ...props, state }} />
+        )}
+        renderMark={({ key, ...props }) => (
+          <Mark markValue={key} key={key} {...{ ...props, value }} />
+        )}
         ariaLabelledby={
           hasDoubleHandles ? [minLabelId, maxLabelId] : labelledbyId
         }
-        disabled={isDisabled}
       />
     </Styled.HorizontalSliderContainer>
   );
