@@ -122,6 +122,7 @@ export default defineConfig({
         "flickity",
         "focus-trap",
         "i18next",
+        /^lodash/,
         "next/link",
         "react",
         "react/jsx-runtime",
