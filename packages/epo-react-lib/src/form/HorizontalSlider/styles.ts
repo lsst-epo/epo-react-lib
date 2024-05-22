@@ -1,20 +1,22 @@
 import styled from "styled-components";
 import ReactSlider from "react-slider";
 
-const sliderHeight = 18;
-const sliderBorder = 8;
-const trackHeight = 6;
-const thumbBorder = 4;
-
 export const HorizontalSliderContainer = styled.div`
-  --slider-color: inherit;
-  --slider-border-color: var(--blue20, #c7d4f4);
-  --slider-background-color: var(--neutral10, #f5f5f5);
+  --color-text-slider: inherit;
+  --color-border-slider: var(--blue20, #c7d4f4);
+  --color-background-slider: var(--neutral60, #6a6e6e);
+  --color-background-track-disabled: var(--color-background-slider);
+  --color-background-thumb-label: var(--neutral10, #f5f5f5);
+  --size-height-slider: 18px;
+  --size-border-radius-slider: calc(var(--size-height-slider) / 2);
+  --size-border-slider: 8px;
+  --size-offset-label: 4px;
+  --size-height-thumb: 14px;
 
   &[data-theme="dark"] {
-    --slider-color: var(--white, #fff);
-    --slider-border-color: var(--white, #fff);
-    --slider-background-color: var(--neutral80, #404040);
+    --color-text-slider: var(--white, #fff);
+    --color-border-slider: var(--white, #fff);
+    --color-background-thumb-label: var(--neutral80, #404040);
   }
 
   display: flex;
@@ -35,16 +37,16 @@ export const Label = styled.div`
   font-size: 14px;
   font-weight: bold;
   line-height: 1.6;
-  color: var(--slider-color);
+  color: var(--color-text-slider);
 `;
 
 export const ThumbLabel = styled.span`
-  background-color: var(--slider-background-color);
-  border: 1px solid var(--slider-border-color);
+  background-color: var(--color-background-thumb-label);
+  border: 1px solid var(--color-border-slider);
   box-sizing: border-box;
-  color: var(--slider-color);
+  color: var(--color-text-slider);
   position: absolute;
-  top: calc(100% + ${thumbBorder}px);
+  top: calc(100% + var(--size-offset-label));
   left: 50%;
   transform: translateX(-50%);
   padding: 5px;
@@ -53,7 +55,7 @@ export const ThumbLabel = styled.span`
   text-align: center;
   line-height: 1.35;
   border-radius: 5px;
-  opacity: var(--thumb-label-opacity, 0);
+  opacity: var(--opacity-label-thumb, 0);
   transition: opacity 0.4s ease-in-out;
   user-select: none;
 `;
@@ -66,31 +68,30 @@ export const ThumbContainer = styled.div`
 `;
 
 export const Thumb = styled.div`
-  --thumb-height: 14px;
+  --color-background-thumb: var(--color-background-track);
 
-  background-color: var(--thumb-color);
+  background-color: var(--color-background-thumb);
   box-sizing: border-box;
   position: relative;
   cursor: grab;
-  width: var(--thumb-height);
-  height: var(--thumb-height);
+  width: var(--size-height-thumb);
+  height: var(--size-height-thumb);
   text-align: center;
   border-radius: 50%;
 
   &::before {
-    --click-box-height: calc(var(--thumb-height) * 2);
+    --size-height-click-box: calc(var(--size-height-thumb) * 2);
 
     content: "";
     display: inline-block;
     position: relative;
     left: -50%;
     top: -50%;
-    width: var(--click-box-height);
-    height: var(--click-box-height);
+    width: var(--size-height-click-box);
+    height: var(--size-height-click-box);
   }
 
   &[aria-disabled="true"] {
-    background-color: var(--neutral60, #6a6e6e);
     cursor: not-allowed;
   }
 
@@ -99,7 +100,7 @@ export const Thumb = styled.div`
   &:not([aria-disabled="true"]):active,
   &:not([aria-disabled="true"]).active {
     outline: none;
-    --thumb-label-opacity: 1;
+    --opacity-label-thumb: 1;
   }
 
   &:not([aria-disabled="true"]):active,
@@ -109,22 +110,19 @@ export const Thumb = styled.div`
   }
 `;
 
-export const Track = styled.div`
-  box-sizing: border-box;
-  border-radius: ${trackHeight / 2}px;
-  background-color: var(--track-color);
-  height: ${trackHeight}px;
-`;
-
 export const HorizontalSlider = styled(ReactSlider)`
   display: flex;
   align-items: center;
   box-sizing: border-box;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
-  height: ${sliderHeight}px;
-  background-color: var(--neutral60, #6a6e6e);
-  border: ${sliderBorder}px solid var(--white, #fff);
-  border-radius: ${sliderHeight / 2}px;
+  height: var(--size-height-slider);
+  background-color: var(--color-background-slider);
+  border: var(--size-border-slider) solid var(--white, #fff);
+  border-radius: var(--size-border-radius-slider);
+
+  &.disabled {
+    --color-background-track: var(--color-background-track-disabled);
+  }
 
   & + & {
     margin-top: 43px;

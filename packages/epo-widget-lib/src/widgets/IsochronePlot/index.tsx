@@ -1,6 +1,7 @@
 import { FunctionComponent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useResizeObserver from "use-resize-observer";
+import round from "lodash/round";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 import { AxisConfig, Point, PlotPoint } from "@/types/charts";
@@ -88,7 +89,8 @@ const IsochronePlot: FunctionComponent<Props> = ({
     age: {
       min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
       max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
-      step: ageValues[1] - ageValues[0] || 0.5,
+      step: round(ageValues[1] - ageValues[0], 1) || 0.5,
+      marks: ageValues,
     },
     distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
   };
