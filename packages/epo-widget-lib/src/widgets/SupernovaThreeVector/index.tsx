@@ -121,7 +121,6 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
             ariaValuetext={({ valueNow }) =>
               t("supernova_three_vector.slider.valueLabel", { value: valueNow })
             }
-            label="distanceSlider"
             color="var(--turquoise85,#12726D)"
             minLabel={`${xMin} kpc`}
             maxLabel={`${xMax} kpc`}

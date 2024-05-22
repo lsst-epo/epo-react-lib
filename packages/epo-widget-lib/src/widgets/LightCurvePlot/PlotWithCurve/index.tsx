@@ -134,7 +134,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
               label={t("light_curve.curve.controls.gaussian_width")}
               input={(id) => (
                 <HorizontalSlider
-                  label="Gaussian Width"
                   labelledbyId={id}
                   color="var(--turquoise85, #12726D)"
                   min={defaults.gaussianMin}
@@ -154,7 +153,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
               label={t("light_curve.curve.controls.y_offset")}
               input={(id) => (
                 <HorizontalSlider
-                  label="Y Offset"
                   labelledbyId={id}
                   color="var(--turquoise85, #12726D)"
                   min={defaults.yOffsetMin}
