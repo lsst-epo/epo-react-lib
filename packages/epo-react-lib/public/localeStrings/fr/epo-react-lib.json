@@ -1,0 +1,55 @@
+{
+  "select_listbox": {
+    "placeholder": "Sélectionner"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "current-slide": "Diapositive {{current}}",
+    "showing-current-slide": "Affichage de la diapositive {{current}} sur {{length}}",
+    "showing-range": "Affichage de {{from}} à {{to}} sur {{length}}",
+    "previous_name": "Précédent ({{name}})",
+    "next_name": "Suivant ({{name}})",
+    "back_to_name": "Retour à {{name}}"
+  },
+  "form": {
+    "email": "Email",
+    "email_required": "Email (requis)",
+    "first_name": "Prénom",
+    "last_name": "Nom",
+    "topic": "Objet",
+    "inquiry": "Demande de renseignements",
+    "password": "Mot de passe",
+    "password_required": "Mot de passe (requis)",
+    "current_password": "Mot de passe actuel",
+    "new_password": "Nouveau mot de passe",
+    "confirm_password": "Confirme le nouveau mot de passe",
+    "show_password": "Montrer le mot de passe",
+    "hide_password": "Cacher le mot de passe",
+    "create_password": "Créer un mot de passe (requis)",
+    "create_password_instructions": "Les mots de passe doivent comporter au moins 8 caractères et un mélange de lettres, de chiffres et d'autres caractères.",
+    "school": "Établissement scolaire",
+    "preferred_language": "Langue préférée",
+    "email_subscription": "Inscription par email",
+    "send": "Envoyer",
+    "sending": "Envoi en cours…",
+    "submitting": "Soumission en cours...",
+    "reset": "Réinitialiser le formulaire",
+    "cancel": "Annuler",
+    "error": "Erreur:",
+    "confirm": "C'est tout bon !"
+  },
+  "share": {
+    "label_current": "Partager cette page",
+    "label_item": "Partager {{title}}",
+    "copy_url": "Copier l'URL",
+    "email": "Email",
+    "email_subject": " Hello, j'ai vu cette info sur le site de l'Observatoire Rubin: {{title}}",
+    "facebook_quote": "Hello, j'ai vu cette info sur le site de l'Observatoire Rubin: {{title}}",
+    "twitter_title": "Hello, j'ai vu cette info sur le site de l'Observatoire Rubin: {{title}}"
+  },
+  "video": {
+    "unsupported": "Votre navigateur ne prend pas en charge ce format de média."
+  }
+}

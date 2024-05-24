@@ -4,18 +4,15 @@ import {
   INITIAL_VIEWPORTS,
   MINIMAL_VIEWPORTS,
 } from "@storybook/addon-viewport";
-import i18n from "./i18next";
+import i18n, { locales, defaultLocale } from "./i18next";
 import theme from "./theme";
 
 const viewports = { ...INITIAL_VIEWPORTS, ...MINIMAL_VIEWPORTS };
 
 const preview: Preview = {
   globals: {
-    locale: "en",
-    locales: {
-      en: "English",
-      es: "Español",
-    },
+    locale: defaultLocale,
+    locales,
   },
   parameters: {
     i18n,

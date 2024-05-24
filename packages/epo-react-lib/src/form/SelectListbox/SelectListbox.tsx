@@ -3,6 +3,7 @@ import { ListboxOption } from "@/types/select-listbox";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
 import { Listbox } from "@headlessui/react";
+import { useTranslation } from "react-i18next";
 
 export type { ListboxOption };
 
@@ -48,13 +49,14 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   onChangeCallback,
   isDisabled: disabled,
   labelledById,
-  placeholder = "Select",
+  placeholder,
   isMultiselect: multiple = false,
   maxWidth = "200px",
   width,
   className,
   id,
 }) => {
+  const { t } = useTranslation();
   const getOptionFromValue = (value: string | null) =>
     options.find((o) => o.value === value);
 
@@ -78,7 +80,9 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
         {({ value }) => (
           <>
             <Styled.ButtonText>
-              {getLabel(value) || placeholder}
+              {getLabel(value) ||
+                placeholder ||
+                t("select_listbox.placeholder")}
             </Styled.ButtonText>
             <IconComposer icon="chevronThin" size={12} />
           </>

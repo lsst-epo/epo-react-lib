@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { intersection } from "@/lib/utils";
 import { FunctionComponent } from "react";
 import { VisibleColor } from "../../data";
@@ -16,6 +17,10 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
   isBandSelected,
   isCondensed,
 }) => {
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const colorsMin = isCondensed ? 350 : colors[0].range[0];
   const colorsMax = isCondensed ? 1000 : 820;
   const totalRange = colorsMax - colorsMin;
@@ -67,7 +72,7 @@ const ColorLabels: FunctionComponent<ColorLabelsProps> = ({
                 dy="1.25em"
                 textAnchor="middle"
               >
-                {name}
+                {t(`filterTool.colors.${name}`).toLocaleLowerCase(language)}
               </Styled.ColorName>
               <Styled.ColorSpectrum
                 x={textPosition}
