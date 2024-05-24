@@ -5,7 +5,13 @@ import Backend from "i18next-http-backend";
 
 const defaultNS = "epo-widget-lib";
 const ns = [defaultNS, "epo-react-lib"];
-const supportedLngs = ["en", "es"];
+export const locales = {
+  en: "English",
+  es: "Español",
+  fr: "Français",
+};
+
+export const defaultLocale = "en";
 
 i18n
   .use(initReactI18next)
@@ -13,14 +19,14 @@ i18n
   .use(LanguageDetector)
   .init({
     backend: { loadPath: "./locales/{{lng}}/{{ns}}.json" },
-    debug: true,
-    lng: "en",
-    fallbackLng: "en",
+    debug: process.env.NODE_ENV === "development",
+    lng: defaultLocale,
+    fallbackLng: defaultLocale,
     ns,
     defaultNS,
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
-    supportedLngs,
+    supportedLngs: Object.keys(locales),
   });
 
 export default i18n;

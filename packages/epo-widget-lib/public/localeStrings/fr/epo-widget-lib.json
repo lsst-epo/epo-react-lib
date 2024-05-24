@@ -1,0 +1,78 @@
+{
+  "blinker": {
+    "controls": {
+      "backward": "Revenir en arrière",
+      "forward": "Avancer",
+      "play": "Lecture",
+      "pause": "Pause"
+    }
+  },
+  "elapsed_time": {
+    "title": "Temps écoulé",
+    "step": {
+      "day_one": "Jour",
+      "day_other": "Jours",
+      "hour_one": "Heure",
+      "hour_other": "Heures",
+      "minute_one": "Minute",
+      "minute_other": "Minutes",
+      "second_one": "Seconde",
+      "second_other": "Secondes",
+      "year_one": "Année",
+      "year_other": "Années"
+    }
+  },
+  "filterTool": {
+    "title": "Outil Filtre",
+    "filter": "Filtre",
+    "whiteLight": "Lumière blanche",
+    "prism": "Prisme",
+    "selectLabel": "Sélectionner un filtre :",
+    "light_out": "Lumière éteinte",
+    "light_filtered": "Lumière filtrée",
+    "colors": {
+      "violet": "Violet",
+      "blue": "Bleu",
+      "green": "Vert",
+      "yellow": "Jaune",
+      "orange": "Orange",
+      "red": "Rouge",
+      "none": "Aucun"
+    }
+  },
+  "colorTool": {
+    "labels": {
+      "object_type": "Type d'objet:",
+      "object": "Objet:",
+      "object_selected": "Objet sélectionné :",
+      "filter": "Filtre",
+      "color": "Couleur",
+      "color_intensity": "Intensité de la couleur"
+    },
+    "actions": {
+      "select_an_object": "Sélectionner un objet",
+      "select_filter": "Sélectionner un filtre",
+      "reset": "Réinitialiser",
+      "export": "Exporter"
+    }
+  },
+  "source_selector": {
+    "messages": {
+      "success": "Tu as trouvé !",
+      "failure": "Essaye encore."
+    }
+  },
+  "camera_filter": {
+    "title": "Gamme de filtres de la caméra LSST de l'Observatoire Rubin",
+    "labels": {
+      "select": "Sélectionner l'un des filtres Rubin",
+      "option": "Filtre {{band}}",
+      "option_none": "Aucun filtre",
+      "captured_range": "Spectres électromagnetiques obtenus en appliquant le filtre {{filter}}",
+      "captured_range_no_filter": "Spectres électromagnetiques obtenus sans filtre",
+      "ultraviolet": "Ultraviolet",
+      "visible": "Lumière visible",
+      "infrared": "Infrarouge"
+    }
+  }
+}

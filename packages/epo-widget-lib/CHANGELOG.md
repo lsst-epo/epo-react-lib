@@ -76,3 +76,7 @@
 # 0.10.0
 
 - add `IsochronePlot` widget
+
+# 0.10.2
+
+- add French translations

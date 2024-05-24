@@ -178,7 +178,8 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
             fill="#ffffff"
           />
           <text
-            transform="matrix(0.9446 -0.3282 0.3282 0.9446 152.0965 417.697)"
+            transform="matrix(0.9446 -0.3282 0.3282 0.9446 370 342.5)"
+            textAnchor="end"
             fill="#ffffff"
           >
             <Trans i18nKey="filterTool.whiteLight" />

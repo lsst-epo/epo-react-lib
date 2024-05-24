@@ -94,3 +94,7 @@
 # 2.0.26
 
 - add marks to `HorizontalSlider`
+
+# 2.0.29
+
+- add French translations
