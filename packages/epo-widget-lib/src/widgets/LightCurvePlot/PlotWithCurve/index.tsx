@@ -16,9 +16,10 @@ import { PlotWithoutCurveProps } from "../PlotWithoutCurve";
 import * as Styled from "./styles";
 import Viewport from "@/charts/Viewport";
 import Controls from "@/layout/Controls";
-import AspectRatio from "@/layout/AspectRatio";
 import ControlLabel from "@/atomic/ControlLabel";
 import PathFromPoints from "@/charts/PathFromPoints";
+import { AxisConfig } from "@/types/charts";
+import { mergeWithDefaults } from "@/lib/utils";
 
 interface PlotWithLightCurveProps extends PlotWithoutCurveProps {
   gaussianWidth?: number;
@@ -35,11 +36,11 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
   yOffset = defaults.yOffset,
   alerts,
   peakMjd,
-  yMin = defaults.yMin,
-  yMax = defaults.yMax,
+  yMin,
+  yMax,
   width = defaults.width,
   height = defaults.height,
-  userMagnitude = (yMax - yMin) / 2 + yMin,
+  userMagnitude,
   onUserMagnitudeChangeCallback,
   onGaussianChangeCallback,
   onYOffsetChangeCallback,
@@ -49,12 +50,19 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const yAxis: AxisConfig = mergeWithDefaults(
+    { min: yMin, max: yMax },
+    defaults.yAxis
+  );
+
+  const defaultMagnitude = (yAxis.max - yAxis.min) / 2 + yAxis.min;
+
   const data = useAlertsAsPoints(alerts, peakMjd);
   const controlsFormId = useId();
 
   const handleReset = () => {
     onUserMagnitudeChangeCallback &&
-      onUserMagnitudeChangeCallback((yMax - yMin) / 2 + yMin);
+      onUserMagnitudeChangeCallback(defaultMagnitude);
     onYOffsetChangeCallback && onYOffsetChangeCallback(defaults.yOffset);
     onGaussianChangeCallback &&
       onGaussianChangeCallback(defaults.gaussianWidth);
@@ -66,12 +74,14 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     <Plot
       slider={
         <MagnitudeSlider
-          magnitude={userMagnitude}
+          magnitude={userMagnitude || defaultMagnitude}
           onMagnitudeChangeCallback={(v) =>
             onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
           }
           disabled={isDisplayOnly}
-          {...{ yMin, yMax, estimatedPeak }}
+          yMin={yAxis.min}
+          yMax={yAxis.max}
+          {...{ estimatedPeak }}
         />
       }
       plotChildren={({
@@ -119,14 +129,10 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     />
   );
 
-  if (isDisplayOnly) {
-    return <AspectRatio ratio="square">{Widget}</AspectRatio>;
-  }
-
   return (
     <>
       <Controls
-        className={className}
+        {...{ className, isDisplayOnly }}
         widget={Widget}
         controls={
           <>
