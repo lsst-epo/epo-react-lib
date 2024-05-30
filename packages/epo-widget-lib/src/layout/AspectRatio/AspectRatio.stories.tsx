@@ -2,26 +2,10 @@ import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import AspectRatio from ".";
 
-const options = {
-  Square: "square",
-  Landscape: "landscape",
-  Portrait: "portrait",
-  None: undefined,
-};
-
 const meta: Meta<typeof AspectRatio> = {
   argTypes: {
     ratio: {
-      control: "select",
-      options,
-    },
-    medScreenRatio: {
-      control: "select",
-      options,
-    },
-    smallScreenRatio: {
-      control: "select",
-      options,
+      control: "object",
     },
   },
   component: AspectRatio,
@@ -45,7 +29,11 @@ const Template: StoryFn<typeof AspectRatio> = (args) => {
 
 export const Primary: StoryObj<typeof AspectRatio> = Template.bind({});
 Primary.args = {
-  ratio: "landscape",
-  medScreenRatio: "square",
-  smallScreenRatio: "portrait",
+  ratio: 1,
+};
+export const MultipleOrientations: StoryObj<typeof AspectRatio> = Template.bind(
+  {}
+);
+MultipleOrientations.args = {
+  ratio: { landscape: 3 / 2, portrait: 2 / 3 },
 };

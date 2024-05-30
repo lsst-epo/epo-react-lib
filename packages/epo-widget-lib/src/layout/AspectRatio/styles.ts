@@ -1,27 +1,18 @@
 "use client";
 import styled from "styled-components";
-import { token } from "@rubin-epo/epo-react-lib/styles";
-import Loader from "@/atomic/Loader";
 
 export const AspectRatio = styled.div`
-  --aspect-ratio: var(--aspect-small-ratio, 1);
-
-  aspect-ratio: var(--aspect-ratio);
+  aspect-ratio: var(--size-aspect-ratio);
   position: relative;
-  width: calc(var(--widget-max-height, 100vh) * var(--aspect-ratio));
+  width: calc(var(--widget-max-height, 100vh) * var(--size-aspect-ratio));
   max-height: var(--widget-max-height, 100vh);
   max-width: 100%;
 
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
-    --aspect-ratio: var(--aspect-med-ratio, 1);
+  @media (orientation: landscape) {
+    --size-aspect-ratio: var(--size-aspect-ratio-landscape, 1);
   }
-  @container (min-width: ${token("BREAK_DESKTOP_SMALL")}) {
-    --aspect-ratio: var(--aspect-large-ratio, 1);
-  }
-`;
 
-export const StackedLoader = styled(Loader)`
-  position: absolute;
-  top: 0;
-  left: 0;
+  @media (orientation: portrait) {
+    --size-aspect-ratio: var(--size-aspect-ratio-portrait, 1);
+  }
 `;

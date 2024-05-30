@@ -95,7 +95,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
 
   if (isDisplayOnly) {
     return (
-      <AspectRatio ratio="square">
+      <AspectRatio ratio={1}>
         <ImageComposite
           ref={imageRef}
           isDisplayOnly
@@ -138,6 +138,7 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
 
   return (
     <Styled.WidgetLayout
+      ratio={{ landscape: 3 / 2, portrait: 9 / 16 }}
       widget={
         <ImageComposite
           ref={imageRef}

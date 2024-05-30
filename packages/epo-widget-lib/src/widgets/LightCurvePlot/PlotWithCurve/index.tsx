@@ -144,6 +144,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
     <>
       <Controls
         {...{ className, isDisplayOnly }}
+        ratio={{ landscape: 5 / 4, portrait: 4 / 7 }}
         widget={Widget}
         controls={
           <>
