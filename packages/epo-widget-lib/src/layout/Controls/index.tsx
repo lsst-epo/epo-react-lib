@@ -1,10 +1,11 @@
 import { FunctionComponent, ReactNode } from "react";
-import AspectRatio from "@/layout/AspectRatio";
+import AspectRatio, { Ratios } from "@/layout/AspectRatio";
 import * as Styled from "./styles";
 
 interface WidgetControlsProps {
   widget: ReactNode;
   controls: ReactNode;
+  ratio?: Ratios;
   controlsId?: string;
   actions?: ReactNode;
   caption?: ReactNode;
@@ -15,6 +16,7 @@ interface WidgetControlsProps {
 
 const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
   widget,
+  ratio = { landscape: 16 / 9, portrait: 9 / 16 },
   controls,
   actions,
   caption,
@@ -25,19 +27,14 @@ const WidgetControls: FunctionComponent<WidgetControlsProps> = ({
 }) => {
   if (isDisplayOnly)
     return (
-      <AspectRatio ratio="square">
+      <AspectRatio ratio={1}>
         {widget}
         {isLoading && <Styled.StackedLoader />}
       </AspectRatio>
     );
 
   return (
-    <AspectRatio
-      ratio="landscape"
-      medScreenRatio="landscape"
-      smallScreenRatio="portrait"
-      {...{ className }}
-    >
+    <AspectRatio {...{ className, ratio }}>
       <Styled.WidgetLayout>
         <Styled.InteractionRow>
           <Styled.Widget>

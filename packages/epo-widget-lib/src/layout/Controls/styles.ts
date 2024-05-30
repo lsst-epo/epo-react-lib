@@ -19,7 +19,7 @@ export const WidgetLayout = styled.div`
     --default-widget-padding: var(--PADDING_SMALL, 20px);
   }
 
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+  @media (orientation: landscape) {
     height: 100%;
     overflow-y: initial;
   }
@@ -31,7 +31,7 @@ export const InteractionRow = styled.div`
   flex-grow: 1;
   gap: var(--widget-gap);
 
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+  @media (orientation: landscape) {
     flex-direction: row-reverse;
   }
 `;
@@ -44,7 +44,7 @@ export const Widget = styled.div`
   justify-self: center;
   position: relative;
 
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+  @media (orientation: landscape) {
     max-height: unset;
     height: 100%;
   }
@@ -63,15 +63,14 @@ export const Actions = styled.div`
 `;
 
 export const PortraitCaption = styled.div`
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+  @media (orientation: landscape) {
     display: none;
   }
 `;
 
 export const LandscapeCaption = styled.div`
-  display: none;
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
-    display: block;
+  @media (orientation: portrait) {
+    display: none;
   }
 `;
 

@@ -1,20 +1,12 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
-type AspectRatio = "square" | "portrait" | "landscape";
+export type Ratios = Record<"landscape" | "portrait", number>;
 
 export interface AspectRatioProps {
-  ratio: AspectRatio;
-  medScreenRatio?: AspectRatio;
-  smallScreenRatio?: AspectRatio;
+  ratio: number | Ratios;
   className?: string;
 }
-
-const ratios: Record<AspectRatio, number> = {
-  square: 1,
-  portrait: parseFloat((9 / 16).toFixed(3)),
-  landscape: parseFloat((16 / 9).toFixed(3)),
-};
 
 /**
  * Wrapper component for widgets that can accept up to 3 target ratios for
@@ -26,19 +18,20 @@ const ratios: Record<AspectRatio, number> = {
  */
 const AspectRatio: FunctionComponent<PropsWithChildren<AspectRatioProps>> = ({
   ratio,
-  medScreenRatio = ratio,
-  smallScreenRatio = ratio,
   children,
   className,
 }) => {
-  const cssVariables = {
-    "--aspect-large-ratio": ratios[ratio],
-    "--aspect-med-ratio": ratios[medScreenRatio],
-    "--aspect-small-ratio": ratios[smallScreenRatio],
-  };
+  const portraitRatio = typeof ratio === "object" ? ratio.portrait : ratio;
+  const landscapeRatio = typeof ratio === "object" ? ratio.landscape : ratio;
 
   return (
-    <Styled.AspectRatio style={cssVariables} className={className}>
+    <Styled.AspectRatio
+      style={{
+        "--size-aspect-ratio-portrait": portraitRatio,
+        "--size-aspect-ratio-landscape": landscapeRatio,
+      }}
+      className={className}
+    >
       {children}
     </Styled.AspectRatio>
   );
