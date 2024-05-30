@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { max, min } from "d3-array";
+import { max, min, tickStep } from "d3-array";
 import BaseScatterPlot from "@/charts/ScatterPlot";
 import {
   ChartMargin,
@@ -8,10 +8,12 @@ import {
   ChartEdge,
   PlotChildRenderer,
   PlotPoint,
+  AxisConfig,
 } from "@/types/charts";
+import PlotWrapper from "@/atomic/PlotWrapper";
+import { mergeWithDefaults } from "@/lib/utils";
 import defaults from "../defaults";
 import * as Styled from "./styles";
-import PlotWrapper from "@/atomic/PlotWrapper";
 
 export interface PlotProps extends Partial<Bounds> {
   data: Array<PlotPoint>;
@@ -41,8 +43,8 @@ const Plot: FunctionComponent<PlotProps> = ({
   activeAlertId,
   xMin,
   xMax,
-  yMin = defaults.yMin,
-  yMax = defaults.yMax,
+  yMin,
+  yMax,
   width = defaults.width,
   height = defaults.height,
   name,
@@ -55,8 +57,29 @@ const Plot: FunctionComponent<PlotProps> = ({
     i18n: { language },
   } = useTranslation();
 
-  const xAxisLabel = t("light_curve.plot.x_label");
-  const yAxisLabel = t("light_curve.plot.y_label");
+  const defaultXAxis = mergeWithDefaults(
+    {
+      min: min(data, ({ x }) => x),
+      max: max(data, ({ x }) => x),
+    },
+    defaults.xAxis
+  );
+
+  const xAxis: AxisConfig = mergeWithDefaults(
+    { min: xMin, max: xMax, label: t("light_curve.plot.x_label") },
+    {
+      ...defaultXAxis,
+      label: t("isochrone_plot.plot.x_label"),
+    }
+  );
+
+  const yAxis: AxisConfig = mergeWithDefaults(
+    { min: yMin, max: yMax, label: t("light_curve.plot.y_label") },
+    {
+      ...defaults.yAxis,
+      label: t("isochrone_plot.plot.y_label"),
+    }
+  );
 
   const margins: ChartMargin = {
     top: 10,
@@ -72,16 +95,12 @@ const Plot: FunctionComponent<PlotProps> = ({
         activePointId={activeAlertId}
         title={name}
         xAxis={{
-          min: xMin || min(data, ({ x }) => x) || defaults.xMin,
-          max: xMax || max(data, ({ x }) => x) || defaults.xMax,
-          step: defaults.xStep,
-          label: xAxisLabel,
+          ...xAxis,
+          step: tickStep(xAxis.min, xAxis.max, 5),
         }}
         yAxis={{
-          min: yMin,
-          max: yMax,
-          step: yMin < yMax ? Math.abs(defaults.yStep) : defaults.yStep,
-          label: yAxisLabel,
+          ...yAxis,
+          step: yAxis.min < yAxis.max ? Math.abs(yAxis.step) : yAxis.step,
         }}
         data={{
           label: t("light_curve.plot.plot_label"),

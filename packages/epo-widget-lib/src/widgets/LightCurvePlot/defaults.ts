@@ -1,10 +1,6 @@
 const defaults = {
-  xMin: -10,
-  xMax: 50,
-  xStep: 10,
-  yStep: -0.5,
-  yMin: 20,
-  yMax: 14,
+  xAxis: { min: -10, max: 50, step: 10 },
+  yAxis: { min: 20, max: 14, step: -0.5 },
   width: 600,
   height: 600,
   gaussianMin: -4,
