@@ -80,7 +80,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
     label: t("isochrone_plot.plot.x_label"),
   });
 
-  const yAxis = mergeWithDefaults(configuredYAxis, {
+  const yAxis: AxisConfig = mergeWithDefaults(configuredYAxis, {
     ...defaults.yAxis,
     label: t("isochrone_plot.plot.y_label"),
   });

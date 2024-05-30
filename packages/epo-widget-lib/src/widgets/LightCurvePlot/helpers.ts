@@ -36,7 +36,7 @@ export const useAlertsAsPoints = (
 };
 
 export const gaussianBump = (x: number, gaussianWidth: number) => {
-  const loc = 5.0;
+  const loc = 3.0;
   const sig = 20;
   return gaussianWidth * Math.exp(-((x - loc) ** 2) / sig ** 2) + 1;
 };

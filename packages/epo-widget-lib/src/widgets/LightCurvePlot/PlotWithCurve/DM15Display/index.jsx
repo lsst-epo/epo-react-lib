@@ -2,7 +2,6 @@
 import { useTranslation } from "react-i18next";
 import Readout from "@/charts/Readout";
 import { estimateMagnitude } from "../../helpers";
-import * as Styled from "./styles";
 
 /**
  *
@@ -22,7 +21,6 @@ const DM15Display = ({ gaussianWidth, className }) => {
 
   return (
     <Readout className={className}>
-      <Styled.Line />
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <mn>&Delta;</mn>
         <msub>
