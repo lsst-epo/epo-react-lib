@@ -34,6 +34,7 @@ export interface AxisConfig {
   min: number;
   max: number;
   step: number;
+  ticks?: number;
   guidelines?: boolean;
 }
 
