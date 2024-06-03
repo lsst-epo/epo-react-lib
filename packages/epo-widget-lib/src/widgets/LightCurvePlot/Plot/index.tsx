@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { max, min, tickStep } from "d3-array";
+import { max, min } from "d3-array";
 import BaseScatterPlot from "@/charts/ScatterPlot";
 import {
   ChartMargin,
@@ -96,7 +96,7 @@ const Plot: FunctionComponent<PlotProps> = ({
         title={name}
         xAxis={{
           ...xAxis,
-          step: tickStep(xAxis.min, xAxis.max, 5),
+          ticks: 5,
         }}
         yAxis={{
           ...yAxis,
