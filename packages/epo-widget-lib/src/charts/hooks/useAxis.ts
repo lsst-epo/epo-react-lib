@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { nice, range } from "d3-array";
+import { nice, range, tickStep } from "d3-array";
 import { Domain, Scale, ScaleFactory, ScaleFunction } from "@/types/charts";
 import { getLinearScale } from "@/lib/utils";
 
@@ -7,6 +7,7 @@ interface UseAxisProps {
   min: number;
   max: number;
   step: number;
+  ticks?: number;
   scale?: Scale;
   scaleOptions?: any;
   range: Array<number>;
@@ -25,11 +26,14 @@ const scales: Record<Scale, ScaleFactory> = {
 const useAxis = ({
   min,
   max,
-  step,
+  step: configStep,
+  ticks,
   range: scaleRange,
   scale: scaleType = "linear",
   scaleOptions,
 }: UseAxisProps): Axis => {
+  const step =
+    typeof ticks !== "undefined" ? tickStep(min, max, ticks) : configStep;
   const adjustedStep = max > min ? Math.abs(step) : -Math.abs(step);
   const halfStep = adjustedStep / 2;
 
@@ -41,13 +45,13 @@ const useAxis = ({
     () => nice(min - halfStep, max + halfStep, tickCount),
     [min, max, tickCount, halfStep]
   );
-  const ticks = range(domain[0] + halfStep, domain[1], adjustedStep);
+  const tickArray = range(domain[0] + halfStep, domain[1], adjustedStep);
   const scale = useCallback(
-    scales[scaleType](domain, scaleRange, scaleOptions),
-    [domain, scaleRange, scaleType]
+    () => scales[scaleType](domain, scaleRange, scaleOptions),
+    [domain, scaleRange, scaleType, scaleOptions]
   );
 
-  return [domain, ticks, scale];
+  return [domain, tickArray, scale()];
 };
 
 export default useAxis;
