@@ -33,7 +33,7 @@ const DM15Display = ({ gaussianWidth, className }) => {
         <mn
           role="status"
           aria-live="polite"
-          aria-label={t("light_curve.deltaM15.label") || undefined}
+          aria-label={t("light_curve.deltaM15.label")}
         >
           {Number(dm15).toLocaleString(language, {
             minimumFractionDigits: 2,
