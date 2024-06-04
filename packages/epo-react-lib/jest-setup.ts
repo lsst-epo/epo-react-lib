@@ -18,6 +18,7 @@ beforeAll(() => {
 
   window.ResizeObserver = ResizeObserver;
   global.CSS = {
+    ...global.CSS,
     supports: () => false,
     escape: (k) => k,
   };
