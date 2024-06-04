@@ -56,7 +56,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
 
   return (
     <Styled.Slider
-      ariaLabel={t("light_curve.magnitude_slider.label") || undefined}
+      ariaLabel={t("light_curve.magnitude_slider.label")}
       orientation="vertical"
       value={magnitude}
       step={0.1}

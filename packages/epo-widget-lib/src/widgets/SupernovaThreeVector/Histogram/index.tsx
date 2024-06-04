@@ -80,9 +80,7 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
       xMin={xDomain[0]}
       yMin={yDomain[0]}
       {...{ width, height, className }}
-      horizontalLabel={
-        t("supernova_three_vector.histogram.x_label") || undefined
-      }
+      horizontalLabel={t("supernova_three_vector.histogram.x_label")}
       horizontalLabelId={xAxisLabelId}
     >
       <YAxis
