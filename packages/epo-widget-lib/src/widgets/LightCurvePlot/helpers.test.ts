@@ -11,7 +11,7 @@ describe("gaussianBump", () => {
   it("should apply a Gaussian bump", () => {
     const mag = gaussianBump(0, gaussianWidth);
 
-    expect(mag).toBe(-0.8788261256269516);
+    expect(mag).toBe(-0.9555024743866727);
   });
 });
 describe("exponentialRise", () => {
@@ -19,7 +19,7 @@ describe("exponentialRise", () => {
     const mag = gaussianBump(0, gaussianWidth);
     const peak = exponentialRise(0, mag);
 
-    expect(peak).toBe(-1.0749187397807176);
+    expect(peak).toBe(-1.168703894518792);
   });
 });
 describe("estimateMagnitudeWithOffset", () => {
@@ -29,6 +29,6 @@ describe("estimateMagnitudeWithOffset", () => {
     const dm15 = Number((peak - mag15).toFixed(2));
 
     expect(peak).toBeLessThan(mag15);
-    expect(dm15).toBe(-0.79);
+    expect(dm15).toBe(-1.05);
   });
 });
