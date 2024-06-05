@@ -85,3 +85,10 @@
 
 - add unit tests to `useAxis`
 - move x axis tick definition to `defaults` for `LightCurvePlot`
+  
+# 1.0.0
+
+- update i18next
+- update TypeScript
+- changes to `LightCurve` plot
+- change `SupernovaeThreeVector` labels to mega-lightyears

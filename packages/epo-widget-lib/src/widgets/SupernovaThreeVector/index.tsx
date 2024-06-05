@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { nice, max, min } from "d3-array";
 import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
@@ -23,14 +23,13 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   step = 100,
 }) => {
   const { t } = useTranslation();
+  const liveDescriptionId = useId();
   const margin: ChartMargin = {
     top: 30,
     bottom: 30,
     left: 50,
     right: 0,
   };
-
-  const liveDescriptionId = "skyMapDescription";
 
   const width = 600;
   const height = width / 1.6;
@@ -40,14 +39,13 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   const xTicks = 6;
   const yTicks = 7;
 
+  const yValues = histogramData.map(({ value }) => value);
   const yMin = 0;
-  const yMax =
-    max(histogramData, (d) => d.value) ||
-    Math.max(...histogramData.map(({ value }) => value));
-  const xMin = min(histogramData, (d) => d.bin) || 0;
-  const xMax =
-    max(histogramData, (d) => d.bin) ||
-    Math.max(...histogramData.map(({ bin }) => bin));
+  const yMax = max(yValues) || Math.max(...yValues);
+
+  const xValues = histogramData.map(({ bin }) => bin);
+  const xMin = min(xValues) || 0;
+  const xMax = max(xValues) || Math.max(...xValues);
 
   const xDomain = nice(xMin, xMax, xTicks);
   const yDomain = nice(yMin, yMax || yMin, yTicks);
@@ -122,8 +120,8 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
               t("supernova_three_vector.slider.valueLabel", { value: valueNow })
             }
             color="var(--turquoise85,#12726D)"
-            minLabel={`${xMin} kpc`}
-            maxLabel={`${xMax} kpc`}
+            minLabel={`${xMin} Mlyr`}
+            maxLabel={`${xMax} Mlyr`}
             onChangeCallback={(value) =>
               Array.isArray(value) && setActiveRange(value)
             }
