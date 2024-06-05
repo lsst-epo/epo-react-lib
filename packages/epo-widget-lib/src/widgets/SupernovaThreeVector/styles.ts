@@ -46,8 +46,7 @@ export const HistogramContainer = styled.div`
 `;
 
 export const Histogram = styled(DistanceHistogram)`
-  font-size: 0.75;
-  overflow: visible;
+  font-size: 0.75em;
 
   @container (
     min-width: ${token("BREAK_PHABLET_MIN")}

@@ -38,10 +38,12 @@ export const Filler = styled.div`
 `;
 
 export const SVG = styled.svg`
+  font-size: 1em;
   grid-area: chart;
   max-width: 100%;
   max-height: 100%;
   aspect-ratio: var(--aspect-ratio);
+  overflow: visible;
   z-index: 1;
 `;
 

@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ChartMargin,
@@ -51,7 +51,7 @@ const DistanceHistogram: FunctionComponent<DistanceHistogramProps> = ({
   const [hoveredIndex, setHoveredIndex] = useState<number>();
 
   const yRoot = yScale(yDomain[0]);
-  const xAxisLabelId = "xAxisLabel";
+  const xAxisLabelId = useId();
 
   const hasTooltip = typeof hoveredIndex === "number";
 

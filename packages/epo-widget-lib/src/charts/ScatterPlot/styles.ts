@@ -5,7 +5,6 @@ import BaseChart from "../Base";
 
 export const Chart = styled(BaseChart)`
   font-size: 1.5em;
-  overflow: visible;
 
   @container (
 min-width: ${token("BREAK_PHABLET_MIN")}
