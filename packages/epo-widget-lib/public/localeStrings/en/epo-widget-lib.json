@@ -83,19 +83,19 @@
   "supernova_three_vector": {
     "histogram": {
       "title": "Supernova Distances",
-      "x_label": "Distance [kpc]",
-      "bar_label_one": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernova",
-      "bar_label_other": "{{binMin}} to {{binMax}} kiloparsecs: {{count}} supernovae"
+      "x_label": "Distance [Mlyr]",
+      "bar_label_one": "{{binMin}} to {{binMax}} mega-lightyears: {{count}} supernova",
+      "bar_label_other": "{{binMin}} to {{binMax}} mega-lightyears: {{count}} supernovae"
     },
     "slider": {
       "label": "Select visible range",
-      "valueLabel": "{{value}} kiloparsecs"
+      "valueLabel": "{{value}} mega-lightyears"
     },
     "skymap": {
       "title": "Supernova Distribution",
       "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
-      "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} kiloparsecs.",
-      "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} kiloparsecs.",
+      "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} mega-lightyears.",
+      "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} mega-lightyears.",
       "user_supernova_count_zero": "None of your supernovae are visible.",
       "user_supernova_count_one": "{{count}} of your supernovae is visible near {{coords}}.",
       "user_supernova_count_other": "{{count}} of your supernovae are visible near {{coords}}."
