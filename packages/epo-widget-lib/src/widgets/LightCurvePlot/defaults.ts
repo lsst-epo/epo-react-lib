@@ -1,5 +1,5 @@
 const defaults = {
-  xAxis: { min: -10, max: 50, step: 10 },
+  xAxis: { min: -10, max: 50, ticks: 6 },
   yAxis: { min: 20, max: 14, step: -0.5 },
   width: 600,
   height: 600,

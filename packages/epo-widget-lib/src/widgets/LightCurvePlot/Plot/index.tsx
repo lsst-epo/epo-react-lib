@@ -96,7 +96,6 @@ const Plot: FunctionComponent<PlotProps> = ({
         title={name}
         xAxis={{
           ...xAxis,
-          ticks: 6,
         }}
         yAxis={{
           ...yAxis,
