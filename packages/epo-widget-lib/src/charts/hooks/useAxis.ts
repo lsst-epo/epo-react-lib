@@ -1,6 +1,6 @@
 import { Domain, Scale, ScaleFactory, ScaleFunction } from "@/types/charts";
 import { getLinearScale } from "@/lib/utils";
-import { nice, tickStep, ticks } from "d3-array";
+import { tickStep, ticks } from "d3-array";
 
 interface UseAxisProps {
   min: number;
@@ -38,8 +38,8 @@ const useAxis = ({
   max: stop,
   step: configStep,
   ticks: configTicks = 5,
-  range: configRange,
-  scale: configScale = "linear",
+  range,
+  scale = "linear",
   scaleOptions,
 }: UseAxisProps): Axis => {
   const ticksFromStep =
@@ -56,12 +56,13 @@ const useAxis = ({
 
   const halfStep = step / 2;
 
-  const domain = stretchDomain(nice(start, stop, tickCount), halfStep);
-  const tickArray = ticks(domain[0], domain[1], tickCount);
+  const domain = stretchDomain([start, stop], halfStep);
 
-  const scale = scales[configScale](domain, configRange, scaleOptions);
-
-  return [domain, tickArray, scale];
+  return [
+    domain,
+    ticks(start, stop, tickCount),
+    scales[scale](domain, range, scaleOptions),
+  ];
 };
 
 export default useAxis;

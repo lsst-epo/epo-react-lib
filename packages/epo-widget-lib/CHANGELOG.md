@@ -80,3 +80,8 @@
 # 0.10.2
 
 - add French translations
+
+# 0.10.4
+
+- add unit tests to `useAxis`
+- move x axis tick definition to `defaults` for `LightCurvePlot`

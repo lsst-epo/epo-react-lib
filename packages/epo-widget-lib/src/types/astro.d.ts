@@ -12,11 +12,14 @@ export interface Source {
   radius?: number | string;
 }
 
-export interface Alert {
+export interface BaseAlert {
   id: number;
   error: number;
   date: number;
   magnitude: number;
+}
+
+export interface Alert extends BaseAlert {
   image: ImageShape;
 }
 
