@@ -1,11 +1,11 @@
 import { FunctionComponent } from "react";
-import { Alert } from "@/types/astro";
+import { BaseAlert } from "@/types/astro";
 import Plot, { PlotProps } from "../Plot";
 import { useAlertsAsPoints } from "../helpers";
 import AspectRatio from "@/layout/AspectRatio";
 
 export interface PlotWithoutCurveProps extends Omit<PlotProps, "data"> {
-  alerts: Array<Alert>;
+  alerts: Array<BaseAlert>;
   peakMjd: number;
 }
 

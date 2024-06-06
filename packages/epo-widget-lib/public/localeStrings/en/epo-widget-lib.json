@@ -128,7 +128,7 @@
       "point_label_peak": "Apparent Magnitude: {{magnitude}} at peak",
       "point_label_after_one": "Apparent Magnitude: {{magnitude}} {{count}} day after peak",
       "point_label_after_other": "Apparent Magnitude: {{magnitude}} {{count}} days after peak",
-      "tooltip": "Apparent Magnitude: {{magnitude}}"
+      "tooltip": "m: {{magnitude}}"
     }
   },
   "isochrone_plot": {
