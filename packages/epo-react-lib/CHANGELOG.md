@@ -98,3 +98,7 @@
 # 2.0.29
 
 - add French translations
+
+# 2.0.30
+
+- re-organize dependencies
