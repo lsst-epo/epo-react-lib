@@ -1,18 +1,29 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
-interface GridProps extends Partial<Styled.GridProps> {
-  children: ReactNode;
+export interface GridProps {
+  columns: number;
+  tablet: number;
+  showFeature: boolean;
 }
 
-const Grid: FunctionComponent<GridProps> = ({
+const Grid: FunctionComponent<PropsWithChildren<GridProps>> = ({
   children,
   showFeature = false,
   columns = 3,
   tablet = 1,
 }) => {
   return (
-    <Styled.Grid {...{ columns, showFeature, tablet }}>{children}</Styled.Grid>
+    <Styled.Grid
+      data-show-feature={showFeature}
+      style={{
+        "--count-columns-grid": columns,
+        "--count-columns-grid-tablet": tablet,
+      }}
+      {...{ columns }}
+    >
+      {children}
+    </Styled.Grid>
   );
 };
 

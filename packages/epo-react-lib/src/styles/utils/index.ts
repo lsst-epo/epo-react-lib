@@ -36,7 +36,7 @@ export const containerRegular = () => protoContainer(tokens.CONTAINER_REGULAR);
 export const containerNarrow = () => protoContainer(tokens.CONTAINER_NARROW);
 
 export const layoutGrid = (
-  columns = 3,
+  columns: number | string = 3,
   gapDesktop = tokens.PADDING_SMALL,
   gapMobile = tokens.PADDING_SMALL,
   breakPoint = tokens.BREAK_TABLET
@@ -61,7 +61,8 @@ export const encodeColor = (string: string) => {
 };
 
 export const needsDarkColor = (hexColor: string) => {
-  const color = hexColor.charAt(0) === "#" ? hexColor.substring(1, 7) : hexColor;
+  const color =
+    hexColor.charAt(0) === "#" ? hexColor.substring(1, 7) : hexColor;
   const r = parseInt(color.substring(0, 2), 16); // hexToR
   const g = parseInt(color.substring(2, 4), 16); // hexToG
   const b = parseInt(color.substring(4, 6), 16); // hexToB
@@ -116,7 +117,7 @@ export function token(which: unknown): unknown {
   if (typeof which === "string") {
     return tokens[which as StyleToken];
   } else if (Array.isArray(which)) {
-    let obj = which.reduce(
+    const obj = which.reduce(
       (result: Record<StyleToken, string>, item: StyleToken) => {
         result[item] = tokens[item];
         return result;
