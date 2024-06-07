@@ -1,25 +1,22 @@
 import styled from "styled-components";
-import { layoutGrid } from "@/styles/utils";
-import { BREAK_PHABLET_MIN, BREAK_TABLET } from "@/styles/abstracts";
+import { layoutGrid, token } from "@/styles/utils";
 
-export interface GridProps {
-  columns: number;
-  tablet: number;
-  showFeature: boolean;
-}
+const tabletMin = token("BREAK_PHABLET_MIN");
+const tabletMax = token("BREAK_TABLET");
 
-export const Grid = styled.ul<GridProps>`
-  ${({ columns, tablet }: GridProps) => `${layoutGrid(columns)}
-    @media (min-width: ${BREAK_PHABLET_MIN}) and (max-width: ${BREAK_TABLET}) {
-      grid-template-columns: repeat(${tablet}, 1fr);
-      > * {grid-column: span 1;}
-    }    
-  `}
+export const Grid = styled.ul`
+  ${layoutGrid("var(--count-columns-grid)")}
 
-  ${({ showFeature }: GridProps) =>
-    showFeature
-      ? `    > :first-child {
+  @media screen and (min-width: ${tabletMin}) and (max-width: ${tabletMax}) {
+    grid-template-columns: repeat(var(--count-columns-grid-tablet), 1fr);
+    > * {
+      grid-column: span 1;
+    }
+  }
+
+  &[data-show-feature="true"] {
+    > :first-child {
       grid-column: 1 / -1;
-      }`
-      : ``}
+    }
+  }
 `;
