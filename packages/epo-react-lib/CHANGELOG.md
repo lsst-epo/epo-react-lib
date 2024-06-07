@@ -102,3 +102,7 @@
 # 2.0.30
 
 - re-organize dependencies
+
+# 2.0.31
+
+- fix: `Grid` component passes props to DOM
