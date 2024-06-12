@@ -6,8 +6,8 @@ import AspectRatio from "@/layout/AspectRatio";
 import Message from "./Message";
 import Loader from "@/atomic/Loader";
 import ElapsedTime from "@/atomic/ElapsedTime";
-import Blinker from "@/atomic/Blinker";
 import PointSelector from "./PointSelector";
+import * as Styled from "./styles";
 
 interface BlinkConfig {
   autoplay?: boolean;
@@ -118,7 +118,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
           {message}
         </Message>
       )}
-      <Blinker
+      <Styled.BackgroundBlinker
         images={images}
         activeIndex={activeAlertIndex}
         blinkCallback={alertChangeCallback}
@@ -134,7 +134,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
           onSelectCallback={handleClick}
           {...{ width, height, sources, selectedSource }}
         />
-      </Blinker>
+      </Styled.BackgroundBlinker>
       {!isPrepared && <Loader />}
     </AspectRatio>
   );
