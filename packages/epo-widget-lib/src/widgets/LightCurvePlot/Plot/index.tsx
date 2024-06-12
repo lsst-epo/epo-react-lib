@@ -105,14 +105,16 @@ const Plot: FunctionComponent<PlotProps> = ({
           label: t("light_curve.plot.plot_label"),
           points: data,
         }}
-        tooltip={({ y }) =>
-          t("light_curve.plot.tooltip", {
-            magnitude: y.toLocaleString(language, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            }),
-          })
-        }
+        tooltip={({ y }) => (
+          <Styled.TooltipWrapper>
+            {t("light_curve.plot.tooltip", {
+              magnitude: y.toLocaleString(language, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }),
+            })}
+          </Styled.TooltipWrapper>
+        )}
         plotChildren={({ xScale, yStart, yEnd, Data, ...props }) =>
           plotChildren
             ? plotChildren({ xScale, yStart, yEnd, Data, ...props })
