@@ -16,3 +16,7 @@ export const SliderInnerWrapper = styled.div`
   height: 100%;
   position: relative;
 `;
+
+export const TooltipWrapper = styled.span`
+  white-space: nowrap;
+`;
