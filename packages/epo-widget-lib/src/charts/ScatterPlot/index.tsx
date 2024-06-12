@@ -18,6 +18,7 @@ import useAxis from "@/charts/hooks/useAxis";
 import * as Styled from "./styles";
 import defaults from "../defaults";
 import CanvasPoints from "../canvas/Points";
+import { isSafari } from "@/lib/utils";
 
 export interface ScatterPlotProps {
   xAxis: AxisConfig;
@@ -144,7 +145,7 @@ const ScatterPlot: FunctionComponent<ScatterPlotProps> = ({
         labelledById={xAxisLabelId}
         {...{ xDomain, xScale }}
       />
-      {tooltip && (
+      {tooltip && !isSafari() && (
         <Tooltip
           x={activePoint ? xScale(activePoint.x) : undefined}
           y={activePoint ? yScale(activePoint.y) : undefined}

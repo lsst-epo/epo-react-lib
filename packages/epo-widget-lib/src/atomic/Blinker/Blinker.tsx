@@ -1,4 +1,9 @@
-import { FunctionComponent, PropsWithChildren, useState } from "react";
+import {
+  FunctionComponent,
+  PropsWithChildren,
+  ReactNode,
+  useState,
+} from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
@@ -15,6 +20,7 @@ export interface BlinkerProps {
   loadedCallback?: () => void;
   className?: string;
   showControls?: boolean;
+  extraControls?: ReactNode;
 }
 
 const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
@@ -28,6 +34,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   className,
   showControls = true,
   children,
+  extraControls,
 }) => {
   const [playing, setPlaying] = useState(autoplay);
   const [loaded, setLoaded] = useState(false);
@@ -78,19 +85,22 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
         visible={activeIndex}
         {...{ images }}
       />
+      {children}
       <Styled.ControlsContainer>
         {canBlink && showControls && (
-          <Styled.BlinkerControls
-            isDisabled={!loaded}
-            {...{
-              playing,
-              handleStartStop,
-              handleNext,
-              handlePrevious,
-            }}
-          />
+          <>
+            <Styled.BlinkerControls
+              isDisabled={!loaded}
+              {...{
+                playing,
+                handleStartStop,
+                handleNext,
+                handlePrevious,
+              }}
+            />
+            {extraControls}
+          </>
         )}
-        {children}
       </Styled.ControlsContainer>
     </Styled.BlinkerContainer>
   );
