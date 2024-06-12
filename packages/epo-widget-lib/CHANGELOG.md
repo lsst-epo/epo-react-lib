@@ -85,10 +85,13 @@
 
 - add unit tests to `useAxis`
 - move x axis tick definition to `defaults` for `LightCurvePlot`
-  
+
 # 1.0.0
 
 - update i18next
 - update TypeScript
 - changes to `LightCurve` plot
 - change `SupernovaeThreeVector` labels to mega-lightyears
+- fix: `SourceSelector` off center in Safari
+- fix: DM15 area in non-interactive widgets in `LightCurvePlot`
+- fix: `LightCurvePlot` tooltips poor display in Safari

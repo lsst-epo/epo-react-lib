@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import AspectRatio from "@/layout/AspectRatio";
 import Message from "./Message";
-import { PointSelector } from ".";
 import Loader from "@/atomic/Loader";
 import ElapsedTime from "@/atomic/ElapsedTime";
-import * as Styled from "./styles";
+import Blinker from "@/atomic/Blinker";
+import PointSelector from "./PointSelector";
 
 interface BlinkConfig {
   autoplay?: boolean;
@@ -118,23 +118,23 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
           {message}
         </Message>
       )}
-      <Styled.BackgroundBlinker
+      <Blinker
         images={images}
         activeIndex={activeAlertIndex}
         blinkCallback={alertChangeCallback}
         loadedCallback={() => setLoading(false)}
+        extraControls={
+          alerts.length > 0 &&
+          !isDisplayOnly && <ElapsedTime {...{ day, hour }} />
+        }
         {...blinkConfig}
       >
-        {alerts.length > 0 && !isDisplayOnly && (
-          <ElapsedTime {...{ day, hour }} />
-        )}
         <PointSelector
           id={svgId}
           onSelectCallback={handleClick}
           {...{ width, height, sources, selectedSource }}
         />
-      </Styled.BackgroundBlinker>
-
+      </Blinker>
       {!isPrepared && <Loader />}
     </AspectRatio>
   );

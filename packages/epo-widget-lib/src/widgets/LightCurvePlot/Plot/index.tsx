@@ -113,22 +113,11 @@ const Plot: FunctionComponent<PlotProps> = ({
             }),
           })
         }
-        plotChildren={({ xScale, yStart, yEnd, Data, ...props }) => (
-          <>
-            <rect
-              x={xScale(0)}
-              y={yEnd}
-              width={xScale(15) - xScale(0)}
-              height={yStart - yEnd}
-              stroke="var(--neutral60,##6A6E6E)"
-              strokeDasharray={6}
-              fill="var(--neutral20,#DCE0E3)"
-            />
-            {Data}
-            {plotChildren &&
-              plotChildren({ xScale, yStart, yEnd, Data, ...props })}
-          </>
-        )}
+        plotChildren={({ xScale, yStart, yEnd, Data, ...props }) =>
+          plotChildren
+            ? plotChildren({ xScale, yStart, yEnd, Data, ...props })
+            : Data
+        }
       />
       {slider && (
         <Styled.SliderOuterWrapper>
