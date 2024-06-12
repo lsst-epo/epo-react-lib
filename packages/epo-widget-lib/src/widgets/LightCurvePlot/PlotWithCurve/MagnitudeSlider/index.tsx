@@ -59,7 +59,7 @@ const MagnitudeSlider: FunctionComponent<MagnitudeSliderProps> = ({
       ariaLabel={t("light_curve.magnitude_slider.label")}
       orientation="vertical"
       value={magnitude}
-      step={0.1}
+      step={0.05}
       ariaValuetext={() =>
         t("light_curve.magnitude_slider.value", {
           ...distanceContext(estimatedPeak, magnitude, language),

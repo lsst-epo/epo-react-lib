@@ -79,8 +79,8 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
             onUserMagnitudeChangeCallback && onUserMagnitudeChangeCallback(v)
           }
           disabled={isDisplayOnly}
-          yMin={yAxis.min}
-          yMax={yAxis.max}
+          yMin={yAxis.min - yAxis.step / 2}
+          yMax={yAxis.max + yAxis.step / 2}
           {...{ estimatedPeak }}
         />
       }
@@ -93,8 +93,19 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
         xEnd,
         yStart,
         yEnd,
+        Data,
       }) => (
         <>
+          <rect
+            x={xScale(0)}
+            y={yEnd}
+            width={xScale(15) - xScale(0)}
+            height={yStart - yEnd}
+            stroke="var(--neutral60,##6A6E6E)"
+            strokeDasharray={6}
+            fill="var(--neutral20,#DCE0E3)"
+          />
+          {Data}
           <PathFromPoints
             points={range(xDomain[0], xDomain[1], 0.5).map((x) => {
               return {
