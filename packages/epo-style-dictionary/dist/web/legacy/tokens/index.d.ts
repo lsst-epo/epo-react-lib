@@ -3,15 +3,15 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 16 May 2024 22:19:26 GMT
+ * Generated on Thu, 13 Jun 2024 22:14:38 GMT
  */
 
+export const FONT_STACK_BASE : string;
 export const FONT_WEIGHT_NORMAL : string;
 export const FONT_WEIGHT_MEDIUM : string;
 export const FONT_WEIGHT_BOLD : string;
 export const FONT_SIZE_BASE_DESKTOP : string;
 export const FONT_SIZE_BASE_MOBILE : string;
-export const FONT_STACK_BASE : string;
 export const BREAK_HEADER_LAYOUT : string;
 export const BREAK_DESKTOP : string;
 export const BREAK_DESKTOP_SMALL : string;

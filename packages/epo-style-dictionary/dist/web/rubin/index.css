@@ -1,0 +1,109 @@
+/**
+ * Do not edit directly
+ * Generated on Thu, 13 Jun 2024 22:14:38 GMT
+ */
+
+:root {
+  --color-blue-13: #c7d4f4;
+  --color-blue-62: #1c81a4; /* Rubin Blue */
+  --color-green-14: #d7e6cf;
+  --color-green-54: #3cae3f; /* Rubin Green */
+  --color-neutral-10: #e3e4e8;
+  --color-neutral-12: #dce0e3; /* Rubin Light Gray */
+  --color-neutral-17: #d3d4d5;
+  --color-neutral-37: #9e9ea3;
+  --color-neutral-58: #6a6e6e; /* Rubin Gray */
+  --color-neutral-75: #404040;
+  --color-neutral-80: #313333; /* Rubin Charcoal */
+  --color-neutral-81: #2b2e34;
+  --color-neutral-87: #1f2121; /* Rubin Black */
+  --color-neutral-100: #000000;
+  --color-neutral-00: #ffffff;
+  --color-neutral-02: #fafafa;
+  --color-neutral-04: #f5f5f5; /* Rubin Pale Gray */
+  --color-neutral-08: #ebebeb;
+  --color-neutral-09: #e9e9e9;
+  --color-orange-10: #ffe7cc;
+  --color-orange-31: #fab364; /* Rubin Orange */
+  --color-orange-01: #fffdfa;
+  --color-orange-03: #fff8f0;
+  --color-orange-07: #ffedd9;
+  --color-background-primary: #ffffff;
+  --color-background-invert: #000000;
+  --color-purple-67: #583671;
+  --color-red-15: #f2c3c0;
+  --color-red-24: #ff8489;
+  --color-red-39: #ed4c4c; /* Rubin Red */
+  --color-red-47: #cf4040; /* Contrast safer version of Rubin Red */
+  --color-teal-68: #009fa1; /* Rubin Light Teal */
+  --color-teal-72: #058b8c; /* Rubin Teal */
+  --color-teal-74: #117273;
+  --color-teal-83: #0c4a47; /* Rubin Dark Teal */
+  --color-teal-09: #d9f7f6; /* Rubin Pale Teal */
+  --color-turquoise-18: #b1f2ef; /* Rubin Light Turquoise */
+  --color-turquoise-63: #00babc; /* Rubin Turquoise */
+  --color-turquoise-74: #12726d;
+  --color-turquoise-04: #edfffe;
+  --color-font-primary: #313333;
+  --color-font-invert: #ffffff;
+  --color-font-accent: #058b8c;
+  --color-yellow-30: #ffe266; /* Rubin Yellow */
+  --color-palette-primary-gray-pale: #f5f5f5;
+  --color-palette-primary-charcoal: #313333;
+  --color-palette-primary-teal: #058b8c;
+  --color-palette-primary-turquoise: #00babc;
+  --color-palette-complementary-gray-light: #dce0e3;
+  --color-palette-complementary-gray: #6a6e6e;
+  --color-palette-complementary-black: #1f2121;
+  --color-palette-complementary-teal-pale: #d9f7f6;
+  --color-palette-complementary-turquoise-light: #b1f2ef;
+  --color-palette-complementary-teal-light: #009fa1;
+  --color-palette-complementary-teal-dark: #0c4a47;
+  --color-palette-accent-orange: #fab364;
+  --color-palette-accent-blue: #1c81a4;
+  --color-palette-accent-green: #3cae3f;
+  --color-palette-accent-red: #ed4c4c;
+  --color-palette-accent-yellow: #ffe266;
+  --color-palette-accent-purple: #583671;
+  --elevation-element-loader: 45;
+  --elevation-element-dialog: 35;
+  --elevation-element-header: 25;
+  --font-stack-base: 'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui;
+  --weight-font-normal: 400;
+  --weight-font-medium: 500;
+  --weight-font-bold: 600;
+  --weight-font-black: 900;
+  --size-breakpoint-desktop: 1280px;
+  --size-breakpoint-desktop-small: 1130px;
+  --size-breakpoint-tablet-large: 850px;
+  --size-breakpoint-tablet-large-min: 851px;
+  --size-breakpoint-tablet: 768px;
+  --size-breakpoint-tablet-min: 769px;
+  --size-breakpoint-phablet: 600px;
+  --size-breakpoint-phablet-min: 601px;
+  --size-breakpoint-mobile: 446px;
+  --size-breakpoint-mobile-min: 280px; /* For extremely thin devices, or users with larger font bases */
+  --size-containers-max: 2560px;
+  --size-containers-full: 1920px;
+  --size-containers-wide: 1435px;
+  --size-containers-regular: 1160px;
+  --size-containers-narrow: 900px;
+  --size-spacing-xs: 10px;
+  --size-spacing-sm: 20px;
+  --size-spacing-md: 40px;
+  --size-spacing-lg: 100px;
+  --size-font-desktop: 22px;
+  --size-font-mobile: 16px;
+  --size-font-header-1: 1.81818rem;
+  --size-font-header-2: 1.36363rem;
+  --size-font-header-3: 1.09090rem;
+  --size-font-header-4: 0.81818rem;
+  --size-leading-base: 1.5;
+  --size-leading-header-1: 1.2;
+  --size-leading-header-2: 1.2;
+  --size-leading-header-3: 1.41667;
+  --size-leading-header-4: 1.11111;
+  --time-transition-base: 0.2s;
+  --time-transition-slow: 0.4s;
+  --time-transition-slowest: 1s;
+}

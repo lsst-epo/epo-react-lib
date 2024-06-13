@@ -1,0 +1,15 @@
+{
+  "color": {
+    "font": {
+      "primary": {
+        "value": "{color.neutral.80}"
+      },
+      "invert": {
+        "value": "{color.neutral.00}"
+      },
+      "accent": {
+        "value": "{color.teal.72}"
+      }
+    }
+  }
+}

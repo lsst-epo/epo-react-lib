@@ -3,15 +3,15 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 16 May 2024 22:19:26 GMT
+ * Generated on Thu, 13 Jun 2024 22:14:38 GMT
  */
 
+export const FONT_STACK_BASE = "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui";
 export const FONT_WEIGHT_NORMAL = "400";
 export const FONT_WEIGHT_MEDIUM = "500";
 export const FONT_WEIGHT_BOLD = "600";
 export const FONT_SIZE_BASE_DESKTOP = "22px";
 export const FONT_SIZE_BASE_MOBILE = "16px";
-export const FONT_STACK_BASE = "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui";
 export const BREAK_HEADER_LAYOUT = "1500px";
 export const BREAK_DESKTOP = "1280px";
 export const BREAK_DESKTOP_SMALL = "1130px";

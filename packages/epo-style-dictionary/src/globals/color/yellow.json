@@ -3,10 +3,7 @@
     "yellow": {
       "30": {
         "comment": "Rubin Yellow",
-        "value": "#FFE266",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#FFE266"
       }
     }
   }

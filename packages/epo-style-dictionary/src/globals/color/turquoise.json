@@ -2,30 +2,18 @@
   "color": {
     "turquoise": {
       "04": {
-        "value": "#edfffe",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#edfffe"
       },
       "18": {
         "comment": "Rubin Light Turquoise",
-        "value": "#B1F2EF",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#B1F2EF"
       },
       "63": {
         "comment": "Rubin Turquoise",
-        "value": "#00BABC",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#00BABC"
       },
       "74": {
-        "value": "#12726d",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#12726d"
       }
     }
   }

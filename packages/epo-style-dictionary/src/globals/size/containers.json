@@ -2,24 +2,19 @@
   "size": {
     "containers": {
       "max": {
-        "value": "2560{space.units.pixel}",
-        "attributes": { "category": "containers" }
+        "value": "2560{space.units.pixel}"
       },
       "full": {
-        "value": "1920{space.units.pixel}",
-        "attributes": { "category": "containers" }
+        "value": "1920{space.units.pixel}"
       },
       "wide": {
-        "value": "1435{space.units.pixel}",
-        "attributes": { "category": "containers" }
+        "value": "1435{space.units.pixel}"
       },
       "regular": {
-        "value": "1160{space.units.pixel}",
-        "attributes": { "category": "containers" }
+        "value": "1160{space.units.pixel}"
       },
       "narrow": {
-        "value": "900{space.units.pixel}",
-        "attributes": { "category": "containers" }
+        "value": "900{space.units.pixel}"
       }
     }
   }
