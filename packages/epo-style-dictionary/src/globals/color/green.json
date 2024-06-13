@@ -2,17 +2,11 @@
   "color": {
     "green": {
       "14": {
-        "value": "#D7E6CF",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#D7E6CF"
       },
       "54": {
         "comment": "Rubin Green",
-        "value": "#3CAE3F",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#3CAE3F"
       }
     }
   }

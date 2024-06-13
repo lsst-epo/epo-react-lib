@@ -1,108 +1,17 @@
 const StyleDictionary = require("style-dictionary");
+const rubinPlatform = require("./src/brand/rubin");
+const legacyPlatform = require("./src/brand/legacy");
 
-const legacyPlatforms = {
-  "legacy/colors/js": {
-    transforms: ["attribute/cti", "name/cti/camel", "size/rem", "color/hex"],
-    buildPath: "dist/web/legacy/palette/",
-
-    options: {
-      fileHeader: "LegacyTokens",
-    },
-    files: [
-      {
-        destination: "index.js",
-        format: "javascript/es6",
-        filter: {
-          attributes: {
-            category: "color",
-            legacy: true,
-          },
-        },
-      },
-      {
-        destination: "index.cjs",
-        format: "javascript/module-flat",
-        filter: {
-          attributes: {
-            category: "color",
-            legacy: true,
-          },
-        },
-      },
-      {
-        format: "typescript/es6-declarations",
-        destination: "index.d.ts",
-        filter: {
-          attributes: {
-            category: "color",
-            legacy: true,
-          },
-        },
-      },
-    ],
-  },
-  "legacy/colors/css": {
-    buildPath: "dist/web/legacy/palette/",
-    transforms: [
-      "attribute/cti",
-      "name/cti/camel",
-      "time/seconds",
-      "content/icon",
-      "size/rem",
-      "color/css",
-    ],
-    options: {
-      fileHeader: "LegacyTokens",
-    },
-    files: [
-      {
-        destination: "index.css",
-        format: "css/variables",
-        filter: {
-          attributes: {
-            category: "color",
-            legacy: true,
-          },
-        },
-      },
-    ],
-  },
-  "legacy/tokens/js": {
-    transformGroup: "tokens-js",
-    buildPath: "dist/web/legacy/tokens/",
-
-    options: {
-      fileHeader: "LegacyTokens",
-    },
-    files: [
-      {
-        destination: "index.js",
-        format: "javascript/es6",
-        filter: "legacyToken",
-      },
-      {
-        destination: "index.cjs",
-        format: "javascript/module-flat",
-        filter: "legacyToken",
-      },
-      {
-        format: "typescript/es6-declarations",
-        destination: "index.d.ts",
-        filter: "legacyToken",
-      },
-    ],
-  },
-};
 const platforms = {
-  legacy: legacyPlatforms,
-  rubin: {},
+  legacy: legacyPlatform,
+  rubin: rubinPlatform,
 };
 
 // HAVE THE STYLE DICTIONARY CONFIG DYNAMICALLY GENERATED
 function getStyleDictionaryConfig(brand) {
   return {
-    include: [],
-    source: ["src/globals/**/*.json", `src/brand/${brand}/*.json`],
+    include: ["src/globals/**/*.json"],
+    source: [`src/brand/${brand}/*.json`],
     platforms: platforms[brand],
   };
 }
@@ -133,6 +42,13 @@ StyleDictionary.registerFormat({
 //         return `token-${prop.name}`;
 //     }
 // });
+
+StyleDictionary.registerFilter({
+  name: "onlyProduction",
+  matcher: function (token) {
+    return !token.attributes.atomic;
+  },
+});
 
 StyleDictionary.registerFileHeader({
   name: "LegacyTokens",

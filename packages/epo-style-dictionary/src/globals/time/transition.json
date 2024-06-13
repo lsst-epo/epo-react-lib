@@ -1,0 +1,15 @@
+{
+  "time": {
+    "transition": {
+      "base": {
+        "value": "0.2{space.units.second}"
+      },
+      "slow": {
+        "value": "0.4{space.units.second}"
+      },
+      "slowest": {
+        "value": "1{space.units.second}"
+      }
+    }
+  }
+}
