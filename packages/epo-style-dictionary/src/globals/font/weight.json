@@ -1,0 +1,34 @@
+{
+  "weight": {
+    "font": {
+      "normal": {
+        "value": "400",
+        "attributes": {
+          "category": "weight",
+          "type": "text"
+        }
+      },
+      "medium": {
+        "value": "500",
+        "attributes": {
+          "category": "weight",
+          "type": "text"
+        }
+      },
+      "bold": {
+        "value": "600",
+        "attributes": {
+          "category": "weight",
+          "type": "text"
+        }
+      },
+      "black": {
+        "value": "900",
+        "attributes": {
+          "category": "weight",
+          "type": "text"
+        }
+      }
+    }
+  }
+}

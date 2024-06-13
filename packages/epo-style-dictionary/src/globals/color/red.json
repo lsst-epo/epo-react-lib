@@ -2,30 +2,18 @@
   "color": {
     "red": {
       "15": {
-        "value": "#f2c3c0",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#f2c3c0"
       },
       "24": {
-        "value": "#FF8489",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#FF8489"
       },
       "39": {
         "comment": "Rubin Red",
-        "value": "#ED4C4C",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#ED4C4C"
       },
       "47": {
         "comment": "Contrast safer version of Rubin Red",
-        "value": "#cf4040",
-        "attributes": {
-          "category": "color"
-        }
+        "value": "#cf4040"
       }
     }
   }

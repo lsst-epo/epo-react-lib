@@ -1,110 +1,112 @@
 {
   "color": {
-    "primary": {
-      "gray_pale": {
-        "value": "{color.neutral.04}",
-        "attributes": {
-          "category": "color"
+    "palette": {
+      "primary": {
+        "gray_pale": {
+          "value": "{color.neutral.04}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "charcoal": {
+          "value": "{color.neutral.80}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "teal": {
+          "value": "{color.teal.72}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "turquoise": {
+          "value": "{color.turquoise.63}",
+          "attributes": {
+            "category": "color"
+          }
         }
       },
-      "charcoal": {
-        "value": "{color.neutral.80}",
-        "attributes": {
-          "category": "color"
+      "complementary": {
+        "gray_light": {
+          "value": "{color.neutral.12}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "gray": {
+          "value": "{color.neutral.58}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "black": {
+          "value": "{color.neutral.87}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "teal_pale": {
+          "value": "{color.teal.09}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "turquoise_light": {
+          "value": "{color.turquoise.18}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "teal_light": {
+          "value": "{color.teal.68}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "teal_dark": {
+          "value": "{color.teal.83}",
+          "attributes": {
+            "category": "color"
+          }
         }
       },
-      "teal": {
-        "value": "{color.teal.72}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "turquoise": {
-        "value": "{color.turquoise.63}",
-        "attributes": {
-          "category": "color"
-        }
-      }
-    },
-    "complementary": {
-      "gray_light": {
-        "value": "{color.neutral.12}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "gray": {
-        "value": "{color.neutral.58}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "black": {
-        "value": "{color.neutral.87}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "teal_pale": {
-        "value": "{color.teal.09}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "turquoise_light": {
-        "value": "{color.turquoise.18}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "teal_light": {
-        "value": "{color.teal.68}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "teal_dark": {
-        "value": "{color.teal.83}",
-        "attributes": {
-          "category": "color"
-        }
-      }
-    },
-    "accent": {
-      "orange": {
-        "value": "{color.orange.31}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "blue": {
-        "value": "{color.blue.62}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "green": {
-        "value": "{color.green.54}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "red": {
-        "value": "{color.red.39}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "yellow": {
-        "value": "{color.yellow.30}",
-        "attributes": {
-          "category": "color"
-        }
-      },
-      "purple": {
-        "value": "{color.purple.37}",
-        "attributes": {
-          "category": "color"
+      "accent": {
+        "orange": {
+          "value": "{color.orange.31}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "blue": {
+          "value": "{color.blue.62}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "green": {
+          "value": "{color.green.54}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "red": {
+          "value": "{color.red.39}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "yellow": {
+          "value": "{color.yellow.30}",
+          "attributes": {
+            "category": "color"
+          }
+        },
+        "purple": {
+          "value": "{color.purple.67}",
+          "attributes": {
+            "category": "color"
+          }
         }
       }
     }

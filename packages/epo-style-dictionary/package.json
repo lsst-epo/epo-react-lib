@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-style-dictionary",
   "description": "Rubin Observatory Education & Public Outreach team style tokens.",
-  "version": "0.0.1-alpha.6",
+  "version": "0.0.1-alpha.7",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -25,6 +25,7 @@
   "supportedLocales": [],
   "scripts": {
     "build": "node ./build.js",
+    "watch": "yarn build && yarn chokidar  \"src/**/*.json\" -c \"yarn build\"",
     "test": "echo \"Unit testing is not configured for package \\\"epo-style-dictionary\\\", skipping.\""
   },
   "files": [
@@ -33,6 +34,7 @@
     "dist"
   ],
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
     "style-dictionary": "^3.9.2"
   },
   "dependencies": {}

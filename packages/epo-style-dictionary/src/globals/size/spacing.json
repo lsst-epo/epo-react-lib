@@ -1,0 +1,18 @@
+{
+  "size": {
+    "spacing": {
+      "xs": {
+        "value": "10{space.units.pixel}"
+      },
+      "sm": {
+        "value": "20{space.units.pixel}"
+      },
+      "md": {
+        "value": "40{space.units.pixel}"
+      },
+      "lg": {
+        "value": "100{space.units.pixel}"
+      }
+    }
+  }
+}

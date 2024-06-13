@@ -4,13 +4,25 @@
       "pixel": {
         "value": "px",
         "attributes": {
-          "category": "space"
+          "atomic": true
+        }
+      },
+      "rem": {
+        "value": "rem",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "em": {
+        "value": "em",
+        "attributes": {
+          "atomic": true
         }
       },
       "second": {
         "value": "s",
         "attributes": {
-          "category": "space"
+          "atomic": true
         }
       }
     }
