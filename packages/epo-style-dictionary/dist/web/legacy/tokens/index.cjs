@@ -3,16 +3,16 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 16 May 2024 22:19:26 GMT
+ * Generated on Thu, 13 Jun 2024 22:14:38 GMT
  */
 
 module.exports = {
+  "FONT_STACK_BASE": "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui",
   "FONT_WEIGHT_NORMAL": "400",
   "FONT_WEIGHT_MEDIUM": "500",
   "FONT_WEIGHT_BOLD": "600",
   "FONT_SIZE_BASE_DESKTOP": "22px",
   "FONT_SIZE_BASE_MOBILE": "16px",
-  "FONT_STACK_BASE": "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui",
   "BREAK_HEADER_LAYOUT": "1500px",
   "BREAK_DESKTOP": "1280px",
   "BREAK_DESKTOP_SMALL": "1130px",

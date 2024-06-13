@@ -1,0 +1,37 @@
+{
+  "size": {
+    "breakpoint": {
+      "desktop": {
+        "value": "1280{space.units.pixel}"
+      },
+      "desktop_small": {
+        "value": "1130{space.units.pixel}"
+      },
+      "tablet_large": {
+        "value": "850{space.units.pixel}"
+      },
+      "tablet_large_min": {
+        "value": "851{space.units.pixel}"
+      },
+      "tablet": {
+        "value": "768{space.units.pixel}"
+      },
+      "tablet_min": {
+        "value": "769{space.units.pixel}"
+      },
+      "phablet": {
+        "value": "600{space.units.pixel}"
+      },
+      "phablet_min": {
+        "value": "601{space.units.pixel}"
+      },
+      "mobile": {
+        "value": "446{space.units.pixel}"
+      },
+      "mobile_min": {
+        "comment": "For extremely thin devices, or users with larger font bases",
+        "value": "280{space.units.pixel}"
+      }
+    }
+  }
+}
