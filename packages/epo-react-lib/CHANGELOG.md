@@ -106,3 +106,7 @@
 # 2.0.31
 
 - fix: `Grid` component passes props to DOM
+
+# 2.0.32
+
+- fix: `ResponsiveImage` leaks styles to DOM
