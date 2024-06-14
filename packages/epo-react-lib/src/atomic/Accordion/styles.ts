@@ -1,4 +1,3 @@
-import { fluidScale } from "@/styles/utils";
 import styled from "styled-components";
 
 const toggleWidth = "1.333em";
@@ -9,7 +8,7 @@ export const Summary = styled.summary`
   display: flex;
   align-self: baseline;
   padding-left: ${togglePadding};
-  font-size: ${fluidScale("24px", "18px")};
+  font-size: 1.125em;
   cursor: pointer;
 
   &::-webkit-details-marker {

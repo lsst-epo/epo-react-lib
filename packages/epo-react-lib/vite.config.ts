@@ -3,6 +3,7 @@ import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import banner2 from "rollup-plugin-banner2";
+import postcss from "./postcss.config";
 
 const defaultFormat = "es";
 
@@ -81,6 +82,9 @@ export default defineConfig({
     }),
   ],
   root: "./",
+  css: {
+    postcss,
+  },
   build: {
     minify: false,
     lib: {

@@ -5,7 +5,7 @@ import Error from "@/form/Error";
 export const Label = styled.label`
   display: block;
   font-weight: var(--FormField-Label-font-weight, 600);
-  font-size: var(--FormField-Label-font-size, ${fluidScale("20px", "16px")});
+  font-size: var(--FormField-Label-font-size);
   line-height: 1.5;
 `;
 

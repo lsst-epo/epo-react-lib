@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 13 Jun 2024 22:14:38 GMT
+ * Generated on Fri, 14 Jun 2024 17:44:52 GMT
  */
 
 export const COLOR_BLUE_13 = "#c7d4f4";
@@ -72,36 +72,41 @@ export const WEIGHT_FONT_NORMAL = "400";
 export const WEIGHT_FONT_MEDIUM = "500";
 export const WEIGHT_FONT_BOLD = "600";
 export const WEIGHT_FONT_BLACK = "900";
-export const SIZE_BREAKPOINT_DESKTOP = "1280px";
-export const SIZE_BREAKPOINT_DESKTOP_SMALL = "1130px";
-export const SIZE_BREAKPOINT_TABLET_LARGE = "850px";
-export const SIZE_BREAKPOINT_TABLET_LARGE_MIN = "851px";
-export const SIZE_BREAKPOINT_TABLET = "768px";
-export const SIZE_BREAKPOINT_TABLET_MIN = "769px";
-export const SIZE_BREAKPOINT_PHABLET = "600px";
-export const SIZE_BREAKPOINT_PHABLET_MIN = "601px";
-export const SIZE_BREAKPOINT_MOBILE = "446px";
-export const SIZE_BREAKPOINT_MOBILE_MIN = "280px"; // For extremely thin devices, or users with larger font bases
-export const SIZE_CONTAINERS_MAX = "2560px";
-export const SIZE_CONTAINERS_FULL = "1920px";
-export const SIZE_CONTAINERS_WIDE = "1435px";
-export const SIZE_CONTAINERS_REGULAR = "1160px";
-export const SIZE_CONTAINERS_NARROW = "900px";
+export const SIZE_BREAKPOINT_SCREEN_DESKTOP = "1280px";
+export const SIZE_BREAKPOINT_SCREEN_DESKTOP_SMALL = "1130px";
+export const SIZE_BREAKPOINT_SCREEN_TABLET_LARGE = "850px";
+export const SIZE_BREAKPOINT_SCREEN_TABLET_LARGE_MIN = "851px";
+export const SIZE_BREAKPOINT_SCREEN_TABLET = "768px";
+export const SIZE_BREAKPOINT_SCREEN_TABLET_MIN = "769px";
+export const SIZE_BREAKPOINT_SCREEN_PHABLET = "600px";
+export const SIZE_BREAKPOINT_SCREEN_PHABLET_MIN = "601px";
+export const SIZE_BREAKPOINT_SCREEN_MOBILE = "446px";
+export const SIZE_BREAKPOINT_SCREEN_MOBILE_MIN = "280px"; // For extremely thin devices, or users with larger font bases
+export const SIZE_CONTAINER_MAX = "2560px";
+export const SIZE_CONTAINER_FULL = "1920px";
+export const SIZE_CONTAINER_WIDE = "1435px";
+export const SIZE_CONTAINER_REGULAR = "1160px";
+export const SIZE_CONTAINER_NARROW = "900px";
+export const SIZE_FLUID_FONT_MIN = 16;
+export const SIZE_FLUID_FONT_MAX = 22;
+export const SIZE_FLUID_BREAKPOINT_MIN = 280;
+export const SIZE_FLUID_BREAKPOINT_MAX = 1280;
+export const SIZE_FLUID_SCREEN = "100vw";
 export const SIZE_SPACING_XS = "10px";
 export const SIZE_SPACING_SM = "20px";
 export const SIZE_SPACING_MD = "40px";
 export const SIZE_SPACING_LG = "100px";
 export const SIZE_FONT_DESKTOP = "22px";
 export const SIZE_FONT_MOBILE = "16px";
-export const SIZE_FONT_HEADER_1 = "1.81818rem";
-export const SIZE_FONT_HEADER_2 = "1.36363rem";
-export const SIZE_FONT_HEADER_3 = "1.09090rem";
-export const SIZE_FONT_HEADER_4 = "0.81818rem";
-export const SIZE_LEADING_BASE = "1.5";
-export const SIZE_LEADING_HEADER_1 = "1.2";
-export const SIZE_LEADING_HEADER_2 = "1.2";
-export const SIZE_LEADING_HEADER_3 = "1.41667";
-export const SIZE_LEADING_HEADER_4 = "1.11111";
+export const SIZE_FONT_HEADER_1 = "1.81818em";
+export const SIZE_FONT_HEADER_2 = "1.36363em";
+export const SIZE_FONT_HEADER_3 = "1.09090em";
+export const SIZE_FONT_HEADER_4 = "0.81818em";
+export const SIZE_LEADING_BASE = 1.5;
+export const SIZE_LEADING_HEADER_1 = 1.2;
+export const SIZE_LEADING_HEADER_2 = 1.2;
+export const SIZE_LEADING_HEADER_3 = 1.41667;
+export const SIZE_LEADING_HEADER_4 = 1.11111;
 export const TIME_TRANSITION_BASE = "0.2s";
 export const TIME_TRANSITION_SLOW = "0.4s";
 export const TIME_TRANSITION_SLOWEST = "1s";

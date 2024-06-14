@@ -6,6 +6,7 @@ import {
 } from "@storybook/addon-viewport";
 import i18n, { locales, defaultLocale } from "./i18next";
 import theme from "./theme";
+import "@/styles/css/index.css";
 
 const viewports = { ...INITIAL_VIEWPORTS, ...MINIMAL_VIEWPORTS };
 
