@@ -262,66 +262,66 @@
       }
     },
     "desktop": {
-      "value": "{size.breakpoint.desktop}",
+      "value": "{size.breakpoint.screen.desktop}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "desktop_small": {
-      "value": "{size.breakpoint.desktop_small}",
+      "value": "{size.breakpoint.screen.desktop_small}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "large_tablet": {
-      "value": "{size.breakpoint.tablet_large}",
+      "value": "{size.breakpoint.screen.tablet_large}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "large_tablet_min": {
-      "value": "{size.breakpoint.tablet_large_min}",
+      "value": "{size.breakpoint.screen.tablet_large_min}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "tablet": {
-      "value": "{size.breakpoint.tablet}",
+      "value": "{size.breakpoint.screen.tablet}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "tablet_min": {
-      "value": "{size.breakpoint.tablet_min}",
+      "value": "{size.breakpoint.screen.tablet_min}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "phablet": {
-      "value": "{size.breakpoint.phablet}",
+      "value": "{size.breakpoint.screen.phablet}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "phablet_min": {
-      "value": "{size.breakpoint.phablet_min}",
+      "value": "{size.breakpoint.screen.phablet_min}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "mobile": {
-      "value": "{size.breakpoint.mobile}",
+      "value": "{size.breakpoint.screen.mobile}",
       "attributes": { "category": "breakpoints", "legacy": true }
     },
     "mobile_min": {
-      "value": "{size.breakpoint.mobile_min}",
+      "value": "{size.breakpoint.screen.mobile_min}",
       "attributes": { "category": "breakpoints", "legacy": true }
     }
   },
   "container": {
     "max": {
-      "value": "{size.containers.max}",
-      "attributes": { "category": "containers", "legacy": true }
+      "value": "{size.container.max}",
+      "attributes": { "category": "container", "legacy": true }
     },
     "full": {
-      "value": "{size.containers.full}",
-      "attributes": { "category": "containers", "legacy": true }
+      "value": "{size.container.full}",
+      "attributes": { "category": "container", "legacy": true }
     },
     "wide": {
-      "value": "{size.containers.wide}",
-      "attributes": { "category": "containers", "legacy": true }
+      "value": "{size.container.wide}",
+      "attributes": { "category": "container", "legacy": true }
     },
     "regular": {
-      "value": "{size.containers.regular}",
-      "attributes": { "category": "containers", "legacy": true }
+      "value": "{size.container.regular}",
+      "attributes": { "category": "container", "legacy": true }
     },
     "narrow": {
-      "value": "{size.containers.narrow}",
-      "attributes": { "category": "containers", "legacy": true }
+      "value": "{size.container.narrow}",
+      "attributes": { "category": "container", "legacy": true }
     }
   },
   "font": {

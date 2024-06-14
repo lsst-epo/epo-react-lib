@@ -1,6 +1,6 @@
 {
   "size": {
-    "containers": {
+    "container": {
       "max": {
         "value": "2560{space.units.pixel}"
       },

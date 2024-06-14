@@ -119,3 +119,4 @@
   - feat: add support for `sizes`
   - feat: add `priority` flag for LCP images
   - deprecation: mark `url2x url3x` setup as deprecated, to be dropped in future versions
+- feat: add base CSS package `@rubin-epo/epo-react-lib/styles.css`

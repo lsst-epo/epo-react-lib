@@ -1,0 +1,15 @@
+{
+  "size": {
+    "fluid": {
+      "font": {
+        "min": { "value": 16 },
+        "max": { "value": 22 }
+      },
+      "breakpoint": {
+        "min": { "value": "{size.breakpoint.mobile_min}" },
+        "max": { "value": "{size.breakpoint.desktop}" }
+      },
+      "screen": { "value": "100vw" }
+    }
+  }
+}
