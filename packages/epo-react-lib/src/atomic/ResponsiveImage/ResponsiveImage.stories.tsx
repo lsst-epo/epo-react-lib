@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { className } from "@/storybook/utilities/argTypes";
 
 import ResponsiveImage from ".";
 
-const meta: ComponentMeta<typeof ResponsiveImage> = {
+const meta: Meta<typeof ResponsiveImage> = {
   component: ResponsiveImage,
   argTypes: {
     image: {
@@ -21,7 +21,7 @@ const meta: ComponentMeta<typeof ResponsiveImage> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ResponsiveImage> = {
+export const Primary: StoryObj<typeof ResponsiveImage> = {
   args: {
     image: {
       altText: "A placeholder image",

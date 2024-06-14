@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Image, { ImageProps } from "../Image";
+import { ImageProps } from "../Image";
 import * as Styled from "./styles";
 
 interface ResponsiveImageProps extends ImageProps {
@@ -13,14 +13,14 @@ const ResponsiveImage: FunctionComponent<ResponsiveImageProps> = ({
   title,
   ...props
 }) => {
-  const aspectRatio = ratio.split(":").map(Number);
+  const aspectRatio = ratio.includes(":") ? ratio.replace(":", "/") : ratio;
 
   return (
     <Styled.ResponsiveImageContainer
-      $aspectRatio={aspectRatio}
+      style={{ "--aspect-ratio": aspectRatio }}
       className={className}
     >
-      <Image image={image} title={title} {...props} />
+      <Styled.Image image={image} title={title} {...props} />
     </Styled.ResponsiveImageContainer>
   );
 };
