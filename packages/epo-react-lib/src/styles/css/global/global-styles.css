@@ -1,0 +1,66 @@
+:root {
+  --fluid-bp: calc(
+    (var(--size-fluid-screen) - var(--size-fluid-breakpoint-min) / 16 * 1rem) /
+      (var(--size-fluid-breakpoint-max) - var(--size-fluid-breakpoint-min))
+  );
+}
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --size-fluid-screen: calc(var(--size-fluid-breakpoint-max) * 1px);
+  }
+}
+
+body {
+  color: var(--color-neutral-80);
+  font-size: calc(
+    ((var(--size-fluid-font-min) / 16) * 1rem) +
+      (var(--size-fluid-font-max) - var(--size-fluid-font-min)) *
+      var(--fluid-bp)
+  );
+  font-family: var(--font-stack-base);
+  line-height: var(--size-leading-base);
+}
+
+svg {
+  fill: currentColor;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--weight-font-black);
+}
+h1 {
+  font-size: var(--size-font-header-1);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 3.6em;
+  margin-block-end: 0;
+}
+h2 {
+  font-size: var(--size-font-header-2);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 1.33333em;
+  margin-block-end: 0.66667em;
+}
+h3 {
+  font-size: var(--size-font-header-3);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 1.33333em;
+  margin-block-end: 0.66667em;
+}
+h4 {
+  font-size: var(--size-font-header-4);
+  line-height: var(--size-leading-header-1);
+  margin-block: 0.83333em;
+}
+p,
+ul,
+ol {
+  margin-block: 0.45454em;
+}
+ul,
+ol {
+  padding-inline-start: 1.5em;
+}

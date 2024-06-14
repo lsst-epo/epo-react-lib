@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 13 Jun 2024 22:14:38 GMT
+ * Generated on Fri, 14 Jun 2024 17:44:52 GMT
  */
 
 :root {
@@ -73,31 +73,36 @@
   --weight-font-medium: 500;
   --weight-font-bold: 600;
   --weight-font-black: 900;
-  --size-breakpoint-desktop: 1280px;
-  --size-breakpoint-desktop-small: 1130px;
-  --size-breakpoint-tablet-large: 850px;
-  --size-breakpoint-tablet-large-min: 851px;
-  --size-breakpoint-tablet: 768px;
-  --size-breakpoint-tablet-min: 769px;
-  --size-breakpoint-phablet: 600px;
-  --size-breakpoint-phablet-min: 601px;
-  --size-breakpoint-mobile: 446px;
-  --size-breakpoint-mobile-min: 280px; /* For extremely thin devices, or users with larger font bases */
-  --size-containers-max: 2560px;
-  --size-containers-full: 1920px;
-  --size-containers-wide: 1435px;
-  --size-containers-regular: 1160px;
-  --size-containers-narrow: 900px;
+  --size-breakpoint-screen-desktop: 1280px;
+  --size-breakpoint-screen-desktop-small: 1130px;
+  --size-breakpoint-screen-tablet-large: 850px;
+  --size-breakpoint-screen-tablet-large-min: 851px;
+  --size-breakpoint-screen-tablet: 768px;
+  --size-breakpoint-screen-tablet-min: 769px;
+  --size-breakpoint-screen-phablet: 600px;
+  --size-breakpoint-screen-phablet-min: 601px;
+  --size-breakpoint-screen-mobile: 446px;
+  --size-breakpoint-screen-mobile-min: 280px; /* For extremely thin devices, or users with larger font bases */
+  --size-container-max: 2560px;
+  --size-container-full: 1920px;
+  --size-container-wide: 1435px;
+  --size-container-regular: 1160px;
+  --size-container-narrow: 900px;
+  --size-fluid-font-min: 16;
+  --size-fluid-font-max: 22;
+  --size-fluid-breakpoint-min: 280;
+  --size-fluid-breakpoint-max: 1280;
+  --size-fluid-screen: 100vw;
   --size-spacing-xs: 10px;
   --size-spacing-sm: 20px;
   --size-spacing-md: 40px;
   --size-spacing-lg: 100px;
   --size-font-desktop: 22px;
   --size-font-mobile: 16px;
-  --size-font-header-1: 1.81818rem;
-  --size-font-header-2: 1.36363rem;
-  --size-font-header-3: 1.09090rem;
-  --size-font-header-4: 0.81818rem;
+  --size-font-header-1: 1.81818em;
+  --size-font-header-2: 1.36363em;
+  --size-font-header-3: 1.09090em;
+  --size-font-header-4: 0.81818em;
   --size-leading-base: 1.5;
   --size-leading-header-1: 1.2;
   --size-leading-header-2: 1.2;

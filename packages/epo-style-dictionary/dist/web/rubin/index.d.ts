@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 13 Jun 2024 22:14:38 GMT
+ * Generated on Fri, 14 Jun 2024 17:44:52 GMT
  */
 
 export const COLOR_BLUE_13 : string;
@@ -89,22 +89,27 @@ export const WEIGHT_FONT_NORMAL : string;
 export const WEIGHT_FONT_MEDIUM : string;
 export const WEIGHT_FONT_BOLD : string;
 export const WEIGHT_FONT_BLACK : string;
-export const SIZE_BREAKPOINT_DESKTOP : string;
-export const SIZE_BREAKPOINT_DESKTOP_SMALL : string;
-export const SIZE_BREAKPOINT_TABLET_LARGE : string;
-export const SIZE_BREAKPOINT_TABLET_LARGE_MIN : string;
-export const SIZE_BREAKPOINT_TABLET : string;
-export const SIZE_BREAKPOINT_TABLET_MIN : string;
-export const SIZE_BREAKPOINT_PHABLET : string;
-export const SIZE_BREAKPOINT_PHABLET_MIN : string;
-export const SIZE_BREAKPOINT_MOBILE : string;
+export const SIZE_BREAKPOINT_SCREEN_DESKTOP : string;
+export const SIZE_BREAKPOINT_SCREEN_DESKTOP_SMALL : string;
+export const SIZE_BREAKPOINT_SCREEN_TABLET_LARGE : string;
+export const SIZE_BREAKPOINT_SCREEN_TABLET_LARGE_MIN : string;
+export const SIZE_BREAKPOINT_SCREEN_TABLET : string;
+export const SIZE_BREAKPOINT_SCREEN_TABLET_MIN : string;
+export const SIZE_BREAKPOINT_SCREEN_PHABLET : string;
+export const SIZE_BREAKPOINT_SCREEN_PHABLET_MIN : string;
+export const SIZE_BREAKPOINT_SCREEN_MOBILE : string;
 /** For extremely thin devices, or users with larger font bases */
-export const SIZE_BREAKPOINT_MOBILE_MIN : string;
-export const SIZE_CONTAINERS_MAX : string;
-export const SIZE_CONTAINERS_FULL : string;
-export const SIZE_CONTAINERS_WIDE : string;
-export const SIZE_CONTAINERS_REGULAR : string;
-export const SIZE_CONTAINERS_NARROW : string;
+export const SIZE_BREAKPOINT_SCREEN_MOBILE_MIN : string;
+export const SIZE_CONTAINER_MAX : string;
+export const SIZE_CONTAINER_FULL : string;
+export const SIZE_CONTAINER_WIDE : string;
+export const SIZE_CONTAINER_REGULAR : string;
+export const SIZE_CONTAINER_NARROW : string;
+export const SIZE_FLUID_FONT_MIN : number;
+export const SIZE_FLUID_FONT_MAX : number;
+export const SIZE_FLUID_BREAKPOINT_MIN : number;
+export const SIZE_FLUID_BREAKPOINT_MAX : number;
+export const SIZE_FLUID_SCREEN : string;
 export const SIZE_SPACING_XS : string;
 export const SIZE_SPACING_SM : string;
 export const SIZE_SPACING_MD : string;
@@ -115,11 +120,11 @@ export const SIZE_FONT_HEADER_1 : string;
 export const SIZE_FONT_HEADER_2 : string;
 export const SIZE_FONT_HEADER_3 : string;
 export const SIZE_FONT_HEADER_4 : string;
-export const SIZE_LEADING_BASE : string;
-export const SIZE_LEADING_HEADER_1 : string;
-export const SIZE_LEADING_HEADER_2 : string;
-export const SIZE_LEADING_HEADER_3 : string;
-export const SIZE_LEADING_HEADER_4 : string;
+export const SIZE_LEADING_BASE : number;
+export const SIZE_LEADING_HEADER_1 : number;
+export const SIZE_LEADING_HEADER_2 : number;
+export const SIZE_LEADING_HEADER_3 : number;
+export const SIZE_LEADING_HEADER_4 : number;
 export const TIME_TRANSITION_BASE : string;
 export const TIME_TRANSITION_SLOW : string;
 export const TIME_TRANSITION_SLOWEST : string;

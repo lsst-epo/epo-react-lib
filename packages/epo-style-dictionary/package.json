@@ -1,7 +1,7 @@
 {
   "name": "@rubin-epo/epo-style-dictionary",
   "description": "Rubin Observatory Education & Public Outreach team style tokens.",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
@@ -16,10 +16,30 @@
       "require": "./dist/web/legacy/palette/index.cjs",
       "types": "./dist/web/legacy/palette/index.d.ts"
     },
+    "./legacy/palette.css": {
+      "import": "./dist/web/legacy/palette/index.css",
+      "require": "./dist/web/legacy/palette/index.css",
+      "types": "./dist/web/legacy/palette/index.css"
+    },
     "./legacy/tokens": {
       "import": "./dist/web/legacy/tokens/index.js",
       "require": "./dist/web/legacy/tokens/index.cjs",
       "types": "./dist/web/legacy/tokens/index.d.ts"
+    },
+    "./legacy/tokens.css": {
+      "import": "./dist/web/legacy/tokens/index.css",
+      "require": "./dist/web/legacy/tokens/index.css",
+      "types": "./dist/web/legacy/tokens/index.css"
+    },
+    "./rubin/tokens.css": {
+      "import": "./dist/web/rubin/index.css",
+      "require": "./dist/web/rubin/index.css",
+      "types": "./dist/web/rubin/index.css"
+    },
+    "./rubin": {
+      "import": "./dist/web/rubin/index.js",
+      "require": "./dist/web/rubin/index.cjs",
+      "types": "./dist/web/rubin/index.d.ts"
     }
   },
   "supportedLocales": [],
