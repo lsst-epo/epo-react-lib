@@ -1,10 +1,9 @@
 import { mergeConfig } from "vite";
 import { resolve, dirname, join } from "path";
 import { StorybookConfig } from "@storybook/react-vite";
-import react from "@vitejs/plugin-react";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
@@ -24,6 +23,10 @@ const config: StorybookConfig = {
     storyStoreV7: true,
   },
   staticDirs: [
+    {
+      from: "../public/fonts",
+      to: "/fonts",
+    },
     {
       from: "../public/localeStrings",
       to: "/locales",

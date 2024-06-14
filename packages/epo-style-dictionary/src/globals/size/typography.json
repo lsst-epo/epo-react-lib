@@ -2,42 +2,42 @@
   "size": {
     "font": {
       "desktop": {
-        "value": "22{space.units.pixel}"
+        "value": "{size.fluid.font.max}{space.units.pixel}"
       },
       "mobile": {
-        "value": "16{space.units.pixel}"
+        "value": "{size.fluid.font.min}{space.units.pixel}"
       },
       "header": {
         "1": {
-          "value": "1.81818{space.units.rem}"
+          "value": "1.81818{space.units.em}"
         },
         "2": {
-          "value": "1.36363{space.units.rem}"
+          "value": "1.36363{space.units.em}"
         },
         "3": {
-          "value": "1.09090{space.units.rem}"
+          "value": "1.09090{space.units.em}"
         },
         "4": {
-          "value": "0.81818{space.units.rem}"
+          "value": "0.81818{space.units.em}"
         }
       }
     },
     "leading": {
       "base": {
-        "value": "1.5"
+        "value": 1.5
       },
       "header": {
         "1": {
-          "value": "1.2"
+          "value": 1.2
         },
         "2": {
-          "value": "1.2"
+          "value": 1.2
         },
         "3": {
-          "value": "1.41667"
+          "value": 1.41667
         },
         "4": {
-          "value": "1.11111"
+          "value": 1.11111
         }
       }
     }

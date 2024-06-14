@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { aButton } from "@/styles/mixins/appearance";
-import { fluidScale } from "@/styles/utils";
 
 export const MenuItemWrapper = styled.div`
   display: flex;
@@ -18,7 +17,7 @@ export const MenuItem = styled.button`
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: ${fluidScale("20px", "16px")};
+  font-size: 1em;
   border: none;
   stroke-width: 0.25px;
   width: 100%;

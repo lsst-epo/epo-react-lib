@@ -67,6 +67,20 @@ const legacyPlatform = {
       },
     ],
   },
+  "legacy/tokens/css": {
+    buildPath: `${path}/tokens/`,
+    transformGroup: "tokens-js",
+    options: {
+      fileHeader: "LegacyTokens",
+    },
+    files: [
+      {
+        destination: "index.css",
+        format: "css/variables",
+        filter: "legacyToken",
+      },
+    ],
+  },
   "legacy/tokens/js": {
     transformGroup: "tokens-js",
     buildPath: `${path}/tokens/`,
