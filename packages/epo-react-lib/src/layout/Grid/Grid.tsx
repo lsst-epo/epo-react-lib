@@ -20,7 +20,6 @@ const Grid: FunctionComponent<PropsWithChildren<GridProps>> = ({
         "--count-columns-grid": columns,
         "--count-columns-grid-tablet": tablet,
       }}
-      {...{ columns }}
     >
       {children}
     </Styled.Grid>
