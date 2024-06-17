@@ -2,6 +2,9 @@ import styled from "styled-components";
 import AspectRatio from "@/layout/AspectRatio";
 
 export const Wrapper = styled(AspectRatio)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--black, #000);
 `;
 

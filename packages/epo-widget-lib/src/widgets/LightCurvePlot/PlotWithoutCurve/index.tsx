@@ -17,7 +17,7 @@ const PlotWithoutCurve: FunctionComponent<PlotWithoutCurveProps> = ({
   const data = useAlertsAsPoints(alerts, peakMjd);
 
   return (
-    <AspectRatio ratio="square">
+    <AspectRatio ratio={1}>
       <Plot
         {...{
           ...props,

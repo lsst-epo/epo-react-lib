@@ -82,7 +82,7 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   }, 0);
 
   return (
-    <Styled.ThreeVectorContainer ratio={{ landscape: 3 / 2, portrait: 2 / 3 }}>
+    <Styled.ThreeVectorContainer ratio={{ landscape: 3 / 2, portrait: 9 / 16 }}>
       <Styled.ThreeVectorLayout>
         <Styled.HistogramContainer>
           <Styled.ChartTitle>

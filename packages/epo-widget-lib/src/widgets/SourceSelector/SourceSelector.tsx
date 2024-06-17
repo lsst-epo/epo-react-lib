@@ -108,7 +108,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     : alerts.map(({ image }) => image);
 
   return (
-    <AspectRatio ratio="square" {...{ className }}>
+    <AspectRatio ratio={1} {...{ className }}>
       {!isDisplayOnly && (
         <Message
           onMessageChangeCallback={handleMessageChange}

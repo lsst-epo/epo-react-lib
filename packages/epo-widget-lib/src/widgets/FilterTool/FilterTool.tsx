@@ -100,7 +100,7 @@ const FilterTool: FunctionComponent<FilterToolProps> = ({
   const isNoneSelected = selectedColor === "none";
 
   return (
-    <Styled.Wrapper ratio="landscape">
+    <Styled.Wrapper ratio={3 / 2}>
       <Styled.PrismSVG
         version="1.1"
         viewBox="0 0 1551.6 736.7"
