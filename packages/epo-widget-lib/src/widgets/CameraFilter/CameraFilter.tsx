@@ -39,7 +39,7 @@ const CameraFilter: FunctionComponent = () => {
   const activeFilter = filters.find(({ band }) => band === activeFilterBand);
 
   return (
-    <Styled.FilterWrapper ratio="landscape" smallScreenRatio="square">
+    <Styled.FilterWrapper ratio={5 / 4}>
       <Styled.FilterContainer ref={ref}>
         <Styled.FilterTitle>{t("camera_filter.title")}</Styled.FilterTitle>
         {isCondensed && (

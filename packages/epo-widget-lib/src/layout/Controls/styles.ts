@@ -11,9 +11,8 @@ export const WidgetLayout = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 100%;
+  height: 100%;
   gap: var(--widget-gap);
-  overflow-y: auto;
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     --default-widget-padding: var(--PADDING_SMALL, 20px);
@@ -28,8 +27,9 @@ export const WidgetLayout = styled.div`
 export const InteractionRow = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex: 1 1;
   gap: var(--widget-gap);
+  min-height: 0;
 
   @media (orientation: landscape) {
     flex-direction: row-reverse;
@@ -38,7 +38,7 @@ export const InteractionRow = styled.div`
 
 export const Widget = styled.div`
   aspect-ratio: 1;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   max-height: 100%;
   max-width: 100%;
   justify-self: center;
@@ -55,6 +55,9 @@ export const Controls = styled.form`
   flex-direction: column;
   gap: var(--widget-gap);
   flex: 0 1 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-inline: 2px;
 `;
 
 export const Actions = styled.div`

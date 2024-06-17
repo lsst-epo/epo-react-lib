@@ -206,6 +206,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
 
   return (
     <WidgetControls
+      ratio={{ portrait: 2 / 3, landscape: 3 / 2 }}
       widget={Widget}
       controls={
         <Controls
