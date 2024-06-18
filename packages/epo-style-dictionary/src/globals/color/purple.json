@@ -1,8 +1,29 @@
 {
   "color": {
     "purple": {
+      "28": {
+        "value": "#cd84ec",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "41": {
+        "value": "#a260cd",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "65": {
+        "value": "#652291",
+        "attributes": {
+          "atomic": true
+        }
+      },
       "67": {
-        "value": "#583671"
+        "value": "#583671",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }

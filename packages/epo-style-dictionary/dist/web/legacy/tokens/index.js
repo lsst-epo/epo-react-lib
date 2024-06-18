@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Fri, 14 Jun 2024 17:44:52 GMT
+ * Generated on Tue, 18 Jun 2024 21:03:20 GMT
  */
 
 export const FONT_STACK_BASE = "'Source Sans Pro', 'Helvetica Neue', Helvetica, 'Arial Black', Arial, sans-serif, system-ui";
