@@ -1,9 +1,29 @@
 {
   "color": {
     "yellow": {
+      "18": {
+        "value": "#fff3a1",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "26": {
+        "value": "#ffdb78",
+        "attributes": {
+          "atomic": true
+        }
+      },
       "30": {
-        "comment": "Rubin Yellow",
-        "value": "#FFE266"
+        "value": "#FFE266",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "45": {
+        "value": "#ffb71b",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }

@@ -2,11 +2,34 @@
   "color": {
     "blue": {
       "13": {
-        "value": "#C7D4F4"
+        "value": "#C7D4F4",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "58": {
+        "value": "#0099d5",
+        "attributes": {
+          "atomic": true
+        }
       },
       "62": {
-        "comment": "Rubin Blue",
-        "value": "#1C81A4"
+        "value": "#1C81A4",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "67": {
+        "value": "#006da8",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "74": {
+        "value": "#005684",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }

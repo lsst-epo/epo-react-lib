@@ -2,20 +2,46 @@
   "color": {
     "orange": {
       "01": {
-        "value": "#FFFDFA"
+        "value": "#FFFDFA",
+        "attributes": {
+          "atomic": true
+        }
       },
       "03": {
-        "value": "#FFF8F0"
+        "value": "#FFF8F0",
+        "attributes": {
+          "atomic": true
+        }
       },
       "07": {
-        "value": "#ffedd9"
+        "value": "#ffedd9",
+        "attributes": {
+          "atomic": true
+        }
       },
       "10": {
-        "value": "#ffe7cc"
+        "value": "#ffe7cc",
+        "attributes": {
+          "atomic": true
+        }
       },
       "31": {
-        "comment": "Rubin Orange",
-        "value": "#FAB364"
+        "value": "#FAB364",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "39": {
+        "value": "#ffc036",
+        "attributes": {
+          "atomic": true
+        }
+      },
+      "46": {
+        "value": "#e08d35",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }

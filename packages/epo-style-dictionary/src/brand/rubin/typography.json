@@ -2,13 +2,13 @@
   "color": {
     "font": {
       "primary": {
-        "value": "{color.neutral.80}"
+        "value": "{color.rubin.gray.300}"
       },
       "invert": {
         "value": "{color.neutral.00}"
       },
       "accent": {
-        "value": "{color.teal.72}"
+        "value": "{color.rubin.teal.400}"
       }
     }
   }
