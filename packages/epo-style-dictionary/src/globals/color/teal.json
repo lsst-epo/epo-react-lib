@@ -2,23 +2,34 @@
   "color": {
     "teal": {
       "09": {
-        "comment": "Rubin Pale Teal",
-        "value": "#D9F7F6"
+        "value": "#D9F7F6",
+        "attributes": {
+          "atomic": true
+        }
       },
       "68": {
-        "comment": "Rubin Light Teal",
-        "value": "#009FA1"
+        "value": "#009FA1",
+        "attributes": {
+          "atomic": true
+        }
       },
       "72": {
-        "comment": "Rubin Teal",
-        "value": "#058B8C"
+        "value": "#058B8C",
+        "attributes": {
+          "atomic": true
+        }
       },
       "74": {
-        "value": "#117273"
+        "value": "#117273",
+        "attributes": {
+          "atomic": true
+        }
       },
       "83": {
-        "comment": "Rubin Dark Teal",
-        "value": "#0c4a47"
+        "value": "#0c4a47",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }

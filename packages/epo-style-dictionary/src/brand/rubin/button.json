@@ -1,0 +1,116 @@
+{
+  "color": {
+    "background": {
+      "button": {
+        "primary": {
+          "default": {
+            "value": "{color.rubin.teal.400}"
+          },
+          "hover": {
+            "value": "{color.rubin.teal.400}"
+          },
+          "inactive": { "value": "#707070" }
+        },
+        "secondary": {
+          "default": {
+            "value": "{color.rubin.red.300}"
+          },
+          "hover": {
+            "value": "#AD3636"
+          },
+          "inactive": { "value": "#707070" }
+        },
+        "tertiary": {
+          "default": {
+            "value": "transparent"
+          },
+          "hover": {
+            "value": "transparent"
+          },
+          "inactive": {
+            "value": "transparent"
+          }
+        },
+        "educator": {
+          "default": {
+            "value": "{color.rubin.orange.200}"
+          },
+          "hover": {
+            "value": "#FF8800"
+          },
+          "inactive": {
+            "value": "#707070"
+          }
+        },
+        "callout": {
+          "default": {
+            "value": "{color.rubin.purple.300}"
+          },
+          "hover": {
+            "value": "{color.rubin.purple.300}"
+          },
+          "inactive": {
+            "value": "#707070"
+          }
+        },
+        "link": {
+          "default": {
+            "value": "transparent"
+          },
+          "hover": {
+            "value": "transparent"
+          },
+          "inactive": {
+            "value": "transparent"
+          }
+        }
+      }
+    },
+    "border": {
+      "button": {
+        "primary": {
+          "value": "transparent"
+        },
+        "secondary": {
+          "value": "transparent"
+        },
+        "tertiary": { "value": "{color.neutral.100}" },
+        "educator": {
+          "value": "transparent"
+        },
+        "callout": {
+          "value": "transparent"
+        },
+        "link": { "value": "transparent" }
+      }
+    },
+    "outline": {
+      "button": {
+        "primary": {
+          "value": "{color.neutral.00}"
+        },
+        "secondary": {
+          "value": "{color.neutral.00}"
+        },
+        "tertiary": { "value": "{color.neutral.100}" },
+        "educator": {
+          "value": "{color.neutral.00}"
+        },
+        "callout": {
+          "value": "{color.neutral.00}"
+        },
+        "link": { "value": "transparent" }
+      }
+    },
+    "text": {
+      "button": {
+        "primary": { "value": "{color.font.invert}" },
+        "secondary": { "value": "{color.font.invert}" },
+        "tertiary": { "value": "{color.neutral.100}" },
+        "educator": { "value": "{color.neutral.100}" },
+        "callout": { "value": "{color.font.invert}" },
+        "link": { "value": "{color.font.accent}" }
+      }
+    }
+  }
+}
