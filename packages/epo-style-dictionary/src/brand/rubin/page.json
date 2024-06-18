@@ -1,0 +1,14 @@
+{
+  "color": {
+    "background": {
+      "page": {
+        "primary": {
+          "value": "{color.neutral.00}"
+        },
+        "invert": {
+          "value": "{color.neutral.100}"
+        }
+      }
+    }
+  }
+}
