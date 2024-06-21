@@ -1,31 +1,32 @@
 import { create } from "@storybook/theming/create";
+import * as tokens from "@rubin-epo/epo-style-dictionary/rubin";
 
 export default create({
   base: "light",
 
-  appBg: "#ffffff",
+  appBg: tokens.COLOR_BACKGROUND_PAGE_PRIMARY,
   appBorderColor: "#d3d4d5",
   appBorderRadius: 5,
 
-  barTextColor: "#1F2121",
-  barBg: "#ffffff",
+  barTextColor: tokens.COLOR_FONT_PRIMARY,
+  barBg: tokens.COLOR_BACKGROUND_PAGE_PRIMARY,
 
   booleanBg: "#dce0e3",
 
-  buttonBg: "#fff",
-  buttonBorder: "#000",
+  buttonBg: tokens.COLOR_BACKGROUND_BUTTON_TERTIARY_DEFAULT,
+  buttonBorder: tokens.COLOR_BORDER_BUTTON_TERTIARY,
 
-  colorPrimary: "#00BABC",
-  colorSecondary: "#12726D",
+  colorPrimary: tokens.COLOR_RUBIN_TEAL_400,
+  colorSecondary: tokens.COLOR_FONT_ACCENT,
 
-  fontBase: '"Source Sans Pro", system-ui',
+  fontBase: tokens.FONT_STACK_BASE,
 
-  inputBorder: "#058b8c",
+  inputBorder: tokens.COLOR_FONT_ACCENT,
   inputTextColor: "#000",
   inputBorderRadius: 6,
 
-  textColor: "#1F2121",
-  textMutedColor: "#6B6E6E",
+  textColor: tokens.COLOR_FONT_PRIMARY,
+  textMutedColor: tokens.COLOR_FONT_MUTED,
 
   brandTitle: "Rubin Observatory Education & Public Outreach",
   brandUrl: "https://rubinobservatory.org/",

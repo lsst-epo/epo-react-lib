@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 18 Jun 2024 21:03:20 GMT
+ * Generated on Fri, 21 Jun 2024 22:43:27 GMT
  */
 
 :root {
@@ -41,7 +41,7 @@
   --color-text-button-tertiary: #000000;
   --color-text-button-educator: #000000;
   --color-text-button-callout: #ffffff;
-  --color-text-button-link: #12726d;
+  --color-text-button-link: #058b8c;
   --color-rubin-teal-100: #d9f7f6;
   --color-rubin-teal-200: #b1f2ef;
   --color-rubin-teal-300: #009fa1;
@@ -72,7 +72,8 @@
   --color-rubin-purple-300: #583671;
   --color-font-primary: #1f2121;
   --color-font-invert: #ffffff;
-  --color-font-accent: #12726d;
+  --color-font-accent: #058b8c;
+  --color-font-muted: #6a6e6e;
   --elevation-element-loader: 45;
   --elevation-element-dialog: 35;
   --elevation-element-header: 25;

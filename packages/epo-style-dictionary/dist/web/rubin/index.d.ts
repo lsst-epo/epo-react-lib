@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 18 Jun 2024 21:03:20 GMT
+ * Generated on Fri, 21 Jun 2024 22:43:27 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;
@@ -72,6 +72,7 @@ export const COLOR_RUBIN_PURPLE_300 : string;
 export const COLOR_FONT_PRIMARY : string;
 export const COLOR_FONT_INVERT : string;
 export const COLOR_FONT_ACCENT : string;
+export const COLOR_FONT_MUTED : string;
 export const ELEVATION_ELEMENT_LOADER : number;
 export const ELEVATION_ELEMENT_DIALOG : number;
 export const ELEVATION_ELEMENT_HEADER : number;

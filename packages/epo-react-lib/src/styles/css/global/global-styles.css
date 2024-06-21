@@ -12,7 +12,7 @@
 }
 
 body {
-  color: var(--color-neutral-80);
+  color: var(--color-font-primary);
   font-size: calc(
     ((var(--size-fluid-font-min) / 16) * 1rem) +
       (var(--size-fluid-font-max) - var(--size-fluid-font-min)) *
@@ -63,4 +63,7 @@ ol {
 ul,
 ol {
   padding-inline-start: 1.5em;
+}
+a {
+  color: var(--color-font-accent);
 }

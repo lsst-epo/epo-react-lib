@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 18 Jun 2024 21:03:20 GMT
+ * Generated on Fri, 21 Jun 2024 22:43:27 GMT
  */
 
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
   "COLOR_TEXT_BUTTON_TERTIARY": "#000000",
   "COLOR_TEXT_BUTTON_EDUCATOR": "#000000",
   "COLOR_TEXT_BUTTON_CALLOUT": "#ffffff",
-  "COLOR_TEXT_BUTTON_LINK": "#12726d",
+  "COLOR_TEXT_BUTTON_LINK": "#058b8c",
   "COLOR_RUBIN_TEAL_100": "#d9f7f6",
   "COLOR_RUBIN_TEAL_200": "#b1f2ef",
   "COLOR_RUBIN_TEAL_300": "#009fa1",
@@ -72,7 +72,8 @@ module.exports = {
   "COLOR_RUBIN_PURPLE_300": "#583671",
   "COLOR_FONT_PRIMARY": "#1f2121",
   "COLOR_FONT_INVERT": "#ffffff",
-  "COLOR_FONT_ACCENT": "#12726d",
+  "COLOR_FONT_ACCENT": "#058b8c",
+  "COLOR_FONT_MUTED": "#6a6e6e",
   "ELEVATION_ELEMENT_LOADER": 45,
   "ELEVATION_ELEMENT_DIALOG": 35,
   "ELEVATION_ELEMENT_HEADER": 25,

@@ -8,7 +8,10 @@
         "value": "{color.neutral.00}"
       },
       "accent": {
-        "value": "{color.rubin.teal.400}"
+        "value": "{color.teal.72}"
+      },
+      "muted": {
+        "value": "{color.rubin.gray.200}"
       }
     }
   }

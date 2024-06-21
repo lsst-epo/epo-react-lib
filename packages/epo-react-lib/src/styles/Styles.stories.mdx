@@ -1,0 +1,73 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { Unstyled } from "@storybook/blocks";
+import TokensToSwatches from "@/storybook/utilities/TokensToSwatches";
+import kebabCase from "lodash/kebabCase";
+import * as tokens from "@rubin-epo/epo-style-dictionary/rubin";
+
+<Meta title="Styles" />
+<Unstyled>
+# Rubin Styles
+
+Included in `@rubin-epo/epo-react-lib` are basic styles for any Rubin branded project. This includes a CSS reset, tokens, and basic global styles for typography.
+
+## CSS
+
+The styles can be used in two ways, importing CSS or using `styled-components` [createGlobalStyle](https://styled-components.com/docs/api#createglobalstyle) API.
+
+### Import CSS
+
+```jsx
+import "@rubin-epo/epo-react-lib/styles.css";
+
+const App = () => {
+  return <>Hello World</>;
+};
+```
+
+### styled-components
+
+The `styled-components` global CSS is less feature-rich than the plain CSS. It only includes tokens, fontfaces, and very basic styles. It will be eventually deprecated since `styled-components` cannot be rendered server-side with React Server Components.
+
+```jsx
+import { GlobalStyles } from "@rubin-epo/epo-react-lib/styles";
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyles />
+      Hello World
+    </>
+  );
+};
+```
+
+### Reset
+
+The bundled reset is courtesy of Andy Bell's [A (more) Modern CSS Reset](https://piccalil.li/blog/a-more-modern-css-reset/).
+
+### Tokens
+
+CSS and JavaScript/TypeScript tokens are derived from the Rubin Visual Identity Manual v1.3 (May 2024) and stored in the `@rubin-epo/epo-style-dictionary` package in the library monorepo.
+
+Tokens can be used in CSS, or in JS/TS using the `tokens()` method exported from `@rubin-epo/epo-react-lib/styles`
+
+#### Colors
+
+<TokensToSwatches />
+
+### Base Styles
+
+The basic styles include the following typography choices:
+
+- Global font color
+- Body font size reset using fluid font scaling
+- Font family
+  - Fontfaces will need to be set up per project. Next.js applications using `next/font` can assign their output variable to `--font-stack-base`
+- Line height
+- Headers
+  - Font size
+  - Line height
+  - Margins
+- SVG `fill` set to `currentColor`
+
+</Unstyled>
