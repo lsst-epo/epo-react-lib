@@ -53,7 +53,7 @@
       "require": "./dist/styles.cjs",
       "types": "./dist/styles.d.ts"
     },
-    "./css": {
+    "./styles.css": {
       "import": "./dist/style.css",
       "require": "./dist/style.css",
       "types": "./dist/style.css"
