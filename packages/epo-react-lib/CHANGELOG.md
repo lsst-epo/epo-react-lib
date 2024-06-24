@@ -110,3 +110,12 @@
 # 2.0.32
 
 - fix: `ResponsiveImage` leaks styles to DOM
+
+# 2.1.0
+
+- feat: `Picture` component to support art direction
+- `Image`
+  - feat: makes correct use of `srcset`
+  - feat: add support for `sizes`
+  - feat: add `priority` flag for LCP images
+  - deprecation: mark `url2x url3x` setup as deprecated, to be dropped in future versions

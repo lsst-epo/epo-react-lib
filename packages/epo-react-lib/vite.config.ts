@@ -20,7 +20,7 @@ const entry = {
   ExpandToggle: resolve(__dirname, "src/atomic/ExpandToggle/ExpandToggle.tsx"),
   ExternalLink: resolve(__dirname, "src/atomic/ExternalLink/ExternalLink.tsx"),
   Figure: resolve(__dirname, "src/atomic/Figure/Figure.tsx"),
-  Image: resolve(__dirname, "src/atomic/Image/Image.tsx"),
+  Image: resolve(__dirname, "src/atomic/Image/index.tsx"),
   Link: resolve(__dirname, "src/atomic/Link/Link.tsx"),
   MixedLink: resolve(__dirname, "src/atomic/MixedLink/MixedLink.tsx"),
   ProgressBar: resolve(__dirname, "src/atomic/Progress/Bar/ProgressBar.tsx"),
@@ -66,6 +66,7 @@ const entry = {
   IconComposer: resolve(__dirname, "src/svg/IconComposer/IconComposer.tsx"),
   icons: resolve(__dirname, "src/svg/icons"),
   Slideout: resolve(__dirname, "src/atomic/Slideout/index.tsx"),
+  Picture: resolve(__dirname, "src/atomic/Picture/index.tsx"),
 };
 
 // https://vitejs.dev/config/

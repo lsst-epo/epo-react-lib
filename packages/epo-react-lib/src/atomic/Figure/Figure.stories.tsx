@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { children } from "@/storybook/utilities/argTypes";
 
 import Figure from ".";
-import Image from "../Image/Image";
+import Image from "../Image";
 
 const meta: Meta<typeof Figure> = {
   component: Figure,
