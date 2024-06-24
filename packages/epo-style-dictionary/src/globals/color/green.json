@@ -4,14 +4,25 @@
       "14": {
         "value": "#D7E6CF",
         "attributes": {
-          "category": "color"
+          "atomic": true
+        }
+      },
+      "41": {
+        "value": "#55da59",
+        "attributes": {
+          "atomic": true
         }
       },
       "54": {
-        "comment": "Rubin Green",
         "value": "#3CAE3F",
         "attributes": {
-          "category": "color"
+          "atomic": true
+        }
+      },
+      "71": {
+        "value": "#019305",
+        "attributes": {
+          "atomic": true
         }
       }
     }

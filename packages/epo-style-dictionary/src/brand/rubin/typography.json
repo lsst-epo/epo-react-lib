@@ -1,0 +1,18 @@
+{
+  "color": {
+    "font": {
+      "primary": {
+        "value": "{color.rubin.gray.300}"
+      },
+      "invert": {
+        "value": "{color.neutral.00}"
+      },
+      "accent": {
+        "value": "{color.teal.72}"
+      },
+      "muted": {
+        "value": "{color.rubin.gray.200}"
+      }
+    }
+  }
+}

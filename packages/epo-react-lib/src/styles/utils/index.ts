@@ -111,22 +111,29 @@ export const respond = (
   return respondBase(content, size, operator, aspect);
 };
 
+const isStyleToken = (key: string): key is StyleToken => {
+  return Object.hasOwn(tokens, key);
+};
+
 export function token(which: StyleToken): string;
-export function token(which: StyleToken[]): { [key: string]: string };
+export function token(which: StyleToken[]): Record<StyleToken, string>;
 export function token(which: unknown): unknown {
-  if (typeof which === "string") {
-    return tokens[which as StyleToken];
-  } else if (Array.isArray(which)) {
+  if (Array.isArray(which)) {
     const obj = which.reduce(
-      (result: Record<StyleToken, string>, item: StyleToken) => {
-        result[item] = tokens[item];
+      (result: Record<StyleToken, string | number>, item: string) => {
+        if (isStyleToken(item)) {
+          result[item] = tokens[item];
+        }
+
         return result;
       },
       {}
     );
     return obj;
-  } else {
-    return tokens;
+  }
+
+  if (typeof which === "string") {
+    return isStyleToken(which) ? tokens[which] : tokens;
   }
 }
 

@@ -110,3 +110,7 @@
 # 2.0.32
 
 - fix: `ResponsiveImage` leaks styles to DOM
+
+# 2.1.0
+
+- feat: add base CSS package `@rubin-epo/epo-react-lib/styles.css`
