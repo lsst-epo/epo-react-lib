@@ -95,3 +95,7 @@
 - fix: `SourceSelector` off center in Safari
 - fix: DM15 area in non-interactive widgets in `LightCurvePlot`
 - fix: `LightCurvePlot` tooltips poor display in Safari
+
+# 1.0.1
+
+- change `epo-react-lib` dependency to latest
