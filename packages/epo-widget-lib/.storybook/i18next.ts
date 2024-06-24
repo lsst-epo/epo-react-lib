@@ -19,12 +19,12 @@ i18n
   .use(LanguageDetector)
   .init({
     backend: { loadPath: "./locales/{{lng}}/{{ns}}.json" },
-    debug: true,
+    // debug: process.env.NODE_ENV === "development",
     lng: defaultLocale,
     fallbackLng: defaultLocale,
     ns,
-    fallbackNS: ns,
     defaultNS,
+    fallbackNS: ns,
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     supportedLngs: Object.keys(locales),
