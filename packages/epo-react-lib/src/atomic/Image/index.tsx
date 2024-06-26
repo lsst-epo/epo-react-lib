@@ -41,14 +41,16 @@ const Image: FunctionComponent<ImageProps> = ({ image, title, className }) => {
 
   const priorityProps = priority ? lcpProps : lazyProps;
 
+  const fullSrcSet = [...srcSet, ...legacySrcSet];
+
+  if (typeof width === "number") {
+    fullSrcSet.push({ src, size: width });
+  }
+
   return (
     <Styled.Image
       alt={altText || title}
-      srcSet={stringifySrcSet([
-        ...srcSet,
-        ...legacySrcSet,
-        { src, size: width },
-      ])}
+      srcSet={stringifySrcSet(fullSrcSet)}
       sizes={stringifySizes(sizes)}
       {...{ src, width, height, className, ...priorityProps }}
     />
