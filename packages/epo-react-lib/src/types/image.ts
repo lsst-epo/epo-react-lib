@@ -9,8 +9,10 @@ export type srcSize = {
 };
 export interface ImageShape {
   altText?: string;
-  width: number;
-  height: number;
+  /** may be required in future versions */
+  width?: number;
+  /** may be required in future versions */
+  height?: number;
   url: string;
   srcSet?: Array<srcType>;
   sizes?: Array<srcSize>;
