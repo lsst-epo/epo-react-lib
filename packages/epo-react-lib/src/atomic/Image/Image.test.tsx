@@ -34,8 +34,8 @@ describe("Image", () => {
 
     const img = screen.getByRole("img");
 
-    expect(img).toHaveAttribute("width", Image.args.image?.width.toString());
-    expect(img).toHaveAttribute("height", Image.args.image?.height.toString());
+    expect(img).toHaveAttribute("width", Image.args.image?.width?.toString());
+    expect(img).toHaveAttribute("height", Image.args.image?.height?.toString());
   });
 });
 
