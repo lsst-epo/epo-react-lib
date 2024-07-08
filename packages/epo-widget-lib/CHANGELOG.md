@@ -99,3 +99,8 @@
 # 1.0.1
 
 - change `epo-react-lib` dependency to latest
+
+# 1.0.2
+
+- fix `SourceSelector` showing `Try again` message on clicking already clicked source
+- slow `SourceSelector` default speed
