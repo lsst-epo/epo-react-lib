@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Controls from "./Controls/Controls";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
 export const BlinkerContainer = styled.div`
@@ -10,8 +9,6 @@ export const BlinkerContainer = styled.div`
   position: relative;
   height: 100%;
 `;
-
-export const BlinkerControls = styled(Controls)``;
 
 export const ControlsContainer = styled.div`
   box-sizing: border-box;
@@ -26,6 +23,11 @@ export const ControlsContainer = styled.div`
   width: 100%;
   gap: var(--widget-padding, var(--PADDING_SMALL));
   padding: var(--widget-padding, var(--PADDING_SMALL));
+  pointer-events: none;
+
+  > * {
+    pointer-events: initial;
+  }
 
   @container (min-width: ${token("BREAK_PHABLET_MIN")}) {
     justify-items: center;
