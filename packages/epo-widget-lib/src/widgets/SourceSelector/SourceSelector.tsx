@@ -14,7 +14,7 @@ import ElapsedTime from "@/atomic/ElapsedTime";
 import { Point } from "@/types/charts";
 import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import SourceMap from "./SourceMap";
-import { getRadius } from "./utils";
+import { getRadius, toDecimalPercent } from "./utils";
 import * as Styled from "./styles";
 
 interface BlinkConfig {
@@ -53,9 +53,6 @@ const calculateDiff = (alerts: Array<Alert>, activeIndex: number) => {
     hour: Math.round((24 / diff) % 24) || 0,
   };
 };
-
-const toDecimalPercent = (value: string | number): number =>
-  typeof value === "string" ? parseFloat(value) / 100 : value;
 
 const pointInsideCircle = (click: Point, center: Point, radius: number) => {
   return (

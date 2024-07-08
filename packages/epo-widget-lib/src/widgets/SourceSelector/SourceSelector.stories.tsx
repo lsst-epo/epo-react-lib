@@ -152,10 +152,12 @@ const Template: StoryFn<typeof SourceSelector> = (args) => {
           args.alertChangeCallback && args.alertChangeCallback(index);
         }}
       />
-      <SelectionList
-        onRemoveCallback={() => setSelectedSource([])}
-        sources={args.sources.filter(({ id }) => selectedSource.includes(id))}
-      />
+      {!args.isDisplayOnly && (
+        <SelectionList
+          onRemoveCallback={() => setSelectedSource([])}
+          sources={args.sources.filter(({ id }) => selectedSource.includes(id))}
+        />
+      )}
     </Container>
   );
 };
