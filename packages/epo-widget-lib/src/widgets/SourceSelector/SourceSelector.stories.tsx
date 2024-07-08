@@ -1,7 +1,9 @@
 import { Meta, StoryFn } from "@storybook/react";
+import styled from "styled-components";
 import { biggerData } from "./mocks";
 
 import SourceSelector from ".";
+import SelectionList from "./SelectionList";
 import { useState } from "react";
 
 const meta: Meta<typeof SourceSelector> = {
@@ -120,6 +122,14 @@ const meta: Meta<typeof SourceSelector> = {
 };
 export default meta;
 
+const Container = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1em;
+  align-items: start;
+  justify-content: start;
+`;
+
 const Template: StoryFn<typeof SourceSelector> = (args) => {
   const [selectedSource, setSelectedSource] = useState(
     args.selectedSource || []
@@ -129,18 +139,24 @@ const Template: StoryFn<typeof SourceSelector> = (args) => {
   );
 
   return (
-    <SourceSelector
-      {...args}
-      {...{ activeAlertIndex, selectedSource }}
-      selectionCallback={(sources) => {
-        setSelectedSource(sources);
-        args.selectionCallback && args.selectionCallback(sources);
-      }}
-      alertChangeCallback={(index) => {
-        setActiveAlertIndex(index);
-        args.alertChangeCallback && args.alertChangeCallback(index);
-      }}
-    />
+    <Container>
+      <SourceSelector
+        {...args}
+        {...{ activeAlertIndex, selectedSource }}
+        selectionCallback={(sources) => {
+          setSelectedSource(sources);
+          args.selectionCallback && args.selectionCallback(sources);
+        }}
+        alertChangeCallback={(index) => {
+          setActiveAlertIndex(index);
+          args.alertChangeCallback && args.alertChangeCallback(index);
+        }}
+      />
+      <SelectionList
+        onRemoveCallback={() => setSelectedSource([])}
+        sources={args.sources.filter(({ id }) => selectedSource.includes(id))}
+      />
+    </Container>
   );
 };
 

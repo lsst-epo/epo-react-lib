@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import { useTranslation } from "react-i18next";
 import { SourceType } from "@/types/astro";
 import * as Styled from "./styles";
+import { Reset } from "@/atomic/Button";
 
 interface SelectionListProps {
   className?: string;
-  onRemoveCallback: (id: string) => void;
+  onRemoveCallback: () => void;
   sources: Array<{ type: SourceType; id: string }>;
 }
 
@@ -17,21 +17,26 @@ const SelectionList: FunctionComponent<SelectionListProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Styled.SelectionList className={className}>
-      {sources.map(({ type, id }) => {
-        return (
-          <Styled.Selection key={id}>
-            {t("source_selector.selected_source", {
-              type: t(`source_selector.sources.${type}`),
-            })}
-            <Styled.RemoveSelectionButton onClick={() => onRemoveCallback(id)}>
-              {id}
-              <IconComposer icon="CloseCircle" size="1.5em" />
-            </Styled.RemoveSelectionButton>
-          </Styled.Selection>
-        );
-      })}
-    </Styled.SelectionList>
+    <Styled.SelectionWrapper>
+      <Styled.SelectionList className={className}>
+        {sources.map(({ type, id }) => {
+          return (
+            <Styled.DescriptionWrapper key={id}>
+              <dt>
+                {t("source_selector.selected_source", {
+                  type: t(`source_selector.sources.${type}`),
+                })}
+              </dt>
+              <dd>{id}</dd>
+            </Styled.DescriptionWrapper>
+          );
+        })}
+      </Styled.SelectionList>
+      <Reset
+        isDisabled={sources.length < 1}
+        onResetCallback={onRemoveCallback}
+      />
+    </Styled.SelectionWrapper>
   );
 };
 

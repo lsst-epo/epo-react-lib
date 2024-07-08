@@ -3,11 +3,13 @@ import {
   PropsWithChildren,
   ReactNode,
   useState,
+  MouseEventHandler,
 } from "react";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
 import ImageStack from "../ImageStack";
+import Controls from "./Controls/Controls";
 import * as Styled from "./styles";
 
 export interface BlinkerProps {
@@ -17,6 +19,7 @@ export interface BlinkerProps {
   loop?: boolean;
   interval?: number;
   blinkCallback?: (activeIndex: number) => void;
+  onClickCallback?: MouseEventHandler<HTMLDivElement>;
   loadedCallback?: () => void;
   className?: string;
   showControls?: boolean;
@@ -30,6 +33,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   loop = true,
   interval = 200,
   blinkCallback,
+  onClickCallback,
   loadedCallback,
   className,
   showControls = true,
@@ -76,7 +80,10 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   useInterval(nextBlink, canBlink && loaded && playing ? interval : null);
 
   return (
-    <Styled.BlinkerContainer className={className}>
+    <Styled.BlinkerContainer
+      onClick={(event) => onClickCallback && onClickCallback(event)}
+      className={className}
+    >
       <ImageStack
         loadCallback={() => {
           setLoaded(true);
@@ -89,7 +96,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
       <Styled.ControlsContainer>
         {canBlink && showControls && (
           <>
-            <Styled.BlinkerControls
+            <Controls
               isDisabled={!loaded}
               {...{
                 playing,

@@ -1,12 +1,20 @@
-import { FunctionComponent, ReactNode, useState } from "react";
+import {
+  FunctionComponent,
+  MouseEventHandler,
+  ReactNode,
+  useId,
+  useState,
+} from "react";
 import { Alert, Source } from "@/types/astro";
 import { useTranslation } from "react-i18next";
-import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import AspectRatio from "@/layout/AspectRatio";
 import Message from "./Message";
 import Loader from "@/atomic/Loader";
 import ElapsedTime from "@/atomic/ElapsedTime";
-import PointSelector from "./PointSelector";
+import { Point } from "@/types/charts";
+import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
+import SourceMap from "./SourceMap";
+import { getRadius } from "./utils";
 import * as Styled from "./styles";
 
 interface BlinkConfig {
@@ -46,6 +54,34 @@ const calculateDiff = (alerts: Array<Alert>, activeIndex: number) => {
   };
 };
 
+const toDecimalPercent = (value: string | number): number =>
+  typeof value === "string" ? parseFloat(value) / 100 : value;
+
+const pointInsideCircle = (click: Point, center: Point, radius: number) => {
+  return (
+    Math.pow(click.x - center.x, 2) + Math.pow(click.y - center.y, 2) <=
+    Math.pow(radius, 2)
+  );
+};
+
+const clickIsInsideCircle = (
+  click: Point,
+  width: number,
+  height: number,
+  sources: Array<Source>
+): string | undefined => {
+  return sources.find(({ x, y, radius, type }) => {
+    return pointInsideCircle(
+      click,
+      {
+        x: toDecimalPercent(x) * width,
+        y: toDecimalPercent(y) * height,
+      },
+      getRadius(type, radius) * width
+    );
+  })?.id;
+};
+
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   width = 600,
   height = 600,
@@ -64,7 +100,6 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   const [message, setMessage] = useState<ReactNode>();
   const [isMessageVisible, setMessageVisible] = useState(false);
   const { t } = useTranslation();
-  const svgId = "sourceSelectorWidget";
   const isPrepared = !isLoading && !isLoadingExternal;
 
   const notFound = () => {
@@ -72,26 +107,48 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     setMessageVisible(true);
   };
 
-  const handleClick = (clickedId?: string) => {
+  const sourceFound = () => {
+    setMessage(
+      <>
+        <IconComposer icon="checkmark" />
+        {t("source_selector.messages.success")}
+      </>
+    );
+    setMessageVisible(true);
+  };
+
+  const handleClick: MouseEventHandler<HTMLDivElement> = ({
+    clientX: x,
+    clientY: htmlY,
+    target,
+  }) => {
     if (!isPrepared || isDisplayOnly) return;
 
-    if (clickedId) {
-      const isValidSource = !!sources.find(({ id }) => id === clickedId);
-      const isUnselected = !selectedSource.includes(clickedId);
+    const {
+      tagName,
+      clientWidth: width,
+      clientHeight: height,
+    } = target as HTMLElement;
 
-      if (isValidSource && isUnselected) {
-        selectionCallback &&
-          selectionCallback(selectedSource.concat(clickedId));
-        setMessage(
-          <>
-            <IconComposer icon="checkmark" />
-            {t("source_selector.messages.success")}
-          </>
-        );
-        setMessageVisible(true);
-      } else {
-        notFound();
-      }
+    if (tagName.toLowerCase() !== "img") return;
+
+    const { left, top } = (target as HTMLElement).getBoundingClientRect();
+
+    /** remember that Y for SVG starts on the top side, click value needs to be flipped */
+    const clickedId = clickIsInsideCircle(
+      { x: x - left, y: height - htmlY + top },
+      width,
+      height,
+      sources
+    );
+
+    if (clickedId) {
+      const isAlreadySelected = selectedSource.includes(clickedId);
+
+      if (isAlreadySelected) return;
+
+      selectionCallback && selectionCallback(selectedSource.concat(clickedId));
+      sourceFound();
     } else {
       notFound();
     }
@@ -107,13 +164,14 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     ? [alerts[activeAlertIndex]?.image]
     : alerts.map(({ image }) => image);
 
+  const sourcesToShow = sources.filter(({ id }) => selectedSource.includes(id));
+
   return (
     <AspectRatio ratio={1} {...{ className }}>
       {!isDisplayOnly && (
         <Message
           onMessageChangeCallback={handleMessageChange}
           isVisible={isMessageVisible}
-          forIds={[svgId]}
         >
           {message}
         </Message>
@@ -123,17 +181,15 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
         activeIndex={activeAlertIndex}
         blinkCallback={alertChangeCallback}
         loadedCallback={() => setLoading(false)}
+        onClickCallback={handleClick}
         extraControls={
           alerts.length > 0 &&
           !isDisplayOnly && <ElapsedTime {...{ day, hour }} />
         }
+        interval={400}
         {...blinkConfig}
       >
-        <PointSelector
-          id={svgId}
-          onSelectCallback={handleClick}
-          {...{ width, height, sources, selectedSource }}
-        />
+        <SourceMap sources={sourcesToShow} {...{ width, height }} />
       </Styled.BackgroundBlinker>
       {!isPrepared && <Loader />}
     </AspectRatio>
