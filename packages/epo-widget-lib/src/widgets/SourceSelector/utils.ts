@@ -15,3 +15,6 @@ export const getRadius = (type: string, radius?: number | string): number => {
 
   return r;
 };
+
+export const toDecimalPercent = (value: string | number): number =>
+  typeof value === "string" ? parseFloat(value) / 100 : value;

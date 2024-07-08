@@ -81,6 +81,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
 
   return (
     <Styled.BlinkerContainer
+      data-testid="blinker-container"
       onClick={(event) => onClickCallback && onClickCallback(event)}
       className={className}
     >
