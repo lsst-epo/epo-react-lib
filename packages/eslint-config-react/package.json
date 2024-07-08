@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.4",
   "main": "./eslint-config.js",
   "files": [
     "eslint-config.js",
@@ -17,9 +17,13 @@
   "scripts": {
     "test": "echo \"Unit testing is not configured for package \\\"eslint-config-react\\\", skipping.\""
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
     "@babel/eslint-parser": "7.16.5",
-    "@rushstack/eslint-patch": "^1.10.1",
+    "@rushstack/eslint-patch": "^1.10.3",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.6.0",
     "eslint": "8",
@@ -36,7 +40,7 @@
     "eslint-plugin-unused-imports": "^3.1.0",
     "prettier": "2.5.1"
   },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "typescript": "^3.0.0 || ^4.0.0 || ^5.0.0"
   }
 }
