@@ -8,7 +8,7 @@ export const getRadius = (type: string, radius?: number | string): number => {
   if (radius) {
     if (typeof radius === "number") return Math.abs(radius);
 
-    return parseFloat(radius);
+    return toDecimalPercent(radius);
   }
 
   const { [type]: r = 0.04 } = defaultRadii;
