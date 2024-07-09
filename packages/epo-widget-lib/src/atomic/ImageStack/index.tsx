@@ -11,7 +11,11 @@ import after from "lodash/after";
 import * as Styled from "./styles";
 
 export interface ImageStackProps {
-  images: Array<ImageShape>;
+  images: Array<{
+    url: string;
+    width?: number;
+    height?: number;
+  }>;
   visible?: number | Array<boolean>;
   describedById?: string;
   loadCallback?: () => void;

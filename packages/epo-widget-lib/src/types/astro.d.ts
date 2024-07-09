@@ -20,7 +20,11 @@ export interface BaseAlert {
 }
 
 export interface Alert extends BaseAlert {
-  image: ImageShape;
+  image: {
+    url: string;
+    width?: number;
+    height?: number;
+  };
 }
 
 export interface SourceDataset {

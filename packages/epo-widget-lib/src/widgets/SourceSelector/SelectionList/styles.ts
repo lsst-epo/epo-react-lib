@@ -9,7 +9,6 @@ export const SelectionWrapper = styled.div`
 export const SelectionList = styled.dl`
   display: flex;
   flex-direction: column;
-  color: var(--neutral95, #1f2121);
   gap: calc(var(--PADDING_SMALL, 20px) / 2);
   margin: 0;
   padding: 0;

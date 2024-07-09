@@ -1,6 +1,10 @@
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 
-export const mockImages: ImageShape[] = [
+export const mockImages: Array<{
+  url: string;
+  width?: number;
+  height?: number;
+}> = [
   {
     url: "https://rubin.canto.com/direct/image/4j5ucvv3gd61r1ilkl5kno1111/VFWbyjyDSQt66VtSnyvU0UxruMw/original?content-type=image%2Fjpeg&name=1464149233715_sci.jpg",
   },
