@@ -78,6 +78,18 @@ const clickIsInsideCircle = (
   })?.id;
 };
 
+const buildImageStack = (
+  alerts: Array<Alert>,
+  activeIndex: number,
+  isDisplayOnly: boolean
+) => {
+  if (isDisplayOnly) {
+    return alerts[activeIndex] ? [alerts[activeIndex].image] : [];
+  } else {
+    return alerts.map(({ image }) => image);
+  }
+};
+
 const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
   width = 600,
   height = 600,
@@ -156,9 +168,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
 
   const { day, hour } = calculateDiff(alerts, activeAlertIndex);
 
-  const images = isDisplayOnly
-    ? [alerts[activeAlertIndex]?.image]
-    : alerts.map(({ image }) => image);
+  const images = buildImageStack(alerts, activeAlertIndex, isDisplayOnly);
 
   const sourcesToShow = sources.filter(({ id }) => selectedSource.includes(id));
 
