@@ -5,7 +5,6 @@ import {
   useState,
   MouseEventHandler,
 } from "react";
-import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
 import ImageStack from "../ImageStack";
@@ -13,7 +12,11 @@ import Controls from "./Controls/Controls";
 import * as Styled from "./styles";
 
 export interface BlinkerProps {
-  images: ImageShape[];
+  images: {
+    url: string;
+    width?: number;
+    height?: number;
+  }[];
   activeIndex: number;
   autoplay?: boolean;
   loop?: boolean;

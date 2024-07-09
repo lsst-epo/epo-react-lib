@@ -18,20 +18,22 @@ const SelectionList: FunctionComponent<SelectionListProps> = ({
   const { t } = useTranslation();
   return (
     <Styled.SelectionWrapper>
-      <Styled.SelectionList className={className}>
-        {sources.map(({ type, id }) => {
-          return (
-            <Styled.DescriptionWrapper key={id}>
-              <dt>
-                {t("source_selector.selected_source", {
-                  type: t(`source_selector.sources.${type}`),
-                })}
-              </dt>
-              <dd>{id}</dd>
-            </Styled.DescriptionWrapper>
-          );
-        })}
-      </Styled.SelectionList>
+      {sources.length > 0 && (
+        <Styled.SelectionList className={className}>
+          {sources.map(({ type, id }) => {
+            return (
+              <Styled.DescriptionWrapper key={id}>
+                <dt>
+                  {t("source_selector.selected_source", {
+                    type: t(`source_selector.sources.${type}`),
+                  })}
+                </dt>
+                <dd>{id}</dd>
+              </Styled.DescriptionWrapper>
+            );
+          })}
+        </Styled.SelectionList>
+      )}
       <Reset
         isDisabled={sources.length < 1}
         onResetCallback={onRemoveCallback}
