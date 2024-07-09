@@ -52,6 +52,11 @@
     "messages": {
       "success": "¡Muy bien!",
       "failure": "Inténtalo de nuevo."
+    },
+    "selected_source": "Seleccionada {{type}}:",
+    "sources": {
+      "galaxy": "Galaxia",
+      "supernova": "Supernova"
     }
   },
   "camera_filter": {
@@ -65,6 +70,83 @@
       "ultraviolet": "Ultravioleta",
       "visible": "Luz visible",
       "infrared": "Infrarrojo"
+    }
+  },
+  "blinker": {
+    "controls": {
+      "backward": "Regresar",
+      "forward": "Adelantar",
+      "pause": "Pausar",
+      "play": "Reproducir"
+    }
+  },
+  "isochrone_plot": {
+    "controls": {
+      "age": {
+        "label": "Edad",
+        "textValue": "{{value}} giga-años"
+      },
+      "distance": {
+        "label": "Distancia",
+        "textValue": "{{value}} desplazamiento de magnitud"
+      }
+    },
+    "output": "{{age}} Ga {{distance}} al",
+    "output_screenreader": "{{age}} giga-años {{distance}} años luz, {{percent}} de estrellas están en la curva.",
+    "plot": {
+      "x_label": "Índice de Color",
+      "y_label": "Magnitud Aparente tipo G"
+    }
+  },
+  "light_curve": {
+    "curve": {
+      "controls": {
+        "gaussian_width": "Ancho de Curva",
+        "y_offset": "Desplazamiento Vertical (eje y)"
+      },
+      "description_above": "La distancia media de las observaciones es {{residual}}, tu punto máximo está por sobre la medición más brillante de {{brightest}}",
+      "description_below": "La distancia media de las observaciones es {{residual}}, tu punto máximo está debajo de la medición más brillante de {{brightest}}"
+    },
+    "deltaM15": {
+      "label": "Delta m 15:"
+    },
+    "magnitude_slider": {
+      "label": "Estimar la magnitud aparente",
+      "value_above": "La magnitud aparente es {{magnitude}}, {{distance}} más alta que el punto máximo de la curva de luz.",
+      "value_below": "La magnitud aparente es {{magnitude}}, {{distance}} más baja que el punto máximo de la curva de luz.",
+      "value_equal": "La magnitud aparente es {{magnitude}}, igual al punto máximo de la curva de luz."
+    },
+    "plot": {
+      "plot_label": "Magnitud de supernova antes y después de la magnitud máxima",
+      "point_label_after_one": "Magnitud Aparente: {{magnitude}} {{count}} día después del punto máximo",
+      "point_label_after_other": "Magnitud Aparente: {{magnitude}} {{count}} días después del punto máximo",
+      "point_label_before_one": "Magnitud Aparente: {{magnitude}} {{count}} día antes del punto máximo",
+      "point_label_before_other": "Magnitud Aparente: {{magnitude}} {{count}} días antes del punto máximo",
+      "point_label_peak": "Magnitud Aparente: {{magnitude}} en su punto máximo",
+      "tooltip": "Magnitud Aparente: {{magnitude}}",
+      "x_label": "Días",
+      "y_label": "Magnitud Aparente (m)"
+    }
+  },
+  "supernova_three_vector": {
+    "histogram": {
+      "bar_label_one": "{{binMin}} a {{binMax}} megaaños luz: {{count}} supernova",
+      "bar_label_other": "{{binMin}} a {{binMax}} megaaños luz: {{count}} supernovas",
+      "title": "Distancias de Supernovas",
+      "x_label": "Distancia [Mlyr]"
+    },
+    "skymap": {
+      "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
+      "supernova_count_one": "La proyección de mapa en el cielo muestra {{count}} supernova entre las distancias de {{min}} y {{max}} megaaños luz.",
+      "supernova_count_other": "La proyección de mapa en el cielo muestra {{count}} supernovas entre las distancias de {{min}} y {{max}} megaaños luz.",
+      "title": "Distribución de Supernovas",
+      "user_supernova_count_one": "{{count}} de tus supernovas es visible cerca de {{coords}}.",
+      "user_supernova_count_other": "{{count}} de tus supernovas se ve cerca de {{coords}}.",
+      "user_supernova_count_zero": "Ninguna de tus supernovas es visible."
+    },
+    "slider": {
+      "label": "Seleccionar rango visible",
+      "valueLabel": "{{value}} megaaños luz"
     }
   }
 }
