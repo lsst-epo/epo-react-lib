@@ -1,4 +1,7 @@
+@import "modern-css-reset";
 @import "global/reset.css";
+
 @import "global/variables.css";
+@import "global/typography.css";
 @import "global/global-styles.css";
 @import "utilities/visually-hidden.css";

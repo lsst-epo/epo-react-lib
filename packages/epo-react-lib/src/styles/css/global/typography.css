@@ -1,0 +1,47 @@
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--weight-font-black);
+}
+
+h1 {
+  font-size: var(--size-font-header-1);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 3.6em;
+  margin-block-end: 0;
+}
+
+h2 {
+  font-size: var(--size-font-header-2);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 1.33333em;
+  margin-block-end: 0.66667em;
+}
+
+h3 {
+  font-size: var(--size-font-header-3);
+  line-height: var(--size-leading-header-1);
+  margin-block-start: 1.33333em;
+  margin-block-end: 0.66667em;
+}
+h4 {
+  font-size: var(--size-font-header-4);
+  line-height: var(--size-leading-header-1);
+  margin-block: 0.83333em;
+}
+
+p,
+ul:not([role="list"]),
+ol:not([role="list"]) {
+  margin-block: 0.45454em;
+}
+
+ul:not([role="list"]),
+ol:not([role="list"]) {
+  padding-inline-start: 1.5em;
+}
+
+a {
+  color: var(--color-font-accent);
+}

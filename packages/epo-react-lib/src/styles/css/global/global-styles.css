@@ -22,48 +22,40 @@ body {
   line-height: var(--size-leading-base);
 }
 
-svg {
-  fill: currentColor;
+a {
+  color: inherit;
+
+  &.js-focus-visible &:focus:not(.focus-visible) {
+    outline-width: 0;
+  }
+
+  &.focus-visible:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    outline: auto 4px;
+  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: var(--weight-font-black);
+/* proto button */
+button {
+  display: inline-block;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  appearance: none;
+
+  &.js-focus-visible &:focus:not(.focus-visible) {
+    outline-width: 0;
+  }
+
+  &.focus-visible:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    outline: auto 4px;
+  }
 }
-h1 {
-  font-size: var(--size-font-header-1);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 3.6em;
-  margin-block-end: 0;
-}
-h2 {
-  font-size: var(--size-font-header-2);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 1.33333em;
-  margin-block-end: 0.66667em;
-}
-h3 {
-  font-size: var(--size-font-header-3);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 1.33333em;
-  margin-block-end: 0.66667em;
-}
-h4 {
-  font-size: var(--size-font-header-4);
-  line-height: var(--size-leading-header-1);
-  margin-block: 0.83333em;
-}
-p,
-ul,
-ol {
-  margin-block: 0.45454em;
-}
-ul,
-ol {
-  padding-inline-start: 1.5em;
-}
-a {
-  color: var(--color-font-accent);
+
+svg {
+  fill: currentcolor;
 }
