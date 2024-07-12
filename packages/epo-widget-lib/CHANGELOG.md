@@ -104,3 +104,7 @@
 
 - fix `SourceSelector` showing `Try again` message on clicking already clicked source
 - slow `SourceSelector` default speed
+
+# 1.0.4
+
+- fix: `LightCurve` estimation between -10 and 40 days only

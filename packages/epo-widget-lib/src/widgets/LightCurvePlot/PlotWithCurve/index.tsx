@@ -87,7 +87,6 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
       plotChildren={({
         xScale,
         yScale,
-        xDomain,
         yDomain,
         xStart,
         xEnd,
@@ -107,7 +106,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
           />
           {Data}
           <PathFromPoints
-            points={range(xDomain[0], xDomain[1], 0.5).map((x) => {
+            points={range(-10, 40, 0.5).map((x) => {
               return {
                 x: xScale(x),
                 y: yScale(estimateMagnitude(x, gaussianWidth)),
@@ -115,6 +114,7 @@ const PlotWithLightCurve: FunctionComponent<PlotWithLightCurveProps> = ({
             })}
             svgProps={{
               transform: `translate(0,${yScale(yDomain[1] - yOffset)})`,
+              strokeLinecap: "round",
             }}
           />
           <Viewport
