@@ -32,13 +32,13 @@ h4 {
 }
 
 p,
-ul:not([role="list"]),
-ol:not([role="list"]) {
+ul:not([class]),
+ol:not([class]) {
   margin-block: 0.45454em;
 }
 
-ul:not([role="list"]),
-ol:not([role="list"]) {
+ul:not([class]),
+ol:not([class]) {
   padding-inline-start: 1.5em;
 }
 
