@@ -18,7 +18,14 @@
     "postinstall": "yarn workspace @rubin-epo/epo-react-lib run build",
     "build-storybook:production": "yarn workspace @rubin-epo/epo-react-lib run build-storybook:production && yarn workspace @rubin-epo/epo-widget-lib run build-storybook:production",
     "test": "yarn workspaces run test",
-    "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true"
+    "test:generate-output": "jest --json --outputFile=.jest-test-results.json || true",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "commitlint-config-monorepo": "^2.0.2",
+    "husky": "^9.1.1"
+  }
 }
