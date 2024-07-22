@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 21 Jun 2024 22:43:27 GMT
+ * Generated on Mon, 22 Jul 2024 22:48:28 GMT
  */
 
 module.exports = {
@@ -97,21 +97,8 @@ module.exports = {
   "SIZE_CONTAINER_WIDE": "1435px",
   "SIZE_CONTAINER_REGULAR": "1160px",
   "SIZE_CONTAINER_NARROW": "900px",
-  "SIZE_FLUID_FONT_MIN": 16,
-  "SIZE_FLUID_FONT_MAX": 22,
-  "SIZE_FLUID_BREAKPOINT_MIN": 280,
-  "SIZE_FLUID_BREAKPOINT_MAX": 1280,
-  "SIZE_FLUID_SCREEN": "100vw",
-  "SIZE_SPACING_XS": "10px",
-  "SIZE_SPACING_SM": "20px",
-  "SIZE_SPACING_MD": "40px",
-  "SIZE_SPACING_LG": "100px",
   "SIZE_FONT_DESKTOP": "22px",
   "SIZE_FONT_MOBILE": "16px",
-  "SIZE_FONT_HEADER_1": "1.81818em",
-  "SIZE_FONT_HEADER_2": "1.36363em",
-  "SIZE_FONT_HEADER_3": "1.09090em",
-  "SIZE_FONT_HEADER_4": "0.81818em",
   "SIZE_LEADING_BASE": 1.5,
   "SIZE_LEADING_HEADER_1": 1.2,
   "SIZE_LEADING_HEADER_2": 1.2,

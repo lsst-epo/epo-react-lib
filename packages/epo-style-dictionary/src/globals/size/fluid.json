@@ -2,14 +2,19 @@
   "size": {
     "fluid": {
       "font": {
-        "min": { "value": 16 },
-        "max": { "value": 22 }
-      },
-      "breakpoint": {
-        "min": { "value": "{size.breakpoint.mobile_min}" },
-        "max": { "value": "{size.breakpoint.desktop}" }
-      },
-      "screen": { "value": "100vw" }
+        "min": {
+          "value": 16,
+          "attributes": {
+            "atomic": true
+          }
+        },
+        "max": {
+          "value": 22,
+          "attributes": {
+            "atomic": true
+          }
+        }
+      }
     }
   }
 }

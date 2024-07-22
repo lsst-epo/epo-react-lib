@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 21 Jun 2024 22:43:27 GMT
+ * Generated on Mon, 22 Jul 2024 22:48:28 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;
@@ -97,21 +97,8 @@ export const SIZE_CONTAINER_FULL : string;
 export const SIZE_CONTAINER_WIDE : string;
 export const SIZE_CONTAINER_REGULAR : string;
 export const SIZE_CONTAINER_NARROW : string;
-export const SIZE_FLUID_FONT_MIN : number;
-export const SIZE_FLUID_FONT_MAX : number;
-export const SIZE_FLUID_BREAKPOINT_MIN : number;
-export const SIZE_FLUID_BREAKPOINT_MAX : number;
-export const SIZE_FLUID_SCREEN : string;
-export const SIZE_SPACING_XS : string;
-export const SIZE_SPACING_SM : string;
-export const SIZE_SPACING_MD : string;
-export const SIZE_SPACING_LG : string;
 export const SIZE_FONT_DESKTOP : string;
 export const SIZE_FONT_MOBILE : string;
-export const SIZE_FONT_HEADER_1 : string;
-export const SIZE_FONT_HEADER_2 : string;
-export const SIZE_FONT_HEADER_3 : string;
-export const SIZE_FONT_HEADER_4 : string;
 export const SIZE_LEADING_BASE : number;
 export const SIZE_LEADING_HEADER_1 : number;
 export const SIZE_LEADING_HEADER_2 : number;
