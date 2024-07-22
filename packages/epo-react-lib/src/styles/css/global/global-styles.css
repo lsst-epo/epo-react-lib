@@ -1,23 +1,6 @@
-:root {
-  --fluid-bp: calc(
-    (var(--size-fluid-screen) - var(--size-fluid-breakpoint-min) / 16 * 1rem) /
-      (var(--size-fluid-breakpoint-max) - var(--size-fluid-breakpoint-min))
-  );
-}
-
-@media screen and (min-width: 1280px) {
-  :root {
-    --size-fluid-screen: calc(var(--size-fluid-breakpoint-max) * 1px);
-  }
-}
-
 body {
   color: var(--color-font-primary);
-  font-size: calc(
-    ((var(--size-fluid-font-min) / 16) * 1rem) +
-      (var(--size-fluid-font-max) - var(--size-fluid-font-min)) *
-      var(--fluid-bp)
-  );
+  font-size: var(--size-font-0);
   font-family: var(--font-stack-base);
   line-height: var(--size-leading-base);
 }

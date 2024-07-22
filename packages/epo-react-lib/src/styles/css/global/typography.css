@@ -6,27 +6,28 @@ h4 {
 }
 
 h1 {
-  font-size: var(--size-font-header-1);
+  font-size: var(--size-font-3);
   line-height: var(--size-leading-header-1);
   margin-block-start: 3.6em;
   margin-block-end: 0;
 }
 
 h2 {
-  font-size: var(--size-font-header-2);
+  font-size: var(--size-font-2);
   line-height: var(--size-leading-header-1);
   margin-block-start: 1.33333em;
   margin-block-end: 0.66667em;
 }
 
 h3 {
-  font-size: var(--size-font-header-3);
+  font-size: var(--size-font-1);
   line-height: var(--size-leading-header-1);
   margin-block-start: 1.33333em;
   margin-block-end: 0.66667em;
 }
+
 h4 {
-  font-size: var(--size-font-header-4);
+  font-size: var(--size-font--1);
   line-height: var(--size-leading-header-1);
   margin-block: 0.83333em;
 }

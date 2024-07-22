@@ -64,6 +64,7 @@
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
     "@headlessui/react": "^2.0.3",
+    "@rubin-epo/epo-style-dictionary": "0.1.0",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
     "lodash": "^4.17.21",
@@ -117,6 +118,7 @@
     "path-browserify": "^1.0.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^9.6.0",
+    "postcss-utopia": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "13",
