@@ -6,20 +6,6 @@
       },
       "mobile": {
         "value": "{size.fluid.font.min}{space.units.pixel}"
-      },
-      "header": {
-        "1": {
-          "value": "1.81818{space.units.em}"
-        },
-        "2": {
-          "value": "1.36363{space.units.em}"
-        },
-        "3": {
-          "value": "1.09090{space.units.em}"
-        },
-        "4": {
-          "value": "0.81818{space.units.em}"
-        }
       }
     },
     "leading": {

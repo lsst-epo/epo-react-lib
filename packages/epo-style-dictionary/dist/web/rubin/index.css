@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Fri, 21 Jun 2024 22:43:27 GMT
+ * Generated on Mon, 22 Jul 2024 22:48:28 GMT
  */
 
 :root {
@@ -97,21 +97,8 @@
   --size-container-wide: 1435px;
   --size-container-regular: 1160px;
   --size-container-narrow: 900px;
-  --size-fluid-font-min: 16;
-  --size-fluid-font-max: 22;
-  --size-fluid-breakpoint-min: 280;
-  --size-fluid-breakpoint-max: 1280;
-  --size-fluid-screen: 100vw;
-  --size-spacing-xs: 10px;
-  --size-spacing-sm: 20px;
-  --size-spacing-md: 40px;
-  --size-spacing-lg: 100px;
   --size-font-desktop: 22px;
   --size-font-mobile: 16px;
-  --size-font-header-1: 1.81818em;
-  --size-font-header-2: 1.36363em;
-  --size-font-header-3: 1.09090em;
-  --size-font-header-4: 0.81818em;
   --size-leading-base: 1.5;
   --size-leading-header-1: 1.2;
   --size-leading-header-2: 1.2;

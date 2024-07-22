@@ -2,16 +2,28 @@
   "size": {
     "spacing": {
       "xs": {
-        "value": "10{space.units.pixel}"
+        "value": "10{space.units.pixel}",
+        "attributes": {
+          "atomic": true
+        }
       },
       "sm": {
-        "value": "20{space.units.pixel}"
+        "value": "20{space.units.pixel}",
+        "attributes": {
+          "atomic": true
+        }
       },
       "md": {
-        "value": "40{space.units.pixel}"
+        "value": "40{space.units.pixel}",
+        "attributes": {
+          "atomic": true
+        }
       },
       "lg": {
-        "value": "100{space.units.pixel}"
+        "value": "100{space.units.pixel}",
+        "attributes": {
+          "atomic": true
+        }
       }
     }
   }
