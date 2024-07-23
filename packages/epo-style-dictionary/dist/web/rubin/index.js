@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 22 Jul 2024 22:48:28 GMT
+ * Generated on Tue, 23 Jul 2024 17:15:36 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT = "#12726d";
@@ -98,11 +98,8 @@ export const SIZE_CONTAINER_REGULAR = "1160px";
 export const SIZE_CONTAINER_NARROW = "900px";
 export const SIZE_FONT_DESKTOP = "22px";
 export const SIZE_FONT_MOBILE = "16px";
-export const SIZE_LEADING_BASE = 1.5;
-export const SIZE_LEADING_HEADER_1 = 1.2;
-export const SIZE_LEADING_HEADER_2 = 1.2;
-export const SIZE_LEADING_HEADER_3 = 1.41667;
-export const SIZE_LEADING_HEADER_4 = 1.11111;
+export const SIZE_LEADING_BASE = 1.625;
+export const SIZE_LEADING_HEADER_BASE = 1.2;
 export const TIME_TRANSITION_BASE = "0.2s";
 export const TIME_TRANSITION_SLOW = "0.4s";
 export const TIME_TRANSITION_SLOWEST = "1s";
