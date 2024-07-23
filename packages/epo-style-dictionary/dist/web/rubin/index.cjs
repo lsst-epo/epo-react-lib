@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 22 Jul 2024 22:48:28 GMT
+ * Generated on Tue, 23 Jul 2024 17:15:36 GMT
  */
 
 module.exports = {
@@ -99,11 +99,8 @@ module.exports = {
   "SIZE_CONTAINER_NARROW": "900px",
   "SIZE_FONT_DESKTOP": "22px",
   "SIZE_FONT_MOBILE": "16px",
-  "SIZE_LEADING_BASE": 1.5,
-  "SIZE_LEADING_HEADER_1": 1.2,
-  "SIZE_LEADING_HEADER_2": 1.2,
-  "SIZE_LEADING_HEADER_3": 1.41667,
-  "SIZE_LEADING_HEADER_4": 1.11111,
+  "SIZE_LEADING_BASE": 1.625,
+  "SIZE_LEADING_HEADER_BASE": 1.2,
   "TIME_TRANSITION_BASE": "0.2s",
   "TIME_TRANSITION_SLOW": "0.4s",
   "TIME_TRANSITION_SLOWEST": "1s"

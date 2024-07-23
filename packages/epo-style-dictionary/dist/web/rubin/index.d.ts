@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 22 Jul 2024 22:48:28 GMT
+ * Generated on Tue, 23 Jul 2024 17:15:36 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;
@@ -100,10 +100,7 @@ export const SIZE_CONTAINER_NARROW : string;
 export const SIZE_FONT_DESKTOP : string;
 export const SIZE_FONT_MOBILE : string;
 export const SIZE_LEADING_BASE : number;
-export const SIZE_LEADING_HEADER_1 : number;
-export const SIZE_LEADING_HEADER_2 : number;
-export const SIZE_LEADING_HEADER_3 : number;
-export const SIZE_LEADING_HEADER_4 : number;
+export const SIZE_LEADING_HEADER_BASE : number;
 export const TIME_TRANSITION_BASE : string;
 export const TIME_TRANSITION_SLOW : string;
 export const TIME_TRANSITION_SLOWEST : string;
