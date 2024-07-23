@@ -8,6 +8,6 @@ export default {
     preset(),
     normalize({ forceImport: true }),
     cssnano({ preset: "default" }),
-    utopia({ minWidth: 280, maxWidth: 1280 }),
+    utopia({ minWidth: 320, maxWidth: 1240 }),
   ],
 };
