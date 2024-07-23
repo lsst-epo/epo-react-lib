@@ -3,46 +3,130 @@ h2,
 h3,
 h4 {
   font-weight: var(--weight-font-black);
+  line-height: var(--size-leading-header-base);
 }
 
 h1 {
-  font-size: var(--size-font-3);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 3.6em;
-  margin-block-end: 0;
+  @utopia clamps({
+    pairs: [
+      [64, 144]
+    ],
+    prefix: "size-margin-start",
+    relativeTo: "viewport-width",
+  });
+  @utopia clamps({
+    pairs: [
+      [8, 0]
+    ],
+    prefix: "size-margin-end",
+    relativeTo: "viewport-width",
+  });
+
+  font-size: var(--size-font-24-40);
+  margin-block-start: var(--size-margin-start-64-144);
+  margin-block-end: var(--size-margin-end-8-0);
 }
 
 h2 {
-  font-size: var(--size-font-2);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 1.33333em;
-  margin-block-end: 0.66667em;
+  @utopia clamps({
+    pairs: [
+      [32, 40]
+    ],
+    prefix: "size-margin-start",
+    relativeTo: "viewport-width",
+  });
+  @utopia clamps({
+    pairs: [
+      [8, 20]
+    ],
+    prefix: "size-margin-end",
+    relativeTo: "viewport-width",
+  });
+
+  font-size: var(--size-font-20-30);
+  margin-block-start: var(--size-margin-start-32-40);
+  margin-block-end: var(--size-margin-end-8-20);
 }
 
 h3 {
-  font-size: var(--size-font-1);
-  line-height: var(--size-leading-header-1);
-  margin-block-start: 1.33333em;
-  margin-block-end: 0.66667em;
+  @utopia clamps({
+    pairs: [
+      [32,20]
+    ],
+    prefix: "size-margin-start",
+    relativeTo: "viewport-width",
+  });
+  @utopia clamps({
+    pairs: [
+      [8, 20]
+    ],
+    prefix: "size-margin-end",
+    relativeTo: "viewport-width",
+  });
+
+  font-size: var(--size-font-18-24);
+  margin-block-start: var(--size-margin-start-32-20);
+  margin-block-end: var(--size-margin-end-8-20);
 }
 
 h4 {
-  font-size: var(--size-font--1);
-  line-height: var(--size-leading-header-1);
-  margin-block: 0.83333em;
+  @utopia clamps({
+    pairs: [
+      [32,40]
+    ],
+    prefix: "size-margin-start",
+    relativeTo: "viewport-width",
+  });
+  @utopia clamps({
+    pairs: [
+      [8, 10]
+    ],
+    prefix: "size-margin-end",
+    relativeTo: "viewport-width",
+  });
+
+  font-size: var(--size-font-16-18);
+  margin-block-start: var(--size-margin-start-32-40);
+  margin-block-end: var(--size-margin-end-8-10);
 }
 
 p,
 ul:not([class]),
 ol:not([class]) {
-  margin-block: 0.45454em;
+  @utopia clamps({
+    pairs: [
+      [8, 10]
+    ],
+    prefix: "size-margin-end",
+    relativeTo: "viewport-width",
+  });
+
+  margin-block: var(--size-margin-end-8-10);
 }
 
 ul:not([class]),
 ol:not([class]) {
-  padding-inline-start: 1.5em;
+  @utopia clamps({
+    pairs: [
+      [20, 33]
+    ],
+    prefix: "size-padding",
+    relativeTo: "viewport-width",
+  });
+
+  padding-inline-start: var(--size-padding-20-33);
 }
 
 a {
   color: var(--color-font-accent);
+}
+
+@media screen and (min-width: 1240px) {
+  :root{
+    --size-leading-base: 1.5;
+  }
+
+  h1 {
+    line-height: 1.5833;
+  }
 }
