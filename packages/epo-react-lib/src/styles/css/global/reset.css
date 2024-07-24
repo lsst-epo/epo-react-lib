@@ -1,4 +1,9 @@
-/* Additional resets */
+@import "modern-css-reset";
+
+img,
+picture {
+  height: auto;
+}
 
 ul,
 ol {
