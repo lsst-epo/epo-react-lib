@@ -12,10 +12,10 @@ import PlotWrapper from "@/atomic/PlotWrapper";
 import Readout from "@/charts/Readout";
 import PathFromPoints from "@/charts/PathFromPoints";
 import { mergeWithDefaults, middle } from "@/lib/utils";
-import { parsecsToLightyears } from "@/lib/helpers";
 import Controls from "./Controls";
 import defaults from "./defaults";
 import CurveFit from "./A11Y/CurveFit";
+import { ageToGyrs, distanceToLyrs } from "./helpers";
 
 export type IsochroneValue = { age?: number; distance?: number };
 export type AgeLibrary = {
@@ -108,15 +108,21 @@ const IsochronePlot: FunctionComponent<Props> = ({
 
   const radius = getPointRadius(containerWidth);
 
+  const localizers = {
+    age: (value: number) =>
+      ageToGyrs(value).toLocaleString(language, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+    distance: (value: number) =>
+      distanceToLyrs(value).toLocaleString(language, {
+        maximumFractionDigits: 0,
+      }),
+  };
+
   const localizedValues = {
-    age: age.toLocaleString(language, {
-      minimumFractionDigits: 1,
-    }),
-    distance: parsecsToLightyears(
-      Math.pow(10, distance / 5 + 1)
-    ).toLocaleString(language, {
-      maximumFractionDigits: 0,
-    }),
+    age: localizers.age(age),
+    distance: localizers.distance(distance),
   };
 
   const Widget = (
@@ -211,7 +217,12 @@ const IsochronePlot: FunctionComponent<Props> = ({
       controls={
         <Controls
           isDisabled={!isPrepared}
-          {...{ value: { age, distance }, configs, onChangeCallback }}
+          {...{
+            value: { age, distance },
+            localizers,
+            configs,
+            onChangeCallback,
+          }}
         />
       }
       actions={
