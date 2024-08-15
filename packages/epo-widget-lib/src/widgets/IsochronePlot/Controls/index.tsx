@@ -14,6 +14,7 @@ interface Config {
 type Props = {
   value: Required<IsochroneValue>;
   configs: Record<keyof IsochroneValue, Config>;
+  localizers: Record<keyof IsochroneValue, (value: number) => string>;
   onChangeCallback?: (value: IsochroneValue) => void;
   isDisabled?: boolean;
 };
@@ -22,6 +23,7 @@ const Controls: FunctionComponent<Props> = ({
   value,
   onChangeCallback,
   configs,
+  localizers,
   isDisabled = false,
 }) => {
   const { t } = useTranslation();
@@ -49,6 +51,9 @@ const Controls: FunctionComponent<Props> = ({
                   t(`isochrone_plot.controls.${key}.textValue`, {
                     value: value[key as keyof IsochroneValue],
                   }) || undefined
+                }
+                renderLabel={({ valueNow }) =>
+                  localizers[key as keyof IsochroneValue](valueNow)
                 }
                 onChangeCallback={(value) => handleChange(key, value)}
                 {...{ ...sharedProps, ...configs[key as keyof IsochroneValue] }}

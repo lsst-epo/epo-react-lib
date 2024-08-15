@@ -75,6 +75,7 @@ export interface PlotPoint {
   stroke?: string;
   fill?: string;
   radius?: number;
+  index?: string | number;
   id: string | number;
   x: number;
   y: number;

@@ -33,14 +33,25 @@ const Points: FunctionComponent<PointsProps> = ({
   return (
     <g role="list" aria-label={label} className={className}>
       {data.map((point, i) => {
-        const { stroke, fill, radius, x, y, description, error, id, props } = {
+        const {
+          stroke,
+          fill,
+          radius,
+          x,
+          y,
+          description,
+          error,
+          id,
+          index,
+          props,
+        } = {
           ...defaults.point,
           ...point,
         };
 
         return (
           <g
-            key={id}
+            key={id || index}
             role="listitem"
             aria-label={description}
             transform={`translate(${xScale(x)},${yScale(y)})`}
