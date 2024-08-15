@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { isColorTransparent, isStyleSupported } from "@/lib/utils";
-import { useState, FunctionComponent, useId } from "react";
+import { useState, FunctionComponent, useId, ReactNode } from "react";
 import { ReactSliderProps } from "react-slider";
 import Mark from "./Mark";
 import Track from "./Track";
@@ -28,6 +28,11 @@ export interface HorizontalSliderProps extends BaseSliderProps {
   color?: string;
   darkMode?: boolean;
   isDisabled?: boolean;
+  renderLabel?: (state: {
+    index: number;
+    value: number | readonly number[];
+    valueNow: number;
+  }) => ReactNode;
 }
 
 const getValidColor = (color?: string, disabled = false) => {
@@ -49,6 +54,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   darkMode = false,
   isDisabled: disabled = false,
   className,
+  renderLabel,
   ...props
 }) => {
   const id = useId();
@@ -69,7 +75,9 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
         {...other}
       >
         <Styled.Thumb aria-disabled={disabled} data-testid="slider-thumb">
-          <Styled.ThumbLabel>{valueNow}</Styled.ThumbLabel>
+          <Styled.ThumbLabel>
+            {renderLabel ? renderLabel(state) : valueNow}
+          </Styled.ThumbLabel>
         </Styled.Thumb>
       </Styled.ThumbContainer>
     );
