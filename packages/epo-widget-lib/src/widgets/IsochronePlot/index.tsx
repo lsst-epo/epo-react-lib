@@ -90,7 +90,6 @@ const IsochronePlot: FunctionComponent<Props> = ({
       min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
       max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
       step: round(ageValues[1] - ageValues[0], 1) || 0.5,
-      marks: ageValues,
     },
     distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
   };
@@ -111,8 +110,8 @@ const IsochronePlot: FunctionComponent<Props> = ({
   const localizers = {
     age: (value: number) =>
       ageToGyrs(value).toLocaleString(language, {
-        minimumFractionDigits: 1,
-        maximumFractionDigits: 1,
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3,
       }),
     distance: (value: number) =>
       distanceToLyrs(value).toLocaleString(language, {
