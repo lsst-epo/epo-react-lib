@@ -108,3 +108,7 @@
 # 1.0.4
 
 - fix: `LightCurve` estimation between -10 and 40 days only
+
+# 1.0.6
+
+- fix: `IsochronePlot` does not show marks and increase age to 3 decimal places
