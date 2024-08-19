@@ -112,3 +112,7 @@
 # 1.0.6
 
 - fix: `IsochronePlot` does not show marks and increase age to 3 decimal places
+
+# 1.0.7
+
+- fix: `IsochronePlot` step fixed to `0.05`

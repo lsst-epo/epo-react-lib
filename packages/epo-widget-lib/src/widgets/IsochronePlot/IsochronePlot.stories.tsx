@@ -1,6 +1,6 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import IsochronePlot from ".";
-import { getAgeLibrary } from "./mock";
+import library from "./mock/iso_lib.json";
 import data from "./mock/points.json";
 import { useState } from "react";
 
@@ -39,7 +39,7 @@ export const Primary: StoryObj<typeof IsochronePlot> = Template.bind({});
 Primary.args = { ...props };
 Primary.loaders = [
   async () => ({
-    ageLibrary: await getAgeLibrary(),
+    ageLibrary: library,
   }),
 ];
 

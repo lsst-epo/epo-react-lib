@@ -1,10 +1,9 @@
 import { FunctionComponent, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useResizeObserver from "use-resize-observer";
-import round from "lodash/round";
 import { token } from "@rubin-epo/epo-react-lib/styles";
 
-import { AxisConfig, Point, PlotPoint } from "@/types/charts";
+import { AxisConfig, Point, PlotPoint, ScaleFunction } from "@/types/charts";
 import WidgetControls from "@/layout/Controls";
 import ScatterPlot from "@/charts/ScatterPlot";
 import ResetButton from "@/atomic/Button/patterns/Reset";
@@ -45,6 +44,36 @@ const getPointRadius = (width?: number) => {
   }
 
   return defaults.pointRadius.lg;
+};
+
+const validKey = (age: number, ages: Array<string>, precision = 2): string => {
+  if (precision < 0) return "";
+
+  const key = age.toFixed(precision);
+
+  if (ages.includes(key)) {
+    return key;
+  } else {
+    return validKey(age, ages, precision - 1);
+  }
+};
+
+const isochroneLibrary = (
+  age: number,
+  xScale: ScaleFunction,
+  yScale: ScaleFunction,
+  ages: Record<string, Array<Point>>
+): Array<Point> => {
+  const key = validKey(age, Object.keys(ages));
+  const library = ages[key];
+
+  if (library) {
+    return library.map(({ x, y }) => {
+      return { x: xScale(x), y: yScale(y) };
+    });
+  } else {
+    return [];
+  }
 };
 
 const IsochronePlot: FunctionComponent<Props> = ({
@@ -89,7 +118,7 @@ const IsochronePlot: FunctionComponent<Props> = ({
     age: {
       min: ageValues.length > 0 ? Math.min(...ageValues) : 0,
       max: ageValues.length > 0 ? Math.max(...ageValues) : 0,
-      step: round(ageValues[1] - ageValues[0], 1) || 0.5,
+      step: 0.05,
     },
     distance: { min: 0, max: yAxis.min + 1, step: 0.05 },
   };
@@ -151,10 +180,8 @@ const IsochronePlot: FunctionComponent<Props> = ({
           xEnd,
           yDomain,
         }) => {
-          const isochrone =
-            (ages[age.toFixed(1)] || []).map(({ x, y }) => {
-              return { x: xScale(x), y: yScale(y) };
-            }) || [];
+          const isochrone = isochroneLibrary(age, xScale, yScale, ages);
+
           const offset = yScale(distance + yDomain[1]);
 
           return (
