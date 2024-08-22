@@ -1,0 +1,22 @@
+name: Release packages
+on:
+  push:
+    branches:
+      # Change this if your primary branch is not main
+      - main
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    environment:
+      name: Semver #your environment name
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          dry-run: true
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
