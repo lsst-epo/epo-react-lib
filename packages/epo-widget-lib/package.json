@@ -26,7 +26,8 @@
     "build-storybook": "storybook build",
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static/epo-widget-lib",
     "test": "jest --max-workers=2",
-    "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true"
+    "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
+    "release": "semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "README.md",
@@ -80,6 +81,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "13",
     "rollup-plugin-banner2": "^1.2.2",
+    "semantic-release": "^24.1.0",
+    "semantic-release-monorepo": "^8.0.2",
     "storybook-react-i18next": "2.0.10",
     "ts-jest": "^29.0.5",
     "typescript": "5",
