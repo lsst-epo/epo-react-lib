@@ -23,4 +23,4 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Run semantic-release
-        run: npx semantic-release -e semantic-release-monorepo --debug
+        run: yarn release
