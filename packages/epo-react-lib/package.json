@@ -26,7 +26,8 @@
     "build-storybook": "storybook build",
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --max-workers=2",
-    "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true"
+    "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
+    "release": "semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "CHANGELOG.md",
@@ -122,6 +123,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "13",
     "rollup-plugin-banner2": "^1.2.2",
+    "semantic-release": "^24.1.0",
+    "semantic-release-monorepo": "^8.0.2",
     "storybook": "^7.6.3",
     "storybook-react-i18next": "2.0.10",
     "ts-jest": "^29.0.2",
