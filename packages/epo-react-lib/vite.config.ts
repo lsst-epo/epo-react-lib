@@ -64,7 +64,7 @@ const entry = {
   Grid: resolve(__dirname, "src/layout/Grid/Grid.tsx"),
   MasonryGrid: resolve(__dirname, "src/layout/MasonryGrid/MasonryGrid.tsx"),
   SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
-  IconComposer: resolve(__dirname, "src/svg/IconComposer/IconComposer.tsx"),
+  IconComposer: resolve(__dirname, "src/svg/IconComposer/index.tsx"),
   icons: resolve(__dirname, "src/svg/icons"),
   Slideout: resolve(__dirname, "src/atomic/Slideout/index.tsx"),
   Picture: resolve(__dirname, "src/atomic/Picture/index.tsx"),

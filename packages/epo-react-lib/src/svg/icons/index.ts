@@ -24,6 +24,7 @@ import Expand from "./Expand";
 import Eye from "./Eye";
 import Facebook from "./Facebook";
 import FloppyDisk from "./FloppyDisk";
+import FocalPlane from "./FocalPlane";
 import Forward from "./Forward";
 import ForwardStep from "./ForwardStep";
 import Globe from "./Globe";
@@ -39,6 +40,7 @@ import LockOpen from "./LockOpen";
 import LogOut from "./LogOut";
 import Mail from "./Mail";
 import Minus from "./Minus";
+import Moon from "./Moon";
 import Page from "./Page";
 import Pause from "./Pause";
 import Pdf from "./Pdf";
@@ -94,6 +96,7 @@ const Icons = {
   Eye,
   Facebook,
   FloppyDisk,
+  FocalPlane,
   Forward,
   ForwardStep,
   Globe,
@@ -109,6 +112,7 @@ const Icons = {
   LogOut,
   Mail,
   Minus,
+  Moon,
   Page,
   Pause,
   Phone,
