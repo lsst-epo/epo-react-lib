@@ -15,7 +15,8 @@
     "README.md"
   ],
   "scripts": {
-    "test": "echo \"Unit testing is not configured for package \\\"eslint-config-react\\\", skipping.\""
+    "test": "echo \"Unit testing is not configured for package \\\"eslint-config-react\\\", skipping.\"",
+    "release": "echo \"semantic-release is not configured for package \\\"eslint-config-react\\\", skipping.\""
   },
   "devDependencies": {},
   "publishConfig": {

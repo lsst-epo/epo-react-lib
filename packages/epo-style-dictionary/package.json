@@ -46,7 +46,8 @@
   "scripts": {
     "build": "node ./build.js",
     "watch": "yarn build && yarn chokidar  \"src/**/*.json\" -c \"yarn build\"",
-    "test": "echo \"Unit testing is not configured for package \\\"epo-style-dictionary\\\", skipping.\""
+    "test": "echo \"Unit testing is not configured for package \\\"epo-style-dictionary\\\", skipping.\"",
+    "release": "echo \"semantic-release is not configured for package \\\"epo-style-dictionary\\\", skipping.\""
   },
   "files": [
     "CHANGELOG.md",
