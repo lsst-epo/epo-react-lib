@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          extra_plugins: semantic-release-monorepo
           persist-credentials: false
           dry-run: true
       - name: Semantic Release
