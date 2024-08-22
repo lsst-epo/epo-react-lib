@@ -1,12 +1,15 @@
 import { ComponentType, FunctionComponent } from "react";
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
 import Icons, { IconKey } from "@/svg/icons";
-import { capitalize } from "@/lib/utils";
+
 import { SVGProps } from "@/types/svg";
+
+export type { IconKey };
 
 export interface IconComposerProps extends SVGProps {
   icon: IconKey | string;
-  customIcons?: { [key: string]: ComponentType<SVGProps> };
-  size?: number | string;
+  customIcons?: Record<string, ComponentType<SVGProps>>;
 }
 
 /**
@@ -21,19 +24,25 @@ export interface IconComposerProps extends SVGProps {
 const IconComposer: FunctionComponent<IconComposerProps> = ({
   icon,
   customIcons = {},
+  svgProps,
   ...props
 }) => {
-  const key = capitalize(icon) as IconKey;
-  const { [key]: IconComponent } = { ...Icons, ...customIcons };
+  const key = upperFirst(camelCase(icon));
+  const iconSet: Record<string, ComponentType<SVGProps>> = {
+    ...Icons,
+    ...customIcons,
+  };
 
-  if (!IconComponent) {
+  if (!Object.hasOwn(iconSet, key)) {
     console.error(
       `${icon} icon could not be found. Check spelling and any custom icons added.`
     );
     return null;
   }
 
-  return <IconComponent {...props} />;
+  const IconComponent = iconSet[key];
+
+  return <IconComponent {...{ ...props, ...svgProps }} />;
 };
 
 export default IconComposer;

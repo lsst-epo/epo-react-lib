@@ -10,7 +10,7 @@ import Slideout from "@/atomic/Slideout";
 import { useKeyDownEvent } from "@/hooks/listeners";
 import MenuContext from "@/contexts/Menu";
 import * as Styled from "./styles";
-import IconComposer from "@/svg/IconComposer/IconComposer";
+import IconComposer from "@/svg/IconComposer";
 
 interface SlideoutMenuProps {
   title: string;

@@ -4,6 +4,7 @@ interface SVGProps {
   stroke?: string;
   fill?: string;
   svgProps?: object;
+  [key: string]: any;
 }
 
 export type { SVGProps };
