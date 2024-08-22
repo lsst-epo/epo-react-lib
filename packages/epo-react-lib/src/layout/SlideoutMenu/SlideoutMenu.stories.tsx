@@ -8,7 +8,7 @@ import { FunctionComponent, useRef, useState } from "react";
 
 import { SlideoutMenu, MenuGroup, MenuItem, MenuItemRadio } from ".";
 import { protoButton } from "@/styles/mixins/appearance";
-import IconComposer from "@/svg/IconComposer/IconComposer";
+import IconComposer from "@/svg/IconComposer";
 
 const meta: ComponentMeta<typeof SlideoutMenu> = {
   component: SlideoutMenu,

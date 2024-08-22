@@ -8,11 +8,6 @@
  * "could this be in lodash?" and if no, it does not belong here.
  */
 
-export const capitalize = (string: string): string => {
-  if (typeof string !== "string") return "";
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
 export const isAbsoluteUrl = (url: string): boolean =>
   /^https?:\/\//i.test(url);
 
