@@ -3,7 +3,6 @@
  */
 const release = {
   branches: ["main"],
-  extends: "semantic-release-monorepo",
 };
 
 export default release;

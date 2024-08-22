@@ -7,15 +7,17 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment:
+      name: epo-react-lib
     strategy:
       matrix:
         node-version: [20.9]
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npx semantic-release --debug
+      - run: npx semantic-release -e semantic-release-monorepo --debug --dry-run
