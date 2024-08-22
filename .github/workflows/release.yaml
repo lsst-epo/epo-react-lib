@@ -20,4 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npx semantic-release -e semantic-release-monorepo --debug --dry-run
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Run semantic-release
+        run: npx semantic-release -e semantic-release-monorepo --debug --dry-run
