@@ -24,12 +24,7 @@ const release = {
         ],
       },
     ],
-    [
-      "@semantic-release/github",
-      {
-        assets: [{ path: "dist", label: "epo-widget-lib" }],
-      },
-    ],
+    ["@semantic-release/github"],
   ],
 };
 
