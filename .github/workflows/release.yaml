@@ -4,23 +4,35 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
     environment:
       name: epo-react-lib
     strategy:
       matrix:
         node-version: [20.9]
-    env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
+      - name: Checkout
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Run semantic-release
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: yarn release
