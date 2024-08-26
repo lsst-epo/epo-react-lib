@@ -49,6 +49,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@rubin-epo/eslint-config-react": "^1.0.0-beta",
+    "@semantic-release/github": "^10.1.7",
     "@semantic-release/release-notes-generator": "^14.0.1",
     "@storybook/addon-a11y": "^7.6.3",
     "@storybook/addon-actions": "^7.6.3",
