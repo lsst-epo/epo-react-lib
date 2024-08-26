@@ -8,6 +8,10 @@ const release = {
       "@semantic-release/commit-analyzer",
       {
         preset: "conventionalcommits",
+        releaseRules: [
+          { type: "refactor", release: "patch" },
+          { type: "style", release: "patch" },
+        ],
       },
     ],
   ],
