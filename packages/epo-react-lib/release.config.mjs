@@ -14,6 +14,16 @@ const release = {
         ],
       },
     ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        preset: "conventionalcommits",
+        releaseRules: [
+          { type: "refactor", release: "patch" },
+          { type: "style", release: "patch" },
+        ],
+      },
+    ],
   ],
 };
 
