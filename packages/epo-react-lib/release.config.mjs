@@ -24,7 +24,18 @@ const release = {
         ],
       },
     ],
-    ["@semantic-release/github"],
+    [
+      "@semantic-release/github",
+      {
+        assets: [{ path: "tempPublish/**", label: "Package" }],
+      },
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        pkgRoot: "tempPublish",
+      },
+    ],
   ],
 };
 

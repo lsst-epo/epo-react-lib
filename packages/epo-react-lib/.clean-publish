@@ -16,6 +16,9 @@
     ".storybook",
     "src",
     "storybook-static",
-    "publish"
+    "publish",
+    "postcss.config.ts",
+    "release.config.mjs",
+    ".prettierignore"
   ]
 }

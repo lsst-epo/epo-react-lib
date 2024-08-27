@@ -9,6 +9,10 @@
     "type": "git",
     "url": "https://github.com/lsst-epo/epo-react-lib"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
   "supportedLocales": [
     "en",
     "es"
@@ -27,7 +31,7 @@
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
-    "release": "semantic-release -e semantic-release-monorepo --debug"
+    "release": "yarn build && clean-publish --without-publish && semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "CHANGELOG.md",
@@ -81,6 +85,7 @@
     "@rubin-epo/epo-style-dictionary": "^0.1.0",
     "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "@semantic-release/github": "^10.1.7",
+    "@semantic-release/npm": "^12.0.1",
     "@semantic-release/release-notes-generator": "^14.0.1",
     "@storybook/addon-actions": "^7.6.3",
     "@storybook/addon-essentials": "^7.6.3",
