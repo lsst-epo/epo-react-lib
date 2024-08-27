@@ -27,7 +27,7 @@
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static/epo-widget-lib",
     "test": "jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
-    "release": "semantic-release -e semantic-release-monorepo --debug"
+    "release": "yarn build && clean-publish --without-publish && semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "README.md",
