@@ -1,5 +1,6 @@
 {
   "name": "@rubin-epo/epo-style-dictionary",
+  "private": true,
   "description": "Rubin Observatory Education & Public Outreach team style tokens.",
   "version": "0.1.0",
   "author": "Rubin EPO",
