@@ -136,6 +136,7 @@ export default defineConfig({
       external: [
         "@castiron/style-mixins",
         "@headlessui/react",
+        "classnames",
         "flickity",
         "focus-trap",
         "i18next",
