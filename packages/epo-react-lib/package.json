@@ -58,11 +58,7 @@
       "require": "./dist/styles.cjs",
       "types": "./dist/styles.d.ts"
     },
-    "./styles.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css",
-      "types": "./dist/style.css"
-    },
+    "./styles.css": "./dist/style.css",
     "./fonts/*": "./dist/fonts/*",
     "./localeStrings": "./dist/localeStrings"
   },
