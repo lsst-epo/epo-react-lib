@@ -25,12 +25,12 @@ const release = {
       },
     ],
     ["@semantic-release/github"],
-    [
-      "@semantic-release/npm",
-      {
-        pkgRoot: "tempPublish",
-      },
-    ],
+    // [
+    //   "@semantic-release/npm",
+    //   {
+    //     pkgRoot: "tempPublish",
+    //   },
+    // ],
   ],
 };
 
