@@ -7,7 +7,7 @@
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lsst-epo/epo-react-lib"
+    "url": "git+https://github.com/lsst-epo/epo-react-lib"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
