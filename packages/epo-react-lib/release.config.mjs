@@ -24,7 +24,17 @@ const release = {
         ],
       },
     ],
-    ["@semantic-release/github"],
+    [
+      "@semantic-release/github",
+      {
+        assets: [
+          {
+            path: ["dist/**", "package.json", "README.md"],
+            name: "epo-react-lib",
+          },
+        ],
+      },
+    ],
     ["@semantic-release/npm"],
   ],
 };

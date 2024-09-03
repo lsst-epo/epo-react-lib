@@ -27,15 +27,15 @@ const release = {
     [
       "@semantic-release/github",
       {
-        assets: [{ path: "tempPublish/**", label: "Package" }],
+        assets: [
+          {
+            path: ["dist/**", "package.json", "README.md"],
+            name: "epo-widget-lib",
+          },
+        ],
       },
     ],
-    [
-      "@semantic-release/npm",
-      {
-        pkgRoot: "tempPublish",
-      },
-    ],
+    ["@semantic-release/npm"],
   ],
 };
 

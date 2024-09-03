@@ -23,7 +23,6 @@
     "fix-js": "prettier --write \"**/*.{js,jsx}\" && eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\" --fix",
     "lint-js": "prettier --check \"**/*.{js,jsx}\" & eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\"",
     "prebuild": "rm -fr tempPublish",
-    "publish-clean": "yarn test && yarn build && clean-publish",
     "publish-beta": "yarn build && clean-publish --tag beta",
     "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "storybook dev -p 6006",
@@ -31,7 +30,7 @@
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
-    "release": "yarn build && semantic-release -e semantic-release-monorepo --debug"
+    "release": "yarn build && clean-publish --without-publish && semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "CHANGELOG.md",
