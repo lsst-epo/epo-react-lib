@@ -31,7 +31,7 @@
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
-    "release": "yarn build && clean-publish --without-publish && semantic-release -e semantic-release-monorepo --debug"
+    "release": "yarn build && semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "CHANGELOG.md",

@@ -4214,6 +4214,21 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
+"@rubin-epo/epo-react-lib@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-2.1.0.tgz#4c55f8f1de35d2a6e939ea382bb73f89734b8460"
+  integrity sha512-uw1FqIFrGPs9zJjsQZfjB1+xR8k4WboUzTjpRlG0Cjm0LPUs23599wdIr17J5+AN49CbBF7+utY27hg9fnUGXw==
+  dependencies:
+    "@castiron/style-mixins" "^1.0.6"
+    "@headlessui/react" "^2.0.3"
+    flickity "^3.0.0"
+    focus-trap "^7.4.2"
+    lodash "^4.17.21"
+    react-player "^2.14.1"
+    react-share "^4.4.1"
+    react-slider "^2.0.6"
+    styled-components "^6.1.1"
+
 "@rushstack/eslint-patch@^1.10.3":
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.3.tgz#391d528054f758f81e53210f1a1eebcf1a8b1d20"
@@ -7385,10 +7400,10 @@ conventional-changelog-angular@^8.0.0:
   dependencies:
     compare-func "^2.0.0"
 
-conventional-changelog-conventionalcommits@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-7.0.2.tgz#aa5da0f1b2543094889e8cf7616ebe1a8f5c70d5"
-  integrity sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==
+"conventional-changelog-conventionalcommits@>= 8.0.0", conventional-changelog-conventionalcommits@^7.0.2:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-8.0.0.tgz#3fa2857c878701e7f0329db5a1257cb218f166fe"
+  integrity sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==
   dependencies:
     compare-func "^2.0.0"
 
