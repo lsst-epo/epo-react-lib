@@ -1,13 +1,17 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
-  "version": "1.0.7",
+  "version": "0.0.0-development",
   "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lsst-epo/epo-react-lib"
+    "url": "git+https://github.com/lsst-epo/epo-react-lib.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "supportedLocales": [
     "en",
@@ -18,7 +22,6 @@
     "build": "tsc && vite build",
     "fix-js": "prettier --write \"**/*.{js,jsx}\" && eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\" --fix",
     "lint-js": "prettier --check \"**/*.{js,jsx}\" & eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\"",
-    "prebuild": "rm -fr tempPublish",
     "publish-clean": "yarn test && yarn build && clean-publish",
     "publish-beta": "yarn build && clean-publish --tag beta",
     "publish-local": "yarn build && clean-publish --without-publish",
@@ -41,10 +44,6 @@
       "types": "./dist/*.d.ts"
     },
     "./localeStrings": "./dist/localeStrings"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -89,7 +88,7 @@
     "storybook-react-i18next": "2.0.10",
     "ts-jest": "^29.0.5",
     "typescript": "5",
-    "vite": "^4",
+    "vite": "^5.4.3",
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {

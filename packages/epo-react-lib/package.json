@@ -22,7 +22,6 @@
     "build": "tsc && vite build",
     "fix-js": "prettier --write \"**/*.{js,jsx}\" && eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\" --fix",
     "lint-js": "prettier --check \"**/*.{js,jsx}\" & eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\"",
-    "prebuild": "rm -fr tempPublish",
     "publish-beta": "yarn build && clean-publish --tag beta",
     "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "storybook dev -p 6006",
@@ -132,7 +131,7 @@
     "ts-jest": "^29.0.2",
     "ts-node": "^10.9.1",
     "typescript": "5",
-    "vite": "^4",
+    "vite": "^5.4.3",
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {

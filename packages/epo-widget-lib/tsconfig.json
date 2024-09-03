@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "Node16",
-    "moduleResolution": "Node16",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "types": ["node", "jest"],
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
