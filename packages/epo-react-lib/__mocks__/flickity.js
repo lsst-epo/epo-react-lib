@@ -6,6 +6,4 @@ class Flickity {
   select = (index) => {};
 }
 
-module.exports = {
-  default: Flickity,
-};
+export default Flickity;
