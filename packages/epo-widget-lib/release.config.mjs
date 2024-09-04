@@ -24,17 +24,7 @@ const release = {
         ],
       },
     ],
-    [
-      "@semantic-release/github",
-      {
-        assets: [
-          {
-            path: ["dist/**", "package.json", "README.md"],
-            name: "epo-widget-lib",
-          },
-        ],
-      },
-    ],
+    ["@semantic-release/github"],
     ["@semantic-release/npm"],
   ],
 };
