@@ -5,7 +5,7 @@
 :root {
   @utopia clamps({
     pairs: [
-      [16, 22]
+      [16, 20]
     ],
     prefix: "size-font",
     relativeTo: "viewport-width",
@@ -46,7 +46,7 @@
   /* @link https://utopia.fyi/space/calculator?c=280,16,1.2,1280,22,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6|8,s-l&g=s,l,xl,12 */
   @utopia spaceScale({
     minSize: 16,
-    maxSize: 22,
+    maxSize: 20,
     positiveSteps: [1.5, 2, 3, 4, 6, 8],
     negativeSteps: [0.75, 0.5, 0.25],
     customSizes: ["s-l"],
