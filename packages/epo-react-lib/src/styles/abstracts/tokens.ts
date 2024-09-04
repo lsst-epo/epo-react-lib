@@ -1,13 +1,11 @@
 import palette from "./palette";
 import * as baseTokens from "@rubin-epo/epo-style-dictionary/legacy/tokens";
-import * as rubinTokens from "@rubin-epo/epo-style-dictionary/rubin";
 
 const { Z_STACK_DIALOG, Z_STACK_HEADER, Z_STACK_LOADER, ...rest } = baseTokens;
 
 export const tokens = {
   ...palette,
   ...rest,
-  ...rubinTokens,
 };
 
 export type StyleToken = keyof typeof tokens;
