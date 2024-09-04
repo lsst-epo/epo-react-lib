@@ -1,16 +1,12 @@
 import { HTMLProps, FunctionComponent } from "react";
-import { useTranslation } from "react-i18next";
 import * as Styled from "./styles";
 
-const Error: FunctionComponent<HTMLProps<HTMLParagraphElement>> = ({
+const Error: FunctionComponent<HTMLProps<HTMLSpanElement>> = ({
   children,
   ...props
 }) => {
-  const { t } = useTranslation();
-
   return (
-    <Styled.Error role="alert" {...(props as any)}>
-      <Styled.ErrorLabel>{t("form.error")}</Styled.ErrorLabel>
+    <Styled.Error aria-live="assertive" {...(props as any)}>
       {children}
     </Styled.Error>
   );

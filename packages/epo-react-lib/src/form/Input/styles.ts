@@ -8,6 +8,7 @@ export const Input = styled.input`
   border-radius: var(--size-spacing-3xs);
   box-sizing: border-box;
   font-weight: var(--weight-font-normal);
+  height: var(--size-spacing-xl);
   line-height: 1;
   width: 100%;
   padding: var(--size-spacing-s);

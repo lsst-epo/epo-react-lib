@@ -24,6 +24,14 @@ const meta: Meta<typeof FormElement> = {
         },
       },
     },
+    showRequiredAsterisk: {
+      description: "Show an asterisk on required fields",
+      table: {
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
     required: {
       description:
         "Determines if the input field is marked as `required` for form submission",
@@ -37,11 +45,20 @@ const meta: Meta<typeof FormElement> = {
 };
 export default meta;
 
-export const TextField: StoryObj<typeof FormElement> = {
+export const Primary: StoryObj<typeof FormElement> = {
   args: {
-    label: "Create a password",
-    description:
-      "Passwords should be at least 8 characters long and should contain a mixture of letters, numbers, and other characters.",
+    label: "Address",
+    description: "Include apartment number if applicable",
+    required: true,
+  },
+};
+
+export const Error: StoryObj<typeof FormElement> = {
+  args: {
+    label: "Email",
+    description: "Only email addresses from a registered domain are allowed.",
+    error: "Email address domain is not valid for our organization",
+    type: "email",
     required: true,
   },
 };
