@@ -22,15 +22,13 @@
     "build": "tsc && vite build",
     "fix-js": "prettier --write \"**/*.{js,jsx}\" && eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\" --fix",
     "lint-js": "prettier --check \"**/*.{js,jsx}\" & eslint -c .eslintrc.js \"**/*.{js,jsx,ts,tsx}\"",
-    "publish-clean": "yarn test && yarn build && clean-publish",
-    "publish-beta": "yarn build && clean-publish --tag beta",
-    "publish-local": "yarn build && clean-publish --without-publish",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
     "build-storybook:production": "yarn build-storybook -o ../../storybook-static/epo-widget-lib",
     "test": "jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
-    "release": "yarn build && clean-publish --without-publish && semantic-release -e semantic-release-monorepo --debug"
+    "prepublishOnly": "yarn build",
+    "release": "semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "README.md",
@@ -72,7 +70,6 @@
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^4",
     "babel-loader": "^8.3.0",
-    "clean-publish": "^4.2.0",
     "i18next": "23",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.5.2",
