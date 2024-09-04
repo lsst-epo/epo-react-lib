@@ -1,6 +1,6 @@
 @import "@rubin-epo/epo-style-dictionary/legacy/palette.css";
 @import "@rubin-epo/epo-style-dictionary/legacy/tokens.css";
-@import "@rubin-epo/epo-style-dictionary/rubin/tokens.css";
+@import "@rubin-epo/epo-style-dictionary/rubin.css";
 
 :root {
   @utopia clamps({
