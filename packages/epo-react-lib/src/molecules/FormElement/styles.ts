@@ -1,12 +1,21 @@
 "use client";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  > * + * {
+    margin-block-start: var(--size-spacing-3xs);
+  }
+`;
+
 export const Label = styled.label`
   color: var(--color-font-primary);
   font-weight: var(--weight-font-bold, 600);
 
-  > * + * {
-    margin-block-start: var(--size-spacing-3xs);
+  &[data-show-required="true"] {
+    &::after {
+      content: "*";
+      color: var(--color-rubin-red-300);
+    }
   }
 `;
 

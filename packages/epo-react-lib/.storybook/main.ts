@@ -47,6 +47,7 @@ const config: StorybookConfig = {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
     return mergeConfig(config, {
+      assetsInclude: ["/sb-preview/runtime.js"],
       base: configType === "PRODUCTION" ? "/epo-react-lib/" : "/",
       resolve: {
         alias: {
