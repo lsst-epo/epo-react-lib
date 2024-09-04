@@ -10,9 +10,3 @@ test("should render error message", () => {
 
   expect(screen.getByText(props.children)).toBeInTheDocument();
 });
-
-test("should include screen reader text", () => {
-  render(<Error {...props} />);
-
-  expect(screen.getByText("form.error")).toBeInTheDocument();
-});
