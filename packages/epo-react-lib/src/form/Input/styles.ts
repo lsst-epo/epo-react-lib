@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
-  border: 1px solid var(--turquoise70);
-  border-radius: 6px;
+  --color-input-border: var(--color-rubin-gray-200);
+  --color-input-border-hover: var(--color-font-accent);
+
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--size-spacing-3xs);
   box-sizing: border-box;
+  font-weight: var(--weight-font-normal);
+  line-height: 1;
   width: 100%;
-  font-size: inherit;
-  padding-inline-start: 20px;
-  padding-inline-end: 20px;
-  padding-block-start: calc(var(--Input-padding-block, 18px) - 1px);
-  padding-block-end: var(--Input-padding-block, 18px);
-  font-size: 20px;
-  font-family: inherit;
+  padding: var(--size-spacing-s);
+
+  &:not(:disabled):hover,
+  &:not(:disabled):focus-within {
+    outline: 2px solid var(--color-input-border-hover);
+    outline-offset: -2px;
+  }
 `;

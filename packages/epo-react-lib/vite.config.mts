@@ -1,11 +1,22 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
+import { sync } from "glob";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import banner2 from "rollup-plugin-banner2";
 import postcss from "./postcss.config";
 
 const defaultFormat = "es";
+
+const packages = Object.fromEntries(
+  sync(["src/molecules/**/*.tsx"], {
+    ignore: ["src/**/*.stories.tsx", "src/**/*.test.tsx"],
+  }).map((file) => {
+    const path = resolve(__dirname, file);
+    const name = dirname(path).split("/").pop();
+    return [name, path];
+  })
+);
 
 const entry = {
   main: resolve(__dirname, "src/index.ts"),
@@ -68,6 +79,7 @@ const entry = {
   icons: resolve(__dirname, "src/svg/icons"),
   Slideout: resolve(__dirname, "src/atomic/Slideout/index.tsx"),
   Picture: resolve(__dirname, "src/atomic/Picture/index.tsx"),
+  ...packages,
 };
 
 // https://vitejs.dev/config/
