@@ -8,7 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: var(--color-font-primary);
   font-weight: var(--weight-font-bold, 600);
 
   &[data-show-required="true"] {
