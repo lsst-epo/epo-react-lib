@@ -6,7 +6,7 @@ const Error: FunctionComponent<HTMLProps<HTMLSpanElement>> = ({
   ...props
 }) => {
   return (
-    <Styled.Error aria-live="assertive" {...(props as any)}>
+    <Styled.Error role="alert" {...(props as any)}>
       {children}
     </Styled.Error>
   );

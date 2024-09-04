@@ -1,10 +1,12 @@
 "use client";
 
 import { createGlobalStyle } from "styled-components";
+import kebabCase from "lodash/kebabCase";
+import * as rubinTokens from "@rubin-epo/epo-style-dictionary/rubin";
 import { baseFont } from "@/styles/mixins/font";
-import { fluidScale, token } from "@/styles/utils";
+import { fluidScale } from "@/styles/utils";
 import base from "@/styles/base";
-import { StyleToken, tokens } from "@/styles/abstracts";
+import { tokens } from "@/styles/abstracts";
 
 const {
   BREAK_MOBILE,
@@ -13,8 +15,20 @@ const {
   FONT_SIZE_BASE_MOBILE,
 } = tokens;
 
+const rubinTokensAsCssVariables = Object.entries(rubinTokens).reduce<
+  Record<string, string | number>
+>((prev, [key, value]) => {
+  const newKey = kebabCase(key);
+
+  prev[newKey] = value;
+
+  return prev;
+}, {});
+
 const createCSSGlobalStyles = () => {
-  return Object.keys(tokens).map((k) => `--${k}: ${token(k as StyleToken)};`);
+  return Object.entries({ ...tokens, ...rubinTokensAsCssVariables }).map(
+    ([k, v]) => `--${k}: ${v};`
+  );
 };
 
 const GlobalStyles = createGlobalStyle<{ includeFonts?: boolean }>`
