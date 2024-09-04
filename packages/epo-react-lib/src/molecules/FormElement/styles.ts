@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   > * + * {
-    margin-block-start: var(--size-spacing-3xs);
+    margin-block-start: var(--size-spacing-3xs, calc(1em * 0.25));
   }
 `;
 
