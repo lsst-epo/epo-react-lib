@@ -15,9 +15,8 @@ const Page: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path
         d="M14.936,3H7.787A1.8,1.8,0,0,0,6.009,4.812L6,19.305a1.8,1.8,0,0,0,1.778,1.812H18.51A1.8,1.8,0,0,0,20.3,19.305V8.435Z"
         transform="translate(-6 -3)"

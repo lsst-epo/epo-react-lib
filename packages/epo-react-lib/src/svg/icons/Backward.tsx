@@ -15,9 +15,8 @@ const Backward: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path d="M4.5,0,9,8H0Z" transform="translate(7 9) rotate(-90)" />
       <path d="M4.5,0,9,8H0Z" transform="translate(0 9) rotate(-90)" />
     </svg>

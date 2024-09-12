@@ -15,9 +15,8 @@ const Checkmark: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path
         d="M8.282,14.423,5.9,12.036l-.8.8,3.182,3.182L15.1,9.2l-.8-.8Z"
         transform="translate(-5.1 -8.4)"
