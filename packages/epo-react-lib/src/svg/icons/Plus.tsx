@@ -17,9 +17,8 @@ const Plus: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g transform="translate(7.071 0) rotate(45)">
         <path d="M10,.933,9.067,0,5,4.067.933,0,0,.933,4.067,5,0,9.067.933,10,5,5.933,9.067,10,10,9.067,5.933,5Z" />
       </g>

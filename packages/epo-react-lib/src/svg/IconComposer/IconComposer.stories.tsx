@@ -50,14 +50,15 @@ export default meta;
 const IconGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--grid-size, 36px), 1fr));
-  gap: 0.5rem;
+  grid-auto-rows: minmax(var(--grid-size, 36px), 1fr);
+  gap: 0.5em;
   width: 100%;
 `;
 
 const Template: StoryFn<typeof IconComposer> = (args) => {
   const { size = 36 } = args;
   return (
-    <IconGrid style={{ "--grid-size": Number(size) ? size : `${size}px` }}>
+    <IconGrid style={{ "--grid-size": Number(size) ? `${size}px` : size }}>
       {Object.keys(Icons).map((key) => (
         <IconComposer key={key} {...args} size={size} icon={key} />
       ))}

@@ -15,9 +15,8 @@ const Forward: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g transform="translate(-2737 -1072)">
         <path
           d="M4.5,0,9,8H0Z"

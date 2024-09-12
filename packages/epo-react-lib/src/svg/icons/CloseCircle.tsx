@@ -15,10 +15,8 @@ const CloseCircle: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
-
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <circle cx="10" cy="10" r="10" />
       <g transform="translate(5 5)">
         <path

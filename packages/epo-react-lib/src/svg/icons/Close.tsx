@@ -17,10 +17,8 @@ const Close: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
-
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g strokeWidth={2}>
         <path d="m.707 16.707 16-16" />
         <path d="m.707.707 16 16" />

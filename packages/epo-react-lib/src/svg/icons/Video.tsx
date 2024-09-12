@@ -15,9 +15,8 @@ const Video: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path d="m11.8 14.9c2.7 0 5-2.2 5-5 0-2.7-2.2-5-5-5-2.7 0-5 2.2-5 5s2.2 5 5 5zm-1.7-7.5 4.6 2.6-4.6 2.6v-5.2z" />
       <path d="M1.5,0.8v22.8h20.6V0.8H1.5z M20.1,16.7H3.4V2.8h16.7V16.7z" />
     </svg>
