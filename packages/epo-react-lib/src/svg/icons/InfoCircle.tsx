@@ -13,11 +13,11 @@ const InfoCircle: FunctionComponent<SVGProps> = ({
     height: size,
     fill,
     className,
+    stroke: "currentColor",
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path
         d="M20.883,11.941A8.941,8.941,0,1,1,11.941,3a8.941,8.941,0,0,1,8.941,8.941Z"
         transform="translate(-3 -3)"

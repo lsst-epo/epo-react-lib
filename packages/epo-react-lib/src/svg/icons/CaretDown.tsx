@@ -16,9 +16,8 @@ const CaretDown: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path d="M0,0,9,9l9-9Z" />
     </svg>
   );

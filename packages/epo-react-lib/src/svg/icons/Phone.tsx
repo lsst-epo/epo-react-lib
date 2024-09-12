@@ -15,9 +15,8 @@ const Phone: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path d="M23.8302,19.8355a1.0945,1.0945,0,1,0,1.094,1.095,1.09511,1.09511,0,0,0-1.094-1.095" />
       <path d="M27.6378,22.5234a1.09312,1.09312,0,1,0-1.528.243,1.09106,1.09106,0,0,0,1.528-.243" />
       <path d="M28.2235,23.3262a1.09308,1.09308,0,1,0,1.376.704,1.09121,1.09121,0,0,0-1.376-.704" />

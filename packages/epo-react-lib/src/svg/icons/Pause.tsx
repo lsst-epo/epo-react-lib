@@ -15,9 +15,8 @@ const Pause: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g transform="translate(-2739 -1064)">
         <rect width="4" height="15" transform="translate(2739 1064)" />
         <rect width="4" height="15" transform="translate(2748 1064)" />

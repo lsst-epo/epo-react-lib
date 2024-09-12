@@ -15,9 +15,8 @@ const Thumbtack: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g transform="translate(-1442.963 821.797)">
         <path
           d="M3.725,4.9h0L3.1,4.883,0,.452.408.166,2.067,2.534.408.166.646,0l3.44,4.914Z"

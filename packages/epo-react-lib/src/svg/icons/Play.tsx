@@ -15,9 +15,8 @@ const Play: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path d="M8.5,0,17,15H0Z" transform="translate(15) rotate(90)" />
     </svg>
   );

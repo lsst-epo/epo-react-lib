@@ -24,9 +24,8 @@ const ChevronRightElongated: FunctionComponent<SVGProps> = ({
     stroke,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <g transform="scale(-1, 1) translate(-5)">
         <line
           y1="11"

@@ -15,9 +15,8 @@ const RotateLeft: FunctionComponent<SVGProps> = ({
     className,
   };
 
-  const mergedSvgProps = Object.assign(defaultProps, uniqueProps);
   return (
-    <svg {...mergedSvgProps}>
+    <svg {...{ ...defaultProps, ...uniqueProps }}>
       <path
         d="M10,4.5A7.5,7.5,0,0,0,2.5,12H0l3.333,3.333L6.667,12h-2.5a5.837,5.837,0,1,1,2.45,4.75l-1.183,1.2A7.5,7.5,0,1,0,10,4.5Z"
         transform="translate(19.5) rotate(90)"
