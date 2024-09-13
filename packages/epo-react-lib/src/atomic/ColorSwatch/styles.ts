@@ -1,4 +1,4 @@
-import styled, { RuleSet, css } from "styled-components";
+import styled, { type RuleSet, css } from "styled-components";
 import type { ColorSwatchProps } from "./ColorSwatch";
 
 const small = css`

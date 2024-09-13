@@ -1,4 +1,4 @@
 module.exports = {
-  extends: ["@rubin-epo/eslint-config-react"],
+  extends: ["@rubin-epo/eslint-config-react", "plugin:storybook/recommended"],
   parserOptions: { tsconfigRootDir: __dirname },
 };

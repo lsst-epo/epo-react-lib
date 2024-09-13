@@ -1,8 +1,7 @@
 import { forwardRef, HTMLProps, PropsWithChildren } from "react";
 import { IconKey } from "@/svg/icons";
-import IconComposer from "@/svg/IconComposer";
+import IconComposer, { IconComposerProps } from "@/svg/IconComposer";
 import * as Styled from "./styles";
-import { IconComposerProps } from "@/svg/IconComposer";
 
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 

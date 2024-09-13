@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SourceSelector from ".";
 import { biggerData } from "./mocks";
@@ -33,7 +33,7 @@ describe("SourceSelector", () => {
   });
   it("should not make a selection when an area outside a point is clicked", async () => {
     jest.clearAllMocks();
-    const { getByTestId, getByRole } = render(<SourceSelector {...props} />);
+    const { getByTestId } = render(<SourceSelector {...props} />);
     const blinker = getByTestId("blinker-container");
 
     await userEvent.pointer({

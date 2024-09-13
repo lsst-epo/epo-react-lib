@@ -3,12 +3,13 @@ import { resolve, dirname, join } from "path";
 import { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)", "../src/**/*.@(mdx)"],
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
     getAbsolutePath("@storybook/addon-jest"),
+    getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("storybook-react-i18next"),
   ],
   framework: {
@@ -17,10 +18,7 @@ const config: StorybookConfig = {
   },
   core: {},
   typescript: {
-    reactDocgen: "react-docgen", // 👈 react-docgen configured here.
-  },
-  features: {
-    storyStoreV7: true,
+    reactDocgen: "react-docgen-typescript", // 👈 react-docgen configured here.
   },
   staticDirs: [
     {
