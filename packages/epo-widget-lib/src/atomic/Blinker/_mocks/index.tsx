@@ -1,5 +1,3 @@
-import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
-
 export const mockImages: Array<{
   url: string;
   width?: number;

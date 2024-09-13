@@ -6,7 +6,6 @@ import {
   useRef,
   useEffect,
 } from "react";
-import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import after from "lodash/after";
 import * as Styled from "./styles";
 

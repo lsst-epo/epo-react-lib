@@ -17,8 +17,8 @@ const config: StorybookConfig = {
     options: {},
   },
   core: {},
-  features: {
-    storyStoreV7: true,
+  typescript: {
+    reactDocgen: "react-docgen-typescript", // 👈 react-docgen configured here.
   },
   staticDirs: [
     {

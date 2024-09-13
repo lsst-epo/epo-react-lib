@@ -1,5 +1,3 @@
-import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
-
 export type Band = "u" | "g" | "r" | "i" | "z" | "y";
 export type SourceType = "supernova" | "galaxy" | "galaxyFilter";
 
