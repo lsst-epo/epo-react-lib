@@ -1,4 +1,7 @@
-.stack {
+"use client";
+import styled from "styled-components";
+
+export const Stack = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,4 +25,4 @@
       margin-block-start: var(--size-spacing-stack, 1.5em);
     }
   }
-}
+`;
