@@ -11,6 +11,7 @@ export interface SlideoutProps {
   onOpenCallback?: () => void;
   slideFrom?: SlideFrom;
   showBackground?: boolean;
+  className?: string;
 }
 
 const getX = (slideFrom: SlideFrom) => {
@@ -41,6 +42,7 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
   onCloseCallback,
   slideFrom = "left",
   showBackground = true,
+  className,
   children,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,6 +78,7 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
       show={isOpen}
       afterEnter={() => onOpenCallback && onOpenCallback()}
       afterLeave={() => onCloseCallback && onCloseCallback()}
+      className={className}
       data-testid="slideout"
     >
       {showBackground && (

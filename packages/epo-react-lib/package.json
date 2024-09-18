@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
-    "@headlessui/react": "^2.0.3",
+    "@headlessui/react": "2.0.4",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
     "lodash": "^4.17.21",

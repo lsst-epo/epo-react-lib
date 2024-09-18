@@ -3032,6 +3032,16 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.2.tgz#d8bae93ac8b815b2bd7a98078cf91e2724ef11e5"
   integrity sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==
 
+"@headlessui/react@2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-2.0.4.tgz#46cb39ca9dde3c2d15f4706c81dad78405b608f0"
+  integrity sha512-16d/rOLeYsFsmPlRmXGu8DCBzrWD0zV1Ccx3n73wN87yFu8Y9+X04zflv8EJEt9TAYRyLKOmQXUnOnqQl6NgpA==
+  dependencies:
+    "@floating-ui/react" "^0.26.13"
+    "@react-aria/focus" "^3.16.2"
+    "@react-aria/interactions" "^3.21.1"
+    "@tanstack/react-virtual" "3.5.0"
+
 "@headlessui/react@^2.0.3":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-2.0.3.tgz#7506d808a6f3abc307f35354d34b8d642ecfd692"
@@ -7457,14 +7467,7 @@ conventional-changelog-angular@^8.0.0:
   dependencies:
     compare-func "^2.0.0"
 
-conventional-changelog-conventionalcommits@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-7.0.2.tgz#aa5da0f1b2543094889e8cf7616ebe1a8f5c70d5"
-  integrity sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==
-  dependencies:
-    compare-func "^2.0.0"
-
-conventional-changelog-conventionalcommits@^8.0.0:
+"conventional-changelog-conventionalcommits@>= 8.0.0", conventional-changelog-conventionalcommits@^7.0.2, conventional-changelog-conventionalcommits@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-8.0.0.tgz#3fa2857c878701e7f0329db5a1257cb218f166fe"
   integrity sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==
