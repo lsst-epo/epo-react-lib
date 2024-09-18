@@ -1,24 +1,23 @@
-import { CSSProperties, FunctionComponent, PropsWithChildren } from "react";
+import { FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
 
 export interface StackProps {
+  /** A CSS `margin` value */
   space?: string;
+  /** Whether the spaces apply recursively (i.e. regardless of nesting level) */
   recursive?: boolean;
   className?: string;
-  style?: CSSProperties;
 }
 
 const Stack: FunctionComponent<PropsWithChildren<StackProps>> = ({
   space = "var(--size-spacing-s)",
   recursive = false,
   className,
-  style,
   children,
 }) => {
   return (
     <Styled.Stack
       style={{
-        ...style,
         "--size-spacing-stack": space,
       }}
       data-recursive={recursive}

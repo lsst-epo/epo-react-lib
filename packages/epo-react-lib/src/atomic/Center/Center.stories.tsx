@@ -1,10 +1,17 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 
-import Stack from ".";
+import Center from ".";
 import { FunctionComponent } from "react";
+import Stack from "../Stack";
 
-const meta: Meta<typeof Stack> = {
-  component: Stack,
+const meta: Meta<typeof Center> = {
+  component: Center,
+  argTypes: {
+    maxWidth: { control: "text" },
+    andText: { control: "boolean" },
+    intrinsic: { control: "boolean" },
+    gutter: { control: "text" },
+  },
 };
 export default meta;
 
@@ -41,14 +48,20 @@ const Iterator: FunctionComponent<{
   });
 };
 
-const Template: StoryFn<typeof Stack> = (args) => {
-  const iterables = [1, 2, 3, [3.1, 3.2], 4, 5, 6];
+const Template: StoryFn<typeof Center> = (args) => {
+  const iterables = [1, 2, 3, 4, 5, 6];
 
   return (
-    <Stack {...args}>
-      <Iterator {...{ iterables }} />
-    </Stack>
+    <Center {...args}>
+      <Stack>
+        <Iterator {...{ iterables }} />
+      </Stack>
+    </Center>
   );
 };
 
-export const Primary: StoryObj<typeof Stack> = Template.bind({});
+export const Primary: StoryObj<typeof Center> = Template.bind({});
+
+Primary.args = {
+  maxWidth: "60ch",
+};

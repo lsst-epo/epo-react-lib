@@ -12,7 +12,7 @@ export const Stack = styled.div`
     }
 
     * + * {
-      margin-block-start: var(--size-spacing-stack, 1.5em);
+      margin-block-start: var(--size-spacing-stack, 1rem);
     }
   }
 
@@ -22,7 +22,7 @@ export const Stack = styled.div`
     }
 
     > * + * {
-      margin-block-start: var(--size-spacing-stack, 1.5em);
+      margin-block-start: var(--size-spacing-stack, 1rem);
     }
   }
 `;
