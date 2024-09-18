@@ -18,6 +18,7 @@ interface SlideoutMenuProps {
   id: string;
   isOpen: boolean;
   isSubMenuOpen?: boolean;
+  className?: string;
   onOpenCallback?: () => void;
   onCloseCallback?: () => void;
 }
@@ -31,6 +32,7 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   onOpenCallback,
   onCloseCallback,
   children,
+  className,
 }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -109,7 +111,10 @@ const SlideoutMenu: FunctionComponent<PropsWithChildren<SlideoutMenuProps>> = ({
   useKeyDownEvent(handleKeyDown);
 
   return (
-    <Slideout onCloseCallback={handleClose} {...{ isOpen, onOpenCallback }}>
+    <Slideout
+      onCloseCallback={handleClose}
+      {...{ isOpen, onOpenCallback, className }}
+    >
       <Styled.MenuContainer
         ref={menuRef}
         role="menu"
