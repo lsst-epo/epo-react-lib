@@ -9,7 +9,7 @@ import postcss from "./postcss.config";
 const defaultFormat = "es";
 
 const packages = Object.fromEntries(
-  sync(["src/molecules/**/*.tsx"], {
+  sync(["src/atomic/*/index.tsx", "src/molecules/*/*.tsx"], {
     ignore: ["src/**/*.stories.tsx", "src/**/*.test.tsx"],
   }).map((file) => {
     const path = resolve(__dirname, file);
@@ -32,7 +32,6 @@ const entry = {
   ExpandToggle: resolve(__dirname, "src/atomic/ExpandToggle/ExpandToggle.tsx"),
   ExternalLink: resolve(__dirname, "src/atomic/ExternalLink/ExternalLink.tsx"),
   Figure: resolve(__dirname, "src/atomic/Figure/Figure.tsx"),
-  Image: resolve(__dirname, "src/atomic/Image/index.tsx"),
   Link: resolve(__dirname, "src/atomic/Link/Link.tsx"),
   MixedLink: resolve(__dirname, "src/atomic/MixedLink/MixedLink.tsx"),
   ProgressBar: resolve(__dirname, "src/atomic/Progress/Bar/ProgressBar.tsx"),
@@ -47,7 +46,6 @@ const entry = {
   ),
   Share: resolve(__dirname, "src/atomic/Share"),
   Toast: resolve(__dirname, "src/atomic/Toast/Toast.tsx"),
-  Video: resolve(__dirname, "src/atomic/Video/index.tsx"),
   SimpleTable: resolve(
     __dirname,
     "src/content-blocks/SimpleTable/SimpleTable.tsx"
@@ -77,8 +75,6 @@ const entry = {
   SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
   IconComposer: resolve(__dirname, "src/svg/IconComposer/index.tsx"),
   icons: resolve(__dirname, "src/svg/icons"),
-  Slideout: resolve(__dirname, "src/atomic/Slideout/index.tsx"),
-  Picture: resolve(__dirname, "src/atomic/Picture/index.tsx"),
   ...packages,
 };
 
@@ -136,6 +132,7 @@ export default defineConfig({
       external: [
         "@castiron/style-mixins",
         "@headlessui/react",
+        "classnames",
         "flickity",
         "focus-trap",
         "i18next",

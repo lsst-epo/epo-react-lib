@@ -26,6 +26,7 @@ export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
 export * from "@/atomic/Share";
 export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
+export { default as Stack } from "@/atomic/Stack";
 
 // Content Blocks
 export { default as SimpleTable } from "@/content-blocks/SimpleTable";
