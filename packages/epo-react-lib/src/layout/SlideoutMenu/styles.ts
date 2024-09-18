@@ -10,7 +10,6 @@ export const MenuContainer = styled.div`
   color: var(--white, #fff);
   padding: var(--menu-padding);
   height: 100%;
-  width: 20rem;
   max-width: 100%;
   overflow-y: auto;
 
