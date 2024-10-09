@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import { className } from "@/storybook/utilities/argTypes";
+import { generateCantoSrcSet } from "@/storybook/utilities/helpers";
 import styled from "styled-components";
 
 import Picture from ".";
@@ -11,19 +12,6 @@ const meta: Meta<typeof Picture> = {
   },
 };
 export default meta;
-
-const generateCantoSrcSet = (cantoUrl: string, width?: number) => {
-  const sizes = [100, 240, 320, 500, 640, 800, 2050].filter((size) =>
-    width ? size < width : true
-  );
-
-  return sizes.map((size) => {
-    return {
-      src: `${cantoUrl}${size}`,
-      size,
-    };
-  });
-};
 
 const LandscapeTitle = styled.h2`
   @media screen and (orientation: portrait) {

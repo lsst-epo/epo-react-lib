@@ -28,6 +28,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/layout/*": ["src/layout/*"],
       "@/lib/*": ["src/lib/*"],
+      "@/molecules/*": ["src/molecules/*"],
       "@/storybook/*": [".storybook/*"],
       "@/styles/*": ["src/styles/*"],
       "@/svg/*": ["src/svg/*"],
