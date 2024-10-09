@@ -15,6 +15,7 @@ const config: JestConfigWithTsJest = {
     "^@/hooks(.*)$": "<rootDir>/src/hooks$1",
     "^@/layout(.*)$": "<rootDir>/src/layout$1",
     "^@/lib(.*)$": "<rootDir>/src/lib$1",
+    "^@/molecules(.*)$": "<rootDir>/src/molecules$1",
     "^@/storybook(.*)$": "<rootDir>/.storybook$1",
     "^@/styles(.*)$": "<rootDir>/src/styles$1",
     "^@/svg(.*)$": "<rootDir>/src/svg$1",

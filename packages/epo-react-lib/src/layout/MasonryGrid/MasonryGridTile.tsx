@@ -1,6 +1,6 @@
 import * as Styled from "./styles";
 import Link from "next/link";
-import ResponsiveImage from "@/atomic/ResponsiveImage";
+import ResponsiveImage from "@/molecules/ResponsiveImage";
 import IconComposer from "@/svg/IconComposer";
 import { FunctionComponent } from "react";
 import { ImageShape } from "@/types/image";
@@ -23,7 +23,7 @@ const Tile: FunctionComponent<TileProps> = ({
   return (
     <Link legacyBehavior href={link} passHref prefetch={prefetch}>
       <Styled.TileLink>
-        <ResponsiveImage image={image} ratio="16:9" title={title} />
+        <ResponsiveImage image={image} aspectRatio="16:9" title={title} />
         {isVideo && (
           <Styled.PlayButton>
             <IconComposer icon="play" />
