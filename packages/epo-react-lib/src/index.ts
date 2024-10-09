@@ -22,7 +22,7 @@ export { default as ProgressBar } from "@/atomic/Progress/Bar";
 export { default as Marker } from "@/atomic/Progress/Marker";
 export { type PictureProps, default as Picture } from "@/atomic/Picture";
 export { default as ProgressRadial } from "@/atomic/Progress/Radial";
-export { default as ResponsiveImage } from "@/atomic/ResponsiveImage";
+export { default as ResponsiveImage } from "@/molecules/ResponsiveImage";
 export * from "@/atomic/Share";
 export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
