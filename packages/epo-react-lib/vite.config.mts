@@ -40,10 +40,6 @@ const entry = {
     __dirname,
     "src/atomic/Progress/Radial/ProgressRadial.tsx"
   ),
-  ResponsiveImage: resolve(
-    __dirname,
-    "src/atomic/ResponsiveImage/ResponsiveImage.tsx"
-  ),
   Share: resolve(__dirname, "src/atomic/Share"),
   Toast: resolve(__dirname, "src/atomic/Toast/Toast.tsx"),
   SimpleTable: resolve(
