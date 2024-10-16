@@ -5,6 +5,8 @@ import HorizontalSlider from "@rubin-epo/epo-react-lib/HorizontalSlider";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import { ChartMargin, HistogramData } from "@/types/charts";
 import { getLinearScale, between } from "@/lib/utils";
+import ResetButton from "@/atomic/Button/patterns/Reset";
+import Controls from "@/layout/Controls";
 import { SkymapObject } from "./Skymap";
 import LiveLabel from "./LiveLabel";
 import * as Styled from "./styles";
@@ -82,74 +84,81 @@ const SupernovaThreeVector: FunctionComponent<SupernovaThreeVectorProps> = ({
   }, 0);
 
   return (
-    <Styled.ThreeVectorContainer ratio={{ landscape: 3 / 2, portrait: 9 / 16 }}>
-      <Styled.ThreeVectorLayout>
-        <Styled.HistogramContainer>
-          <Styled.ChartTitle>
-            {t("supernova_three_vector.histogram.title")}
-          </Styled.ChartTitle>
-          <Styled.Histogram
-            data={histogramData}
-            {...{
-              activeRange,
-              xDomain,
-              yDomain,
-              xScale,
-              yScale,
-              yTicks,
-              xTicks,
-              step,
-              margin,
-              width,
-              height,
-            }}
-          />
-        </Styled.HistogramContainer>
-        <Styled.SliderContainer
-          style={{
-            paddingInlineStart: sliderLeftMargin,
-            paddingInlineEnd: sliderRightMargin,
-          }}
-        >
-          <HorizontalSlider
-            min={xMin}
-            max={xMax}
-            step={step}
-            value={activeRange}
-            ariaValuetext={({ valueNow }) =>
-              t("supernova_three_vector.slider.valueLabel", { value: valueNow })
-            }
-            color="var(--turquoise85,#12726D)"
-            minLabel={`${xMin} Mlyr`}
-            maxLabel={`${xMax} Mlyr`}
-            onChangeCallback={(value) =>
-              Array.isArray(value) && setActiveRange(value)
-            }
-          />
-        </Styled.SliderContainer>
-        <Styled.SkymapContainer>
-          <Styled.ChartTitle>
-            {t("supernova_three_vector.skymap.title")}
-          </Styled.ChartTitle>
-          <Styled.Skymap
+    <Controls
+      ratio={{ landscape: 3 / 2, portrait: 1 / 2 }}
+      widget={
+        <>
+          <Styled.ThreeVectorLayout>
+            <Styled.HistogramContainer>
+              <Styled.ChartTitle>
+                {t("supernova_three_vector.histogram.title")}
+              </Styled.ChartTitle>
+              <Styled.Histogram
+                data={histogramData}
+                {...{
+                  activeRange,
+                  xDomain,
+                  yDomain,
+                  xScale,
+                  yScale,
+                  yTicks,
+                  xTicks,
+                  step,
+                  margin,
+                  width,
+                  height,
+                }}
+              />
+            </Styled.HistogramContainer>
+            <Styled.SliderContainer
+              style={{
+                paddingInlineStart: sliderLeftMargin,
+                paddingInlineEnd: sliderRightMargin,
+              }}
+            >
+              <HorizontalSlider
+                min={xMin}
+                max={xMax}
+                step={step}
+                value={activeRange}
+                ariaValuetext={({ valueNow }) =>
+                  t("supernova_three_vector.slider.valueLabel", {
+                    value: valueNow,
+                  })
+                }
+                color="var(--turquoise85,#12726D)"
+                minLabel={`${xMin} Mlyr`}
+                maxLabel={`${xMax} Mlyr`}
+                onChangeCallback={(value) =>
+                  Array.isArray(value) && setActiveRange(value)
+                }
+              />
+            </Styled.SliderContainer>
+            <Styled.SkymapContainer>
+              <Styled.ChartTitle>
+                {t("supernova_three_vector.skymap.title")}
+              </Styled.ChartTitle>
+              <Styled.Skymap
+                objects={visibleUserObjects}
+                images={binnedImages}
+                describedById={liveDescriptionId}
+                visibleImages={selectedBins}
+              />
+            </Styled.SkymapContainer>
+          </Styled.ThreeVectorLayout>
+          <LiveLabel
+            id={liveDescriptionId}
             objects={visibleUserObjects}
-            images={binnedImages}
-            describedById={liveDescriptionId}
-            visibleImages={selectedBins}
+            min={activeRange[0]}
+            max={activeRange[1] + step}
+            {...{ supernovaCount }}
           />
-        </Styled.SkymapContainer>
-        <Styled.ResetButton
-          onResetCallback={() => setActiveRange([xMin, xMax])}
-        />
-      </Styled.ThreeVectorLayout>
-      <LiveLabel
-        id={liveDescriptionId}
-        objects={visibleUserObjects}
-        min={activeRange[0]}
-        max={activeRange[1] + step}
-        {...{ supernovaCount }}
-      />
-    </Styled.ThreeVectorContainer>
+        </>
+      }
+      actions={
+        <ResetButton onResetCallback={() => setActiveRange([xMin, xMax])} />
+      }
+    ></Controls>
   );
 };
 

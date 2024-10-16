@@ -4,7 +4,7 @@ import * as Styled from "./styles";
 
 interface WidgetControlsProps {
   widget: ReactNode;
-  controls: ReactNode;
+  controls?: ReactNode;
   ratio?: Ratios;
   controlsId?: string;
   actions?: ReactNode;
