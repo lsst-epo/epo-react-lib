@@ -1,34 +1,26 @@
 import styled from "styled-components";
 import { token } from "@rubin-epo/epo-react-lib/styles";
-import AspectRatio from "@/layout/AspectRatio";
-import * as Button from "@/atomic/Button";
 import DistanceHistogram from "./Histogram";
 import BaseSkymap from "./Skymap";
-
-export const ThreeVectorContainer = styled(AspectRatio)`
-  container-type: inline-size;
-`;
 
 export const ThreeVectorLayout = styled.div`
   --three-vector-gap: calc(var(--PADDING_SMALL, 20px) / 2);
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr min-content min-content;
+  grid-auto-rows: min-content;
   grid-template-areas:
     "skymap"
     "histogram"
-    "slider"
-    "reset";
+    "slider";
   gap: var(--three-vector-gap);
 
-  @container (min-width: ${token("BREAK_LARGE_TABLET")}) {
+  @media (orientation: landscape) {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr min-content min-content;
+    grid-template-rows: 1fr min-content;
     grid-template-areas:
       "histogram skymap"
-      "slider ."
-      "reset reset";
+      "slider .";
   }
 
   @container (min-width: ${token("BREAK_TABLET_MIN")}) {
@@ -57,10 +49,6 @@ export const Histogram = styled(DistanceHistogram)`
 
 export const SliderContainer = styled.div`
   grid-area: slider;
-`;
-
-export const ResetButton = styled(Button.Reset)`
-  grid-area: reset;
 `;
 
 export const SkymapContainer = styled.div`
