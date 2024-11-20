@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 Sep 2024 18:37:30 GMT
+ * Generated on Wed, 20 Nov 2024 23:25:53 GMT
  */
 
 module.exports = {
@@ -24,6 +24,7 @@ module.exports = {
   "COLOR_BACKGROUND_BUTTON_LINK_INACTIVE": "rgba(0, 0, 0, 0)",
   "COLOR_BACKGROUND_PAGE_PRIMARY": "#ffffff",
   "COLOR_BACKGROUND_PAGE_INVERT": "#000000",
+  "COLOR_BACKGROUND_TILE_LIGHT": "#f5f5f5",
   "COLOR_BORDER_BUTTON_PRIMARY": "rgba(0, 0, 0, 0)",
   "COLOR_BORDER_BUTTON_SECONDARY": "rgba(0, 0, 0, 0)",
   "COLOR_BORDER_BUTTON_TERTIARY": "#000000",

@@ -10,7 +10,7 @@ export { default as CircularLoader } from "@/atomic/CircularLoader";
 export { default as ColorSwatch } from "@/atomic/ColorSwatch";
 export { default as ExpandToggle } from "@/atomic/ExpandToggle";
 export { default as ExternalLink } from "@/atomic/ExternalLink";
-export { default as Figure } from "@/atomic/Figure";
+export { default as Figure, type FigureProps } from "@/atomic/Figure";
 export {
   type ImageProps,
   type ImageShape,
