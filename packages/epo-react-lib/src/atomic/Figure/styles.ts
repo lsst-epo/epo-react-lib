@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { ptToEm } from "@/styles/utils";
 import { BREAK_PHABLET } from "@/styles/abstracts";
 
 export const Figure = styled.figure`
-  --figcaption-gap: calc(var(--figure-padding, 20px) * 0.75);
+  --figcaption-gap: var(--figure-padding, var(--size-spacing-s, 1rem));
 
   background-color: var(--figure-background-color);
   padding: var(--figure-padding);
@@ -20,7 +19,7 @@ export const Figure = styled.figure`
 `;
 
 export const FigCaption = styled.figcaption`
-  font-size: ${ptToEm("14pt")};
+  font-size: var(--size-font-14-14, 0.875rem);
   line-height: 1.428;
 
   &[data-layout="vertical"] {

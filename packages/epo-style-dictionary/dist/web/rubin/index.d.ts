@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 04 Sep 2024 18:37:30 GMT
+ * Generated on Wed, 20 Nov 2024 23:25:53 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;
@@ -23,6 +23,7 @@ export const COLOR_BACKGROUND_BUTTON_LINK_HOVER : string;
 export const COLOR_BACKGROUND_BUTTON_LINK_INACTIVE : string;
 export const COLOR_BACKGROUND_PAGE_PRIMARY : string;
 export const COLOR_BACKGROUND_PAGE_INVERT : string;
+export const COLOR_BACKGROUND_TILE_LIGHT : string;
 export const COLOR_BORDER_BUTTON_PRIMARY : string;
 export const COLOR_BORDER_BUTTON_SECONDARY : string;
 export const COLOR_BORDER_BUTTON_TERTIARY : string;
