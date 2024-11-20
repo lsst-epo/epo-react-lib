@@ -31,7 +31,6 @@ const entry = {
   ColorSwatch: resolve(__dirname, "src/atomic/ColorSwatch/ColorSwatch.tsx"),
   ExpandToggle: resolve(__dirname, "src/atomic/ExpandToggle/ExpandToggle.tsx"),
   ExternalLink: resolve(__dirname, "src/atomic/ExternalLink/ExternalLink.tsx"),
-  Figure: resolve(__dirname, "src/atomic/Figure/Figure.tsx"),
   Link: resolve(__dirname, "src/atomic/Link/Link.tsx"),
   MixedLink: resolve(__dirname, "src/atomic/MixedLink/MixedLink.tsx"),
   ProgressBar: resolve(__dirname, "src/atomic/Progress/Bar/ProgressBar.tsx"),

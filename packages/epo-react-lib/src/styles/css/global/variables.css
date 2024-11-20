@@ -5,6 +5,14 @@
 :root {
   @utopia clamps({
     pairs: [
+      [14, 14]
+    ],
+    prefix: "size-font",
+    relativeTo: "viewport-width",
+  });
+
+  @utopia clamps({
+    pairs: [
       [16, 20]
     ],
     prefix: "size-font",

@@ -8,6 +8,11 @@
         "invert": {
           "value": "{color.neutral.100}"
         }
+      },
+      "tile": {
+        "light": {
+          "value": "{color.neutral.04}"
+        }
       }
     }
   }
