@@ -12,15 +12,18 @@
           "value": "{color.teal.68}"
         },
         "400": {
-          "value": "{color.turquoise.74}"
+          "value": "{color.turquoise.72}"
         },
         "500": {
-          "value": "{color.teal.83}"
+          "value": "{color.turquoise.74}"
         },
         "600": {
-          "value": "{color.turquoise.90}"
+          "value": "{color.teal.83}"
         },
         "700": {
+          "value": "{color.turquoise.90}"
+        },
+        "800": {
           "value": "{color.turquoise.95}"
         }
       },
