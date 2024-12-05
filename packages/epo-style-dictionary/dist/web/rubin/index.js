@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 20 Nov 2024 23:25:53 GMT
+ * Generated on Thu, 05 Dec 2024 18:54:33 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT = "#12726d";
@@ -45,10 +45,11 @@ export const COLOR_TEXT_BUTTON_LINK = "#058b8c";
 export const COLOR_RUBIN_TEAL_100 = "#d9f7f6";
 export const COLOR_RUBIN_TEAL_200 = "#b1f2ef";
 export const COLOR_RUBIN_TEAL_300 = "#009fa1";
-export const COLOR_RUBIN_TEAL_400 = "#12726d";
-export const COLOR_RUBIN_TEAL_500 = "#0c4a47";
-export const COLOR_RUBIN_TEAL_600 = "#062e2c";
-export const COLOR_RUBIN_TEAL_700 = "#021a18";
+export const COLOR_RUBIN_TEAL_400 = "#058b8c";
+export const COLOR_RUBIN_TEAL_500 = "#12726d";
+export const COLOR_RUBIN_TEAL_600 = "#0c4a47";
+export const COLOR_RUBIN_TEAL_700 = "#062e2c";
+export const COLOR_RUBIN_TEAL_800 = "#021a18";
 export const COLOR_RUBIN_GRAY_100 = "#dce0e3";
 export const COLOR_RUBIN_GRAY_200 = "#6a6e6e";
 export const COLOR_RUBIN_GRAY_300 = "#1f2121";

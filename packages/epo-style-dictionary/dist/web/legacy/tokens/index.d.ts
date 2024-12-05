@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Wed, 20 Nov 2024 23:25:53 GMT
+ * Generated on Thu, 05 Dec 2024 18:54:33 GMT
  */
 
 export const FONT_STACK_BASE : string;
