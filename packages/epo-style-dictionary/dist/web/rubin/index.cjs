@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 20 Nov 2024 23:25:53 GMT
+ * Generated on Thu, 05 Dec 2024 18:54:33 GMT
  */
 
 module.exports = {
@@ -46,10 +46,11 @@ module.exports = {
   "COLOR_RUBIN_TEAL_100": "#d9f7f6",
   "COLOR_RUBIN_TEAL_200": "#b1f2ef",
   "COLOR_RUBIN_TEAL_300": "#009fa1",
-  "COLOR_RUBIN_TEAL_400": "#12726d",
-  "COLOR_RUBIN_TEAL_500": "#0c4a47",
-  "COLOR_RUBIN_TEAL_600": "#062e2c",
-  "COLOR_RUBIN_TEAL_700": "#021a18",
+  "COLOR_RUBIN_TEAL_400": "#058b8c",
+  "COLOR_RUBIN_TEAL_500": "#12726d",
+  "COLOR_RUBIN_TEAL_600": "#0c4a47",
+  "COLOR_RUBIN_TEAL_700": "#062e2c",
+  "COLOR_RUBIN_TEAL_800": "#021a18",
   "COLOR_RUBIN_GRAY_100": "#dce0e3",
   "COLOR_RUBIN_GRAY_200": "#6a6e6e",
   "COLOR_RUBIN_GRAY_300": "#1f2121",

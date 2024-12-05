@@ -4,10 +4,10 @@
       "button": {
         "primary": {
           "default": {
-            "value": "{color.rubin.teal.400}"
+            "value": "{color.rubin.teal.500}"
           },
           "hover": {
-            "value": "{color.rubin.teal.400}"
+            "value": "{color.rubin.teal.500}"
           },
           "inactive": { "value": "#707070" }
         },

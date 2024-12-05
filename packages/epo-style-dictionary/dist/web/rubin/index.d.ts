@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 20 Nov 2024 23:25:53 GMT
+ * Generated on Thu, 05 Dec 2024 18:54:33 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;
@@ -49,6 +49,7 @@ export const COLOR_RUBIN_TEAL_400 : string;
 export const COLOR_RUBIN_TEAL_500 : string;
 export const COLOR_RUBIN_TEAL_600 : string;
 export const COLOR_RUBIN_TEAL_700 : string;
+export const COLOR_RUBIN_TEAL_800 : string;
 export const COLOR_RUBIN_GRAY_100 : string;
 export const COLOR_RUBIN_GRAY_200 : string;
 export const COLOR_RUBIN_GRAY_300 : string;
