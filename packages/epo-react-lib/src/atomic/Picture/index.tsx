@@ -8,8 +8,7 @@ type AlternateSource = {
   width: number;
   height?: number;
   mediaCondition?: string;
-  srcSet: Array<srcType>;
-  src: string;
+  srcSet: string | Array<srcType>;
 };
 
 export type PictureProps = {
@@ -25,13 +24,15 @@ const Picture: FunctionComponent<PictureProps> = ({
 }) => {
   return (
     <picture {...{ className }}>
-      {sources.map(({ src, srcSet, mediaCondition, width, ...props }, i) => {
+      {sources.map(({ srcSet, mediaCondition, ...props }, i) => {
         return (
           <source
             key={i}
-            srcSet={stringifySrcSet([...srcSet, { src, size: width }])}
+            srcSet={
+              Array.isArray(srcSet) ? stringifySrcSet([...srcSet]) : srcSet
+            }
             media={mediaCondition}
-            {...{ width, ...props }}
+            {...{ ...props }}
           />
         );
       })}

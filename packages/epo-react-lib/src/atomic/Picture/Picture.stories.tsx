@@ -50,7 +50,6 @@ Primary.args = {
   },
   sources: [
     {
-      src: "https://rubin.canto.com/direct/image/9u18e5a58t17t372gj0eepo80c/A9NWRljpJ8XF4R4q91q1d0ubEuA/original?content-type=image%2Fjpeg&name=Eye-Bayer+filter+comparison+V2-100.jpg",
       srcSet: generateCantoSrcSet(
         "https://rubin.canto.com/direct/image/9u18e5a58t17t372gj0eepo80c/DN9LDOXn0jmgoGTOJP8agB55AHE/m800/",
         823
