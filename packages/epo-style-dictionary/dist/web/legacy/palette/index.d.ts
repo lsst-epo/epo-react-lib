@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 05 Dec 2024 18:54:33 GMT
+ * Generated on Mon, 09 Dec 2024 14:31:14 GMT
  */
 
 export const white : string;
@@ -40,6 +40,7 @@ export const orange05 : string;
 export const orange10 : string;
 export const orange20 : string;
 export const orange55 : string;
+export const blue10 : string;
 export const blue20 : string;
 export const green05 : string;
 export const red : string;
