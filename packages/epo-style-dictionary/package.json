@@ -2,7 +2,7 @@
   "name": "@rubin-epo/epo-style-dictionary",
   "private": true,
   "description": "Rubin Observatory Education & Public Outreach team style tokens.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Rubin EPO",
   "license": "MIT",
   "homepage": "https://lsst-epo.github.io/epo-react-lib",

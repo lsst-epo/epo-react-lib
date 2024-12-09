@@ -1,6 +1,12 @@
 {
   "color": {
     "blue": {
+      "04": {
+        "value": "#eef5fb",
+        "attributes": {
+          "atomic": true
+        }
+      },
       "13": {
         "value": "#C7D4F4",
         "attributes": {

@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 05 Dec 2024 18:54:33 GMT
+ * Generated on Mon, 09 Dec 2024 14:31:14 GMT
  */
 
 export const white = "#ffffff";
@@ -37,6 +37,7 @@ export const orange05 = "#fff8f0"; // Merged with orange04
 export const orange10 = "#ffedd9";
 export const orange20 = "#ffe7cc";
 export const orange55 = "#fab364";
+export const blue10 = "#eef5fb";
 export const blue20 = "#c7d4f4";
 export const green05 = "#d7e6cf";
 export const red = "#cf4040";

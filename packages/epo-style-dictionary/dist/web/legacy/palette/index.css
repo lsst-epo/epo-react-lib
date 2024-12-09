@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Thu, 05 Dec 2024 18:54:33 GMT
+ * Generated on Mon, 09 Dec 2024 14:31:14 GMT
  */
 
 :root {
@@ -38,6 +38,7 @@
   --orange10: #ffedd9;
   --orange20: #ffe7cc;
   --orange55: #fab364;
+  --blue10: #eef5fb;
   --blue20: #c7d4f4;
   --green05: #d7e6cf;
   --red: #cf4040;
