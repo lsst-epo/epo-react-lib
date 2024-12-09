@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Thu, 05 Dec 2024 18:54:33 GMT
+ * Generated on Mon, 09 Dec 2024 14:31:14 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT : string;

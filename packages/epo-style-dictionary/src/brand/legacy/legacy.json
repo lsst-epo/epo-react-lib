@@ -219,6 +219,13 @@
       "legacy": true
     }
   },
+  "blue10": {
+    "value": "{color.blue.04}",
+    "attributes": {
+      "category": "color",
+      "legacy": true
+    }
+  },
   "blue20": {
     "value": "{color.blue.13}",
     "attributes": {
