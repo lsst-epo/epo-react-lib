@@ -5,7 +5,7 @@ import { stringifySrcSet } from "../Image/utils";
 
 type AlternateSource = {
   type?: string;
-  width: number;
+  width?: number;
   height?: number;
   mediaCondition?: string;
   srcSet: string | Array<srcType>;
