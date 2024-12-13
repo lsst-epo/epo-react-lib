@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import banner2 from "rollup-plugin-banner2";
 import postcss from "./postcss.config";
+import { peerDependencies, dependencies } from "./package.json";
 
 const defaultFormat = "es";
 
@@ -125,23 +126,13 @@ export default defineConfig({
         }),
       ],
       external: [
-        "@castiron/style-mixins",
-        "@headlessui/react",
-        "classnames",
-        "flickity",
-        "focus-trap",
-        "i18next",
+        ...Object.keys(dependencies),
+        ...Object.keys(peerDependencies),
         /^lodash/,
         "next/link",
-        "react",
         "react/jsx-runtime",
-        "react-dom",
-        "react-i18next",
         "react-player/base",
         "react-player/youtube",
-        "react-share",
-        "react-slider",
-        "styled-components",
       ],
       output: {
         exports: "named",
