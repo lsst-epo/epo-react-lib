@@ -14,6 +14,7 @@ export interface ImageShape {
   /** may be required in future versions */
   height?: number;
   url: string;
+  src?: string;
   srcSet?: Array<srcType>;
   sizes?: Array<srcSize>;
   priority?: boolean;
