@@ -7,21 +7,21 @@ export const Stack = styled.div`
   justify-content: flex-start;
 
   &[data-recursive="true"] {
-    > * {
+    & * {
       margin-block: 0;
     }
 
-    > * + * {
+    & * + * {
       margin-block-start: var(--size-spacing-stack, 1rem);
     }
   }
 
   &[data-recursive="false"] {
-    > * {
+    & > * {
       margin-block: 0;
     }
 
-    > * + * {
+    & > * + * {
       margin-block-start: var(--size-spacing-stack, 1rem);
     }
   }

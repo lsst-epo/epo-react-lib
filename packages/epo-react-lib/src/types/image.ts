@@ -15,8 +15,8 @@ export interface ImageShape {
   height?: number;
   url: string;
   src?: string;
-  srcSet?: Array<srcType>;
-  sizes?: Array<srcSize>;
+  srcSet?: string | Array<srcType>;
+  sizes?: string | Array<srcSize>;
   priority?: boolean;
   /** @deprecated */
   url2x?: string;

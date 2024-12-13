@@ -5,6 +5,11 @@ import { FunctionComponent } from "react";
 
 const meta: Meta<typeof Stack> = {
   component: Stack,
+  argTypes: {
+    recursive: {
+      control: "boolean",
+    },
+  },
 };
 export default meta;
 
