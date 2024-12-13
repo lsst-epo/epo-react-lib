@@ -1,9 +1,9 @@
-import { ImageShape, srcType } from "@/types/image";
 import { FunctionComponent, ImgHTMLAttributes } from "react";
+import { ImageShape, srcType } from "@/types/image";
 import * as Styled from "./styles";
 import { stringifySizes, stringifySrcSet } from "./utils";
 
-export type { ImageShape };
+export { type ImageShape };
 
 export interface ImageProps {
   image: ImageShape;
@@ -13,7 +13,8 @@ export interface ImageProps {
 
 const Image: FunctionComponent<ImageProps> = ({ image, title, className }) => {
   const {
-    url: src,
+    url,
+    src,
     srcSet = [],
     sizes = [],
     url2x,
@@ -29,7 +30,7 @@ const Image: FunctionComponent<ImageProps> = ({ image, title, className }) => {
     loading: "lazy",
   };
   const lcpProps: Partial<ImgHTMLAttributes<HTMLImageElement>> = {
-    decoding: "sync",
+    decoding: "async",
     loading: "eager",
   };
 
@@ -44,15 +45,20 @@ const Image: FunctionComponent<ImageProps> = ({ image, title, className }) => {
   const fullSrcSet = [...srcSet, ...legacySrcSet];
 
   if (typeof width === "number") {
-    fullSrcSet.push({ src, size: width });
+    fullSrcSet.push({ src: src || url, size: width });
   }
 
   return (
     <Styled.Image
       alt={altText || title}
-      srcSet={stringifySrcSet(fullSrcSet)}
-      sizes={stringifySizes(sizes)}
-      {...{ src, width, height, className, ...priorityProps }}
+      srcSet={
+        Array.isArray(srcSet)
+          ? stringifySrcSet([...srcSet, ...legacySrcSet])
+          : srcSet
+      }
+      sizes={Array.isArray(sizes) ? stringifySizes(sizes) : sizes}
+      src={src || url}
+      {...{ width, height, className, ...priorityProps }}
     />
   );
 };
