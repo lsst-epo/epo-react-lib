@@ -68,7 +68,8 @@
     "react-player": "^2.14.1",
     "react-share": "^4.4.1",
     "react-slider": "^2.0.6",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.1",
+    "utopia-core": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
