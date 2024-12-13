@@ -42,7 +42,7 @@ const createCSSGlobalSizes = () => {
   )
     .flat()
     .map(({ label, clamp }) => {
-      return `--size-space-${label}: ${clamp};`;
+      return `--size-spacing-${label}: ${clamp};`;
     });
 };
 
