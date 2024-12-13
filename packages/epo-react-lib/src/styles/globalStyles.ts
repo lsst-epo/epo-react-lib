@@ -7,13 +7,9 @@ import { baseFont } from "@/styles/mixins/font";
 import { fluidScale } from "@/styles/utils";
 import base from "@/styles/base";
 import { tokens } from "@/styles/abstracts";
+import { calculateClamp, calculateSpaceScale } from "utopia-core";
 
-const {
-  BREAK_MOBILE,
-  BREAK_TABLET,
-  FONT_SIZE_BASE_DESKTOP,
-  FONT_SIZE_BASE_MOBILE,
-} = tokens;
+const { FONT_SIZE_BASE_DESKTOP, FONT_SIZE_BASE_MOBILE } = tokens;
 
 const rubinTokensAsCssVariables = Object.entries(rubinTokens).reduce<
   Record<string, string | number>
@@ -31,23 +27,40 @@ const createCSSGlobalStyles = () => {
   );
 };
 
+const createCSSGlobalSizes = () => {
+  return Object.values(
+    calculateSpaceScale({
+      minSize: parseInt(FONT_SIZE_BASE_MOBILE),
+      maxSize: parseInt(FONT_SIZE_BASE_DESKTOP),
+      minWidth: 320,
+      maxWidth: 1240,
+      positiveSteps: [1.5, 2, 3, 4, 6, 8],
+      negativeSteps: [0.75, 0.5, 0.25],
+      customSizes: ["s-l"],
+      relativeTo: "viewport-width",
+    })
+  )
+    .flat()
+    .map(({ label, clamp }) => {
+      return `--size-space-${label}: ${clamp};`;
+    });
+};
+
 const GlobalStyles = createGlobalStyle<{ includeFonts?: boolean }>`
 ${({ includeFonts = true }) => (includeFonts ? baseFont : "")}
-  html {
-    font-size: ${fluidScale(
-      FONT_SIZE_BASE_DESKTOP,
-      FONT_SIZE_BASE_MOBILE,
-      BREAK_TABLET,
-      BREAK_MOBILE
-    )}
-  }
   body {
     font-family: var(--FONT_STACK_BASE);
-    font-size: 1em;
+    font-size: ${calculateClamp({
+      minSize: parseInt(FONT_SIZE_BASE_MOBILE),
+      maxSize: parseInt(FONT_SIZE_BASE_DESKTOP),
+      minWidth: 320,
+      maxWidth: 1240,
+    })};
     line-height: var(--LINE_HEIGHT_BASE);
   }
   :root {
       ${createCSSGlobalStyles()}
+      ${createCSSGlobalSizes()}
   }
   ${base}
 `;
