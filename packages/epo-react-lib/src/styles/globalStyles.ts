@@ -48,14 +48,16 @@ const createCSSGlobalSizes = () => {
 
 const GlobalStyles = createGlobalStyle<{ includeFonts?: boolean }>`
 ${({ includeFonts = true }) => (includeFonts ? baseFont : "")}
-  body {
-    font-family: var(--FONT_STACK_BASE);
+  html {
     font-size: ${calculateClamp({
       minSize: parseInt(FONT_SIZE_BASE_MOBILE),
       maxSize: parseInt(FONT_SIZE_BASE_DESKTOP),
       minWidth: 320,
       maxWidth: 1240,
     })};
+  }  
+  body {  
+    font-family: var(--FONT_STACK_BASE);
     line-height: var(--LINE_HEIGHT_BASE);
   }
   :root {
