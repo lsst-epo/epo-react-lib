@@ -1,6 +1,9 @@
+html {
+  font-size: var(--size-font-16-20);
+}
+
 body {
   color: var(--color-font-primary);
-  font-size: var(--size-font-16-20);
   font-family: var(--font-stack-base);
   line-height: var(--size-leading-base);
 }
