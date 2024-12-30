@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { getGradientImage } from "@/storybook/utilities/helpers";
 import MasonryGrid from ".";
+import MasonryImage from "../MasonryImage";
 
 const image = {
   altText: "A placeholder image",
@@ -9,28 +10,39 @@ const image = {
   height: 200,
 };
 
-const item = {
-  galleryItemCategory: [{ id: "a1", slug: "image", title: "Gallery Item 1" }],
-  id: "a1",
-  image: [image],
+const imageProps = {
+  image,
   title: "Gallery Item 1",
-  uri: "",
+  linkProps: { href: "https://rubinobservatory.org" },
 };
 
 describe("MasonryGrid", () => {
   it("renders children", () => {
-    render(<MasonryGrid items={[item]} />);
+    render(
+      <MasonryGrid
+        items={[
+          {
+            id: "a1",
+            element: <MasonryImage {...imageProps} />,
+          },
+        ]}
+      />
+    );
 
-    const image = screen.getByRole("img");
     const link = screen.getByRole("link");
-
-    expect(image).toBeDefined();
-    expect(image).toHaveAccessibleName();
     expect(link).toBeDefined();
   });
   it("renders videos with play icon", () => {
-    item.galleryItemCategory[0].slug = "video";
-    render(<MasonryGrid items={[item]} />);
+    render(
+      <MasonryGrid
+        items={[
+          {
+            id: "a1",
+            element: <MasonryImage {...{ ...imageProps, isVideo: true }} />,
+          },
+        ]}
+      />
+    );
 
     const svg = screen.getByRole("presentation");
 

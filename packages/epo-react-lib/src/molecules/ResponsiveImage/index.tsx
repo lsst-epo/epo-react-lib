@@ -6,7 +6,7 @@ import Image from "@/atomic/Image";
 interface ResponsiveImageProps extends ImageProps {
   /** @deprecated use `aspectRatio` instead */
   ratio?: string;
-  aspectRatio: string;
+  aspectRatio?: string;
   position?: string;
   zoom?: number;
 }
