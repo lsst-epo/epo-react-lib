@@ -4,6 +4,7 @@ import { sync } from "glob";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import banner2 from "rollup-plugin-banner2";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 import postcss from "./postcss.config";
 import { peerDependencies, dependencies } from "./package.json";
 
@@ -78,6 +79,7 @@ const entry = {
 export default defineConfig({
   plugins: [
     react(),
+    libInjectCss(),
     dts({
       insertTypesEntry: true,
       entryRoot: "./src",
@@ -90,6 +92,7 @@ export default defineConfig({
     postcss,
   },
   build: {
+    cssCodeSplit: true,
     minify: false,
     lib: {
       entry,

@@ -34,7 +34,8 @@
       "@/svg/*": ["src/svg/*"],
       "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["src", "./jest-setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
