@@ -1,5 +1,7 @@
 import { FunctionComponent, PropsWithChildren } from "react";
-import * as Styled from "./styles";
+// import * as Styled from "./styles";
+import styles from "./styles.module.css";
+import classNames from "classnames";
 
 export interface StackProps {
   /** A CSS `margin` value */
@@ -16,15 +18,15 @@ const Stack: FunctionComponent<PropsWithChildren<StackProps>> = ({
   children,
 }) => {
   return (
-    <Styled.Stack
+    <div
       style={{
         "--size-spacing-stack": space,
       }}
       data-recursive={recursive}
-      className={className}
+      className={classNames(styles.stack, className)}
     >
       {children}
-    </Styled.Stack>
+    </div>
   );
 };
 

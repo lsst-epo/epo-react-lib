@@ -35,7 +35,9 @@
     "README.md",
     "dist"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "module": "./dist/main.js",
   "main": "./dist/main.cjs",
   "types": "./dist/main.d.ts",
@@ -55,13 +57,14 @@
       "require": "./dist/styles.cjs",
       "types": "./dist/styles.d.ts"
     },
-    "./styles.css": "./dist/style.css",
+    "./styles.css": "./dist/css/index.css",
     "./fonts/*": "./dist/fonts/*",
     "./localeStrings": "./dist/localeStrings"
   },
   "dependencies": {
     "@castiron/style-mixins": "^1.0.6",
     "@headlessui/react": "2.0.4",
+    "classnames": "^2.5.1",
     "flickity": "^3.0.0",
     "focus-trap": "^7.4.2",
     "lodash": "^4.17.21",
@@ -118,7 +121,6 @@
     "modern-css-reset": "^1.4.0",
     "next": "^13.0.5",
     "path-browserify": "^1.0.1",
-    "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^9.6.0",
     "postcss-utopia": "^1.1.0",
     "react": "^18.2.0",
@@ -132,8 +134,10 @@
     "ts-jest": "^29.0.2",
     "ts-node": "^10.9.1",
     "typescript": "5",
+    "typescript-plugin-css-modules": "^5.1.0",
     "vite": "^5.4.3",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^3.9.1",
+    "vite-plugin-lib-inject-css": "^2.2.1"
   },
   "peerDependencies": {
     "i18next": "^22.0.0 || ^23.0.0",
