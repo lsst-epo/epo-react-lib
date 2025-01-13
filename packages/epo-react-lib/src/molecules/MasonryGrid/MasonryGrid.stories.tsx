@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import MasonryGrid from ".";
-import MasonryImage from "../MasonryImage";
+import MasonryImage, { type MasonryImageProps } from "../MasonryImage";
 import Image from "@/atomic/Image";
 
 const images = [
@@ -39,13 +39,15 @@ const images = [
   },
 ];
 
-const galleryItems = new Array(50).fill(0).map((val, i) => {
-  return {
-    id: i,
-    linkProps: { href: "https://rubinobservatory.org" },
-    isVideo: i % 6 === 0,
-  };
-});
+const galleryItems: Array<{ id: number } & MasonryImageProps> = new Array(50)
+  .fill(0)
+  .map((val, i) => {
+    return {
+      id: i,
+      linkProps: { href: "https://rubinobservatory.org" },
+      icon: i % 6 === 0 ? "Play" : undefined,
+    };
+  });
 
 const meta: Meta<typeof MasonryGrid> = {
   component: MasonryGrid,

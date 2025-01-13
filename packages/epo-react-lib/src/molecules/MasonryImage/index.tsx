@@ -1,25 +1,27 @@
 import { FunctionComponent, PropsWithChildren } from "react";
 import { type LinkProps } from "next/link";
-import IconComposer from "@/svg/IconComposer";
+import IconComposer, { type IconKey } from "@/svg/IconComposer";
 import * as Styled from "./styles";
 
-interface MasonryImageProps {
+export interface MasonryImageProps {
   linkProps: LinkProps;
-  isVideo?: boolean;
+  icon?: IconKey;
+  className?: string;
 }
 
 const MasonryImage: FunctionComponent<PropsWithChildren<MasonryImageProps>> = ({
   children,
-  isVideo = false,
+  icon,
   linkProps,
+  className,
 }) => {
   return (
-    <Styled.TileLink prefetch={false} {...linkProps}>
+    <Styled.TileLink prefetch={false} {...linkProps} className={className}>
       {children}
-      {isVideo && (
-        <Styled.PlayButton>
-          <IconComposer size={40} icon="play" />
-        </Styled.PlayButton>
+      {icon && (
+        <Styled.TileIcon>
+          <IconComposer size={40} icon={icon} />
+        </Styled.TileIcon>
       )}
     </Styled.TileLink>
   );
