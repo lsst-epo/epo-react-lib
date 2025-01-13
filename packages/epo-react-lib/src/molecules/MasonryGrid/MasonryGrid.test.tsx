@@ -38,7 +38,7 @@ describe("MasonryGrid", () => {
         items={[
           {
             id: "a1",
-            element: <MasonryImage {...{ ...imageProps, isVideo: true }} />,
+            element: <MasonryImage {...{ ...imageProps, icon: "Play" }} />,
           },
         ]}
       />
