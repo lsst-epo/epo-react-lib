@@ -18,7 +18,7 @@ export const TileLink = styled(Link)`
     object-fit: cover;
     object-position: center;
     text-decoration: none;
-    transition: filter 0.2s;
+    transition: filter 0.2s, opacity 0.2s;
 
     @media (prefers-reduced-motion: no-preference) {
       transition: filter 0.2s, transform 0.2s;
@@ -28,7 +28,8 @@ export const TileLink = styled(Link)`
   &:hover,
   &.focus-visible,
   &:focus-visible {
-    --color-play-icon: var(--neutral15);
+    --color-tile-icon: var(--neutral15);
+
     & > img {
       filter: invert(25%) sepia(80%) saturate(102%) hue-rotate(130deg)
         brightness(100%) contrast(100%);
@@ -42,9 +43,9 @@ export const TileLink = styled(Link)`
   }
 `;
 
-export const PlayButton = styled.span`
+export const TileIcon = styled.span`
   position: absolute;
   display: block;
-  color: var(--color-play-icon, var(--color-text-button-primary));
+  color: var(--color-tile-icon, var(--color-text-button-primary));
   transition: color 0.2s;
 `;
