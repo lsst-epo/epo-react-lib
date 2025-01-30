@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import isEqual from "lodash/isEqual";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
 import usePrevious from "@/hooks/usePrevious";
-import { ImageFilter } from "../ColorTool";
+import { ImageFilter } from "..";
 import { getFilters, updateColor } from "../lib/canvas";
 
 interface useFilteredImagesProps {

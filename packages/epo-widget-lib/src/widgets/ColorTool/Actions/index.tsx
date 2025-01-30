@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import * as Button from "@/atomic/Button";
-import { AstroObject, ColorToolAction, ImageFilter } from "../ColorTool";
+import { AstroObject, ColorToolAction, ImageFilter } from "..";
 import Export from "./Export";
 import { areActionsActive, getBrightnessValue } from "../lib/utils";
 

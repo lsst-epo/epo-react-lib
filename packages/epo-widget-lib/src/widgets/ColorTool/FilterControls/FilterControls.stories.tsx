@@ -9,7 +9,7 @@ import { singleData, colorOptions } from "../__mocks__";
 import FilterControls from ".";
 import { getBrightnessValue } from "../lib/utils";
 import { useState } from "react";
-import { ImageFilter } from "../ColorTool";
+import { ImageFilter } from "..";
 
 const meta: ComponentMeta<typeof FilterControls> = {
   argTypes: {
