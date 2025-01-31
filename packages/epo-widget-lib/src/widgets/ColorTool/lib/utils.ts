@@ -1,7 +1,7 @@
 import flattenDeep from "lodash/flattenDeep";
 import find from "lodash/find";
 import isEmpty from "lodash/isEmpty";
-import { AstroCategory, AstroObject, ImageFilter } from "../ColorTool";
+import { AstroCategory, AstroObject, ImageFilter } from "..";
 
 /** calculates a value that can be used in the CSS {@link https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/brightness brightness filter } */
 export const getBrightnessValue = (min: number, max: number, value: number) => {

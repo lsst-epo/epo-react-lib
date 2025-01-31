@@ -1,10 +1,22 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import { resolve, dirname } from "path";
+import { sync } from "glob";
 import banner2 from "rollup-plugin-banner2";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import { peerDependencies, dependencies } from "./package.json";
 
 const defaultFormat = "es";
+
+const packages = Object.fromEntries(
+  sync(["src/widgets/*/index.tsx"], {
+    ignore: ["src/**/*.stories.tsx", "src/**/*.test.tsx"],
+  }).map((file) => {
+    const path = resolve(__dirname, file);
+    const name = dirname(path).split("/").pop();
+    return [name, path];
+  })
+);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,33 +33,11 @@ export default defineConfig({
     lib: {
       entry: {
         Atomic: resolve(__dirname, "src/atomic/index.tsx"),
-        CameraFilter: resolve(
-          __dirname,
-          "src/widgets/CameraFilter/CameraFilter.tsx"
-        ),
-        Charts: resolve(__dirname, "src/charts/index.tsx"),
-        ColorTool: resolve(__dirname, "src/widgets/ColorTool/ColorTool.tsx"),
         ColorToolServer: resolve(
           __dirname,
           "src/widgets/ColorTool/lib/server.ts"
         ),
-        FilterTool: resolve(__dirname, "src/widgets/FilterTool/FilterTool.tsx"),
-        IsochronePlot: resolve(
-          __dirname,
-          "src/widgets/IsochronePlot/index.tsx"
-        ),
-        LightCurvePlot: resolve(
-          __dirname,
-          "src/widgets/LightCurvePlot/index.tsx"
-        ),
-        SourceSelector: resolve(
-          __dirname,
-          "src/widgets/SourceSelector/index.tsx"
-        ),
-        SupernovaThreeVector: resolve(
-          __dirname,
-          "src/widgets/SupernovaThreeVector/index.tsx"
-        ),
+        ...packages,
       },
       formats: [defaultFormat, "cjs"],
       fileName: (format, name) =>
@@ -82,28 +72,14 @@ export default defineConfig({
         }),
       ],
       external: [
-        "@castiron/style-mixins",
-        "@headlessui/react",
+        ...Object.keys(dependencies),
+        ...Object.keys(peerDependencies),
         /^@rubin-epo\/epo-react-lib*/,
-        "context-filter-polyfill",
-        "d3-array",
-        "d3-geo",
-        "d3-geo-projection",
-        "flickity",
-        "focus-trap",
-        "i18next",
         /^lodash/,
         "next/link",
-        "react",
         "react/jsx-runtime",
-        "react-dom",
-        "react-i18next",
+        "react-player/base",
         "react-player/youtube",
-        "react-share",
-        "react-slider",
-        "skia-canvas",
-        "styled-components",
-        "use-resize-observer",
       ],
       output: {
         exports: "named",
