@@ -4,7 +4,7 @@ import {
   PropsWithChildren,
   useState,
 } from "react";
-import { ImageFilter } from "../ColorTool";
+import { ImageFilter } from "..";
 import { isFilterActive } from "../lib/utils";
 import useFilteredImages from "../hooks/useFilteredImages";
 import { ImageShape } from "@rubin-epo/epo-react-lib/Image";
