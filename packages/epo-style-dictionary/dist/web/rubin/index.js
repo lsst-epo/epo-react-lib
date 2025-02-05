@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Mon, 09 Dec 2024 14:31:14 GMT
+ * Generated on Wed, 05 Feb 2025 21:06:43 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT = "#12726d";
@@ -22,7 +22,7 @@ export const COLOR_BACKGROUND_BUTTON_LINK_DEFAULT = "rgba(0, 0, 0, 0)";
 export const COLOR_BACKGROUND_BUTTON_LINK_HOVER = "rgba(0, 0, 0, 0)";
 export const COLOR_BACKGROUND_BUTTON_LINK_INACTIVE = "rgba(0, 0, 0, 0)";
 export const COLOR_BACKGROUND_PAGE_PRIMARY = "#ffffff";
-export const COLOR_BACKGROUND_PAGE_INVERT = "#000000";
+export const COLOR_BACKGROUND_PAGE_INVERT = "#1f2121";
 export const COLOR_BACKGROUND_TILE_LIGHT = "#f5f5f5";
 export const COLOR_BORDER_BUTTON_PRIMARY = "rgba(0, 0, 0, 0)";
 export const COLOR_BORDER_BUTTON_SECONDARY = "rgba(0, 0, 0, 0)";
