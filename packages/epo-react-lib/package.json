@@ -76,7 +76,7 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.18.6",
-    "@rubin-epo/epo-style-dictionary": "0.3.1",
+    "@rubin-epo/epo-style-dictionary": "0.3.2",
     "@rubin-epo/eslint-config-react": "^1.0.0-beta",
     "@semantic-release/github": "^10.1.7",
     "@semantic-release/npm": "^12.0.1",

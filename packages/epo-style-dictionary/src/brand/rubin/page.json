@@ -6,7 +6,7 @@
           "value": "{color.neutral.00}"
         },
         "invert": {
-          "value": "{color.neutral.100}"
+          "value": "{color.rubin.gray.300}"
         }
       },
       "tile": {
