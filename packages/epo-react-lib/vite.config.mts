@@ -23,8 +23,6 @@ const entry = {
   main: resolve(__dirname, "src/index.ts"),
   styles: resolve(__dirname, "src/styles/index.ts"),
   Accordion: resolve(__dirname, "src/atomic/Accordion/Accordion.tsx"),
-  Button: resolve(__dirname, "src/atomic/Button/Button.tsx"),
-  Buttonish: resolve(__dirname, "src/atomic/Buttonish/Buttonish.tsx"),
   CircularLoader: resolve(
     __dirname,
     "src/atomic/CircularLoader/CircularLoader.tsx"

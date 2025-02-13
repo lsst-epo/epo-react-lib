@@ -1,14 +1,22 @@
-import { forwardRef, HTMLProps, PropsWithChildren } from "react";
+import {
+  forwardRef,
+  HTMLProps,
+  PropsWithChildren,
+  PropsWithRef,
+  ReactNode,
+} from "react";
 import { IconKey } from "@/svg/icons";
 import IconComposer, { IconComposerProps } from "@/svg/IconComposer";
 import * as Styled from "./styles";
 
 export type ButtonStyleAs = "primary" | "secondary" | "tertiary" | "educator";
 
-export interface ButtonProps extends HTMLProps<HTMLButtonElement> {
+export interface ButtonProps
+  extends PropsWithRef<HTMLProps<HTMLButtonElement>> {
   className?: string;
-  icon?: IconKey;
+  icon?: IconKey | ReactNode;
   iconSize?: IconComposerProps["size"];
+  iconAlignment?: "left" | "right";
   isBlock?: boolean;
   styleAs?: ButtonStyleAs;
   /** This is a disabled style without disabling the button.
@@ -26,29 +34,37 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       isBlock,
       styleAs,
       isInactive,
+      iconAlignment = "left",
       className,
       ...buttonProps
     },
     ref
-  ) => (
-    <Styled.Button
-      $isBlock={isBlock}
-      $styleAs={styleAs}
-      $hasIcon={!!icon}
-      aria-disabled={isInactive || undefined}
-      data-testid="button"
-      {...{ ...(buttonProps as any), className, ref }}
-    >
-      {icon && (
+  ) => {
+    const Icon =
+      typeof icon === "string" ? (
         <IconComposer
           icon={icon}
-          size={iconSize}
+          size={iconSize || "var(--size-spacing-s)"}
           aria-hidden={children && true}
         />
-      )}
-      {children && <Styled.ButtonText>{children}</Styled.ButtonText>}
-    </Styled.Button>
-  )
+      ) : (
+        icon
+      );
+
+    return (
+      <Styled.Button
+        $styleAs={styleAs}
+        aria-disabled={isInactive || undefined}
+        data-testid="button"
+        data-is-block={isBlock}
+        dir={iconAlignment === "right" ? "rtl" : undefined}
+        {...{ ...(buttonProps as any), className, ref }}
+      >
+        {Icon}
+        {children && <Styled.ButtonText>{children}</Styled.ButtonText>}
+      </Styled.Button>
+    );
+  }
 );
 
 Button.displayName = "Atomic.Button";
