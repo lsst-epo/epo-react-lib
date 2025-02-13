@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import Button from "./Button";
+import Button from ".";
 
 const text = "Stuff and Things";
 const children = <span>{text}</span>;
