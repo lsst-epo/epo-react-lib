@@ -1,11 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { aButton, aButtonTheme } from "@/styles/mixins/appearance";
-import { ButtonStyleAs } from "./Button";
+import { ButtonStyleAs } from ".";
 
 interface StyledButtonProps {
   $styleAs?: ButtonStyleAs;
-  $isBlock: boolean;
-  $hasIcon: boolean;
 }
 
 export const Button = styled.button<StyledButtonProps>`
@@ -15,23 +13,19 @@ export const Button = styled.button<StyledButtonProps>`
   --button-text-align: center;
 
   align-items: center;
-  gap: 10px;
+  gap: var(--size-spacing-xs);
   font-size: 0.81818em;
   text-align: center;
 
-  ${({ $isBlock }: StyledButtonProps) =>
-    $isBlock &&
-    css`
-      display: flex;
-      width: 100%;
-    `}
+  &[data-is-block="true"] {
+    display: flex;
+    width: 100%;
+  }
 
-  ${({ $hasIcon }: StyledButtonProps) =>
-    $hasIcon &&
-    css`
-      display: inline-flex;
-      padding-inline-start: 15px;
-    `}
+  &:has(> svg) {
+    display: inline-flex;
+    padding-inline-start: var(--size-spacing-s);
+  }
 `;
 
 export const ButtonText = styled.span`
