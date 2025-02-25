@@ -16,6 +16,7 @@ const height = 100;
 
 const graticule = geoGraticule();
 graticule.step([180, 180]);
+graticule.precision(90);
 
 const buildProjection = (props?: {
   backFaces?: boolean;
@@ -38,7 +39,7 @@ const buildProjection = (props?: {
     projection.clipAngle(null);
   }
 
-  const path = geoPath(projection);
+  const path = geoPath(projection).digits(1);
 
   const pathGenerator = (object: GeoPermissibleObjects): string | undefined =>
     path(object) || undefined;
@@ -49,14 +50,14 @@ const buildProjection = (props?: {
 const Outline: FC = () => {
   const { pathGenerator } = buildProjection({ applyRotation: false });
 
-  return <Styled.Outline d={pathGenerator(graticule.outline())} />;
+  return <path strokeWidth={3} d={pathGenerator(graticule.outline())} />;
 };
 
 const Meridian: FC<{ backFaces?: boolean }> = ({ backFaces }) => {
   const { pathGenerator } = buildProjection({ backFaces });
 
   return (
-    <Styled.Meridian
+    <path
       d={pathGenerator(graticule())}
       opacity={backFaces ? 0.8 : undefined}
     />
@@ -115,7 +116,8 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
 
   const viewcone: Record<string, JSX.Element> = {
     plane: (
-      <Styled.Plane
+      <path
+        opacity={0.8}
         d={pathGenerator({
           type: "Polygon",
           coordinates: [[topLeft, topRight, bottomRight, bottomLeft, topLeft]],
@@ -123,7 +125,8 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
       />
     ),
     top: (
-      <Styled.TopEdges
+      <path
+        opacity={0.5}
         d={addCenter(
           pathGenerator({
             type: "LineString",
@@ -133,7 +136,8 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
       />
     ),
     bottom: (
-      <Styled.TopEdges
+      <path
+        opacity={0.5}
         d={addCenter(
           pathGenerator({
             type: "LineString",
@@ -143,7 +147,8 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
       />
     ),
     left: (
-      <Styled.SideEdges
+      <path
+        opacity={0.3}
         d={addCenter(
           pathGenerator({
             type: "LineString",
@@ -153,7 +158,8 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
       />
     ),
     right: (
-      <Styled.SideEdges
+      <path
+        opacity={0.3}
         d={addCenter(
           pathGenerator({
             type: "LineString",
