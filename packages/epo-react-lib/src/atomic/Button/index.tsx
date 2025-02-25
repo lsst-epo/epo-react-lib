@@ -44,7 +44,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       typeof icon === "string" ? (
         <IconComposer
           icon={icon}
-          size={iconSize || "var(--size-spacing-s)"}
+          size={iconSize || "1rem"}
           aria-hidden={children && true}
         />
       ) : (
