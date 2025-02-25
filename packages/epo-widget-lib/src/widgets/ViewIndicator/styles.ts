@@ -19,6 +19,9 @@ export const Container = styled.div`
 export const SVG = styled.svg`
   aspect-ratio: 1;
   overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
   width: calc(var(--size-container) * 0.65);
 `;
 
@@ -30,24 +33,6 @@ export const NorthDirection = styled.div`
   top: 0px;
 `;
 
-export const Outline = styled.path`
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3;
-`;
-
-export const Meridian = styled.path`
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-`;
-export const MeridianBackFacing = styled.path`
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  opacity: 0.85;
-`;
-
 export const ViewCone = styled.g`
   --color-fill-primary: var(--color-rubin-yellow-200);
   --color-fill-secondary: #eba85b;
@@ -57,15 +42,5 @@ export const ViewCone = styled.g`
     var(--color-fill-primary) var(--percent-mix-primary),
     var(--color-fill-secondary) var(--percent-mix-secondary)
   );
-`;
-
-export const Plane = styled.path`
-  opacity: 0.8;
-`;
-
-export const SideEdges = styled.path`
-  opacity: 0.3;
-`;
-export const TopEdges = styled.path`
-  opacity: 0.5;
+  stroke: none;
 `;
