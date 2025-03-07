@@ -22,12 +22,16 @@ type RenderThumb = ReactSliderProps<number | readonly number[]>["renderThumb"];
 
 export interface HorizontalSliderProps extends BaseSliderProps {
   onChangeCallback: ReactSliderProps<number | readonly number[]>["onChange"];
+  onBeforeChange?: ReactSliderProps<
+    number | readonly number[]
+  >["onBeforeChange"];
+  onAfterChange?: ReactSliderProps<number | readonly number[]>["onAfterChange"];
   minLabel?: string;
   maxLabel?: string;
   labelledbyId?: string;
   color?: string;
-  darkMode?: boolean;
   isDisabled?: boolean;
+  styleAs?: "light" | "dark";
   renderLabel?: (state: {
     index: number;
     value: number | readonly number[];
@@ -39,7 +43,7 @@ const getValidColor = (color?: string, disabled = false) => {
   const validColor =
     color && isStyleSupported("color", color) && !isColorTransparent(color)
       ? color
-      : "#313333";
+      : "var(--color-background-track-override,#313333)";
 
   return disabled ? "var(--neutral60, #6a6e6e)" : validColor;
 };
@@ -51,10 +55,12 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   maxLabel,
   labelledbyId,
   color,
-  darkMode = false,
   isDisabled: disabled = false,
   className,
   renderLabel,
+  styleAs = "light",
+  onBeforeChange,
+  onAfterChange,
   ...props
 }) => {
   const id = useId();
@@ -91,7 +97,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
       style={{
         "--color-background-track": getValidColor(color),
       }}
-      data-theme={darkMode ? "dark" : "light"}
+      data-theme={styleAs}
       {...{ className }}
     >
       {minLabel || maxLabel ? (
@@ -102,9 +108,15 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
       ) : null}
       <Styled.HorizontalSlider
         {...{ value, disabled, renderThumb, ...props }}
-        onBeforeChange={() => setShowThumbLabels(true)}
+        onBeforeChange={(...args) => {
+          setShowThumbLabels(true);
+          onBeforeChange && onBeforeChange(...args);
+        }}
         onChange={onChangeCallback}
-        onAfterChange={() => setShowThumbLabels(false)}
+        onAfterChange={(...args) => {
+          setShowThumbLabels(false);
+          onAfterChange && onAfterChange(...args);
+        }}
         renderTrack={({ key, ...props }, state) => (
           <Track key={key} {...{ ...props, state }} />
         )}
@@ -119,6 +131,6 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   );
 };
 
-HorizontalSlider.displayName = "Form.HorizontalSlider";
+HorizontalSlider.displayName = "Molecule.HorizontalSlider";
 
 export default HorizontalSlider;

@@ -27,6 +27,7 @@ export * from "@/atomic/Share";
 export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
 export { default as Stack } from "@/atomic/Stack";
+export { default as HorizontalSlider } from "@/molecules/HorizontalSlider";
 
 // Content Blocks
 export { default as SimpleTable } from "@/content-blocks/SimpleTable";
@@ -36,7 +37,6 @@ export { default as ComplexTable } from "@/content-blocks/ComplexTable";
 export { default as Error } from "@/form/Error";
 export { default as FormButtons } from "@/form/FormButtons";
 export { default as FormField } from "@/form/FormField";
-export { default as HorizontalSlider } from "@/form/HorizontalSlider";
 export { default as Input } from "@/form/Input";
 export { default as Password } from "@/form/Input/patterns/Password";
 export { default as Select } from "@/form/Select";
