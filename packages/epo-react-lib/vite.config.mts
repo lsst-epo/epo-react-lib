@@ -51,10 +51,6 @@ const entry = {
   Error: resolve(__dirname, "src/form/Error/Error.tsx"),
   FormButtons: resolve(__dirname, "src/form/FormButtons/FormButtons.tsx"),
   FormField: resolve(__dirname, "src/form/FormField/FormField.tsx"),
-  HorizontalSlider: resolve(
-    __dirname,
-    "src/form/HorizontalSlider/HorizontalSlider.tsx"
-  ),
   Input: resolve(__dirname, "src/form/Input/Input.tsx"),
   Password: resolve(__dirname, "src/form/Input/patterns/Password/Password.tsx"),
   Select: resolve(__dirname, "src/form/Select/Select.tsx"),

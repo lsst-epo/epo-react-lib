@@ -81,14 +81,12 @@ const meta: Meta<typeof HorizontalSlider> = {
         type: { summary: "string" },
       },
     },
-    darkMode: {
-      control: "boolean",
-      description:
-        "Inverts color scheme for visibility against dark backgrounds.",
+    styleAs: {
+      control: { type: "radio" },
+      options: ["light", "dark"],
       table: {
         category: "Styling",
-        type: { summary: "boolean" },
-        defaultValue: { summary: false },
+        type: { summary: "string" },
       },
     },
     onChangeCallback: {
@@ -161,4 +159,12 @@ Marks.args = {
   ...SingleHandle.args,
   marks: 10,
   step: 10,
+};
+
+export const Dark: StoryFn<typeof HorizontalSlider> = Template.bind({});
+
+Dark.args = {
+  ...SingleHandle.args,
+  color: undefined,
+  styleAs: "dark",
 };
