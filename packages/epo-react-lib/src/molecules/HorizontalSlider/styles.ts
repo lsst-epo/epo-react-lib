@@ -2,26 +2,24 @@ import styled from "styled-components";
 import ReactSlider from "react-slider";
 
 export const HorizontalSliderContainer = styled.div`
-  --color-text-slider: inherit;
-  --color-border-slider: var(--blue20, #c7d4f4);
-  --color-background-slider: var(--neutral60, #6a6e6e);
-  --color-background-track-disabled: var(--color-background-slider);
-  --color-background-thumb-label: var(--neutral10, #f5f5f5);
-  --size-height-slider: 18px;
-  --size-border-radius-slider: calc(var(--size-height-slider) / 2);
-  --size-border-slider: 8px;
-  --size-offset-label: 4px;
-  --size-height-thumb: 14px;
-
-  &[data-theme="dark"] {
-    --color-text-slider: var(--white, #fff);
-    --color-border-slider: var(--white, #fff);
-    --color-background-thumb-label: var(--neutral80, #404040);
-  }
+  --size-border-radius-slider: calc(var(--size-height-slider, 18px) / 2);
+  --size-border-radius-track: calc(var(--size-height-track, 6px) / 2);
 
   display: flex;
   flex-flow: column nowrap;
-  padding-bottom: 16px;
+  padding-bottom: var(--size-spacing-s);
+
+  &[data-theme="dark"] {
+    --color-background-thumb: var(--white, #fff);
+    --color-border-thumb: var(--neutral10, #f5f5f5);
+    --color-background-track-override: var(--neutral10, #f5f5f5);
+    --color-background-thumb-label: rgb(0, 0, 0, 0.7);
+    --color-box-shadow: transparent;
+    --size-border-slider: 0px;
+    --size-height-slider: 3px;
+
+    color: var(--color-font-invert);
+  }
 `;
 
 export const TrackLabels = styled.div`
@@ -37,16 +35,19 @@ export const Label = styled.div`
   font-size: 14px;
   font-weight: bold;
   line-height: 1.6;
-  color: var(--color-text-slider);
+  color: var(--color-text-slider, inherit);
 `;
 
 export const ThumbLabel = styled.span`
-  background-color: var(--color-background-thumb-label);
-  border: 1px solid var(--color-border-slider);
+  background-color: var(
+    --color-background-thumb-label,
+    var(--neutral10, #f5f5f5)
+  );
+  border: 1px solid var(--color-border-slider, var(--blue20, #c7d4f4));
   box-sizing: border-box;
-  color: var(--color-text-slider);
+  color: var(--color-text-slider, inherit);
   position: absolute;
-  top: calc(100% + var(--size-offset-label));
+  top: calc(100% + var(--size-offset-label, 4px));
   left: 50%;
   transform: translateX(-50%);
   padding: 5px;
@@ -68,19 +69,21 @@ export const ThumbContainer = styled.div`
 `;
 
 export const Thumb = styled.div`
-  --color-background-thumb: var(--color-background-track);
-
-  background-color: var(--color-background-thumb);
+  background-color: var(
+    --color-background-thumb,
+    var(--color-background-track)
+  );
+  border: 1px solid var(--color-border-thumb, transparent);
   box-sizing: border-box;
   position: relative;
   cursor: grab;
-  width: var(--size-height-thumb);
-  height: var(--size-height-thumb);
+  width: var(--size-height-thumb, 14px);
+  height: var(--size-height-thumb, 14px);
   text-align: center;
   border-radius: 50%;
 
   &::before {
-    --size-height-click-box: calc(var(--size-height-thumb) * 2);
+    --size-height-click-box: calc(var(--size-height-thumb, 14px) * 2);
 
     content: "";
     display: inline-block;
@@ -114,10 +117,11 @@ export const HorizontalSlider = styled(ReactSlider)`
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
-  height: var(--size-height-slider);
-  background-color: var(--color-background-slider);
-  border: var(--size-border-slider) solid var(--white, #fff);
+  box-shadow: 0 0 4px var(--color-box-shadow, rgba(0, 0, 0, 0.35));
+  height: var(--size-height-slider, 18px);
+  background-color: var(--color-background-slider, var(--neutral60, #6a6e6e));
+  border: var(--size-border-slider, 8px) solid
+    var(--color-border-slider, var(--white, #fff));
   border-radius: var(--size-border-radius-slider);
 
   &.disabled {
