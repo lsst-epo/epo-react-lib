@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import FormButtons from ".";
 import Button from "@/atomic/Button";
 
-const meta: ComponentMeta<typeof FormButtons> = {
+const meta: Meta<typeof FormButtons> = {
   component: FormButtons,
   argTypes: {
     children: {
@@ -18,7 +18,7 @@ const meta: ComponentMeta<typeof FormButtons> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof FormButtons> = {
+export const Primary: StoryObj<typeof FormButtons> = {
   args: {
     children: [
       <Button key="first" styleAs="tertiary">

@@ -77,7 +77,7 @@ To add a unit test to it's Storybook page add the filename of the unit test to t
 
 ```
 
-export const Primary: ComponentStoryObj<typeof DemoButton> = {
+export const Primary: StoryObj<typeof DemoButton> = {
 args: {
 disabled: false,
 children: "Hello",

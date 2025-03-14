@@ -1,8 +1,5 @@
-// My css.d.ts file
-
 declare module "csstype" {
   interface Properties {
-    // Allow any CSS Custom Properties
-    [index: `--${string}`]: any;
+    [key: `--${string}`]: string | number | undefined;
   }
 }

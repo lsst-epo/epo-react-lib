@@ -1,6 +1,6 @@
-import "react";
-
-type CustomProp = { [key in `--${string}`]: any };
-declare module "react" {
-  export interface CSSProperties extends CustomProp {}
+import * as CSS from "csstype";
+declare module "csstype" {
+  interface Properties {
+    [key: `--${string}`]: string | number | undefined | null | boolean;
+  }
 }

@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ExpandToggle from ".";
 
-const meta: ComponentMeta<typeof ExpandToggle> = {
+const meta: Meta<typeof ExpandToggle> = {
   component: ExpandToggle,
   argTypes: {
     isOpen: {
@@ -52,4 +52,4 @@ const meta: ComponentMeta<typeof ExpandToggle> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ExpandToggle> = {};
+export const Primary: StoryObj<typeof ExpandToggle> = {};

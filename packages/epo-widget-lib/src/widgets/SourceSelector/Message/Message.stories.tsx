@@ -6,11 +6,7 @@ import {
   IconComposer,
   FormButtons,
 } from "@rubin-epo/epo-react-lib";
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 
 import Message from ".";
 
@@ -23,7 +19,7 @@ const successMessage = (
 
 const failureMessage = "Try again.";
 
-const meta: ComponentMeta<typeof Message> = {
+const meta: Meta<typeof Message> = {
   argTypes: {
     children: objChildren,
     onMessageChangeCallback: {
@@ -38,9 +34,6 @@ const meta: ComponentMeta<typeof Message> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },
@@ -59,7 +52,7 @@ const meta: ComponentMeta<typeof Message> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Message> = (args) => {
+const Template: StoryFn<typeof Message> = (args) => {
   const [isVisible, setVisible] = useState(args.isVisible || false);
   const [message, setMessage] = useState<ReactNode>(args.children || "");
 
@@ -92,5 +85,5 @@ const Template: ComponentStory<typeof Message> = (args) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof Message> = Template.bind({});
+export const Primary: StoryObj<typeof Message> = Template.bind({});
 Primary.args = { children: successMessage };

@@ -1,5 +1,7 @@
-export const children = {
-  control: "text",
+import { InputType } from "storybook/internal/types";
+
+export const children: InputType = {
+  control: { type: "text" },
   defaultValue: "Rubin Observatory",
   description: "React child",
   table: {
@@ -8,12 +10,12 @@ export const children = {
     },
   },
 };
-export const objChildren = {
+export const objChildren: InputType = {
   ...children,
-  control: "object",
+  control: { type: "object" },
 };
 export const className = {
-  control: "text",
+  control: { type: "text" },
   description: "CSS class to attach",
   table: {
     type: {

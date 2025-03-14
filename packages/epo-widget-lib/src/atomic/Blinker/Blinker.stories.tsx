@@ -1,14 +1,10 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import styled from "styled-components";
 import Blinker from ".";
 import { mockImages } from "./_mocks";
 
-const meta: ComponentMeta<typeof Blinker> = {
+const meta: Meta<typeof Blinker> = {
   argTypes: {
     autoplay: {
       control: "boolean",
@@ -16,9 +12,6 @@ const meta: ComponentMeta<typeof Blinker> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: true,
         },
         category: "Configuration",
       },
@@ -31,9 +24,6 @@ const meta: ComponentMeta<typeof Blinker> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: {
-          summary: true,
-        },
         category: "Configuration",
       },
     },
@@ -45,9 +35,6 @@ const meta: ComponentMeta<typeof Blinker> = {
       table: {
         type: {
           summary: "number",
-        },
-        defaultValue: {
-          summary: 200,
         },
         category: "Configuration",
       },
@@ -74,9 +61,6 @@ const meta: ComponentMeta<typeof Blinker> = {
       table: {
         type: {
           summary: "number",
-        },
-        defaultValue: {
-          summary: 0,
         },
         category: "Model",
       },
@@ -113,7 +97,7 @@ const Container = styled.div`
   max-width: 600px;
 `;
 
-const Template: ComponentStory<typeof Blinker> = (args) => {
+const Template: StoryFn<typeof Blinker> = (args) => {
   const [activeIndex, setActiveIndex] = useState(args.activeIndex);
 
   const blinkCallback = (nextIndex: number) => {
@@ -133,7 +117,7 @@ const Template: ComponentStory<typeof Blinker> = (args) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof Blinker> = Template.bind({});
+export const Primary: StoryObj<typeof Blinker> = Template.bind({});
 Primary.args = { images: mockImages };
-export const SingleImage: ComponentStoryObj<typeof Blinker> = Template.bind({});
+export const SingleImage: StoryObj<typeof Blinker> = Template.bind({});
 SingleImage.args = { images: [mockImages[0]] };

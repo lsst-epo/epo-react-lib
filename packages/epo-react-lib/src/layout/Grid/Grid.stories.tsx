@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { objChildren } from "@/storybook/utilities/argTypes";
 import { getGradientImage } from "@/storybook/utilities/helpers";
 
@@ -19,7 +19,7 @@ const Children = [
   <Image key="fourth" {...{ image }} />,
 ];
 
-const meta: ComponentMeta<typeof Grid> = {
+const meta: Meta<typeof Grid> = {
   component: Grid,
   argTypes: {
     children: objChildren,
@@ -32,7 +32,6 @@ const meta: ComponentMeta<typeof Grid> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: { summary: false },
       },
     },
     columns: {
@@ -46,7 +45,6 @@ const meta: ComponentMeta<typeof Grid> = {
         type: {
           summary: "number",
         },
-        defaultValue: { summary: 3 },
       },
     },
     tablet: {
@@ -60,20 +58,19 @@ const meta: ComponentMeta<typeof Grid> = {
         type: {
           summary: "number",
         },
-        defaultValue: { summary: 1 },
       },
     },
   },
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Grid> = {
+export const Primary: StoryObj<typeof Grid> = {
   args: {
     children: Children,
   },
 };
 
-export const WithFeature: ComponentStoryObj<typeof Grid> = {
+export const WithFeature: StoryObj<typeof Grid> = {
   args: {
     children: Children,
     showFeature: true,

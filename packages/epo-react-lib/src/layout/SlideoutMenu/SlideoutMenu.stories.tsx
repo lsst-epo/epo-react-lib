@@ -1,8 +1,4 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import { FunctionComponent, useRef, useState } from "react";
 
@@ -10,7 +6,7 @@ import { SlideoutMenu, MenuGroup, MenuItem, MenuItemRadio } from ".";
 import { protoButton } from "@/styles/mixins/appearance";
 import IconComposer from "@/svg/IconComposer";
 
-const meta: ComponentMeta<typeof SlideoutMenu> = {
+const meta: Meta<typeof SlideoutMenu> = {
   component: SlideoutMenu,
   argTypes: {
     title: {
@@ -48,9 +44,6 @@ const meta: ComponentMeta<typeof SlideoutMenu> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: {
-          summary: false,
-        },
       },
     },
     isSubMenuOpen: {
@@ -59,9 +52,6 @@ const meta: ComponentMeta<typeof SlideoutMenu> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },
@@ -229,7 +219,7 @@ const AcknowledgementsSubmenu: FunctionComponent<{
   );
 };
 
-const Template: ComponentStory<typeof SlideoutMenu> = ({ ...args }) => {
+const Template: StoryFn<typeof SlideoutMenu> = ({ ...args }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState<boolean>(args.isOpen || true);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -286,9 +276,7 @@ const Template: ComponentStory<typeof SlideoutMenu> = ({ ...args }) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof SlideoutMenu> = Template.bind(
-  {},
-);
+export const Primary: StoryObj<typeof SlideoutMenu> = Template.bind({});
 
 Primary.args = {
   title: "Main menu",

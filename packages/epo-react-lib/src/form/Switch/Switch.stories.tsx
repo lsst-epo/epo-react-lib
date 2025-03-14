@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Switch from ".";
 
-const meta: ComponentMeta<typeof Switch> = {
+const meta: Meta<typeof Switch> = {
   component: Switch,
   argTypes: {
     checked: {
@@ -33,4 +33,4 @@ const meta: ComponentMeta<typeof Switch> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Switch> = {};
+export const Primary: StoryObj<typeof Switch> = {};

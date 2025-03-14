@@ -1,13 +1,9 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 
 import FilterTool from ".";
 import { useState } from "react";
 
-const meta: ComponentMeta<typeof FilterTool> = {
+const meta: Meta<typeof FilterTool> = {
   argTypes: {
     isDisabled: {
       control: "boolean",
@@ -16,9 +12,6 @@ const meta: ComponentMeta<typeof FilterTool> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },
@@ -50,7 +43,7 @@ const meta: ComponentMeta<typeof FilterTool> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof FilterTool> = (args) => {
+const Template: StoryFn<typeof FilterTool> = (args) => {
   const [color, setColor] = useState(args.selectedColor);
 
   return (
@@ -65,10 +58,9 @@ const Template: ComponentStory<typeof FilterTool> = (args) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof FilterTool> = Template.bind({});
+export const Primary: StoryObj<typeof FilterTool> = Template.bind({});
 
-export const PreSelectedColor: ComponentStoryObj<typeof FilterTool> =
-  Template.bind({});
+export const PreSelectedColor: StoryObj<typeof FilterTool> = Template.bind({});
 
 PreSelectedColor.args = {
   selectedColor: "violet",

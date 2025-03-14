@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import SimpleTable from ".";
 import { SimpleTableRow } from "./SimpleTable";
@@ -48,7 +48,7 @@ const MockTableContent: SimpleTableRow[] = [
   },
 ];
 
-const meta: ComponentMeta<typeof SimpleTable> = {
+const meta: Meta<typeof SimpleTable> = {
   component: SimpleTable,
   argTypes: {
     simpleTable: {},
@@ -56,7 +56,7 @@ const meta: ComponentMeta<typeof SimpleTable> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof SimpleTable> = {
+export const Primary: StoryObj<typeof SimpleTable> = {
   args: {
     simpleTable: MockTableContent,
   },

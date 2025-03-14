@@ -75,9 +75,6 @@ const meta: Meta<typeof SelectListbox> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: {
-          summary: false,
-        },
       },
     },
     isMultiselect: {
@@ -87,9 +84,6 @@ const meta: Meta<typeof SelectListbox> = {
         category: "Function",
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },

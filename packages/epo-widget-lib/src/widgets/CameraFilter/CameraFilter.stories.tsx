@@ -1,13 +1,13 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import CameraFilter from ".";
 
-const meta: ComponentMeta<typeof CameraFilter> = {
+const meta: Meta<typeof CameraFilter> = {
   argTypes: {},
   component: CameraFilter,
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof CameraFilter> = {
+export const Primary: StoryObj<typeof CameraFilter> = {
   args: {},
 };

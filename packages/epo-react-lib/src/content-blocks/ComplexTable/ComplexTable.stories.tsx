@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ComplexTable from ".";
 import { ComplexTableRow } from "./ComplexTable";
@@ -51,7 +51,7 @@ const MockTableContent: ComplexTableRow[] = [
   },
 ];
 
-const meta: ComponentMeta<typeof ComplexTable> = {
+const meta: Meta<typeof ComplexTable> = {
   component: ComplexTable,
   argTypes: {
     complexTable: {
@@ -75,9 +75,6 @@ const meta: ComponentMeta<typeof ComplexTable> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },
@@ -115,7 +112,7 @@ const meta: ComponentMeta<typeof ComplexTable> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ComplexTable> = {
+export const Primary: StoryObj<typeof ComplexTable> = {
   args: {
     complexTable: MockTableContent,
     styleAs: "primary",
@@ -124,7 +121,7 @@ export const Primary: ComponentStoryObj<typeof ComplexTable> = {
   },
 };
 
-export const Secondary: ComponentStoryObj<typeof ComplexTable> = {
+export const Secondary: StoryObj<typeof ComplexTable> = {
   args: {
     complexTable: MockTableContent,
     styleAs: "secondary",
@@ -133,7 +130,7 @@ export const Secondary: ComponentStoryObj<typeof ComplexTable> = {
   },
 };
 
-export const Child: ComponentStoryObj<typeof ComplexTable> = {
+export const Child: StoryObj<typeof ComplexTable> = {
   args: {
     complexTable: MockTableContent,
     plainText: "Complex Table",

@@ -23,9 +23,6 @@ const meta: Meta<typeof ColorTool> = {
           summary: "boolean",
         },
         category: "Display",
-        defaultValue: {
-          summary: false,
-        },
       },
     },
     isDisabled: {
@@ -36,9 +33,6 @@ const meta: Meta<typeof ColorTool> = {
           summary: "boolean",
         },
         category: "Function",
-        defaultValue: {
-          summary: false,
-        },
       },
     },
     data: {

@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import icons from "@rubin-epo/epo-react-lib/icons";
 
 import PlaybackControl from ".";
 
-const meta: ComponentMeta<typeof PlaybackControl> = {
+const meta: Meta<typeof PlaybackControl> = {
   argTypes: {
     icon: {
       control: { type: "select", options: Object.keys(icons) },
@@ -27,6 +27,6 @@ const meta: ComponentMeta<typeof PlaybackControl> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof PlaybackControl> = {
+export const Primary: StoryObj<typeof PlaybackControl> = {
   args: { icon: "Play", label: "Play" },
 };

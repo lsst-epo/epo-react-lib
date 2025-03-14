@@ -1,5 +1,6 @@
-export const children = {
-  control: "none",
+import { InputType } from "storybook/internal/types";
+
+export const children: InputType = {
   description: "React child",
   table: {
     type: {
@@ -7,11 +8,10 @@ export const children = {
     },
   },
 };
-export const objChildren = {
+export const objChildren: InputType = {
   ...children,
-  control: "none",
 };
-export const className = {
+export const className: InputType = {
   control: "text",
   description: "CSS class to attach",
   table: {

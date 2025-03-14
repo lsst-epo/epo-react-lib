@@ -76,7 +76,7 @@ yarn test
 To add a unit test to it's Storybook page add the filename of the unit test to the `parameters` property of the story
 
 ```
-export const Primary: ComponentStoryObj<typeof DemoButton> = {
+export const Primary: StoryObj<typeof DemoButton> = {
   args: {
     disabled: false,
     children: "Hello",

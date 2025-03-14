@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { speeds } from "./styles";
 
 import CircularLoader from ".";
@@ -10,7 +10,7 @@ speedKeys.forEach((speed) => {
   speedLabels[speed] = `${speed} - (${speeds[speed]})`;
 });
 
-const meta: ComponentMeta<typeof CircularLoader> = {
+const meta: Meta<typeof CircularLoader> = {
   component: CircularLoader,
   argTypes: {
     withOverlay: {
@@ -19,7 +19,6 @@ const meta: ComponentMeta<typeof CircularLoader> = {
         "Displays the loader as a full screen with black background over top other content.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
       },
     },
     isVisible: {
@@ -27,7 +26,6 @@ const meta: ComponentMeta<typeof CircularLoader> = {
       description: "Determines whether the loader is visible.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
       },
     },
     speed: {
@@ -52,7 +50,7 @@ const meta: ComponentMeta<typeof CircularLoader> = {
 
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof CircularLoader> = {
+export const Primary: StoryObj<typeof CircularLoader> = {
   args: {
     isVisible: true,
   },

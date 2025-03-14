@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { children, className } from "@/storybook/utilities/argTypes";
 
 import Toast from ".";
 
-const meta: ComponentMeta<typeof Toast> = {
+const meta: Meta<typeof Toast> = {
   argTypes: {
     children,
     className,
@@ -22,6 +22,6 @@ const meta: ComponentMeta<typeof Toast> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Toast> = {
+export const Primary: StoryObj<typeof Toast> = {
   args: { children: "You found it!" },
 };

@@ -5,14 +5,7 @@ import minBy from "lodash/minBy";
 import PlotWithCurve from ".";
 
 const meta: Meta<typeof PlotWithCurve> = {
-  argTypes: {
-    gaussianWidth: {
-      control: "none",
-    },
-    yOffset: {
-      control: "none",
-    },
-  },
+  argTypes: {},
   component: PlotWithCurve,
 };
 export default meta;
@@ -32,7 +25,9 @@ const Template: StoryFn<typeof PlotWithCurve> = (args) => {
       {...{ gaussianWidth, yOffset, userMagnitude }}
       onGaussianChangeCallback={(value) => setGaussianWidth(value)}
       onYOffsetChangeCallback={(value) => setYOffset(value)}
-      onUserMagnitudeChangeCallback={(value) => setUserMagnitude(value)}
+      onUserMagnitudeChangeCallback={(value) =>
+        setUserMagnitude(Array.isArray(value) ? value[0] : value)
+      }
     />
   );
 };

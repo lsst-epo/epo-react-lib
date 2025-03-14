@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { children } from "@/storybook/utilities/argTypes";
 import MockChildren from "@/storybook/utilities/mocks";
 
 import Columns from ".";
 
-const meta: ComponentMeta<typeof Columns> = {
+const meta: Meta<typeof Columns> = {
   component: Columns,
   argTypes: {
     children: {
@@ -15,9 +15,6 @@ const meta: ComponentMeta<typeof Columns> = {
       description: "Width of column in px",
       control: { type: "number", min: 0 },
       table: {
-        defaultValue: {
-          summary: 300,
-        },
         type: {
           summary: "number",
         },
@@ -27,9 +24,6 @@ const meta: ComponentMeta<typeof Columns> = {
       description: "Gap between columns in px",
       control: { type: "number", min: 0 },
       table: {
-        defaultValue: {
-          summary: 25,
-        },
         type: {
           summary: "number",
         },
@@ -39,7 +33,7 @@ const meta: ComponentMeta<typeof Columns> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Columns> = {
+export const Primary: StoryObj<typeof Columns> = {
   args: {
     children: MockChildren,
   },

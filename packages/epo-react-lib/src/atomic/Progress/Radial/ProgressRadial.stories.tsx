@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ProgressRadial from ".";
 
-const meta: ComponentMeta<typeof ProgressRadial> = {
+const meta: Meta<typeof ProgressRadial> = {
   component: ProgressRadial,
   decorators: [
     (Story) => (
@@ -45,9 +45,6 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 0,
-        },
         category: "Model",
       },
     },
@@ -59,14 +56,10 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 100,
-        },
         category: "Model",
       },
     },
     markerFormatter: {
-      control: "none",
       description:
         "Formatting method for the value that will be shown in the marker.",
       table: {
@@ -103,9 +96,6 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: {
-          summary: false,
-        },
         category: "Styling",
       },
     },
@@ -113,7 +103,7 @@ const meta: ComponentMeta<typeof ProgressRadial> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ProgressRadial> = {
+export const Primary: StoryObj<typeof ProgressRadial> = {
   args: {
     value: 40,
     markerFormatter: (value) =>

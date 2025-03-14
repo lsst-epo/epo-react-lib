@@ -14,7 +14,6 @@ const meta: Meta<typeof YAxis> = {
       description: "Number of ticks to render",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 0 },
       },
     },
     labelRender: {
@@ -38,7 +37,6 @@ const meta: Meta<typeof YAxis> = {
       description: "Horizontal of each tick",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 5 },
       },
     },
     showBaseline: {
@@ -46,7 +44,6 @@ const meta: Meta<typeof YAxis> = {
       description: "Should the baseline be rendered",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: true },
       },
     },
   },

@@ -1,12 +1,13 @@
 import { FunctionComponent } from "react";
 import { useTranslation } from "react-i18next";
 import * as Styled from "./styles";
+import { type HorizontalSliderProps } from "@rubin-epo/epo-react-lib/HorizontalSlider";
 
 interface MagnitudeSliderProps {
   yMin: number;
   yMax: number;
   magnitude: number;
-  onMagnitudeChangeCallback: (value: number) => void;
+  onMagnitudeChangeCallback: HorizontalSliderProps["onChangeCallback"];
   estimatedPeak: number;
   disabled?: boolean;
 }

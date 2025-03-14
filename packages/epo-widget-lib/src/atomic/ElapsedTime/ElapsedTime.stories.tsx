@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ElapsedTime from ".";
 
-const meta: ComponentMeta<typeof ElapsedTime> = {
+const meta: Meta<typeof ElapsedTime> = {
   argTypes: {
     year: {
       control: { type: "number", min: 0 },
@@ -55,7 +55,7 @@ const meta: ComponentMeta<typeof ElapsedTime> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ElapsedTime> = {
+export const Primary: StoryObj<typeof ElapsedTime> = {
   args: {
     year: 2,
     day: 158,
