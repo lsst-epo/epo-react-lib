@@ -37,7 +37,7 @@ export const Primary: StoryObj<typeof ResponsiveImage> = {
       altText: "A placeholder image",
       url: "https://rubin.canto.com/direct/image/92ks9squih3nt4q34e18h3fp3m/sWu7y1OuXVmQ73ZyCpXfzEe687Y/original?content-type=image%2Fjpeg&name=Rubin+Marzo+2024+N%C2%BA49.jpg",
       srcSet: generateCantoSrcSet(
-        "https://rubin.canto.com/direct/image/92ks9squih3nt4q34e18h3fp3m/0LtY2_W-ennwJhtJ4FVU_tCLmds/m800/",
+        "https://rubin.canto.com/direct/image/92ks9squih3nt4q34e18h3fp3m/0LtY2_W-ennwJhtJ4FVU_tCLmds/m800/"
       ),
       width: 5464,
       height: 3070,

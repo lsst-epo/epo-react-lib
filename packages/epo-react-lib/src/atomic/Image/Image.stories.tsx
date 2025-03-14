@@ -19,7 +19,7 @@ export default meta;
 
 const generateCantoSrcSet = (cantoUrl: string, width?: number) => {
   const sizes = [100, 240, 320, 500, 640, 800, 2050].filter((size) =>
-    width ? size < width : true,
+    width ? size < width : true
   );
 
   return sizes.map((size) => {
@@ -39,7 +39,7 @@ Primary.args = {
     url: "https://rubin.canto.com/direct/image/e6g9n6c01h309c80qs19eslh55/WqxBY3pXe8VzEh-VuAAoxCmycAQ/original?content-type=image%2Fjpeg&name=IMG_7688.jpeg",
     srcSet: generateCantoSrcSet(
       "https://rubin.canto.com/direct/image/e6g9n6c01h309c80qs19eslh55/tifpy6fo0_wn9ieJy1-dVmmy_v8/m800/",
-      5712,
+      5712
     ),
     width: 5712,
     height: 4284,
