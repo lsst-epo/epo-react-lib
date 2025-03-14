@@ -11,10 +11,6 @@ import "@/styles/css/index.css";
 const viewports = { ...INITIAL_VIEWPORTS, ...MINIMAL_VIEWPORTS };
 
 const preview: Preview = {
-  globals: {
-    locale: defaultLocale,
-    locales,
-  },
   parameters: {
     i18n,
     viewport: { viewports },
@@ -22,7 +18,14 @@ const preview: Preview = {
       theme,
     },
   },
+
   decorators,
+
+  tags: ["autodocs"],
+  initialGlobals: {
+    locale: defaultLocale,
+    locales,
+  }
 };
 
 export default preview;
