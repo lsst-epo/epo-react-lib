@@ -287,7 +287,7 @@ const Template: ComponentStory<typeof SlideoutMenu> = ({ ...args }) => {
 };
 
 export const Primary: ComponentStoryObj<typeof SlideoutMenu> = Template.bind(
-  {}
+  {},
 );
 
 Primary.args = {
