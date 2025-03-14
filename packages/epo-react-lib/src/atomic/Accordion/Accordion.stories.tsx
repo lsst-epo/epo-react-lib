@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { children } from "@/storybook/utilities/argTypes";
 
 import Accordion from ".";
 
-const meta: ComponentMeta<typeof Accordion> = {
+const meta: Meta<typeof Accordion> = {
   component: Accordion,
   argTypes: {
     summary: {
@@ -19,7 +19,7 @@ const meta: ComponentMeta<typeof Accordion> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Accordion> = {
+export const Primary: StoryObj<typeof Accordion> = {
   args: {
     summary: "Accordion Summary",
     children: "Expandable content",

@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ProgressBar from ".";
 
-const meta: ComponentMeta<typeof ProgressBar> = {
+const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
   argTypes: {
     value: {
@@ -24,9 +24,6 @@ const meta: ComponentMeta<typeof ProgressBar> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 0,
-        },
         category: "Model",
       },
     },
@@ -38,14 +35,10 @@ const meta: ComponentMeta<typeof ProgressBar> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 100,
-        },
         category: "Model",
       },
     },
     markerFormatter: {
-      control: "none",
       description:
         "Formatting method for the value that will be shown in the marker.",
       table: {
@@ -92,7 +85,7 @@ const meta: ComponentMeta<typeof ProgressBar> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ProgressBar> = {
+export const Primary: StoryObj<typeof ProgressBar> = {
   args: {
     value: 40,
     markerFormatter: (value) =>

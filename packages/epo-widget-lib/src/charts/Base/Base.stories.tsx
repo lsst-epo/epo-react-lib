@@ -13,9 +13,6 @@ const meta: Meta<typeof Base> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 900,
-        },
       },
     },
     height: {
@@ -24,9 +21,6 @@ const meta: Meta<typeof Base> = {
       table: {
         type: {
           summary: "number",
-        },
-        defaultValue: {
-          summary: 300,
         },
       },
     },
@@ -37,9 +31,6 @@ const meta: Meta<typeof Base> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 0,
-        },
       },
     },
     yMin: {
@@ -48,9 +39,6 @@ const meta: Meta<typeof Base> = {
       table: {
         type: {
           summary: "number",
-        },
-        defaultValue: {
-          summary: 0,
         },
       },
     },

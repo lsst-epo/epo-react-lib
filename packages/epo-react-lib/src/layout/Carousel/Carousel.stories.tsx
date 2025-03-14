@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Carousel from ".";
 import MockChildren from "@/storybook/utilities/mocks";
@@ -9,7 +9,7 @@ const CarouselDecorator = styled.div`
   ${protoContainer()}
 `;
 
-const meta: ComponentMeta<typeof Carousel> = {
+const meta: Meta<typeof Carousel> = {
   component: Carousel,
   argTypes: {
     className: {
@@ -48,7 +48,7 @@ const meta: ComponentMeta<typeof Carousel> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Carousel> = {
+export const Primary: StoryObj<typeof Carousel> = {
   args: {
     children: MockChildren,
     options: {

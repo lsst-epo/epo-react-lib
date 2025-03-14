@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Controls from "./Controls";
 
-const meta: ComponentMeta<typeof Controls> = {
+const meta: Meta<typeof Controls> = {
   argTypes: {
     playing: {
       type: {
@@ -56,6 +56,6 @@ const meta: ComponentMeta<typeof Controls> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Controls> = {
+export const Primary: StoryObj<typeof Controls> = {
   args: {},
 };

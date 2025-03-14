@@ -16,7 +16,6 @@ const meta: Meta<typeof Slideout> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: { summary: false },
       },
     },
     onCloseCallback: {
@@ -46,7 +45,6 @@ const meta: Meta<typeof Slideout> = {
         type: {
           summary: "top|bottom|left|right",
         },
-        defaultValue: { summary: true },
       },
     },
     showBackground: {
@@ -57,7 +55,6 @@ const meta: Meta<typeof Slideout> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: { summary: true },
       },
     },
   },

@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Error from ".";
 
-const meta: ComponentMeta<typeof Error> = {
+const meta: Meta<typeof Error> = {
   component: Error,
   argTypes: {
     children: {
@@ -18,7 +18,7 @@ const meta: ComponentMeta<typeof Error> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Error> = {
+export const Primary: StoryObj<typeof Error> = {
   args: {
     children: "An error has occurred!",
   },

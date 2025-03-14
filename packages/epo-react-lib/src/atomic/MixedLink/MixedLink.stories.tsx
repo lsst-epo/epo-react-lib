@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { children, className } from "@/storybook/utilities/argTypes";
 
 import MixedLink from ".";
 
-const meta: ComponentMeta<typeof MixedLink> = {
+const meta: Meta<typeof MixedLink> = {
   component: MixedLink,
   argTypes: {
     children: {
@@ -78,7 +78,7 @@ const meta: ComponentMeta<typeof MixedLink> = {
 };
 export default meta;
 
-export const ExternalLink: ComponentStoryObj<typeof MixedLink> = {
+export const ExternalLink: StoryObj<typeof MixedLink> = {
   args: {
     children: "Rubin Observatory",
     url: "https://rubinobservatory.org/",
@@ -90,7 +90,7 @@ const BASE_URL =
     ? process.env.STORYBOOK_PUBLIC_BASE_URL
     : process.env.NEXT_PUBLIC_BASE_URL;
 
-export const InternalLink: ComponentStoryObj<typeof MixedLink> = {
+export const InternalLink: StoryObj<typeof MixedLink> = {
   args: {
     ...ExternalLink.args,
     url: `${BASE_URL}`,

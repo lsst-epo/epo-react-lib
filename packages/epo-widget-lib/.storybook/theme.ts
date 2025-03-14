@@ -30,6 +30,6 @@ export default create({
   brandTitle: "Rubin Observatory Education & Public Outreach",
   brandUrl: "https://rubinobservatory.org/",
   brandImage:
-    "https://rubin.canto.com/direct/image/7k1113rl05423djdspflk1g34s/iSOjxbDAamJpaJjntPfLPxHkWDg/original?content-type=image%2Fpng&name=Compact-Horizontal-Color.png",
+    "https://rubin.canto.com/direct/image/gspfhrlko96dl9pgtuo7mdbh2g/SDTOo1HL7V5r0jJ2K9_CiqZvwxw/original?content-type=image%2Fpng&name=Compact+horizontal+-+Colorized+RGB+-+use+over+white.png",
   brandTarget: "_self",
 });

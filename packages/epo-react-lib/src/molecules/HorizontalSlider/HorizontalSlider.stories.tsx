@@ -14,7 +14,6 @@ const meta: Meta<typeof HorizontalSlider> = {
       table: {
         category: "Slider",
         type: { summary: "number" },
-        defaultValue: { summary: 0 },
       },
     },
     max: {
@@ -23,7 +22,6 @@ const meta: Meta<typeof HorizontalSlider> = {
       table: {
         category: "Slider",
         type: { summary: "number" },
-        defaultValue: { summary: 100 },
       },
     },
     step: {
@@ -33,7 +31,6 @@ const meta: Meta<typeof HorizontalSlider> = {
       table: {
         category: "Slider",
         type: { summary: "number" },
-        defaultValue: { summary: 1 },
       },
     },
     value: {
@@ -108,7 +105,6 @@ const meta: Meta<typeof HorizontalSlider> = {
         category: "Function",
         type: {
           summary: "boolean",
-          defaultValue: { summary: false },
         },
       },
     },

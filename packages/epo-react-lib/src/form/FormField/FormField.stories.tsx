@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import FormField from ".";
 import Input from "@/form/Input";
@@ -10,7 +10,7 @@ const FormFieldDecorator = styled.div`
   ${protoContainer()}
 `;
 
-const meta: ComponentMeta<typeof FormField> = {
+const meta: Meta<typeof FormField> = {
   component: FormField,
   argTypes: {
     children: {
@@ -98,7 +98,7 @@ const passwordProps = {
   placeholder: "<Password /> component child",
 };
 
-export const TextField: ComponentStoryObj<typeof FormField> = {
+export const TextField: StoryObj<typeof FormField> = {
   args: {
     children: <Input {...textFieldProps} />,
     htmlFor: textFieldId,
@@ -108,7 +108,7 @@ export const TextField: ComponentStoryObj<typeof FormField> = {
   },
 };
 
-export const PasswordField: ComponentStoryObj<typeof FormField> = {
+export const PasswordField: StoryObj<typeof FormField> = {
   args: {
     children: <Password {...passwordProps} />,
     htmlFor: passwordId,
@@ -118,7 +118,7 @@ export const PasswordField: ComponentStoryObj<typeof FormField> = {
   },
 };
 
-export const WithError: ComponentStoryObj<typeof FormField> = {
+export const WithError: StoryObj<typeof FormField> = {
   args: {
     children: <Input {...textFieldProps} />,
     htmlFor: textFieldId,

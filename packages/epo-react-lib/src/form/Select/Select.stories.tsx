@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Select from ".";
 
@@ -15,7 +15,7 @@ const options = [
 
 const emptyOption = { value: "", label: "" };
 
-const meta: ComponentMeta<typeof Select> = {
+const meta: Meta<typeof Select> = {
   component: Select,
   argTypes: {
     options: {
@@ -45,11 +45,11 @@ const meta: ComponentMeta<typeof Select> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Select> = {
+export const Primary: StoryObj<typeof Select> = {
   args: { options },
 };
 
-export const WithOptionGroups: ComponentStoryObj<typeof Select> = {
+export const WithOptionGroups: StoryObj<typeof Select> = {
   args: {
     options: options.map((o, i) => ({
       ...o,
@@ -58,6 +58,6 @@ export const WithOptionGroups: ComponentStoryObj<typeof Select> = {
   },
 };
 
-export const WithEmptyOption: ComponentStoryObj<typeof Select> = {
+export const WithEmptyOption: StoryObj<typeof Select> = {
   args: { options, emptyOption },
 };

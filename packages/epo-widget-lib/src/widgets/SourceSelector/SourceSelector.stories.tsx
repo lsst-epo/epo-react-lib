@@ -15,9 +15,6 @@ const meta: Meta<typeof SourceSelector> = {
         type: {
           summary: "number",
         },
-        defaultValue: {
-          summary: 600,
-        },
         category: "Display",
       },
     },
@@ -27,9 +24,6 @@ const meta: Meta<typeof SourceSelector> = {
       table: {
         type: {
           summary: "number",
-        },
-        defaultValue: {
-          summary: 600,
         },
         category: "Display",
       },
@@ -113,7 +107,6 @@ const meta: Meta<typeof SourceSelector> = {
         "Puts the widget into a display only mode where users cannot click on new selections and the message is removed from the DOM. User's can still use alert playback controls.",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: false },
         category: "Display",
       },
     },

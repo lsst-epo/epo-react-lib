@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Input from ".";
 
@@ -27,7 +27,7 @@ const InputTypes = [
   "week",
 ];
 
-const meta: ComponentMeta<typeof Input> = {
+const meta: Meta<typeof Input> = {
   component: Input,
   argTypes: {
     type: {
@@ -46,6 +46,6 @@ const meta: ComponentMeta<typeof Input> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof Input> = {
+export const Primary: StoryObj<typeof Input> = {
   args: {},
 };

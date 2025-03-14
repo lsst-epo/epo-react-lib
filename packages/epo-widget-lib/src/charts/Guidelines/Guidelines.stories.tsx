@@ -21,7 +21,6 @@ const meta: Meta<typeof Guidelines> = {
       description: "Number of guides to render",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 0 },
       },
     },
     xDomain: {

@@ -1,15 +1,11 @@
-import {
-  ComponentMeta,
-  ComponentStoryObj,
-  ComponentStory,
-} from "@storybook/react";
+import { Meta, StoryObj, StoryFn } from "@storybook/react";
 import { objChildren } from "@/storybook/utilities/argTypes";
 
 import BasicModal from ".";
 import Button from "@/atomic/Button";
 import { useState } from "react";
 
-const meta: ComponentMeta<typeof BasicModal> = {
+const meta: Meta<typeof BasicModal> = {
   component: BasicModal,
   argTypes: {
     children: objChildren,
@@ -20,9 +16,6 @@ const meta: ComponentMeta<typeof BasicModal> = {
         type: {
           summary: "boolean",
         },
-        defaultValue: {
-          summary: false,
-        },
       },
     },
     darkMode: {
@@ -31,9 +24,6 @@ const meta: ComponentMeta<typeof BasicModal> = {
       table: {
         type: {
           summary: "boolean",
-        },
-        defaultValue: {
-          summary: false,
         },
       },
     },
@@ -70,7 +60,7 @@ const meta: ComponentMeta<typeof BasicModal> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof BasicModal> = (args) => {
+const Template: StoryFn<typeof BasicModal> = (args) => {
   const [isOpen, setIsOpen] = useState(args.open);
 
   return (
@@ -88,7 +78,7 @@ const Template: ComponentStory<typeof BasicModal> = (args) => {
   );
 };
 
-export const Primary: ComponentStoryObj<typeof BasicModal> = Template.bind({});
+export const Primary: StoryObj<typeof BasicModal> = Template.bind({});
 Primary.args = {
   title: "Modal Title",
   description: "Modal description",
@@ -96,7 +86,7 @@ Primary.args = {
     "Cosmic ipsum universe right ascension pole star solstice cosmic rays extragalactic black body NASA cluster muttnik synodic superior planets gravitational constant new moon telescope inferior planets syzygy perturbation falling star quasar red dwarf satellite density day dust vernal equinox zodiac inclination azimuth weightlessness spectrum variable star magnitude flare Mir minor planet transparency cosmology full moon terrestrial quarter moon red shift seeing gravity binary star red giant star space station local group",
 };
 
-export const DarkMode: ComponentStoryObj<typeof BasicModal> = Template.bind({});
+export const DarkMode: StoryObj<typeof BasicModal> = Template.bind({});
 DarkMode.args = {
   ...Primary.args,
   darkMode: true,

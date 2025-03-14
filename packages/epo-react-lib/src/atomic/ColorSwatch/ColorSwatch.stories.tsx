@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ColorSwatch from ".";
 
-const meta: ComponentMeta<typeof ColorSwatch> = {
+const meta: Meta<typeof ColorSwatch> = {
   component: ColorSwatch,
   argTypes: {
     className: {
@@ -47,7 +47,7 @@ const meta: ComponentMeta<typeof ColorSwatch> = {
 };
 export default meta;
 
-export const Primary: ComponentStoryObj<typeof ColorSwatch> = {
+export const Primary: StoryObj<typeof ColorSwatch> = {
   args: {
     color: "#009fa1",
   },

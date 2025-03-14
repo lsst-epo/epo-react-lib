@@ -34,9 +34,6 @@ const meta: Meta<typeof ImageStack> = {
         type: {
           summary: "() => void",
         },
-        defaultValue: {
-          summary: 0,
-        },
         category: Categories.function,
       },
     },

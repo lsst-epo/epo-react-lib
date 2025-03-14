@@ -1,8 +1,4 @@
-import {
-  ComponentMeta,
-  ComponentStory,
-  ComponentStoryObj,
-} from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import styled from "styled-components";
 import { singleData, colorOptions } from "../__mocks__";
 
@@ -11,7 +7,7 @@ import { getBrightnessValue } from "../lib/utils";
 import { useState } from "react";
 import { ImageFilter } from "..";
 
-const meta: ComponentMeta<typeof FilterControls> = {
+const meta: Meta<typeof FilterControls> = {
   argTypes: {
     filter: {
       type: {
@@ -112,7 +108,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Template: ComponentStory<typeof FilterControls> = (args) => {
+const Template: StoryFn<typeof FilterControls> = (args) => {
   const [filter, setFilter] = useState(args.filter);
 
   return (
@@ -131,9 +127,7 @@ const Template: ComponentStory<typeof FilterControls> = (args) => {
 
 const { value, min, max } = singleData[0].objects[0].filters[0];
 
-export const Primary: ComponentStoryObj<typeof FilterControls> = Template.bind(
-  {}
-);
+export const Primary: StoryObj<typeof FilterControls> = Template.bind({});
 
 Primary.args = {
   filter: {

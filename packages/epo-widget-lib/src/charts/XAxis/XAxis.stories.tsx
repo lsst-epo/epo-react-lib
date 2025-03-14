@@ -29,7 +29,6 @@ const meta: Meta<typeof XAxis> = {
         "Position along the Y axis at which the X axis will be placed",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 0 },
       },
     },
     ticks: {
@@ -37,7 +36,6 @@ const meta: Meta<typeof XAxis> = {
       description: "Number of ticks to render",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 0 },
       },
     },
     labelRender: {
@@ -61,7 +59,6 @@ const meta: Meta<typeof XAxis> = {
       description: "Vertical height of each tick",
       table: {
         type: { summary: "number" },
-        defaultValue: { summary: 5 },
       },
     },
     showBaseline: {
@@ -69,7 +66,6 @@ const meta: Meta<typeof XAxis> = {
       description: "Should the baseline be rendered",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: true },
       },
     },
   },
