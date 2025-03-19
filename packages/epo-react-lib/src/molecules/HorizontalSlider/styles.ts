@@ -7,7 +7,7 @@ export const HorizontalSliderContainer = styled.div`
 
   display: flex;
   flex-flow: column nowrap;
-  padding-bottom: var(--size-spacing-s);
+  padding-block-end: var(--size-padding-slide-block-end, var(--size-spacing-s));
 
   &[data-theme="dark"] {
     --color-background-thumb: var(--white, #fff);
