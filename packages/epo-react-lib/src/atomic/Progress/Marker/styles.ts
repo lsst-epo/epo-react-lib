@@ -14,7 +14,7 @@ export const Marker = styled.div.attrs<MarkerProps>(({ $value }) => ({
   ${({ $filled, $active, $background, $hoverable, $value }: MarkerProps) =>
     css`
       --marker-border-color: ${$active
-        ? css`var(--progress-bar-background)`
+        ? css`var(--progress-bar-background, var(--color-background-progress-default))`
         : css`var(--progress-bar-container-background)`};
       --marker-background-color: ${$filled
         ? css`
