@@ -1,12 +1,12 @@
 import { zStack } from "@/styles/abstracts";
 import styled from "styled-components";
 
-export const Transition = styled.div`
+export const Wrapper = styled.div`
   --transition-time: calc(var(--slide-time, 0) + var(--slide-delay, 0));
 
   @media (prefers-reduced-motion: no-preference) {
     --slide-time: 400ms;
-    --slide-delay: 200ms;
+    --slide-delay: 100ms;
   }
 
   position: fixed;
@@ -18,32 +18,40 @@ export const Transition = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background-color: var(--background-color, transparent);
+  background-color: rgba(0, 0, 0, var(--overlay-opacity, 0.9));
   width: 100%;
   height: 100%;
   position: absolute;
-  transition: background-color var(--slide-time, 0);
-  transition-delay: var(--slide-delay, 0);
+  transition-property: opacity;
+  transition-duration: var(--transition-time);
+  opacity: 0;
 
-  &.closed {
-    --background-color: transparent;
+  &[data-open] {
+    opacity: 1;
   }
 
-  &.open {
-    --background-color: rgba(0, 0, 0, var(--overlay-opacity, 0.9));
+  &[data-enter],
+  &[data-leave],
+  &[data-closed] {
+    opacity: 0;
+  }
 
-    @media (prefers-reduced-transparency: no-preference) {
-      --overlay-opacity: 0.7;
-    }
+  @media (prefers-reduced-transparency: no-preference) {
+    --overlay-opacity: 0.7;
   }
 `;
-export const SlideoutContainer = styled.div`
+export const Slideout = styled.div`
   position: absolute;
-  transition: transform var(--slide-time, 0);
-  &.closed {
-    transform: var(--transform);
-  }
-  &.open {
+  transition-property: transform;
+  transition-duration: var(--slide-time);
+  transition-delay: var(--slide-delay);
+
+  &[data-open] {
     transform: translate(0, 0);
+  }
+  &[data-enter],
+  &[data-leave],
+  &[data-closed] {
+    transform: var(--transform);
   }
 `;

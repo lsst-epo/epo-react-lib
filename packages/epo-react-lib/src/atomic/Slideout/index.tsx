@@ -1,6 +1,5 @@
-import { FunctionComponent, PropsWithChildren, useRef } from "react";
-import { Transition, TransitionChild } from "@headlessui/react";
-import { useOnClickOutside, useKeyDownEvent } from "@/hooks/listeners";
+import { FunctionComponent, PropsWithChildren } from "react";
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import * as Styled from "./styles";
 
 type SlideFrom = "top" | "right" | "bottom" | "left";
@@ -45,7 +44,6 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
   className,
   children,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const translation = `translate(${getX(slideFrom)}, ${getY(slideFrom)})`;
   const styles = {
     [slideFrom]: 0,
@@ -53,61 +51,31 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
       "100%",
   };
 
-  function handleKeyDown(event: KeyboardEvent) {
-    if (isOpen) {
-      const { key } = event;
-
-      const keyMap: { [key: string]: () => void } = {
-        Escape: () => onCloseCallback && onCloseCallback(),
-      };
-
-      const action = keyMap[key];
-      if (action) {
-        event.preventDefault();
-        action();
-      }
-    }
-  }
-
-  useOnClickOutside(containerRef, () => onCloseCallback && onCloseCallback());
-  useKeyDownEvent(handleKeyDown);
-
   return (
-    <Transition
-      as={Styled.Transition}
-      show={isOpen}
-      afterEnter={() => onOpenCallback && onOpenCallback()}
-      afterLeave={() => onCloseCallback && onCloseCallback()}
+    <Dialog
+      as={Styled.Wrapper}
+      open={isOpen}
+      onClose={() => onCloseCallback && onCloseCallback()}
       className={className}
       data-testid="slideout"
     >
       {showBackground && (
-        <TransitionChild
+        <DialogBackdrop
+          onTransitionEnd={() => isOpen && onOpenCallback && onOpenCallback()}
+          transition
           as={Styled.Overlay}
-          role="none"
-          enterFrom="closed"
-          enter="opening"
-          enterTo="open"
-          leaveFrom="open"
-          leave="closing"
-          leaveTo="closed"
+          data-testid="slideoutBackdrop"
         />
       )}
-      <TransitionChild
-        ref={containerRef}
-        as={Styled.SlideoutContainer}
+      <DialogPanel
+        as={Styled.Slideout}
         style={{ "--transform": translation, ...styles }}
-        enterFrom="closed"
-        enter="opening"
-        enterTo="open"
-        leaveFrom="open"
-        leave="closing"
-        leaveTo="closed"
         data-testid="slideoutContainer"
+        transition
       >
         {children}
-      </TransitionChild>
-    </Transition>
+      </DialogPanel>
+    </Dialog>
   );
 };
 

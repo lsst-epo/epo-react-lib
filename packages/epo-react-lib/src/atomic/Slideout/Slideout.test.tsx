@@ -32,7 +32,7 @@ describe("Slideout", () => {
   it("closes when clicked outside of content", () => {
     render(<Slideout isOpen={true} onCloseCallback={onCloseCallback} />);
 
-    const overlay = screen.getByRole("none");
+    const overlay = screen.getByTestId("slideoutBackdrop");
     userEvent.click(overlay);
 
     waitFor(() => {

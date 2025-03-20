@@ -93,7 +93,10 @@ const Template: StoryFn<typeof Slideout> = (args) => {
       <Slideout
         {...args}
         isOpen={isOpen}
-        onCloseCallback={() => setIsOpen(false)}
+        onCloseCallback={() => {
+          setIsOpen(false);
+          args.onCloseCallback && args.onCloseCallback();
+        }}
       >
         <Panel
           style={{
