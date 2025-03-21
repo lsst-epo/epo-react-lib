@@ -65,6 +65,7 @@ const entry = {
   SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
   IconComposer: resolve(__dirname, "src/svg/IconComposer/index.tsx"),
   icons: resolve(__dirname, "src/svg/icons"),
+  StyledComponentsRegistry: resolve(__dirname, "src/styles/registry.tsx"),
   ...packages,
 };
 
@@ -123,7 +124,7 @@ export default defineConfig({
         ...Object.keys(dependencies),
         ...Object.keys(peerDependencies),
         /^lodash/,
-        "next/link",
+        /^next/,
         "react/jsx-runtime",
         "react-player/base",
         "react-player/youtube",
