@@ -18,7 +18,7 @@ export interface ImageStackProps {
   visible?: number | Array<boolean>;
   describedById?: string;
   loadCallback?: () => void;
-  mixBlendMode?: CSSProperties["mixBlendMode"];
+  mixBlendMode?: string;
   className?: string;
   width?: number;
   height?: number;
