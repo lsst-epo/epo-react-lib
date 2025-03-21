@@ -1,17 +1,14 @@
-import { FunctionComponent, HTMLProps, RefCallback } from "react";
+import { FunctionComponent, HTMLProps, Key, RefCallback } from "react";
 import isNil from "lodash/isNil";
 import * as Styled from "./styles";
 
 interface Props<T = HTMLSpanElement> extends Omit<HTMLProps<T>, "value"> {
   value?: number | readonly number[] | undefined;
-  markValue?: string | number | null;
+  markValue?: Key | null;
   ref: RefCallback<T>;
 }
 
-const getDoubleHandleColor = (
-  markValue: string | number,
-  value: readonly number[]
-) => {
+const getDoubleHandleColor = (markValue: Key, value: readonly number[]) => {
   if (Number(markValue) < value[0]) return {};
   if (Number(markValue) > value[1]) return {};
 
@@ -21,7 +18,7 @@ const getDoubleHandleColor = (
   };
 };
 
-const getSingleHandleColor = (markValue: string | number, value: number) =>
+const getSingleHandleColor = (markValue: Key, value: number) =>
   Number(markValue) <= value
     ? {
         "--color-background-mark": "var(--color-background-track)",

@@ -101,7 +101,7 @@
     "@types/lodash": "^4.17.16",
     "@types/postcss-normalize": "^9.0.4",
     "@types/postcss-preset-env": "^8.0.0",
-    "@types/react": "18.2.21",
+    "@types/react": "18.3.1",
     "@types/react-dom": "18.3.1",
     "@types/react-slider": "^1.3.6",
     "@vitejs/plugin-react": "^4",
@@ -149,6 +149,7 @@
     }
   },
   "resolutions": {
-    "semver": "7.3.2"
+    "semver": "7.3.2",
+    "@types/react": "18.3.1"
   }
 }
