@@ -1,11 +1,11 @@
-import { FunctionComponent, PropsWithChildren } from "react";
+import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import { type LinkProps } from "next/link";
 import IconComposer, { type IconKey } from "@/svg/IconComposer";
 import * as Styled from "./styles";
 
 export interface MasonryImageProps {
   linkProps: LinkProps;
-  icon?: IconKey;
+  icon?: ReactNode | IconKey;
   className?: string;
 }
 
@@ -16,11 +16,15 @@ const MasonryImage: FunctionComponent<PropsWithChildren<MasonryImageProps>> = ({
   className,
 }) => {
   return (
-    <Styled.TileLink prefetch={false} {...linkProps} className={className}>
+    <Styled.TileLink {...linkProps} className={className}>
       {children}
       {icon && (
         <Styled.TileIcon>
-          <IconComposer size={40} icon={icon} />
+          {typeof icon === "string" ? (
+            <IconComposer size={40} icon={icon} />
+          ) : (
+            icon
+          )}
         </Styled.TileIcon>
       )}
     </Styled.TileLink>
