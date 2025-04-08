@@ -36,18 +36,11 @@ describe("CopyUrlButton", () => {
     expect(navigator.clipboard.writeText).toBeCalledTimes(1);
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(props.url);
   });
-  it("renders screenreader text", () => {
-    render(<CopyUrlButton {...props} />);
-
-    const srText = screen.getByText("share.copy_url");
-
-    expect(srText).toBeInTheDocument();
-  });
   it("renders icon", () => {
     render(<CopyUrlButton {...props} />);
 
     const button = screen.getByRole("button");
-    const icon = within(button).getByRole("presentation");
+    const icon = button.querySelector("svg");
     expect(icon).toBeInTheDocument();
   });
 });

@@ -23,7 +23,7 @@ export { default as Marker } from "@/atomic/Progress/Marker";
 export { type PictureProps, default as Picture } from "@/atomic/Picture";
 export { default as ProgressRadial } from "@/atomic/Progress/Radial";
 export { default as ResponsiveImage } from "@/molecules/ResponsiveImage";
-export * from "@/atomic/Share";
+export * from "@/molecules/Share";
 export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
 export { default as Stack } from "@/atomic/Stack";
