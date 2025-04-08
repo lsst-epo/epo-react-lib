@@ -20,6 +20,7 @@ const packages = Object.fromEntries(
 );
 
 const entry = {
+  ...packages,
   main: resolve(__dirname, "src/index.ts"),
   styles: resolve(__dirname, "src/styles/index.ts"),
   Accordion: resolve(__dirname, "src/atomic/Accordion/Accordion.tsx"),
@@ -38,7 +39,7 @@ const entry = {
     __dirname,
     "src/atomic/Progress/Radial/ProgressRadial.tsx"
   ),
-  Share: resolve(__dirname, "src/atomic/Share"),
+  Share: resolve(__dirname, "src/molecules/Share"),
   Toast: resolve(__dirname, "src/atomic/Toast/Toast.tsx"),
   SimpleTable: resolve(
     __dirname,
@@ -61,12 +62,10 @@ const entry = {
   Columns: resolve(__dirname, "src/layout/Columns/Columns.tsx"),
   Container: resolve(__dirname, "src/layout/Container/Container.tsx"),
   Grid: resolve(__dirname, "src/layout/Grid/Grid.tsx"),
-  MasonryGrid: resolve(__dirname, "src/layout/MasonryGrid/MasonryGrid.tsx"),
   SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
   IconComposer: resolve(__dirname, "src/svg/IconComposer/index.tsx"),
   icons: resolve(__dirname, "src/svg/icons"),
   StyledComponentsRegistry: resolve(__dirname, "src/styles/registry.tsx"),
-  ...packages,
 };
 
 // https://vitejs.dev/config/
