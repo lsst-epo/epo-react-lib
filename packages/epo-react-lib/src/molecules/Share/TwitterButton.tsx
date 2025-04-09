@@ -8,7 +8,12 @@ const TwitterXButton = forwardRef<
   Omit<ComponentProps<typeof TwitterShareButton>, "ref" | "children">
 >((props, ref) => {
   return (
-    <Styled.Twitter resetButtonStyle={false} {...props} ref={ref}>
+    <Styled.Twitter
+      htmlTitle={"X (Twitter)"}
+      resetButtonStyle={false}
+      {...props}
+      ref={ref}
+    >
       <FaXTwitter />
     </Styled.Twitter>
   );

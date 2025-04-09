@@ -8,7 +8,12 @@ const LinkedInButton = forwardRef<
   Omit<ComponentProps<typeof LinkedinShareButton>, "ref" | "children">
 >((props, ref) => {
   return (
-    <Styled.LinkedIn resetButtonStyle={false} {...props} ref={ref}>
+    <Styled.LinkedIn
+      htmlTitle={"LinkedIn"}
+      resetButtonStyle={false}
+      {...props}
+      ref={ref}
+    >
       <FaLinkedinIn />
     </Styled.LinkedIn>
   );
