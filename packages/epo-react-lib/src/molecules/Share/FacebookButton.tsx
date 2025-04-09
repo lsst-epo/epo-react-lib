@@ -8,7 +8,12 @@ const FacebookButton = forwardRef<
   Omit<ComponentProps<typeof FacebookShareButton>, "ref" | "children">
 >((props, ref) => {
   return (
-    <Styled.Facebook resetButtonStyle={false} {...props} ref={ref}>
+    <Styled.Facebook
+      htmlTitle={"Facebook"}
+      resetButtonStyle={false}
+      {...props}
+      ref={ref}
+    >
       <FaFacebookF />
     </Styled.Facebook>
   );
