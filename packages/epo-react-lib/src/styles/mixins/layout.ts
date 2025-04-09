@@ -13,10 +13,8 @@ const Edges: {
   left: "inline-start",
 };
 
-export const padding = (edge: BoxEdge, size: SpacingSize) =>
-  `padding-${Edges[edge]}: ${token(
-    `PADDING_${size.toUpperCase()}` as StyleToken
-  )};`;
+export const padding = (size: SpacingSize) =>
+  token(`PADDING_${size.toUpperCase()}` as StyleToken);
 
 export const margin = (edge: BoxEdge, size: SpacingSize) =>
   `margin-${Edges[edge]}: ${token(

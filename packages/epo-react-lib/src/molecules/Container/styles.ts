@@ -4,12 +4,6 @@ import {
   containerRegular,
   containerWide,
 } from "@/styles/utils";
-import { padding, SpacingSize } from "@/styles/mixins/layout";
-
-interface SectionProps {
-  $bgColor: string;
-  $paddingSize?: SpacingSize;
-}
 
 export type ContainerWidth = "narrow" | "regular" | "wide";
 
@@ -18,15 +12,12 @@ interface InnerProps {
   $nested: any;
 }
 
-export const Section = styled.section<SectionProps>`
+export const Section = styled.section`
   background-color: var(--section-background-color);
-
-  ${({ $paddingSize }: SectionProps) =>
-    $paddingSize &&
-    `${padding("top", $paddingSize)}${padding("bottom", $paddingSize)}`}
+  padding: var(--size-padding-container);
 
   + section {
-    padding-top: 0;
+    padding-block-start: 0;
   }
 `;
 
