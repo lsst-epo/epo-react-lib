@@ -1,7 +1,7 @@
 "use client";
-import { FunctionComponent, PropsWithChildren } from "react";
+import { ComponentProps, FunctionComponent, PropsWithChildren } from "react";
 import * as Styled from "./styles";
-import { SpacingSize } from "@/styles/mixins/layout";
+import { padding, SpacingSize } from "@/styles/mixins/layout";
 import { palette } from "@/styles/abstracts";
 import { useNestedContext } from "@/contexts/Nested";
 
@@ -12,7 +12,7 @@ export interface ContainerProps {
   /** Applies padding utility class of the same name.
    * Default is "large", "none" removes the class entirely */
   paddingSize?: SpacingSize | "none";
-  elAttributes?: Partial<HTMLElement>;
+  elAttributes?: ComponentProps<"section">;
 }
 
 const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
@@ -20,16 +20,24 @@ const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
   children,
   className,
   width = "narrow",
-  paddingSize = "large",
-  elAttributes,
+  paddingSize: basePaddingSize = "large",
+  elAttributes = {},
 }) => {
+  const { style, ...attributes } = elAttributes;
   const nested = useNestedContext();
+  const paddingSize =
+    !nested && basePaddingSize !== "none" ? basePaddingSize : undefined;
+
   return (
     <Styled.Section
       data-testid="container"
-      style={{ "--section-background-color": `var(--${bgColor})` }}
-      $paddingSize={!nested && paddingSize !== "none" ? paddingSize : undefined}
-      {...(elAttributes as any)}
+      style={{
+        "--section-background-color": `var(--${bgColor})`,
+        "--size-padding-container":
+          paddingSize && `${padding(paddingSize)} 0 ${padding(paddingSize)}`,
+        ...style,
+      }}
+      {...attributes}
     >
       <Styled.Inner
         className={className ? `${className} ${className}__inner` : undefined}
