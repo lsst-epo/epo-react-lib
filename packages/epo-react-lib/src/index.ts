@@ -47,7 +47,7 @@ export { default as Switch } from "@/form/Switch";
 export { default as BasicModal } from "@/layout/BasicModal";
 export { default as CarouselLayout } from "@/layout/Carousel";
 export { default as Columns } from "@/layout/Columns";
-export { default as Container } from "@/layout/Container";
+export { default as Container } from "@/molecules/Container";
 export { default as Grid } from "@/layout/Grid";
 export {
   SlideoutMenu,

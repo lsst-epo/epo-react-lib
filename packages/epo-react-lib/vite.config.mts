@@ -60,7 +60,6 @@ const entry = {
   BasicModal: resolve(__dirname, "src/layout/BasicModal/BasicModal.tsx"),
   CarouselLayout: resolve(__dirname, "src/layout/Carousel/Carousel.tsx"),
   Columns: resolve(__dirname, "src/layout/Columns/Columns.tsx"),
-  Container: resolve(__dirname, "src/layout/Container/Container.tsx"),
   Grid: resolve(__dirname, "src/layout/Grid/Grid.tsx"),
   SlideoutMenu: resolve(__dirname, "src/layout/SlideoutMenu"),
   IconComposer: resolve(__dirname, "src/svg/IconComposer/index.tsx"),
@@ -127,6 +126,7 @@ export default defineConfig({
         "react/jsx-runtime",
         "react-player/base",
         "react-player/youtube",
+        /^react-share/,
       ],
       output: {
         exports: "named",

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import Container from "@/layout/Container";
+import Container from "@/molecules/Container";
 import * as Styled from "./styles";
 
 interface ComplexTableCell {
