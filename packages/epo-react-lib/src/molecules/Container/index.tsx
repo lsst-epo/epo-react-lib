@@ -1,9 +1,9 @@
 "use client";
 import { ComponentProps, FunctionComponent, PropsWithChildren } from "react";
-import * as Styled from "./styles";
 import { padding, SpacingSize } from "@/styles/mixins/layout";
 import { palette } from "@/styles/abstracts";
 import { useNestedContext } from "@/contexts/Nested";
+import * as Styled from "./styles";
 
 export interface ContainerProps {
   bgColor?: keyof typeof palette;
@@ -13,6 +13,11 @@ export interface ContainerProps {
    * Default is "large", "none" removes the class entirely */
   paddingSize?: SpacingSize | "none";
   elAttributes?: ComponentProps<"section">;
+  /**
+   * For now, configure if the color scheme is dark manually.
+   * This may change in the future to be calculated from the background color
+   */
+  darkMode?: boolean;
 }
 
 const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
@@ -22,6 +27,7 @@ const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
   width = "narrow",
   paddingSize: basePaddingSize = "large",
   elAttributes = {},
+  darkMode = false,
 }) => {
   const { style, ...attributes } = elAttributes;
   const nested = useNestedContext();
@@ -31,6 +37,7 @@ const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
   return (
     <Styled.Section
       data-testid="container"
+      data-dark-mode={darkMode}
       style={{
         "--section-background-color": `var(--${bgColor})`,
         "--size-padding-container":

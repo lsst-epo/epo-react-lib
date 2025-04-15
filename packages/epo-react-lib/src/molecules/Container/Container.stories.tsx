@@ -1,4 +1,6 @@
 import { palette } from "@/styles/abstracts";
+import * as colorTokens from "@rubin-epo/epo-style-dictionary/rubin";
+import kebabCase from "lodash/kebabCase";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { objChildren, className } from "@/storybook/utilities/argTypes";
 import MockChildren from "@/storybook/utilities/mocks";
@@ -13,7 +15,12 @@ const meta: Meta<typeof Container> = {
     className,
     bgColor: {
       control: "select",
-      options: Object.keys(palette),
+      options: [
+        ...Object.keys(palette),
+        ...Object.keys(colorTokens)
+          .filter((key) => key.toLowerCase().includes("color"))
+          .map(kebabCase),
+      ],
       description:
         "Background color for the container, chosen from the available color tokens defined in `GlobalStyles`",
       table: {
@@ -45,6 +52,9 @@ const meta: Meta<typeof Container> = {
       table: {
         type: { summary: `SectionAttributes` },
       },
+    },
+    darkMode: {
+      control: "boolean",
     },
   },
 };
