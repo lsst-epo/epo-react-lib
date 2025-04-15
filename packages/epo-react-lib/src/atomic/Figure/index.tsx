@@ -21,15 +21,7 @@ const Figure: FunctionComponent<PropsWithChildren<FigureProps>> = ({
   return (
     <Styled.Figure
       data-layout={layout}
-      style={
-        withBackground
-          ? {
-              "--figure-background-color":
-                "var(--color-background-tile-light, #f5f5f5)",
-              "--figure-padding": "var(--size-spacing-s, 1rem)",
-            }
-          : undefined
-      }
+      data-with-background={withBackground}
       className={className}
     >
       <ConditionalWrapper

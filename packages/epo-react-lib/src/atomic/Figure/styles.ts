@@ -4,8 +4,16 @@ import { BREAK_PHABLET } from "@/styles/abstracts";
 export const Figure = styled.figure`
   --figcaption-gap: var(--figure-padding, var(--size-spacing-s, 1rem));
 
-  background-color: var(--figure-background-color);
-  padding: var(--figure-padding);
+  &[data-with-background="true"] {
+    background-color: var(
+      --figure-background-color,
+      light-dark(
+        var(--color-background-tile-light, #f5f5f5),
+        var(--black, #000)
+      )
+    );
+    padding: var(--figure-padding, var(--size-spacing-s, 1rem));
+  }
 
   &[data-layout="horizontal"] {
     &:after {

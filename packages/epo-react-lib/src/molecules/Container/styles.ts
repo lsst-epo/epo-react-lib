@@ -15,9 +15,14 @@ interface InnerProps {
 export const Section = styled.section`
   background-color: var(--section-background-color);
   padding: var(--size-padding-container);
+  color: light-dark(var(--color-font-primary), var(--color-font-invert));
 
   + section {
     padding-block-start: 0;
+  }
+
+  &[data-dark-mode="true"] {
+    color-scheme: dark;
   }
 `;
 
