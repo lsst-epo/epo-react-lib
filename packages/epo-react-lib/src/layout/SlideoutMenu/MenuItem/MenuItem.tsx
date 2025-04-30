@@ -5,22 +5,23 @@ import {
   useEffect,
   HTMLProps,
   ReactElement,
+  ReactNode,
 } from "react";
 import MenuContext from "@/contexts/Menu";
-import * as Styled from "./styles";
 import { IconKey } from "@/svg/icons";
 import IconComposer from "@/svg/IconComposer";
+import * as Styled from "./styles";
 
 interface MenuButtonProps {
   type?: "button";
   text: string;
-  icon: IconKey;
+  icon: IconKey | ReactNode;
 }
 
 interface MenuLinkProps extends HTMLProps<HTMLAnchorElement> {
   type?: "link";
   text: string;
-  icon: IconKey;
+  icon: IconKey | ReactNode;
 }
 
 function MenuItem(props: PropsWithChildren<MenuLinkProps>): ReactElement;
@@ -66,7 +67,11 @@ function MenuItem({
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
       >
-        <IconComposer icon={icon} size={20} />
+        {typeof icon === "string" ? (
+          <IconComposer icon={icon} size={20} />
+        ) : (
+          icon
+        )}
         {text}
       </Styled.MenuItem>
       {children}
