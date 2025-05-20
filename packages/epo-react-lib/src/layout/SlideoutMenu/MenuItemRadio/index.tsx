@@ -1,19 +1,25 @@
-import { FunctionComponent, useContext, useRef, useEffect } from "react";
+import {
+  FunctionComponent,
+  useContext,
+  useRef,
+  useEffect,
+  PropsWithChildren,
+} from "react";
 import MenuContext from "@/contexts/Menu";
 import { StyledMenuItemRadio, StyledMenuItemWrapper } from "./styles";
 import { useKeyDownEvent } from "@/hooks/listeners";
 
-interface MenuItemRadioProps {
-  text: string;
+export interface MenuItemRadioProps {
+  /** @deprecated - use `children` instead */
+  text?: string;
   isChecked: boolean;
   onCheckCallback: (close?: boolean) => void;
+  className?: string;
 }
 
-const MenuItemRadio: FunctionComponent<MenuItemRadioProps> = ({
-  text,
-  isChecked,
-  onCheckCallback,
-}) => {
+const MenuItemRadio: FunctionComponent<
+  PropsWithChildren<MenuItemRadioProps>
+> = ({ text, isChecked, children, onCheckCallback, className }) => {
   const menuContext = useContext(MenuContext);
   const menuItemRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +65,7 @@ const MenuItemRadio: FunctionComponent<MenuItemRadioProps> = ({
   useKeyDownEvent(handleKeyDown);
 
   return (
-    <StyledMenuItemWrapper role="none">
+    <StyledMenuItemWrapper className={className} role="none">
       <StyledMenuItemRadio
         ref={menuItemRef}
         role="menuitemradio"
@@ -68,6 +74,7 @@ const MenuItemRadio: FunctionComponent<MenuItemRadioProps> = ({
         onClick={() => onCheckCallback && onCheckCallback()}
       >
         {text}
+        {children}
       </StyledMenuItemRadio>
     </StyledMenuItemWrapper>
   );

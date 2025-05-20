@@ -3,9 +3,9 @@ import {
   useContext,
   useRef,
   useEffect,
-  HTMLProps,
   ReactElement,
   ReactNode,
+  ComponentProps,
 } from "react";
 import MenuContext from "@/contexts/Menu";
 import { IconKey } from "@/svg/icons";
@@ -18,7 +18,7 @@ interface MenuButtonProps {
   icon: IconKey | ReactNode;
 }
 
-interface MenuLinkProps extends HTMLProps<HTMLAnchorElement> {
+interface MenuLinkProps extends ComponentProps<"a"> {
   type?: "link";
   text: string;
   icon: IconKey | ReactNode;
