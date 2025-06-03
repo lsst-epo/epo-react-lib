@@ -12,7 +12,7 @@ import { IconKey } from "@/svg/icons";
 import IconComposer from "@/svg/IconComposer";
 import * as Styled from "./styles";
 
-interface MenuButtonProps {
+interface MenuButtonProps extends ComponentProps<"button"> {
   type?: "button";
   text: string;
   icon: IconKey | ReactNode;
@@ -62,7 +62,7 @@ function MenuItem({
     <Styled.MenuItemWrapper role="none">
       <Styled.MenuItem
         {...restProps}
-        as={type === "link" ? "a" : undefined}
+        as={type === "link" ? "a" : "button"}
         ref={menuItemRef as any}
         role="menuitem"
         tabIndex={isActive ? 0 : -1}
