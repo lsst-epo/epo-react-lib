@@ -25,11 +25,7 @@ export const Section = styled.section`
   &[data-dark-mode="true"] {
     color-scheme: dark;
 
-    @supports not (
-      color: light-dark(var(--color-font-primary), var(--color-font-invert))
-    ) {
-      color: var(--color-font-invert);
-    }
+    color: var(--color-font-invert);
   }
 `;
 
