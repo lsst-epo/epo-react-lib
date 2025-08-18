@@ -129,6 +129,6 @@ export const CondensedRange = styled.li`
   padding: 0;
 
   &:before {
-    content: "\200B";
+    content: "\\200B";
   }
 `;
