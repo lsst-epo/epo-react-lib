@@ -1,0 +1,200 @@
+// Variables
+//----------
+
+// Colors
+// --------------------------------------------------------
+//  Brand Colors
+$white: #ffffff;
+$black: #000000;
+$turquoise10: #d9f7f6;
+$turquoise20: #b2f2ef;
+$turquoise50: #00bebf;
+$turquoise55: #009fa1;
+$turquoise60: #078b8c;
+$turquoise70: #058b8c;
+$turquoise80: #117273;
+$turquoise85: #12726d;
+$turquoise90: #0c4a4c;
+$lightBlue: #bee7f5;
+$mediumBlue: #2979c1;
+$darkBlue: #074a9c;
+$brightGreen: #01bbbc;
+$mediumGreen: $turquoise70;
+$ral5018HR: #087f80;
+$boldRed: #df0039;
+$successGreen: #019105;
+
+// Accent Warm Colors
+$awRed: #ed4c4c;
+$awOrange: #fab364;
+$awYellow: #ffe266;
+
+// Accent Cold Colors
+$acPurple: #583671;
+$acGreen: #3cae3f;
+$acBlue: #1c81a4;
+
+$neutral10: #f3f3f3;
+$neutral20: #737373;
+$neutral30: #828287;
+$neutral40: #525459;
+$neutral45: #3a3b40;
+$neutral50: #c2c2c2;
+
+$basePrimary: $ral5018HR;
+$baseSecondaryLight: $lightBlue;
+$baseSecondary: $mediumBlue;
+$baseSecondaryDark: $darkBlue;
+
+$baseColors: (
+  'primary': $basePrimary,
+  'secondaryLight': $baseSecondaryLight,
+  'secondary': $mediumBlue,
+  'secondaryDark': $darkBlue,
+);
+
+:export {
+  @each $color, $hex in $baseColors {
+    #{$color}: $hex;
+  }
+}
+
+$error: $boldRed;
+
+// Start overriding react-md variables
+$md-primary-color: $basePrimary;
+$md-secondary-color: $baseSecondary;
+$md-error-color: $error;
+
+// When the primary or secondary colors are not part of material design, you will need to set
+// some fallback colors for the the following components:
+$md-data-table-contextual-fallback-color: rgba($basePrimary, 0.32);
+$md-linear-progress-fallback-color: rgba($basePrimary, 0.54);
+$md-switch-fallback-color: rgba($basePrimary, 0.87);
+$md-switch-ball-fallback-color: $md-switch-fallback-color;
+
+$md-slider-warn-md: false; // only need to set this if using the dark theme.
+
+// Prism Colors
+$prismViolet: #861cff;
+$prismBlue: #0019ff;
+$prismGreen: #6bd853;
+$prismYellow: #ffdd15;
+$prismOrange: #f18922;
+$prismRed: #ec1c24;
+
+$prismHexColors: (
+  'violet': $prismViolet,
+  'blue': $prismBlue,
+  'green': $prismGreen,
+  'yellow': $prismYellow,
+  'orange': $prismOrange,
+  'red': $prismRed,
+);
+
+:export {
+  @each $color, $hex in $prismHexColors {
+    #{$color}: $hex;
+  }
+}
+
+// Chart colors
+$chart0: $black;
+$chart1: $acBlue;
+$chart2: $awYellow;
+$chart3: $awRed;
+$chart4: $acGreen;
+$chart5: $awOrange;
+$chart6: $acPurple;
+$chart7: $mediumGreen;
+$chart8: $brightGreen;
+
+$chartColors: $chart0 $chart6 $chart5 $chart4 $chart3 $chart2 $chart1 $chart7
+  $chart8;
+
+:export {
+  @for $i from 0 through length($chartColors) - 1 {
+    $chartColor: nth($chartColors, $i + 1);
+    chart#{$i}: $chartColor;
+  }
+}
+
+$violet: #ee82ee;
+$blue: #0019ff;
+$green: #6bd853;
+$yellow: #ffdd15;
+$orange: #f18922;
+$red: #ec1c24;
+$cyan: #00ffff;
+$magenta: #ff00ff;
+
+$sliderTrackFillColors: (
+  'violet': $violet,
+  'blue': $blue,
+  'green': $green,
+  'yellow': $yellow,
+  'orange': $orange,
+  'red': $red,
+  'cyan': $cyan,
+  'magenta': $magenta,
+);
+
+:export {
+  @each $name, $hexColor in $sliderTrackFillColors {
+    sliderTrackFillColor#{$name}: $hexColor;
+  }
+}
+
+// Responsive breakpoints
+// --------------------------------------------------------
+// $break130: ;
+// $break120: ;
+// $break110: ;
+$break100: 1284px;
+// $break90: ;
+$break80: 1024px;
+// $break70: ;
+// $break60: ;
+$break50: 768px;
+$break40: 420px;
+$break30: 320px;
+// $break20: ;
+// $break10: ;
+
+// Measurements
+// --------------------------------------------------------
+$containerMaxWidth: $break100;
+
+$siteProgressHeight: 26px;
+$siteToolbarHeight: 64px;
+$siteHeaderHeight: $siteProgressHeight + $siteToolbarHeight;
+$pageNavHeight: 64px;
+
+$minPadding: 20px;
+
+$baseLineHeight: 1.4;
+$verticalSpace: $baseLineHeight * 1em;
+$headingWithSpaceHeight: 90px;
+$tallestSquareWidget: calc(
+  100vh - #{$pageNavHeight} - #{$siteHeaderHeight} - #{$headingWithSpaceHeight} - #{$minPadding}
+);
+
+// $durationFast: 0.1s;
+$duration: 0.2s;
+$durationSlow: 0.4s;
+$durationSuperSlow: 1s;
+$timing: ease;
+
+$modal-width: 500px;
+$modal-sizes: (
+  'sm': 300px,
+  'lg': 800px,
+  'xl': 1140px,
+);
+
+// Font Weights
+// --------------------------------------------------------
+// $thin: 200;
+$regular: 400;
+$medium: 500;
+$bold: 600;

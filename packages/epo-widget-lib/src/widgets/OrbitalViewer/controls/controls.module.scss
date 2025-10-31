@@ -1,0 +1,43 @@
+.controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transform: translateX(-50%);
+
+  .button-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    margin: 0 $minPadding;
+    overflow: visible;
+
+    .button-label {
+      margin-top: 3px;
+      font-size: 14px;
+      color: $white;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+
+  :global {
+    .md-btn {
+      color: $black;
+      background-color: rgba(200, 200, 200, 0.8);
+
+      &:hover {
+        background-color: $white;
+      }
+
+      svg {
+        fill: $black;
+      }
+    }
+  }
+}
