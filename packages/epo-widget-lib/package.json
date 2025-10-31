@@ -103,10 +103,13 @@
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.1",
     "d3-geo-projection": "^4.0.0",
+    "drei": "0.0.54",
     "lodash": "^4.17.21",
     "react-slider": "^2.0.6",
+    "react-three-fiber": "4.0.25",
     "skia-canvas": "^1.0.2",
     "styled-components": "^6.1.16",
+    "three": "0.137.0",
     "use-resize-observer": "^9.1.0"
   }
 }
