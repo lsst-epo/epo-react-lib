@@ -8,7 +8,7 @@ export default meta;
 
 // Template for all stories
 const Template: StoryFn<typeof OrbitalSim> = (args) => {
-  return <h1></h1>;
+  return <OrbitalSim></OrbitalSim>;
 };
 
 
