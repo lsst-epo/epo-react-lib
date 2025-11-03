@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Canvas } from "react-three-fiber";
 import styles from "./OrbitalSim.module.css";
 import CameraController from "./CameraController.jsx";
+import Camera from "./Camera.jsx";
 
 function OrbitalSim({
   neos,
@@ -33,6 +34,16 @@ function OrbitalSim({
       <div className={styles.container}>
         <Canvas invalidateFrameloop className={styles.orbitalCanvas}>
           <CameraController {...{ pov, reset }} />
+          <Camera
+            left={-15000}
+            right={15000}
+            top={15000}
+            bottom={-15000}
+            near={0.1}
+            far={30000}
+            position={[0, 0, 8000]}
+            defaultZoom={defaultZoom || 1}
+          />
         </Canvas>
       </div>
     </>
