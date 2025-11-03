@@ -81,13 +81,13 @@ function OrbitalViewer({
             velocity={activeVelocity}
             data={activeNeo}
           />
-        )}
-        {!paused && (
+        )} */}
+        {/* {!paused && (
           <PlaybackSpeed
             {...{ elapsedTime, dayPerVizSec, speeds }}
             sliderOnChangeCallback={handleStepSelect}
           />
-        )}
+        )} */}
         <Canvas invalidateFrameloop className={orbitalCanvas}>
           <CameraController {...{ pov, reset }} />
           <Camera
@@ -131,7 +131,7 @@ function OrbitalViewer({
             {...{ t }}
           />
         </Canvas>
-        {!paused && (
+        {/* {!paused && (
           <Controls
             {...{
               playing,
