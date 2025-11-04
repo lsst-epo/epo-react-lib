@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { useThree } from 'react-three-fiber';
+import { useThree } from "@react-three/fiber";
 
 function CameraController({ pov, reset }) {
   const { camera, gl } = useThree();

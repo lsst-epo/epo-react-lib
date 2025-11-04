@@ -29,6 +29,10 @@ export default defineConfig({
     }),
   ],
   root: "./",
+  // optimizeDeps: {
+  //   // Pre-bundle these so they're not fetched dynamically
+  //   include: ["three", "drei"],
+  // },
   build: {
     lib: {
       entry: {
@@ -83,6 +87,7 @@ export default defineConfig({
       ],
       output: {
         exports: "named",
+        inlineDynamicImports: true,
         preserveModules: true,
         preserveModulesRoot: "src",
         interop: "auto",

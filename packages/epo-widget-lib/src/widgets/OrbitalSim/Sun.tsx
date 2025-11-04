@@ -1,28 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HTML } from 'drei';
-import { getLabelSize, ORBITAL_COLORS } from './orbitalUtilities.js';
+import { Html } from '@react-three/drei';
+import { getLabelSize, ORBITAL_COLORS } from './orbitalUtilities';
 
-import { label } from './orbital-viewer.module.scss';
+import styles from "./OrbitalSim.module.css";
 
-function Sun({ defaultZoom, zoomLevel, t }) {
-  return (
+function Sun({ defaultZoom, zoomLevel}: any) {
+  return ( 
     <mesh position={[0, 0, 0]}>
-      <sphereBufferGeometry attach="geometry" args={[9, 16, 8]} />
+      <sphereGeometry attach="geometry" args={[9, 16, 8]} />
       <meshBasicMaterial
         attach="material"
         color={ORBITAL_COLORS.sun.objectColor}
       />
-      <HTML>
+      <Html>
         <div
-          className={label}
+          className={styles.label}
           style={{
             fontSize: getLabelSize(zoomLevel, defaultZoom),
           }}
         >
-          {t('astronomy::orbital_bodies.sun')}
+          {/* {t('astronomy::orbital_bodies.sun')} */}
         </div>
-      </HTML>
+      </Html>
     </mesh>
   );
 }
@@ -30,7 +30,7 @@ function Sun({ defaultZoom, zoomLevel, t }) {
 Sun.propTypes = {
   zoomLevel: PropTypes.number,
   defaultZoom: PropTypes.number,
-  t: PropTypes.func,
+  // t: PropTypes.func,
 };
 
 export default Sun;
