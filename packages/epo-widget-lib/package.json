@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.4.0",
+    "@react-three/fiber": "8",
     "@rubin-epo/epo-react-lib": "^2.6.12",
     "context-filter-polyfill": "^0.3.6",
     "d3-array": "^3.2.4",
