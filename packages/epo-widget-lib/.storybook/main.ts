@@ -34,6 +34,28 @@ const config: StorybookConfig = {
   async viteFinal(config, { configType }) {
     config.plugins = config.plugins?.filter((p) => p?.name !== "vite:dts");
 
+    // config.optimizeDeps = {
+    //   ...(config.optimizeDeps ?? {}),
+    //   include: ["three", "@react-three/drei", "@react-three/fiber"],
+    // };
+    // config.ssr = {
+    //   ...(config.ssr ?? {}),
+    //   noExternal: ["three", "@react-three/drei", "@react-three/fiber"],
+    // };
+
+    config.build = {
+      ...(config.build ?? {}),
+      minify: false,
+      sourcemap: true,
+      // cssMinify: false, // (Vite 5+)
+    };
+    config.esbuild = {
+      ...(config.esbuild ?? {}),
+      // minify: false,
+      keepNames: true,
+      legalComments: "eof",
+    };
+
     return mergeConfig(config, {
       base:
         configType === "PRODUCTION" ? "/epo-react-lib/epo-widget-lib/" : "/",

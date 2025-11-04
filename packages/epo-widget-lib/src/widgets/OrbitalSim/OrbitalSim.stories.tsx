@@ -3,6 +3,7 @@ import OrbitalSim from ".";
 
 const meta: Meta<typeof OrbitalSim> = {
   component: OrbitalSim,
+  parameters: { r3f: true },
 };
 export default meta;
 

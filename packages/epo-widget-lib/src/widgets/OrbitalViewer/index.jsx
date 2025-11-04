@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Canvas } from 'react-three-fiber';
 import Camera from './Camera.jsx';
 import CameraController from './CameraController.jsx';
-import Sun from './Sun.jsx';
+import Sun from "../OrbitalSim/Sun.jsx";
 import Orbitals from './Orbitals.jsx';
 import Controls from './controls/index.jsx';
 import PlaybackSpeed from './PlaybackSpeed.jsx';

@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useFrame, useThree } from 'react-three-fiber';
+import { useFrame, useThree } from "@react-three/fiber";
 
-function Camera(props) {
+function Camera({ ...props }) {
   const ref = useRef();
   const { setDefaultCamera } = useThree();
   // Make the camera known to the system
