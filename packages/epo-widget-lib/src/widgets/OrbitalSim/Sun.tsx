@@ -5,8 +5,8 @@ import { getLabelSize, ORBITAL_COLORS } from './orbitalUtilities';
 
 import styles from "./OrbitalSim.module.css";
 
-function Sun({ defaultZoom, zoomLevel}: any) {
-  return ( 
+function Sun({ defaultZoom, zoomLevel, t }: any) {
+  return (
     <mesh position={[0, 0, 0]}>
       <sphereGeometry attach="geometry" args={[9, 16, 8]} />
       <meshBasicMaterial
@@ -20,7 +20,7 @@ function Sun({ defaultZoom, zoomLevel}: any) {
             fontSize: getLabelSize(zoomLevel, defaultZoom),
           }}
         >
-          {/* {t('astronomy::orbital_bodies.sun')} */}
+          {t("orbital_sim.astronomy.orbital_bodies.sun")}
         </div>
       </Html>
     </mesh>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import styles from "./OrbitalSim.module.css";
+import { useTranslation } from "react-i18next";
 import CameraController from "./CameraController.jsx";
 import Camera from "./Camera.jsx";
 import Sun from "./Sun.jsx";
+import styles from "./OrbitalSim.module.css";
+
+// import Orbitals from "../OrbitalViewer/Orbitals";
 
 function OrbitalSim({
   neos,
@@ -30,11 +33,12 @@ function OrbitalSim({
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
 
+  const { t } = useTranslation();
   return (
     <>
       <div className={styles.container}>
         <Canvas>
-          <CameraController {...{ pov, reset }} /> 
+          <CameraController {...{ pov, reset }} />
           <Camera
             left={-15000}
             right={15000}
@@ -46,7 +50,35 @@ function OrbitalSim({
             defaultZoom={defaultZoom || 1}
           />
           <ambientLight intensity={0.9} />
-          <Sun zoomLevel={zoomLevel} defaultZoom={defaultZoom || 1} />
+          {/* <Orbitals
+            activeVelocityCallback={setActiveVelocity}
+            defaultZoom={defaultZoom || 1}
+            {...{
+              refObjs,
+              neos,
+              activeNeo,
+              activeObs,
+              playing,
+              stepDirection,
+              dayPerVizSec,
+              frameOverride,
+              potentialOrbits,
+              observations,
+              selectionCallback,
+              elapsedTime,
+              setElapsedTime,
+              noLabels,
+              reset,
+              zoomLevel,
+              setZoomLevel,
+              // t,
+            }}
+          /> */}
+          <Sun
+            zoomLevel={zoomLevel}
+            defaultZoom={defaultZoom || 1}
+            {...{ t }}
+          />
         </Canvas>
       </div>
     </>

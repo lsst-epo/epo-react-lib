@@ -148,5 +148,12 @@
         "textValue": "{{value}} magnitude offset"
       }
     }
+  },
+  "orbital_sim": {
+    "astronomy": {
+      "orbital_bodies": {
+        "sun": "Sun"
+      }
+    }
   }
 }
