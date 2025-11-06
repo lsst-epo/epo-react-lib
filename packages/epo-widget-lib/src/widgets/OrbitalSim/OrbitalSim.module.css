@@ -105,13 +105,13 @@
 }
 
 .playback-speed-slider-label-top {
-  top: 80px + var(--minPadding);
+  top: calc(80px + var(--minPadding));
 }
 
 .playback-speed-slider {
   position: absolute;
   top: calc(80px + (var(--minPadding) + var(--tallestSquareWidget) - var(--offset)) / 2);
-  right: var(--minPadding) + 75px;
+  right: calc(var(--minPadding) + 75px);
   width: calc(var(--tallestSquareWidget) - var(--offset));
   margin-right: calc(-1 * (var(--tallestSquareWidget) - var(--offset)) / 2);
 }
@@ -199,60 +199,53 @@
 }
 
 /* Nav Drawer */
-.nav-item {
-  :global {
-    .md-list-tile {
-      background-color: var(--neutral10);
-      transition: background-color var(--timing) var(--duration);
-
-      .md-tile-addon {
-        color: var(--basePrimary);
-        transition: color var(--timing) var(--duration);
-      }
-
-      &:hover {
-        background-color: var(--basePrimary);
-
-        .md-tile-addon {
-          color: var(--white);
-        }
-
-        .md-tile-text--primary,
-        .md-tile-text--primary.md-text--theme-primary,
-        .md-text {
-          color: var(--white);
-        }
-      }
-    }
-  }
-
-  &.active-item {
-    :global {
-      .md-list-tile {
-        background-color: var(--basePrimary);
-
-        .md-tile-addon {
-          color: var(--white);
-        }
-
-        .md-tile-text--primary,
-        .md-tile-text--primary.md-text--theme-primary,
-        .md-text {
-          /* stylelint-disable-next-line declaration-no-important */
-          color: var(--white) !important;
-        }
-      }
-    }
-  }
+.nav-item .md-list-tile {
+  background-color: var(--neutral10);
+  transition: background-color var(--timing) var(--duration);
 }
+
+.nav-item .md-list-tile .md-tile-addon {
+  color: var(--basePrimary);
+  transition: color var(--timing) var(--duration);
+}
+
+.nav-item .md-list-tile:hover {
+  background-color: var(--basePrimary);
+} 
+
+.nav-item .md-list-tile:hover .md-tile-addon {
+  color: var(--white);
+}
+
+.nav-item .md-list-tile:hover .md-tile-text--primary,
+.nav-item .md-list-tile:hover .md-tile-text--primary.md-text--theme-primary,
+.nav-item .md-list-tile:hover .md-text {
+  color: var(--white);
+}
+
+.nav-item.active-item .md-list-tile {
+  background-color: var(--basePrimary);
+}
+
+.nav-item.active-item .md-list-tile .md-tile-addon {
+  color: var(--white);
+}
+
+.nav-item.active-item .md-list-tile .md-tile-text--primary,
+.nav-item.active-item .md-list-tile .md-tile-text--primary.md-text--theme-primary,
+.nav-item.active-item .md-list-tile .md-text {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: var(--white) !important;
+}
+
 
 .label {
   padding: 2px 4px;
   margin-top: 4px;
   font-weight: var(--medium);
   color: var(--black);
-  background-color: rgba(var(--white, 0.4));
-  border: 1px solid rgba(var(--white, 0.4));
+  background-color: color-mix(in srgb, var(--white) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 40%, transparent);;
   border-radius: 5px;
   color-adjust: exact;
 }
@@ -266,17 +259,17 @@
   font-size: 16px;
   color: var(--white);
   cursor: pointer;
+}
 
-  &.obs-answer,
-  &.obs-hover {
+.obs-label.obs-answer,
+.obs-label.obs-hover {
     font-size: 18px;
     color: 'blue';
   }
 
-  &.obs-active {
-    font-size: 18px;
-    color: 'red';
-  }
+.obs-label.obs-active {
+  font-size: 18px;
+  color: 'red';
 }
 
 .details {
@@ -288,32 +281,26 @@
   max-width: 0;
   overflow: hidden;
   transition: max-width var(--timing) var(--durationSlow);
+}
 
-  .details-table {
-    margin-top: var(--minPadding) * 2 + 36px;
-    background-color: var(--white);
+.details .details-table {
+  margin-top: calc(var(--minPadding) * 2 + 36px);
+  background-color: var(--white);
+}
 
-    :global {
-      .md-text {
-        overflow: hidden;
-        white-space: nowrap;
-      }
-    }
-  }
+.details .details-table .md-text {
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-  &.active-details {
-    width: 100%;
-    max-width: 350px;
+.details.active-details {
+  width: 100%;
+  max-width: 350px;
+}
 
-    .details-table {
-      :global {
-        .md-text {
-          overflow: auto;
-          white-space: normal;
-        }
-      }
-    }
-  }
+.details.active-details .details-table .md-text {
+  overflow: auto;
+  white-space: normal;
 }
 
 .details-toggle {
@@ -325,8 +312,8 @@
   /* stylelint-disable-next-line declaration-no-important */
   color: var(--white) !important;
   background-color: var(--error);
+}
 
-  &:disabled {
-    background-color: var(--neutral20);
-  }
+.details-toggle.disabled {
+  background-color: var(--neutral20);
 }
