@@ -4,7 +4,8 @@ import includes from 'lodash/includes';
 import isNumber from 'lodash/isNumber';
 import isArray from 'lodash/isArray';
 import { extent as d3Extent, mean as d3Mean } from 'd3-array';
-import chartColors from '../styles/css/orbitalViewer/_variables.scss';
+// TODO: Reorganize files to improve this import
+import chartColors from "../../../epo-widget-lib/src/styles/orbitalsim/_variables.scss";
 
 
 export const randomIntFromInterval = function(min, max) {

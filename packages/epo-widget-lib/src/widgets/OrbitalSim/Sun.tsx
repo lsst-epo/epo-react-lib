@@ -30,7 +30,7 @@ function Sun({ defaultZoom, zoomLevel, t }: any) {
 Sun.propTypes = {
   zoomLevel: PropTypes.number,
   defaultZoom: PropTypes.number,
-  // t: PropTypes.func,
+  t: PropTypes.func,
 };
 
 export default Sun;
