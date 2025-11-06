@@ -6,7 +6,7 @@ import Camera from "./Camera.jsx";
 import Sun from "./Sun.jsx";
 import styles from "./OrbitalSim.module.css";
 
-// import Orbitals from "../OrbitalViewer/Orbitals";
+import Orbitals from "./Orbitals";
 
 function OrbitalSim({
   neos,
@@ -50,7 +50,7 @@ function OrbitalSim({
             defaultZoom={defaultZoom || 1}
           />
           <ambientLight intensity={0.9} />
-          {/* <Orbitals
+          <Orbitals
             activeVelocityCallback={setActiveVelocity}
             defaultZoom={defaultZoom || 1}
             {...{
@@ -73,7 +73,7 @@ function OrbitalSim({
               setZoomLevel,
               // t,
             }}
-          /> */}
+          />
           <Sun
             zoomLevel={zoomLevel}
             defaultZoom={defaultZoom || 1}
