@@ -1,0 +1,28 @@
+:root {
+  --black: #000000;
+  --turquoise70: #058b8c;
+  --brightGreen: #01bbbc;
+  --mediumGreen: var(--turquoise70);
+
+  /* Accent Warm Colors */
+  --awRed: #ed4c4c;
+  --awOrange: #fab364;
+  --awYellow: #ffe266;
+
+  /* Accent Cold Colors */
+  --acPurple: #583671;
+  --acGreen: #3cae3f;
+  --acBlue: #1c81a4;
+
+  :export {
+    --chart0: var(--black);
+    --chart1: var(--acBlue);
+    --chart2: var(--awYellow);
+    --chart3: var(--awRed);
+    --chart4: var(--acGreen);
+    --chart5: var(--awOrange);
+    --chart6: var(--acPurple);
+    --chart7: var(--mediumGreen);
+    --chart8: var(--brightGreen);
+  }
+}

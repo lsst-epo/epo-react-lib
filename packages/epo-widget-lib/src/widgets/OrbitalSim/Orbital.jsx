@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
-import { useFrame } from 'react-three-fiber';
-import { Html } from '@react-three/drei';
+// import { MeshLine, MeshLineMaterial } from 'threejs-meshline';
+import { useFrame } from '@react-three/fiber';
+import { Html } from "@react-three/drei";
 import {
   DAY_PER_VIZ_SEC,
   getMinorAxis,
@@ -19,8 +20,8 @@ import {
   getLabelSize,
   ORBITAL_COLORS,
 } from './orbitalUtilities.js';
-import styles from "./OrbitalSim.module.css";
-import chartColors from '../../styles/orbitalsim/_variables.scss';
+import { label } from "./OrbitalSim.module.css";
+import chartColors from "./chartColors.module.css";
 
 const Orbital = ({
   data,
@@ -182,6 +183,7 @@ const Orbital = ({
   useFrame((state, delta) => {
     if (initialized || internalInitialized) updatePoint(!playing, delta);
   });
+  // console.log(name || pd, unitToAu(metersToAu(objectRadius || diameter / 2)));
   return (
     <group rotation={rotation}>
       {/* Orbital Path */}
@@ -199,23 +201,23 @@ const Orbital = ({
         {/* Orbital Object */}
         <mesh
           position={point.position}
-          onClick={() => selectionCallback(data, 'neo')}
+          onClick={() => selectionCallback(data, "neo")}
         >
-          {(type === 'planet' || !noLabels || active) && (
+          {(type === "planet" || !noLabels || active) && (
             <Html>
               <button
                 type="button"
-                className={styles.label}
+                className={label}
                 style={{
                   fontSize: getLabelSize(zoomMod, defaultZoom),
                 }}
-                onClick={() => selectionCallback(data, 'neo')}
+                onClick={() => selectionCallback(data, "neo")}
               >
                 {translationKey ? t(translationKey) : name || pd}
               </button>
             </Html>
           )}
-          <sphereBufferGeometry
+          <sphereGeometry
             attach="geometry"
             args={[objectRadius || 4, 10, 10]}
           />
@@ -232,21 +234,21 @@ const Orbital = ({
           <>
             {/* Center */}
             <mesh position={offsetCenter}>
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color={chartColors.chart1} />
               <Html>
-                <div className={styles.label}>center</div>
+                <div className={label}>center</div>
               </Html>
             </mesh>
             {/* Foci */}
             <mesh position={sunPos}>
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial
                 attach="material"
-                color={objectColor || 'blue'}
+                color={objectColor || "blue"}
               />
               <Html>
-                <div className={styles.label}>sun</div>
+                <div className={label}>sun</div>
               </Html>
             </mesh>
             <mesh
@@ -256,10 +258,10 @@ const Orbital = ({
                 offsetCenter.z,
               ]}
             >
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>minor axis vertex</div>
+                <div className={label}>minor axis vertex</div>
               </Html>
             </mesh>
             <mesh
@@ -269,10 +271,10 @@ const Orbital = ({
                 offsetCenter.z,
               ]}
             >
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>minor axis vertex</div>
+                <div className={label}>minor axis vertex</div>
               </Html>
             </mesh>
             {/* Major Axis */}
@@ -283,10 +285,10 @@ const Orbital = ({
                 offsetCenter.z,
               ]}
             >
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>major axis vertex</div>
+                <div className={label}>major axis vertex</div>
               </Html>
             </mesh>
             <mesh
@@ -296,10 +298,10 @@ const Orbital = ({
                 offsetCenter.z,
               ]}
             >
-              <sphereBufferGeometry attach="geometry" args={[2, 10, 10]} />
+              <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>major axis vertex</div>
+                <div className={label}>major axis vertex</div>
               </Html>
             </mesh>
           </>
