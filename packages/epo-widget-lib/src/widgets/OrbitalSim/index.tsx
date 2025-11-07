@@ -71,7 +71,7 @@ function OrbitalSim({
               reset,
               zoomLevel,
               setZoomLevel,
-              // t,
+              t,
             }}
           />
           <Sun
