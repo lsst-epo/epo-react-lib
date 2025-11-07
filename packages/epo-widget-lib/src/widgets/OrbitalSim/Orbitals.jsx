@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // import { useThree, useFrame } from "@react-three/fiber";
 import Orbital from "./Orbital.jsx";
 // import PotentialOrbits from './PotentialOrbits.jsx';
-// import { getRefObjProps } from "./orbitalUtilities.js";
+import { getRefObjProps } from "./orbitalUtilities.js";
 
 function Orbitals({
   neos,
@@ -36,30 +36,73 @@ function Orbitals({
     remainingInits: neos.length,
   });
 
+  function renderRefObjs() {
+    const refObjsProperties = (
+      refObjs || ["earth", "jupiter", "mars", "neptune"]
+    ).map(getRefObjProps);
+
+    return refObjsProperties.map((planet) => {
+      const {
+        orbitColor,
+        objectColor,
+        objectRadius,
+        Ref: ref,
+        Principal_desig: pd,
+        name,
+      } = planet;
+
+      return (
+        <Orbital
+          type="planet"
+          key={`${ref}-${pd || name}`}
+          data={planet}
+          position={[0, 0, 0]}
+          zoomMod={zoomLevel}
+          {...{
+            defaultZoom,
+            playing,
+            stepDirection,
+            dayPerVizSec,
+            frameOverride,
+            selectionCallback,
+            orbitColor,
+            objectColor,
+            objectRadius,
+            reset,
+            t,
+          }}
+        />
+      );
+    });
+  }
+
   return neos.map((neo, badId) => {
     const { Ref: ref, Principal_desig: pd, name } = neo;
     return (
-      <Orbital
-        key={ref && (pd || name) ? `${ref}-${pd || name}` : `orbit-${badId}`}
-        data={neo}
-        position={[0, 0, 0]}
-        active={neo === activeNeo}
-        initialized={state.remainingInits <= 0}
-        zoomMod={zoomLevel}
-        {...{
-          defaultZoom,
-          playing,
-          stepDirection,
-          dayPerVizSec,
-          frameOverride,
-          selectionCallback,
-          activeVelocityCallback,
-          noLabels,
-          reset,
-          t,
-        }}
-        initCallback={dispatch}
-      />
+      <>
+        {renderRefObjs()}
+        <Orbital
+          key={ref && (pd || name) ? `${ref}-${pd || name}` : `orbit-${badId}`}
+          data={neo}
+          position={[0, 0, 0]}
+          active={neo === activeNeo}
+          initialized={state.remainingInits <= 0}
+          zoomMod={zoomLevel}
+          {...{
+            defaultZoom,
+            playing,
+            stepDirection,
+            dayPerVizSec,
+            frameOverride,
+            selectionCallback,
+            activeVelocityCallback,
+            noLabels,
+            reset,
+            t,
+          }}
+          initCallback={dispatch}
+        />
+      </>
     );
   });
 }
