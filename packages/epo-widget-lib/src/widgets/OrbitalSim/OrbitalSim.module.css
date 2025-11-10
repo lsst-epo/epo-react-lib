@@ -28,6 +28,7 @@
   --siteToolbarHeight: 64px;
   --siteHeaderHeight: var(--siteProgressHeight) + var(--siteToolbarHeight);
   --pageNavHeight: 64px;
+  --headingWithSpaceHeight: 90px;
   --tallestSquareWidget: calc(100vh - var(--pageNavHeight) - var(--siteHeaderHeight) - var(--headingWithSpaceHeight) - var(--minPadding));
 }
 

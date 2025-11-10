@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Canvas } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import CameraController from "./CameraController.jsx";
@@ -34,6 +35,15 @@ function OrbitalSim({
   const [zoomLevel, setZoomLevel] = useState(1);
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (reset > 0) {
+      setDayPerVizSec(speeds.initial);
+      setStepDirection(1);
+      setElapsedTime(0);
+    }
+  }, [reset]);
+
   return (
     <>
       <div className={styles.container}>
@@ -85,6 +95,20 @@ function OrbitalSim({
   );
 }
 
-OrbitalSim.propTypes = {};
+OrbitalSim.propTypes = {
+  neos: PropTypes.array,
+  activeNeo: PropTypes.object,
+  activeObs: PropTypes.object,
+  selectionCallback: PropTypes.func,
+  paused: PropTypes.bool,
+  pov: PropTypes.string,
+  defaultZoom: PropTypes.number,
+  potentialOrbits: PropTypes.bool,
+  observations: PropTypes.array,
+  noDetails: PropTypes.bool,
+  noLabels: PropTypes.bool,
+  detailsSet: PropTypes.string,
+  refObjs: PropTypes.array,
+};
 
 export default OrbitalSim;
