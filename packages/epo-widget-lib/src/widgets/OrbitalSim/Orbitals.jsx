@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import PropTypes from "prop-types";
 import { useThree, useFrame } from "@react-three/fiber";
 import Orbital from "./Orbital.jsx";
-// import PotentialOrbits from './PotentialOrbits.jsx';
+import PotentialOrbits from "./PotentialOrbits.jsx";
 import { getRefObjProps } from "./orbitalUtilities.js";
 
 function Orbitals({

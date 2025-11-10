@@ -4,10 +4,11 @@ import { Canvas } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import CameraController from "./CameraController.jsx";
 import Camera from "./Camera.jsx";
+import Orbitals from "./Orbitals";
 import Sun from "./Sun.jsx";
 import styles from "./OrbitalSim.module.css";
 
-import Orbitals from "./Orbitals";
+// import PlaybackSpeed from "./PlaybackSpeed.jsx";
 
 function OrbitalSim({
   neos,
@@ -43,10 +44,24 @@ function OrbitalSim({
       setElapsedTime(0);
     }
   }, [reset]);
+  console.info("potentialOrbits: ", potentialOrbits);
 
   return (
     <>
       <div className={styles.container}>
+        {/* {!potentialOrbits && !noDetails && (
+          <OrbitalDetails
+            type={detailsSet}
+            velocity={activeVelocity}
+            data={activeNeo}
+          />
+        )} */}
+        {/* {!paused && (
+          <PlaybackSpeed
+            {...{ elapsedTime, dayPerVizSec, speeds }}
+            sliderOnChangeCallback={handleStepSelect}
+          />
+        )} */}
         <Canvas>
           <CameraController {...{ pov, reset }} />
           <Camera
