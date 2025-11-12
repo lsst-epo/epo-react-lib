@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Canvas } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
+import OrbitalDetails from "./OrbitalDetails.jsx";
 import CameraController from "./CameraController.jsx";
 import Camera from "./Camera.jsx";
 import Orbitals from "./Orbitals";
 import Sun from "./Sun.jsx";
 import styles from "./OrbitalSim.module.css";
-
-// import PlaybackSpeed from "./PlaybackSpeed.jsx";
 
 function OrbitalSim({
   neos,
@@ -48,13 +47,13 @@ function OrbitalSim({
   return (
     <>
       <div className={styles.container}>
-        {/* {!potentialOrbits && !noDetails && (
+        {!potentialOrbits && !noDetails && (
           <OrbitalDetails
             type={detailsSet}
             velocity={activeVelocity}
             data={activeNeo}
           />
-        )} */}
+        )}
         {/* {!paused && (
           <PlaybackSpeed
             {...{ elapsedTime, dayPerVizSec, speeds }}
