@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { HTML } from 'drei';
+import { Html } from "@react-three/drei";
 
-import {
-  obsLabel,
-  obsActive,
-  obsHover,
-  obsAnswer,
-  obsMesh,
-} from './orbital-viewer.module.scss';
+import styles from "./OrbitalSim.module.css";
 
 function Observation({ data, activeObs, vector, selectionCallback }) {
   const { id, label, interactable, isActive } = data;
@@ -25,31 +19,34 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
   }, [activeObs]);
 
   function getObsColor() {
-    if (isActive && isActiveAnswer) return 'green';
-    if (isActiveAnswer || isHover) return 'blue';
+    if (isActive && isActiveAnswer) return "green";
+    if (isActiveAnswer || isHover) return "blue";
 
-    return 'gray';
+    return "gray";
   }
 
   return (
     <mesh
-      className={obsMesh}
+      className={styles.obsMesh}
       position={vector}
-      onClick={interactable ? () => selectionCallback(data, 'obs') : null}
+      onClick={interactable ? () => selectionCallback(data, "obs") : null}
       onPointerOver={interactable ? () => setIsHover(true) : null}
       onPointerOut={interactable ? () => setIsHover(false) : null}
     >
-      <HTML>
+      <Html>
         <div
-          className={classnames(obsLabel, {
-            [obsAnswer]: isActive && isActiveAnswer,
-            [obsHover]: isHover,
-            [obsActive]: isActiveAnswer,
-          })}
+          className={
+            (styles.obsLabel,
+            {
+              [styles.obsAnswer]: isActive && isActiveAnswer,
+              [styles.obsHover]: isHover,
+              [styles.obsActive]: isActiveAnswer,
+            })
+          }
         >
           {label}
         </div>
-      </HTML>
+      </Html>
       <octahedronBufferGeometry attach="geometry" args={[20]} />
       <meshBasicMaterial
         attach="material"
