@@ -47,7 +47,7 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
           {label}
         </div>
       </Html>
-      <octahedronBufferGeometry attach="geometry" args={[20]} />
+      <octahedronGeometry attach="geometry" args={[20]} />
       <meshBasicMaterial
         attach="material"
         color={getObsColor(isActiveAnswer, isActive)}
