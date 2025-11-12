@@ -269,6 +269,7 @@
   }
 
 .obs-active {
+  /* TODO: Revisit after some research into how to implement this more elegantly */
  /* Empty so CSS Modules will recognize the class name
  for the compound class below, which does not produce a separate export. */
 }
