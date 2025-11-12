@@ -44,7 +44,6 @@ function OrbitalSim({
       setElapsedTime(0);
     }
   }, [reset]);
-  console.info("potentialOrbits: ", potentialOrbits);
 
   return (
     <>

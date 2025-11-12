@@ -103,7 +103,7 @@ Primary.args = {
 
 // Other Stories
 // export const Rotation = Template.bind({});
-// // Taken from Has Ast pg /close-to-earth-4/
+// // Taken from static Hazardous Asteroids (/close-to-earth-4)
 // Rotation.args = {
 //   neos: [
 //     {
@@ -191,7 +191,7 @@ Primary.args = {
 // };
 
 // export const Animation = Template.bind({});
-// // Taken from Has Ast pg /close-to-earth-5/
+// // Taken from static Hazardous Asteroids (/close-to-earth-5)
 // Animation.args = {
 //   neos: [
 //     {
@@ -279,7 +279,7 @@ Primary.args = {
 // };
 
 export const PotentialOrbits = Template.bind({});
-// Taken from Has Ast pg /determining-orbits-1/
+// Taken from static Hazardous Asteroids (/determining-orbits-1)
 // TODO: figure out how to provide the NEOs from JSON
 PotentialOrbits.args = {
   neos: [
@@ -18320,6 +18320,56 @@ PotentialOrbits.args = {
   ],
   noDetails: null,
   detailsSet: null,
+  refObjs: null,
+  noLabels: null,
+};
+
+export const OrbitalDetails = Template.bind({});
+// Taken from static Hazardous Asteroids (/summary/)
+OrbitalDetails.args = {
+  neos: [
+    {
+      H: 14.3,
+      Principal_desig: "3200 Phaeton",
+      M: 228.9572432413808,
+      Peri: 322.1867098330639,
+      Node: 265.2176958865816,
+      i: 22.25951171307781,
+      e: 0.8898311206936256,
+      n: 0.8299067,
+      a: 1.271367884101982,
+      Ref: "MPO502184",
+      Orbit_type: "Apollo",
+      diameter: 6250,
+      Earth_moid: 0.0194361,
+      Jupiter_moid: 2.73739,
+    },
+  ],
+  activeNeo: {
+    H: 14.3,
+    Principal_desig: "3200 Phaeton",
+    M: 228.9572432413808,
+    Peri: 322.1867098330639,
+    Node: 265.2176958865816,
+    i: 22.25951171307781,
+    e: 0.8898311206936256,
+    n: 0.8299067,
+    a: 1.271367884101982,
+    Ref: "MPO502184",
+    Orbit_type: "Apollo",
+    diameter: 6250,
+    Earth_moid: 0.0194361,
+    Jupiter_moid: 2.73739,
+  },
+  activeObs: undefined,
+  selectionCallback: () => {},
+  paused: null,
+  pov: null,
+  defaultZoom: null,
+  potentialOrbits: null,
+  observations: null,
+  noDetails: null,
+  detailsSet: "hazardous-asteroids",
   refObjs: null,
   noLabels: null,
 };
