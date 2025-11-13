@@ -5,8 +5,8 @@ import classnames from 'classnames';
 import styles from './OrbitalSim.module.css';
 import Unit from '../../charts/Unit/index.jsx';
 
-import Table from '../../site/forms/table/index.jsx';
-import Button from "../../../../epo-react-lib/src/atomic/Button/index";
+// import Table from '../../site/forms/table/index.jsx';
+import Button from "@rubin-epo/epo-react-lib/Button";
 
 
 // TODO: Revisit file organization to improve this import
@@ -76,15 +76,15 @@ function OrbitalDetails({ data, velocity, type }) {
         isInactive={!data}
         onClick={() => setActive(!active)}
       >
-        {t('orbit_viewer.details', { context: active ? 'hide' : 'show' })}
+        {t("orbit_viewer.details", { context: active ? "hide" : "show" })}
       </Button>
-      <div
+      {/* <div
         className={classnames(styles.details, {
           [styles.activeDetails]: active,
         })}
       >
         <Table className={styles.detailsTable} includeRowTitles rows={getRows()} />
-      </div>
+      </div> */}
     </>
   );
 }
