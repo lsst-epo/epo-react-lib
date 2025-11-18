@@ -8,6 +8,7 @@ import Camera from "./Camera.jsx";
 import Orbitals from "./Orbitals";
 import Sun from "./Sun.jsx";
 import styles from "./OrbitalSim.module.css";
+import { PropertyBinding } from "three";
 
 function OrbitalSim({
   neos,
@@ -21,6 +22,7 @@ function OrbitalSim({
   observations,
   noDetails,
   detailsSet,
+  detailsRows,
   refObjs,
   noLabels,
 }: any) {
@@ -51,7 +53,7 @@ function OrbitalSim({
           <OrbitalDetails
             type={detailsSet}
             velocity={activeVelocity}
-            data={activeNeo}
+            rows={detailsRows}
           />
         )}
         {/* {!paused && (
@@ -60,7 +62,7 @@ function OrbitalSim({
             sliderOnChangeCallback={handleStepSelect}
           />
         )} */}
-        <Canvas>
+        <Canvas className={styles.orbitalCanvas}>
           <CameraController {...{ pov, reset }} />
           <Camera
             left={-15000}
@@ -121,6 +123,7 @@ OrbitalSim.propTypes = {
   noDetails: PropTypes.bool,
   noLabels: PropTypes.bool,
   detailsSet: PropTypes.string,
+  detailsRows: PropTypes.object,
   refObjs: PropTypes.array,
 };
 
