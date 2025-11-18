@@ -97,6 +97,7 @@ Primary.args = {
   observations: null,
   noDetails: true,
   detailsSet: null,
+  detailsRows: null,
   refObjs: ["earth"],
   noLabels: null,
 };
@@ -18320,6 +18321,7 @@ PotentialOrbits.args = {
   ],
   noDetails: null,
   detailsSet: null,
+  detailsRows: null,
   refObjs: null,
   noLabels: null,
 };
@@ -18370,6 +18372,15 @@ OrbitalDetails.args = {
   observations: null,
   noDetails: null,
   detailsSet: "hazardous-asteroids",
+  detailsRows: [
+    {
+      rowColor: "none",
+      rowTitle: "Scientific Name",
+      rowContent: "3200 Phaeton",
+    },
+    { rowColor: "none", rowTitle: "Absolute Magnitude", rowContent: "14.3" },
+    { rowColor: "none", rowTitle: "Earth MOID", rowContent: "0.019 au" },
+  ],
   refObjs: null,
   noLabels: null,
 };
