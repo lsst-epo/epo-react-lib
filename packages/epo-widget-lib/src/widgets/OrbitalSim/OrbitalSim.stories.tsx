@@ -18374,12 +18374,16 @@ OrbitalDetails.args = {
   detailsSet: "hazardous-asteroids",
   detailsRows: [
     {
-      rowColor: "none",
+      rowColor: "blue",
       rowTitle: "Scientific Name",
-      rowContent: "3200 Phaeton",
+      rowContent: "<p>3200 Phaeton</p>",
     },
-    { rowColor: "none", rowTitle: "Absolute Magnitude", rowContent: "14.3" },
-    { rowColor: "none", rowTitle: "Earth MOID", rowContent: "0.019 au" },
+    {
+      rowColor: "none",
+      rowTitle: "Absolute Magnitude",
+      rowContent: "<p>14.3</p>",
+    },
+    { rowColor: "none", rowTitle: "Earth MOID", rowContent: "<p>0.019 au</p>" },
   ],
   refObjs: null,
   noLabels: null,

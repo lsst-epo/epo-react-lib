@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "./OrbitalSim.module.css";
-import Table from "@rubin-epo/epo-react-lib/SimpleTable";
+import { SimpleTable } from "@rubin-epo/epo-react-lib";
 import Button from "@rubin-epo/epo-react-lib/Button";
-
-// TODO: Revisit file organization to improve this import
 function OrbitalDetails({ rows, velocity, type }) {
   const [active, setActive] = useState(false);
 
@@ -25,11 +23,10 @@ function OrbitalDetails({ rows, velocity, type }) {
       </Button>
       <div
         className={classnames(styles.details, {
-          [styles.activeDetails]: active,
+          [styles["active-details"]]: active,
         })}
       >
-        {/* <Table className={styles.detailsTable} rows={rows} /> */}
-        <Table rows={rows} />
+        <SimpleTable className={styles["details-table"]} simpleTable={rows} />
       </div>
     </>
   );
