@@ -123,7 +123,7 @@ OrbitalSim.propTypes = {
   noDetails: PropTypes.bool,
   noLabels: PropTypes.bool,
   detailsSet: PropTypes.string,
-  detailsRows: PropTypes.object,
+  detailsRows: PropTypes.array,
   refObjs: PropTypes.array,
 };
 
