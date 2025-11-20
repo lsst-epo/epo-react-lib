@@ -62,7 +62,7 @@ function OrbitalSim({
             sliderOnChangeCallback={handleStepSelect}
           />
         )} */}
-        <Canvas className={styles.orbitalCanvas}>
+        <Canvas className={styles["orbital-canvas"]}>
           <CameraController {...{ pov, reset }} />
           <Camera
             left={-15000}

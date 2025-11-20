@@ -19,7 +19,7 @@ import {
   getLabelSize,
   ORBITAL_COLORS,
 } from './orbitalUtilities.js';
-import { label } from "./OrbitalSim.module.css";
+import styles from "./OrbitalSim.module.css";
 import chartColors from "./chartColors.module.css";
 
 const Orbital = ({
@@ -206,7 +206,7 @@ const Orbital = ({
             <Html>
               <button
                 type="button"
-                className={label}
+                className={styles.label}
                 style={{
                   fontSize: getLabelSize(zoomMod, defaultZoom),
                 }}
@@ -236,7 +236,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color={chartColors.chart1} />
               <Html>
-                <div className={label}>center</div>
+                <div className={styles.label}>center</div>
               </Html>
             </mesh>
             {/* Foci */}
@@ -247,7 +247,7 @@ const Orbital = ({
                 color={objectColor || "blue"}
               />
               <Html>
-                <div className={label}>sun</div>
+                <div className={styles.label}>sun</div>
               </Html>
             </mesh>
             <mesh
@@ -260,7 +260,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={label}>minor axis vertex</div>
+                <div className={styles.label}>minor axis vertex</div>
               </Html>
             </mesh>
             <mesh
@@ -273,7 +273,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={label}>minor axis vertex</div>
+                <div className={styles.label}>minor axis vertex</div>
               </Html>
             </mesh>
             {/* Major Axis */}
@@ -287,7 +287,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={label}>major axis vertex</div>
+                <div className={styles.label}>major axis vertex</div>
               </Html>
             </mesh>
             <mesh
@@ -300,7 +300,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={label}>major axis vertex</div>
+                <div className={styles.label}>major axis vertex</div>
               </Html>
             </mesh>
           </>

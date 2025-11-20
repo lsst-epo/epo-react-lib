@@ -27,7 +27,7 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
 
   return (
     <mesh
-      className={styles.obsMesh}
+      className={styles["obs-mesh"]}
       position={vector}
       onClick={interactable ? () => selectionCallback(data, "obs") : null}
       onPointerOver={interactable ? () => setIsHover(true) : null}
@@ -35,14 +35,11 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
     >
       <Html>
         <div
-          className={
-            (styles.obsLabel,
-            {
-              [styles.obsAnswer]: isActive && isActiveAnswer,
-              [styles.obsHover]: isHover,
-              [styles.obsActive]: isActiveAnswer,
-            })
-          }
+          className={classnames(styles["obs-label"], {
+            [styles["obs-answer"]]: isActive && isActiveAnswer,
+            [styles["obs-hover"]]: isHover,
+            [styles["obs-active"]]: isActiveAnswer,
+          })}
         >
           {label}
         </div>
