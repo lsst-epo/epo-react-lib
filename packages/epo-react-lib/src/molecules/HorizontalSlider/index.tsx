@@ -141,3 +141,4 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 HorizontalSlider.displayName = "Molecule.HorizontalSlider";
 
 export default HorizontalSlider;
+export { HorizontalSlider as Slider };

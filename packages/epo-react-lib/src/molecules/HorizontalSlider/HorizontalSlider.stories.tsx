@@ -144,7 +144,6 @@ export const SingleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 SingleHandle.args = {
   value: 50,
-  isVertical: true,
 };
 
 export const DoubleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
@@ -176,4 +175,11 @@ Dark.args = {
   ...SingleHandle.args,
   color: undefined,
   styleAs: "dark",
+};
+
+export const Vertical: StoryFn<typeof HorizontalSlider> = Template.bind({});
+
+Vertical.args = {
+  ...SingleHandle.args,
+  isVertical: true,
 };
