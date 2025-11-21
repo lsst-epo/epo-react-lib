@@ -1,13 +1,20 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ReactSlider from "react-slider";
 
-export const HorizontalSliderContainer = styled.div`
+export const HorizontalSliderContainer = styled.div<{ isVertical?: boolean }>`
   --size-border-radius-slider: calc(var(--size-height-slider, 18px) / 2);
   --size-border-radius-track: calc(var(--size-height-track, 6px) / 2);
 
   display: flex;
   flex-flow: column nowrap;
   padding-block-end: var(--size-padding-slide-block-end, var(--size-spacing-s));
+
+  ${({ isVertical }) =>
+    isVertical &&
+    css`
+      // height: 100%; // take up the full height of the canvas or orbitalsim container
+      height: 200px;
+    `}
 
   &[data-theme="dark"] {
     --color-background-thumb: var(--white, #fff);
@@ -113,16 +120,31 @@ export const Thumb = styled.div`
   }
 `;
 
-export const HorizontalSlider = styled(ReactSlider)`
-  display: flex;
-  align-items: center;
+interface SliderProps {
+  isVertical?: boolean;
+}
+
+export const HorizontalSlider = styled(ReactSlider)<SliderProps>`
+  display: flex; // row by default
+  align-items: center; // vertically centered
   box-sizing: border-box;
   box-shadow: 0 0 4px var(--color-box-shadow, rgba(0, 0, 0, 0.35));
-  height: var(--size-height-slider, 18px);
+  height: var(--size-height-slider, 18px); // narrow height
   background-color: var(--color-background-slider, var(--neutral60, #6a6e6e));
   border: var(--size-border-slider, 8px) solid
     var(--color-border-slider, var(--white, #fff));
-  border-radius: var(--size-border-radius-slider);
+  border-radius: var(--size-border-radius-slider); // pill shape
+
+  ${({ isVertical }) =>
+    isVertical &&
+    css`
+      flex-direction: column; // change to column
+      height: 100%; // take up full vertical height of parent container (HorizontalContainer)
+      width: var(
+        --size-height-slider,
+        18px
+      ); // use original narrowness but assign as width instead
+    `}
 
   &.disabled {
     --color-background-track: var(--color-background-track-disabled);

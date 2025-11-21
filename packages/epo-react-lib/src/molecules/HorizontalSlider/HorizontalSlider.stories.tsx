@@ -8,6 +8,16 @@ const meta: Meta<typeof HorizontalSlider> = {
   component: HorizontalSlider,
   argTypes: {
     className: { ...className, table: { category: "Styling" } },
+    isVertical: {
+      description: "Enables vertical orientation.",
+      control: "boolean",
+      table: {
+        category: "Slider",
+        type: {
+          summary: "boolean",
+        },
+      },
+    },
     min: {
       control: "number",
       description: "The maximum value of the slider.",
@@ -115,11 +125,13 @@ export default meta;
 
 const Template: StoryFn<typeof HorizontalSlider> = (args) => {
   const [value, setValue] = useState(args.value);
+  const [isVertical, setIsVertical] = useState(args.isVertical);
 
   return (
     <HorizontalSlider
       {...args}
       value={value}
+      isVertical={isVertical}
       onChangeCallback={(v, i) => {
         args.onChangeCallback && args.onChangeCallback(v, i);
         return setValue(v);
@@ -132,6 +144,7 @@ export const SingleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
 
 SingleHandle.args = {
   value: 50,
+  isVertical: true,
 };
 
 export const DoubleHandle: StoryFn<typeof HorizontalSlider> = Template.bind({});
