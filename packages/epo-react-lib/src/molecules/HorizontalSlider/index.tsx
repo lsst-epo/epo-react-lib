@@ -16,6 +16,7 @@ type BaseSliderProps = Pick<
   | "ariaValuetext"
   | "defaultValue"
   | "marks"
+  | "orientation"
 >;
 
 type RenderThumb = ReactSliderProps<number | readonly number[]>["renderThumb"];
@@ -37,6 +38,7 @@ export interface HorizontalSliderProps extends BaseSliderProps {
     value: number | readonly number[];
     valueNow: number;
   }) => ReactNode;
+  isVertical?: boolean;
 }
 
 const getValidColor = (color?: string, disabled = false) => {
@@ -61,6 +63,8 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
   styleAs = "light",
   onBeforeChange,
   onAfterChange,
+  isVertical = false,
+  orientation = "horizontal",
   ...props
 }) => {
   const id = useId();
@@ -94,6 +98,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
   return (
     <Styled.HorizontalSliderContainer
+      isVertical
       style={{
         "--color-background-track": getValidColor(color),
       }}
@@ -108,6 +113,8 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
       ) : null}
       <Styled.HorizontalSlider
         {...{ value, disabled, renderThumb, ...props }}
+        isVertical={isVertical}
+        orientation={isVertical ? "vertical" : "horizontal"}
         onBeforeChange={(...args) => {
           setShowThumbLabels(true);
           onBeforeChange && onBeforeChange(...args);
