@@ -7,8 +7,8 @@ import CameraController from "./CameraController.jsx";
 import Camera from "./Camera.jsx";
 import Orbitals from "./Orbitals";
 import Sun from "./Sun.jsx";
+import PlaybackSpeed from "./PlaybackSpeed.jsx";
 import styles from "./OrbitalSim.module.css";
-import { PropertyBinding } from "three";
 
 function OrbitalSim({
   neos,
@@ -46,6 +46,10 @@ function OrbitalSim({
     }
   }, [reset]);
 
+  const handleStepSelect = (e: any) => {
+    setDayPerVizSec(+e.target.value);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -56,12 +60,12 @@ function OrbitalSim({
             rows={detailsRows}
           />
         )}
-        {/* {!paused && (
+        {!paused && (
           <PlaybackSpeed
             {...{ elapsedTime, dayPerVizSec, speeds }}
             sliderOnChangeCallback={handleStepSelect}
           />
-        )} */}
+        )}
         <Canvas className={styles["orbital-canvas"]}>
           <CameraController {...{ pov, reset }} />
           <Camera
