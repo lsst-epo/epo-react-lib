@@ -47,7 +47,7 @@ function OrbitalSim({
   }, [reset]);
 
   const handleStepSelect = (e: any) => {
-    setDayPerVizSec(+e.target.value);
+    setDayPerVizSec(+e);
   };
 
   return (
