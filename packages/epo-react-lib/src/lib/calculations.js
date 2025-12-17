@@ -4,8 +4,8 @@ import includes from 'lodash/includes';
 import isNumber from 'lodash/isNumber';
 import isArray from 'lodash/isArray';
 import { extent as d3Extent, mean as d3Mean } from 'd3-array';
-// TODO: Reorganize files to improve this import
-import chartColors from "../../../epo-widget-lib/src/widgets/OrbitalSim/chartColors.module.css";
+// TODO: Might not want to be doing this
+import chartColors from "@rubin-epo/epo-widget-lib/OrbitalSim/chartColors.module.css";
 
 
 export const randomIntFromInterval = function(min, max) {
@@ -420,3 +420,5 @@ export const isSafari =
   isBrowser() &&
   navigator.userAgent.indexOf('Safari') !== -1 &&
   navigator.userAgent.indexOf('Chrome') === -1;
+
+export default formatValue;
