@@ -2,9 +2,8 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from "react-i18next";
-// TODO: Revisit this import to figure out how to do this with aliases
-import {formatValue} from "../../../../epo-react-lib/src/lib/calculations"; 
-import HorizontalSlider from '@rubin-epo/epo-react-lib/HorizontalSlider';
+import { formatValue } from "@rubin-epo/epo-react-lib/lib/calculations"; 
+import Slider from '@rubin-epo/epo-react-lib/HorizontalSlider';
 import styles from "./OrbitalSim.module.css";
 
 
@@ -101,7 +100,7 @@ function PlaybackSpeed({
       <div className={styles["playback-speed-slider-label-bottom"]}>
         {t('orbit_viewer.playback.normal_time')}
       </div>
-      <HorizontalSlider
+      <Slider
         className={styles["playback-speed-slider"]}
         isVertical={true}
         min={speeds.min}
