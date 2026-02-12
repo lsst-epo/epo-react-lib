@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import styles from "./OrbitalSim.module.css";
-import { SimpleTable } from "@rubin-epo/epo-react-lib";
+import Slideout from "@rubin-epo/epo-react-lib/Slideout";
 import Button from "@rubin-epo/epo-react-lib/Button";
 function OrbitalDetails({ rows, velocity, type }) {
   const [active, setActive] = useState(false);
@@ -19,15 +18,35 @@ function OrbitalDetails({ rows, velocity, type }) {
         isInactive={rows}
         onClick={() => setActive(!active)}
       >
-        {active ? "Hide Details" : "Show Details"}
+        Show Details
       </Button>
-      <div
-        className={classnames(styles.details, {
-          [styles["active-details"]]: active,
-        })}
-      >
-        <SimpleTable className={styles["details-table"]} simpleTable={rows} />
-      </div>
+        <Slideout className={styles.slideout} slideFrom="left" isOpen={!active}>
+          <div
+            className={styles.slideoutPanel}
+            style={{
+              width: '50ch'
+            }}
+          >
+              <h3>Orbital Details</h3>
+               {
+                rows.map(e => (
+                  <div className={styles.slideoutRow}>
+                    <div className={styles.slideoutCol} data-align="left">
+                      <p>{e.rowTitle}</p>
+                    </div>
+                    <div className={styles.slideoutCol} data-align="right" dangerouslySetInnerHTML={{__html: e.rowContent}}>
+                    </div>
+                  </div>
+                ))
+               }
+            <Button
+              isBlock
+              onClick={() => setActive(!active)}
+            >
+              Close
+            </Button>
+          </div>
+        </Slideout>
     </>
   );
 }

@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from "react-i18next";
-import { formatValue } from "@rubin-epo/epo-react-lib/lib/calculations"; 
+// import  formatValue  from "@rubin-epo/epo-react-lib/lib/calculations";
 import Slider from '@rubin-epo/epo-react-lib/HorizontalSlider';
 import styles from "./OrbitalSim.module.css";
 
@@ -13,6 +13,10 @@ function PlaybackSpeed({
   sliderOnChangeCallback,
   speeds,
 }) {
+  const formatValue = function(number, decimalPlaces) {
+    return Number.parseFloat(Number.parseFloat(number).toFixed(decimalPlaces));
+  };
+
   const { t } = useTranslation('widgets');
 
   function formatSpeed(speed) {
@@ -75,10 +79,10 @@ function PlaybackSpeed({
     <>
       <div className={styles["playback-speed-slider-header"]}>
         <h4 className={styles["playback-speed-title"]}>
-          {t('orbit_viewer.playback.time_step')}
+          {t('orbital_sim.playback.time_step')}
         </h4>
         <div className={styles["playback-speed-slider-label"]}>
-          {t('orbit_viewer.playback.time_equivalence', {
+          {t('orbital_sim.playback.time_equivalence', {
             firstTime: t('orbit_viewer.playback.interval.secWithCount', {
               count: 1,
             }),
@@ -87,7 +91,7 @@ function PlaybackSpeed({
         </div>
       </div>
       <div className={styles["playback-speed-slider-label-top"]}>
-        {t('orbit_viewer.playback.time_equivalence', {
+        {t('orbital_sim.playback.time_equivalence', {
           firstTime: t('orbit_viewer.playback.interval.secWithCount', {
             count: 1,
           }),
@@ -98,7 +102,7 @@ function PlaybackSpeed({
         })}
       </div>
       <div className={styles["playback-speed-slider-label-bottom"]}>
-        {t('orbit_viewer.playback.normal_time')}
+        {t('orbital_sim.playback.normal_time')}
       </div>
       <Slider
         className={styles["playback-speed-slider"]}
