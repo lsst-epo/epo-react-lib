@@ -20,6 +20,10 @@
       "second_other": "Seconds",
       "year_one": "Year",
       "year_other": "Years"
+    },
+    "interval": {
+      "year": "Years",
+      "day": "Days"
     }
   },
   "filterTool": {
@@ -154,6 +158,17 @@
       "orbital_bodies": {
         "sun": "Sun"
       }
+    },
+    "playback": {
+        "time_equivalence": "1 sec is 1 year",
+        "normal_time": "Normal Time",
+        "time_step": "Time Step"
     }
+  },
+  "planets": {
+    "jupiter": "Jupiter",
+    "earth": "Earth",
+    "mars": "Mars",
+    "neptune": "Neptune"
   }
 }
