@@ -325,3 +325,49 @@
 .details-toggle.disabled {
   background-color: var(--neutral20);
 }
+
+.slideoutPanel {
+  background-color: var(--neutral10);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  font-size: 0.75rem;
+
+  & > * + * {
+    margin-block-start: 1em;
+  }
+}
+
+.slideoutRow {
+  display: flex;
+  gap: 20px;
+}
+
+.slideoutCol {
+  flex: 1;
+  padding: 0px 15px 0px 15px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  border-radius: 15px;
+}
+
+.slideoutCol[data-align="right"] {
+  text-align: right;
+}
+
+.slideoutCol[data-align="left"] {
+  font-weight: bold;
+}
+
+/* Hide the overlay background of the Slideout component */
+.slideout [data-testid="slideoutBackdrop"] {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.slideoutPanel > h3 {
+  margin: 0px;
+  text-align: center;
+}
