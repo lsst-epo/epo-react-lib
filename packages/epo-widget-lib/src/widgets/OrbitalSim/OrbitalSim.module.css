@@ -103,19 +103,24 @@
 
 .playback-speed-slider-label-bottom {
   top: calc(40px + (var(--minPadding) + var(--tallestSquareWidget) - var(--offset)));
+  right: 10px;
 }
 
 .playback-speed-slider-label-top {
+  right: 10px;
   top: calc(80px + var(--minPadding));
 }
 
 .playback-speed-slider {
   position: absolute;
   z-index: 2;
-  top: calc(80px + (var(--minPadding) + var(--tallestSquareWidget) - var(--offset)) / 2);
-  right: calc(var(--minPadding) + 75px);
-  width: calc(var(--tallestSquareWidget) - var(--offset));
-  margin-right: calc(-1 * (var(--tallestSquareWidget) - var(--offset)) / 2);
+  height: 50px;
+  /* top: calc(80px + (var(--minPadding) + var(--tallestSquareWidget) - var(--offset)) / 2); */
+  top: 25%;
+  right: 5rem;
+  width: fit-content;
+  /* width: calc(var(--tallestSquareWidget) - var(--offset)); */
+  /* margin-right: calc(-1 * (var(--tallestSquareWidget) - var(--offset)) / 2); */
 }
 
 .elapsed-time-container {
