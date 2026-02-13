@@ -13,7 +13,7 @@ export const HorizontalSliderContainer = styled.div<{ isVertical?: boolean }>`
     isVertical &&
     css`
       // height: 100%; // take up the full height of the canvas or orbitalsim container
-      height: 300px;
+      height: 35vh;
     `}
 
   &[data-theme="dark"] {

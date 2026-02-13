@@ -108,6 +108,7 @@ function PlaybackSpeed({
         className={styles["playback-speed-slider"]}
         isVertical={true}
         min={speeds.min}
+        invert={true}
         max={speeds.max}
         step={speeds.step}
         value={dayPerVizSec}
