@@ -8,6 +8,7 @@ import Camera from "./Camera.jsx";
 import Orbitals from "./Orbitals";
 import Sun from "./Sun.jsx";
 import PlaybackSpeed from "./PlaybackSpeed.jsx";
+import PlaybackControls from "./Controls/PlaybackControls";
 import styles from "./OrbitalSim.module.css";
 
 function OrbitalSim({
@@ -25,6 +26,7 @@ function OrbitalSim({
   detailsRows,
   refObjs,
   noLabels,
+  noControls = false
 }: any) {
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
@@ -43,12 +45,44 @@ function OrbitalSim({
       setDayPerVizSec(speeds.initial);
       setStepDirection(1);
       setElapsedTime(0);
+      setReset(-1);
+    } else if (reset < 0) {
+      setElapsedTime(0);
+      setPlaying(true);
+      setReset(0)
     }
   }, [reset]);
 
   const handleStepSelect = (e: any) => {
     setDayPerVizSec(+e);
   };
+
+  const handleStartStop = () => {
+    if(!playing) {
+      setStepDirection(1);
+    }
+    setPlaying(!playing)
+  }
+
+  const handleReset = () => {
+    setPlaying(e => false);
+    // setReset(1);
+    setReset(e => e + 1);
+  }
+
+  const handleNext = (e: any) => {
+    setPlaying(false);
+    setStepDirection(1);
+    setFrameOverride(e => e + 1);
+  }
+
+  const handlePrevious = (e: any) => {
+    setPlaying(false);
+    setStepDirection(-1);
+    setFrameOverride(e => e + 1);
+  }
+
+  let isDisabled = false;
 
   return (
     <>
@@ -66,10 +100,23 @@ function OrbitalSim({
             sliderOnChangeCallback={handleStepSelect}
           />
         )}
+        {!noControls && (
+          <PlaybackControls
+          {...{
+            playing,
+            handleStartStop,
+            handleNext,
+            handlePrevious,
+            isDisabled,
+            handleReset
+            }}
+          />
+        )}
+       
         <Canvas className={styles["orbital-canvas"]}>
           <CameraController {...{ pov, reset }} />
           <Camera
-            left={-15000}
+            left={5000}
             right={15000}
             top={15000}
             bottom={-15000}
@@ -129,6 +176,7 @@ OrbitalSim.propTypes = {
   detailsSet: PropTypes.string,
   detailsRows: PropTypes.array,
   refObjs: PropTypes.array,
+  noControls: PropTypes.bool
 };
 
 export default OrbitalSim;
