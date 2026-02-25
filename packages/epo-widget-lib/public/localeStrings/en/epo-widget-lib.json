@@ -3,6 +3,7 @@
     "controls": {
       "backward": "Rewind",
       "forward": "Forward",
+      "reset": "Reset",
       "play": "Play",
       "pause": "Pause"
     }

@@ -15,7 +15,7 @@ function Camera({ ...props }) {
   useFrame(() => {
     ref.current.updateMatrixWorld();
   });
-  return <orthographicCamera ref={ref} {...props} />;
+  return <orthographicCamera ref={ref} {...props} makeDefault zoom={100}/>;
 }
 
 Camera.propTypes = {
