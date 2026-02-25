@@ -77,7 +77,8 @@
       "backward": "Regresar",
       "forward": "Adelantar",
       "pause": "Pausar",
-      "play": "Reproducir"
+      "play": "Reproducir",
+      "reset": "Reset",
     }
   },
   "isochrone_plot": {

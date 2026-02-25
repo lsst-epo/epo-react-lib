@@ -182,7 +182,7 @@ const Orbital = ({
   useFrame((state, delta) => {
     if (initialized || internalInitialized) updatePoint(!playing, delta);
   });
-  // console.log(name || pd, unitToAu(metersToAu(objectRadius || diameter / 2)));
+
   return (
     <group rotation={rotation}>
       {/* Orbital Path */}

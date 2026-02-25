@@ -96,6 +96,7 @@ Primary.args = {
   potentialOrbits: null,
   observations: null,
   noDetails: true,
+  noControls: true,
   detailsSet: null,
   detailsRows: null,
   refObjs: ["earth"],
