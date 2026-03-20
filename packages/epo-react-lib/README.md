@@ -66,6 +66,9 @@ yarn storybook
 
 ## Test
 
+> [!WARNING]
+> Be wary that the Jest config for ESM differs from the `epo-widget-lib` config
+
 Each component EPO React Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
 
 ```
