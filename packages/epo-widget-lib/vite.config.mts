@@ -87,7 +87,7 @@ export default defineConfig({
       ],
       output: {
         exports: "named",
-        inlineDynamicImports: true,
+        inlineDynamicImports: false,
         preserveModules: true,
         preserveModulesRoot: "src",
         interop: "auto",

@@ -3,7 +3,7 @@ import IconComposer from "@/svg/IconComposer";
 import { ScreenreaderText } from "@/styles/utils";
 import * as Styled from "./styles";
 
-interface CircularLoaderProps {
+export interface CircularLoaderProps {
   withOverlay?: boolean;
   isVisible?: boolean;
   speed?: Styled.LoaderSpeed;

@@ -3590,23 +3590,6 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.21.2.tgz#e4291e3c1bc637083f87936c333cdbcad22af63b"
   integrity sha512-6UUxd0+SKomjdzuAcp+HAmxw1FlGBnl1v2yEPSabtx4lBfdXHDVsW7+lQkgz9cNFJGY3AWR7+V8P5BqkD9L9nA==
 
-"@rubin-epo/epo-react-lib@^2.10.1":
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-2.10.1.tgz#e561f9d36a5bd3670c3ab8e23c97ed1e0770ca6d"
-  integrity sha512-giW6ZHV2IbFRHYDqQjrKySKWR9MjFTARvamF1vyjvYTqmZSggqcXoKeN/TxdQvav0eDm+7JIGP3wl66WRViMuQ==
-  dependencies:
-    "@castiron/style-mixins" "^1.0.6"
-    "@headlessui/react" "^2.2.0"
-    flickity "^3.0.0"
-    focus-trap "^7.4.2"
-    lodash "^4.17.21"
-    react-icons "^5.5.0"
-    react-player "^2.14.1"
-    react-share "^5.2.2"
-    react-slider "^2.0.6"
-    styled-components "^6.1.16"
-    utopia-core "^1.6.0"
-
 "@rushstack/eslint-patch@^1.10.3":
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.3.tgz#391d528054f758f81e53210f1a1eebcf1a8b1d20"
