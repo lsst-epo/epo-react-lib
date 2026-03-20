@@ -22,7 +22,7 @@ After installing the package library, the global styles from `epo-react-lib` wil
 
 ```
 import { GlobalStyles } from "@rubin-epo/epo-react-lib/styles";
-
+```
 
 ### Translations
 
@@ -62,6 +62,9 @@ yarn storybook
 ```
 
 ## Test
+
+> [!WARNING]
+> This package's Jest config is not setup to use strict ESM, as a result if you add `"type": "module"` to the `package.json` there will be CommonJS/ESM incompatibility errors.
 
 Each component in EPO Widget Library contains a Jest unit test. Tests should be co-located with component code and their stories and follow the `**.test.[t|j]sx` naming format.
 
