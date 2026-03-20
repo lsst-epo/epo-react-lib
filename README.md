@@ -18,7 +18,7 @@ Each package is its own workspace. [Yarn workspaces](https://classic.yarnpkg.com
 
 ### Yarn versions for Workspaces
 
-If you're using Yarn version `1.x` you'll need to manually update the target package's `package.json` to get the local version of the requested package installed.
+When you are making updates to both `epo-react-lib` and `epo-widget-lib` and you need to reference one from the other you will need to update the `package.json` version to reference the development version. If you're using Yarn version `1.x` you'll need to manually update the target package's `package.json` to get the local version of the requested package installed.
 
 For example:
 
@@ -41,3 +41,19 @@ dependencies: {
 The key part here is `0.0.0-development` which is the value of the `version` property in `packages/epo-react-lib/package.json`.
 
 After you update the `package.json`, run `yarn install` in the root-level of this project for Yarn workspaces to resolve the local dependencies. **Just be mindful not to check this change in!**
+
+### Local Development in Application Repos
+
+If you are testing an `epo-react-lib` or `epo-widget-lib` update and need to reference the local version of either package use `yarn link`, for example:
+
+```
+cd packages/epo-react-lib
+yarn link
+```
+
+Then in your application folder:
+
+```
+cd rubin-obs-client
+yarn link epo-react-lib
+```
