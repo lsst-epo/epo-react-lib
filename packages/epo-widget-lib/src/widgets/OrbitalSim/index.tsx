@@ -32,7 +32,7 @@ function OrbitalSim({
   const [playing, setPlaying] = useState(!paused);
   const [activeVelocity, setActiveVelocity] = useState(null);
   const [stepDirection, setStepDirection] = useState(1);
-  const [frameOverride, setFrameOverride] = useState(null);
+  const [frameOverride, setFrameOverride] = useState(0);
   const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
