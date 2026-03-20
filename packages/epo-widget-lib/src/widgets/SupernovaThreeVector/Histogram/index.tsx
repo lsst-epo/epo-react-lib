@@ -16,7 +16,7 @@ import { XLabel } from "@/charts/styles";
 import { between } from "@/lib/utils";
 import * as Styled from "./styles";
 
-interface DistanceHistogramProps {
+export interface DistanceHistogramProps {
   data: HistogramData;
   activeRange: Array<number>;
   margin: ChartMargin;

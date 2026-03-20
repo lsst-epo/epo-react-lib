@@ -31,5 +31,3 @@ The `Release packages` logs are pretty straightforward, if the action fails it u
 ## Order of Operations
 
 At times it will be necessary to make a change to `epo-react-lib`, and then use that change in `epo-widget-lib` or one of the other packes. The safest way to ensure this goes smoothly is to make your changes to `epo-react-lib` first then merge all the way to `main` so a new version of the `epo-react-lib` package gets released. You can then reference this new version of `epo-react-lib` in the `epo-widget-lib` package's `package.json` for your next development update.
-
-Because the semantic versioning of the `semantic-release` package is derivative you can guess at what the next `epo-react-lib` version will be and update the `epo-widget-lib` with this version (and it will build before any of the other packages) and then make your development changes together in the same PR. If something goes awry though it can be more cumbersome to troubleshoot the issue.

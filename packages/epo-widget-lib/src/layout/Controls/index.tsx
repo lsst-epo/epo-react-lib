@@ -2,7 +2,7 @@ import { FunctionComponent, ReactNode } from "react";
 import AspectRatio, { Ratios } from "@/layout/AspectRatio";
 import * as Styled from "./styles";
 
-interface WidgetControlsProps {
+export interface WidgetControlsProps {
   widget: ReactNode;
   controls?: ReactNode;
   ratio?: Ratios;
