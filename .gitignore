@@ -26,3 +26,5 @@ env files
 
 # storybook
 /storybook-static/*
+.yarnrc.yml
+.yarn

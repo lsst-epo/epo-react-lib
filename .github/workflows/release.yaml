@@ -18,7 +18,7 @@ jobs:
       name: epo-react-lib
     strategy:
       matrix:
-        node-version: [20.9]
+        node-version: [24.4.0]
     permissions:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues

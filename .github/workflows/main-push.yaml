@@ -20,7 +20,7 @@ jobs:
       name: github-pages
     strategy:
       matrix:
-        node-version: [20.9]
+        node-version: [24.4.0]
     # Job steps
     steps:
       # Manual Checkout
