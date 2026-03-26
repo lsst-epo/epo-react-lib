@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import OrbitalSim from ".";
+import { OrbitalSimProvider } from "./Context";
 
 const meta: Meta<typeof OrbitalSim> = {
   component: OrbitalSim,
@@ -8,8 +9,12 @@ const meta: Meta<typeof OrbitalSim> = {
 export default meta;
 
 // Template for all stories
-const Template: StoryFn<typeof OrbitalSim> = (args) => {
-  return <OrbitalSim {...args} />;
+const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
+  return ( 
+    <OrbitalSimProvider orbitData={args}>
+      <OrbitalSim/>
+    </OrbitalSimProvider>
+  )
 };
 
 // Default story
@@ -18306,19 +18311,55 @@ PotentialOrbits.args = {
   potentialOrbits: true,
   observations: [
     {
-      id: "obs-1",
-      label: "#1",
-      interactable: false,
-      isActive: false,
-      position: 0.55,
-    },
-    {
-      id: "obs-2",
-      label: "#2",
-      interactable: false,
-      isActive: false,
-      position: 0.6,
-    },
+            "id": "obs-7",
+            "label": "#1",
+            "interactable": false,
+            "isActive": false,
+            "position": 0.55
+          },
+          {
+            "id": "obs-6",
+            "label": "#2",
+            "interactable": false,
+            "isActive": false,
+            "position": 0.6
+          },
+          {
+            "id": "obs-5",
+            "label": "#3",
+            "interactable": false,
+            "isActive": false,
+            "position": 0.65
+          },
+          {
+            "id": "obs-1",
+            "label": "A",
+            "interactable": true,
+            "isActive": false,
+            "position": 0.7,
+            "isAnswer": true
+          },
+          {
+            "id": "obs-3",
+            "label": "B",
+            "interactable": true,
+            "isActive": false,
+            "position": 0.84
+          },
+          {
+            "id": "obs-2",
+            "label": "C",
+            "interactable": true,
+            "isActive": false,
+            "position": 0
+          },
+          {
+            "id": "obs-4",
+            "label": "D",
+            "interactable": true,
+            "isActive": false,
+            "position": 0.2
+          }
   ],
   noDetails: null,
   detailsSet: null,
