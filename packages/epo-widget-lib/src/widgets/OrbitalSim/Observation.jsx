@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Html } from "@react-three/drei";
-
 import styles from "./OrbitalSim.module.css";
+import { useOrbitalSimContext } from './Context';
 
-function Observation({ data, activeObs, vector, selectionCallback }) {
-  const { id, label, interactable, isActive } = data;
+function Observation({ data, vector }) {
+  const { updateActiveObservation }= useOrbitalSimContext();
+  const { label, interactable, isActive, isAnswer } = data;
   const [isHover, setIsHover] = useState(false);
-  const [isActiveAnswer, setIsActiveAnswer] = useState(() => {
-    const { id: activeObsId } = activeObs || {};
-    return activeObsId === id;
-  });
-
-  useEffect(() => {
-    const { id: activeObsId } = activeObs || {};
-    setIsActiveAnswer(activeObsId === id);
-  }, [activeObs]);
 
   function getObsColor() {
-    if (isActive && isActiveAnswer) return "green";
-    if (isActiveAnswer || isHover) return "blue";
+    if (isActive && isAnswer) {
+      return "green";
+    } else if (isActive || isHover) {
+      return "blue";
+    }
 
     return "gray";
   }
@@ -29,25 +24,22 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
     <mesh
       className={styles["obs-mesh"]}
       position={vector}
-      onClick={interactable ? () => selectionCallback(data, "obs") : null}
+      onClick={interactable ? () => {
+        updateActiveObservation(data.id)
+       } : null}
       onPointerOver={interactable ? () => setIsHover(true) : null}
       onPointerOut={interactable ? () => setIsHover(false) : null}
     >
       <Html>
         <div
-          className={classnames(styles["obs-label"], {
-            [styles["obs-answer"]]: isActive && isActiveAnswer,
-            [styles["obs-hover"]]: isHover,
-            [styles["obs-active"]]: isActiveAnswer,
-          })}
-        >
+          className={classnames(styles["obs-label"])}>
           {label}
         </div>
       </Html>
       <octahedronGeometry attach="geometry" args={[20]} />
       <meshBasicMaterial
         attach="material"
-        color={getObsColor(isActiveAnswer, isActive)}
+        color={getObsColor()}
       />
     </mesh>
   );
@@ -55,8 +47,6 @@ function Observation({ data, activeObs, vector, selectionCallback }) {
 
 Observation.propTypes = {
   data: PropTypes.object,
-  selectionCallback: PropTypes.func,
-  activeObs: PropTypes.object,
   vector: PropTypes.object,
 };
 

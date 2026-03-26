@@ -4,29 +4,30 @@ import { useThree, useFrame } from "@react-three/fiber";
 import Orbital from "./Orbital.jsx";
 import PotentialOrbits from "./PotentialOrbits.jsx";
 import { getRefObjProps } from "./orbitalUtilities.js";
+import { useOrbitalSimContext } from "./Context"
 
 function Orbitals({
-  neos,
-  activeNeo,
-  activeObs,
-  selectionCallback,
-  activeVelocityCallback,
   playing,
   dayPerVizSec,
   stepDirection,
   frameOverride,
   defaultZoom,
   potentialOrbits,
-  observations,
-  refObjs,
   elapsedTime,
   setElapsedTime,
   noLabels,
   reset,
   zoomLevel,
-  setZoomLevel,
-  t,
+  setZoomLevel
 }) {
+  const { orbits }= useOrbitalSimContext();
+  
+    const { 
+      neos,
+      refObjs,
+      activeNeo
+     } = orbits;
+
   function reducer(state) {
     const { remainingInits } = state;
     return { remainingInits: remainingInits - 1 };
@@ -34,7 +35,7 @@ function Orbitals({
 
   const { camera } = useThree();
   const [state, dispatch] = useReducer(reducer, {
-    remainingInits: neos.length,
+    remainingInits: (neos && Array.isArray(neos)) ? neos.length : 0,
   });
 
   function renderRefObjs() {
@@ -65,12 +66,10 @@ function Orbitals({
             stepDirection,
             dayPerVizSec,
             frameOverride,
-            selectionCallback,
             orbitColor,
             objectColor,
             objectRadius,
             reset,
-            t,
           }}
         />
       );
@@ -107,53 +106,42 @@ function Orbitals({
             stepDirection,
             dayPerVizSec,
             frameOverride,
-            selectionCallback,
-            activeVelocityCallback,
-            observations,
-            activeObs,
-            t,
           }}
           initCallback={dispatch}
         />
       ) : (
-        neos.map((neo, badId) => {
-          const { Ref: ref, Principal_desig: pd, name } = neo;
-          return (
-            <Orbital
-              key={
-                ref && (pd || name) ? `${ref}-${pd || name}` : `orbit-${badId}`
-              }
-              data={neo}
-              position={[0, 0, 0]}
-              active={neo === activeNeo}
-              initialized={state.remainingInits <= 0}
-              zoomMod={zoomLevel}
-              {...{
-                defaultZoom,
-                playing,
-                stepDirection,
-                dayPerVizSec,
-                frameOverride,
-                selectionCallback,
-                activeVelocityCallback,
-                noLabels,
-                reset,
-                t,
-              }}
-              initCallback={dispatch}
-            />
-          );
-        })
-      )}
+        neos ? (neos.map((neo, badId) => {
+            const { Ref: ref, Principal_desig: pd, name } = neo;
+            return (
+              <Orbital
+                key={
+                  ref && (pd || name) ? `${ref}-${pd || name}` : `orbit-${badId}`
+                }
+                data={neo}
+                position={[0, 0, 0]}
+                active={neo === activeNeo}
+                initialized={state.remainingInits <= 0}
+                zoomMod={zoomLevel}
+                {...{
+                  defaultZoom,
+                  playing,
+                  stepDirection,
+                  dayPerVizSec,
+                  frameOverride,
+                  noLabels,
+                  reset,
+                }}
+                initCallback={dispatch}
+              />
+            );
+          }))
+         : null
+        )}
     </>
   );
 }
 
 Orbitals.propTypes = {
-  neos: PropTypes.array,
-  activeNeo: PropTypes.object,
-  activeObs: PropTypes.object,
-  selectionCallback: PropTypes.func,
   playing: PropTypes.bool,
   dayPerVizSec: PropTypes.number,
   stepDirection: PropTypes.number,
@@ -163,13 +151,10 @@ Orbitals.propTypes = {
   zoomLevel: PropTypes.number,
   setZoomLevel: PropTypes.func,
   potentialOrbits: PropTypes.bool,
-  observations: PropTypes.array,
-  refObjs: PropTypes.array,
   elapsedTime: PropTypes.number,
   setElapsedTime: PropTypes.func,
   noLabels: PropTypes.bool,
-  reset: PropTypes.number,
-  t: PropTypes.func,
+  reset: PropTypes.number
 };
 
 export default Orbitals;

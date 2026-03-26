@@ -2,10 +2,9 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from "react-i18next";
-// import  formatValue  from "@rubin-epo/epo-react-lib/lib/calculations";
+import { formatValue } from "./orbitalUtilities";
 import Slider from '@rubin-epo/epo-react-lib/HorizontalSlider';
 import styles from "./OrbitalSim.module.css";
-
 
 function PlaybackSpeed({
   dayPerVizSec,
@@ -13,11 +12,7 @@ function PlaybackSpeed({
   sliderOnChangeCallback,
   speeds,
 }) {
-  const formatValue = function(number, decimalPlaces) {
-    return Number.parseFloat(Number.parseFloat(number).toFixed(decimalPlaces));
-  };
-
-  const { t } = useTranslation('widgets');
+  const { t } = useTranslation();
 
   function formatSpeed(speed) {
     const years = speed / 365;

@@ -59,8 +59,6 @@
 }
 
 .playback-speed-title {
-  /* Mixin: subheadingPrimary */
-  font-family: 'Roboto';
   font-size: 18px;
   font-weight: var(--regular);
   line-height: 1.5; /* // 24px */
@@ -70,10 +68,7 @@
 }
 
 .playback-speed-slider-label {
-  /* Mixin: labelSecondary */
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: var(--medium);
+  font-size: 13px;
   line-height: 1.333;
   color: var(--black);
 
@@ -82,10 +77,7 @@
 
 .playback-speed-slider-label-bottom,
 .playback-speed-slider-label-top {
-/* Mixin: labelSecondary */
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: var(--medium);
+  font-size: 13px;
   line-height: 1.333;
   color: var(--black);
   
@@ -115,19 +107,13 @@
   position: absolute;
   z-index: 2;
   height: 50px;
-  /* top: calc(80px + (var(--minPadding) + var(--tallestSquareWidget) - var(--offset)) / 2); */
   top: 25%;
   right: 5rem;
   width: fit-content;
-  /* width: calc(var(--tallestSquareWidget) - var(--offset)); */
-  /* margin-right: calc(-1 * (var(--tallestSquareWidget) - var(--offset)) / 2); */
 }
 
 .elapsed-time-container {
-  /* Mixin: labelSecondary */
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: var(--medium);
+  font-size: 13px;
   line-height: 1.333;
   color: var(--black);
 
@@ -143,10 +129,7 @@
 }
 
 .elapsed-time-container .elapsed-time-title {
-  /* Mixin: labelSecondary */
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: var(--medium);
+  font-size: 13px;
   line-height: 1.333;
   color: var(--black);
 
@@ -174,8 +157,6 @@
 }
 
 .elapsed-time-container .elapsed-time-inner .elapsed-time-block .elapsed-val {
-  /* Mixin: subheadingPrimary */
-  font-family: 'Roboto';
   font-size: 18px;
   font-weight: var(--regular);
   line-height: 1.5; /* // 24px */
@@ -185,10 +166,7 @@
 }
 
 .elapsed-time-container .elapsed-time-inner .elapsed-time-block .elapsed-label {
-  /* Mixin: labelSecondary */
-  font-family: 'Roboto';
-  font-size: 14px;
-  font-weight: var(--medium);
+  font-size: 13px;
   line-height: 1.333;
   color: var(--black);
 
@@ -271,7 +249,7 @@
 .obs-label.obs-answer,
 .obs-label.obs-hover {
     font-size: 18px;
-    color: 'blue';
+    color: 'yellow';
   }
 
 .obs-active {

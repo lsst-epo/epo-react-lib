@@ -20,7 +20,7 @@ const PlaybackControl: FunctionComponent<PlaybackControlProps> = ({
       <Styled.IconContainer>
         <IconComposer icon={icon} size={iconSize} />
       </Styled.IconContainer>
-      <span>{label}</span>
+      <Styled.SpanLabel>{label}</Styled.SpanLabel>
     </Styled.PlaybackButton>
   );
 };
