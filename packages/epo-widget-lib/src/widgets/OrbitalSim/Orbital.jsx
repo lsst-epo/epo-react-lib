@@ -21,6 +21,8 @@ import {
 } from './orbitalUtilities.js';
 import styles from "./OrbitalSim.module.css";
 import chartColors from "./chartColors.module.css";
+import { useOrbitalSimContext } from './Context';
+import { useTranslation } from "react-i18next";
 
 const Orbital = ({
   data,
@@ -36,14 +38,15 @@ const Orbital = ({
   initialized,
   initCallback,
   devMode,
-  activeVelocityCallback,
   zoomMod,
   defaultZoom,
   type,
   noLabels,
-  reset,
-  t,
+  reset
 }) => {
+  const { t } = useTranslation();
+  const { orbits } = useOrbitalSimContext();
+  const { activeVelocityCallback } = orbits;
   // This reference will give us direct access to the mesh
   const mesh = useRef();
   const {
@@ -334,7 +337,6 @@ Orbital.propTypes = {
   type: PropTypes.string,
   noLabels: PropTypes.bool,
   reset: PropTypes.number,
-  t: PropTypes.func,
 };
 
 export default Orbital;

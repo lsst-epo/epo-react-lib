@@ -10,7 +10,8 @@ import {
   convert2dTo3d,
 } from './orbitalUtilities.js';
 
-const Observations = ({ data, observations, activeObs, selectionCallback }) => {
+const Observations = ({ data, observations }) => {
+  
   const [observationsVectors] = useState(() => {
     const { a, e } = data;
 
@@ -39,7 +40,6 @@ const Observations = ({ data, observations, activeObs, selectionCallback }) => {
                 key={id}
                 data={observation}
                 vector={obsVector}
-                {...{ selectionCallback, activeObs }}
               />
             );
           })}
@@ -52,8 +52,6 @@ const Observations = ({ data, observations, activeObs, selectionCallback }) => {
 Observations.propTypes = {
   data: PropTypes.object,
   observations: PropTypes.array,
-  selectionCallback: PropTypes.func,
-  activeObs: PropTypes.object,
 };
 
 export default Observations;

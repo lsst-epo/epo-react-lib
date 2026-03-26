@@ -105,6 +105,15 @@ export const getRefObjProps = id => {
   );
 };
 
+export const formatValue = function(number, decimalPlaces) {
+    return Number.parseFloat(Number.parseFloat(number).toFixed(decimalPlaces));
+  };
+
+
+export const randomIntFromInterval = function(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 // args must be in VIZ_UNITS
 export const getCurve = (xRadius, yRadius, aX = 0, aY = 0) => {
   return new THREE.EllipseCurve(
