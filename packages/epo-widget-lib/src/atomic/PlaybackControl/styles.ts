@@ -1,3 +1,7 @@
+/**
+ * todo: convert this to a CSS module
+ */
+
 import styled from "styled-components";
 
 export const IconContainer = styled.div`
@@ -15,7 +19,6 @@ export const PlaybackButton = styled.button`
   --button-color: var(--white, #fff);
   --button-background-color: var(--neutral15, #e6e6e6);
 
-  background: transparent;
   border: none;
   color: var(--button-color);
   cursor: pointer;
@@ -25,7 +28,7 @@ export const PlaybackButton = styled.button`
   gap: 0.75em;
   text-align: center;
   padding: 0;
-  margin: 0;
+  margin: 0px 10px 0px 10px;
 
   &:not(:disabled):not([aria-disabled="true"]):hover,
   &:not(:disabled):not([aria-disabled="true"]):focus-visible,
@@ -40,4 +43,10 @@ export const PlaybackButton = styled.button`
   &:not(:disabled):not([aria-disabled="true"]):focus {
     outline: none;
   }
+`;
+
+export const SpanLabel = styled.span`
+  background: rgba(0, 0, 0, .7);
+  padding: 3px 10px 3px 10px;
+  border-radius: 10px;
 `;

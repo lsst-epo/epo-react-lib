@@ -10,24 +10,20 @@ import Sun from "./Sun.jsx";
 import PlaybackSpeed from "./PlaybackSpeed.jsx";
 import PlaybackControls from "./Controls/PlaybackControls";
 import styles from "./OrbitalSim.module.css";
+import { useOrbitalSimContext } from "./Context";
 
-function OrbitalSim({
-  neos,
-  activeNeo,
-  activeObs,
-  selectionCallback,
-  paused,
-  pov,
-  defaultZoom,
-  potentialOrbits,
-  observations,
-  noDetails,
-  detailsSet,
-  detailsRows,
-  refObjs,
-  noLabels,
-  noControls = false
-}: any) {
+function OrbitalSim() {
+  const { orbits }= useOrbitalSimContext();
+
+  const { 
+    paused,
+    pov,
+    defaultZoom,
+    potentialOrbits,
+    noDetails,
+    noControls = false,
+   } = orbits;
+
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
   const [activeVelocity, setActiveVelocity] = useState(null);
@@ -66,7 +62,6 @@ function OrbitalSim({
 
   const handleReset = () => {
     setPlaying(e => false);
-    // setReset(1);
     setReset(e => e + 1);
   }
 
@@ -88,11 +83,7 @@ function OrbitalSim({
     <>
       <div className={styles.container}>
         {!potentialOrbits && !noDetails && (
-          <OrbitalDetails
-            type={detailsSet}
-            velocity={activeVelocity}
-            rows={detailsRows}
-          />
+          <OrbitalDetails/>
         )}
         {!paused && (
           <PlaybackSpeed
@@ -127,27 +118,18 @@ function OrbitalSim({
           />
           <ambientLight intensity={0.9} />
           <Orbitals
-            activeVelocityCallback={setActiveVelocity}
             defaultZoom={defaultZoom || 1}
             {...{
-              refObjs,
-              neos,
-              activeNeo,
-              activeObs,
               playing,
               stepDirection,
               dayPerVizSec,
               frameOverride,
               potentialOrbits,
-              observations,
-              selectionCallback,
               elapsedTime,
               setElapsedTime,
-              noLabels,
               reset,
               zoomLevel,
               setZoomLevel,
-              t,
             }}
           />
           <Sun
@@ -160,23 +142,5 @@ function OrbitalSim({
     </>
   );
 }
-
-OrbitalSim.propTypes = {
-  neos: PropTypes.array,
-  activeNeo: PropTypes.object,
-  activeObs: PropTypes.object,
-  selectionCallback: PropTypes.func,
-  paused: PropTypes.bool,
-  pov: PropTypes.string,
-  defaultZoom: PropTypes.number,
-  potentialOrbits: PropTypes.bool,
-  observations: PropTypes.array,
-  noDetails: PropTypes.bool,
-  noLabels: PropTypes.bool,
-  detailsSet: PropTypes.string,
-  detailsRows: PropTypes.array,
-  refObjs: PropTypes.array,
-  noControls: PropTypes.bool
-};
 
 export default OrbitalSim;

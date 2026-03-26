@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 import styles from "./OrbitalSim.module.css";
 import Slideout from "@rubin-epo/epo-react-lib/Slideout";
 import Button from "@rubin-epo/epo-react-lib/Button";
-function OrbitalDetails({ rows, velocity, type }) {
+import { useOrbitalSimContext } from './Context';
+
+function OrbitalDetails() {
+  const { orbits }= useOrbitalSimContext();
+  
+    const { 
+      detailsRows: rows
+     } = orbits;
+     
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -29,7 +37,7 @@ function OrbitalDetails({ rows, velocity, type }) {
           >
               <h3>Orbital Details</h3>
                {
-                rows.map(e => (
+                rows && rows.map(e => (
                   <div className={styles.slideoutRow}>
                     <div className={styles.slideoutCol} data-align="left">
                       <p>{e.rowTitle}</p>
@@ -50,11 +58,5 @@ function OrbitalDetails({ rows, velocity, type }) {
     </>
   );
 }
-
-OrbitalDetails.propTypes = {
-  data: PropTypes.object,
-  velocity: PropTypes.number,
-  type: PropTypes.string,
-};
 
 export default OrbitalDetails;

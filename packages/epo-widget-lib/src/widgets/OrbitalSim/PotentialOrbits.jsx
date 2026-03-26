@@ -9,13 +9,11 @@ import {
   getCurve,
   convert2dTo3d,
 } from './orbitalUtilities.js';
+import { useOrbitalSimContext } from './Context';
 
-const PotentialOrbits = ({
-  data,
-  observations,
-  activeObs,
-  selectionCallback,
-}) => {
+const PotentialOrbits = () => {
+  const { orbits, observations }= useOrbitalSimContext();
+  const { neos: data } = orbits;
   function getCurveVectors(majAxis, minAxis, orbitData) {
     const focus = getFocus(majAxis, minAxis);
     const offsetCenter = new THREE.Vector3(focus, 0, 0);
@@ -78,7 +76,7 @@ const PotentialOrbits = ({
       {observations && data && (
         <Observations
           data={data[0]}
-          {...{ observations, selectionCallback, activeObs }}
+          {...{ observations }}
         />
       )}
     </>
@@ -87,9 +85,6 @@ const PotentialOrbits = ({
 
 PotentialOrbits.propTypes = {
   data: PropTypes.array,
-  observations: PropTypes.array,
-  selectionCallback: PropTypes.func,
-  activeObs: PropTypes.object,
 };
 
 export default PotentialOrbits;
