@@ -55,5 +55,13 @@ Then in your application folder:
 
 ```
 cd rubin-obs-client
-yarn link epo-react-lib
+yarn link @rubin-epo/epo-react-lib
 ```
+
+Then:
+
+```
+yarn
+```
+
+You can confirm that the installation is symlinked by then going into `./node_modules/@rubin-epo/` and running `ls -l` to see the symlink
