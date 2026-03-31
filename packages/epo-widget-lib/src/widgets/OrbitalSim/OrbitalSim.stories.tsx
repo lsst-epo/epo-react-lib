@@ -1,5 +1,5 @@
 import { Meta, StoryFn } from "@storybook/react";
-import OrbitalSim from ".";
+import { OrbitalSim }  from ".";
 import { OrbitalSimProvider } from "./Context";
 
 const meta: Meta<typeof OrbitalSim> = {
