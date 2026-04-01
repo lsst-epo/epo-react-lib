@@ -36,6 +36,6 @@
       "@/utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src", "./jest-setup.ts"],
+  "include": ["src", "./jest-setup.ts", "src/types/**/*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

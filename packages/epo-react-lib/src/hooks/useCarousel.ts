@@ -22,7 +22,7 @@ const DEFAULT_OPTIONS: Required<CarouselOptions> = {
  * (https://www.w3.org/TR/wai-aria-practices-1.1/examples/carousel/carousel-1.html)
  */
 export default function useCarousel(options: CarouselOptions): CarouselConfig {
-  const flickity = useRef<Flickity>();
+  const flickity = useRef<Flickity | null>(null);
   const [carouselRef, setCarouselRef] = useState<HTMLDivElement>();
 
   /**

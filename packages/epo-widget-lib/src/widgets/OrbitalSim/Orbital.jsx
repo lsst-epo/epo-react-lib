@@ -41,7 +41,7 @@ const Orbital = ({
   zoomMod,
   defaultZoom,
   type,
-  noLabels,
+  // noLabels,
   reset
 }) => {
   const { t } = useTranslation();
@@ -205,7 +205,8 @@ const Orbital = ({
           position={point.position}
           onClick={() => selectionCallback(data, "neo")}
         >
-          {(type === "planet" || !noLabels || active) && (
+          {/* {(type === "planet" || !noLabels || active) && ( */}
+          {(type === "planet" || active) && (
             <Html>
               <button
                 type="button"
@@ -335,7 +336,7 @@ Orbital.propTypes = {
   zoomMod: PropTypes.number,
   defaultZoom: PropTypes.number,
   type: PropTypes.string,
-  noLabels: PropTypes.bool,
+  // noLabels: PropTypes.bool,
   reset: PropTypes.number,
 };
 
