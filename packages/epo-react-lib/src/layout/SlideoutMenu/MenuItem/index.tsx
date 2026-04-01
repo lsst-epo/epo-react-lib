@@ -34,7 +34,7 @@ function MenuItem({
   ...restProps
 }: PropsWithChildren<MenuButtonProps | MenuLinkProps>): ReactElement {
   const menuContext = useContext(MenuContext);
-  const menuItemRef = useRef<HTMLButtonElement | HTMLAnchorElement>();
+  const menuItemRef = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
 
   if (!menuContext) {
     throw new Error("Menu item must be used within a Menu Context");

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Canvas } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 import OrbitalDetails from "./OrbitalDetails.jsx";
@@ -13,7 +12,6 @@ import styles from "./OrbitalSim.module.css";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
-  console.info("Inside orbital sim!");
   const { orbits }= useOrbitalSimContext();
 
   const { 
@@ -136,7 +134,6 @@ function OrbitalSim() {
           <Sun
             zoomLevel={zoomLevel}
             defaultZoom={defaultZoom || 1}
-            {...{ t }}
           />
         </Canvas>
       </div>

@@ -2,7 +2,7 @@ import { FunctionComponent, HTMLProps } from "react";
 import * as Styled from "./styles";
 
 export interface MasonryGridProps {
-  items: Array<{ id: string | number; element: JSX.Element }>;
+  items: Array<{ id: string | number; element: React.ReactElement }>;
   /** An integer to start counting from for the list items. */
   start?: number;
   reversed?: boolean;

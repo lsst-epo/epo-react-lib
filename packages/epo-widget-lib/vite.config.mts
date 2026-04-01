@@ -28,6 +28,11 @@ export default defineConfig({
       exclude: ["./**/*.stories.tsx", "./**/*.test.tsx"],
     }),
   ],
+  css: {
+    modules: {
+      localsConvention: "camelCase"
+    }
+  },
   root: "./",
   // optimizeDeps: {
   //   // Pre-bundle these so they're not fetched dynamically

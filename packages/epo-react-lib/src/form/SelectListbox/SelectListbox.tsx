@@ -7,28 +7,10 @@ import { useTranslation } from "react-i18next";
 
 export type { ListboxOption };
 
-type SelectListboxProps<TMultiselect = boolean> = TMultiselect extends true
-  ? {
-      value: string[] | null;
+type SelectListboxProps<TMultiselect = boolean> = {
+      value: string[] | string | null;
       isMultiselect?: true;
-      onChangeCallback: (value: string[] | null) => void;
-      options: ListboxOption[];
-      isDisabled?: boolean;
-      placeholder?: string;
-      labelledById?: string;
-      /**
-       * @deprecated No longer used
-       */
-      namespace?: string;
-      maxWidth?: string;
-      width?: string;
-      className?: string;
-      id?: string;
-    }
-  : {
-      value: string | null;
-      isMultiselect?: false;
-      onChangeCallback: (value: string | null) => void;
+      onChangeCallback: (value: string[] | string | null) => void;
       options: ListboxOption[];
       isDisabled?: boolean;
       placeholder?: string;
@@ -50,6 +32,7 @@ const SelectListbox: FunctionComponent<SelectListboxProps> = ({
   isDisabled: disabled,
   labelledById,
   placeholder,
+  namespace = "",
   isMultiselect: multiple = false,
   maxWidth = "200px",
   width,

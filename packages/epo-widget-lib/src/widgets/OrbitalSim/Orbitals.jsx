@@ -15,7 +15,6 @@ function Orbitals({
   potentialOrbits,
   elapsedTime,
   setElapsedTime,
-  noLabels,
   reset,
   zoomLevel,
   setZoomLevel
@@ -128,7 +127,6 @@ function Orbitals({
                   stepDirection,
                   dayPerVizSec,
                   frameOverride,
-                  noLabels,
                   reset,
                 }}
                 initCallback={dispatch}
@@ -153,7 +151,6 @@ Orbitals.propTypes = {
   potentialOrbits: PropTypes.bool,
   elapsedTime: PropTypes.number,
   setElapsedTime: PropTypes.func,
-  noLabels: PropTypes.bool,
   reset: PropTypes.number
 };
 
