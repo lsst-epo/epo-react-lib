@@ -1,11 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Html } from '@react-three/drei';
 import { getLabelSize, ORBITAL_COLORS } from './orbitalUtilities';
+import { useTranslation } from "react-i18next";
 
 import styles from "./OrbitalSim.module.css";
 
-function Sun({ defaultZoom, zoomLevel, t }: any) {
+type SunPropTypes = {
+  zoomLevel: Number,
+  defaultZoom: Number
+}
+
+const Sun: FC<SunPropTypes> = ({ defaultZoom, zoomLevel }) => {
+  const { t } = useTranslation();
   return (
     <mesh position={[0, 0, 0]}>
       <sphereGeometry attach="geometry" args={[9, 16, 8]} />
@@ -26,11 +32,5 @@ function Sun({ defaultZoom, zoomLevel, t }: any) {
     </mesh>
   );
 }
-
-Sun.propTypes = {
-  zoomLevel: PropTypes.number,
-  defaultZoom: PropTypes.number,
-  t: PropTypes.func,
-};
 
 export default Sun;

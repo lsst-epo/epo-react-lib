@@ -1,10 +1,10 @@
-import { FunctionComponent, HTMLProps, MouseEventHandler } from "react";
+import { FunctionComponent, HTMLProps, MouseEventHandler, ToggleEventHandler } from "react";
 import ExpandCollapse from "@/svg/unique/ExpandCollapse";
 import * as Styled from "./styles";
 
 interface ExpandToggleProps extends HTMLProps<HTMLButtonElement> {
   isOpen: boolean;
-  onToggle: MouseEventHandler<HTMLButtonElement>;
+  onToggle: ToggleEventHandler<HTMLButtonElement>;
   controlsId: string;
   isHidden: boolean;
 }

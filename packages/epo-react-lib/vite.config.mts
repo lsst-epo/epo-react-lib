@@ -80,7 +80,7 @@ export default defineConfig({
   ],
   root: "./",
   css: {
-    postcss,
+    postcss
   },
   build: {
     minify: false,

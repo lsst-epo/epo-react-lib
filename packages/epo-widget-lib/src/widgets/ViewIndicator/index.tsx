@@ -114,7 +114,7 @@ const Viewer: FC<ViewerProps> = ({ ra, dec, fov }) => {
     return `${path}L${centerX},${centerY}`;
   };
 
-  const viewcone: Record<string, JSX.Element> = {
+  const viewcone: Record<string, React.ReactElement> = {
     plane: (
       <path
         opacity={0.8}
