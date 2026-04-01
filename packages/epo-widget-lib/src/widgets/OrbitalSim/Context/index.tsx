@@ -1,46 +1,7 @@
 // export { OrbitalSimProvider, OrbitalSimContext, useOrbitalSimContext } from "./OrbitalSimContext";
 
 import { createContext, useContext, ReactNode, useState, useEffect, useMemo } from "react";
-
-interface OrbitalSimProviderProps {
-    children: ReactNode,
-    orbitData: Orbits
-}
-
-type OrbitalSimContextValues = {
-  orbits: Orbits;
-  setOrbits: React.Dispatch<React.SetStateAction<Orbits>>;
-  observations: Observation[];
-  setObservations: React.Dispatch<React.SetStateAction<Observation[]>>;
-  updateActiveObservation: (activeId: string) => void;
-};
-
-type Observation = {
-    id: string,
-    label: string,
-    interactable: boolean,
-    isActive: boolean,
-    position: number,
-    isAnswer?: boolean
-}
-
-type Orbits = {
-    neos: any,
-    activeNeo: any,
-    observations: Observation[],
-    activeObs: any,
-    selectionCallback: any,
-    paused: any,
-    pov: any,
-    defaultZoom: any,
-    potentialOrbits: any,
-    noDetails: any,
-    detailsSet: any,
-    detailsRows: any,
-    refObjs: any,
-    noLabels: any,
-    noControls:boolean
-}
+import type {OrbitalSimContextValues, OrbitalSimProviderProps, Orbits, Observation } from './OrbitalSimContext.types.ts'
 
 export const OrbitalSimContext = createContext<OrbitalSimContextValues | null>(null);
 
@@ -85,17 +46,13 @@ export function OrbitalSimProvider({ children, orbitData }: OrbitalSimProviderPr
         neos: null,
         activeNeo: null,
         observations: [],
-        activeObs: null,
-        selectionCallback: null,
-        paused: null,
+        paused: false,
         pov: null,
         defaultZoom: null,
-        potentialOrbits: null,
-        noDetails: null,
-        detailsSet: null,
+        potentialOrbits: false,
+        noDetails: false,
         detailsRows: null,
         refObjs: null,
-        noLabels: null,
         noControls: false
     })
     const [ observations, setObservations ] = useState<Observation[]>(() => 
