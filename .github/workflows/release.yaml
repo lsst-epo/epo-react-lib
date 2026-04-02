@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - release-react19
+      - release-v3
 
 permissions:
   contents: write # to be able to publish a GitHub release
