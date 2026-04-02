@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from "prop-types";
-import styles from "./OrbitalSim.module.css";
-import Slideout from "@rubin-epo/epo-react-lib/Slideout";
 import Button from "@rubin-epo/epo-react-lib/Button";
-import { useOrbitalSimContext } from './Context';
+import { useOrbitalSimContext } from '../Context';
+import * as Styled from "./styles";
 
 function OrbitalDetails() {
   const { orbits }= useOrbitalSimContext();
@@ -20,31 +18,26 @@ function OrbitalDetails() {
 
   return (
     <>
-      <Button
+      <Styled.ButtonWrapper
         styleAs="secondary"
-        className={styles["details-toggle"]}
         isInactive={rows}
         onClick={() => setActive(!active)}
       >
         Show Details
-      </Button>
-        <Slideout className={styles.slideout} slideFrom="left" isOpen={!active}>
-          <div
-            className={styles.slideoutPanel}
-            style={{
-              width: '50ch'
-            }}
-          >
+      </Styled.ButtonWrapper>
+        <Styled.SlideoutWrapper slideFrom="left" isOpen={!active}>
+          <Styled.SlideoutPanel>
               <h3>Orbital Details</h3>
                {
                 rows && rows.map(e => (
-                  <div className={styles.slideoutRow}>
-                    <div className={styles.slideoutCol} data-align="left">
+                  <Styled.SlideoutRow>
+                    <Styled.SlideoutColLeft>
                       <p>{e.rowTitle}</p>
-                    </div>
-                    <div className={styles.slideoutCol} data-align="right" dangerouslySetInnerHTML={{__html: e.rowContent}}>
-                    </div>
-                  </div>
+                    </Styled.SlideoutColLeft>
+                    <Styled.SlideoutColRight>
+                      <p>e.rowContent</p>
+                    </Styled.SlideoutColRight>
+                  </Styled.SlideoutRow >
                 ))
                }
             <Button
@@ -53,8 +46,8 @@ function OrbitalDetails() {
             >
               Close
             </Button>
-          </div>
-        </Slideout>
+          </Styled.SlideoutPanel>
+        </Styled.SlideoutWrapper>
     </>
   );
 }

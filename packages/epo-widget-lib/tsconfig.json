@@ -16,9 +16,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "plugins": [
-      { "name": "typescript-plugin-css-modules" }
-    ],
     "baseUrl": ".",
     "paths": {
       "@/assets/*": ["src/assets/*"],
@@ -33,6 +30,5 @@
       "@/widgets/*": ["src/widgets/*"]
     }
   },
-  "include": ["src", "./jest-setup.ts", "src/types/css-modules.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "./jest-setup.ts"]
 }

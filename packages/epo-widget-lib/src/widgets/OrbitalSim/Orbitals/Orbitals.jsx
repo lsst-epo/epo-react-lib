@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { useThree, useFrame } from "@react-three/fiber";
 import Orbital from "./Orbital.jsx";
 import PotentialOrbits from "./PotentialOrbits.jsx";
-import { getRefObjProps } from "./orbitalUtilities.js";
-import { useOrbitalSimContext } from "./Context"
+import { getRefObjProps } from "../orbitalUtilities.js";
+import { useOrbitalSimContext } from "../Context/index.tsx"
 
 function Orbitals({
   playing,

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from 'three';
-import Observations from './Observations.jsx';
+import Observations from '../Observations/Observations.jsx';
 import {
   getMinorAxis,
   auToUnit,
   getFocus,
   getCurve,
   convert2dTo3d,
-} from './orbitalUtilities.js';
-import { useOrbitalSimContext } from './Context';
+} from '../orbitalUtilities.js';
+import { useOrbitalSimContext } from '../Context/index.tsx';
 
 const PotentialOrbits = () => {
   const { orbits, observations }= useOrbitalSimContext();

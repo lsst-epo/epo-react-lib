@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { useTranslation } from "react-i18next";
-import OrbitalDetails from "./OrbitalDetails.jsx";
-import CameraController from "./CameraController.jsx";
-import Camera from "./Camera.jsx";
-import Orbitals from "./Orbitals.jsx";
+import OrbitalDetails from "./Orbitals/OrbitalDetails.jsx";
+import CameraController from "./Camera/CameraController.jsx";
+import Camera from "./Camera/Camera.jsx";
+import Orbitals from "./Orbitals/Orbitals.jsx";
 import Sun from "./Sun.js";
-import PlaybackSpeed from "./PlaybackSpeed.jsx";
+import PlaybackSpeed from "./Controls/PlaybackSpeed.jsx";
 import PlaybackControls from "./Controls/PlaybackControls.js";
-import styles from "./OrbitalSim.module.css";
+import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
   const { orbits }= useOrbitalSimContext();
-
   const { 
     paused,
     pov,
@@ -25,15 +22,13 @@ function OrbitalSim() {
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
-  const [activeVelocity, setActiveVelocity] = useState(null);
+  // const [activeVelocity, setActiveVelocity] = useState(null);
   const [stepDirection, setStepDirection] = useState(1);
   const [frameOverride, setFrameOverride] = useState(0);
   const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (reset > 0) {
@@ -80,7 +75,8 @@ function OrbitalSim() {
 
   return (
     <>
-      <div className={styles.container}>
+       <Styled.GlobalStyles/>
+       <Styled.OrbitalSimWrapper>
         {!potentialOrbits && !noDetails && (
           <OrbitalDetails/>
         )}
@@ -103,40 +99,40 @@ function OrbitalSim() {
           />
         )}
        
-        <Canvas className={styles["orbital-canvas"]}>
-          <CameraController {...{ pov, reset }} />
-          <Camera
-            left={5000}
-            right={15000}
-            top={15000}
-            bottom={-15000}
-            near={0.1}
-            far={30000}
-            position={[0, 0, 8000]}
-            defaultZoom={defaultZoom || 1}
-          />
-          <ambientLight intensity={0.9} />
-          <Orbitals
-            defaultZoom={defaultZoom || 1}
-            {...{
-              playing,
-              stepDirection,
-              dayPerVizSec,
-              frameOverride,
-              potentialOrbits,
-              elapsedTime,
-              setElapsedTime,
-              reset,
-              zoomLevel,
-              setZoomLevel,
-            }}
-          />
-          <Sun
-            zoomLevel={zoomLevel}
-            defaultZoom={defaultZoom || 1}
-          />
-        </Canvas>
-      </div>
+       <Styled.CanvasWrapper orthographic={true}>
+            <CameraController {...{ pov, reset }} />
+            <Camera
+              left={5000}
+              right={15000}
+              top={15000}
+              bottom={-15000}
+              near={0.1}
+              far={30000}
+              position={[0, 0, 8000]}
+              defaultZoom={defaultZoom || 1}
+            />
+            <ambientLight intensity={0.9} />
+            <Orbitals
+              defaultZoom={defaultZoom || 1}
+              {...{
+                playing,
+                stepDirection,
+                dayPerVizSec,
+                frameOverride,
+                potentialOrbits,
+                elapsedTime,
+                setElapsedTime,
+                reset,
+                zoomLevel,
+                setZoomLevel,
+              }}
+            />
+            <Sun
+              zoomLevel={zoomLevel}
+              defaultZoom={defaultZoom || 1}
+            />
+        </Styled.CanvasWrapper>
+      </Styled.OrbitalSimWrapper>
     </>
   );
 }
