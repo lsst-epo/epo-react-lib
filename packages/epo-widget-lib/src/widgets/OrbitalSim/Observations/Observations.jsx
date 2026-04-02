@@ -8,7 +8,7 @@ import {
   getFocus,
   getCurve,
   convert2dTo3d,
-} from './orbitalUtilities.js';
+} from '../orbitalUtilities.js';
 
 const Observations = ({ data, observations }) => {
   

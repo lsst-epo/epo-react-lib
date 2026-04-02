@@ -18,11 +18,11 @@ import {
   unitToAu,
   getLabelSize,
   ORBITAL_COLORS,
-} from './orbitalUtilities.js';
-import styles from "./OrbitalSim.module.css";
-import chartColors from "./chartColors.module.css";
-import { useOrbitalSimContext } from './Context';
+} from '../orbitalUtilities.js';
+import chartColors from "../chartColors.module.css";
+import { useOrbitalSimContext } from '../Context';
 import { useTranslation } from "react-i18next";
+import * as Styled from "./styles";
 
 const Orbital = ({
   data,
@@ -208,16 +208,17 @@ const Orbital = ({
           {/* {(type === "planet" || !noLabels || active) && ( */}
           {(type === "planet" || active) && (
             <Html>
-              <button
-                type="button"
-                className={styles.label}
-                style={{
-                  fontSize: getLabelSize(zoomMod, defaultZoom),
-                }}
-                onClick={() => selectionCallback(data, "neo")}
-              >
-                {translationKey ? t(translationKey) : name || pd}
-              </button>
+              <Styled.Label>
+                <button
+                  type="button"
+                  style={{
+                    fontSize: getLabelSize(zoomMod, defaultZoom),
+                  }}
+                  onClick={() => selectionCallback(data, "neo")}
+                >
+                  {translationKey ? t(translationKey) : name || pd}
+                </button>
+              </Styled.Label>
             </Html>
           )}
           <sphereGeometry
@@ -240,7 +241,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color={chartColors.chart1} />
               <Html>
-                <div className={styles.label}>center</div>
+                <Styled.Label>center</Styled.Label>
               </Html>
             </mesh>
             {/* Foci */}
@@ -251,7 +252,7 @@ const Orbital = ({
                 color={objectColor || "blue"}
               />
               <Html>
-                <div className={styles.label}>sun</div>
+                <Styled.Label>sun</Styled.Label>
               </Html>
             </mesh>
             <mesh
@@ -264,7 +265,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>minor axis vertex</div>
+                <Styled.Label>minor axis vertex</Styled.Label>
               </Html>
             </mesh>
             <mesh
@@ -277,7 +278,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>minor axis vertex</div>
+                <Styled.Label>minor axis vertex</Styled.Label>
               </Html>
             </mesh>
             {/* Major Axis */}
@@ -291,7 +292,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>major axis vertex</div>
+                <Styled.Label>major axis vertex</Styled.Label>
               </Html>
             </mesh>
             <mesh
@@ -304,7 +305,7 @@ const Orbital = ({
               <sphereGeometry attach="geometry" args={[2, 10, 10]} />
               <meshBasicMaterial attach="material" color="green" />
               <Html>
-                <div className={styles.label}>major axis vertex</div>
+                <Styled.Label>major axis vertex</Styled.Label>
               </Html>
             </mesh>
           </>
