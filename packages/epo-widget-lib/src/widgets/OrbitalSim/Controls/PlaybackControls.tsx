@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 import PlaybackControl from "@/atomic/PlaybackControl";
-import style from "./PlaybackControls.module.css";
 import { useTranslation } from "react-i18next";
+import * as Styled from "./styles";
 
 export interface PlaybackControlsProps {
   playing: boolean;
@@ -24,7 +24,7 @@ const PlaybackControls: FC<PlaybackControlsProps> = ({
     const { t } = useTranslation();
 
     return (
-        <div className={style.playbackControlsContainer}>
+        <Styled.PlaybackControlsContainer>
             <PlaybackControl
                 data-testid="blinker-backward"
                 icon="Backward"
@@ -55,7 +55,7 @@ const PlaybackControls: FC<PlaybackControlsProps> = ({
                 handleClick={handleReset}
                 disabled={isDisabled}
             />
-        </div>
+        </Styled.PlaybackControlsContainer>
     )
 
 }

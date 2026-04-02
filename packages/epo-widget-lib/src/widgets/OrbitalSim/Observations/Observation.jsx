@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Html } from "@react-three/drei";
-import styles from "./OrbitalSim.module.css";
-import { useOrbitalSimContext } from './Context';
+import styles from "../OrbitalSim.module.css";
+import { useOrbitalSimContext } from '../Context';
 
 function Observation({ data, vector }) {
   const { updateActiveObservation }= useOrbitalSimContext();

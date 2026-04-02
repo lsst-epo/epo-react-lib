@@ -2,9 +2,9 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from "react-i18next";
-import { formatValue } from "./orbitalUtilities";
+import { formatValue } from "../orbitalUtilities";
 import Slider from '@rubin-epo/epo-react-lib/HorizontalSlider';
-import styles from "./OrbitalSim.module.css";
+import * as Styled from "./styles";
 
 function PlaybackSpeed({
   dayPerVizSec,
@@ -72,20 +72,20 @@ function PlaybackSpeed({
 
   return (
     <>
-      <div className={styles["playback-speed-slider-header"]}>
-        <h4 className={styles["playback-speed-title"]}>
+      <Styled.PlaybackSpeedSliderHeader>
+        <Styled.PlaybackSpeedTitle>
           {t('orbital_sim.playback.time_step')}
-        </h4>
-        <div className={styles["playback-speed-slider-label"]}>
+        </Styled.PlaybackSpeedTitle>
+        <Styled.PlaybackSpeedSliderLabel>
           {t('orbital_sim.playback.time_equivalence', {
             firstTime: t('orbit_viewer.playback.interval.secWithCount', {
               count: 1,
             }),
             secondTime: formattedSpeed,
           })}
-        </div>
-      </div>
-      <div className={styles["playback-speed-slider-label-top"]}>
+        </Styled.PlaybackSpeedSliderLabel>
+      </Styled.PlaybackSpeedSliderHeader>
+      <Styled.PlaybackSpeedSliderLabelTopBottom>
         {t('orbital_sim.playback.time_equivalence', {
           firstTime: t('orbit_viewer.playback.interval.secWithCount', {
             count: 1,
@@ -95,38 +95,39 @@ function PlaybackSpeed({
           }),
           context: 'verbose',
         })}
-      </div>
-      <div className={styles["playback-speed-slider-label-bottom"]}>
+      </Styled.PlaybackSpeedSliderLabelTopBottom>
+      <Styled.PlaybackSpeedSliderLabelTopBottom>
         {t('orbital_sim.playback.normal_time')}
-      </div>
-      <Slider
-        className={styles["playback-speed-slider"]}
-        isVertical={true}
-        min={speeds.min}
-        invert={true}
-        max={speeds.max}
-        step={speeds.step}
-        value={dayPerVizSec}
-        onChangeCallback={sliderOnChangeCallback}
-      />
-      <div className={styles["elapsed-time-container"]}>
-        <div className={styles["elapsed-time-title"]}>{t('elapsed_time.title')}</div>
-        <div className={styles["elapsed-time-inner"]}>
-          <div className={styles["elapsed-time-block"]}>
-            <div className={styles["elapsed-val"]}>{formatElapsed('years', 'number')}</div>
-            <div className={styles["elapsed-time-label"]}>
+      </Styled.PlaybackSpeedSliderLabelTopBottom>
+      <Styled.PlaybackSpeedSliderWrapper>
+        <Slider
+          isVertical={true}
+          min={speeds.min}
+          invert={true}
+          max={speeds.max}
+          step={speeds.step}
+          value={dayPerVizSec}
+          onChangeCallback={sliderOnChangeCallback}
+        />
+      </Styled.PlaybackSpeedSliderWrapper>
+      <Styled.ElapsedTimeContainer>
+        <Styled.ElapsedTimeTitle>{t('elapsed_time.title')}</Styled.ElapsedTimeTitle>
+        <Styled.ElapsedTimeInner>
+          <Styled.ElapsedTimeBlock>
+            <Styled.ElapsedVal>{formatElapsed('years', 'number')}</Styled.ElapsedVal>
+            <div>
               {formatElapsed('years', 'string')}
             </div>
-          </div>
-          <div className={styles["elapsed-time-divider"]}></div>
-          <div className={styles["elapsed-time-block"]}>
-            <div className={styles["elapsed-val"]}>{formatElapsed('days', 'number')}</div>
-            <div className={styles["elapsed-label"]}>
+          </Styled.ElapsedTimeBlock>
+          <Styled.ElapsedTimeDivider></Styled.ElapsedTimeDivider>
+          <Styled.ElapsedTimeBlock>
+            <Styled.ElapsedVal>{formatElapsed('days', 'number')}</Styled.ElapsedVal>
+            <Styled.ElapsedLabel>
               {formatElapsed('days', 'string')}
-            </div>
-          </div>
-        </div>
-      </div>
+            </Styled.ElapsedLabel>
+          </Styled.ElapsedTimeBlock>
+        </Styled.ElapsedTimeInner>
+      </Styled.ElapsedTimeContainer>
     </>
   );
 }
