@@ -11,9 +11,15 @@ function Observation({ data, vector }) {
   const [isHover, setIsHover] = useState(false);
 
   function getObsColor() {
+    if (interactable && !isActive){
+      return '#E08D35';
+    } 
+    
     if (isActive && isAnswer) {
       return "green";
-    } else if (isActive || isHover) {
+    } 
+    
+    if (isActive || isHover) {
       return "blue";
     }
 
