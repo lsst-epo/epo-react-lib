@@ -38,15 +38,34 @@ export const PlaybackSpeedSliderLabel = styled.div`
   line-height: 1.333;
   color: var(--black);
   font-size: 12.5px;
-  background-color: white;
 `;
 
-export const PlaybackSpeedSliderLabelTopBottom = styled.div`
+export const PlaybackSpeedSliderLabelTop = styled.div`
+  right: 25px;
+  top: 100px;
   font-size: 13px;
   line-height: 1.333;
   color: var(--black);
   position: absolute;
-  right: var(--minPadding) / 2;
+  // right: var(--minPadding) / 2;
+  z-index: 2;
+  width: 70px;
+  padding: 5px;
+  color: var(--white);
+  text-align: center;
+  background-color: rgb(from var(--basePrimary) r g b / 80%);
+  border: 1px solid var(--black);
+  border-radius: 10px;
+`;
+
+export const PlaybackSpeedSliderLabelBottom = styled.div`
+  right: 25px;
+  bottom: 200px;
+  font-size: 13px;
+  line-height: 1.333;
+  color: var(--black);
+  position: absolute;
+  // right: var(--minPadding) / 2;
   z-index: 2;
   width: 70px;
   padding: 5px;

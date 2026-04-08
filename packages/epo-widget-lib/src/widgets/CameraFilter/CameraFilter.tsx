@@ -11,7 +11,7 @@ import SpectrumDisplay from "./SpectrumDisplay";
 const CameraFilter: FunctionComponent = () => {
   const { t } = useTranslation();
   const { ref, width = 1 } = useResizeObserver<HTMLDivElement>();
-  const [activeFilterBand, setActiveFilterBand] = useState<string | null>(null);
+  const [activeFilterBand, setActiveFilterBand] = useState<string | string[] | null>(null);
   const { BREAK_TABLET } = tokens;
   const isCondensed = width < parseInt(BREAK_TABLET);
 
@@ -116,7 +116,7 @@ const CameraFilter: FunctionComponent = () => {
           <SelectListbox
             options={options}
             value={activeFilterBand}
-            onChangeCallback={(value: string | null) =>
+            onChangeCallback={(value: string | string[] | null) =>
               setActiveFilterBand(value)
             }
             width="100%"

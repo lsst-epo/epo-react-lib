@@ -85,7 +85,7 @@ function PlaybackSpeed({
           })}
         </Styled.PlaybackSpeedSliderLabel>
       </Styled.PlaybackSpeedSliderHeader>
-      <Styled.PlaybackSpeedSliderLabelTopBottom>
+      <Styled.PlaybackSpeedSliderLabelTop>
         {t('orbital_sim.playback.time_equivalence', {
           firstTime: t('orbit_viewer.playback.interval.secWithCount', {
             count: 1,
@@ -95,10 +95,10 @@ function PlaybackSpeed({
           }),
           context: 'verbose',
         })}
-      </Styled.PlaybackSpeedSliderLabelTopBottom>
-      <Styled.PlaybackSpeedSliderLabelTopBottom>
+      </Styled.PlaybackSpeedSliderLabelTop>
+      <Styled.PlaybackSpeedSliderLabelBottom>
         {t('orbital_sim.playback.normal_time')}
-      </Styled.PlaybackSpeedSliderLabelTopBottom>
+      </Styled.PlaybackSpeedSliderLabelBottom>
       <Styled.PlaybackSpeedSliderWrapper>
         <Slider
           isVertical={true}
