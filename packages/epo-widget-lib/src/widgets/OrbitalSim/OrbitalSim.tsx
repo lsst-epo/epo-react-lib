@@ -10,6 +10,7 @@ import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
+  console.info("inside of OrbitalSim component");
   const { orbits }= useOrbitalSimContext();
   const { 
     paused,
@@ -22,7 +23,6 @@ function OrbitalSim() {
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
-  // const [activeVelocity, setActiveVelocity] = useState(null);
   const [stepDirection, setStepDirection] = useState(1);
   const [frameOverride, setFrameOverride] = useState(0);
   const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
