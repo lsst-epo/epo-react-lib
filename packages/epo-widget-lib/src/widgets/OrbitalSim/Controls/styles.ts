@@ -1,6 +1,19 @@
 "use client";
 import styled from "styled-components";
 
+export const PlaybackContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 110px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  height: 95%;
+`;
+
 export const PlaybackControlsContainer = styled.div`
     width: auto;
     display: flex;
@@ -13,16 +26,14 @@ export const PlaybackControlsContainer = styled.div`
 `;
 
 export const PlaybackSpeedSliderHeader = styled.div`
-  position: absolute;
-  top: 34px;
-  right: 10px;
   z-index: 2;
-  width: 110px;
   padding: 5px;
   text-align: center;
   background-color: rgba(255,255,255, 0.8);
   border: 1px solid --black;
   border-radius: 10px;
+  grid-area: 1 / 1 / 2 / 3; 
+  height: fit-content;
 `;
 
 export const PlaybackSpeedTitle = styled.h4`
@@ -41,13 +52,10 @@ export const PlaybackSpeedSliderLabel = styled.div`
 `;
 
 export const PlaybackSpeedSliderLabelTop = styled.div`
-  right: 25px;
-  top: 100px;
+  grid-area: 2 / 2 / 3 / 3;   
   font-size: 13px;
   line-height: 1.333;
   color: var(--black);
-  position: absolute;
-  // right: var(--minPadding) / 2;
   z-index: 2;
   width: 70px;
   padding: 5px;
@@ -56,16 +64,14 @@ export const PlaybackSpeedSliderLabelTop = styled.div`
   background-color: rgb(from var(--basePrimary) r g b / 80%);
   border: 1px solid var(--black);
   border-radius: 10px;
+  height: fit-content;
 `;
 
 export const PlaybackSpeedSliderLabelBottom = styled.div`
-  right: 25px;
-  bottom: 200px;
+  grid-area: 4 / 2 / 5 / 3;
   font-size: 13px;
   line-height: 1.333;
   color: var(--black);
-  position: absolute;
-  // right: var(--minPadding) / 2;
   z-index: 2;
   width: 70px;
   padding: 5px;
@@ -74,30 +80,32 @@ export const PlaybackSpeedSliderLabelBottom = styled.div`
   background-color: rgb(from var(--basePrimary) r g b / 80%);
   border: 1px solid var(--black);
   border-radius: 10px;
+  height: fit-content;
+  align-self: center;
 `;
 
 export const PlaybackSpeedSliderWrapper = styled.span`
-  position: absolute;
   z-index: 2;
-  height: 50px;
-  top: 25%;
-  right: 5rem;
   width: fit-content;
+  grid-area: 2 / 1 / 5 / 2;
+
+  & > div:first-of-type {
+    height: stretch;
+  }
 `;
 
 export const ElapsedTimeContainer = styled.div`
+  grid-area: 5 / 1 / 6 / 3; 
   font-size: 13px;
   line-height: 1.333;
   color: var(--black);
-  position: absolute;
-  right: 10px;
-  bottom: 100px;
   z-index: 2;
   color: var(--black);
   text-align: center;
   background-color: rgb(from var(--white) r g b / 80%);
   border: 1px solid var(--black);
   border-radius: 10px;
+  height: fit-content;
 `;
 
 export const ElapsedTimeTitle = styled.div`

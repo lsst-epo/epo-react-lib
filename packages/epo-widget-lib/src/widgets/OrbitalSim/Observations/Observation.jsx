@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { Html } from "@react-three/drei";
 import styles from "../OrbitalSim.module.css";
 import { useOrbitalSimContext } from '../Context';
+import * as Styled from "./styles";
 
 function Observation({ data, vector }) {
   const { updateActiveObservation }= useOrbitalSimContext();
@@ -31,10 +32,10 @@ function Observation({ data, vector }) {
       onPointerOut={interactable ? () => setIsHover(false) : null}
     >
       <Html>
-        <div
+        <Styled.Label
           className={classnames(styles["obs-label"])}>
           {label}
-        </div>
+        </Styled.Label>
       </Html>
       <octahedronGeometry attach="geometry" args={[20]} />
       <meshBasicMaterial

@@ -4,9 +4,9 @@ import Button from "@rubin-epo/epo-react-lib/Button";
 import Slideout from "@rubin-epo/epo-react-lib/Slideout";
 
 export const SlideoutWrapper = styled(Slideout)`
-    display: none;
-    opacity: 0;
-    pointer-events: none;
+    & > div:first-of-type {
+      display: none;
+    }
 `;
 
 export const Label = styled.div`
@@ -14,10 +14,12 @@ export const Label = styled.div`
   margin-top: 4px;
   font-weight: var(--medium);
   color: var(--black);
-  background-color: color-mix(in srgb, var(--white) 40%, transparent);
-  border: 1px solid color-mix(in srgb, var(--white) 40%, transparent);;
+  background-color: color-mix(in srgb, var(--white) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 75%, transparent);;
   border-radius: 5px;
   color-adjust: exact;
+  z-index: 10000;
+  height: fit-content;
 `;
 
 export const ButtonWrapper = styled(Button)`
@@ -44,11 +46,16 @@ export const SlideoutPanel = styled.div`
   & > * + * {
     margin-block-start: 1em;
   }
+  & > h3 {
+    margin: 0px;
+    text-align: center;
+  }
 `;
 
 export const SlideoutRow = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 10px;
+  margin: 0px;
 `;
 
 export const SlideoutColLeft = styled.div`
