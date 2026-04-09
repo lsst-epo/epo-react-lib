@@ -161,6 +161,7 @@
       }
     },
     "playback": {
+        "sec_with_count": "1 sec = {{count}} days",
         "time_equivalence": "1 sec is 1 year",
         "normal_time": "Normal Time",
         "time_step": "Time Step"

@@ -31,27 +31,36 @@ export const GlobalStyles = createGlobalStyle`
 
     --siteProgressHeight: 26px;
     --siteToolbarHeight: 64px;
-    --siteHeaderHeight: var(--siteProgressHeight) + var(--siteToolbarHeight);
+    --siteHeaderHeight: calc(var(--siteProgressHeight) + var(--siteToolbarHeight));
     --pageNavHeight: 64px;
     --headingWithSpaceHeight: 90px;
-    // --tallestSquareWidget: calc(100vh - var(--pageNavHeight) - var(--siteHeaderHeight) - var(--headingWithSpaceHeight) - var(--minPadding));
+    --tallestSquareWidget: calc(100vh - var(--pageNavHeight) - var(--siteHeaderHeight) - var(--headingWithSpaceHeight) - var(--minPadding));
   }
 `;
 
 export const OrbitalSimWrapper = styled.div`
     position: relative;
-    // height: var(--tallestSquareWidget);
-    height: 750px; // revisit this close to MVP
-    // min-height: var(--break40);
+    height: var(--tallestSquareWidget);
     min-height: 500px;
-    background-color: var(--black);
+    background-color: #000000;
     color-adjust: exact;
 `;
 
 export const CanvasWrapper = styled(Canvas)`
-    display: inline;
     position: relative;
-    height: 100%;
     z-index: 1;
+`;
+
+export const SunLabel = styled.div`
+  padding: 2px 4px;
+  margin-top: 4px;
+  font-weight: var(--medium);
+  color: var(--black);
+  background-color: color-mix(in srgb, var(--white) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--white) 75%, transparent);;
+  border-radius: 5px;
+  color-adjust: exact;
+  z-index: 10000;
+  height: fit-content;
 `;
 

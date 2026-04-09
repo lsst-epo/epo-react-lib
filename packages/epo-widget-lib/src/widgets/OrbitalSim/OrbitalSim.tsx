@@ -10,7 +10,6 @@ import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
-  console.info("inside of OrbitalSim component");
   const { orbits }= useOrbitalSimContext();
   const { 
     paused,

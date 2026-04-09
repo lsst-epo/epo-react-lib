@@ -2,8 +2,7 @@ import React, { FC } from 'react';
 import { Html } from '@react-three/drei';
 import { getLabelSize, ORBITAL_COLORS } from './orbitalUtilities';
 import { useTranslation } from "react-i18next";
-
-import styles from "./OrbitalSim.module.css";
+import * as Styled from "./styles";
 
 type SunPropTypes = {
   zoomLevel: Number,
@@ -20,14 +19,15 @@ const Sun: FC<SunPropTypes> = ({ defaultZoom, zoomLevel }) => {
         color={ORBITAL_COLORS.sun.objectColor}
       />
       <Html>
-        <div
-          className={styles.label}
+        <Styled.SunLabel>
+          <span
           style={{
             fontSize: getLabelSize(zoomLevel, defaultZoom),
           }}
-        >
+          >
           {t("orbital_sim.astronomy.orbital_bodies.sun")}
-        </div>
+          </span>
+        </Styled.SunLabel>
       </Html>
     </mesh>
   );

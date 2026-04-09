@@ -66,68 +66,63 @@ function PlaybackSpeed({
     return null;
   }
 
-  const formattedSpeed = useMemo(() => {
-    return formatSpeed(dayPerVizSec);
-  }, [dayPerVizSec]);
-
   return (
     <>
-      <Styled.PlaybackSpeedSliderHeader>
-        <Styled.PlaybackSpeedTitle>
-          {t('orbital_sim.playback.time_step')}
-        </Styled.PlaybackSpeedTitle>
-        <Styled.PlaybackSpeedSliderLabel>
+      <Styled.PlaybackContainer>
+        <Styled.PlaybackSpeedSliderHeader>
+          <Styled.PlaybackSpeedTitle>
+            {t('orbital_sim.playback.time_step')}
+          </Styled.PlaybackSpeedTitle>
+          <Styled.PlaybackSpeedSliderLabel>
+            {t('orbital_sim.playback.sec_with_count', {
+              count: Math.round(dayPerVizSec)
+            })}
+          </Styled.PlaybackSpeedSliderLabel>
+        </Styled.PlaybackSpeedSliderHeader>
+        <Styled.PlaybackSpeedSliderLabelTop>
           {t('orbital_sim.playback.time_equivalence', {
             firstTime: t('orbit_viewer.playback.interval.secWithCount', {
               count: 1,
             }),
-            secondTime: formattedSpeed,
+            secondTime: t('orbit_viewer.playback.interval.yearWithCount', {
+              count: 1,
+            }),
+            context: 'verbose',
           })}
-        </Styled.PlaybackSpeedSliderLabel>
-      </Styled.PlaybackSpeedSliderHeader>
-      <Styled.PlaybackSpeedSliderLabelTop>
-        {t('orbital_sim.playback.time_equivalence', {
-          firstTime: t('orbit_viewer.playback.interval.secWithCount', {
-            count: 1,
-          }),
-          secondTime: t('orbit_viewer.playback.interval.yearWithCount', {
-            count: 1,
-          }),
-          context: 'verbose',
-        })}
-      </Styled.PlaybackSpeedSliderLabelTop>
-      <Styled.PlaybackSpeedSliderLabelBottom>
-        {t('orbital_sim.playback.normal_time')}
-      </Styled.PlaybackSpeedSliderLabelBottom>
-      <Styled.PlaybackSpeedSliderWrapper>
-        <Slider
-          isVertical={true}
-          min={speeds.min}
-          invert={true}
-          max={speeds.max}
-          step={speeds.step}
-          value={dayPerVizSec}
-          onChangeCallback={sliderOnChangeCallback}
-        />
-      </Styled.PlaybackSpeedSliderWrapper>
-      <Styled.ElapsedTimeContainer>
-        <Styled.ElapsedTimeTitle>{t('elapsed_time.title')}</Styled.ElapsedTimeTitle>
-        <Styled.ElapsedTimeInner>
-          <Styled.ElapsedTimeBlock>
-            <Styled.ElapsedVal>{formatElapsed('years', 'number')}</Styled.ElapsedVal>
-            <div>
-              {formatElapsed('years', 'string')}
-            </div>
-          </Styled.ElapsedTimeBlock>
-          <Styled.ElapsedTimeDivider></Styled.ElapsedTimeDivider>
-          <Styled.ElapsedTimeBlock>
-            <Styled.ElapsedVal>{formatElapsed('days', 'number')}</Styled.ElapsedVal>
-            <Styled.ElapsedLabel>
-              {formatElapsed('days', 'string')}
-            </Styled.ElapsedLabel>
-          </Styled.ElapsedTimeBlock>
-        </Styled.ElapsedTimeInner>
-      </Styled.ElapsedTimeContainer>
+        </Styled.PlaybackSpeedSliderLabelTop>
+        <Styled.PlaybackSpeedSliderLabelBottom>
+          {t('orbital_sim.playback.normal_time')}
+        </Styled.PlaybackSpeedSliderLabelBottom>
+        <Styled.PlaybackSpeedSliderWrapper>
+          <Slider
+            isVertical={true}
+            min={speeds.min}
+            invert={true}
+            max={speeds.max}
+            step={speeds.step}
+            value={dayPerVizSec}
+            onChangeCallback={sliderOnChangeCallback}
+          />
+        </Styled.PlaybackSpeedSliderWrapper>
+        <Styled.ElapsedTimeContainer>
+          <Styled.ElapsedTimeTitle>{t('elapsed_time.title')}</Styled.ElapsedTimeTitle>
+          <Styled.ElapsedTimeInner>
+            <Styled.ElapsedTimeBlock>
+              <Styled.ElapsedVal>{formatElapsed('years', 'number')}</Styled.ElapsedVal>
+              <div>
+                {formatElapsed('years', 'string')}
+              </div>
+            </Styled.ElapsedTimeBlock>
+            <Styled.ElapsedTimeDivider></Styled.ElapsedTimeDivider>
+            <Styled.ElapsedTimeBlock>
+              <Styled.ElapsedVal>{formatElapsed('days', 'number')}</Styled.ElapsedVal>
+              <Styled.ElapsedLabel>
+                {formatElapsed('days', 'string')}
+              </Styled.ElapsedLabel>
+            </Styled.ElapsedTimeBlock>
+          </Styled.ElapsedTimeInner>
+        </Styled.ElapsedTimeContainer>
+      </Styled.PlaybackContainer>
     </>
   );
 }

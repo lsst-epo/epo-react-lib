@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from "@rubin-epo/epo-react-lib/Button";
 import { useOrbitalSimContext } from '../Context';
 import * as Styled from "./styles";
+import { GlobalStyles } from "../styles";
 
 function OrbitalDetails() {
   const { orbits }= useOrbitalSimContext();
@@ -18,10 +19,11 @@ function OrbitalDetails() {
 
   return (
     <>
+      <GlobalStyles/>
       <Styled.ButtonWrapper
         styleAs="secondary"
         isInactive={rows}
-        onClick={() => setActive(!active)}
+        onClick={() => { setActive(!active); console.error("click!");}}
       >
         Show Details
       </Styled.ButtonWrapper>
@@ -35,7 +37,7 @@ function OrbitalDetails() {
                       <p>{e.rowTitle}</p>
                     </Styled.SlideoutColLeft>
                     <Styled.SlideoutColRight>
-                      <p>e.rowContent</p>
+                      <p>{e.rowContent}</p>
                     </Styled.SlideoutColRight>
                   </Styled.SlideoutRow >
                 ))
