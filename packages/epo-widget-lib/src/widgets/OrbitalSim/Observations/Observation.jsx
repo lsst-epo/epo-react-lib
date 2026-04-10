@@ -12,7 +12,7 @@ function Observation({ data, vector }) {
 
   function getObsColor() {
     if (interactable && !isActive){
-      return '#E08D35';
+      return '#AA661D';
     } 
     
     if (isActive && isAnswer) {
