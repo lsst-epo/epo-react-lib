@@ -24,8 +24,8 @@ const SelectionList: FunctionComponent<SelectionListProps> = ({
             return (
               <Styled.DescriptionWrapper key={id}>
                 <dt>
-                  {t("source_selector.selected_source", {
-                    type: t(`source_selector.sources.${type}`),
+                  {t("selection_list.selected_source", {
+                    type: t(`selection_list.sources.${type}`),
                   })}
                 </dt>
                 <dd>{id}</dd>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { biggerData } from "./mocks";
 
 import SourceSelector from ".";
-import SelectionList from "./SelectionList";
+import SelectionList from "@/atomic/SelectionList";
 import { useState } from "react";
 
 const meta: Meta<typeof SourceSelector> = {
