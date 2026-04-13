@@ -121,7 +121,11 @@ const ColorTool: FunctionComponent<ColorToolProps> = ({
     );
   };
 
-  const handleObjectSelection = (value: string | null) => {
+  /**
+   * to-do: follow the typing up the chain and remove `any` use and align
+   *        with (string | string[] | null) typing
+   */
+  const handleObjectSelection = (value: any) => {
     if (!value) return;
 
     return (
