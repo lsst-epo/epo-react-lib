@@ -48,15 +48,17 @@
       "export": "Exportar"
     }
   },
-  "source_selector": {
-    "messages": {
-      "success": "¡Muy bien!",
-      "failure": "Inténtalo de nuevo."
-    },
+  "selection_list": {
     "selected_source": "Seleccionada {{type}}:",
     "sources": {
       "galaxy": "Galaxia",
       "supernova": "Supernova"
+    }
+  },
+  "source_selector": {
+    "messages": {
+      "success": "¡Muy bien!",
+      "failure": "Inténtalo de nuevo."
     }
   },
   "camera_filter": {
