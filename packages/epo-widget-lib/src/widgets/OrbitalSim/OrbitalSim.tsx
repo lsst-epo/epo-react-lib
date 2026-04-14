@@ -10,14 +10,12 @@ import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
-  const { orbits }= useOrbitalSimContext();
+  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls }= useOrbitalSimContext();
   const { 
     paused,
     pov,
     defaultZoom,
     potentialOrbits,
-    noDetails,
-    noControls = false,
    } = orbits;
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
@@ -76,7 +74,7 @@ function OrbitalSim() {
     <>
        <Styled.GlobalStyles/>
        <Styled.OrbitalSimWrapper>
-        {!potentialOrbits && !noDetails && (
+        {!potentialOrbits && showDetailsTable && (
           <OrbitalDetails/>
         )}
         {!paused && (
@@ -85,7 +83,7 @@ function OrbitalSim() {
             sliderOnChangeCallback={handleStepSelect}
           />
         )}
-        {!noControls && (
+        {showTimeControls && (
           <PlaybackControls
           {...{
             playing,
@@ -99,7 +97,8 @@ function OrbitalSim() {
         )}
        
        <Styled.CanvasWrapper orthographic={true}>
-            <CameraController {...{ pov, reset }} />
+            <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
+
             <Camera
               left={5000}
               right={15000}
