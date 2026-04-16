@@ -10,21 +10,19 @@ import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
-  const { orbits }= useOrbitalSimContext();
+  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls }= useOrbitalSimContext();
   const { 
-    paused,
     pov,
     defaultZoom,
     potentialOrbits,
-    noDetails,
-    noControls = false,
+    detailsRows,
    } = orbits;
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
-  const [playing, setPlaying] = useState(!paused);
+  const [playing, setPlaying] = useState(showTimeControls);
   const [stepDirection, setStepDirection] = useState(1);
   const [frameOverride, setFrameOverride] = useState(0);
-  const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
+  const [dayPerVizSec, setDayPerVizSec] = useState(playing ? 0 : speeds.initial);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -76,30 +74,31 @@ function OrbitalSim() {
     <>
        <Styled.GlobalStyles/>
        <Styled.OrbitalSimWrapper>
-        {!potentialOrbits && !noDetails && (
+        { detailsRows && showDetailsTable && (
           <OrbitalDetails/>
         )}
-        {!paused && (
-          <PlaybackSpeed
-            {...{ elapsedTime, dayPerVizSec, speeds }}
-            sliderOnChangeCallback={handleStepSelect}
-          />
-        )}
-        {!noControls && (
-          <PlaybackControls
-          {...{
-            playing,
-            handleStartStop,
-            handleNext,
-            handlePrevious,
-            isDisabled,
-            handleReset
-            }}
-          />
+        {playing && (
+          <>
+            <PlaybackSpeed
+              {...{ elapsedTime, dayPerVizSec, speeds }}
+              sliderOnChangeCallback={handleStepSelect}
+            />
+            <PlaybackControls
+            {...{
+              playing,
+              handleStartStop,
+              handleNext,
+              handlePrevious,
+              isDisabled,
+              handleReset
+              }}
+            />
+          </>
         )}
        
        <Styled.CanvasWrapper orthographic={true}>
-            <CameraController {...{ pov, reset }} />
+            <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
+
             <Camera
               left={5000}
               right={15000}

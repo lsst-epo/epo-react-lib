@@ -2,11 +2,17 @@ import { ReactNode } from "react";
 
 export interface OrbitalSimProviderProps {
     children: ReactNode,
-    orbitData: Orbits
+    orbitData: Orbits,
+    showDetailsTable?: boolean,
+    allowOrbitRotation?: boolean,
+    showTimeControls?: boolean
 }
 
 export type OrbitalSimContextValues = {
   orbits: Orbits;
+  showDetailsTable?: boolean;
+  allowOrbitRotation?: boolean;
+  showTimeControls?: boolean;
   setOrbits: React.Dispatch<React.SetStateAction<Orbits>>;
   observations: Observation[];
   setObservations: React.Dispatch<React.SetStateAction<Observation[]>>;

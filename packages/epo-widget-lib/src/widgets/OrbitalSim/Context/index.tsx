@@ -41,7 +41,7 @@ export function useOrbitalSimContext() {
  * 
  * @returns 
  */
-export function OrbitalSimProvider({ children, orbitData }: OrbitalSimProviderProps) {
+export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false, allowOrbitRotation=false, showTimeControls=false }: OrbitalSimProviderProps) {
     const [ orbits, setOrbits] = useState<Orbits>({
         neos: null,
         activeNeo: null,
@@ -73,12 +73,18 @@ export function OrbitalSimProvider({ children, orbitData }: OrbitalSimProviderPr
 
     const values: OrbitalSimContextValues = useMemo(() => ({
         orbits,
+        showDetailsTable,
+        allowOrbitRotation,
+        showTimeControls,   
         setOrbits,
         observations,
         setObservations,
         updateActiveObservation,
   }),[
     orbits,
+    showDetailsTable,
+    allowOrbitRotation,
+    showTimeControls, 
     setOrbits,
     observations,
     setObservations,
