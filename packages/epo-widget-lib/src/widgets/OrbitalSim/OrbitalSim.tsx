@@ -10,8 +10,9 @@ import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 
 function OrbitalSim() {
-  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls }= useOrbitalSimContext();
+  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls } = useOrbitalSimContext();
   const { 
+    paused,
     pov,
     defaultZoom,
     potentialOrbits,
@@ -19,15 +20,20 @@ function OrbitalSim() {
    } = orbits;
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
-  const [playing, setPlaying] = useState(showTimeControls);
+  const [playing, setPlaying] = useState(!paused);
   const [stepDirection, setStepDirection] = useState(1);
   const [frameOverride, setFrameOverride] = useState(0);
-  const [dayPerVizSec, setDayPerVizSec] = useState(playing ? 0 : speeds.initial);
+  const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
+    if (!showTimeControls) {
+      setPlaying(false);
+      setDayPerVizSec(0);
+    }
+
     if (reset > 0) {
       setDayPerVizSec(speeds.initial);
       setStepDirection(1);
@@ -77,7 +83,7 @@ function OrbitalSim() {
         { detailsRows && showDetailsTable && (
           <OrbitalDetails/>
         )}
-        {playing && (
+        {showTimeControls && (
           <>
             <PlaybackSpeed
               {...{ elapsedTime, dayPerVizSec, speeds }}
