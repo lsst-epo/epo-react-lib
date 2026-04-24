@@ -41,7 +41,7 @@ export function useOrbitalSimContext() {
  * 
  * @returns 
  */
-export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false, allowOrbitRotation=false, showTimeControls=false }: OrbitalSimProviderProps) {
+export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false, allowOrbitRotation=false, showTimeControls=false, selectedAnswer, updateSelectedAnswer }: OrbitalSimProviderProps) {
     const [ orbits, setOrbits] = useState<Orbits>({
         neos: null,
         activeNeo: null,
@@ -64,10 +64,20 @@ export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false
         setObservations(orbitData.observations);
     }, [orbitData]);
 
+    useEffect(() => {
+        if(observations && observations.length > 0) {
+            let newObs = observations.map(e => ({ ...e, isActive: e.id === selectedAnswer }));
+            setObservations(newObs);
+        }
+    },[selectedAnswer]);
+
     const updateActiveObservation = (activeId: string) => {
         if(observations && observations.length > 0) {
             let newObs = observations.map(e => (e.id == activeId) ? {...e, isActive: true} : {...e, isActive: false});
             setObservations(newObs);
+            
+            const activeObservation = observations.find(e => (e.id === activeId));
+            updateSelectedAnswer(activeObservation?.label || null);
         }
     }
 
@@ -80,6 +90,7 @@ export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false
         observations,
         setObservations,
         updateActiveObservation,
+        selectedAnswer,
   }),[
     orbits,
     showDetailsTable,
@@ -89,6 +100,7 @@ export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false
     observations,
     setObservations,
     updateActiveObservation,
+    selectedAnswer,
   ]);
 
     return <OrbitalSimContext.Provider value={values}>{children}</OrbitalSimContext.Provider>

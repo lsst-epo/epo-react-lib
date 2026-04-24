@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { OrbitalSim }  from ".";
 import { OrbitalSimProvider } from "./Context";
+import SelectionList from "@/atomic/SelectionList";
 
 const meta: Meta<typeof OrbitalSim> = {
   component: OrbitalSim,
@@ -10,10 +12,19 @@ export default meta;
 
 // Template for all stories
 const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
-  return ( 
-    <OrbitalSimProvider orbitData={args}>
-      <OrbitalSim/>
-    </OrbitalSimProvider>
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+
+  function resetSelectedAnswer() {
+    setSelectedAnswer(null);
+  }
+
+  return (
+    <>
+      {args.observations && <SelectionList sources={ selectedAnswer ? [{ type: "observation", id: selectedAnswer}] : [] } onRemoveCallback={ resetSelectedAnswer }/>}
+      <OrbitalSimProvider orbitData={args} selectedAnswer={selectedAnswer} updateSelectedAnswer={ setSelectedAnswer }>
+        <OrbitalSim/>
+      </OrbitalSimProvider>
+    </>
   )
 };
 
