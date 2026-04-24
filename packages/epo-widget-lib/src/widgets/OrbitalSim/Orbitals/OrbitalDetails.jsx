@@ -7,27 +7,23 @@ import { GlobalStyles } from "../styles";
 function OrbitalDetails() {
   const { orbits }= useOrbitalSimContext();
   
-    const { 
-      detailsRows: rows
-     } = orbits;
+  const { 
+    detailsRows: rows
+  } = orbits;
      
   const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    if (rows) setActive(true);
-  }, [rows]);
 
   return (
     <>
       <GlobalStyles/>
       <Styled.ButtonWrapper
         styleAs="secondary"
-        isInactive={rows}
+        isInactive={!rows}
         onClick={() => { setActive(!active); console.error("click!");}}
       >
         Show Details
       </Styled.ButtonWrapper>
-        <Styled.SlideoutWrapper slideFrom="left" isOpen={!active}>
+        <Styled.SlideoutWrapper slideFrom="left" isOpen={active}>
           <Styled.SlideoutPanel>
               <h3>Orbital Details</h3>
                {
