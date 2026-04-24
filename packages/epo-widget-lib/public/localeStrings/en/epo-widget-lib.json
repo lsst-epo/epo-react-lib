@@ -65,7 +65,8 @@
     "selected_source": "Selected {{type}}:",
     "sources": {
       "galaxy": "Galaxy",
-      "supernova": "Supernova"
+      "supernova": "Supernova",
+      "observation": "Observation"
     }
   },
   "source_selector": {

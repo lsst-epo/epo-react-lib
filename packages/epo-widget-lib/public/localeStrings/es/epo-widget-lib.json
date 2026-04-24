@@ -49,10 +49,11 @@
     }
   },
   "selection_list": {
-    "selected_source": "Seleccionada {{type}}:",
+    "selected_source": "{{type}} Seleccionada:",
     "sources": {
       "galaxy": "Galaxia",
-      "supernova": "Supernova"
+      "supernova": "Supernova",
+      "observation": "Observación"
     }
   },
   "source_selector": {

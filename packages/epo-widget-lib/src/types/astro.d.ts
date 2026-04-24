@@ -1,5 +1,5 @@
 export type Band = "u" | "g" | "r" | "i" | "z" | "y";
-export type SourceType = "supernova" | "galaxy" | "galaxyFilter";
+export type SourceType = "supernova" | "galaxy" | "galaxyFilter" | "observation";
 
 export interface Source {
   id: string;

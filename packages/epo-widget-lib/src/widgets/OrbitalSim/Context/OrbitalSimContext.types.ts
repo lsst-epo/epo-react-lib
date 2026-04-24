@@ -5,7 +5,9 @@ export interface OrbitalSimProviderProps {
     orbitData: Orbits,
     showDetailsTable?: boolean,
     allowOrbitRotation?: boolean,
-    showTimeControls?: boolean
+    showTimeControls?: boolean,
+    selectedAnswer: string | null,
+    updateSelectedAnswer: (newSelectedAnswer: string | null) => void,
 }
 
 export type OrbitalSimContextValues = {
