@@ -1,8 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import styled from "styled-components";
-import { biggerData } from "./mocks";
-
-import SourceSelector from ".";
+import { biggerData, movingData } from "./mocks";
+import SourceSelector, { MovingSourceSelector } from ".";
 import SelectionList from "@/atomic/SelectionList";
 import { useState } from "react";
 
@@ -145,7 +144,7 @@ const Template: StoryFn<typeof SourceSelector> = (args) => {
           args.alertChangeCallback && args.alertChangeCallback(index);
         }}
       />
-      {!args.isDisplayOnly && (
+      {!args.isDisplayOnly && args.sources && (
         <SelectionList
           onRemoveCallback={() => setSelectedSource([])}
           sources={args.sources.filter(({ id }) => selectedSource.includes(id))}
@@ -155,16 +154,54 @@ const Template: StoryFn<typeof SourceSelector> = (args) => {
   );
 };
 
+const MovingSourceTemplate: StoryFn<typeof MovingSourceSelector> = (args) => {
+  const [selectedSource, setSelectedSource] = useState(
+    args.selectedSource || []
+  );
+  const [activeAlertIndex, setActiveAlertIndex] = useState(
+    args.activeAlertIndex || 0
+  );
+
+  return (
+    <Container>
+        <MovingSourceSelector
+          {...args}
+          {...{ activeAlertIndex, selectedSource }}
+          selectionCallback={(sources) => {
+            setSelectedSource(sources);
+            args.selectionCallback && args.selectionCallback(sources);
+          }}
+          alertChangeCallback={(index) => {
+            setActiveAlertIndex(index);
+            args.alertChangeCallback && args.alertChangeCallback(index);
+          }}
+        />
+        {!args.isDisplayOnly && args.movingSources && (
+          <SelectionList
+            onRemoveCallback={() => setSelectedSource([])}
+            sources={args.movingSources.filter(({ id }) => selectedSource.includes(id))}
+          />
+        )}
+    </Container>
+  );
+};
+
 export const Primary: StoryFn<typeof SourceSelector> = Template.bind({});
 Primary.args = {
-  sources: biggerData.sources,
+  sources: biggerData.sources ? biggerData.sources : undefined,
   alerts: biggerData.alerts,
+};
+
+export const MovingSources: StoryFn<typeof MovingSourceSelector> = MovingSourceTemplate.bind({});
+MovingSources.args = {
+  movingSources: movingData.movingSources ? movingData.movingSources : undefined,
+  alerts: movingData.alerts,
 };
 
 export const DisplayOnly: StoryFn<typeof SourceSelector> = Template.bind({});
 DisplayOnly.args = {
-  sources: biggerData.sources,
-  selectedSource: [biggerData.sources[0].id],
+  sources: biggerData.sources ? biggerData.sources : undefined,
+  selectedSource: [biggerData.sources ? biggerData.sources[0].id : ""],
   alerts: biggerData.alerts,
   isDisplayOnly: true,
 };

@@ -12,24 +12,28 @@ const props = { sources, alerts, selectionCallback, alertChangeCallback };
 describe("SourceSelector", () => {
   it("should select a source when its point is clicked", async () => {
     const { getByTestId, getByRole } = render(<SourceSelector {...props} />);
-    const target = sources[0];
+    const target = sources ? sources[0] : null;
     const blinker = getByTestId("blinker-container");
     const { width, height } = blinker.getBoundingClientRect();
 
-    await userEvent.pointer({
-      keys: "[MouseLeft]",
-      target: blinker,
-      coords: {
-        x: width * toDecimalPercent(target.x),
-        y: height * toDecimalPercent(target.x),
-      },
-    });
-    const points = getByRole("list");
+    if(target) {
+      await userEvent.pointer({
+        keys: "[MouseLeft]",
+        target: blinker,
+        coords: {
+          x: width * toDecimalPercent(target.x),
+          y: height * toDecimalPercent(target.x),
+        },
+      });
+    
+    
+      const points = getByRole("list");
 
-    waitFor(() => {
-      expect(selectionCallback).toBeCalledWith([target.id]);
-      expect(points.children.length).toBe(1);
-    });
+      waitFor(() => {
+        expect(selectionCallback).toBeCalledWith([target.id]);
+        expect(points.children.length).toBe(1);
+      });
+    }
   });
   it("should not make a selection when an area outside a point is clicked", async () => {
     jest.clearAllMocks();
