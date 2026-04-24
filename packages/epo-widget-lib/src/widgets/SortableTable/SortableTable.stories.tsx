@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 
-import SortableTable from ".";
+import { SortableTable } from ".";
 
 const meta: Meta<typeof SortableTable> = {
   argTypes: {},

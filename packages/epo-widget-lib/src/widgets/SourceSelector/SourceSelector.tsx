@@ -25,7 +25,7 @@ interface BlinkConfig {
 interface SourceSelectorProps {
   width?: number;
   height?: number;
-  sources: Source[];
+  sources?: Source[] | null;
   alerts: Alert[];
   selectedSource?: string[];
   activeAlertIndex?: number;
@@ -64,18 +64,20 @@ const clickIsInsideCircle = (
   click: Point,
   width: number,
   height: number,
-  sources: Array<Source>
+  sources: Array<Source> | null
 ): string | undefined => {
-  return sources.find(({ x, y, radius, type }) => {
-    return pointInsideCircle(
-      click,
-      {
-        x: toDecimalPercent(x) * width,
-        y: toDecimalPercent(y) * height,
-      },
-      getRadius(type, radius) * width
-    );
-  })?.id;
+  if(sources) {
+    return sources.find(({ x, y, radius, type }) => {
+      return pointInsideCircle(
+        click,
+        {
+          x: toDecimalPercent(x) * width,
+          y: toDecimalPercent(y) * height,
+        },
+        getRadius(type, radius) * width
+      );
+    })?.id;
+  }
 };
 
 const buildImageStack = (
@@ -143,12 +145,12 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
     const { left, top } = (target as HTMLElement).getBoundingClientRect();
 
     /** remember that Y for SVG starts on the top side, click value needs to be flipped */
-    const clickedId = clickIsInsideCircle(
+    const clickedId = sources ? clickIsInsideCircle(
       { x: x - left, y: height - htmlY + top },
       width,
       height,
       sources
-    );
+    ) : null;
 
     if (clickedId) {
       const isAlreadySelected = selectedSource.includes(clickedId);
@@ -170,7 +172,7 @@ const SourceSelector: FunctionComponent<SourceSelectorProps> = ({
 
   const images = buildImageStack(alerts, activeAlertIndex, isDisplayOnly);
 
-  const sourcesToShow = sources.filter(({ id }) => selectedSource.includes(id));
+  const sourcesToShow = sources ? sources.filter(({ id }) => selectedSource.includes(id)) : [];
 
   return (
     <AspectRatio ratio={1} {...{ className }}>

@@ -27,6 +27,7 @@ export interface BlinkerProps {
   className?: string;
   showControls?: boolean;
   extraControls?: ReactNode;
+  pauseCallback?: () => void;
 }
 
 const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
@@ -42,6 +43,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   showControls = true,
   children,
   extraControls,
+  pauseCallback = () => {}
 }) => {
   const [playing, setPlaying] = useState(autoplay);
   const [loaded, setLoaded] = useState(false);
@@ -69,6 +71,7 @@ const Blinker: FunctionComponent<PropsWithChildren<BlinkerProps>> = ({
   };
 
   const handleStartStop = () => {
+    pauseCallback();
     setPlaying((value) => !value);
   };
   const handleNext = () => {

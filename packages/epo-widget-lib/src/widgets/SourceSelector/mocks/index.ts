@@ -1,5 +1,85 @@
 import { SourceDataset } from "@/types/astro";
 
+export const movingData: SourceDataset = {
+  id: "",
+  name: "hazardous-asteroids",
+  band: "r",
+  dec: 18.74361216, // Just copied most of this data from the `biggerData` variable below
+  ra: 45.08449499,
+  distance: 141.69708547161875,
+  velocity: 9736.736057325023,
+  redshift: 0.033,
+  sources: null,
+  movingSources: [ {
+      type: "supernova",
+      id: "EDR012023i23",
+      color: "#fed828",
+      sources: [
+        {
+          x: "39%",
+          y: "37%"
+        },
+        {
+          x: "42%",
+          y: "42%",
+        },
+        {
+          x: "45%",
+          y: "45%",
+        }
+      ]
+    },
+    {
+      type: "galaxy",
+      id: "EDR97856756",
+      color:  "#fed828",
+      sources: [
+        {
+          x: "95%",
+          y: "50%",
+        },
+        {
+          x: "95%",
+          y: "50%",
+        },
+        {
+          x: "95%",
+          y: "50%",
+        }
+      ]
+    }
+  ],
+  alerts: [
+    {
+      id: 149216727,
+      error: 0.05,
+      date: 58719.46459,
+      magnitude: 17.58,
+      image: {
+        url: "https://investigations.netlify.app/images/neos/2003_QZ30_0.jpg",
+      },
+    },
+    {
+      id: 159607160,
+      error: 0.04,
+      date: 58722.4869,
+      magnitude: 17.35,
+      image: {
+        url: "	https://investigations.netlify.app/images/neos/2003_QZ30_1.jpg",
+      },
+    },
+    {
+      id: 166456030,
+      error: 0.03,
+      date: 58725.49949,
+      magnitude: 17.24,
+      image: {
+        url: "	https://investigations.netlify.app/images/neos/2003_QZ30_2.jpg",
+      },
+    }
+  ],
+};
+
 export const biggerData: SourceDataset = {
   id: "ZTF19abqmpsr",
   name: "expanding-universe::widgets.hubble_plotter.galaxies.0.name",
@@ -9,6 +89,7 @@ export const biggerData: SourceDataset = {
   distance: 141.69708547161875,
   velocity: 9736.736057325023,
   redshift: 0.033,
+  movingSources: null,
   sources: [
     {
       type: "supernova",
