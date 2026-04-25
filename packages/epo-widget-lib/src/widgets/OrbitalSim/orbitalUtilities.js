@@ -37,7 +37,51 @@ export const ORBITAL_COLORS = {
     objectHighlight: '#00ffff',
     orbitHighlight: '#ffffff',
   },
+  neos: {
+    objectColor: '#0ff',
+    orbitColor: '#b2ffff',
+  }
 };
+
+export const apollo = {
+  a: 1.4700451,
+  e: 0.5598234,
+  i: 6.35515,
+  H: 16.25,
+  Ref: "Apollo",
+  name: "Apollo",
+  Principal_desig: "1932 HA",
+  Translated_desig_key: 'neo.apollo',
+  orbitColor: ORBITAL_COLORS.neos.orbitColor,
+  objectColor: ORBITAL_COLORS.neos.objectColor,
+  objectRadius: 5,
+}
+
+export const atira = {
+  a: 0.740919,
+  e: 0.3221221,
+  i: 25.62023,
+  H: 16.3,
+  Ref: "Atira",
+  Principal_desig: "2003 CP20",
+  Translated_desig_key: 'neo.atira',
+  orbitColor: ORBITAL_COLORS.neos.orbitColor,
+  objectColor: ORBITAL_COLORS.neos.objectColor,
+  objectRadius: 5,
+}
+
+export const amor =  {
+    a: 1.9194158,
+    e: 0.4353207,
+    i: 11.87658,
+    H: 17.7,
+    Ref: "Amor",
+    Principal_desig: "1932 EA1",
+    Translated_desig_key: 'neo.amor',
+    orbitColor: ORBITAL_COLORS.neos.orbitColor,
+    objectColor: ORBITAL_COLORS.neos.objectColor,
+    objectRadius: 5,
+  };
 
 const earth = {
   a: 1,
@@ -49,7 +93,6 @@ const earth = {
   Translated_desig_key: 'planets.earth',
   orbitColor: ORBITAL_COLORS.earth.orbitColor,
   objectColor: ORBITAL_COLORS.earth.objectColor,
-  // objectRadius: 6371000,
   objectRadius: 5,
 };
 
@@ -101,6 +144,9 @@ export const getRefObjProps = id => {
       earth,
       mars,
       jupiter,
+      atira,
+      apollo,
+      amor
     }[id] || null
   );
 };

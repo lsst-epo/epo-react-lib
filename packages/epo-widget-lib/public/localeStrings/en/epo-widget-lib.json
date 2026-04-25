@@ -175,5 +175,10 @@
     "earth": "Earth",
     "mars": "Mars",
     "neptune": "Neptune"
+  },
+  "neo": {
+    "apollo": "Apollo",
+    "amor": "Amor",
+    "atira": "Atira"
   }
 }

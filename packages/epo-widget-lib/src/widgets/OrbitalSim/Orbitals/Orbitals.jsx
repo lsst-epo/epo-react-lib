@@ -4,7 +4,6 @@ import { useThree, useFrame } from "@react-three/fiber";
 import Orbital from "./Orbital.jsx";
 import PotentialOrbits from "./PotentialOrbits.jsx";
 import { getRefObjProps } from "../orbitalUtilities.js";
-import { useOrbitalSimContext } from "../Context/index.tsx"
 
 function Orbitals({
   playing,
@@ -17,15 +16,15 @@ function Orbitals({
   setElapsedTime,
   reset,
   zoomLevel,
-  setZoomLevel
+  setZoomLevel,
+  orbits
 }) {
-  const { orbits }= useOrbitalSimContext();
-  
-    const { 
-      neos,
-      refObjs,
-      activeNeo
-     } = orbits;
+
+  const { 
+    neos,
+    refObjs,
+    activeNeo
+    } = orbits;
 
   function reducer(state) {
     const { remainingInits } = state;
@@ -116,11 +115,13 @@ function Orbitals({
                 key={
                   ref && (pd || name) ? `${ref}-${pd || name}` : `orbit-${badId}`
                 }
+                type="neo"
                 data={neo}
                 position={[0, 0, 0]}
                 active={neo === activeNeo}
                 initialized={state.remainingInits <= 0}
                 zoomMod={zoomLevel}
+                
                 {...{
                   defaultZoom,
                   playing,

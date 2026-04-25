@@ -27,7 +27,8 @@
       "@/storybook/*": [".storybook/*"],
       "@/styles/*": ["src/styles/*"],
       "@/types/*": ["src/types/*"],
-      "@/widgets/*": ["src/widgets/*"]
+      "@/widgets/*": ["src/widgets/*"],
+      "@/mock-data/*": ["src/mock-data/*"]
     }
   },
   "include": ["src", "./jest-setup.ts"]

@@ -8,15 +8,16 @@ import PlaybackSpeed from "./Controls/PlaybackSpeed.jsx";
 import PlaybackControls from "./Controls/PlaybackControls.js";
 import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
-
+import { Neo } from "./Context/OrbitalSimContext.types.js"
+ 
 function OrbitalSim() {
-  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls } = useOrbitalSimContext();
+  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits }= useOrbitalSimContext();
   const { 
     paused,
     pov,
     defaultZoom,
     potentialOrbits,
-    detailsRows,
+    detailsRows
    } = orbits;
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
@@ -27,6 +28,7 @@ function OrbitalSim() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [currentSwappableOrbit, setCurrentSwappableOrbit] = useState({ neos: [ { Principal_desig: "" }]});
 
   useEffect(() => {
     if (!showTimeControls) {
@@ -74,12 +76,33 @@ function OrbitalSim() {
     setFrameOverride(e => e + 1);
   }
 
+  const updateSwappableOrbit = (e: any) => {
+    setCurrentSwappableOrbit({ 
+      neos: [e]
+    })
+  } 
+
   let isDisabled = false;
 
   return (
     <>
        <Styled.GlobalStyles/>
        <Styled.OrbitalSimWrapper>
+        {swappableOrbits ? (
+          <Styled.SwappableOrbitsContainer>
+            {orbits && orbits.neos && orbits.neos.map((neo: Neo) => (
+              <Styled.SwappableOrbitButton 
+                onClick={() => updateSwappableOrbit(neo)} 
+                data-active={
+                  ((Object.keys(currentSwappableOrbit).length) ? (neo.Principal_desig === currentSwappableOrbit.neos[0].Principal_desig) : false)
+                }>
+                  {neo.Ref}
+              </Styled.SwappableOrbitButton>
+            ))}
+          </Styled.SwappableOrbitsContainer>
+          
+        ) : (
+          <>
         { detailsRows && showDetailsTable && (
           <OrbitalDetails/>
         )}
@@ -101,6 +124,8 @@ function OrbitalSim() {
             />
           </>
         )}
+        </>
+      )}
        
        <Styled.CanvasWrapper orthographic={true}>
             <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
@@ -119,17 +144,19 @@ function OrbitalSim() {
             <Orbitals
               defaultZoom={defaultZoom || 1}
               {...{
-                playing,
-                stepDirection,
-                dayPerVizSec,
-                frameOverride,
-                potentialOrbits,
-                elapsedTime,
-                setElapsedTime,
-                reset,
-                zoomLevel,
-                setZoomLevel,
-              }}
+                  playing,
+                  stepDirection,
+                  dayPerVizSec,
+                  frameOverride,
+                  potentialOrbits,
+                  elapsedTime,
+                  setElapsedTime,
+                  reset,
+                  zoomLevel,
+                  setZoomLevel,
+                  orbits: (swappableOrbits) ? currentSwappableOrbit : orbits
+                }
+              }
             />
             <Sun
               zoomLevel={zoomLevel}
