@@ -205,8 +205,7 @@ const Orbital = ({
           position={point.position}
           onClick={() => selectionCallback(data, "neo")}
         >
-          {/* {(type === "planet" || !noLabels || active) && ( */}
-          {(type === "planet" || active) && (
+            {(type === "planet" || type === "neo" || active) && (
             <Html>
               <Styled.Label>
                 <button

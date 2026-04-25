@@ -8,6 +8,7 @@ export interface OrbitalSimProviderProps {
     showTimeControls?: boolean,
     selectedAnswer: string | null,
     updateSelectedAnswer: (newSelectedAnswer: string | null) => void,
+    swappableOrbits?: boolean
 }
 
 export type OrbitalSimContextValues = {
@@ -19,6 +20,7 @@ export type OrbitalSimContextValues = {
   observations: Observation[];
   setObservations: React.Dispatch<React.SetStateAction<Observation[]>>;
   updateActiveObservation: (activeId: string) => void;
+  swappableOrbits: boolean
 };
 
 export type Observation = {
@@ -35,7 +37,9 @@ export type Neo = {
     e: number,
     i:number,
     Peri: number,
-    Node: number
+    Node: number,
+    Ref: string,
+    Principal_desig: string
 }
 
 export type DetailsRow = {

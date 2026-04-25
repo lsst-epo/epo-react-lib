@@ -41,7 +41,16 @@ export function useOrbitalSimContext() {
  * 
  * @returns 
  */
-export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false, allowOrbitRotation=false, showTimeControls=false, selectedAnswer, updateSelectedAnswer }: OrbitalSimProviderProps) {
+export function OrbitalSimProvider({ 
+    children,
+    orbitData,
+    showDetailsTable=false,
+    allowOrbitRotation=false,
+    showTimeControls=false,
+    selectedAnswer,
+    updateSelectedAnswer,
+    swappableOrbits=false
+}: OrbitalSimProviderProps) {
     const [ orbits, setOrbits] = useState<Orbits>({
         neos: null,
         activeNeo: null,
@@ -91,6 +100,7 @@ export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false
         setObservations,
         updateActiveObservation,
         selectedAnswer,
+        swappableOrbits
   }),[
     orbits,
     showDetailsTable,
@@ -101,6 +111,7 @@ export function OrbitalSimProvider({ children, orbitData, showDetailsTable=false
     setObservations,
     updateActiveObservation,
     selectedAnswer,
+    swappableOrbits
   ]);
 
     return <OrbitalSimContext.Provider value={values}>{children}</OrbitalSimContext.Provider>
