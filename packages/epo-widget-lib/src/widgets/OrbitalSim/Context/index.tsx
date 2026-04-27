@@ -75,7 +75,7 @@ export function OrbitalSimProvider({
 
     useEffect(() => {
         if(observations && observations.length > 0) {
-            let newObs = observations.map(e => ({ ...e, isActive: e.id === selectedAnswer }));
+            let newObs = observations.map(e => ({ ...e, isActive: e.label === selectedAnswer }));
             setObservations(newObs);
         }
     },[selectedAnswer]);
