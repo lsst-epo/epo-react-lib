@@ -131,7 +131,7 @@ function OrbitalSim() {
             <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
 
             <Camera
-              left={5000}
+              left={-15000}
               right={15000}
               top={15000}
               bottom={-15000}
