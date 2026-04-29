@@ -28,6 +28,7 @@ export { default as Toast } from "@/atomic/Toast";
 export { default as Video } from "@/atomic/Video";
 export { default as Stack } from "@/atomic/Stack";
 export { default as HorizontalSlider } from "@/molecules/HorizontalSlider";
+export {default as SlideoutInfoCard} from "@/atomic/SlideoutInfoCard";
 
 // Content Blocks
 export { default as SimpleTable } from "@/content-blocks/SimpleTable";

@@ -59,22 +59,22 @@ const Slideout: FunctionComponent<PropsWithChildren<SlideoutProps>> = ({
       className={className}
       data-testid="slideout"
     >
-      {showBackground && (
-        <DialogBackdrop
-          onTransitionEnd={() => isOpen && onOpenCallback && onOpenCallback()}
-          transition
-          as={Styled.Overlay}
-          data-testid="slideoutBackdrop"
-        />
-      )}
-      <DialogPanel
-        as={Styled.Slideout}
-        style={{ "--transform": translation, ...styles }}
-        data-testid="slideoutContainer"
-        transition
-      >
-        {children}
-      </DialogPanel>
+          {showBackground && (
+            <DialogBackdrop
+              onTransitionEnd={() => isOpen && onOpenCallback && onOpenCallback()}
+              transition
+              as={Styled.Overlay}
+              data-testid="slideoutBackdrop"
+            />
+          )}
+          <DialogPanel
+            as={Styled.Slideout}
+            style={{ "--transform": translation, ...styles }}
+            data-testid="slideoutContainer"
+            transition
+          >
+            {children}
+        </DialogPanel>        
     </Dialog>
   );
 };

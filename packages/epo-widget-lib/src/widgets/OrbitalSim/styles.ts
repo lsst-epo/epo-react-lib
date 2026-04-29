@@ -40,6 +40,7 @@ export const GlobalStyles = createGlobalStyle`
 
 export const OrbitalSimWrapper = styled.div`
     position: relative;
+    overflow: hidden;
     height: var(--tallestSquareWidget);
     min-height: 500px;
     background-color: #000000;

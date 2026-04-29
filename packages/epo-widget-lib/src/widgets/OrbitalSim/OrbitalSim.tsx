@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import OrbitalDetails from "./Orbitals/OrbitalDetails.jsx";
 import CameraController from "./Camera/CameraController.jsx";
 import Camera from "./Camera/Camera.jsx";
@@ -83,7 +83,6 @@ function OrbitalSim() {
   } 
 
   let isDisabled = false;
-
   return (
     <>
        <Styled.GlobalStyles/>
@@ -104,7 +103,7 @@ function OrbitalSim() {
         ) : (
           <>
         { detailsRows && showDetailsTable && (
-          <OrbitalDetails/>
+          <OrbitalDetails />
         )}
         {showTimeControls && (
           <>
