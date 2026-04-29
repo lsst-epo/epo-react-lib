@@ -131,14 +131,14 @@ function OrbitalSim() {
             <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
 
             <Camera
-              left={-15000}
-              right={15000}
-              top={15000}
-              bottom={-15000}
-              near={0.1}
-              far={30000}
-              position={[0, 0, 8000]}
-              defaultZoom={defaultZoom || 1}
+              left={-2000}
+              right={2000}
+              top={1000}
+              bottom={-1000}
+              near={-1000}
+              far={1000}
+              position={[0, 0, 10]}
+              defaultZoom={defaultZoom || 3}
             />
             <ambientLight intensity={0.9} />
             <Orbitals
