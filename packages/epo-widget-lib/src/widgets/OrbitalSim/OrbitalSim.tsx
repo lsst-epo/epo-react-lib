@@ -129,17 +129,13 @@ function OrbitalSim() {
        
        <Styled.CanvasWrapper orthographic={true}>
             <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
-
             <Camera
-              left={-2000}
-              right={2000}
-              top={1000}
-              bottom={-1000}
               near={-1000}
               far={1000}
               position={[0, 0, 10]}
               defaultZoom={defaultZoom || 3}
             />
+            
             <ambientLight intensity={0.9} />
             <Orbitals
               defaultZoom={defaultZoom || 1}
