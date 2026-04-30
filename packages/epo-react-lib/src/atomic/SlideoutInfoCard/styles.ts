@@ -12,7 +12,10 @@ type Direction = keyof typeof directions;
 export const SlideoutInfoCard = styled.div<{isOpen?: boolean; slideFrom?: Direction;}>`
   position: absolute;
 
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out,
+              opacity 0s linear ${({isOpen})=> isOpen ? "0s" : "0.5s"},
+              z-index 0s linear ${({isOpen})=> isOpen ? "0s" : "0.5s"};
+  
   transform: ${(
     {isOpen, slideFrom}) => 
       isOpen ? 'translate(0, 0)' : 

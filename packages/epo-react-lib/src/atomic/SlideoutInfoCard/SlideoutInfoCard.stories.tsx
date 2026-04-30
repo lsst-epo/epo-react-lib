@@ -38,7 +38,7 @@ const Template: StoryFn<typeof SlideoutInfoCard> = (args) => {
   const content = "Lorem ipsum dolor sit amet.";
 
   return (
-    <>
+    <div style={{height: "200px"}}>
       <Button 
         onClick={() => {isActive ? setIsActive(false) : setIsActive(true)}}
         style={{margin: "10px"}}>
@@ -50,7 +50,7 @@ const Template: StoryFn<typeof SlideoutInfoCard> = (args) => {
           <p>{content}</p>
           <p>{content}</p>
       </SlideoutInfoCard>
-    </>
+    </div>
   );
 };
 

@@ -26,25 +26,27 @@ function OrbitalDetails() {
       </Styled.ButtonWrapper>
       <Styled.SlideoutWrapper slideFrom="left" isOpen={active} >
         <Styled.SlideoutPanel>
-            <h3>Orbital Details</h3>
-              {
-              rows && rows.map(e => (
-                <Styled.SlideoutRow>
-                  <Styled.SlideoutColLeft>
-                    <p>{e.rowTitle}</p>
-                  </Styled.SlideoutColLeft>
-                  <Styled.SlideoutColRight>
-                    <p>{e.rowContent}</p>
-                  </Styled.SlideoutColRight>
-                </Styled.SlideoutRow >
-              ))
-              }
+
+          <h3>Orbital Details</h3>
+
+          {rows && rows.map(e => (
+            <Styled.SlideoutRow>
+              <Styled.SlideoutColLeft>
+                <p>{e.rowTitle}</p>
+              </Styled.SlideoutColLeft>
+              <Styled.SlideoutColRight>
+                <p>{e.rowContent}</p>
+              </Styled.SlideoutColRight>
+            </Styled.SlideoutRow >
+          ))}
+
           <Button
             isBlock
             onClick={() => setActive(!active)}
           >
             Close
           </Button>
+          
         </Styled.SlideoutPanel>
       </Styled.SlideoutWrapper>
     </>

@@ -58,6 +58,7 @@ export const SlideoutRow = styled.div`
   display: flex;
   gap: 10px;
   margin: 0px;
+  color: var(--black);
 `;
 
 export const SlideoutColLeft = styled.div`
