@@ -5,6 +5,7 @@ import * as Styled from "./styles";
 import { GlobalStyles } from "../styles";
 
 function OrbitalDetails() {
+
   const { orbits }= useOrbitalSimContext();
   
   const { 
@@ -19,33 +20,35 @@ function OrbitalDetails() {
       <Styled.ButtonWrapper
         styleAs="secondary"
         isInactive={!rows}
-        onClick={() => { setActive(!active); console.error("click!");}}
+        onClick={() => { setActive(!active);}}
       >
-        Show Details
+        {active ? "Hide Details" : "Show Details"}
       </Styled.ButtonWrapper>
-        <Styled.SlideoutWrapper slideFrom="left" isOpen={active}>
-          <Styled.SlideoutPanel>
-              <h3>Orbital Details</h3>
-               {
-                rows && rows.map(e => (
-                  <Styled.SlideoutRow>
-                    <Styled.SlideoutColLeft>
-                      <p>{e.rowTitle}</p>
-                    </Styled.SlideoutColLeft>
-                    <Styled.SlideoutColRight>
-                      <p>{e.rowContent}</p>
-                    </Styled.SlideoutColRight>
-                  </Styled.SlideoutRow >
-                ))
-               }
-            <Button
-              isBlock
-              onClick={() => setActive(!active)}
-            >
-              Close
-            </Button>
-          </Styled.SlideoutPanel>
-        </Styled.SlideoutWrapper>
+      <Styled.SlideoutWrapper slideFrom="left" isOpen={active} >
+        <Styled.SlideoutPanel>
+
+          <h3>Orbital Details</h3>
+
+          {rows && rows.map(e => (
+            <Styled.SlideoutRow>
+              <Styled.SlideoutColLeft>
+                <p>{e.rowTitle}</p>
+              </Styled.SlideoutColLeft>
+              <Styled.SlideoutColRight>
+                <p>{e.rowContent}</p>
+              </Styled.SlideoutColRight>
+            </Styled.SlideoutRow >
+          ))}
+
+          <Button
+            isBlock
+            onClick={() => setActive(!active)}
+          >
+            Close
+          </Button>
+          
+        </Styled.SlideoutPanel>
+      </Styled.SlideoutWrapper>
     </>
   );
 }

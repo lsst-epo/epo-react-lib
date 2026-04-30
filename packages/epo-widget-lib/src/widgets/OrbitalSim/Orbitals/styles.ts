@@ -1,12 +1,14 @@
 "use clients";
 import styled from "styled-components";
 import Button from "@rubin-epo/epo-react-lib/Button";
-import Slideout from "@rubin-epo/epo-react-lib/Slideout";
+import SlideoutInfoCard from "@rubin-epo/epo-react-lib/SlideoutInfoCard";
 
-export const SlideoutWrapper = styled(Slideout)`
-    & > div:first-of-type {
-      display: none;
-    }
+export const SlideoutWrapper = styled(SlideoutInfoCard)`
+  position: absolute;
+
+  & > div:first-of-type {
+    display: none;
+  }
 `;
 
 export const Label = styled.div`
@@ -56,6 +58,7 @@ export const SlideoutRow = styled.div`
   display: flex;
   gap: 10px;
   margin: 0px;
+  color: var(--black);
 `;
 
 export const SlideoutColLeft = styled.div`

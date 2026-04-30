@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import OrbitalDetails from "./Orbitals/OrbitalDetails.jsx";
 import CameraController from "./Camera/CameraController.jsx";
 import Camera from "./Camera/Camera.jsx";
@@ -83,28 +83,26 @@ function OrbitalSim() {
   } 
 
   let isDisabled = false;
-
   return (
     <>
-       <Styled.GlobalStyles/>
-       <Styled.OrbitalSimWrapper>
-        {swappableOrbits ? (
-          <Styled.SwappableOrbitsContainer>
-            {orbits && orbits.neos && orbits.neos.map((neo: Neo) => (
-              <Styled.SwappableOrbitButton 
-                onClick={() => updateSwappableOrbit(neo)} 
-                data-active={
-                  ((Object.keys(currentSwappableOrbit).length) ? (neo.Principal_desig === currentSwappableOrbit.neos[0].Principal_desig) : false)
-                }>
-                  {neo.Ref}
-              </Styled.SwappableOrbitButton>
-            ))}
-          </Styled.SwappableOrbitsContainer>
-          
-        ) : (
-          <>
+      <Styled.GlobalStyles/>
+      <Styled.OrbitalSimWrapper>
+      {swappableOrbits ? (
+        <Styled.SwappableOrbitsContainer>
+          {orbits && orbits.neos && orbits.neos.map((neo: Neo) => (
+            <Styled.SwappableOrbitButton 
+              onClick={() => updateSwappableOrbit(neo)} 
+              data-active={
+                ((Object.keys(currentSwappableOrbit).length) ? (neo.Principal_desig === currentSwappableOrbit.neos[0].Principal_desig) : false)
+              }>
+                {neo.Ref}
+            </Styled.SwappableOrbitButton>
+          ))}
+        </Styled.SwappableOrbitsContainer>
+      ) : (
+        <>
         { detailsRows && showDetailsTable && (
-          <OrbitalDetails/>
+          <OrbitalDetails />
         )}
         {showTimeControls && (
           <>
@@ -127,7 +125,7 @@ function OrbitalSim() {
         </>
       )}
        
-       <Styled.CanvasWrapper orthographic={true}>
+      <Styled.CanvasWrapper orthographic={true}>
             <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
             <Camera
               near={-1000}
