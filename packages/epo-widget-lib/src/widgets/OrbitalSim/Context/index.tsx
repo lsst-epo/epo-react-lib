@@ -73,12 +73,15 @@ export function OrbitalSimProvider({
         setObservations(orbitData.observations);
     }, [orbitData]);
 
-    useEffect(() => {
+    const observationsWithActiveSelection = useMemo(() => {
         if(observations && observations.length > 0) {
-            let newObs = observations.map(e => ({ ...e, isActive: e.label === selectedAnswer }));
-            setObservations(newObs);
+            return observations.map(e => ({ ...e, isActive: e.label === selectedAnswer }));
+        } else {
+            return [];
         }
-    },[selectedAnswer, observations]);
+    },
+        [selectedAnswer, observations]
+    );
 
     const updateActiveObservation = (activeId: string) => {
         if(observations && observations.length > 0) {
@@ -96,8 +99,7 @@ export function OrbitalSimProvider({
         allowOrbitRotation,
         showTimeControls,   
         setOrbits,
-        observations,
-        setObservations,
+        observations: observationsWithActiveSelection,
         updateActiveObservation,
         selectedAnswer,
         swappableOrbits
@@ -107,8 +109,7 @@ export function OrbitalSimProvider({
     allowOrbitRotation,
     showTimeControls, 
     setOrbits,
-    observations,
-    setObservations,
+    observationsWithActiveSelection,
     updateActiveObservation,
     selectedAnswer,
     swappableOrbits

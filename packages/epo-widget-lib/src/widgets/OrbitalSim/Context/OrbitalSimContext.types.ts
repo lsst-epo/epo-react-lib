@@ -18,9 +18,9 @@ export type OrbitalSimContextValues = {
   showTimeControls?: boolean;
   setOrbits: React.Dispatch<React.SetStateAction<Orbits>>;
   observations: Observation[];
-  setObservations: React.Dispatch<React.SetStateAction<Observation[]>>;
   updateActiveObservation: (activeId: string) => void;
-  swappableOrbits: boolean
+  selectedAnswer: string | null;
+  swappableOrbits: boolean;
 };
 
 export type Observation = {
