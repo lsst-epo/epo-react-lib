@@ -1,9 +1,9 @@
 import {FunctionComponent, ReactNode} from 'react';
 import * as Styled from "./styles";
 
-type SlideFrom = "top" | "right" | "bottom" | "left";
+export type SlideFrom = "top" | "right" | "bottom" | "left";
 
-interface SlideoutInfoCardProps {
+export interface SlideoutInfoCardProps {
   isOpen?: boolean;
   slideFrom?: SlideFrom;
   className?: string;
