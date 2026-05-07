@@ -26,6 +26,6 @@ const CaretUp: FunctionComponent<SVGProps> = ({
   );
 };
 
-CaretUp.displayName = "SVG.CaretDown";
+CaretUp.displayName = "SVG.CaretUp";
 
 export default CaretUp;

@@ -66,8 +66,11 @@ const SortableTable = <T extends Record<string, string | number | null>>({
   }, [rows, sortKey, sortDirection]);
 
   function getSortArrow(key: string) {
-    if (sortKey !== key) return <SortButton sortDirection={NONE}/>;
-    return sortDirection === ASC ? <SortButton sortDirection={ASC}/> : <SortButton sortDirection={DESC}/>;
+    if (sortKey !== key) {
+      return <SortButton sortDirection={NONE}/>;
+    }
+
+    return <SortButton sortDirection={sortDirection === ASC ? ASC : DESC}/>
   }
 
   return (

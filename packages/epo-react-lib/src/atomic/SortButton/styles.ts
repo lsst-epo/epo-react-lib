@@ -13,10 +13,10 @@ export const SortButton = styled.div<{ sortDirection?: SortDirection }>`
   }
 
   .top-caret {
-    fill: ${({sortDirection}) => sortDirection === "asc" ? "var(--color-rubin-gray-300)" : "var(--color-rubin-gray-100)"};
+    fill: ${({sortDirection}) => sortDirection === "asc" ? "var(--color-rubin-gray-300)" : "#ffffff"};
   }
 
   .bottom-caret {
-    fill: ${({sortDirection}) => sortDirection === "desc" ? "var(--color-rubin-gray-300)" : "var(--color-rubin-gray-100)"};
+    fill: ${({sortDirection}) => sortDirection === "desc" ? "var(--color-rubin-gray-300)" : "#ffffff"};
   }
 `;
