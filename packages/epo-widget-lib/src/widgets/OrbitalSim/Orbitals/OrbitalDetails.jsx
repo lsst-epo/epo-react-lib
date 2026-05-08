@@ -30,7 +30,7 @@ function OrbitalDetails() {
           <h3>Orbital Details</h3>
 
           {rows && rows.map(e => (
-            <Styled.SlideoutRow>
+            <Styled.SlideoutRow key={e.rowTitle}>
               <Styled.SlideoutColLeft>
                 <p>{e.rowTitle}</p>
               </Styled.SlideoutColLeft>

@@ -5,6 +5,7 @@ import BackwardStep from "./BackwardStep";
 import Calendar from "./Calendar";
 import Cancel from "./Cancel";
 import CaretDown from "./CaretDown";
+import CaretUp from "./CaretUp";
 import CheckeredFlag from "./CheckeredFlag";
 import Checkmark from "./Checkmark";
 import CheckmarkCircle from "./CheckmarkCircle";
@@ -77,6 +78,7 @@ const Icons = {
   Calendar,
   Cancel,
   CaretDown,
+  CaretUp,
   CheckeredFlag,
   Checkmark,
   CheckmarkCircle,
