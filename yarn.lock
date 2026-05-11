@@ -3446,23 +3446,6 @@
     styled-components "^6.1.16"
     utopia-core "^1.6.0"
 
-"@rubin-epo/epo-react-lib@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-3.0.1.tgz#84ef0eb31b7c86c39efc66dd7c6279a7493ab0f2"
-  integrity sha512-/hJ6CwjMLY9LUWS0Mfp5cBXsV4LrF7gaYOHMAesrXxnMJvQUHwKLcFuT0InRxJFCtoqYESBUD/54Vrdceq4QlQ==
-  dependencies:
-    "@castiron/style-mixins" "^1.0.6"
-    "@headlessui/react" "^2.2.0"
-    flickity "^3.0.0"
-    focus-trap "^7.4.2"
-    lodash "^4.17.21"
-    react-icons "^5.5.0"
-    react-player "^2.14.1"
-    react-share "^5.2.2"
-    react-slider "^2.0.6"
-    styled-components "^6.1.16"
-    utopia-core "^1.6.0"
-
 "@rubin-epo/epo-widget-lib@2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@rubin-epo/epo-widget-lib/-/epo-widget-lib-2.0.2.tgz#1cab03185f30f6524482a6fc769c464876cde50c"
