@@ -1,7 +1,7 @@
 {
   "blinker": {
     "controls": {
-      "backward": "Revenir en arrière",
+      "backward": "Reculer",
       "forward": "Avancer",
       "play": "Lecture",
       "pause": "Pause"

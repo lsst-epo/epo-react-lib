@@ -45,6 +45,8 @@ export const OrbitalSimWrapper = styled.div`
     min-height: 500px;
     background-color: #000000;
     color-adjust: exact;
+    container-type: size;
+    container-name: orbital-sim-context;
 `;
 
 export const CanvasWrapper = styled(Canvas)`
@@ -73,6 +75,7 @@ export const SwappableOrbitsContainer = styled.aside`
   z-index: 10;
   background-color: #fff;
   width: 10%;
+  min-width: fit-content;
   height: 100%;
   display: flex;
   flex-direction: column;

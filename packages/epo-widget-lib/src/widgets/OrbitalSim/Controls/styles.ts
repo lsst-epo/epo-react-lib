@@ -1,7 +1,7 @@
 "use client";
 import styled from "styled-components";
 
-export const PlaybackContainer = styled.div`
+export const PlaybackSpeedContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -12,6 +12,10 @@ export const PlaybackContainer = styled.div`
   right: 20px;
   top: 10px;
   height: 95%;
+  
+  @container orbital-sim-context (width < 650px) {
+    height: 85%;
+  }
 `;
 
 export const PlaybackControlsContainer = styled.div`

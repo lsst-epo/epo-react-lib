@@ -43,7 +43,7 @@ export const SlideoutPanel = styled.div`
   gap: 1em;
   padding: 1em;
   font-size: 0.75rem;
-  width: '50ch';
+  width: 50ch;
 
   & > * + * {
     margin-block-start: 1em;

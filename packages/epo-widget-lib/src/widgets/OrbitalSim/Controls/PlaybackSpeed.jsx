@@ -68,7 +68,7 @@ function PlaybackSpeed({
 
   return (
     <>
-      <Styled.PlaybackContainer>
+      <Styled.PlaybackSpeedContainer>
         <Styled.PlaybackSpeedSliderHeader>
           <Styled.PlaybackSpeedTitle>
             {t('orbital_sim.playback.time_step')}
@@ -122,7 +122,7 @@ function PlaybackSpeed({
             </Styled.ElapsedTimeBlock>
           </Styled.ElapsedTimeInner>
         </Styled.ElapsedTimeContainer>
-      </Styled.PlaybackContainer>
+      </Styled.PlaybackSpeedContainer>
     </>
   );
 }
