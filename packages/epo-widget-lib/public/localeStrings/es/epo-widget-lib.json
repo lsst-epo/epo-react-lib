@@ -53,7 +53,8 @@
     "sources": {
       "galaxy": "Galaxia",
       "supernova": "Supernova",
-      "observation": "Observación"
+      "observation": "Observación",
+      "asteroid": "Asteroide"
     }
   },
   "source_selector": {
@@ -77,7 +78,7 @@
   },
   "blinker": {
     "controls": {
-      "backward": "Regresar",
+      "backward": "Hacia Atrás",
       "forward": "Adelantar",
       "pause": "Pausar",
       "play": "Reproducir",
