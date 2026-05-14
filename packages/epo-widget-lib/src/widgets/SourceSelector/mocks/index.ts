@@ -11,7 +11,7 @@ export const movingData: SourceDataset = {
   redshift: 0.033,
   sources: null,
   movingSources: [ {
-      type: "supernova",
+      type: "asteroid",
       id: "EDR012023i23",
       color: "#fed828",
       sources: [
