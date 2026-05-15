@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as THREE from "three";
 import { useFrame } from '@react-three/fiber';
-import { Html } from "@react-three/drei";
+import { Html, Line } from "@react-three/drei";
 import {
   DAY_PER_VIZ_SEC,
   getMinorAxis,
@@ -77,7 +77,7 @@ const Orbital = ({
     getCurve(majAxis, minAxis, offsetCenter.x, offsetCenter.y)
   );
 
-  const [pathLine] = useState(() => getLineGeometry(path.getPoints(360)));
+  const [pathLine] = useState(path.getPoints(360));
   const posZero = getPosFromArcLength(0, path);
   const [point, setPoint] = useState({
     position: posZero,
@@ -190,16 +190,16 @@ const Orbital = ({
     <group rotation={rotation}>
       {/* Orbital Path */}
       <group rotation={[0, 0, peri ? degsToRads(peri + 90) : 0]}>
-        <line ref={mesh} geometry={pathLine}>
-          <lineBasicMaterial
-            attach="material"
+        <Line
+          ref={mesh}
+          points={pathLine}
+          linewidth={2}
             color={
               active
                 ? ORBITAL_COLORS.asteroid.orbitHighlight
                 : orbitColor || ORBITAL_COLORS.asteroid.orbitColor
             }
-          />
-        </line>
+         />
         {/* Orbital Object */}
         <mesh
           position={point.position}
