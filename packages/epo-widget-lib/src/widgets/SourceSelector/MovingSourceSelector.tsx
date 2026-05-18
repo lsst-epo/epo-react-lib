@@ -15,7 +15,6 @@ import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import MovingSourceMap from "./MovingSourceMap";
 import { getRadius, toDecimalPercent } from "./utils";
 import * as Styled from "./styles";
-import useInterval from "@/hooks/useInterval";
 
 interface BlinkConfig {
   autoplay?: boolean;
@@ -87,7 +86,6 @@ const MovingSourceSelector: FunctionComponent<SourceSelectorProps> = ({
   className,
   movingSources = [],
 }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isLoading, setLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(isDisplayOnly ? false : true);
   const [message, setMessage] = useState<ReactNode>();
@@ -102,7 +100,7 @@ const MovingSourceSelector: FunctionComponent<SourceSelectorProps> = ({
   ): string | undefined => {
     if (movingSources) {
       for (let movingSource of movingSources) {
-        const currentFrame = movingSource.sources[currentIndex];
+        const currentFrame = movingSource.sources[activeAlertIndex];
         let foundSource = pointInsideCircle(
           click,
           {
@@ -179,17 +177,6 @@ const MovingSourceSelector: FunctionComponent<SourceSelectorProps> = ({
 
   const images = buildImageStack(alerts, activeAlertIndex, isDisplayOnly);
 
-  const nextBlink = () => {
-    if (isPlaying) {
-      if (currentIndex > movingSources[0].sources.length - 2) {
-        setCurrentIndex(0);
-      } else {
-        setCurrentIndex((e) => e + 1);
-      }
-    }
-  };
-  useInterval(nextBlink, 500);
-
   return (
     <AspectRatio ratio={1} {...{ className }}>
       {!isDisplayOnly && (
@@ -202,7 +189,7 @@ const MovingSourceSelector: FunctionComponent<SourceSelectorProps> = ({
       {movingSources && (
         <Styled.BackgroundBlinker
           images={images}
-          activeIndex={currentIndex}
+          activeIndex={activeAlertIndex}
           blinkCallback={alertChangeCallback}
           loadedCallback={() => setLoading(false)}
           onClickCallback={handleClick}
@@ -218,7 +205,7 @@ const MovingSourceSelector: FunctionComponent<SourceSelectorProps> = ({
               width,
               height,
               isPlaying,
-              currentIndex,
+              currentIndex: activeAlertIndex,
               movingSources,
               selectedSource,
             }}
