@@ -266,7 +266,7 @@ export const convert2dTo3d = (vector2D, orbitData) => {
 };
 
 export const getLabelSize = (zoomLevel, defaultZoom) => {
-  const minSize = 4;
+  const minSize = 12;
   const maxSize = 15;
   const scaledLabelSize = maxSize * (zoomLevel / defaultZoom);
 
