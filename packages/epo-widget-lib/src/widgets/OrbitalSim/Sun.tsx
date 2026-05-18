@@ -19,14 +19,12 @@ const Sun: FC<SunPropTypes> = ({ defaultZoom, zoomLevel }) => {
         color={ORBITAL_COLORS.sun.objectColor}
       />
       <Html>
-        <Styled.SunLabel>
-          <span
+        <Styled.SunLabel
           style={{
             fontSize: getLabelSize(zoomLevel, defaultZoom),
           }}
-          >
+        >
           {t("orbital_sim.astronomy.orbital_bodies.sun")}
-          </span>
         </Styled.SunLabel>
       </Html>
     </mesh>

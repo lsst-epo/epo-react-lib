@@ -207,16 +207,12 @@ const Orbital = ({
         >
             {(type === "planet" || type === "neo" || active) && (
             <Html>
-              <Styled.Label>
-                <button
-                  type="button"
-                  style={{
+              <Styled.Label
+                style={{
                     fontSize: getLabelSize(zoomMod, defaultZoom),
                   }}
-                  onClick={() => selectionCallback(data, "neo")}
-                >
+              >
                   {translationKey ? t(translationKey) : name || pd}
-                </button>
               </Styled.Label>
             </Html>
           )}

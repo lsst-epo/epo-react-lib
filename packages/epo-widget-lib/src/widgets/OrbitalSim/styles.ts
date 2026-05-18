@@ -55,7 +55,7 @@ export const CanvasWrapper = styled(Canvas)`
 `;
 
 export const SunLabel = styled.div`
-  padding: 2px 4px;
+  padding: 0px 4px;
   margin-top: 4px;
   font-weight: var(--medium);
   color: var(--black);
