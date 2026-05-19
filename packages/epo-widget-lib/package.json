@@ -1,6 +1,6 @@
 {
   "name": "@rubin-epo/epo-widget-lib",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Rubin Observatory Education & Public Outreach team React scientific and educational widgets.",
   "author": "Rubin EPO",
   "license": "MIT",
@@ -102,8 +102,7 @@
   "dependencies": {
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "9",
-    "@rubin-epo/epo-react-lib": "3.0.2",
-    "@rubin-epo/epo-widget-lib": "2.0.2",
+    "@rubin-epo/epo-react-lib": "3.0.3",
     "context-filter-polyfill": "^0.3.6",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.1",
