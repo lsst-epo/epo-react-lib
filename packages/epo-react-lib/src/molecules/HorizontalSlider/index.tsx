@@ -98,7 +98,7 @@ const HorizontalSlider: FunctionComponent<HorizontalSliderProps> = ({
 
   return (
     <Styled.HorizontalSliderContainer
-      isVertical
+      isVertical={isVertical}
       style={{
         "--color-background-track": getValidColor(color),
       }}

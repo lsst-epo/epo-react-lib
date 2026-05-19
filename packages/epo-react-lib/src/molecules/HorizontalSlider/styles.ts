@@ -9,12 +9,7 @@ export const HorizontalSliderContainer = styled.div<{ isVertical?: boolean }>`
   flex-flow: column nowrap;
   padding-block-end: var(--size-padding-slide-block-end, var(--size-spacing-s));
 
-  ${({ isVertical }) =>
-    isVertical &&
-    css`
-      // height: 100%; // take up the full height of the canvas or orbitalsim container
-      height: 35vh;
-    `}
+  ${({ isVertical }) => isVertical && css`height: 35vh;`}
 
   &[data-theme="dark"] {
     --color-background-thumb: var(--white, #fff);
