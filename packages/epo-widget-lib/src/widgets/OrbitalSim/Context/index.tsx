@@ -49,7 +49,8 @@ export function OrbitalSimProvider({
     showTimeControls=false,
     selectedAnswer,
     updateSelectedAnswer,
-    swappableOrbits=false
+    swappableOrbits=false,
+    selectedNeoIndex
 }: OrbitalSimProviderProps) {
     const [ orbits, setOrbits] = useState<Orbits>({
         neos: null,
@@ -60,7 +61,6 @@ export function OrbitalSimProvider({
         defaultZoom: null,
         potentialOrbits: false,
         noDetails: false,
-        detailsRows: null,
         refObjs: null,
         noControls: false
     })
@@ -102,7 +102,8 @@ export function OrbitalSimProvider({
         observations: observationsWithActiveSelection,
         updateActiveObservation,
         selectedAnswer,
-        swappableOrbits
+        swappableOrbits,
+        selectedNeoIndex
   }),[
     orbits,
     showDetailsTable,
@@ -112,7 +113,8 @@ export function OrbitalSimProvider({
     observationsWithActiveSelection,
     updateActiveObservation,
     selectedAnswer,
-    swappableOrbits
+    swappableOrbits,
+    selectedNeoIndex
   ]);
 
     return <OrbitalSimContext.Provider value={values}>{children}</OrbitalSimContext.Provider>

@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from "@rubin-epo/epo-react-lib/Button";
 import { useOrbitalSimContext } from '../Context';
 import * as Styled from "./styles";
 import { GlobalStyles } from "../styles";
 
 function OrbitalDetails() {
-
-  const { orbits }= useOrbitalSimContext();
-  
-  const { 
-    detailsRows: rows
-  } = orbits;
-     
   const [active, setActive] = useState(false);
 
+  const { orbits, selectedNeoIndex}= useOrbitalSimContext();
+
+  const { 
+    object_details: rows
+  } = orbits.neos?.[selectedNeoIndex] || {};
+  
   return (
     <>
       <GlobalStyles/>

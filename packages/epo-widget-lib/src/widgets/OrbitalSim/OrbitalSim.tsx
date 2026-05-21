@@ -11,13 +11,12 @@ import { useOrbitalSimContext } from "./Context/index.js";
 import { Neo } from "./Context/OrbitalSimContext.types.js"
  
 function OrbitalSim() {
-  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits }= useOrbitalSimContext();
+  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits, selectedNeoIndex }= useOrbitalSimContext();
   const { 
     paused,
     pov,
     defaultZoom,
     potentialOrbits,
-    detailsRows
    } = orbits;
 
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
@@ -80,7 +79,7 @@ function OrbitalSim() {
     setCurrentSwappableOrbit({ 
       neos: [e]
     })
-  } 
+  }
 
   let isDisabled = false;
   return (
@@ -101,7 +100,7 @@ function OrbitalSim() {
         </Styled.SwappableOrbitsContainer>
       ) : (
         <>
-        { detailsRows && showDetailsTable && (
+        { showDetailsTable && (
           <OrbitalDetails />
         )}
         {showTimeControls && (
@@ -148,6 +147,7 @@ function OrbitalSim() {
                   reset,
                   zoomLevel,
                   setZoomLevel,
+                  selectedNeoIndex,
                   orbits: (swappableOrbits) ? currentSwappableOrbit : orbits
                 }
               }

@@ -30,6 +30,7 @@ const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
         allowOrbitRotation={args.allowOrbitRotation}
         showTimeControls={args.showTimeControls}
         swappableOrbits={args.swappableOrbits}
+        selectedNeoIndex={args.selectedNeoIndex}
       >
         <OrbitalSim/>
       </OrbitalSimProvider>
@@ -47,4 +48,10 @@ export const PotentialOrbits = Template.bind({});
 PotentialOrbits.args = PotentialOrbitsData;
 
 export const OrbitalDetails = Template.bind({});
-OrbitalDetails.args = ObjectDetailsData;
+OrbitalDetails.args = {...ObjectDetailsData, selectedNeoIndex: 0};
+OrbitalDetails.argTypes = {
+  selectedNeoIndex: {
+    control: 'select',
+    options: ObjectDetailsData.orbits.neos.map((_, i) => i),
+  },
+}

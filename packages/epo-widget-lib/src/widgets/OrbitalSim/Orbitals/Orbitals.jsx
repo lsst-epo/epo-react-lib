@@ -17,6 +17,7 @@ function Orbitals({
   reset,
   zoomLevel,
   setZoomLevel,
+  selectedNeoIndex,
   orbits
 }) {
 
@@ -25,6 +26,9 @@ function Orbitals({
     refObjs,
     activeNeo
     } = orbits;
+  
+  // Number.isInteger() is used here because the index could be 0 (zero) which evaluates to falsy and an array index should always be an integer
+  const filteredNeos = Number.isInteger(selectedNeoIndex) ? [neos[selectedNeoIndex]] : neos;
 
   function reducer(state) {
     const { remainingInits } = state;
@@ -33,7 +37,7 @@ function Orbitals({
 
   const { camera } = useThree();
   const [state, dispatch] = useReducer(reducer, {
-    remainingInits: (neos && Array.isArray(neos)) ? neos.length : 0,
+    remainingInits: (filteredNeos && Array.isArray(filteredNeos)) ? filteredNeos.length : 0,
   });
 
   function renderRefObjs() {
@@ -108,7 +112,7 @@ function Orbitals({
           initCallback={dispatch}
         />
       ) : (
-        neos ? (neos.map((neo, badId) => {
+        filteredNeos ? (filteredNeos.map((neo, badId) => {
             const { Ref: ref, Principal_desig: pd, name } = neo;
             return (
               <Orbital

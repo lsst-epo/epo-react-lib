@@ -3429,42 +3429,6 @@
   resolved "https://registry.yarnpkg.com/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
-"@rubin-epo/epo-react-lib@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-react-lib/-/epo-react-lib-3.0.0.tgz#aa91c247e90c09aa67affd1270f84993af616729"
-  integrity sha512-TVEy7YzTHB1LxOurSDA/QEIwa6PuHRch2e4f53cEi4qmGEOCIuPahU4T/jj11zM2ykiQ8P/ugffGyjXvy6PVmQ==
-  dependencies:
-    "@castiron/style-mixins" "^1.0.6"
-    "@headlessui/react" "^2.2.0"
-    flickity "^3.0.0"
-    focus-trap "^7.4.2"
-    lodash "^4.17.21"
-    react-icons "^5.5.0"
-    react-player "^2.14.1"
-    react-share "^5.2.2"
-    react-slider "^2.0.6"
-    styled-components "^6.1.16"
-    utopia-core "^1.6.0"
-
-"@rubin-epo/epo-widget-lib@2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@rubin-epo/epo-widget-lib/-/epo-widget-lib-2.0.2.tgz#1cab03185f30f6524482a6fc769c464876cde50c"
-  integrity sha512-BqdsNDO26OpRXU1f3A4/FWZin7CGxDwntHxa5jtHeutF/JcYtA2zywWePapjBT2H94WiBAVFaqheXcglW05t1g==
-  dependencies:
-    "@react-three/drei" "^10.7.6"
-    "@react-three/fiber" "9"
-    "@rubin-epo/epo-react-lib" "3.0.0"
-    context-filter-polyfill "^0.3.6"
-    d3-array "^3.2.4"
-    d3-geo "^3.1.1"
-    d3-geo-projection "^4.0.0"
-    lodash "^4.17.21"
-    react-slider "^2.0.6"
-    skia-canvas "^1.0.2"
-    styled-components "^6.1.16"
-    three "^0.181.0"
-    use-resize-observer "^9.1.0"
-
 "@rushstack/eslint-patch@^1.10.3":
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.16.1.tgz#4f97581e114fc79f246cee3723a5c4edd3b62415"
@@ -6008,14 +5972,7 @@ conventional-changelog-angular@^8.0.0:
   dependencies:
     compare-func "^2.0.0"
 
-conventional-changelog-conventionalcommits@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-7.0.2.tgz#aa5da0f1b2543094889e8cf7616ebe1a8f5c70d5"
-  integrity sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==
-  dependencies:
-    compare-func "^2.0.0"
-
-conventional-changelog-conventionalcommits@^8.0.0:
+conventional-changelog-conventionalcommits@8.0.0, conventional-changelog-conventionalcommits@^7.0.2, conventional-changelog-conventionalcommits@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-8.0.0.tgz#3fa2857c878701e7f0329db5a1257cb218f166fe"
   integrity sha512-eOvlTO6OcySPyyyk8pKz2dP4jjElYunj9hn9/s0OB+gapTO8zwS9UQWrZ1pmF2hFs3vw1xhonOLGcGjy/zgsuA==
