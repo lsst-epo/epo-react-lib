@@ -8,7 +8,8 @@ export interface OrbitalSimProviderProps {
     showTimeControls?: boolean,
     selectedAnswer: string | null,
     updateSelectedAnswer: (newSelectedAnswer: string | null) => void,
-    swappableOrbits?: boolean
+    swappableOrbits?: boolean,
+    selectedNeoIndex?: number,
 }
 
 export type OrbitalSimContextValues = {
@@ -21,6 +22,7 @@ export type OrbitalSimContextValues = {
   updateActiveObservation: (activeId: string) => void;
   selectedAnswer: string | null;
   swappableOrbits: boolean;
+  selectedNeoIndex?: number;
 };
 
 export type Observation = {
@@ -39,12 +41,13 @@ export type Neo = {
     Peri: number,
     Node: number,
     Ref: string,
-    Principal_desig: string
+    Principal_desig: string,
+    object_details?: DetailsRow[]
 }
 
 export type DetailsRow = {
     rowTitle: string,
-    rowContent: string | TrustedHTML
+    rowContent: string | number | TrustedHTML
 }
 
 export type Orbits = {
@@ -56,7 +59,7 @@ export type Orbits = {
     defaultZoom: number | null,
     potentialOrbits: boolean,
     noDetails: boolean,
-    detailsRows: DetailsRow[] | null,
     refObjs: string[] | null,
-    noControls: boolean
+    noControls: boolean,
+    selectedNeoIndex?: number
 }
