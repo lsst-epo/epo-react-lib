@@ -2,8 +2,8 @@ name: Release packages
 on:
   push:
     branches:
-      - main
-      - release-v3
+      - release-react-v19
+      - release-react-v18
 
 permissions:
   contents: write # to be able to publish a GitHub release
