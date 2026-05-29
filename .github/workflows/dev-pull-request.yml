@@ -2,8 +2,8 @@ name: Run Jest unit tests
 on:
   pull_request:
     branches: 
-      - develop
-      - develop-v3
+      - develop-react-v19
+      - develop-react-v18
 jobs:
   build:
     runs-on: ubuntu-latest
