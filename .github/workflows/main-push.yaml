@@ -4,8 +4,7 @@ name: Build and Publish Storybook to GitHub Pages
 on:
   push:
     branches:
-      - release-react-v19
-      - release-react-v18
+      - develop-react-v19
 
 permissions:
   contents: read
