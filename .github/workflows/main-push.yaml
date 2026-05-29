@@ -2,10 +2,10 @@
 name: Build and Publish Storybook to GitHub Pages
 
 on:
-  # Event for the workflow to run on
   push:
     branches:
-      - "main" # Replace with the branch you want to deploy from
+      - release-react-v19
+      - release-react-v18
 
 permissions:
   contents: read

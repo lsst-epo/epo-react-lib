@@ -2,7 +2,11 @@
  * @type {import('semantic-release').GlobalConfig}
  */
 const release = {
-  branches: ["main"],
+  tagFormat: '@rubin-epo/epo-widget-lib-v${version}',
+  branches: [
+    "release-react-v19",
+    { name: "release-react-v18", range: "1.x", channel: "react-18" }
+  ],
   plugins: [
     [
       "@semantic-release/commit-analyzer",

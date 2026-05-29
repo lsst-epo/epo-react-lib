@@ -6,7 +6,15 @@ Several tokens or moving parts may be out of place at any given point in time, p
 
 This monorepo makes use of the [semantic-release](https://www.npmjs.com/package/semantic-release) NPM package. This package runs automatically during the release scripts and if there are commits in any individual repo - which will trigger a new release for that package - and what the prefix on the conventional commits are (`fix`, `feat`) to determine the semantic version.
 
-If all goes right you won't need to manually create the tagged release in Github upon merging into the `main` branch.
+There are two sets of release and development branches branches:
+
+1.a `release-react-v19` - the "main" and primary release branch, as the name indicates this is for all React v19-compatible code
+
+1.b `develop-react-v19` - the development branch for React v19 code
+
+2.a `release-react-v18` - the maintenance branch for supporting React v18 components and widgets
+
+2.b `develop-react-v18` - the development branch for React v18 code
 
 ## Yarn Workspaces
 
@@ -21,7 +29,7 @@ The Github repo has two sets of environment variables, the one related to releas
 
 ## Github Workflows
 
-All PRs should from from `feature branch` -> `develop` -> `main`. Upon merging into main two workflows are launched:
+All PRs should from from `feature branch` -> `develop-react-v19` || `develop-react-v18` -> `release-react-v19` || `release-react-v18`. Upon merging into main two workflows are launched:
 
 1. One related to building and publishing to Storybook
 2. Another for running the above workflow in the `Yarn Workspaces` section above, which will create the tagged release in Github and publish the new packages to npmjs.org
@@ -30,4 +38,4 @@ The `Release packages` logs are pretty straightforward, if the action fails it u
 
 ## Order of Operations
 
-At times it will be necessary to make a change to `epo-react-lib`, and then use that change in `epo-widget-lib` or one of the other packes. The safest way to ensure this goes smoothly is to make your changes to `epo-react-lib` first then merge all the way to `main` so a new version of the `epo-react-lib` package gets released. You can then reference this new version of `epo-react-lib` in the `epo-widget-lib` package's `package.json` for your next development update.
+At times it will be necessary to make a change to `epo-react-lib`, and then use that change in `epo-widget-lib` or one of the other packes. The safest way to ensure this goes smoothly is to make your changes to `epo-react-lib` first then merge all the way to the target release branch so a new version of the `epo-react-lib` package gets released. You can then reference this new version of `epo-react-lib` in the `epo-widget-lib` package's `package.json` for your next development update.
