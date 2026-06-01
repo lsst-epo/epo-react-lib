@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface OrbitalSimProviderProps {
     children: ReactNode,
     orbitData: Orbits,
+    defaultZoom: number,
     showDetailsTable?: boolean,
     allowOrbitRotation?: boolean,
     showTimeControls?: boolean,
@@ -14,6 +15,7 @@ export interface OrbitalSimProviderProps {
 
 export type OrbitalSimContextValues = {
   orbits: Orbits;
+  defaultZoom: number;
   showDetailsTable?: boolean;
   allowOrbitRotation?: boolean;
   showTimeControls?: boolean;
@@ -56,7 +58,6 @@ export type Orbits = {
     observations: Observation[],
     paused: boolean,
     pov: string | null,
-    defaultZoom: number | null,
     potentialOrbits: boolean,
     noDetails: boolean,
     refObjs: string[] | null,

@@ -44,6 +44,7 @@ export function useOrbitalSimContext() {
 export function OrbitalSimProvider({ 
     children,
     orbitData,
+    defaultZoom,
     showDetailsTable=false,
     allowOrbitRotation=false,
     showTimeControls=false,
@@ -58,7 +59,6 @@ export function OrbitalSimProvider({
         observations: [],
         paused: false,
         pov: null,
-        defaultZoom: null,
         potentialOrbits: false,
         noDetails: false,
         refObjs: null,
@@ -95,6 +95,7 @@ export function OrbitalSimProvider({
 
     const values: OrbitalSimContextValues = useMemo(() => ({
         orbits,
+        defaultZoom,
         showDetailsTable,
         allowOrbitRotation,
         showTimeControls,   
@@ -106,6 +107,7 @@ export function OrbitalSimProvider({
         selectedNeoIndex
   }),[
     orbits,
+    defaultZoom,
     showDetailsTable,
     allowOrbitRotation,
     showTimeControls, 
