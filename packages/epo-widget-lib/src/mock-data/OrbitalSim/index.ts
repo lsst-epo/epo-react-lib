@@ -7,7 +7,6 @@ export const SwappableOrbitsData = {
             atira,
             amor
         ],
-        defaultZoom: 3
     },
     swappableOrbits: true
 }
@@ -58,7 +57,6 @@ export const PrimaryData = {
   selectionCallback: () => {},
   paused: true,
   pov: "top",
-  defaultZoom: 3,
   potentialOrbits: null,
   observations: null,
   noDetails: true,
@@ -18090,7 +18088,6 @@ export const PotentialOrbitsData = {
     selectionCallback: () => {},
     paused: null,
     pov: null,
-    defaultZoom: 3,
     potentialOrbits: true,
     observations: [
         {
@@ -18250,7 +18247,6 @@ export const ObjectDetailsData = {
     selectionCallback: () => {},
     paused: null,
     pov: null,
-    defaultZoom: 3,
     potentialOrbits: null,
     observations: null,
     detailsSet: "hazardous-asteroids",

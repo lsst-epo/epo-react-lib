@@ -11,14 +11,12 @@ import { useOrbitalSimContext } from "./Context/index.js";
 import { Neo } from "./Context/OrbitalSimContext.types.js"
  
 function OrbitalSim() {
-  const { orbits, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits, selectedNeoIndex }= useOrbitalSimContext();
+  const { orbits, defaultZoom, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits, selectedNeoIndex }= useOrbitalSimContext();
   const { 
     paused,
     pov,
-    defaultZoom,
     potentialOrbits,
    } = orbits;
-
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
   const [stepDirection, setStepDirection] = useState(1);
@@ -26,7 +24,7 @@ function OrbitalSim() {
   const [dayPerVizSec, setDayPerVizSec] = useState(paused ? 0 : speeds.initial);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [zoomLevel, setZoomLevel] = useState(defaultZoom);
   const [currentSwappableOrbit, setCurrentSwappableOrbit] = useState({ neos: [ { Principal_desig: "" }]});
 
   useEffect(() => {
