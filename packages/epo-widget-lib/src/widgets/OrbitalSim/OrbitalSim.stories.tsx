@@ -8,6 +8,14 @@ import { PrimaryData, PotentialOrbitsData, ObjectDetailsData, SwappableOrbitsDat
 const meta: Meta<typeof OrbitalSim> = {
   component: OrbitalSim,
   parameters: { r3f: true },
+  args: {
+    defaultZoom: 0.5,
+  },
+  argTypes: {
+    defaultZoom: {
+      control: { type: 'number', step: 0.01 },
+    },
+  },
 };
 export default meta;
 
@@ -24,6 +32,7 @@ const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
       {args.observations && <SelectionList sources={ selectedAnswer ? [{ type: "observation", id: selectedAnswer}] : [] } onRemoveCallback={ resetSelectedAnswer }/>}
       <OrbitalSimProvider 
         orbitData={args.orbits}
+        defaultZoom={args.defaultZoom}
         selectedAnswer={selectedAnswer}
         updateSelectedAnswer={setSelectedAnswer}
         showDetailsTable={args.showDetailsTable}
