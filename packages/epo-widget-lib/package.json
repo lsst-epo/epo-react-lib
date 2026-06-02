@@ -28,7 +28,7 @@
     "test": "jest --max-workers=2",
     "test:generate-output": "yarn test --json --outputFile=.jest-test-results.json || true",
     "prepublishOnly": "yarn build",
-    "release-old": "semantic-release -e semantic-release-monorepo --debug"
+    "release": "semantic-release -e semantic-release-monorepo --debug"
   },
   "files": [
     "README.md",
