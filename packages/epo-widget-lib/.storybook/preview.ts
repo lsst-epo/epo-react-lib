@@ -7,6 +7,7 @@ import {
 import i18n, { locales, defaultLocale } from "./i18next";
 import theme from "./theme";
 import "@rubin-epo/epo-react-lib/styles.css";
+import { CustomDocsPage } from "./CustomDocsPage";
 
 const viewports = { ...INITIAL_VIEWPORTS, ...MINIMAL_VIEWPORTS };
 
@@ -16,6 +17,7 @@ const preview: Preview = {
     viewport: { viewports },
     docs: {
       theme,
+      page: CustomDocsPage
     },
   },
 

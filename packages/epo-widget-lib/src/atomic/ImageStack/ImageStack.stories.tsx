@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Categories from "@/storybook/utilities/categories";
-import ImageStack from ".";
+import ImageStack from "./index";
 
 const meta: Meta<typeof ImageStack> = {
+  tags: ["autodoc"],
+  title: "Atomic/ImageStack",
   argTypes: {
     images: {
       description: "Array of images to be displayed.",

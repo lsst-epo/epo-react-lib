@@ -1,10 +1,12 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import styled from "styled-components";
-import Blinker from ".";
+import Blinker from "./Blinker";
 import { mockImages } from "./_mocks";
 
 const meta: Meta<typeof Blinker> = {
+  tags: ["autodocs"],
+  title: "Atomic/Blinker",
   argTypes: {
     autoplay: {
       control: "boolean",

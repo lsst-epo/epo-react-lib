@@ -3,6 +3,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import Controls from "./Controls";
 
 const meta: Meta<typeof Controls> = {
+  tags: ["autodoc"],
+  title: "Atomic/Blinker/Controls",
   argTypes: {
     playing: {
       type: {

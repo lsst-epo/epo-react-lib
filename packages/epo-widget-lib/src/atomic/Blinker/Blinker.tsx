@@ -7,7 +7,7 @@ import {
 } from "react";
 import { getClampedArrayIndex } from "@/lib/utils";
 import useInterval from "@/hooks/useInterval";
-import ImageStack from "../ImageStack";
+import ImageStack from "../ImageStack/index";
 import Controls from "./Controls/Controls";
 import * as Styled from "./styles";
 

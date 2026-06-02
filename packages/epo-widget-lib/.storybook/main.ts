@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-jest"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("storybook-react-i18next"),
+    getAbsolutePath("storybook-addon-dependencies")
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
