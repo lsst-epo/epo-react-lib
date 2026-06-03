@@ -7,8 +7,8 @@ export interface OrbitalSimProviderProps {
     showDetailsTable?: boolean,
     allowOrbitRotation?: boolean,
     showTimeControls?: boolean,
-    selectedAnswer: string | null,
-    updateSelectedAnswer: (newSelectedAnswer: string | null) => void,
+    selectedAnswer?: string | null,
+    updateSelectedAnswer?: (newSelectedAnswer: string | null) => void,
     swappableOrbits?: boolean,
     selectedNeoIndex?: number,
 }
@@ -22,7 +22,7 @@ export type OrbitalSimContextValues = {
   setOrbits: React.Dispatch<React.SetStateAction<Orbits>>;
   observations: Observation[];
   updateActiveObservation: (activeId: string) => void;
-  selectedAnswer: string | null;
+  selectedAnswer?: string | null;
   swappableOrbits: boolean;
   selectedNeoIndex?: number;
 };
