@@ -88,8 +88,10 @@ export function OrbitalSimProvider({
             let newObs = observations.map(e => (e.id == activeId) ? {...e, isActive: true} : {...e, isActive: false});
             setObservations(newObs);
             
-            const activeObservation = observations.find(e => (e.id === activeId));
-            updateSelectedAnswer(activeObservation?.label || null);
+            if (updateSelectedAnswer) {
+                const activeObservation = observations.find(e => (e.id === activeId));
+                updateSelectedAnswer(activeObservation?.label || null);
+            }
         }
     }
 
