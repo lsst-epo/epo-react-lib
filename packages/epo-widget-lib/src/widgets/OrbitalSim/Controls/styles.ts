@@ -16,6 +16,10 @@ export const PlaybackSpeedContainer = styled.div`
   @container orbital-sim-context (width < 650px) {
     height: 85%;
   }
+
+  @container orbital-sim-context (height < 575px) {
+    height: 75%;
+  }
 `;
 
 export const PlaybackControlsContainer = styled.div`
