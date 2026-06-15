@@ -14,10 +14,11 @@ const SlideoutInfoCard: FunctionComponent<SlideoutInfoCardProps> = ({
   isOpen = false, 
   slideFrom = "left", 
   children,
+  className,
 }) => {
 
   return (
-    <Styled.SlideoutInfoCard isOpen={isOpen} slideFrom={slideFrom}>
+    <Styled.SlideoutInfoCard isOpen={isOpen} slideFrom={slideFrom} className={className}>
       {children}
     </Styled.SlideoutInfoCard>
   );
