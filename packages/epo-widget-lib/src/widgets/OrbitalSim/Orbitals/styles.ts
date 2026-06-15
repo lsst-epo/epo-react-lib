@@ -4,11 +4,7 @@ import Button from "@rubin-epo/epo-react-lib/Button";
 import SlideoutInfoCard from "@rubin-epo/epo-react-lib/SlideoutInfoCard";
 
 export const SlideoutWrapper = styled(SlideoutInfoCard)`
-  position: absolute;
-
-  & > div:first-of-type {
-    display: none;
-  }
+  z-index: 10;
 `;
 
 export const Label = styled.div`
