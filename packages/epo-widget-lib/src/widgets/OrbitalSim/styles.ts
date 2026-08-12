@@ -1,6 +1,7 @@
 "use client";
 import styled, { createGlobalStyle } from "styled-components";
 import { Canvas } from '@react-three/fiber';
+import { NavigationRail } from "@/layout/NavigationRail";
 
 export const GlobalStyles = createGlobalStyle`
   :root {
@@ -67,35 +68,6 @@ export const SunLabel = styled.div`
   height: fit-content;
 `;
 
-export const SwappableOrbitsContainer = styled.aside`
+export const Navigation = styled(NavigationRail)`
   position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  z-index: 10;
-  background-color: #fff;
-  width: 10%;
-  min-width: fit-content;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const SwappableOrbitButton = styled.button`
-  width: 100%;
-  padding: 12px 16px;
-  text-align: left;
-  background-color: #F3F3F3;
-  color: #017F80;
-  text-align: center;
-
-  &:hover {
-    background-color: #017F80;
-    color: #fff;
-  }
-
-  &[data-active="true"] {
-    background-color: #017F80;
-    color: #fff;
-  }
-`;
+`

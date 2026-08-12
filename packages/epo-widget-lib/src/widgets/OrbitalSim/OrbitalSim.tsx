@@ -6,17 +6,25 @@ import Orbitals from "./Orbitals/Orbitals.jsx";
 import Sun from "./Sun.js";
 import PlaybackSpeed from "./Controls/PlaybackSpeed.jsx";
 import PlaybackControls from "./Controls/PlaybackControls.js";
+import {
+  NavigationRail,
+  NavigationRailProvider,
+} from "@/layout/NavigationRail";
 import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
-import { Neo } from "./Context/OrbitalSimContext.types.js"
- 
+import { Neo } from "./Context/OrbitalSimContext.types.js";
+
 function OrbitalSim() {
-  const { orbits, defaultZoom, showDetailsTable, allowOrbitRotation, showTimeControls, swappableOrbits, selectedNeoIndex }= useOrbitalSimContext();
-  const { 
-    paused,
-    pov,
-    potentialOrbits,
-   } = orbits;
+  const {
+    orbits,
+    defaultZoom,
+    showDetailsTable,
+    allowOrbitRotation,
+    showTimeControls,
+    swappableOrbits,
+    selectedNeoIndex,
+  } = useOrbitalSimContext();
+  const { paused, pov, potentialOrbits } = orbits;
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
   const [playing, setPlaying] = useState(!paused);
   const [stepDirection, setStepDirection] = useState(1);
@@ -25,7 +33,9 @@ function OrbitalSim() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [reset, setReset] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(defaultZoom);
-  const [currentSwappableOrbit, setCurrentSwappableOrbit] = useState({ neos: [ { Principal_desig: "" }]});
+  const [currentSwappableOrbit, setCurrentSwappableOrbit] = useState({
+    neos: [{ Principal_desig: "" }],
+  });
 
   useEffect(() => {
     if (!showTimeControls) {
@@ -41,7 +51,7 @@ function OrbitalSim() {
     } else if (reset < 0) {
       setElapsedTime(0);
       setPlaying(true);
-      setReset(0)
+      setReset(0);
     }
   }, [reset]);
 
@@ -50,110 +60,110 @@ function OrbitalSim() {
   };
 
   const handleStartStop = () => {
-    if(!playing) {
+    if (!playing) {
       setStepDirection(1);
     }
-    setPlaying(!playing)
-  }
+    setPlaying(!playing);
+  };
 
   const handleReset = () => {
-    setPlaying(e => false);
-    setReset(e => e + 1);
-  }
+    setPlaying((e) => false);
+    setReset((e) => e + 1);
+  };
 
   const handleNext = (e: any) => {
     setPlaying(false);
     setStepDirection(1);
-    setFrameOverride(e => e + 1);
-  }
+    setFrameOverride((e) => e + 1);
+  };
 
   const handlePrevious = (e: any) => {
     setPlaying(false);
     setStepDirection(-1);
-    setFrameOverride(e => e + 1);
-  }
+    setFrameOverride((e) => e + 1);
+  };
 
-  const updateSwappableOrbit = (e: any) => {
-    setCurrentSwappableOrbit({ 
-      neos: [e]
-    })
-  }
+  const updateSwappableOrbit = (id: string) => {
+    const neo = orbits?.neos?.find(
+      ({ Principal_desig }: Neo) => Principal_desig === id,
+    );
+
+    if (neo) {
+      setCurrentSwappableOrbit({
+        neos: [neo],
+      });
+    }
+  };
 
   let isDisabled = false;
   return (
     <>
-      <Styled.GlobalStyles/>
+      <Styled.GlobalStyles />
       <Styled.OrbitalSimWrapper>
-      {swappableOrbits ? (
-        <Styled.SwappableOrbitsContainer>
-          {orbits && orbits.neos && orbits.neos.map((neo: Neo) => (
-            <Styled.SwappableOrbitButton 
-              onClick={() => updateSwappableOrbit(neo)} 
-              data-active={
-                ((Object.keys(currentSwappableOrbit).length) ? (neo.Principal_desig === currentSwappableOrbit.neos[0].Principal_desig) : false)
-              }>
-                {neo.Ref}
-            </Styled.SwappableOrbitButton>
-          ))}
-        </Styled.SwappableOrbitsContainer>
-      ) : (
-        <>
-        { showDetailsTable && (
-          <OrbitalDetails />
-        )}
-        {showTimeControls && (
+        {swappableOrbits ? (
+          <NavigationRailProvider
+            items={(orbits?.neos ?? []).map((neo: Neo) => ({
+              id: neo.Principal_desig,
+              label: neo.Ref,
+            }))}
+            onSelect={updateSwappableOrbit}
+          >
+            <Styled.Navigation />
+          </NavigationRailProvider>
+        ) : (
           <>
-            <PlaybackSpeed
-              {...{ elapsedTime, dayPerVizSec, speeds }}
-              sliderOnChangeCallback={handleStepSelect}
-            />
-            <PlaybackControls
-            {...{
-              playing,
-              handleStartStop,
-              handleNext,
-              handlePrevious,
-              isDisabled,
-              handleReset
-              }}
-            />
+            {showDetailsTable && <OrbitalDetails />}
+            {showTimeControls && (
+              <>
+                <PlaybackSpeed
+                  {...{ elapsedTime, dayPerVizSec, speeds }}
+                  sliderOnChangeCallback={handleStepSelect}
+                />
+                <PlaybackControls
+                  {...{
+                    playing,
+                    handleStartStop,
+                    handleNext,
+                    handlePrevious,
+                    isDisabled,
+                    handleReset,
+                  }}
+                />
+              </>
+            )}
           </>
         )}
-        </>
-      )}
-       
-      <Styled.CanvasWrapper orthographic={true}>
-            <CameraController {...{ pov: allowOrbitRotation ? null : ( pov ?? "top"), reset }} />
-            <Camera
-              near={-1000}
-              far={1000}
-              position={[0, 0, 10]}
-              defaultZoom={defaultZoom || 3}
-            />
-            
-            <ambientLight intensity={0.9} />
-            <Orbitals
-              defaultZoom={defaultZoom || 1}
-              {...{
-                  playing,
-                  stepDirection,
-                  dayPerVizSec,
-                  frameOverride,
-                  potentialOrbits,
-                  elapsedTime,
-                  setElapsedTime,
-                  reset,
-                  zoomLevel,
-                  setZoomLevel,
-                  selectedNeoIndex,
-                  orbits: (swappableOrbits) ? currentSwappableOrbit : orbits
-                }
-              }
-            />
-            <Sun
-              zoomLevel={zoomLevel}
-              defaultZoom={defaultZoom || 1}
-            />
+
+        <Styled.CanvasWrapper orthographic={true}>
+          <CameraController
+            {...{ pov: allowOrbitRotation ? null : pov ?? "top", reset }}
+          />
+          <Camera
+            near={-1000}
+            far={1000}
+            position={[0, 0, 10]}
+            defaultZoom={defaultZoom || 3}
+          />
+
+          <ambientLight intensity={0.9} />
+          <Orbitals
+            defaultZoom={defaultZoom || 1}
+            {...{
+              playing,
+              stepDirection,
+              dayPerVizSec,
+              frameOverride,
+              potentialOrbits,
+              elapsedTime,
+              setElapsedTime,
+              reset,
+              zoomLevel,
+              setZoomLevel,
+              selectedNeoIndex,
+              orbits: swappableOrbits ? currentSwappableOrbit : orbits,
+            }}
+          />
+          <Sun zoomLevel={zoomLevel} defaultZoom={defaultZoom || 1} />
         </Styled.CanvasWrapper>
       </Styled.OrbitalSimWrapper>
     </>
