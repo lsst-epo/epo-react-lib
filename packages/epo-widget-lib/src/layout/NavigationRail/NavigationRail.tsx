@@ -9,6 +9,8 @@ export type { NavigationRailItem } from "./types";
 type Props = React.ComponentProps<typeof NavigationRailProvider> & {
   label?: string;
   showPrevNext?: boolean;
+  previousLabel?: string;
+  nextLabel?: string;
 } & PropsWithChildren;
 
 /**
@@ -22,10 +24,12 @@ function NavigationRail({
   onSelect,
   label,
   showPrevNext,
+  previousLabel,
+  nextLabel,
 }: Props) {
   return (
     <NavigationRailProvider {...{ onSelect, items }}>
-      <NavigationRailHeader showPrevNext={showPrevNext} />
+      <NavigationRailHeader {...{ showPrevNext, previousLabel, nextLabel }} />
       <Styled.NavigationRailContainer>
         <NavigationRailNav label={label} />
         {children}
