@@ -1,4 +1,12 @@
 {
+  "chart": {
+    "nudge": {
+      "ArrowUp": "Move up",
+      "ArrowRight": "Move right",
+      "ArrowDown": "Move down",
+      "ArrowLeft": "Move left"
+    }
+  },
   "blinker": {
     "controls": {
       "backward": "Backward",
@@ -165,10 +173,10 @@
       }
     },
     "playback": {
-        "sec_with_count": "1 sec = {{count}} days",
-        "time_equivalence": "1 sec is 1 year",
-        "normal_time": "Normal Time",
-        "time_step": "Time Step"
+      "sec_with_count": "1 sec = {{count}} days",
+      "time_equivalence": "1 sec is 1 year",
+      "normal_time": "Normal Time",
+      "time_step": "Time Step"
     }
   },
   "planets": {
@@ -181,5 +189,32 @@
     "apollo": "Apollo",
     "amor": "Amor",
     "atira": "Atira"
+  },
+  "hubble_plot": {
+    "plot": {
+      "label": "Galaxies",
+      "galaxy": "Galaxy",
+      "x_label": "Distance (Mpc)",
+      "y_label": "Velocity (km/s)"
+    },
+    "point_description": "{{name}}: {{x}} megaparsecs, {{y}} kilometers per second",
+    "tooltip": {
+      "distance": "Distance: {{value}} Mpc",
+      "velocity": "Velocity: {{value}} km/s",
+      "unplotted": "not plotted"
+    },
+    "trendline": "Slope: {{slope}}",
+    "zoom": {
+      "label": "Zoom",
+      "value": "{{value}} times"
+    },
+    "unavailable": "Answer the earlier questions to see this plot."
+  },
+  "hubble_plotter": {
+    "title": "Plot the Galaxies",
+    "galaxies": "Galaxies",
+    "galaxy_plotted": "{{name}}, plotted",
+    "previous": "Previous",
+    "next": "Next"
   }
 }

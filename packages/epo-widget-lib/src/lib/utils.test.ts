@@ -3,6 +3,7 @@ import {
   intersection,
   getClampedArrayIndex,
   getLinearScale,
+  invertLinearScale,
   mergeWithDefaults,
 } from "./utils";
 
@@ -24,6 +25,36 @@ describe("getLinearScale", () => {
     expect(minOutput).toBe(range[0]);
     expect(maxOutput).toBe(range[1]);
     expect(output).toBe(150);
+  });
+});
+
+describe("invertLinearScale", () => {
+  it("should map range values back to the domain", () => {
+    const invert = invertLinearScale(getLinearScale(domain, range), domain);
+
+    expect(invert(range[0])).toBe(domain[0]);
+    expect(invert(range[1])).toBe(domain[1]);
+    expect(invert(150)).toBe(5);
+  });
+  it("should round trip values from a scale", () => {
+    const scale = getLinearScale(domain, range);
+    const invert = invertLinearScale(scale, domain);
+
+    [0, 2.5, 7.25, 10].forEach((value) => {
+      expect(invert(scale(value))).toBeCloseTo(value);
+    });
+  });
+  it("should invert a scale with a reversed range", () => {
+    const reversed = [range[1], range[0]];
+    const invert = invertLinearScale(getLinearScale(domain, reversed), domain);
+
+    expect(invert(reversed[0])).toBe(domain[0]);
+    expect(invert(150)).toBe(5);
+  });
+  it("should return the middle of the domain when the scale is constant", () => {
+    const invert = invertLinearScale(() => 5, domain);
+
+    expect(invert(100)).toBe(5);
   });
 });
 
