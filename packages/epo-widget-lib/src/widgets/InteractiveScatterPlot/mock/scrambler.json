@@ -1,0 +1,44 @@
+[
+  {
+    "id": "MW",
+    "name": "Milky Way",
+    "color": "#a3bb0d",
+    "distance": 0.0,
+    "velocity": 0.0
+  },
+  {
+    "id": "Gal1",
+    "name": "Galaxy #1",
+    "color": "#1ab579",
+    "distance": 75.23,
+    "velocity": 5192.57
+  },
+  {
+    "id": "Gal2",
+    "name": "Galaxy #2",
+    "color": "#8e3efe",
+    "distance": 218.16,
+    "velocity": 14913.18
+  },
+  {
+    "id": "Gal3",
+    "name": "Galaxy #3",
+    "color": "#c82960",
+    "distance": 644.66,
+    "velocity": 42765.37
+  },
+  {
+    "id": "Gal4",
+    "name": "Galaxy #4",
+    "color": "#eb7c39",
+    "distance": 775.46,
+    "velocity": 50955.34
+  },
+  {
+    "id": "Gal5",
+    "name": "Galaxy #5",
+    "color": "#fed828",
+    "distance": 1024.37,
+    "velocity": 66081.96
+  }
+]

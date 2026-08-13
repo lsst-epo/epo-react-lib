@@ -107,7 +107,7 @@ const ScatterTemplate: StoryFn = (args) => {
           },
         },
       };
-    }
+    },
   );
 
   return (
@@ -154,7 +154,7 @@ const ScatterTemplate: StoryFn = (args) => {
             y={yScale(yDomain[1] - yDomain[0] - data[hoveredIndex].y)}
             visible={hasTooltip}
           >{`[${parseInt(data[hoveredIndex].x)},${parseInt(
-            data[hoveredIndex].y
+            data[hoveredIndex].y,
           )}]`}</Tooltip>
         )}
       </Base>
