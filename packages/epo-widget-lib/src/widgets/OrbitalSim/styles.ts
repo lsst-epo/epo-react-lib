@@ -1,7 +1,6 @@
 "use client";
 import styled, { createGlobalStyle } from "styled-components";
 import { Canvas } from '@react-three/fiber';
-import { NavigationRail } from "@/layout/NavigationRail";
 
 export const GlobalStyles = createGlobalStyle`
   :root {
@@ -67,7 +66,3 @@ export const SunLabel = styled.div`
   z-index: 10000;
   height: fit-content;
 `;
-
-export const Navigation = styled(NavigationRail)`
-  position: absolute;
-`

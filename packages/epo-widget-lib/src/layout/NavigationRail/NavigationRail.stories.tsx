@@ -1,19 +1,14 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
-import styled from "styled-components";
-import {
-  NavigationRailContainer,
-  NavigationRail,
-  NavigationRailProvider,
-  NavigationRailHeader,
-} from ".";
-import type { NavigationRailItem } from "./types";
+import NavigationRail from ".";
 import { useState } from "react";
+import styled from "styled-components";
 
-interface StoryArgs {
-  label?: string;
-  items: NavigationRailItem[];
-  showPrevNext?: boolean;
-}
+type StoryArgs = React.ComponentProps<typeof NavigationRail>;
+
+const Frame = styled.div`
+  background-color: var(--neutral15);
+  padding: 20px;
+`;
 
 const meta: Meta<StoryArgs> = {
   argTypes: {
@@ -25,11 +20,8 @@ const meta: Meta<StoryArgs> = {
 };
 export default meta;
 
-const Frame = styled(NavigationRailContainer)`
-  background-color: var(--neutral30);
-`;
-
-const Template: StoryFn<StoryArgs> = ({ items, label, showPrevNext }) => {
+const Template: StoryFn<StoryArgs> = (args) => {
+  const { items } = args;
   const [item, setItem] = useState(items[0]);
 
   const onSelect = (id: string) => {
@@ -38,14 +30,9 @@ const Template: StoryFn<StoryArgs> = ({ items, label, showPrevNext }) => {
   };
 
   return (
-    <NavigationRailProvider {...{ onSelect, items }}>
-      {/* Include if the menu, drawer navigation, or text header are needed. */}
-      <NavigationRailHeader {...{ showPrevNext }} />
-      <Frame>
-        <NavigationRail {...{ label }} />
-        <div>{item.label}</div>
-      </Frame>
-    </NavigationRailProvider>
+    <NavigationRail {...args} onSelect={onSelect}>
+      <Frame>{item.label}</Frame>
+    </NavigationRail>
   );
 };
 

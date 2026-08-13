@@ -6,10 +6,7 @@ import Orbitals from "./Orbitals/Orbitals.jsx";
 import Sun from "./Sun.js";
 import PlaybackSpeed from "./Controls/PlaybackSpeed.jsx";
 import PlaybackControls from "./Controls/PlaybackControls.js";
-import {
-  NavigationRail,
-  NavigationRailProvider,
-} from "@/layout/NavigationRail";
+import NavigationRail from "@/layout/NavigationRail";
 import * as Styled from "./styles";
 import { useOrbitalSimContext } from "./Context/index.js";
 import { Neo } from "./Context/OrbitalSimContext.types.js";
@@ -96,76 +93,81 @@ function OrbitalSim() {
   };
 
   let isDisabled = false;
+
+  function renderOrbit() {
+    return (
+      <Styled.CanvasWrapper orthographic={true}>
+        <CameraController
+          {...{ pov: allowOrbitRotation ? null : pov ?? "top", reset }}
+        />
+        <Camera
+          near={-1000}
+          far={1000}
+          position={[0, 0, 10]}
+          defaultZoom={defaultZoom || 3}
+        />
+
+        <ambientLight intensity={0.9} />
+        <Orbitals
+          defaultZoom={defaultZoom || 1}
+          {...{
+            playing,
+            stepDirection,
+            dayPerVizSec,
+            frameOverride,
+            potentialOrbits,
+            elapsedTime,
+            setElapsedTime,
+            reset,
+            zoomLevel,
+            setZoomLevel,
+            selectedNeoIndex,
+            orbits: swappableOrbits ? currentSwappableOrbit : orbits,
+          }}
+        />
+        <Sun zoomLevel={zoomLevel} defaultZoom={defaultZoom || 1} />
+      </Styled.CanvasWrapper>
+    );
+  }
+
   return (
     <>
       <Styled.GlobalStyles />
-      <Styled.OrbitalSimWrapper>
-        {swappableOrbits ? (
-          <NavigationRailProvider
-            items={(orbits?.neos ?? []).map((neo: Neo) => ({
-              id: neo.Principal_desig,
-              label: neo.Ref,
-            }))}
-            onSelect={updateSwappableOrbit}
-          >
-            <Styled.Navigation />
-          </NavigationRailProvider>
-        ) : (
-          <>
-            {showDetailsTable && <OrbitalDetails />}
-            {showTimeControls && (
-              <>
-                <PlaybackSpeed
-                  {...{ elapsedTime, dayPerVizSec, speeds }}
-                  sliderOnChangeCallback={handleStepSelect}
-                />
-                <PlaybackControls
-                  {...{
-                    playing,
-                    handleStartStop,
-                    handleNext,
-                    handlePrevious,
-                    isDisabled,
-                    handleReset,
-                  }}
-                />
-              </>
-            )}
-          </>
-        )}
 
-        <Styled.CanvasWrapper orthographic={true}>
-          <CameraController
-            {...{ pov: allowOrbitRotation ? null : pov ?? "top", reset }}
-          />
-          <Camera
-            near={-1000}
-            far={1000}
-            position={[0, 0, 10]}
-            defaultZoom={defaultZoom || 3}
-          />
-
-          <ambientLight intensity={0.9} />
-          <Orbitals
-            defaultZoom={defaultZoom || 1}
-            {...{
-              playing,
-              stepDirection,
-              dayPerVizSec,
-              frameOverride,
-              potentialOrbits,
-              elapsedTime,
-              setElapsedTime,
-              reset,
-              zoomLevel,
-              setZoomLevel,
-              selectedNeoIndex,
-              orbits: swappableOrbits ? currentSwappableOrbit : orbits,
-            }}
-          />
-          <Sun zoomLevel={zoomLevel} defaultZoom={defaultZoom || 1} />
-        </Styled.CanvasWrapper>
-      </Styled.OrbitalSimWrapper>
+      {swappableOrbits ? (
+        <NavigationRail
+          items={(orbits?.neos ?? []).map((neo: Neo) => ({
+            id: neo.Principal_desig,
+            label: neo.Ref,
+          }))}
+          onSelect={updateSwappableOrbit}
+        >
+          <Styled.OrbitalSimWrapper>{renderOrbit()}</Styled.OrbitalSimWrapper>
+        </NavigationRail>
+      ) : (
+        <Styled.OrbitalSimWrapper>
+          {showDetailsTable && <OrbitalDetails />}
+          {showTimeControls && (
+            <>
+              <PlaybackSpeed
+                {...{ elapsedTime, dayPerVizSec, speeds }}
+                sliderOnChangeCallback={handleStepSelect}
+              />
+              <PlaybackControls
+                {...{
+                  playing,
+                  handleStartStop,
+                  handleNext,
+                  handlePrevious,
+                  isDisabled,
+                  handleReset,
+                }}
+              />
+            </>
+          )}
+          {renderOrbit()}
+        </Styled.OrbitalSimWrapper>
+      )}
     </>
   );
 }

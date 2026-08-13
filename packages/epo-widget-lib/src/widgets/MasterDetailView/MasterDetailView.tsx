@@ -1,9 +1,4 @@
-import {
-  NavigationRail,
-  NavigationRailContainer,
-  NavigationRailHeader,
-  NavigationRailProvider,
-} from "@/layout/NavigationRail";
+import NavigationRail from "@/layout/NavigationRail";
 import { useState } from "react";
 import * as Styled from "./styles";
 
@@ -32,17 +27,10 @@ export default function MasterDetailView({ slides, navLabel }: Props) {
   };
 
   return (
-    <NavigationRailProvider items={navItems} onSelect={handleSetSlide}>
-      <NavigationRailHeader />
-      <NavigationRailContainer>
-        <NavigationRail label={navLabel} />
-        <div>
-          <Styled.Image
-            src={activeSlide.imageSrc}
-            alt={activeSlide.alt || ""}
-          />
-        </div>
-      </NavigationRailContainer>
-    </NavigationRailProvider>
+    <NavigationRail items={navItems} onSelect={handleSetSlide} label={navLabel}>
+      <div>
+        <Styled.Image src={activeSlide.imageSrc} alt={activeSlide.alt || ""} />
+      </div>
+    </NavigationRail>
   );
 }
