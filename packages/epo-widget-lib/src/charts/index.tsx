@@ -10,3 +10,4 @@ export { default as Viewport } from "./Viewport";
 export { default as ForeignObject } from "./ForeignObject";
 export { default as ScatterPlot } from "./ScatterPlot";
 export { default as Histogram } from "./Histogram";
+export { default as Trendline } from "./Trendline";

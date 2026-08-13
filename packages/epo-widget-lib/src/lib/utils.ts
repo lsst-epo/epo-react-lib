@@ -9,7 +9,7 @@ import { Point } from "@/types/charts";
  */
 export const getClampedArrayIndex = (
   index: number,
-  lastIndex: number
+  lastIndex: number,
 ): number => {
   switch (true) {
     case index > lastIndex:
@@ -54,7 +54,7 @@ export const middle = <T>(arr: Array<T>) =>
 export const getLinearScale = (
   domain: number[] = [0, 1],
   range: number[] = [0, 1],
-  options?: { clamp?: boolean; fractionDigits?: number }
+  options?: { clamp?: boolean; fractionDigits?: number },
 ): ((domainValue: number) => number) => {
   const defaultOptions = { clamp: false, fractionDigits: 2 };
   const { clamp, fractionDigits } = { ...defaultOptions, ...options };
@@ -72,8 +72,36 @@ export const getLinearScale = (
     }
 
     return Number(
-      (t * (range[1] - range[0]) + range[0]).toFixed(fractionDigits)
+      (t * (range[1] - range[0]) + range[0]).toFixed(fractionDigits),
     );
+  };
+};
+
+/**
+ * inverts a linear scale, mapping a range value back to its domain
+ * ex. for the scale of a [0,10] domain and [10,20] range
+ * a value of 15 would become 5
+ *
+ * A linear scale is affine, so it can be reversed from the scaled
+ * positions of the domain's endpoints without knowing the range.
+ * @param scale a linear scale, ex. one from `getLinearScale`
+ * @param domain the domain the scale was built with
+ * @returns (rangeValue: number) => domainValue: number
+ */
+export const invertLinearScale = (
+  scale: (domainValue: number) => number,
+  domain: number[],
+): ((rangeValue: number) => number) => {
+  const [minDomain, maxDomain] = domain;
+  const [minRange, maxRange] = [scale(minDomain), scale(maxDomain)];
+  const sub = maxRange - minRange;
+
+  return (val: number) => {
+    if (sub === 0) {
+      return (minDomain + maxDomain) / 2;
+    }
+
+    return ((val - minRange) / sub) * (maxDomain - minDomain) + minDomain;
   };
 };
 
@@ -102,7 +130,7 @@ export const mergeWithDefaults = (value: any, defaultValues: any) =>
 
 export const buildPath = (
   points: Array<Point>,
-  translate: Array<number> = [0, 0]
+  translate: Array<number> = [0, 0],
 ) =>
   points.reduce((prev, { x, y }, i) => {
     return (prev += `${i === 0 ? "M" : " L"}${x + translate[0]},${
