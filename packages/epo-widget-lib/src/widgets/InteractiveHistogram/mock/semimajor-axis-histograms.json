@@ -1,0 +1,434 @@
+[
+  {
+    "id": "neo",
+    "label": "NEOs",
+    "xLabel": "NEO Orbit Sizes (au)",
+    "yLabel": "Number of NEOs",
+    "binLabel": "Size of Orbit (au)",
+    "total": 18936,
+    "step": 0.25,
+    "data": [
+      {
+        "bin": 0.0,
+        "value": 0
+      },
+      {
+        "bin": 0.25,
+        "value": 0
+      },
+      {
+        "bin": 0.5,
+        "value": 107
+      },
+      {
+        "bin": 0.75,
+        "value": 1322
+      },
+      {
+        "bin": 1.0,
+        "value": 2531
+      },
+      {
+        "bin": 1.25,
+        "value": 3037
+      },
+      {
+        "bin": 1.5,
+        "value": 2757
+      },
+      {
+        "bin": 1.75,
+        "value": 2418
+      },
+      {
+        "bin": 2.0,
+        "value": 2516
+      },
+      {
+        "bin": 2.25,
+        "value": 2224
+      },
+      {
+        "bin": 2.5,
+        "value": 1270
+      },
+      {
+        "bin": 2.75,
+        "value": 518
+      },
+      {
+        "bin": 3.0,
+        "value": 140
+      },
+      {
+        "bin": 3.25,
+        "value": 58
+      },
+      {
+        "bin": 3.5,
+        "value": 15
+      },
+      {
+        "bin": 3.75,
+        "value": 11
+      },
+      {
+        "bin": 4.0,
+        "value": 4
+      },
+      {
+        "bin": 4.25,
+        "value": 5
+      },
+      {
+        "bin": 4.5,
+        "value": 1
+      },
+      {
+        "bin": 4.75,
+        "value": 1
+      },
+      {
+        "bin": 5.0,
+        "value": 0
+      },
+      {
+        "bin": 5.25,
+        "value": 0
+      },
+      {
+        "bin": 5.5,
+        "value": 0
+      },
+      {
+        "bin": 5.75,
+        "value": 0
+      },
+      {
+        "bin": 6.0,
+        "value": 0
+      },
+      {
+        "bin": 6.25,
+        "value": 0
+      },
+      {
+        "bin": 6.5,
+        "value": 0
+      },
+      {
+        "bin": 6.75,
+        "value": 0
+      },
+      {
+        "bin": 7.0,
+        "value": 0
+      },
+      {
+        "bin": 7.25,
+        "value": 0
+      },
+      {
+        "bin": 7.5,
+        "value": 1
+      },
+      {
+        "bin": 7.75,
+        "value": 0
+      }
+    ]
+  },
+  {
+    "id": "mba",
+    "label": "MBAs",
+    "xLabel": "MBA Orbit Sizes (au)",
+    "yLabel": "Number of MBAs",
+    "binLabel": "Size of Orbit (au)",
+    "total": 773798,
+    "step": 0.25,
+    "data": [
+      {
+        "bin": 0.0,
+        "value": 0
+      },
+      {
+        "bin": 0.25,
+        "value": 0
+      },
+      {
+        "bin": 0.5,
+        "value": 0
+      },
+      {
+        "bin": 0.75,
+        "value": 0
+      },
+      {
+        "bin": 1.0,
+        "value": 0
+      },
+      {
+        "bin": 1.25,
+        "value": 0
+      },
+      {
+        "bin": 1.5,
+        "value": 3398
+      },
+      {
+        "bin": 1.75,
+        "value": 22870
+      },
+      {
+        "bin": 2.0,
+        "value": 44955
+      },
+      {
+        "bin": 2.25,
+        "value": 191352
+      },
+      {
+        "bin": 2.5,
+        "value": 222400
+      },
+      {
+        "bin": 2.75,
+        "value": 102994
+      },
+      {
+        "bin": 3.0,
+        "value": 173401
+      },
+      {
+        "bin": 3.25,
+        "value": 3859
+      },
+      {
+        "bin": 3.5,
+        "value": 492
+      },
+      {
+        "bin": 3.75,
+        "value": 4052
+      },
+      {
+        "bin": 4.0,
+        "value": 295
+      },
+      {
+        "bin": 4.25,
+        "value": 46
+      },
+      {
+        "bin": 4.5,
+        "value": 24
+      },
+      {
+        "bin": 4.75,
+        "value": 205
+      },
+      {
+        "bin": 5.0,
+        "value": 3455
+      },
+      {
+        "bin": 5.25,
+        "value": 0
+      },
+      {
+        "bin": 5.5,
+        "value": 0
+      },
+      {
+        "bin": 5.75,
+        "value": 0
+      },
+      {
+        "bin": 6.0,
+        "value": 0
+      },
+      {
+        "bin": 6.25,
+        "value": 0
+      },
+      {
+        "bin": 6.5,
+        "value": 0
+      },
+      {
+        "bin": 6.75,
+        "value": 0
+      },
+      {
+        "bin": 7.0,
+        "value": 0
+      },
+      {
+        "bin": 7.25,
+        "value": 0
+      },
+      {
+        "bin": 7.5,
+        "value": 0
+      },
+      {
+        "bin": 7.75,
+        "value": 0
+      }
+    ]
+  },
+  {
+    "id": "tno",
+    "label": "TNOs",
+    "xLabel": "TNO Orbit Sizes (au)",
+    "yLabel": "Number of TNOs",
+    "binLabel": "Size of Orbit (au)",
+    "total": 2280,
+    "step": 5.0,
+    "data": [
+      {
+        "bin": 0.0,
+        "value": 0
+      },
+      {
+        "bin": 5.0,
+        "value": 0
+      },
+      {
+        "bin": 10.0,
+        "value": 0
+      },
+      {
+        "bin": 15.0,
+        "value": 0
+      },
+      {
+        "bin": 20.0,
+        "value": 0
+      },
+      {
+        "bin": 25.0,
+        "value": 0
+      },
+      {
+        "bin": 30.0,
+        "value": 46
+      },
+      {
+        "bin": 35.0,
+        "value": 465
+      },
+      {
+        "bin": 40.0,
+        "value": 1037
+      },
+      {
+        "bin": 45.0,
+        "value": 460
+      },
+      {
+        "bin": 50.0,
+        "value": 98
+      },
+      {
+        "bin": 55.0,
+        "value": 114
+      },
+      {
+        "bin": 60.0,
+        "value": 60
+      }
+    ]
+  },
+  {
+    "id": "comets",
+    "label": "Comets",
+    "xLabel": "Comet Orbit Sizes (au)",
+    "yLabel": "Number of comets",
+    "binLabel": "Size of Orbit (au)",
+    "total": 336,
+    "step": 5.0,
+    "data": [
+      {
+        "bin": 0.0,
+        "value": 95
+      },
+      {
+        "bin": 5.0,
+        "value": 142
+      },
+      {
+        "bin": 10.0,
+        "value": 17
+      },
+      {
+        "bin": 15.0,
+        "value": 19
+      },
+      {
+        "bin": 20.0,
+        "value": 10
+      },
+      {
+        "bin": 25.0,
+        "value": 9
+      },
+      {
+        "bin": 30.0,
+        "value": 3
+      },
+      {
+        "bin": 35.0,
+        "value": 5
+      },
+      {
+        "bin": 40.0,
+        "value": 6
+      },
+      {
+        "bin": 45.0,
+        "value": 2
+      },
+      {
+        "bin": 50.0,
+        "value": 4
+      },
+      {
+        "bin": 55.0,
+        "value": 2
+      },
+      {
+        "bin": 60.0,
+        "value": 2
+      },
+      {
+        "bin": 65.0,
+        "value": 4
+      },
+      {
+        "bin": 70.0,
+        "value": 2
+      },
+      {
+        "bin": 75.0,
+        "value": 5
+      },
+      {
+        "bin": 80.0,
+        "value": 2
+      },
+      {
+        "bin": 85.0,
+        "value": 1
+      },
+      {
+        "bin": 90.0,
+        "value": 1
+      },
+      {
+        "bin": 95.0,
+        "value": 5
+      }
+    ]
+  }
+]

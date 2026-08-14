@@ -17,6 +17,7 @@ export interface BarsProps {
   xScale: ScaleFunction;
   yScale: ScaleFunction;
   y?: number;
+  className?: string;
 }
 
 const Bars: FunctionComponent<BarsProps> = ({
@@ -25,6 +26,7 @@ const Bars: FunctionComponent<BarsProps> = ({
   xScale,
   yScale,
   y = yScale(yDomain[0]),
+  className,
 }) => {
   if (data.length === 0) return null;
 
@@ -43,6 +45,7 @@ const Bars: FunctionComponent<BarsProps> = ({
             stroke={stroke || "var(--bar-stroke, transparent)"}
             key={i}
             transform={`translate(-${width / 2} -${height})`}
+            className={className}
             {...props}
           />
         );
