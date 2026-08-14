@@ -1,7 +1,15 @@
 "use clients";
+import { ComponentProps, FunctionComponent } from "react";
 import styled from "styled-components";
 import Button from "@rubin-epo/epo-react-lib/Button";
-import SlideoutInfoCard from "@rubin-epo/epo-react-lib/SlideoutInfoCard";
+import BaseSlideoutInfoCard from "@rubin-epo/epo-react-lib/SlideoutInfoCard";
+
+interface SlideoutInfoCardProps extends ComponentProps<
+  typeof BaseSlideoutInfoCard
+> {}
+
+const SlideoutInfoCard: FunctionComponent<SlideoutInfoCardProps> =
+  BaseSlideoutInfoCard;
 
 export const SlideoutWrapper = styled(SlideoutInfoCard)`
   z-index: 10;
@@ -13,7 +21,7 @@ export const Label = styled.div`
   font-weight: var(--medium);
   color: var(--black);
   background-color: color-mix(in srgb, var(--white) 75%, transparent);
-  border: 1px solid color-mix(in srgb, var(--white) 75%, transparent);;
+  border: 1px solid color-mix(in srgb, var(--white) 75%, transparent);
   border-radius: 5px;
   color-adjust: exact;
   z-index: 10000;
