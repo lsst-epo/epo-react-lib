@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import { OrbitalSim }  from ".";
+import { OrbitalSim } from ".";
 import { OrbitalSimProvider } from "./Context";
 import SelectionList from "@/atomic/SelectionList";
-import { PrimaryData, PotentialOrbitsData, ObjectDetailsData, SwappableOrbitsData } from "@/mock-data/OrbitalSim"; 
+import {
+  PrimaryData,
+  PotentialOrbitsData,
+  ObjectDetailsData,
+  SwappableOrbitsData,
+} from "@/mock-data/OrbitalSim";
+import { Neo } from "./Context/OrbitalSimContext.types";
 
 const meta: Meta<typeof OrbitalSim> = {
   component: OrbitalSim,
@@ -13,14 +19,14 @@ const meta: Meta<typeof OrbitalSim> = {
   },
   argTypes: {
     defaultZoom: {
-      control: { type: 'number', step: 0.01 },
+      control: { type: "number", step: 0.01 },
     },
   },
 };
 export default meta;
 
 // Template for all stories
-const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
+const Template: StoryFn<typeof OrbitalSim> = (args: any) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   function resetSelectedAnswer() {
@@ -29,8 +35,15 @@ const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
 
   return (
     <>
-      {args.observations && <SelectionList sources={ selectedAnswer ? [{ type: "observation", id: selectedAnswer}] : [] } onRemoveCallback={ resetSelectedAnswer }/>}
-      <OrbitalSimProvider 
+      {args.observations && (
+        <SelectionList
+          sources={
+            selectedAnswer ? [{ type: "observation", id: selectedAnswer }] : []
+          }
+          onRemoveCallback={resetSelectedAnswer}
+        />
+      )}
+      <OrbitalSimProvider
         orbitData={args.orbits}
         defaultZoom={args.defaultZoom}
         selectedAnswer={selectedAnswer}
@@ -40,11 +53,12 @@ const Template: StoryFn<typeof OrbitalSim> = (args:any ) => {
         showTimeControls={args.showTimeControls}
         swappableOrbits={args.swappableOrbits}
         selectedNeoIndex={args.selectedNeoIndex}
+        showDetailsOnSelect={args.showDetailsOnSelect}
       >
-        <OrbitalSim/>
+        <OrbitalSim />
       </OrbitalSimProvider>
     </>
-  )
+  );
 };
 
 export const SwappableOrbits = Template.bind({});
@@ -57,10 +71,16 @@ export const PotentialOrbits = Template.bind({});
 PotentialOrbits.args = PotentialOrbitsData;
 
 export const OrbitalDetails = Template.bind({});
-OrbitalDetails.args = {...ObjectDetailsData, selectedNeoIndex: 0};
+OrbitalDetails.args = { ...ObjectDetailsData, selectedNeoIndex: 0 };
 OrbitalDetails.argTypes = {
   selectedNeoIndex: {
-    control: 'select',
+    control: "select",
     options: ObjectDetailsData.orbits.neos.map((_, i) => i),
   },
-}
+};
+
+export const OrbitalDetailsOnClick = Template.bind({});
+OrbitalDetailsOnClick.args = {
+  ...ObjectDetailsData,
+  showDetailsOnSelect: true,
+};

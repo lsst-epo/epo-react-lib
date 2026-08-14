@@ -18,7 +18,8 @@ function Orbitals({
   zoomLevel,
   setZoomLevel,
   selectedNeoIndex,
-  orbits
+  onSelectOrbit,
+  orbits,
 }) {
 
   const { 
@@ -72,6 +73,7 @@ function Orbitals({
             objectColor,
             objectRadius,
             reset,
+            onSelectOrbit
           }}
         />
       );
@@ -92,7 +94,6 @@ function Orbitals({
     }
   }, [frameOverride]);
 
-  
   return (
     <>
       {renderRefObjs()}
@@ -133,6 +134,7 @@ function Orbitals({
                   dayPerVizSec,
                   frameOverride,
                   reset,
+                  onSelectOrbit,
                 }}
                 initCallback={dispatch}
               />

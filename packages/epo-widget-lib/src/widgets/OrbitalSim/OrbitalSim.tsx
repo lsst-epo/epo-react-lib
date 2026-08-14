@@ -20,6 +20,8 @@ function OrbitalSim() {
     showTimeControls,
     swappableOrbits,
     selectedNeoIndex,
+    setSelectedObjectRef,
+    showDetailsOnSelect,
   } = useOrbitalSimContext();
   const { paused, pov, potentialOrbits } = orbits;
   const speeds = { min: 0.00001157, max: 365.25, initial: 11.574, step: 1 };
@@ -94,6 +96,10 @@ function OrbitalSim() {
 
   let isDisabled = false;
 
+  function onSelectOrbit(data: Neo) {
+    setSelectedObjectRef(data.Ref);
+  }
+
   function renderOrbit() {
     return (
       <Styled.CanvasWrapper orthographic={true}>
@@ -123,6 +129,7 @@ function OrbitalSim() {
             setZoomLevel,
             selectedNeoIndex,
             orbits: swappableOrbits ? currentSwappableOrbit : orbits,
+            onSelectOrbit: showDetailsOnSelect ? onSelectOrbit : undefined,
           }}
         />
         <Sun zoomLevel={zoomLevel} defaultZoom={defaultZoom || 1} />
@@ -133,7 +140,6 @@ function OrbitalSim() {
   return (
     <>
       <Styled.GlobalStyles />
-
       {swappableOrbits ? (
         <NavigationRail
           items={(orbits?.neos ?? []).map((neo: Neo) => ({
