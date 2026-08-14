@@ -94,6 +94,12 @@ const earth = {
   orbitColor: ORBITAL_COLORS.earth.orbitColor,
   objectColor: ORBITAL_COLORS.earth.objectColor,
   objectRadius: 5,
+  object_details: [
+    {rowTitle: "Scientific Name", rowContent: "Earth"},
+    {rowTitle: "Orbit Size", rowContent: "1 au" },
+    {rowTitle: "Eccentricity", rowContent: "0.02" },
+    {rowTitle: "Inclination", rowContent: ""}
+  ]
 };
 
 const mars = {
@@ -107,6 +113,12 @@ const mars = {
   orbitColor: ORBITAL_COLORS.mars.orbitColor,
   objectColor: ORBITAL_COLORS.mars.objectColor,
   objectRadius: 4,
+  object_details: [
+    {rowTitle: "Scientific Name", rowContent: "Mars"},
+    {rowTitle: "Orbit Size", rowContent: "1.52 au" },
+    {rowTitle: "Eccentricity", rowContent: "0.09" },
+    {rowTitle: "Inclination", rowContent: "2°"}
+  ]
 };
 
 const jupiter = {
@@ -121,6 +133,12 @@ const jupiter = {
   objectColor: ORBITAL_COLORS.jupiter.objectColor,
   // objectRadius: 69911000,
   objectRadius: 7,
+  object_details: [
+    {rowTitle: "Scientific Name", rowContent: "Jupiter"},
+    {rowTitle: "Orbit Size", rowContent: "5.2 au" },
+    {rowTitle: "Eccentricity", rowContent: "0.5" },
+    {rowTitle: "Inclination", rowContent: "1°"}
+  ]
 };
 
 const neptune = {
@@ -135,6 +153,12 @@ const neptune = {
   objectColor: ORBITAL_COLORS.neptune.objectColor,
   // objectRadius: 24622000,
   objectRadius: 6,
+  object_details: [
+    {rowTitle: "Scientific Name", rowContent: "Neptune"},
+    {rowTitle: "Orbit Size", rowContent: "30 au" },
+    {rowTitle: "Eccentricity", rowContent: "0.01" },
+    {rowTitle: "Inclination", rowContent: "2°"}
+  ]
 };
 
 export const getRefObjProps = id => {

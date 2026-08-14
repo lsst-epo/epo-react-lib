@@ -11,6 +11,7 @@ export interface OrbitalSimProviderProps {
     updateSelectedAnswer?: (newSelectedAnswer: string | null) => void,
     swappableOrbits?: boolean,
     selectedNeoIndex?: number,
+    showDetailsOnSelect?: boolean;
 }
 
 export type OrbitalSimContextValues = {
@@ -25,6 +26,8 @@ export type OrbitalSimContextValues = {
   selectedAnswer?: string | null;
   swappableOrbits: boolean;
   selectedNeoIndex?: number;
+  setSelectedObjectRef: (ref?: string) => void;
+  showDetailsOnSelect?: boolean;
 };
 
 export type Observation = {

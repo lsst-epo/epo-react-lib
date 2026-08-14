@@ -11,7 +11,6 @@ import {
   degsToRads,
   getFocus,
   getCurve,
-  getLineGeometry,
   getAngleFromPos,
   getPosFromArcLength,
   auToMeters,
@@ -42,7 +41,8 @@ const Orbital = ({
   defaultZoom,
   type,
   // noLabels,
-  reset
+  reset,
+  onSelectOrbit,
 }) => {
   const { t } = useTranslation();
   const { orbits } = useOrbitalSimContext();
@@ -186,6 +186,10 @@ const Orbital = ({
     if (initialized || internalInitialized) updatePoint(!playing, delta);
   });
 
+  const labelStyle = {
+                        fontSize: getLabelSize(zoomMod, defaultZoom)
+                      };
+
   return (
     <group rotation={rotation}>
       {/* Orbital Path */}
@@ -207,13 +211,18 @@ const Orbital = ({
         >
             {(type === "planet" || type === "neo" || active) && (
             <Html>
-              <Styled.Label
-                style={{
-                    fontSize: getLabelSize(zoomMod, defaultZoom),
-                  }}
-              >
-                  {translationKey ? t(translationKey) : name || pd}
-              </Styled.Label>
+              {
+                onSelectOrbit ? (
+                  <Styled.Label style={{ ...labelStyle, cursor: "pointer" }} onClick={() => onSelectOrbit(data)} role="button">
+                      {translationKey ? t(translationKey) : name || pd}
+                  </Styled.Label>
+                ) : (
+                  <Styled.Label style={labelStyle}>
+                    {translationKey ? t(translationKey) : name || pd}
+                  </Styled.Label>
+                )
+              }
+              
             </Html>
           )}
           <sphereGeometry

@@ -18253,4 +18253,5 @@ export const ObjectDetailsData = {
     
     refObjs: null,
     noLabels: null,
+    showDetailsOnSelect: false,
 };
