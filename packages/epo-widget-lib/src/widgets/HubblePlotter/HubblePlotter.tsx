@@ -50,6 +50,7 @@ const HubblePlotter: FunctionComponent<HubblePlotterProps> = ({
           }
         />
       ),
+      color: galaxy.color,
     };
   });
 

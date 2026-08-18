@@ -43,16 +43,25 @@ export const NavigationRailButton = styled.button`
   padding: 12px 22px;
   text-align: center;
   background-color: var(--neutral10);
-  color: var(--color-background-button-primary-default);
+  color: var(--nav-item-color, var(--color-background-button-primary-default));
 
   &:hover {
-    background-color: var(--color-background-button-primary-default);
+    background-color: var(--nav-item-color, var(--color-background-button-primary-default));
     color: var(--white);
   }
 
   &[aria-pressed="true"] {
-    background-color: var(--color-background-button-primary-default);
+    background-color: var(--nav-item-color, var(--color-background-button-primary-default));
     color: var(--white);
+
+    &:hover {
+      background-color: oklch(from var(--nav-item-color, var(--color-background-button-primary-default)) calc(l - .1) c h);
+    }
+  }
+
+  &:focus-visible:not(:disabled) {
+    outline: 2px solid var(--black);
+    outline-offset: -2px;
   }
 
   svg {
