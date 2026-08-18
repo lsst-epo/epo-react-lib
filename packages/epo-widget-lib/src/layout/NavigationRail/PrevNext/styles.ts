@@ -1,5 +1,5 @@
 "use client";
-import { Button as BaseButton } from "@rubin-epo/epo-react-lib";
+import BaseButton from "@rubin-epo/epo-react-lib/Button";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
