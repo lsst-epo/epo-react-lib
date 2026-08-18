@@ -6,4 +6,5 @@ export interface NavigationRailItem {
   label: ReactNode;
   icon?: IconKey | ReactNode;
   header?: string;
+  color?: string;
 }
