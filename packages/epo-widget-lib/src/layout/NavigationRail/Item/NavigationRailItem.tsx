@@ -12,7 +12,7 @@ export interface Props {
 }
 
 export default function NavigationRailItemButton({
-  item: { id, label, icon },
+  item: { id, label, icon, color },
   showLabel = true,
   isActive = false,
   onSelect,
@@ -24,6 +24,7 @@ export default function NavigationRailItemButton({
       className={className}
       onClick={() => onSelect(id)}
       aria-pressed={isActive}
+      style={{ "--nav-item-color": color }}
     >
       {typeof icon === "string" ? <IconComposer icon={icon} /> : icon ?? null}
       {showLabel ? (
