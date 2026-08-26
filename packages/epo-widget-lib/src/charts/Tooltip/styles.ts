@@ -8,10 +8,12 @@ export const TooltipContainer = styled(ForeignObject)`
 export const Tooltip = styled.div`
   background-color: #dce0e3;
   border-radius: 4px;
-  line-height: 1;
-  padding: 2px 4px;
+  line-height: var(--tooltip-line-height, 1);
+  padding: var(--tooltip-padding, 2px 4px);
   text-align: center;
   position: fixed;
+  max-inline-size: var(--tooltip-max-width, auto);
+  font-size: var(--tooltip-font-size, inherit);
 `;
 
 export const Arrow = styled.div`

@@ -1,10 +1,10 @@
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { nice } from "d3-array";
+import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import { ChartMargin } from "@/types/charts";
 import { getLinearScale } from "@/lib/utils";
 import InteractiveHistogram from ".";
 import histograms from "./mock/semimajor-axis-histograms.json";
-import BarChart from "./BarChart";
 
 type StoryArgs = React.ComponentProps<typeof InteractiveHistogram>;
 
@@ -103,7 +103,7 @@ WithMultipleDatasets.args = {
   data: histograms.map((histogram) => ({
     label: histogram.label,
     header: histogram.xLabel,
-    icon: <BarChart />,
+    icon: <IconComposer icon="BarChart" />,
     id: histogram.id,
     ...toChartProps(histogram),
   })),
