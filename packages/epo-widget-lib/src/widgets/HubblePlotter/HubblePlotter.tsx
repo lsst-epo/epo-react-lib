@@ -1,10 +1,10 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import IconComposer from "@rubin-epo/epo-react-lib/IconComposer";
 import NavigationRail from "@/layout/NavigationRail";
 import defaults from "./defaults";
 import { Galaxy, HubblePlotterProps } from "./types";
 import { getInitialGalaxies, isPlotted } from "./helpers";
-import GalaxyIcon from "./GalaxyIcon";
 import PlotArea from "./PlotArea";
 import { NavigationRailItem } from "@/layout/NavigationRail/types";
 
@@ -42,7 +42,8 @@ const HubblePlotter: FunctionComponent<HubblePlotterProps> = ({
         ? t("hubble_plotter.galaxy_plotted", { name: label })
         : label,
       icon: (
-        <GalaxyIcon
+        <IconComposer
+          icon="Galaxy"
           fill={
             isPlotted(galaxy, xValueAccessor, yValueAccessor)
               ? galaxy.color

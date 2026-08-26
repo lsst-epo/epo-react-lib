@@ -29,6 +29,7 @@ import FloppyDisk from "./FloppyDisk";
 import FocalPlane from "./FocalPlane";
 import Forward from "./Forward";
 import ForwardStep from "./ForwardStep";
+import Galaxy from "./Galaxy";
 import Globe from "./Globe";
 import Google from "./Google";
 import Hamburger from "./Hamburger";
@@ -103,6 +104,7 @@ const Icons = {
   FocalPlane,
   Forward,
   ForwardStep,
+  Galaxy,
   Globe,
   Google,
   Hamburger,
