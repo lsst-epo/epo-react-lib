@@ -3,23 +3,13 @@ import {
   PointerEvent,
   ReactNode,
   useId,
-  useLayoutEffect,
-  useRef,
   useState,
 } from "react";
 import { Domain, ScaleFunction } from "@/types/charts";
 import { invertLinearScale } from "@/lib/utils";
 import { Box, Coordinates } from "../types";
-import {
-  EMPTY_BOX,
-  getElBox,
-  getMidPoint,
-  getPointInSvg,
-  getSlopeTerminus,
-} from "./helpers";
-
-/** Padding between the label's text and the edge of its box */
-const LABEL_OFFSET = 5;
+import { getMidPoint, getPointInSvg, getSlopeTerminus } from "./helpers";
+import * as Styled from "./styles";
 
 interface BaseProps {
   xScale: ScaleFunction;
@@ -63,31 +53,11 @@ const Trendline: FunctionComponent<TrendlineProps> = (props) => {
   const { xScale, yScale, domain, label } = props;
   const [xDomain, yDomain] = domain;
 
-  const labelRef = useRef<SVGTextElement>(null);
-  const [labelBox, setLabelBox] = useState<Box>(EMPTY_BOX);
   const [isDragging, setIsDragging] = useState(false);
   const markerId = `triangle-${useId()}`;
 
   const isSlope = props.variant === "slope";
   const slope = isSlope ? props.slope : undefined;
-
-  /**
-   * The label's box can only be sized once the text has been laid out, so
-   * measure it after every paint. The measurement is only committed when it
-   * changes, so this settles rather than looping.
-   */
-  useLayoutEffect(() => {
-    const { x, y, width, height } = getElBox(labelRef.current);
-
-    setLabelBox((previous) =>
-      previous.x === x &&
-      previous.y === y &&
-      previous.width === width &&
-      previous.height === height
-        ? previous
-        : { x, y, width, height },
-    );
-  });
 
   const getAxisGeometry = ({ padding, pointUp }: AxisProps) => {
     const offset = padding / 2;
@@ -100,9 +70,9 @@ const Trendline: FunctionComponent<TrendlineProps> = (props) => {
       start,
       terminus,
       transform: pointUp ? `rotate(180, ${midX}, ${midY})` : undefined,
-      /** Centered on the line, halfway along it */
-      labelX: midX - labelBox.width / 2,
-      labelY: midY + labelBox.height / 2,
+      labelX: midX,
+      labelY: midY,
+      labelPlacement: "on" as const,
     };
   };
 
@@ -115,9 +85,9 @@ const Trendline: FunctionComponent<TrendlineProps> = (props) => {
       start,
       terminus,
       transform: undefined,
-      /** Set beside the line so the box doesn't cover it */
-      labelX: midX + LABEL_OFFSET,
+      labelX: midX,
       labelY: midY,
+      labelPlacement: "beside" as const,
     };
   };
 
@@ -178,24 +148,18 @@ const Trendline: FunctionComponent<TrendlineProps> = (props) => {
             transform={geometry.transform}
             pointerEvents="none"
           />
-          <rect
-            width={labelBox.width + 2 * LABEL_OFFSET}
-            height={labelBox.height + 2 * LABEL_OFFSET}
-            x={labelBox.x - LABEL_OFFSET}
-            y={labelBox.y - LABEL_OFFSET}
-            fill="#ffffff"
-            strokeWidth="2"
-            stroke="#000000"
-            pointerEvents="none"
-          />
-          <text
-            ref={labelRef}
+          <foreignObject
             x={geometry.labelX}
             y={geometry.labelY}
+            width={1}
+            height={1}
+            overflow="visible"
             pointerEvents="none"
           >
-            {typeof label === "function" ? label(slope ?? 0) : label}
-          </text>
+            <Styled.Label data-placement={geometry.labelPlacement}>
+              {typeof label === "function" ? label(slope ?? 0) : label}
+            </Styled.Label>
+          </foreignObject>
         </g>
       )}
       {captureArea && (
