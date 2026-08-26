@@ -2,6 +2,7 @@ import Account from "./Account";
 import ArrowUpFromBracket from "./ArrowUpFromBracket";
 import Backward from "./Backward";
 import BackwardStep from "./BackwardStep";
+import BarChart from "./BarChart";
 import Calendar from "./Calendar";
 import Cancel from "./Cancel";
 import CaretDown from "./CaretDown";
@@ -75,6 +76,7 @@ const Icons = {
   ArrowUpFromBracket,
   Backward,
   BackwardStep,
+  BarChart,
   Calendar,
   Cancel,
   CaretDown,

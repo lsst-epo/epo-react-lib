@@ -1,5 +1,3 @@
-import { edgeServerAppPaths } from "next/dist/build/webpack/plugins/pages-manifest-plugin";
-
 export { default as Base } from "./Base";
 export { default as XAxis } from "./XAxis";
 export { default as YAxis } from "./YAxis";

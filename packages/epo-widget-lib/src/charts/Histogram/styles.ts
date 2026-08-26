@@ -22,6 +22,8 @@ export const YLabel = styled.text`
 `;
 
 export const Tooltip = styled(BaseTooltip)`
-  max-inline-size: var(--max-tooltip-width, 200px);
-  padding: 6px;
+  --tooltip-padding: 12px;
+  --tooltip-max-width: 200px;
+  --tooltip-line-height: normal;
+  --tooltip-font-size: .8em;
 `;
