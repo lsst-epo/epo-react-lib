@@ -87,15 +87,12 @@ const Orbital = ({
     period: 0,
   });
 
+  // useRef because we need React to remember the value, but not trigger renders
+  const initialPoint = useRef(null);
+
   useEffect(() => {
-    if (reset > 0) {
-      setPoint({
-        position: posZero,
-        rotation: [0, 0, 0],
-        progress: 0,
-        velocity: getVelocity(posZero.distanceTo(sunPos), majAxis),
-        period: 0,
-      });
+    if (reset > 0 && initialPoint.current) {
+      setPoint(initialPoint.current);
     }
   }, [reset]);
 
@@ -166,7 +163,10 @@ const Orbital = ({
 
   // Called once when the component first mounts
   useEffect(() => {
-    setPoint(getInitialPoint(M || Math.floor(Math.random() * Math.floor(180))));
+    initialPoint.current = getInitialPoint(
+      M || Math.floor(Math.random() * Math.floor(180))
+    );
+    setPoint(initialPoint.current);
   }, []);
 
   // Called whenever frameOverride changes
