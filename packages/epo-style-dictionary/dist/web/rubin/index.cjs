@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 05 Feb 2025 21:06:43 GMT
+ * Generated on Fri, 25 Sep 2026 20:23:15 GMT
  */
 
 module.exports = {
@@ -75,6 +75,8 @@ module.exports = {
   "COLOR_FONT_PRIMARY": "#1f2121",
   "COLOR_FONT_INVERT": "#ffffff",
   "COLOR_FONT_ACCENT": "#058b8c",
+  "COLOR_FONT_LINK_DEFAULT": "#058b8c",
+  "COLOR_FONT_LINK_DARK": "#117273",
   "COLOR_FONT_MUTED": "#6a6e6e",
   "ELEVATION_ELEMENT_LOADER": 45,
   "ELEVATION_ELEMENT_DIALOG": 35,
