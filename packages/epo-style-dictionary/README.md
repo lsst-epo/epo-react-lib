@@ -1,4 +1,15 @@
-# Basic Style Dictionary
+# Contributing to the Style Dictionary
+`epo-style-dictionary` is not meant to be used publicly. It is configured as a private workspace in it's `package.json`, meaning NPM won’t publish it. The build output of `epo-style-dictionary` is consumed by `epo-react-lib` as a `devDependency`. There is no true release script defined for it like there is for `epo-react-lib` and `epo-widget-lib`. Therefore, to make changes to `epo-style-dictionary` visible to the other packages and usable in production, you need to manually bump the version numbers.
+
+### Updating the Style Dictionary and Applying the Changes
+1. Edit the token source files in `epo-style-dictionary/src`.
+2. Manually increment the version in the `epo-style-dictionary` `package.json` according to semantic versioning standards.
+3. Update the pinned version for `@rubin-epo/epo-style-dictionaty` in the `epo-react-lib` `package.json` under `devDependencies`.
+4. Commit and push the token changes and version bumps.
+5. Open a PR, test, and merge.
+6. Upon merging up to a release branch, the CI release workflow will handle the rest. Read the `RELEASE.md` at the root of the monorepo for more information.
+
+# Basic Style Dictionary Example
 
 This example code is bare-bones to show you what this framework can do. If you have the style-dictionary module installed globally, you can `cd` into this directory and run:
 
