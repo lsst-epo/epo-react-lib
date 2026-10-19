@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 05 Feb 2025 21:06:43 GMT
+ * Generated on Fri, 25 Sep 2026 20:23:15 GMT
  */
 
 :root {
@@ -75,6 +75,8 @@
   --color-font-primary: #1f2121;
   --color-font-invert: #ffffff;
   --color-font-accent: #058b8c;
+  --color-font-link-default: #058b8c;
+  --color-font-link-dark: #117273;
   --color-font-muted: #6a6e6e;
   --elevation-element-loader: 45;
   --elevation-element-dialog: 35;

@@ -10,6 +10,14 @@
       "accent": {
         "value": "{color.teal.72}"
       },
+      "link": {
+        "default": {
+          "value": "{color.teal.72}"
+        },
+        "dark": {
+          "value": "{color.teal.74}"
+        }
+      },
       "muted": {
         "value": "{color.rubin.gray.200}"
       }
