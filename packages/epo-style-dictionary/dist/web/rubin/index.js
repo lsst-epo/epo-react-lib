@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 05 Feb 2025 21:06:43 GMT
+ * Generated on Fri, 25 Sep 2026 20:23:15 GMT
  */
 
 export const COLOR_BACKGROUND_BUTTON_PRIMARY_DEFAULT = "#12726d";
@@ -74,6 +74,8 @@ export const COLOR_RUBIN_PURPLE_300 = "#583671";
 export const COLOR_FONT_PRIMARY = "#1f2121";
 export const COLOR_FONT_INVERT = "#ffffff";
 export const COLOR_FONT_ACCENT = "#058b8c";
+export const COLOR_FONT_LINK_DEFAULT = "#058b8c";
+export const COLOR_FONT_LINK_DARK = "#117273";
 export const COLOR_FONT_MUTED = "#6a6e6e";
 export const ELEVATION_ELEMENT_LOADER = 45;
 export const ELEVATION_ELEMENT_DIALOG = 35;

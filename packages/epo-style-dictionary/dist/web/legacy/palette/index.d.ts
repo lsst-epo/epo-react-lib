@@ -3,7 +3,7 @@
  * Avoid using these
  * 
  * Do not edit directly
- * Generated on Wed, 05 Feb 2025 21:06:43 GMT
+ * Generated on Fri, 25 Sep 2026 20:23:15 GMT
  */
 
 export const white : string;
