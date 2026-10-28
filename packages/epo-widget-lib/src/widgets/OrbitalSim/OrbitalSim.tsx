@@ -148,11 +148,14 @@ function OrbitalSim() {
           }))}
           onSelect={updateSwappableOrbit}
         >
-          <Styled.OrbitalSimWrapper>{renderOrbit()}</Styled.OrbitalSimWrapper>
+          <Styled.OrbitalSimWrapper>
+            {(showDetailsTable || showDetailsOnSelect) && <OrbitalDetails />}
+            {renderOrbit()}
+          </Styled.OrbitalSimWrapper>
         </NavigationRail>
       ) : (
         <Styled.OrbitalSimWrapper>
-          {showDetailsTable && <OrbitalDetails />}
+          {(showDetailsTable || showDetailsOnSelect) && <OrbitalDetails />}
           {showTimeControls && (
             <>
               <PlaybackSpeed
