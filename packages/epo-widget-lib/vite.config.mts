@@ -9,7 +9,7 @@ import { peerDependencies, dependencies } from "./package.json";
 const defaultFormat = "es";
 
 const packages = Object.fromEntries(
-  sync(["src/widgets/*/index.tsx"], {
+  sync(["src/widgets/*/index.{ts,tsx}"], {
     ignore: ["src/**/*.stories.tsx", "src/**/*.test.tsx"],
   }).map((file) => {
     const path = resolve(__dirname, file);
@@ -45,6 +45,10 @@ export default defineConfig({
         ColorToolServer: resolve(
           __dirname,
           "src/widgets/ColorTool/lib/server.ts"
+        ),
+        NavigationRail: resolve(
+          __dirname,
+          "src/layout/NavigationRail/index.ts"
         ),
         ...packages,
       },
