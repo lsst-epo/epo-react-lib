@@ -46,7 +46,7 @@ const HubblePlotter: FunctionComponent<HubblePlotterProps> = ({
           icon="Galaxy"
           fill={
             isPlotted(galaxy, xValueAccessor, yValueAccessor)
-              ? galaxy.color
+              ? undefined
               : "var(--neutral60, #6a6e6e)"
           }
         />
