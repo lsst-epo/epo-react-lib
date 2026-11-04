@@ -1,0 +1,185 @@
+{
+  "blinker": {
+    "controls": {
+      "backward": "Backward",
+      "forward": "Forward",
+      "reset": "Reset",
+      "play": "Play",
+      "pause": "Pause"
+    }
+  },
+  "elapsed_time": {
+    "title": "Elapsed Time",
+    "step": {
+      "day_one": "Day",
+      "day_other": "Days",
+      "hour_one": "Hour",
+      "hour_other": "Hours",
+      "minute_one": "Minute",
+      "minute_other": "Minutes",
+      "second_one": "Second",
+      "second_other": "Seconds",
+      "year_one": "Year",
+      "year_other": "Years"
+    },
+    "interval": {
+      "year": "Years",
+      "day": "Days"
+    }
+  },
+  "filterTool": {
+    "title": "Ferramenta de Filtro de Cores",
+    "filter": "Filtro",
+    "whiteLight": "Luz branca",
+    "prism": "Prisma",
+    "selectLabel": "Selecione um filtro:",
+    "light_out": "Luz emergente",
+    "light_filtered": "Luz filtrada",
+    "colors": {
+      "violet": "Violeta",
+      "blue": "Azul",
+      "green": "Verde",
+      "yellow": "Amarelo",
+      "orange": "Laranja",
+      "red": "Vermelho",
+      "none": "Nenhum"
+    }
+  },
+  "colorTool": {
+    "labels": {
+      "object_type": "Tipo de objeto:",
+      "object": "Objeto:",
+      "object_selected": "Objeto selecionado:",
+      "filter": "Filtro",
+      "color": "Cor",
+      "color_intensity": "Intensidade da cor"
+    },
+    "actions": {
+      "select_an_object": "Selecione um objeto ",
+      "select_filter": "Selecione um filtro",
+      "reset": "Redefinir",
+      "export": "Exportar"
+    }
+  },
+  "selection_list": {
+    "selected_source": "Selected {{type}}:",
+    "sources": {
+      "galaxy": "Galaxy",
+      "supernova": "Supernova",
+      "observation": "Observation",
+      "asteroid": "Asteroid"
+    }
+  },
+  "source_selector": {
+    "messages": {
+      "success": "You found it!",
+      "failure": "Try again."
+    }
+  },
+  "camera_filter": {
+    "title": "Faixas espectrais dos filtros da câmera LSST do Observatório Rubin",
+    "labels": {
+      "select": "Selecione um dos filtros do Observatório Rubin",
+      "option": "Filtro {{band}}",
+      "option_none": "Nenhum",
+      "captured_range": "Espectros eletromagnéticos registrados com o filtro {{filter}}",
+      "captured_range_no_filter": "Espectros eletromagnéticos registrados sem a aplicação de filtros",
+      "ultraviolet": "Ultravioleta",
+      "visible": "Luz visível",
+      "infrared": "Infravermelho"
+    }
+  },
+  "supernova_three_vector": {
+    "histogram": {
+      "title": "Supernova Distances",
+      "x_label": "Distance [Mlyr]",
+      "bar_label_one": "{{binMin}} to {{binMax}} mega-lightyears: {{count}} supernova",
+      "bar_label_other": "{{binMin}} to {{binMax}} mega-lightyears: {{count}} supernovae"
+    },
+    "slider": {
+      "label": "Select visible range",
+      "valueLabel": "{{value}} mega-lightyears"
+    },
+    "skymap": {
+      "title": "Supernova Distribution",
+      "description": "$t(supernova_three_vector.skymap.supernova_count, {\"count\": {{supernovaCount}}, \"min\": {{min}}, \"max\": {{max}}}) $t(supernova_three_vector.skymap.user_supernova_count, {\"count\": {{userObjectCount}}})",
+      "supernova_count_one": "Sky map projection showing {{count}} supernova between the distances of {{min}} and {{max}} mega-lightyears.",
+      "supernova_count_other": "Sky map projection showing {{count}} supernovae between the distances of {{min}} and {{max}} mega-lightyears.",
+      "user_supernova_count_zero": "None of your supernovae are visible.",
+      "user_supernova_count_one": "{{count}} of your supernovae is visible near {{coords}}.",
+      "user_supernova_count_other": "{{count}} of your supernovae are visible near {{coords}}."
+    }
+  },
+  "light_curve": {
+    "deltaM15": {
+      "label": "Delta m 15:"
+    },
+    "curve": {
+      "controls": {
+        "gaussian_width": "Curve Width",
+        "y_offset": "Vertical (y) Offset"
+      },
+      "description_above": "Mean distance from observations is {{residual}}, your peak is above the brightest measurement of {{brightest}}",
+      "description_below": "Mean distance from observations is {{residual}}, your peak is below the brightest measurement of {{brightest}}"
+    },
+    "magnitude_slider": {
+      "label": "Estimate the apparent magnitude",
+      "value_above": "Apparent magnitude is {{magnitude}}, {{distance}} higher than the peak of the light curve.",
+      "value_below": "Apparent magnitude is {{magnitude}}, {{distance}} lower than the peak of the light curve.",
+      "value_equal": "Apparent magnitude is {{magnitude}}, equal to the peak of the light curve."
+    },
+    "plot": {
+      "x_label": "Days",
+      "y_label": "Apparent Magnitude (m)",
+      "plot_label": "Supernovae magnitude before and after peak magnitude",
+      "point_label_before_one": "Apparent Magnitude: {{magnitude}} {{count}} day before peak",
+      "point_label_before_other": "Apparent Magnitude: {{magnitude}} {{count}} days before peak",
+      "point_label_peak": "Apparent Magnitude: {{magnitude}} at peak",
+      "point_label_after_one": "Apparent Magnitude: {{magnitude}} {{count}} day after peak",
+      "point_label_after_other": "Apparent Magnitude: {{magnitude}} {{count}} days after peak",
+      "tooltip": "m: {{magnitude}}"
+    }
+  },
+  "isochrone_plot": {
+    "output": "{{age}} Gyrs {{distance}} Lyrs",
+    "output_screenreader": "{{age}} gigayears {{distance}} lightyears, {{percent}} of stars are on the curve.",
+    "plot": {
+      "x_label": "Color Index",
+      "y_label": "Apparent G Magnitude"
+    },
+    "controls": {
+      "age": {
+        "label": "Age",
+        "textValue": "{{value}} gigayears"
+      },
+      "distance": {
+        "label": "Distance",
+        "textValue": "{{value}} magnitude offset"
+      }
+    }
+  },
+  "orbital_sim": {
+    "astronomy": {
+      "orbital_bodies": {
+        "sun": "Sun"
+      }
+    },
+    "playback": {
+        "sec_with_count": "1 sec = {{count}} days",
+        "time_equivalence": "1 sec is 1 year",
+        "normal_time": "Normal Time",
+        "time_step": "Time Step"
+    }
+  },
+  "planets": {
+    "jupiter": "Jupiter",
+    "earth": "Earth",
+    "mars": "Mars",
+    "neptune": "Neptune"
+  },
+  "neo": {
+    "apollo": "Apollo",
+    "amor": "Amor",
+    "atira": "Atira"
+  }
+}

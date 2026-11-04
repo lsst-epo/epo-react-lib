@@ -9,6 +9,7 @@ export const locales = {
   en: "English",
   es: "Español",
   fr: "Français",
+  pt: "Português",
 };
 
 export const defaultLocale = "en";
