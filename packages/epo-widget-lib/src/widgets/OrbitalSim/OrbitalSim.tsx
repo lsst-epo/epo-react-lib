@@ -107,8 +107,8 @@ function OrbitalSim() {
           {...{ pov: allowOrbitRotation ? null : pov ?? "top", reset }}
         />
         <Camera
-          near={-1000}
-          far={1000}
+          near={-45000}
+          far={45000}
           position={[0, 0, 10]}
           defaultZoom={defaultZoom || 3}
         />
