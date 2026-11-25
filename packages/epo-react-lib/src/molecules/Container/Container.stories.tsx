@@ -77,3 +77,23 @@ export const Primary: StoryObj<typeof Container> = {
 export const Nested = Template.bind({});
 
 Nested.args = { children: MockChildren };
+
+export const Siblings: StoryFn<typeof Container> = (args) => {
+  const padding = "medium";
+  const background = "turquoise10";
+
+  return (
+    <>
+      <Container paddingSize={padding} bgColor={background} {...args}>
+        Background color: {args.bgColor || background}
+      </Container>
+      <Container paddingSize={padding} {...args} bgColor={background}>
+        <div>If the sibling container has the same background color, padding-block-start is set to 0.</div>
+        <div>Background color: {background}</div>
+      </Container>
+      <Container paddingSize={padding} {...args} bgColor="black" darkMode>
+        Background color: black
+      </Container>
+    </>
+  );
+};

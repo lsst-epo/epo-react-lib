@@ -38,6 +38,7 @@ const Container: FunctionComponent<PropsWithChildren<ContainerProps>> = ({
     <Styled.Section
       data-testid="container"
       data-dark-mode={darkMode}
+      data-bg-color={bgColor}
       style={{
         "--section-background-color": `var(--${bgColor})`,
         "--size-padding-container":
